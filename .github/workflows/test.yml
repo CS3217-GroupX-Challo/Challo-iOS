@@ -18,16 +18,3 @@ jobs:
 
     - name: Build and test
       run: xcodebuild clean build test -workspace App/QuizApp.xcworkspace -scheme "CI" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPad Air (4th generation)" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
-
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
