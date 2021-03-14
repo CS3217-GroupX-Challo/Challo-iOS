@@ -3,10 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99EE910BF070DD5F6845522E /* Pods_Challo_ChalloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */; };
+		AA9E85C925FE70AD00C2E389 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E85C825FE70AD00C2E389 /* NetworkManager.swift */; };
+		AA9E85D625FE735800C2E389 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E85D525FE735800C2E389 /* NetworkError.swift */; };
+		AA9E85E125FE740500C2E389 /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E85E025FE740500C2E389 /* AlamofireManager.swift */; };
+		B0F349AF3CB87F77584434C4 /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC2C4523E0BAD62412B118A /* Pods_Challo.framework */; };
+		D4A670D2B9132DB104111692 /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391AD75BD73BA41A633358D /* Pods_ChalloTests.framework */; };
 		E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234932225FB884F00EC90E9 /* ChalloApp.swift */; };
 		E234932525FB884F00EC90E9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234932425FB884F00EC90E9 /* ContentView.swift */; };
 		E234932725FB885100EC90E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E234932625FB885100EC90E9 /* Assets.xcassets */; };
@@ -33,6 +39,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0FB94ED8ABE4924DD5399328 /* Pods-ChalloTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChalloTests.release.xcconfig"; path = "Target Support Files/Pods-ChalloTests/Pods-ChalloTests.release.xcconfig"; sourceTree = "<group>"; };
+		17BB0539313AB0A941E28A84 /* Pods-Challo-ChalloUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo-ChalloUITests.release.xcconfig"; path = "Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests.release.xcconfig"; sourceTree = "<group>"; };
+		26CEF1D24A058AF91D5433CF /* Pods-Challo-ChalloUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo-ChalloUITests.debug.xcconfig"; path = "Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2EC2C4523E0BAD62412B118A /* Pods_Challo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		319529DE749B6204E6CE117B /* Pods-Challo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo.release.xcconfig"; path = "Target Support Files/Pods-Challo/Pods-Challo.release.xcconfig"; sourceTree = "<group>"; };
+		509E731AAC403D033CF6777F /* Pods-Challo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo.debug.xcconfig"; path = "Target Support Files/Pods-Challo/Pods-Challo.debug.xcconfig"; sourceTree = "<group>"; };
+		5391AD75BD73BA41A633358D /* Pods_ChalloTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChalloTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		579E5280C4C85255C7A50899 /* Pods-ChalloTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChalloTests.debug.xcconfig"; path = "Target Support Files/Pods-ChalloTests/Pods-ChalloTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AA9E85C825FE70AD00C2E389 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		AA9E85D525FE735800C2E389 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		AA9E85E025FE740500C2E389 /* AlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
+		B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234931F25FB884F00EC90E9 /* Challo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234932225FB884F00EC90E9 /* ChalloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloApp.swift; sourceTree = "<group>"; };
 		E234932425FB884F00EC90E9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F349AF3CB87F77584434C4 /* Pods_Challo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A670D2B9132DB104111692 /* Pods_ChalloTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,12 +86,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99EE910BF070DD5F6845522E /* Pods_Challo_ChalloUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		338C21FD425FDC2B407B5536 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				509E731AAC403D033CF6777F /* Pods-Challo.debug.xcconfig */,
+				319529DE749B6204E6CE117B /* Pods-Challo.release.xcconfig */,
+				26CEF1D24A058AF91D5433CF /* Pods-Challo-ChalloUITests.debug.xcconfig */,
+				17BB0539313AB0A941E28A84 /* Pods-Challo-ChalloUITests.release.xcconfig */,
+				579E5280C4C85255C7A50899 /* Pods-ChalloTests.debug.xcconfig */,
+				0FB94ED8ABE4924DD5399328 /* Pods-ChalloTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		AA9E85C725FE706300C2E389 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				AA9E85D525FE735800C2E389 /* NetworkError.swift */,
+				AA9E85C825FE70AD00C2E389 /* NetworkManager.swift */,
+				AA9E85E025FE740500C2E389 /* AlamofireManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		E234931625FB884F00EC90E9 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +123,8 @@
 				E234933325FB885100EC90E9 /* ChalloTests */,
 				E234933E25FB885100EC90E9 /* ChalloUITests */,
 				E234932025FB884F00EC90E9 /* Products */,
+				338C21FD425FDC2B407B5536 /* Pods */,
+				EB8898A86AE48A027123AD32 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,6 +141,7 @@
 		E234932125FB884F00EC90E9 /* Challo */ = {
 			isa = PBXGroup;
 			children = (
+				AA9E85C725FE706300C2E389 /* Networking */,
 				E234932225FB884F00EC90E9 /* ChalloApp.swift */,
 				E234932425FB884F00EC90E9 /* ContentView.swift */,
 				E234932625FB885100EC90E9 /* Assets.xcassets */,
@@ -130,6 +177,16 @@
 			path = ChalloUITests;
 			sourceTree = "<group>";
 		};
+		EB8898A86AE48A027123AD32 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2EC2C4523E0BAD62412B118A /* Pods_Challo.framework */,
+				B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */,
+				5391AD75BD73BA41A633358D /* Pods_ChalloTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,9 +194,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E234934425FB885100EC90E9 /* Build configuration list for PBXNativeTarget "Challo" */;
 			buildPhases = (
+				13DC2D1D1917D45DC655A5AD /* [CP] Check Pods Manifest.lock */,
 				E234931B25FB884F00EC90E9 /* Sources */,
 				E234931C25FB884F00EC90E9 /* Frameworks */,
 				E234931D25FB884F00EC90E9 /* Resources */,
+				D1147EAFD4B6180D50B77CB4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -154,6 +213,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E234934725FB885100EC90E9 /* Build configuration list for PBXNativeTarget "ChalloTests" */;
 			buildPhases = (
+				F6B18158CE5FE9610A85700E /* [CP] Check Pods Manifest.lock */,
 				E234932C25FB885100EC90E9 /* Sources */,
 				E234932D25FB885100EC90E9 /* Frameworks */,
 				E234932E25FB885100EC90E9 /* Resources */,
@@ -172,9 +232,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E234934A25FB885100EC90E9 /* Build configuration list for PBXNativeTarget "ChalloUITests" */;
 			buildPhases = (
+				F65822FBB066D37E6EF948E2 /* [CP] Check Pods Manifest.lock */,
 				E234933725FB885100EC90E9 /* Sources */,
 				E234933825FB885100EC90E9 /* Frameworks */,
 				E234933925FB885100EC90E9 /* Resources */,
+				74A5AEE9CFC38C5CF296937A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -254,12 +316,118 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		13DC2D1D1917D45DC655A5AD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Challo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		74A5AEE9CFC38C5CF296937A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1147EAFD4B6180D50B77CB4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F65822FBB066D37E6EF948E2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Challo-ChalloUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6B18158CE5FE9610A85700E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChalloTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E234931B25FB884F00EC90E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA9E85C925FE70AD00C2E389 /* NetworkManager.swift in Sources */,
+				AA9E85D625FE735800C2E389 /* NetworkError.swift in Sources */,
 				E234932525FB884F00EC90E9 /* ContentView.swift in Sources */,
+				AA9E85E125FE740500C2E389 /* AlamofireManager.swift in Sources */,
 				E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +582,7 @@
 		};
 		E234934525FB885100EC90E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 509E731AAC403D033CF6777F /* Pods-Challo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -435,6 +604,7 @@
 		};
 		E234934625FB885100EC90E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 319529DE749B6204E6CE117B /* Pods-Challo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -456,6 +626,7 @@
 		};
 		E234934825FB885100EC90E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 579E5280C4C85255C7A50899 /* Pods-ChalloTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -477,6 +648,7 @@
 		};
 		E234934925FB885100EC90E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FB94ED8ABE4924DD5399328 /* Pods-ChalloTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -498,6 +670,7 @@
 		};
 		E234934B25FB885100EC90E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26CEF1D24A058AF91D5433CF /* Pods-Challo-ChalloUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -517,6 +690,7 @@
 		};
 		E234934C25FB885100EC90E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17BB0539313AB0A941E28A84 /* Pods-Challo-ChalloUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
