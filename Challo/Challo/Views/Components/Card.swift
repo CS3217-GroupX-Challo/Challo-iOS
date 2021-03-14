@@ -8,9 +8,9 @@ struct Card<Content: View>: ContainerView {
             content()
         }
         .padding()
-        .background(Color(red: 240,
-                          green: 240,
-                          blue: 240).opacity(0.8))
+        .background(Color(red: 255 / 255,
+                          green: 250 / 255,
+                          blue: 250 / 255).opacity(0.8))
     }
 }
 
