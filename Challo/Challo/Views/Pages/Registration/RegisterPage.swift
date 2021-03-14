@@ -2,6 +2,7 @@ import SwiftUI
 
 struct RegisterPage: View {
     @ObservedObject var loginPresenter: LoginPresenter
+    @ObservedObject var registerPresenter: RegisterPresenter
 
     var body: some View {
         ZStack {
@@ -14,7 +15,11 @@ struct RegisterPage: View {
                     HStack {
                         loginPresenter.makeLoginWithFacebookButton()
                     }
-                    RegisterForm()
+                    RegisterForm(username: $registerPresenter.userName,
+                                 firstName: $registerPresenter.firstName,
+                                 lastName: $registerPresenter.lastName,
+                                 email: $registerPresenter.email,
+                                 password: $registerPresenter.password)
                 }
                 .position(x: geometry.size.width / 2,
                           y: geometry.size.height / 2)
@@ -33,6 +38,7 @@ struct RegisterPage: View {
 
 struct RegisterPage_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterPage(loginPresenter: LoginPresenter(interactor: LoginInteractor()))
+        RegisterPage(loginPresenter: LoginPresenter(interactor: LoginInteractor()),
+                     registerPresenter: RegisterPresenter(interactor: RegisterInteractor()))
     }
 }

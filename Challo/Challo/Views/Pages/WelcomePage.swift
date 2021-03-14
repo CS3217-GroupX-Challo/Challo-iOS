@@ -13,9 +13,9 @@ struct WelcomePage: View {
             VStack(spacing: 10) {
                 Text("Welcome to Challo")
                     .font(.title)
-                interactor.createLoginButton()
-                    .font(.title)
                 interactor.createRegisterButton()
+                    .font(.title)
+                interactor.createLoginButton()
                     .font(.title)
             }
         }

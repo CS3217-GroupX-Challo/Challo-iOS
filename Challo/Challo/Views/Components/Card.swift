@@ -17,7 +17,7 @@ struct Card<Content: View>: ContainerView {
 struct Card_Previews: PreviewProvider {
     static var previews: some View {
         Card {
-            RegisterForm()
+            Text("Hello!")
         }
     }
 }

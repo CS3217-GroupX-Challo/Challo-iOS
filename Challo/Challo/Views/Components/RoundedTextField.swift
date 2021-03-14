@@ -4,11 +4,20 @@ struct RoundedTextField: View {
 
     var placeholder: String?
     var text: Binding<String>
+    var isPasswordField = false
 
     var body: some View {
-        TextField(placeholder ?? "", text: text)
-            .textFieldStyle(RoundedTextFieldStyle())
-            .padding()
+        if isPasswordField {
+            SecureField(placeholder ?? "",
+                               text: text)
+                .textFieldStyle(RoundedTextFieldStyle())
+                .padding()
+        } else {
+            TextField(placeholder ?? "",
+                             text: text)
+                .textFieldStyle(RoundedTextFieldStyle())
+                .padding()
+        }
     }
 }
 

@@ -2,11 +2,11 @@ import SwiftUI
 
 struct RegisterForm: View {
 
-    @State var username = ""
-    @State var firstName = ""
-    @State var lastName = ""
-    @State var email = ""
-    @State var password = ""
+    @Binding var username: String
+    @Binding var firstName: String
+    @Binding var lastName: String
+    @Binding var email: String
+    @Binding var password: String
 
     var body: some View {
         VStack(spacing: 0) {
@@ -18,13 +18,19 @@ struct RegisterForm: View {
                                  text: $lastName)
             }
             RoundedTextField(placeholder: "Email Address", text: $email)
-            RoundedTextField(placeholder: "Password", text: $password)
+            RoundedTextField(placeholder: "Password",
+                             text: $password,
+                             isPasswordField: true)
         }
     }
 }
 
 struct RegisterForm_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterForm()
+        RegisterForm(username: .constant("Hello"),
+                     firstName: .constant("John"),
+                     lastName: .constant("Doe"),
+                     email: .constant("john_doe@gmail.com"),
+                     password: .constant("Strongpassword"))
     }
 }
