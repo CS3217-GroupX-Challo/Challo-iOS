@@ -3,16 +3,30 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CBC4E963BBAC4B73DB992EE /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E995D69F8746ABAD804BE3E /* Pods_Challo.framework */; };
+		86353090594474B1FAF0537D /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C732A15B1411EB21EEC5AE6 /* Pods_ChalloTests.framework */; };
+		A62CCDC97D5CD04285A6D8F4 /* Pods_Challo_ChalloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6158F328A7998364BCA7713 /* Pods_Challo_ChalloUITests.framework */; };
+		E22FAB4B25FDDFC100EEE372 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB4A25FDDFC100EEE372 /* LoginService.swift */; };
+		E22FAB5025FDDFE100EEE372 /* FacebookLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB4F25FDDFE100EEE372 /* FacebookLoginService.swift */; };
+		E22FAB5B25FDF99D00EEE372 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB5A25FDF99D00EEE372 /* LoginInteractor.swift */; };
+		E22FAB6025FDFB3F00EEE372 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB5F25FDFB3F00EEE372 /* LoginPresenter.swift */; };
+		E22FAB6525FDFC5400EEE372 /* FacebookLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB6425FDFC5400EEE372 /* FacebookLoginButton.swift */; };
+		E22FAB6D25FE046E00EEE372 /* LoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB6C25FE046E00EEE372 /* LoginDelegate.swift */; };
 		E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234932225FB884F00EC90E9 /* ChalloApp.swift */; };
 		E234932525FB884F00EC90E9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234932425FB884F00EC90E9 /* ContentView.swift */; };
 		E234932725FB885100EC90E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E234932625FB885100EC90E9 /* Assets.xcassets */; };
 		E234932A25FB885100EC90E9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E234932925FB885100EC90E9 /* Preview Assets.xcassets */; };
 		E234933525FB885100EC90E9 /* ChalloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234933425FB885100EC90E9 /* ChalloTests.swift */; };
 		E234934025FB885100EC90E9 /* ChalloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234933F25FB885100EC90E9 /* ChalloUITests.swift */; };
+		E23B0E2B25FDBFA400789E3E /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23B0E2A25FDBFA400789E3E /* RoundedTextField.swift */; };
+		E23B0E3125FDBFD800789E3E /* RegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23B0E3025FDBFD800789E3E /* RegisterPage.swift */; };
+		E23B0E3925FDBFFE00789E3E /* RegisterForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23B0E3825FDBFFE00789E3E /* RegisterForm.swift */; };
+		E23B0E3E25FDC06600789E3E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23B0E3D25FDC06600789E3E /* Card.swift */; };
+		E23B0E4425FDC2E000789E3E /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23B0E4325FDC2E000789E3E /* ContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +47,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C732A15B1411EB21EEC5AE6 /* Pods_ChalloTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChalloTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E995D69F8746ABAD804BE3E /* Pods_Challo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64D3B461FBDEB8606232DAF9 /* Pods-Challo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo.release.xcconfig"; path = "Target Support Files/Pods-Challo/Pods-Challo.release.xcconfig"; sourceTree = "<group>"; };
+		68D997E4F7111824D5EAAD6E /* Pods-Challo-ChalloUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo-ChalloUITests.release.xcconfig"; path = "Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests.release.xcconfig"; sourceTree = "<group>"; };
+		740EFD2E78CF8B0732A4B972 /* Pods-ChalloTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChalloTests.debug.xcconfig"; path = "Target Support Files/Pods-ChalloTests/Pods-ChalloTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7C6850AAC4491B207C41DFF8 /* Pods-ChalloTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChalloTests.release.xcconfig"; path = "Target Support Files/Pods-ChalloTests/Pods-ChalloTests.release.xcconfig"; sourceTree = "<group>"; };
+		8498A4E433A0BD5336936136 /* Pods-Challo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo.debug.xcconfig"; path = "Target Support Files/Pods-Challo/Pods-Challo.debug.xcconfig"; sourceTree = "<group>"; };
+		C6FE166AEA708A69B4C9AE06 /* Pods-Challo-ChalloUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo-ChalloUITests.debug.xcconfig"; path = "Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E22FAB4A25FDDFC100EEE372 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		E22FAB4F25FDDFE100EEE372 /* FacebookLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginService.swift; sourceTree = "<group>"; };
+		E22FAB5A25FDF99D00EEE372 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		E22FAB5F25FDFB3F00EEE372 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		E22FAB6425FDFC5400EEE372 /* FacebookLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginButton.swift; sourceTree = "<group>"; };
+		E22FAB6C25FE046E00EEE372 /* LoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegate.swift; sourceTree = "<group>"; };
 		E234931F25FB884F00EC90E9 /* Challo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234932225FB884F00EC90E9 /* ChalloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloApp.swift; sourceTree = "<group>"; };
 		E234932425FB884F00EC90E9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,6 +73,12 @@
 		E234933B25FB885100EC90E9 /* ChalloUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChalloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234933F25FB885100EC90E9 /* ChalloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloUITests.swift; sourceTree = "<group>"; };
 		E234934125FB885100EC90E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E23B0E2A25FDBFA400789E3E /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
+		E23B0E3025FDBFD800789E3E /* RegisterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPage.swift; sourceTree = "<group>"; };
+		E23B0E3825FDBFFE00789E3E /* RegisterForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterForm.swift; sourceTree = "<group>"; };
+		E23B0E3D25FDC06600789E3E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		E23B0E4325FDC2E000789E3E /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
+		E6158F328A7998364BCA7713 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CBC4E963BBAC4B73DB992EE /* Pods_Challo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86353090594474B1FAF0537D /* Pods_ChalloTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,12 +102,48 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A62CCDC97D5CD04285A6D8F4 /* Pods_Challo_ChalloUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16E6D7DDC70E6DFEDB65EF72 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8498A4E433A0BD5336936136 /* Pods-Challo.debug.xcconfig */,
+				64D3B461FBDEB8606232DAF9 /* Pods-Challo.release.xcconfig */,
+				C6FE166AEA708A69B4C9AE06 /* Pods-Challo-ChalloUITests.debug.xcconfig */,
+				68D997E4F7111824D5EAAD6E /* Pods-Challo-ChalloUITests.release.xcconfig */,
+				740EFD2E78CF8B0732A4B972 /* Pods-ChalloTests.debug.xcconfig */,
+				7C6850AAC4491B207C41DFF8 /* Pods-ChalloTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		2027C263B5CC887EF7587C62 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E995D69F8746ABAD804BE3E /* Pods_Challo.framework */,
+				E6158F328A7998364BCA7713 /* Pods_Challo_ChalloUITests.framework */,
+				0C732A15B1411EB21EEC5AE6 /* Pods_ChalloTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E22FAB4925FDDF3900EEE372 /* LoginModule */ = {
+			isa = PBXGroup;
+			children = (
+				E22FAB4A25FDDFC100EEE372 /* LoginService.swift */,
+				E22FAB4F25FDDFE100EEE372 /* FacebookLoginService.swift */,
+				E22FAB5A25FDF99D00EEE372 /* LoginInteractor.swift */,
+				E22FAB5F25FDFB3F00EEE372 /* LoginPresenter.swift */,
+				E22FAB6C25FE046E00EEE372 /* LoginDelegate.swift */,
+			);
+			path = LoginModule;
+			sourceTree = "<group>";
+		};
 		E234931625FB884F00EC90E9 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +151,8 @@
 				E234933325FB885100EC90E9 /* ChalloTests */,
 				E234933E25FB885100EC90E9 /* ChalloUITests */,
 				E234932025FB884F00EC90E9 /* Products */,
+				16E6D7DDC70E6DFEDB65EF72 /* Pods */,
+				2027C263B5CC887EF7587C62 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,6 +169,8 @@
 		E234932125FB884F00EC90E9 /* Challo */ = {
 			isa = PBXGroup;
 			children = (
+				E22FAB4925FDDF3900EEE372 /* LoginModule */,
+				E23B0E2625FDBF4500789E3E /* Views */,
 				E234932225FB884F00EC90E9 /* ChalloApp.swift */,
 				E234932425FB884F00EC90E9 /* ContentView.swift */,
 				E234932625FB885100EC90E9 /* Assets.xcassets */,
@@ -130,6 +206,51 @@
 			path = ChalloUITests;
 			sourceTree = "<group>";
 		};
+		E23B0E2625FDBF4500789E3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E23B0E4225FDC2D000789E3E /* Utils */,
+				E23B0E2825FDBF6D00789E3E /* Pages */,
+				E23B0E2725FDBF5300789E3E /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E23B0E2725FDBF5300789E3E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E23B0E2A25FDBFA400789E3E /* RoundedTextField.swift */,
+				E23B0E3D25FDC06600789E3E /* Card.swift */,
+				E22FAB6425FDFC5400EEE372 /* FacebookLoginButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		E23B0E2825FDBF6D00789E3E /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				E23B0E2F25FDBFC800789E3E /* Registration */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		E23B0E2F25FDBFC800789E3E /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				E23B0E3025FDBFD800789E3E /* RegisterPage.swift */,
+				E23B0E3825FDBFFE00789E3E /* RegisterForm.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		E23B0E4225FDC2D000789E3E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E23B0E4325FDC2E000789E3E /* ContainerView.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,9 +258,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E234934425FB885100EC90E9 /* Build configuration list for PBXNativeTarget "Challo" */;
 			buildPhases = (
+				3C672B388DA5A670413681A6 /* [CP] Check Pods Manifest.lock */,
 				E234931B25FB884F00EC90E9 /* Sources */,
 				E234931C25FB884F00EC90E9 /* Frameworks */,
 				E234931D25FB884F00EC90E9 /* Resources */,
+				CCECEF9D7840B10729961ADD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -154,6 +277,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E234934725FB885100EC90E9 /* Build configuration list for PBXNativeTarget "ChalloTests" */;
 			buildPhases = (
+				5D7DB854147646B6D7BD0092 /* [CP] Check Pods Manifest.lock */,
 				E234932C25FB885100EC90E9 /* Sources */,
 				E234932D25FB885100EC90E9 /* Frameworks */,
 				E234932E25FB885100EC90E9 /* Resources */,
@@ -172,9 +296,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E234934A25FB885100EC90E9 /* Build configuration list for PBXNativeTarget "ChalloUITests" */;
 			buildPhases = (
+				B81CA34D9B9A261C97856A9C /* [CP] Check Pods Manifest.lock */,
 				E234933725FB885100EC90E9 /* Sources */,
 				E234933825FB885100EC90E9 /* Frameworks */,
 				E234933925FB885100EC90E9 /* Resources */,
+				F4BB788A94D49B4252770A46 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -254,13 +380,127 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3C672B388DA5A670413681A6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Challo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D7DB854147646B6D7BD0092 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChalloTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B81CA34D9B9A261C97856A9C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Challo-ChalloUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCECEF9D7840B10729961ADD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4BB788A94D49B4252770A46 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E234931B25FB884F00EC90E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E234932525FB884F00EC90E9 /* ContentView.swift in Sources */,
+				E22FAB6525FDFC5400EEE372 /* FacebookLoginButton.swift in Sources */,
+				E23B0E3E25FDC06600789E3E /* Card.swift in Sources */,
+				E23B0E2B25FDBFA400789E3E /* RoundedTextField.swift in Sources */,
 				E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */,
+				E22FAB6025FDFB3F00EEE372 /* LoginPresenter.swift in Sources */,
+				E22FAB4B25FDDFC100EEE372 /* LoginService.swift in Sources */,
+				E23B0E3925FDBFFE00789E3E /* RegisterForm.swift in Sources */,
+				E22FAB6D25FE046E00EEE372 /* LoginDelegate.swift in Sources */,
+				E22FAB5025FDDFE100EEE372 /* FacebookLoginService.swift in Sources */,
+				E23B0E4425FDC2E000789E3E /* ContainerView.swift in Sources */,
+				E22FAB5B25FDF99D00EEE372 /* LoginInteractor.swift in Sources */,
+				E23B0E3125FDBFD800789E3E /* RegisterPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +654,7 @@
 		};
 		E234934525FB885100EC90E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8498A4E433A0BD5336936136 /* Pods-Challo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -435,6 +676,7 @@
 		};
 		E234934625FB885100EC90E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64D3B461FBDEB8606232DAF9 /* Pods-Challo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -456,6 +698,7 @@
 		};
 		E234934825FB885100EC90E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 740EFD2E78CF8B0732A4B972 /* Pods-ChalloTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -477,6 +720,7 @@
 		};
 		E234934925FB885100EC90E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C6850AAC4491B207C41DFF8 /* Pods-ChalloTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -498,6 +742,7 @@
 		};
 		E234934B25FB885100EC90E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6FE166AEA708A69B4C9AE06 /* Pods-Challo-ChalloUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -517,6 +762,7 @@
 		};
 		E234934C25FB885100EC90E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68D997E4F7111824D5EAAD6E /* Pods-Challo-ChalloUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,0 +1,17 @@
+platform :ios, '14.0'
+
+target 'Challo' do
+  use_frameworks!
+  pod 'FBSDKLoginKit'
+  # Pods for Challo
+
+  target 'ChalloTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'ChalloUITests' do
+    # Pods for testing
+  end
+
+end
