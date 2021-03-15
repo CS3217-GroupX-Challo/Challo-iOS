@@ -5,13 +5,13 @@ struct RegisterPage: View {
     @ObservedObject var registerPresenter: RegisterPresenter
 
     var body: some View {
-        ZStack {
+        LoginRegisterBackground {
             GeometryReader { geometry in
                 Card {
                     Text("Sign up")
                         .font(.largeTitle)
                         .bold()
-                        .foregroundColor(.yellow)
+                        .foregroundColor(.themePrimary)
                     HStack {
                         loginPresenter.makeLoginWithFacebookButton()
                     }
@@ -28,11 +28,6 @@ struct RegisterPage: View {
                        alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             }
         }
-        .frame(minWidth: 0,
-               maxWidth: .infinity,
-               minHeight: 0,
-               maxHeight: .infinity,
-               alignment: .center)
     }
 }
 

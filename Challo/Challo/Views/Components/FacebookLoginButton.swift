@@ -10,6 +10,7 @@ struct FacebookLoginButton: View {
                 Image.facebookIcon
                 Text("Login with Facebook")
                     .fontWeight(.bold)
+                    .foregroundColor(.themeForeground)
             }
         })
     }

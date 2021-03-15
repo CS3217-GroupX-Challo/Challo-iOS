@@ -1,12 +1,13 @@
 import SwiftUI
 
-struct RoundedCornerButton: ButtonStyle {
+struct RoundedCornerButtonStyle: ButtonStyle {
  
     var color: Color
+    var backgroundColor: Color
 
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .background(Color.white)
+            .background(backgroundColor)
             .padding(10)
             .overlay(
                    RoundedRectangle(cornerRadius: 10)

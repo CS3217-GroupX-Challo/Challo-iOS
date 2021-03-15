@@ -15,8 +15,10 @@ struct WelcomePage: View {
                     .font(.title)
                 interactor.createRegisterButton()
                     .font(.title)
+                    .foregroundColor(.themeForeground)
                 interactor.createLoginButton()
                     .font(.title)
+                    .foregroundColor(.themeForeground)
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())

@@ -22,12 +22,6 @@ struct LoginPage: View {
                         loginPresenter.makeLoginWithFacebookButton()
                     }
                     LoginForm()
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                        Text("Done")
-                            .foregroundColor(.yellow)
-                            .bold()
-                    })
-                    .buttonStyle(RoundedCornerButton(color: Color.black))
                 }
                 .position(x: geometry.size.width / 2,
                           y: geometry.size.height / 2)
