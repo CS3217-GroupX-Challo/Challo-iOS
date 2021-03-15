@@ -11,10 +11,12 @@ target 'Challo' do
   target 'ChalloTests' do
     inherit! :search_paths
     # Pods for testing
+    pod "Alamofire"
   end
 
   target 'ChalloUITests' do
     # Pods for testing
+    pod "Alamofire"
   end
 
 end
