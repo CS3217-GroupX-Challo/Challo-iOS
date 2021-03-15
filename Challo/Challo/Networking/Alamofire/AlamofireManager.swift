@@ -12,13 +12,14 @@ class AlamofireManager: NetworkManager {
     typealias HEADER = [String: String]
     
     static let alamofireManager = AlamofireManager()
+    private var apiPath = ProcessInfo.processInfo.environment["api_path"]
     
     private init() {}
     
     func get(url: String,
              headers: HEADER,
              completion: @escaping (JSON, Error?) -> Void) {
-        AF.request(url,
+        AF.request(concatUrl(url: url),
                    method: .get,
                    headers: HTTPHeaders(headers)).responseData { [weak self] response in
                     guard let self = self else {
@@ -33,7 +34,7 @@ class AlamofireManager: NetworkManager {
               headers: HEADER,
               body: JSON,
               completion: @escaping (JSON, Error?) -> Void) {
-        AF.request(url,
+        AF.request(concatUrl(url: url),
                    method: .post,
                    parameters: body,
                    encoding: JSONEncoding.default,
@@ -50,7 +51,7 @@ class AlamofireManager: NetworkManager {
              headers: HEADER,
              body: JSON,
              completion: @escaping (JSON, Error?) -> Void) {
-        AF.request(url,
+        AF.request(concatUrl(url: url),
                    method: .put,
                    parameters: body,
                    encoding: JSONEncoding.default,
@@ -66,7 +67,7 @@ class AlamofireManager: NetworkManager {
     func delete(url: String,
                 headers: HEADER,
                 completion: @escaping (JSON, Error?) -> Void) {
-        AF.request(url,
+        AF.request(concatUrl(url: url),
                    method: .delete,
                    headers: HTTPHeaders(headers)).responseData { [weak self] response in
                     guard let self = self else {
@@ -75,6 +76,13 @@ class AlamofireManager: NetworkManager {
                     let (result, error) = self.grabResponseData(response: response)
                     completion(result, error)
         }
+    }
+    
+    private func concatUrl(url: String) -> String {
+        guard let path = apiPath else {
+            fatalError("Environment variable not set up correctly")
+        }
+        return path + url
     }
     
     private func grabResponseData(response: AFDataResponse<Data>) -> (JSON, Error?) {
