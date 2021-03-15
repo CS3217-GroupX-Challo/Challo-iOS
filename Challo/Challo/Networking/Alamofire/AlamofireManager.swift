@@ -18,22 +18,22 @@ class AlamofireManager: NetworkManager {
     
     func get(url: String,
              headers: HEADER,
-             completion: @escaping (JSON, Error?) -> Void) {
+             responseHandler: @escaping (JSON, Error?) -> Void) {
         AF.request(concatUrl(url: url),
                    method: .get,
                    headers: HTTPHeaders(headers)).responseData { [weak self] response in
                     guard let self = self else {
                         return
                     }
-                    let (result, error) = self.grabResponseData(response: response)
-                    completion(result, error)
+                    self.invokeHandler(response: response,
+                                       reponseHandler: responseHandler)
         }
     }
     
     func post(url: String,
               headers: HEADER,
               body: JSON,
-              completion: @escaping (JSON, Error?) -> Void) {
+              responseHandler: @escaping (JSON, Error?) -> Void) {
         AF.request(concatUrl(url: url),
                    method: .post,
                    parameters: body,
@@ -42,15 +42,15 @@ class AlamofireManager: NetworkManager {
                     guard let self = self else {
                         return
                     }
-                    let (result, error) = self.grabResponseData(response: response)
-                    completion(result, error)
+                    self.invokeHandler(response: response,
+                                       reponseHandler: responseHandler)
         }
     }
     
     func put(url: String,
              headers: HEADER,
              body: JSON,
-             completion: @escaping (JSON, Error?) -> Void) {
+             responseHandler: @escaping (JSON, Error?) -> Void) {
         AF.request(concatUrl(url: url),
                    method: .put,
                    parameters: body,
@@ -59,23 +59,29 @@ class AlamofireManager: NetworkManager {
                     guard let self = self else {
                         return
                     }
-                    let (result, error) = self.grabResponseData(response: response)
-                    completion(result, error)
+                    self.invokeHandler(response: response,
+                                       reponseHandler: responseHandler)
         }
     }
     
     func delete(url: String,
                 headers: HEADER,
-                completion: @escaping (JSON, Error?) -> Void) {
+                responseHandler: @escaping (JSON, Error?) -> Void) {
         AF.request(concatUrl(url: url),
                    method: .delete,
                    headers: HTTPHeaders(headers)).responseData { [weak self] response in
                     guard let self = self else {
                         return
                     }
-                    let (result, error) = self.grabResponseData(response: response)
-                    completion(result, error)
+                    self.invokeHandler(response: response,
+                                       reponseHandler: responseHandler)
         }
+    }
+    
+    private func invokeHandler(response: AFDataResponse<Data>,
+                               reponseHandler: @escaping (JSON, Error?) -> Void) {
+        let (result, error) =  self.grabResponseData(response: response)
+        reponseHandler(result, error)
     }
     
     private func concatUrl(url: String) -> String {
