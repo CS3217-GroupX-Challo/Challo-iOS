@@ -15,6 +15,12 @@ jobs:
 
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_12.app
+    
+    - name: Install dependencies
+      run: |
+        cd Challo/
+        pod install
+      shell: bash
 
     - name: Build and test
-      run: xcodebuild clean build test -project Challo/Challo.xcodeproj -scheme "Challo" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPad Air (4th generation)" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
+      run: xcodebuild clean build test -workspace Challo/Challo.xcworkspace -scheme "Challo" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPad Air (4th generation)" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
