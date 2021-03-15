@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RegisterPage: View {
-    @ObservedObject var loginPresenter: LoginPresenter
+    var loginPresenter: LoginPresenter
     @ObservedObject var registerPresenter: RegisterPresenter
 
     var body: some View {
@@ -22,6 +22,7 @@ struct RegisterPage: View {
                                      lastName: $registerPresenter.lastName,
                                      email: $registerPresenter.email,
                                      password: $registerPresenter.password)
+                        registerPresenter.makeRegisterButton()
                     }
                 }
                 .position(x: geometry.size.width / 2,

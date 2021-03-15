@@ -12,11 +12,13 @@ struct RoundedTextField: View {
                                text: text)
                 .textFieldStyle(RoundedTextFieldStyle())
                 .padding()
+                .autocapitalization(.none)
         } else {
             TextField(placeholder ?? "",
                              text: text)
                 .textFieldStyle(RoundedTextFieldStyle())
                 .padding()
+                .autocapitalization(.none)
         }
     }
 }

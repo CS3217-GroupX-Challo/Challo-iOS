@@ -4,6 +4,6 @@ class RegisterInteractor: ObservableObject {
 
     func register(details: RegistrationDetails) {
         // interact with backend here
-        print("register!")
+        print("registered with details: \(details)")
     }
 }

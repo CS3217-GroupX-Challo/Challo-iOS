@@ -12,4 +12,20 @@ class RegisterPresenter: ObservableObject {
     init(interactor: RegisterInteractor) {
         self.interactor = interactor
     }
+
+    func makeRegisterButton() -> some View {
+        Button(action: submitRegistration, label: {
+            Text("SIGN UP")
+                .bold()
+        }).buttonStyle(BorderedButtonStyle(borderColor: .themePrimary, foregroundColor: .themeForeground))
+    }
+
+    private func submitRegistration() {
+        let registrationDetails = RegistrationDetails(userName: userName,
+                                                      firstName: firstName,
+                                                      lastName: lastName,
+                                                      email: email,
+                                                      password: password)
+        interactor.register(details: registrationDetails)
+    }
 }
