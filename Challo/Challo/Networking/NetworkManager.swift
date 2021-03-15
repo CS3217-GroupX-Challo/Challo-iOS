@@ -11,24 +11,20 @@ protocol NetworkManager {
     
     func get(url: String,
              headers: HEADER,
-             completion: @escaping (JSON) -> Void,
-             errorHandling: @escaping (Error) -> Void)
+             completion: @escaping (JSON, Error?) -> Void)
     
     func post(url: String,
               headers: HEADER,
               body: JSON,
-              completion: @escaping (JSON) -> Void,
-              errorHandling: @escaping (Error) -> Void)
+              completion: @escaping (JSON, Error?) -> Void)
     
     
     func put(url: String,
              headers: HEADER,
              body: JSON,
-             completion: @escaping (JSON) -> Void,
-             errorHandling: @escaping (Error) -> Void)
+             completion: @escaping (JSON, Error?) -> Void)
     
     func delete(url: String,
                 headers: HEADER,
-                completion: @escaping (JSON) -> Void,
-                errorHandling: @escaping (Error) -> Void)
+                completion: @escaping (JSON, Error?) -> Void)
 }
