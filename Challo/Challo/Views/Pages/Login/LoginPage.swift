@@ -11,7 +11,7 @@ struct LoginPage: View {
     @ObservedObject var loginPresenter: LoginPresenter
 
     var body: some View {
-        Background {
+        LoginRegisterBackground {
             GeometryReader { geometry in
                 Card {
                     Text("Login")

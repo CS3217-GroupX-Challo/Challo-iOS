@@ -32,10 +32,10 @@ struct RoundedTextFieldStyle: TextFieldStyle {
         configuration
             .padding(10)
             .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.blue, lineWidth: 2)
+                RoundedRectangle(cornerRadius: 15)
+                    .stroke(Color.themeTertiary, lineWidth: 2)
             )
-            .shadow(color: .gray, radius: 10)
+            .shadow(color: Color.themeAccent, radius: 10)
     }
 }
 

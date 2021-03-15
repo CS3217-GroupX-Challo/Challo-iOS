@@ -36,7 +36,9 @@
 		E23B0E3925FDBFFE00789E3E /* RegisterForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23B0E3825FDBFFE00789E3E /* RegisterForm.swift */; };
 		E23B0E3E25FDC06600789E3E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23B0E3D25FDC06600789E3E /* Card.swift */; };
 		E23B0E4425FDC2E000789E3E /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23B0E4325FDC2E000789E3E /* ContainerView.swift */; };
-		E280A7E925FF4094006EDA05 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = E280A7E825FF4094006EDA05 /* Background.swift */; };
+		E280A7E925FF4094006EDA05 /* LoginRegisterBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = E280A7E825FF4094006EDA05 /* LoginRegisterBackground.swift */; };
+		E280A7EF25FF445E006EDA05 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E280A7EE25FF445E006EDA05 /* ColorExtension.swift */; };
+		E280A7F725FF44FD006EDA05 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E280A7F625FF44FD006EDA05 /* ImageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +99,9 @@
 		E23B0E3825FDBFFE00789E3E /* RegisterForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterForm.swift; sourceTree = "<group>"; };
 		E23B0E3D25FDC06600789E3E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E23B0E4325FDC2E000789E3E /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
-		E280A7E825FF4094006EDA05 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		E280A7E825FF4094006EDA05 /* LoginRegisterBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterBackground.swift; sourceTree = "<group>"; };
+		E280A7EE25FF445E006EDA05 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		E280A7F625FF44FD006EDA05 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		E6158F328A7998364BCA7713 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -259,6 +263,7 @@
 		E23B0E2625FDBF4500789E3E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E280A7ED25FF4440006EDA05 /* Resources */,
 				E23B0E4225FDC2D000789E3E /* Utils */,
 				E23B0E2825FDBF6D00789E3E /* Pages */,
 				E23B0E2725FDBF5300789E3E /* Components */,
@@ -273,7 +278,7 @@
 				E23B0E3D25FDC06600789E3E /* Card.swift */,
 				E22FAB6425FDFC5400EEE372 /* FacebookLoginButton.swift */,
 				E22FAB9E25FE461800EEE372 /* RoundedButtons.swift */,
-				E280A7E825FF4094006EDA05 /* Background.swift */,
+				E280A7E825FF4094006EDA05 /* LoginRegisterBackground.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -303,6 +308,15 @@
 				E23B0E4325FDC2E000789E3E /* ContainerView.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		E280A7ED25FF4440006EDA05 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E280A7EE25FF445E006EDA05 /* ColorExtension.swift */,
+				E280A7F625FF44FD006EDA05 /* ImageExtension.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -581,6 +595,7 @@
 				E234932525FB884F00EC90E9 /* ContentView.swift in Sources */,
 				E22FAB6525FDFC5400EEE372 /* FacebookLoginButton.swift in Sources */,
 				E23B0E3E25FDC06600789E3E /* Card.swift in Sources */,
+				E280A7EF25FF445E006EDA05 /* ColorExtension.swift in Sources */,
 				E23B0E2B25FDBFA400789E3E /* RoundedTextField.swift in Sources */,
 				E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */,
 				E22FAB6025FDFB3F00EEE372 /* LoginPresenter.swift in Sources */,
@@ -592,13 +607,14 @@
 				E22FABB125FE51B400EEE372 /* RegisterInteractor.swift in Sources */,
 				E22FAB5025FDDFE100EEE372 /* FacebookLoginService.swift in Sources */,
 				E22FAB8025FE17E700EEE372 /* WelcomeRouter.swift in Sources */,
-				E280A7E925FF4094006EDA05 /* Background.swift in Sources */,
+				E280A7E925FF4094006EDA05 /* LoginRegisterBackground.swift in Sources */,
 				E23B0E4425FDC2E000789E3E /* ContainerView.swift in Sources */,
 				E22FAB7225FE164F00EEE372 /* WelcomePage.swift in Sources */,
 				E22FABB925FE526C00EEE372 /* RegisterPresenter.swift in Sources */,
 				E22FAB9F25FE461800EEE372 /* RoundedButtons.swift in Sources */,
 				E22FAB5B25FDF99D00EEE372 /* LoginInteractor.swift in Sources */,
 				E22FABBE25FE578000EEE372 /* RegistrationDetails.swift in Sources */,
+				E280A7F725FF44FD006EDA05 /* ImageExtension.swift in Sources */,
 				E23B0E3125FDBFD800789E3E /* RegisterPage.swift in Sources */,
 				E22FAB9525FE431C00EEE372 /* LoginPage.swift in Sources */,
 			);

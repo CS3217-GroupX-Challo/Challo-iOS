@@ -7,7 +7,7 @@ struct FacebookLoginButton: View {
     var body: some View {
         Button(action: action, label: {
             HStack {
-                Image("facebook-icon")
+                Image.facebookIcon
                 Text("Login with Facebook")
                     .fontWeight(.bold)
             }

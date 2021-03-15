@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Background<Content: View>: ContainerView {
+struct LoginRegisterBackground<Content: View>: ContainerView {
     var content: () -> Content
 
     var body: some View {
@@ -19,7 +19,7 @@ struct Background<Content: View>: ContainerView {
                minHeight: 0,
                maxHeight: .infinity,
                alignment: .center)
-        .background(Image("mountain-background")
+        .background(Image.mountainBackground
                      .resizable()
                      .aspectRatio(contentMode: .fill))
     }
@@ -27,7 +27,7 @@ struct Background<Content: View>: ContainerView {
 
 struct Background_Previews: PreviewProvider {
     static var previews: some View {
-        Background {
+        LoginRegisterBackground {
             Text("Hello!")
         }
     }
