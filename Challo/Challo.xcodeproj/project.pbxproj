@@ -11,8 +11,6 @@
 		AA9E85C925FE70AD00C2E389 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E85C825FE70AD00C2E389 /* NetworkManager.swift */; };
 		AA9E85D625FE735800C2E389 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E85D525FE735800C2E389 /* NetworkError.swift */; };
 		AA9E85E125FE740500C2E389 /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E85E025FE740500C2E389 /* AlamofireManager.swift */; };
-		AA9E85F825FE7C0E00C2E389 /* GuidesListingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E85F725FE7C0E00C2E389 /* GuidesListingPage.swift */; };
-		AA9E860125FF112C00C2E389 /* AFResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E860025FF112C00C2E389 /* AFResponse.swift */; };
 		B0F349AF3CB87F77584434C4 /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC2C4523E0BAD62412B118A /* Pods_Challo.framework */; };
 		D4A670D2B9132DB104111692 /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391AD75BD73BA41A633358D /* Pods_ChalloTests.framework */; };
 		E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234932225FB884F00EC90E9 /* ChalloApp.swift */; };
@@ -52,8 +50,6 @@
 		AA9E85C825FE70AD00C2E389 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		AA9E85D525FE735800C2E389 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		AA9E85E025FE740500C2E389 /* AlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
-		AA9E85F725FE7C0E00C2E389 /* GuidesListingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuidesListingPage.swift; path = ../../../../../../../../../GuidesListingPage.swift; sourceTree = "<group>"; };
-		AA9E860025FF112C00C2E389 /* AFResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFResponse.swift; sourceTree = "<group>"; };
 		B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234931F25FB884F00EC90E9 /* Challo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234932225FB884F00EC90E9 /* ChalloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloApp.swift; sourceTree = "<group>"; };
@@ -120,27 +116,10 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		AA9E85F525FE7BEA00C2E389 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				AA9E85F625FE7BF600C2E389 /* GuidesListing */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		AA9E85F625FE7BF600C2E389 /* GuidesListing */ = {
-			isa = PBXGroup;
-			children = (
-				AA9E85F725FE7C0E00C2E389 /* GuidesListingPage.swift */,
-			);
-			path = GuidesListing;
-			sourceTree = "<group>";
-		};
 		AA9E85FF25FF111500C2E389 /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
 				AA9E85E025FE740500C2E389 /* AlamofireManager.swift */,
-				AA9E860025FF112C00C2E389 /* AFResponse.swift */,
 			);
 			path = Alamofire;
 			sourceTree = "<group>";
@@ -170,7 +149,6 @@
 		E234932125FB884F00EC90E9 /* Challo */ = {
 			isa = PBXGroup;
 			children = (
-				AA9E85F525FE7BEA00C2E389 /* Views */,
 				AA9E85C725FE706300C2E389 /* Networking */,
 				E234932225FB884F00EC90E9 /* ChalloApp.swift */,
 				E234932425FB884F00EC90E9 /* ContentView.swift */,
@@ -456,10 +434,8 @@
 			files = (
 				AA9E85C925FE70AD00C2E389 /* NetworkManager.swift in Sources */,
 				AA9E85D625FE735800C2E389 /* NetworkError.swift in Sources */,
-				AA9E860125FF112C00C2E389 /* AFResponse.swift in Sources */,
 				E234932525FB884F00EC90E9 /* ContentView.swift in Sources */,
 				AA9E85E125FE740500C2E389 /* AlamofireManager.swift in Sources */,
-				AA9E85F825FE7C0E00C2E389 /* GuidesListingPage.swift in Sources */,
 				E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

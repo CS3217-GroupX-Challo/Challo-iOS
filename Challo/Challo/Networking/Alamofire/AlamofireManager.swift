@@ -15,28 +15,74 @@ class AlamofireManager: NetworkManager {
     
     private init() {}
     
-    func get(url: String, headers: HEADER) throws -> JSON {
-        var responseData = AFResponse(response: nil, data: JSON())
-        AF.request(url, method: .get, headers: HTTPHeaders(headers)).responseData { (response) in
-            responseData.response = response
+    func get(url: String,
+             headers: HEADER,
+             completion: @escaping (JSON) -> Void,
+             errorHandling: @escaping (Error) -> Void) {
+        AF.request(url,
+                   method: .get,
+                   headers: HTTPHeaders(headers)).responseData { [weak self] response in
+                    guard let self = self else {
+                        return
+                    }
+                    self.handleClosures(response: response,
+                                        completion: completion,
+                                        errorHandling: errorHandling)
         }
-        guard let response = responseData.response else {
-            throw NetworkError.DataError
+    }
+    
+    func post(url: String,
+              headers: HEADER,
+              body: JSON,
+              completion: @escaping (JSON) -> Void,
+              errorHandling: @escaping (Error) -> Void) {
+        AF.request(url,
+                   method: .post,
+                   parameters: body,
+                   encoding: JSONEncoding.default,
+                   headers: HTTPHeaders(headers)).responseData { [weak self] response in
+                    guard let self = self else {
+                        return
+                    }
+                    self.handleClosures(response: response,
+                                        completion: completion,
+                                        errorHandling: errorHandling)
         }
-        
-        return try grabResponseData(response: response)
     }
     
-    func post(url: String, headers: HEADER, body: JSON) throws -> JSON {
-        return [String: Any]()
+    func put(url: String,
+             headers: HEADER,
+             body: JSON,
+             completion: @escaping (JSON) -> Void,
+             errorHandling: @escaping (Error) -> Void) {
+        AF.request(url,
+                   method: .put,
+                   parameters: body,
+                   encoding: JSONEncoding.default,
+                   headers: HTTPHeaders(headers)).responseData { [weak self] response in
+                    guard let self = self else {
+                        return
+                    }
+                    self.handleClosures(response: response,
+                                        completion: completion,
+                                        errorHandling: errorHandling)
+        }
     }
     
-    func put(url: String, headers: HEADER, body: JSON) throws -> JSON {
-        return [String: Any]()
-    }
-    
-    func delete(url: String, headers: HEADER) throws -> JSON {
-        return [String: Any]()
+    func delete(url: String,
+                headers: HEADER,
+                completion: @escaping (JSON) -> Void,
+                errorHandling: @escaping (Error) -> Void) {
+        AF.request(url,
+                   method: .delete,
+                   headers: HTTPHeaders(headers)).responseData { [weak self] response in
+                    guard let self = self else {
+                        return
+                    }
+                    self.handleClosures(response: response,
+                                        completion: completion,
+                                        errorHandling: errorHandling)
+        }
     }
     
     private func grabResponseData(response: AFDataResponse<Data>) throws -> JSON {
@@ -61,6 +107,17 @@ class AlamofireManager: NetworkManager {
             throw NetworkError.NotFoundError
         default:
             throw NetworkError.ServerError
+        }
+    }
+    
+    private func handleClosures(response: AFDataResponse<Data>,
+                                completion: @escaping (JSON) -> Void,
+                                errorHandling: @escaping (Error) -> Void) {
+        do {
+            let data = try grabResponseData(response: response)
+            completion(data)
+        } catch {
+            errorHandling(error)
         }
     }
 }
