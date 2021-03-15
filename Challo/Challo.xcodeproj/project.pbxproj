@@ -207,6 +207,7 @@
 				E234931C25FB884F00EC90E9 /* Frameworks */,
 				E234931D25FB884F00EC90E9 /* Resources */,
 				D1147EAFD4B6180D50B77CB4 /* [CP] Embed Pods Frameworks */,
+				AA9E861D25FF46D100C2E389 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -363,6 +364,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		AA9E861D25FF46D100C2E389 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		D1147EAFD4B6180D50B77CB4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

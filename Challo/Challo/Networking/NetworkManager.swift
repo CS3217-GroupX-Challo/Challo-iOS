@@ -18,7 +18,6 @@ protocol NetworkManager {
               body: JSON,
               completion: @escaping (JSON, Error?) -> Void)
     
-    
     func put(url: String,
              headers: HEADER,
              body: JSON,
