@@ -167,6 +167,8 @@
 				6462027925FF614F00D89514 /* BookingStatus.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
 		338C21FD425FDC2B407B5536 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
