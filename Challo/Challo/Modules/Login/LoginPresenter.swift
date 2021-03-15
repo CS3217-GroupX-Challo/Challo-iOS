@@ -3,7 +3,7 @@ import SwiftUI
 class LoginPresenter: ObservableObject {
 
     private var interactor: LoginInteractor
-    private var router: LoginRouter = LoginRouter()
+    private var router = LoginRouter()
 
     init(interactor: LoginInteractor) {
         self.interactor = interactor

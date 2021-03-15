@@ -4,7 +4,7 @@ struct Card<Content: View>: ContainerView {
     var content: () -> Content
 
     var body: some View {
-        VStack{
+        VStack {
             content()
         }
         .padding()

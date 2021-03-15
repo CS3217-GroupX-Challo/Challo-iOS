@@ -9,13 +9,13 @@ struct RoundedTextField: View {
     var body: some View {
         if isPasswordField {
             SecureField(placeholder ?? "",
-                               text: text)
+                        text: text)
                 .textFieldStyle(RoundedTextFieldStyle())
                 .padding()
                 .autocapitalization(.none)
         } else {
             TextField(placeholder ?? "",
-                             text: text)
+                      text: text)
                 .textFieldStyle(RoundedTextFieldStyle())
                 .padding()
                 .autocapitalization(.none)
@@ -39,4 +39,3 @@ struct RoundedTextFieldStyle: TextFieldStyle {
             )
     }
 }
-
