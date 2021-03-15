@@ -16,9 +16,6 @@
 		E22FAB6025FDFB3F00EEE372 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB5F25FDFB3F00EEE372 /* LoginPresenter.swift */; };
 		E22FAB6525FDFC5400EEE372 /* FacebookLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB6425FDFC5400EEE372 /* FacebookLoginButton.swift */; };
 		E22FAB6D25FE046E00EEE372 /* LoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB6C25FE046E00EEE372 /* LoginDelegate.swift */; };
-		E22FAB7225FE164F00EEE372 /* WelcomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB7125FE164F00EEE372 /* WelcomePage.swift */; };
-		E22FAB7825FE177300EEE372 /* WelcomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB7725FE177300EEE372 /* WelcomeInteractor.swift */; };
-		E22FAB8025FE17E700EEE372 /* WelcomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB7F25FE17E700EEE372 /* WelcomeRouter.swift */; };
 		E22FAB9525FE431C00EEE372 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB9425FE431C00EEE372 /* LoginPage.swift */; };
 		E22FAB9A25FE43E900EEE372 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB9925FE43E900EEE372 /* LoginForm.swift */; };
 		E22FAB9F25FE461800EEE372 /* RoundedButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB9E25FE461800EEE372 /* RoundedButtons.swift */; };
@@ -73,9 +70,6 @@
 		E22FAB5F25FDFB3F00EEE372 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		E22FAB6425FDFC5400EEE372 /* FacebookLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginButton.swift; sourceTree = "<group>"; };
 		E22FAB6C25FE046E00EEE372 /* LoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegate.swift; sourceTree = "<group>"; };
-		E22FAB7125FE164F00EEE372 /* WelcomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePage.swift; sourceTree = "<group>"; };
-		E22FAB7725FE177300EEE372 /* WelcomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeInteractor.swift; sourceTree = "<group>"; };
-		E22FAB7F25FE17E700EEE372 /* WelcomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeRouter.swift; sourceTree = "<group>"; };
 		E22FAB9425FE431C00EEE372 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		E22FAB9925FE43E900EEE372 /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
 		E22FAB9E25FE461800EEE372 /* RoundedButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtons.swift; sourceTree = "<group>"; };
@@ -168,15 +162,6 @@
 			path = LoginModule;
 			sourceTree = "<group>";
 		};
-		E22FAB7625FE174700EEE372 /* WelcomeModule */ = {
-			isa = PBXGroup;
-			children = (
-				E22FAB7725FE177300EEE372 /* WelcomeInteractor.swift */,
-				E22FAB7F25FE17E700EEE372 /* WelcomeRouter.swift */,
-			);
-			path = WelcomeModule;
-			sourceTree = "<group>";
-		};
 		E22FAB9325FE430700EEE372 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,7 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				E22FABAF25FE519F00EEE372 /* RegisterModule */,
-				E22FAB7625FE174700EEE372 /* WelcomeModule */,
 				E22FAB4925FDDF3900EEE372 /* LoginModule */,
 				E23B0E2625FDBF4500789E3E /* Views */,
 				E234932225FB884F00EC90E9 /* ChalloApp.swift */,
@@ -288,7 +272,6 @@
 			children = (
 				E22FAB9325FE430700EEE372 /* Login */,
 				E23B0E2F25FDBFC800789E3E /* Registration */,
-				E22FAB7125FE164F00EEE372 /* WelcomePage.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -603,13 +586,10 @@
 				E22FAB9A25FE43E900EEE372 /* LoginForm.swift in Sources */,
 				E23B0E3925FDBFFE00789E3E /* RegisterForm.swift in Sources */,
 				E22FAB6D25FE046E00EEE372 /* LoginDelegate.swift in Sources */,
-				E22FAB7825FE177300EEE372 /* WelcomeInteractor.swift in Sources */,
 				E22FABB125FE51B400EEE372 /* RegisterInteractor.swift in Sources */,
 				E22FAB5025FDDFE100EEE372 /* FacebookLoginService.swift in Sources */,
-				E22FAB8025FE17E700EEE372 /* WelcomeRouter.swift in Sources */,
 				E280A7E925FF4094006EDA05 /* LoginRegisterBackground.swift in Sources */,
 				E23B0E4425FDC2E000789E3E /* ContainerView.swift in Sources */,
-				E22FAB7225FE164F00EEE372 /* WelcomePage.swift in Sources */,
 				E22FABB925FE526C00EEE372 /* RegisterPresenter.swift in Sources */,
 				E22FAB9F25FE461800EEE372 /* RoundedButtons.swift in Sources */,
 				E22FAB5B25FDF99D00EEE372 /* LoginInteractor.swift in Sources */,
