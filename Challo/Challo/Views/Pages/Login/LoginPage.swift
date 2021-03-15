@@ -19,11 +19,15 @@ struct LoginPage: View {
                         Text("Login")
                             .font(.largeTitle)
                             .bold()
-                            .foregroundColor(.yellow)
+                            .foregroundColor(.themePrimary)
                         HStack {
                             loginPresenter.makeLoginWithFacebookButton()
                         }
                         LoginForm()
+                        HStack {
+                            loginPresenter.makeRegisterButton()
+                            loginPresenter.makeLoginButton()
+                        }
                     }
                 }
                 .position(x: geometry.size.width / 2,

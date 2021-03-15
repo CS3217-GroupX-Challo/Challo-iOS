@@ -2,9 +2,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        LoginPage(loginPresenter: LoginPresenter(
-            interactor: LoginInteractor()
-        ))
+        NavigationView {
+            LoginPage(loginPresenter: LoginPresenter(
+                interactor: LoginInteractor()
+            ))
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

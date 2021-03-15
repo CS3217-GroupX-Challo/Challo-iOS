@@ -18,7 +18,6 @@
 		E22FAB6D25FE046E00EEE372 /* LoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB6C25FE046E00EEE372 /* LoginDelegate.swift */; };
 		E22FAB9525FE431C00EEE372 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB9425FE431C00EEE372 /* LoginPage.swift */; };
 		E22FAB9A25FE43E900EEE372 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB9925FE43E900EEE372 /* LoginForm.swift */; };
-		E22FAB9F25FE461800EEE372 /* RoundedButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FAB9E25FE461800EEE372 /* RoundedButtons.swift */; };
 		E22FABB125FE51B400EEE372 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FABB025FE51B400EEE372 /* RegisterInteractor.swift */; };
 		E22FABB925FE526C00EEE372 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FABB825FE526C00EEE372 /* RegisterPresenter.swift */; };
 		E22FABBE25FE578000EEE372 /* RegistrationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FABBD25FE578000EEE372 /* RegistrationDetails.swift */; };
@@ -37,6 +36,8 @@
 		E280A7EF25FF445E006EDA05 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E280A7EE25FF445E006EDA05 /* ColorExtension.swift */; };
 		E280A7F725FF44FD006EDA05 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E280A7F625FF44FD006EDA05 /* ImageExtension.swift */; };
 		E2B8AB0A25FF5ADC00F430BA /* ChalloTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8AB0925FF5ADC00F430BA /* ChalloTitle.swift */; };
+		E2B8AB1525FF616100F430BA /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8AB1425FF616100F430BA /* LoginRouter.swift */; };
+		E2B8AB3625FF6A5D00F430BA /* BorderedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8AB3525FF6A5D00F430BA /* BorderedButtonStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +74,6 @@
 		E22FAB6C25FE046E00EEE372 /* LoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegate.swift; sourceTree = "<group>"; };
 		E22FAB9425FE431C00EEE372 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		E22FAB9925FE43E900EEE372 /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
-		E22FAB9E25FE461800EEE372 /* RoundedButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtons.swift; sourceTree = "<group>"; };
 		E22FABB025FE51B400EEE372 /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
 		E22FABB825FE526C00EEE372 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
 		E22FABBD25FE578000EEE372 /* RegistrationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationDetails.swift; sourceTree = "<group>"; };
@@ -98,6 +98,8 @@
 		E280A7EE25FF445E006EDA05 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		E280A7F625FF44FD006EDA05 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		E2B8AB0925FF5ADC00F430BA /* ChalloTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloTitle.swift; sourceTree = "<group>"; };
+		E2B8AB1425FF616100F430BA /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		E2B8AB3525FF6A5D00F430BA /* BorderedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButtonStyle.swift; sourceTree = "<group>"; };
 		E6158F328A7998364BCA7713 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -160,6 +162,7 @@
 				E22FAB5A25FDF99D00EEE372 /* LoginInteractor.swift */,
 				E22FAB5F25FDFB3F00EEE372 /* LoginPresenter.swift */,
 				E22FAB6C25FE046E00EEE372 /* LoginDelegate.swift */,
+				E2B8AB1425FF616100F430BA /* LoginRouter.swift */,
 			);
 			path = LoginModule;
 			sourceTree = "<group>";
@@ -260,10 +263,10 @@
 		E23B0E2725FDBF5300789E3E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E2B8AB2525FF690900F430BA /* ButtonStyles */,
 				E23B0E2A25FDBFA400789E3E /* RoundedTextField.swift */,
 				E23B0E3D25FDC06600789E3E /* Card.swift */,
 				E22FAB6425FDFC5400EEE372 /* FacebookLoginButton.swift */,
-				E22FAB9E25FE461800EEE372 /* RoundedButtons.swift */,
 				E280A7E825FF4094006EDA05 /* LoginRegisterBackground.swift */,
 				E2B8AB0925FF5ADC00F430BA /* ChalloTitle.swift */,
 			);
@@ -303,6 +306,14 @@
 				E280A7F625FF44FD006EDA05 /* ImageExtension.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		E2B8AB2525FF690900F430BA /* ButtonStyles */ = {
+			isa = PBXGroup;
+			children = (
+				E2B8AB3525FF6A5D00F430BA /* BorderedButtonStyle.swift */,
+			);
+			path = ButtonStyles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -592,9 +603,10 @@
 				E22FABB125FE51B400EEE372 /* RegisterInteractor.swift in Sources */,
 				E22FAB5025FDDFE100EEE372 /* FacebookLoginService.swift in Sources */,
 				E280A7E925FF4094006EDA05 /* LoginRegisterBackground.swift in Sources */,
+				E2B8AB3625FF6A5D00F430BA /* BorderedButtonStyle.swift in Sources */,
+				E2B8AB1525FF616100F430BA /* LoginRouter.swift in Sources */,
 				E23B0E4425FDC2E000789E3E /* ContainerView.swift in Sources */,
 				E22FABB925FE526C00EEE372 /* RegisterPresenter.swift in Sources */,
-				E22FAB9F25FE461800EEE372 /* RoundedButtons.swift in Sources */,
 				E22FAB5B25FDF99D00EEE372 /* LoginInteractor.swift in Sources */,
 				E22FABBE25FE578000EEE372 /* RegistrationDetails.swift in Sources */,
 				E280A7F725FF44FD006EDA05 /* ImageExtension.swift in Sources */,
