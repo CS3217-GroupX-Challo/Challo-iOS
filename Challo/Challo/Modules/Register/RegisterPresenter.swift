@@ -1,17 +1,15 @@
 import SwiftUI
 
-class RegisterPresenter: ObservableObject {
+class RegisterPresenter: PresenterProtocol {
 
-    var interactor: RegisterInteractor
+    var interactor: RegisterInteractor!
+    var router: RegisterRouter?
+
     @Published var userName = ""
     @Published var firstName = ""
     @Published var lastName = ""
     @Published var email = ""
     @Published var password = ""
-
-    init(interactor: RegisterInteractor) {
-        self.interactor = interactor
-    }
 
     func makeRegisterButton() -> some View {
         Button(action: submitRegistration, label: {

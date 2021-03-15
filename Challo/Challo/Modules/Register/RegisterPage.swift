@@ -37,7 +37,7 @@ struct RegisterPage: View {
 
 struct RegisterPage_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterPage(loginPresenter: LoginPresenter(interactor: LoginInteractor()),
-                     registerPresenter: RegisterPresenter(interactor: RegisterInteractor()))
+        let (view, _) = RegisterModule.assemble()
+        return view
     }
 }

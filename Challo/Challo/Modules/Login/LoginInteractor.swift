@@ -1,6 +1,8 @@
 import SwiftUI
 
-class LoginInteractor {
+class LoginInteractor: InteractorProtocol {
+
+    weak var presenter: LoginPresenter!
 
     @AppStorage("logged_in") var loggedIn = false
     @AppStorage("email") var email = ""
