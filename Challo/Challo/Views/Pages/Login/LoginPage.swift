@@ -11,7 +11,7 @@ struct LoginPage: View {
     @ObservedObject var loginPresenter: LoginPresenter
 
     var body: some View {
-        ZStack {
+        Background {
             GeometryReader { geometry in
                 Card {
                     Text("Login")
@@ -36,11 +36,6 @@ struct LoginPage: View {
                        alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             }
         }
-        .frame(minWidth: 0,
-               maxWidth: .infinity,
-               minHeight: 0,
-               maxHeight: .infinity,
-               alignment: .center)
     }
 }
 
