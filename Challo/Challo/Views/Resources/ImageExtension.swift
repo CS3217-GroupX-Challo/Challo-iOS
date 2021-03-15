@@ -10,4 +10,5 @@ import SwiftUI
 extension Image {
     static let mountainBackground = Image("mountain-background")
     static let facebookIcon = Image("facebook-icon")
+    static let challoTitle = Image("challo")
 }

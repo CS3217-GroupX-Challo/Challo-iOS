@@ -7,19 +7,22 @@ struct RegisterPage: View {
     var body: some View {
         LoginRegisterBackground {
             GeometryReader { geometry in
-                Card {
-                    Text("Sign up")
-                        .font(.largeTitle)
-                        .bold()
-                        .foregroundColor(.themePrimary)
-                    HStack {
-                        loginPresenter.makeLoginWithFacebookButton()
+                VStack {
+                    ChalloTitle()
+                    Card {
+                        Text("Sign up")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.themePrimary)
+                        HStack {
+                            loginPresenter.makeLoginWithFacebookButton()
+                        }
+                        RegisterForm(username: $registerPresenter.userName,
+                                     firstName: $registerPresenter.firstName,
+                                     lastName: $registerPresenter.lastName,
+                                     email: $registerPresenter.email,
+                                     password: $registerPresenter.password)
                     }
-                    RegisterForm(username: $registerPresenter.userName,
-                                 firstName: $registerPresenter.firstName,
-                                 lastName: $registerPresenter.lastName,
-                                 email: $registerPresenter.email,
-                                 password: $registerPresenter.password)
                 }
                 .position(x: geometry.size.width / 2,
                           y: geometry.size.height / 2)

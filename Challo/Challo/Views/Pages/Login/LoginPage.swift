@@ -13,15 +13,18 @@ struct LoginPage: View {
     var body: some View {
         LoginRegisterBackground {
             GeometryReader { geometry in
-                Card {
-                    Text("Login")
-                        .font(.largeTitle)
-                        .bold()
-                        .foregroundColor(.yellow)
-                    HStack {
-                        loginPresenter.makeLoginWithFacebookButton()
+                VStack {
+                    ChalloTitle()
+                    Card {
+                        Text("Login")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.yellow)
+                        HStack {
+                            loginPresenter.makeLoginWithFacebookButton()
+                        }
+                        LoginForm()
                     }
-                    LoginForm()
                 }
                 .position(x: geometry.size.width / 2,
                           y: geometry.size.height / 2)

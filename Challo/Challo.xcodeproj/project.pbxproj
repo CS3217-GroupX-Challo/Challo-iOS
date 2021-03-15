@@ -36,6 +36,7 @@
 		E280A7E925FF4094006EDA05 /* LoginRegisterBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = E280A7E825FF4094006EDA05 /* LoginRegisterBackground.swift */; };
 		E280A7EF25FF445E006EDA05 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E280A7EE25FF445E006EDA05 /* ColorExtension.swift */; };
 		E280A7F725FF44FD006EDA05 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E280A7F625FF44FD006EDA05 /* ImageExtension.swift */; };
+		E2B8AB0A25FF5ADC00F430BA /* ChalloTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8AB0925FF5ADC00F430BA /* ChalloTitle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		E280A7E825FF4094006EDA05 /* LoginRegisterBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterBackground.swift; sourceTree = "<group>"; };
 		E280A7EE25FF445E006EDA05 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		E280A7F625FF44FD006EDA05 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
+		E2B8AB0925FF5ADC00F430BA /* ChalloTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloTitle.swift; sourceTree = "<group>"; };
 		E6158F328A7998364BCA7713 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -263,6 +265,7 @@
 				E22FAB6425FDFC5400EEE372 /* FacebookLoginButton.swift */,
 				E22FAB9E25FE461800EEE372 /* RoundedButtons.swift */,
 				E280A7E825FF4094006EDA05 /* LoginRegisterBackground.swift */,
+				E2B8AB0925FF5ADC00F430BA /* ChalloTitle.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				E22FAB5B25FDF99D00EEE372 /* LoginInteractor.swift in Sources */,
 				E22FABBE25FE578000EEE372 /* RegistrationDetails.swift in Sources */,
 				E280A7F725FF44FD006EDA05 /* ImageExtension.swift in Sources */,
+				E2B8AB0A25FF5ADC00F430BA /* ChalloTitle.swift in Sources */,
 				E23B0E3125FDBFD800789E3E /* RegisterPage.swift in Sources */,
 				E22FAB9525FE431C00EEE372 /* LoginPage.swift in Sources */,
 			);
