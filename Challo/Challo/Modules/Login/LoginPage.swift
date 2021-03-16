@@ -34,9 +34,10 @@ struct LoginPage: View {
                           y: geometry.size.height / 2)
                 .frame(width: geometry.size.width * 0.85,
                        height: geometry.size.height,
-                       alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                       alignment: .center)
             }
         }
+        .ignoresSafeArea()
     }
 }
 

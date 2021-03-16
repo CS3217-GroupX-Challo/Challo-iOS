@@ -32,6 +32,7 @@ struct RegisterPage: View {
                        alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             }
         }
+        .ignoresSafeArea()
     }
 }
 

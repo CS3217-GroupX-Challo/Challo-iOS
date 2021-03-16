@@ -6,7 +6,8 @@ struct ContentView: View {
         return
             NavigationView {
                 loginPage
-            }.navigationViewStyle(StackNavigationViewStyle())
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
