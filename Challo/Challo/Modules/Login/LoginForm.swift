@@ -9,8 +9,8 @@ import SwiftUI
 
 struct LoginForm: View {
 
-    @State var email = ""
-    @State var password = ""
+    @Binding var email: String
+    @Binding var password: String
 
     var body: some View {
         VStack {
@@ -24,6 +24,7 @@ struct LoginForm: View {
 
 struct LoginForm_Previews: PreviewProvider {
     static var previews: some View {
-        LoginForm()
+        LoginForm(email: .constant(""),
+                  password: .constant("123"))
     }
 }

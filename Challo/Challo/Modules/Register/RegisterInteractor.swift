@@ -3,20 +3,21 @@ import Combine
 class RegisterInteractor: InteractorProtocol {
 
     typealias JSON = AlamofireManager.JSON
+    private let api = AlamofireManager.alamofireManager
+    private let registerUrl = "/user/register"
+
     weak var presenter: RegisterPresenter!
-    private var api = AlamofireManager.alamofireManager
-    private var registerUrl = "/user/register"
 
     func register(details: RegistrationDetails) {
         let json = createRegisterJson(details: details)
         api.post(url: registerUrl,
                  headers: AlamofireManager.HEADER(),
-                 body: json) { data, err in
+                 body: json) { res, err in
             if let err = err {
                 print("ERR! \(err)")
                 return
             }
-            print(data)
+            print(res)
         }
     }
 

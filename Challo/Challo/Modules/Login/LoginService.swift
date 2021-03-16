@@ -8,4 +8,5 @@ struct LoginResponse {
     var email: String?
     var name: String?
     var token: String?
+    var userId: String?
 }

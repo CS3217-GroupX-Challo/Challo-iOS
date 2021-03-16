@@ -23,7 +23,8 @@ struct LoginPage: View {
                         HStack {
                             loginPresenter.makeLoginWithFacebookButton()
                         }
-                        LoginForm()
+                        LoginForm(email: $loginPresenter.email,
+                                  password: $loginPresenter.password)
                         HStack {
                             loginPresenter.makeRegisterButton()
                             loginPresenter.makeLoginButton()

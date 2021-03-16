@@ -5,12 +5,20 @@ class LoginPresenter: PresenterProtocol {
     var interactor: LoginInteractor!
     var router: LoginRouter?
 
+    @Published var email = ""
+    @Published var password = ""
+
     func makeLoginWithFacebookButton() -> some View {
-        return FacebookLoginButton(action: interactor.logInWithFacebook)
+        FacebookLoginButton(action: interactor.logInWithFacebook)
     }
 
     func makeLoginButton() -> some View {
-        Button(action: {}, label: {
+        Button(action: { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.interactor.defaultLogin(email: self.email, password: self.password)
+        }, label: {
             Text("SIGN IN")
                 .bold()
         }).buttonStyle(BorderedButtonStyle(borderColor: .themePrimary,
