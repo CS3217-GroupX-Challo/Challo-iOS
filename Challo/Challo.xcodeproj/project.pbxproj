@@ -37,6 +37,7 @@
 		E2C2440E2600B64C0085BAA4 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C2440D2600B64C0085BAA4 /* LoginResponse.swift */; };
 		E2C2441D2600B78E0085BAA4 /* UserAPIInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C2441C2600B78E0085BAA4 /* UserAPIInteractor.swift */; };
 		E2C244252600B96E0085BAA4 /* UserCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C244242600B96E0085BAA4 /* UserCertificate.swift */; };
+		E2D824AD2600C1B20023CBBB /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D824AC2600C1B20023CBBB /* UserState.swift */; };
 		E2D8967325FFAB200001B026 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8967025FFAB200001B026 /* RegisterPresenter.swift */; };
 		E2D8967425FFAB200001B026 /* RegistrationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8967125FFAB200001B026 /* RegistrationDetails.swift */; };
 		E2D8967525FFAB200001B026 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8967225FFAB200001B026 /* RegisterInteractor.swift */; };
@@ -124,6 +125,7 @@
 		E2C2440D2600B64C0085BAA4 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		E2C2441C2600B78E0085BAA4 /* UserAPIInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIInteractor.swift; sourceTree = "<group>"; };
 		E2C244242600B96E0085BAA4 /* UserCertificate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCertificate.swift; sourceTree = "<group>"; };
+		E2D824AC2600C1B20023CBBB /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 		E2D8967025FFAB200001B026 /* RegisterPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
 		E2D8967125FFAB200001B026 /* RegistrationDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationDetails.swift; sourceTree = "<group>"; };
 		E2D8967225FFAB200001B026 /* RegisterInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 			children = (
 				E2C2441C2600B78E0085BAA4 /* UserAPIInteractor.swift */,
 				E2C244242600B96E0085BAA4 /* UserCertificate.swift */,
+				E2D824AC2600C1B20023CBBB /* UserState.swift */,
 			);
 			path = UserManagement;
 			sourceTree = "<group>";
@@ -723,6 +726,7 @@
 				E2D8968125FFAB380001B026 /* LoginService.swift in Sources */,
 				E2D896A025FFABBA0001B026 /* LoginPage.swift in Sources */,
 				E2D8967525FFAB200001B026 /* RegisterInteractor.swift in Sources */,
+				E2D824AD2600C1B20023CBBB /* UserState.swift in Sources */,
 				E2D896DA25FFBA210001B026 /* RegisterRouter.swift in Sources */,
 				E2C2441D2600B78E0085BAA4 /* UserAPIInteractor.swift in Sources */,
 				E2D8968225FFAB380001B026 /* LoginRouter.swift in Sources */,

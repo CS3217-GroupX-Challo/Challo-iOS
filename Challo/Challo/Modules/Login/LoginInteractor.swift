@@ -8,12 +8,6 @@ class LoginInteractor: InteractorProtocol, UserAPIInteractor {
 
     weak var presenter: LoginPresenter!
 
-    @AppStorage("logged_in") var loggedIn = false
-    @AppStorage("email") var email = ""
-    @AppStorage("name") var name = ""
-    @AppStorage("token") var token = ""
-    @AppStorage("userId") var userId = ""
-
     private var facebookLoginService = FacebookLoginService()
 
     init() {
@@ -36,6 +30,7 @@ class LoginInteractor: InteractorProtocol, UserAPIInteractor {
             }
             let parsed = self.parseUser(apiResponse: res)
             guard let certificate = parsed else {
+                print("Unable to parse api response \(res)")
                 self.presenter.showLoginFailureAlert()
                 return
             }
@@ -59,10 +54,5 @@ extension LoginInteractor: LoginDelegate {
             return
         }
         self.storeCertificate(certificate: certificate)
-        print("LOGGED IN: \(loggedIn)")
-        print("NAME: \(name)")
-        print("EMAIL: \(email)")
-        print("TOKEN: \(token)")
-        print("USERID: \(userId)")
     }
 }

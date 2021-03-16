@@ -10,6 +10,9 @@ import FBSDKCoreKit
 
 @main
 struct ChalloApp: App {
+
+    var userState = UserState.globalState
+
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -20,6 +23,7 @@ struct ChalloApp: App {
                         sourceApplication: nil,
                         annotation: UIApplication.OpenURLOptionsKey.annotation)
                 })
+                .environmentObject(userState)
         }
     }
 }

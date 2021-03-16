@@ -34,11 +34,13 @@ extension UserAPIInteractor {
     }
 
     func storeCertificate(certificate: UserCertificate) {
-        let defaults = UserDefaults.standard
-        defaults.setValue(certificate.name, forKey: "name")
-        defaults.setValue(certificate.email, forKey: "email")
-        defaults.setValue(certificate.token, forKey: "token")
-        defaults.setValue(certificate.userId, forKey: "userId")
-        defaults.setValue(true, forKey: "logged_in")
+        let globalState = UserState.globalState
+        globalState.loggedIn = true
+        globalState.name = certificate.name
+        globalState.email = certificate.email
+        globalState.token = certificate.token
+        globalState.userId = certificate.userId
+        print("LOGGED IN: \(globalState.loggedIn)")
+        print(globalState.email)
     }
 }

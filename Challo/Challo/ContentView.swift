@@ -1,13 +1,19 @@
 import SwiftUI
 
 struct ContentView: View {
+
+    @EnvironmentObject var userState: UserState
+
     var body: some View {
-        let (loginPage, _) = LoginModule.assemble()
-        return
-            NavigationView {
-                loginPage
+        NavigationView { () -> AnyView in
+            if !userState.loggedIn {
+                let (loginPage, _) = LoginModule.assemble()
+                return loginPage
+            } else {
+                return AnyView(Text("MOCK HOMEPAGE"))
             }
-            .navigationViewStyle(StackNavigationViewStyle())
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
