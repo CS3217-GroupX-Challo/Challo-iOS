@@ -26,6 +26,8 @@
 		AA9E85C925FE70AD00C2E389 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E85C825FE70AD00C2E389 /* NetworkManager.swift */; };
 		AA9E85D625FE735800C2E389 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E85D525FE735800C2E389 /* NetworkError.swift */; };
 		AA9E85E125FE740500C2E389 /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E85E025FE740500C2E389 /* AlamofireManager.swift */; };
+		AA9E866D2600D4F000C2E389 /* GuidesListingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E866C2600D4F000C2E389 /* GuidesListingPage.swift */; };
+		AA9E86752600EC9F00C2E389 /* DropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E86742600EC9F00C2E389 /* DropDownMenu.swift */; };
 		B0F349AF3CB87F77584434C4 /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC2C4523E0BAD62412B118A /* Pods_Challo.framework */; };
 		D4A670D2B9132DB104111692 /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391AD75BD73BA41A633358D /* Pods_ChalloTests.framework */; };
 		E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234932225FB884F00EC90E9 /* ChalloApp.swift */; };
@@ -109,6 +111,8 @@
 		AA9E85C825FE70AD00C2E389 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		AA9E85D525FE735800C2E389 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		AA9E85E025FE740500C2E389 /* AlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
+		AA9E866C2600D4F000C2E389 /* GuidesListingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingPage.swift; sourceTree = SOURCE_ROOT; };
+		AA9E86742600EC9F00C2E389 /* DropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenu.swift; sourceTree = SOURCE_ROOT; };
 		B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234931F25FB884F00EC90E9 /* Challo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234932225FB884F00EC90E9 /* ChalloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloApp.swift; sourceTree = "<group>"; };
@@ -261,6 +265,22 @@
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
+		AA9E866A2600D42300C2E389 /* Guides */ = {
+			isa = PBXGroup;
+			children = (
+				AA9E866B2600D4D500C2E389 /* Views */,
+			);
+			path = Guides;
+			sourceTree = "<group>";
+		};
+		AA9E866B2600D4D500C2E389 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA9E866C2600D4F000C2E389 /* GuidesListingPage.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		E234931625FB884F00EC90E9 = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +365,7 @@
 		E2D8966E25FFAAFC0001B026 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				AA9E866A2600D42300C2E389 /* Guides */,
 				E2C2441A2600B74D0085BAA4 /* Common */,
 				E2D8967925FFAB2B0001B026 /* Login */,
 				E2D8966F25FFAB130001B026 /* Register */,
@@ -392,6 +413,7 @@
 				E2D8968E25FFAB8A0001B026 /* FacebookLoginButton.swift */,
 				E2D8968B25FFAB8A0001B026 /* LoginRegisterBackground.swift */,
 				E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */,
+				AA9E86742600EC9F00C2E389 /* DropDownMenu.swift */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -702,6 +724,7 @@
 				6462023625FEFC7900D89514 /* InteractorProtocol.swift in Sources */,
 				6462023525FEFC7900D89514 /* RouterProtocol.swift in Sources */,
 				6462027025FF5E5E00D89514 /* Review.swift in Sources */,
+				AA9E866D2600D4F000C2E389 /* GuidesListingPage.swift in Sources */,
 				6462027A25FF614F00D89514 /* BookingStatus.swift in Sources */,
 				E2D8968F25FFAB8A0001B026 /* ChalloTitle.swift in Sources */,
 				6462024425FEFD4F00D89514 /* User.swift in Sources */,
@@ -723,6 +746,7 @@
 				E2C244252600B96E0085BAA4 /* UserCertificate.swift in Sources */,
 				6462026B25FF574100D89514 /* CaseIterable+ParseString.swift in Sources */,
 				E2D896B525FFABE80001B026 /* ColorExtension.swift in Sources */,
+				AA9E86752600EC9F00C2E389 /* DropDownMenu.swift in Sources */,
 				E2D8968125FFAB380001B026 /* LoginService.swift in Sources */,
 				E2D896A025FFABBA0001B026 /* LoginPage.swift in Sources */,
 				E2D8967525FFAB200001B026 /* RegisterInteractor.swift in Sources */,

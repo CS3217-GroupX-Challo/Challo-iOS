@@ -37,5 +37,6 @@ struct RoundedTextFieldStyle: TextFieldStyle {
                 RoundedRectangle(cornerRadius: 15)
                     .stroke(Color.themeTertiary, lineWidth: 2)
             )
+            .background(RoundedRectangle(cornerRadius: 15).fill(Color.white))
     }
 }
