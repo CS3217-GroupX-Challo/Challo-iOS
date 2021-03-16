@@ -5,9 +5,8 @@ class RegisterPresenter: PresenterProtocol {
     var interactor: RegisterInteractor!
     var router: RegisterRouter?
 
-    @Published var userName = ""
-    @Published var firstName = ""
-    @Published var lastName = ""
+    @Published var name = ""
+    @Published var phone = ""
     @Published var email = ""
     @Published var password = ""
 
@@ -19,9 +18,8 @@ class RegisterPresenter: PresenterProtocol {
     }
 
     private func submitRegistration() {
-        let registrationDetails = RegistrationDetails(userName: userName,
-                                                      firstName: firstName,
-                                                      lastName: lastName,
+        let registrationDetails = RegistrationDetails(name: name,
+                                                      phone: phone,
                                                       email: email,
                                                       password: password)
         interactor.register(details: registrationDetails)

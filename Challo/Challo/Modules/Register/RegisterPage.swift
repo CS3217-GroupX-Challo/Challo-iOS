@@ -17,9 +17,8 @@ struct RegisterPage: View {
                         HStack {
                             loginPresenter.makeLoginWithFacebookButton()
                         }
-                        RegisterForm(username: $registerPresenter.userName,
-                                     firstName: $registerPresenter.firstName,
-                                     lastName: $registerPresenter.lastName,
+                        RegisterForm(name: $registerPresenter.name,
+                                     phone: $registerPresenter.phone,
                                      email: $registerPresenter.email,
                                      password: $registerPresenter.password)
                         registerPresenter.makeRegisterButton()
