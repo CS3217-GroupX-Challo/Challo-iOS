@@ -1,9 +1,9 @@
 import Combine
 
-class RegisterInteractor: InteractorProtocol {
+class RegisterInteractor: InteractorProtocol, UserAPIInteractor {
 
     typealias JSON = AlamofireManager.JSON
-    private let api = AlamofireManager.alamofireManager
+    let api = AlamofireManager.alamofireManager
     private let registerUrl = "/user/register"
 
     weak var presenter: RegisterPresenter!
@@ -15,9 +15,16 @@ class RegisterInteractor: InteractorProtocol {
                  body: json) { res, err in
             if let err = err {
                 print("ERR! \(err)")
+                self.presenter.showRegisterFailureAlert()
                 return
             }
-            print(res)
+
+            guard let certificate = self.parseUser(apiResponse: res) else {
+                self.presenter.showRegisterFailureAlert()
+                return
+            }
+
+            self.storeCertificate(certificate: certificate)
         }
     }
 

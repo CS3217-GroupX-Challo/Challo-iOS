@@ -80,7 +80,7 @@ class AlamofireManager: NetworkManager {
     
     private func invokeHandler(response: AFDataResponse<Data>,
                                reponseHandler: @escaping (JSON, Error?) -> Void) {
-        let (result, error) =  self.grabResponseData(response: response)
+        let (result, error) = self.grabResponseData(response: response)
         reponseHandler(result, error)
     }
     

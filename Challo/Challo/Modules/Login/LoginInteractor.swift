@@ -1,9 +1,9 @@
 import SwiftUI
 
-class LoginInteractor: InteractorProtocol {
+class LoginInteractor: InteractorProtocol, UserAPIInteractor {
 
     typealias JSON = AlamofireManager.JSON
-    private let api = AlamofireManager.alamofireManager
+    let api = AlamofireManager.alamofireManager
     private let loginUrl = "/user/login"
 
     weak var presenter: LoginPresenter!
@@ -31,13 +31,15 @@ class LoginInteractor: InteractorProtocol {
                  body: json) { res, err in
             if let err = err {
                 print("Error: \(err)")
+                self.presenter.showLoginFailureAlert()
                 return
             }
-            let response = self.parseApiResponse(response: res)
-            if !response.success {
+            let parsed = self.parseUser(apiResponse: res)
+            guard let certificate = parsed else {
+                self.presenter.showLoginFailureAlert()
                 return
             }
-            self.storeLoginResponse(response: response)
+            self.loginProcessCompleted(loginResponse: LoginResponse(success: true, certificate: certificate))
         }
     }
 
@@ -47,42 +49,20 @@ class LoginInteractor: InteractorProtocol {
         json["password"] = password
         return json
     }
-
-    private func parseApiResponse(response: JSON) -> LoginResponse {
-        guard let data = response["data"] as? JSON,
-              let name = data["name"] as? String,
-              let userId = data["userId"] as? String,
-              let email = data["email"] as? String,
-              let tokenJson = data["token"] as? JSON,
-              let token = tokenJson["token"] as? String else {
-            print("API response wrong shape: \(response)")
-            return LoginResponse(success: false)
-        }
-        return LoginResponse(success: true,
-                             email: email,
-                             name: name,
-                             token: token,
-                             userId: userId)
-    }
 }
 
 // MARK: Login Delegate
 extension LoginInteractor: LoginDelegate {
 
     func loginProcessCompleted(loginResponse: LoginResponse) {
-        self.storeLoginResponse(response: loginResponse)
-    }
-
-    private func storeLoginResponse(response: LoginResponse) {
-        loggedIn = response.success
-        email = response.email ?? ""
-        name = response.name ?? ""
-        token = response.token ?? ""
-        userId = response.userId ?? ""
+        guard let certificate = loginResponse.certificate, loginResponse.success else {
+            return
+        }
+        self.storeCertificate(certificate: certificate)
         print("LOGGED IN: \(loggedIn)")
-        print("EMAIL: \(email)")
         print("NAME: \(name)")
+        print("EMAIL: \(email)")
         print("TOKEN: \(token)")
-        print("userId: \(userId)")
+        print("USERID: \(userId)")
     }
 }

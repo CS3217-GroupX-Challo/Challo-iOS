@@ -39,6 +39,11 @@ struct LoginPage: View {
             }
         }
         .ignoresSafeArea()
+        .alert(isPresented: $loginPresenter.isShowingLoginFailureAlert) {
+            Alert(title: Text("Unable to sign in"),
+                  message: Text("Please check your email and password again"),
+                  dismissButton: .default(Text("Close")))
+        }
     }
 }
 

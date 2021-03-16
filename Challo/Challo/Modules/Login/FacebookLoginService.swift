@@ -34,17 +34,22 @@ class FacebookLoginService: LoginService {
         let failureResponse = LoginResponse(success: false)
 
         request.start { _, result, _ in
-            guard let profileData = result as? [String : Any] else {
+            guard let profileData = result as? [String: Any] else {
                 self.loginDelegate?.loginProcessCompleted(loginResponse: failureResponse)
                 return
             }
-            let email = profileData["email"] as? String
+            guard let email = profileData["email"] as? String else {
+                print("Failed to retrieve email")
+                return
+            }
             guard let token = AccessToken.current?.tokenString else {
                 print("Token not set")
                 self.loginDelegate?.loginProcessCompleted(loginResponse: failureResponse)
                 return
             }
-            let successResponse = LoginResponse(success: true, email: email, name: email, token: token)
+            // TODO: Change certificate generation once backend supports socials login
+            let certificate = UserCertificate(name: email, email: email, token: token, userId: "TEMP")
+            let successResponse = LoginResponse(success: true, certificate: certificate)
             self.loginDelegate?.loginProcessCompleted(loginResponse: successResponse)
         }
     }

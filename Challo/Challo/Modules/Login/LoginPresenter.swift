@@ -7,6 +7,7 @@ class LoginPresenter: PresenterProtocol {
 
     @Published var email = ""
     @Published var password = ""
+    @Published var isShowingLoginFailureAlert = false
 
     func makeLoginWithFacebookButton() -> some View {
         FacebookLoginButton(action: interactor.logInWithFacebook)
@@ -34,5 +35,9 @@ class LoginPresenter: PresenterProtocol {
                 .bold()
         }.buttonStyle(BorderedButtonStyle(borderColor: .themePrimary,
                                           foregroundColor: .themePrimary))
+    }
+
+    func showLoginFailureAlert() {
+        self.isShowingLoginFailureAlert = true
     }
 }

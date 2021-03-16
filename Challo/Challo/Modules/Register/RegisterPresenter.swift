@@ -9,6 +9,7 @@ class RegisterPresenter: PresenterProtocol {
     @Published var phone = ""
     @Published var email = ""
     @Published var password = ""
+    @Published var isShowingRegisterFailureAlert = false
 
     func makeRegisterButton() -> some View {
         Button(action: submitRegistration, label: {
@@ -23,5 +24,10 @@ class RegisterPresenter: PresenterProtocol {
                                                       email: email,
                                                       password: password)
         interactor.register(details: registrationDetails)
+    }
+
+    func showRegisterFailureAlert() {
+        print("functions is called")
+        self.isShowingRegisterFailureAlert = true
     }
 }

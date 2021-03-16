@@ -32,6 +32,11 @@ struct RegisterPage: View {
             }
         }
         .ignoresSafeArea()
+        .alert(isPresented: $registerPresenter.isShowingRegisterFailureAlert) {
+            Alert(title: Text("Unable to sign up"),
+                  message: Text("Please check that you've filled in all your details"),
+                  dismissButton: .default(Text("Close")))
+        }
     }
 }
 
