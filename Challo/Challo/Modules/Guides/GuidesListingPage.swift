@@ -9,7 +9,6 @@ import SwiftUI
 
 struct GuidesListingPage: View {
     @State private var stuff: String = ""
-    @State private var test: String = ""
     var guide = Guide(userId: UUID(),
                       email: "bob@gmail.com",
                       profileImg: nil,
@@ -44,24 +43,7 @@ struct GuidesListingPage: View {
                 .frame(width: geometry.size.width,
                        height: geometry.size.height / 5,
                        alignment: .center)
-                HStack(alignment: .top) {
-                    DropDownMenu(selectedOption: $test,
-                                 menuItems: ["Option1", "Option2", "Option3"],
-                                 menuTitle: "Location",
-                                 width: geometry.size.width / 5)
-                    DropDownMenu(selectedOption: $test,
-                                 menuItems: ["Option1", "Option2", "Option3"],
-                                 menuTitle: "Popularity",
-                                 width: geometry.size.width / 5)
-                    DropDownMenu(selectedOption: $test,
-                                 menuItems: ["Option1", "Option2", "Option3"],
-                                 menuTitle: "Language",
-                                 width: geometry.size.width / 5)
-                    DropDownMenu(selectedOption: $test,
-                                 menuItems: ["Option1", "Option2", "Option3"],
-                                 menuTitle: "Gender",
-                                 width: geometry.size.width / 5)
-                }
+                GuidesFilterView(width: geometry.size.width / 5)
                 ScrollView(showsIndicators: false) {
                     HStack(spacing: geometry.size.width / 20) {
                         GuideDetailsCard(guide: guide, width: geometry.size.width / 2)

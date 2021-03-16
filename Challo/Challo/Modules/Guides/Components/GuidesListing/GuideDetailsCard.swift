@@ -13,29 +13,20 @@ struct GuideDetailsCard: View {
     
     var rating: Decimal = 4.0
     
-    var nameDescription: String {
-        if let name = guide.name {
-            return name
-        }
-        return ""
+    var nameDescription: String? {
+        guide.name
     }
     
     var trailsDescription: String {
         convertTrailsToString(trails: guide.trails)
     }
     
-    var languagesDescription: String {
-        if let description = convertStringArrayToString(strings: guide.languages) {
-            return description
-        }
-        return ""
+    var languagesDescription: String? {
+        convertStringArrayToString(strings: guide.languages)
     }
     
-    var creditationsDescription: String {
-        if let description = convertStringArrayToString(strings: guide.accreditations) {
-            return description
-        }
-        return ""
+    var creditationsDescription: String? {
+        convertStringArrayToString(strings: guide.accreditations)
     }
     
     var body: some View {
@@ -45,39 +36,20 @@ struct GuideDetailsCard: View {
                 .scaledToFit()
                 .frame(width: width * 2 / 3)
                 .padding(5)
-            if !nameDescription.isEmpty {
-                Text(nameDescription)
+            if let name = nameDescription {
+                Text(name)
                     .bold()
                     .font(.caption2)
                     .padding(5)
             }
             StarRatingsView(rating: (rating as NSDecimalNumber).doubleValue)
                 .padding(5)
-            Text("Trails")
-                .bold()
-                .font(.caption2)
-            Text(trailsDescription)
-                .font(.caption2)
-                .lineLimit(nil)
-                .padding(5)
-            Text("Languages")
-                .bold()
-                .font(.caption2)
-            if !languagesDescription.isEmpty {
-                Text(languagesDescription)
-                    .font(.caption2)
-                    .lineLimit(nil)
-                    .padding(5)
-            }
-            Text("Certifications")
-                .bold()
-                .font(.caption2)
-            if !creditationsDescription.isEmpty {
-                Text(creditationsDescription)
-                    .font(.caption2)
-                    .lineLimit(nil)
-                    .padding(5)
-            }
+            GuidesCardDescriptionView(title: "Trails",
+                                      description: trailsDescription)
+            GuidesCardDescriptionView(title: "Languages",
+                                      description: languagesDescription)
+            GuidesCardDescriptionView(title: "Certifications",
+                                      description: creditationsDescription)
             Button(action: {
                 // TODO add navigation
             }) {
