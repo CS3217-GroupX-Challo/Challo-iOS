@@ -1,6 +1,13 @@
+//
+//  TouristRegisterPage.swift
+//  Challo
+//
+//  Created by Tan Le Yang on 17/3/21.
+//
+
 import SwiftUI
 
-struct RegisterPage: View {
+struct TouristRegisterPage: View {
     var loginPresenter: LoginPresenter
     @ObservedObject var registerPresenter: RegisterPresenter
 
@@ -40,9 +47,9 @@ struct RegisterPage: View {
     }
 }
 
-struct RegisterPage_Previews: PreviewProvider {
+struct TouristRegisterPage_Previews: PreviewProvider {
     static var previews: some View {
-        let (view, _) = RegisterModule.assemble()
+        let (view, _) = TouristRegisterModule.assemble()
         return view
     }
 }

@@ -12,7 +12,7 @@ class TouristLoginRouter: LoginRouter, RouterProtocol {
     weak var presenter: LoginPresenter!
 
     func getRegistrationPage() -> AnyView {
-        let (registerPage, _) = RegisterModule.assemble()
+        let (registerPage, _) = TouristRegisterModule.assemble()
         return registerPage
     }
 }
