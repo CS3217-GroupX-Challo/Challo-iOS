@@ -10,7 +10,7 @@ import Foundation
 class GuidesListingPresenter: PresenterProtocol {
     var router: GuidesListingRouter?
     var interactor: GuidesListingInteractor!
-    let filterTypes = FilterTypes()
+    var filterTypes = FilterTypes()
     
     @Published var searchKeyword: String = "" {
         didSet {
@@ -31,6 +31,12 @@ class GuidesListingPresenter: PresenterProtocol {
     }
     
     @Published var ratingFilterType: String = "Default" {
+        didSet {
+            applyFiltering()
+        }
+    }
+    
+    @Published var locationFilterType: String = "Default" {
         didSet {
             applyFiltering()
         }

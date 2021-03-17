@@ -20,6 +20,8 @@ struct Guide: User {
     
     var dateJoined: Date?
     
+    var location: Area?
+    
     var sex: Sex?
     
     /// A decimal rating of the guide, ranging from 1-5

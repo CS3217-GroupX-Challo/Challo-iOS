@@ -6,8 +6,8 @@
 //
 
 struct FilterTypes {
-    var sexTypes: [String] = ["Default", "Male", "Female"]
-    var popularityTypes: [String] = ["Default", "0", "1", "2", "3", "4", "5"]
-    var languageTypes: [String] = ["Default", "English", "Hindi", "Kumaoni"]
+    let sexTypes: [String] = ["Default", "Male", "Female"]
+    let popularityTypes: [String] = ["Default", "0", "1", "2", "3", "4", "5"]
+    let languageTypes: [String] = ["Default", "English", "Hindi", "Kumaoni"]
     var locations: [String] = [] // TODO add this later
 }
