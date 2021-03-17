@@ -10,7 +10,7 @@ class LoginRouter: RouterProtocol {
 
     weak var presenter: LoginPresenter!
 
-    func getRegistrationPage() -> some View {
+    func getRegistrationPage() -> AnyView {
         let (registerPage, _) = RegisterModule.assemble()
         return registerPage
     }
