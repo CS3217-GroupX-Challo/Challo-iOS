@@ -43,7 +43,7 @@ struct GuidesListingPage: View {
                 .frame(width: geometry.size.width,
                        height: geometry.size.height / 5,
                        alignment: .center)
-                GuidesFilterView(width: geometry.size.width / 5)
+                GuidesFiltersView(width: geometry.size.width / 5)
                 ScrollView(showsIndicators: false) {
                     HStack(spacing: geometry.size.width / 20) {
                         GuideDetailsCard(guide: guide, width: geometry.size.width / 2)

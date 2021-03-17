@@ -35,6 +35,7 @@ struct GuideDetailsCard: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: width * 2 / 3)
+                .cornerRadius(10)
                 .padding(5)
             if let name = nameDescription {
                 Text(name)
@@ -59,7 +60,8 @@ struct GuideDetailsCard: View {
             }
         }
         .overlay(RoundedRectangle(cornerRadius: 5)
-                    .stroke(Color.gray, lineWidth: 1))
+                    .stroke(Color.gray, lineWidth: 0.5))
+        .shadow(radius: 5)
     }
     
     private func convertTrailsToString(trails: [Trail]) -> String {

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GuidesFilterView: View {
+struct GuidesFiltersView: View {
     @State private var test: String = ""
     var width: CGFloat
     
