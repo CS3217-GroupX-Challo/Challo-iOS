@@ -6,5 +6,5 @@
 //
 
 class GuidesListingRouter: RouterProtocol {
-    weak var presenter: GuidesListingRouter!
+    weak var presenter: GuidesListingPresenter!
 }

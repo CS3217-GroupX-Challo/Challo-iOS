@@ -9,6 +9,8 @@ import SwiftUI
 
 struct GuidesListingPage: View {
     @State private var stuff: String = ""
+    var presenter: GuidesListingPresenter
+    
     var guide = Guide(userId: UUID(),
                       email: "bob@gmail.com",
                       profileImg: nil,
@@ -55,6 +57,9 @@ struct GuidesListingPage: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            presenter.interactor.getGuides()
         }
         .edgesIgnoringSafeArea(.all)
     }

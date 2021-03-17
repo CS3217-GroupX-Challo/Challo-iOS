@@ -3,10 +3,11 @@ import SwiftUI
 struct ContentView: View {
 
     @EnvironmentObject var userState: UserState
+    let (guidesListingPage, _) = GuidesModule.assemble()
 
     var body: some View {
         NavigationView { () -> AnyView in
-            AnyView(GuidesListingPage())
+            guidesListingPage
             /*
             if !userState.loggedIn {
                 let (loginPage, _) = LoginModule.assemble()
