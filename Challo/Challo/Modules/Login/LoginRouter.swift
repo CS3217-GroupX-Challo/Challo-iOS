@@ -6,12 +6,7 @@
 //
 import SwiftUI
 
-class LoginRouter: RouterProtocol {
+protocol LoginRouter {
 
-    weak var presenter: LoginPresenter!
-
-    func getRegistrationPage() -> AnyView {
-        let (registerPage, _) = RegisterModule.assemble()
-        return registerPage
-    }
+    func getRegistrationPage() -> AnyView
 }

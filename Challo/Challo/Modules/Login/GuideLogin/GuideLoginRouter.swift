@@ -7,9 +7,11 @@
 
 import SwiftUI
 
-class GuidesLoginRouter: LoginRouter {
+class GuideLoginRouter: LoginRouter, RouterProtocol {
 
-    override func getRegistrationPage() -> AnyView {
+    weak var presenter: LoginPresenter!
+
+    func getRegistrationPage() -> AnyView {
         AnyView(Text("Test guide registration page"))
     }
 }

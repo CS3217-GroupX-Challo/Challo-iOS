@@ -16,7 +16,7 @@ final class RegisterModule: ViperModuleProtocol {
         presenter.interactor = interactor
         presenter.router = router
         router.presenter = presenter
-        let (_, loginPresenter) = LoginModule.assemble()
+        let (_, loginPresenter) = TouristLoginModule.assemble()
         let registerView = AnyView(RegisterPage(loginPresenter: loginPresenter, registerPresenter: presenter))
         return (view: registerView, presenter: presenter)
     }

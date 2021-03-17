@@ -1,5 +1,5 @@
 //
-//  GuidesLoginPage.swift
+//  TouristLoginPage.swift
 //  Challo
 //
 //  Created by Tan Le Yang on 17/3/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GuidesLoginPage: View {
+struct TouristLoginPage: View {
     @ObservedObject var loginPresenter: LoginPresenter
 
     var body: some View {
@@ -16,7 +16,7 @@ struct GuidesLoginPage: View {
                 VStack {
                     ChalloTitle()
                     Card {
-                        Text("Guides Login")
+                        Text("Login")
                             .font(.largeTitle)
                             .bold()
                             .foregroundColor(.themePrimary)
@@ -47,9 +47,9 @@ struct GuidesLoginPage: View {
     }
 }
 
-struct GuidesLoginPage_Previews: PreviewProvider {
+struct TouristLoginPage_Previews: PreviewProvider {
     static var previews: some View {
-        let (view, _) = LoginModule.assemble()
+        let (view, _) = TouristLoginModule.assemble()
         return view
     }
 }

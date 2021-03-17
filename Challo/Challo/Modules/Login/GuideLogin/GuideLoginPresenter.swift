@@ -7,5 +7,5 @@
 
 import SwiftUI
 
-class GuidesLoginPresenter: LoginPresenter {
+class GuideLoginPresenter: LoginPresenter {
 }
