@@ -74,10 +74,10 @@ struct GuideDetailsCard: View {
     private func convertTrailsToString(trails: [Trail]) -> String {
         var trailsDescription = ""
         for i in 0..<trails.count {
+            trailsDescription += trails[i].title
             if i != trails.count - 1 {
                 trailsDescription += ", "
             }
-            trailsDescription += trails[i].title
         }
         return trailsDescription
     }

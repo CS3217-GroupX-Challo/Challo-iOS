@@ -5,13 +5,14 @@
 //  Created by Kester Ng on 17/3/21.
 //
 
-class GuidesListingInteractor: InteractorProtocol, GuideAPIInteractor {
+class GuidesListingInteractor: InteractorProtocol, GuideAPIInteractor, TrailsAPIInteractor {
     typealias JSON = AlamofireManager.JSON
     typealias HEADER = AlamofireManager.HEADER
     weak var presenter: GuidesListingPresenter!
     
     private let api = AlamofireManager.alamofireManager
     private let guidesAPI = "/guide"
+    private let guidesTrailAPI = "/guide/trail/"
     private let areasAPI = "/area" // To be ported over to AreaListingInteractor
     
     func getGuides() {
@@ -21,8 +22,21 @@ class GuidesListingInteractor: InteractorProtocol, GuideAPIInteractor {
                 return
             }
             
-            self.presenter.guides = self.parseGuides(response: response)
-            self.presenter.originalGuides = self.presenter.guides
+            let guides = self.parseGuides(response: response)
+            var updatedGuidesWithTrail: [Guide] = []
+            for var guide in guides {
+                self.api.get(url: self.guidesTrailAPI + guide.userId.uuidString,
+                             headers: HEADER()) { response, error in
+                    if error != nil {
+                        return
+                    }
+                    guide.trails = self.parseTrail(response: response)
+                    print(guide.trails)
+                    updatedGuidesWithTrail.append(guide)
+                    self.presenter.guides = updatedGuidesWithTrail
+                    self.presenter.originalGuides = updatedGuidesWithTrail
+                }
+            }
         }
     }
     

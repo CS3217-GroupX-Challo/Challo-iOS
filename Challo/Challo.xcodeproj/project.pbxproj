@@ -42,6 +42,7 @@
 		AA9E8785260242FA00C2E389 /* FilterTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E8784260242FA00C2E389 /* FilterTypes.swift */; };
 		AA9E878B26025DDF00C2E389 /* AreaAPIInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E878A26025DDF00C2E389 /* AreaAPIInteractor.swift */; };
 		AA9E8790260265C300C2E389 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E878F260265C300C2E389 /* Key.swift */; };
+		AA9E87962602689200C2E389 /* TrailsAPIInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E87952602689200C2E389 /* TrailsAPIInteractor.swift */; };
 		B0F349AF3CB87F77584434C4 /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC2C4523E0BAD62412B118A /* Pods_Challo.framework */; };
 		D4A670D2B9132DB104111692 /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391AD75BD73BA41A633358D /* Pods_ChalloTests.framework */; };
 		E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234932225FB884F00EC90E9 /* ChalloApp.swift */; };
@@ -141,6 +142,7 @@
 		AA9E8784260242FA00C2E389 /* FilterTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTypes.swift; sourceTree = "<group>"; };
 		AA9E878A26025DDF00C2E389 /* AreaAPIInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPIInteractor.swift; sourceTree = "<group>"; };
 		AA9E878F260265C300C2E389 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		AA9E87952602689200C2E389 /* TrailsAPIInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailsAPIInteractor.swift; sourceTree = "<group>"; };
 		B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234931F25FB884F00EC90E9 /* Challo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234932225FB884F00EC90E9 /* ChalloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloApp.swift; sourceTree = "<group>"; };
@@ -351,6 +353,14 @@
 			path = Areas;
 			sourceTree = "<group>";
 		};
+		AA9E87942602688100C2E389 /* Trails */ = {
+			isa = PBXGroup;
+			children = (
+				AA9E87952602689200C2E389 /* TrailsAPIInteractor.swift */,
+			);
+			path = Trails;
+			sourceTree = "<group>";
+		};
 		E234931625FB884F00EC90E9 = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +427,7 @@
 		E2C2441A2600B74D0085BAA4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				AA9E87942602688100C2E389 /* Trails */,
 				AA9E878926025DC600C2E389 /* Areas */,
 				AA9E87522601EFFA00C2E389 /* Guides */,
 				E2C2441B2600B76C0085BAA4 /* UserManagement */,
@@ -814,6 +825,7 @@
 				E2D896AD25FFABD70001B026 /* ContainerView.swift in Sources */,
 				6462023C25FEFD3800D89514 /* Guide.swift in Sources */,
 				6462024F25FF000700D89514 /* Tourist.swift in Sources */,
+				AA9E87962602689200C2E389 /* TrailsAPIInteractor.swift in Sources */,
 				E2D8969325FFAB8A0001B026 /* FacebookLoginButton.swift in Sources */,
 				AA9E878B26025DDF00C2E389 /* AreaAPIInteractor.swift in Sources */,
 				E2D8968425FFAB380001B026 /* LoginInteractor.swift in Sources */,
