@@ -30,9 +30,9 @@ extension AreaAPIInteractor {
     }
     
     func convertJSONToArea(json: JSON) -> Area? {
-        guard let areaId = UUID(uuidString: json["areaId"] as? String ?? ""),
-              let country = json["country"] as? String,
-              let state = json["state"] as? String else {
+        guard let areaId = UUID(uuidString: json[Key.areaId] as? String ?? ""),
+              let country = json[Key.country] as? String,
+              let state = json[Key.state] as? String else {
             return nil
         }
         

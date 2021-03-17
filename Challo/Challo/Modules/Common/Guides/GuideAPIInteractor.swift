@@ -33,27 +33,27 @@ extension GuideAPIInteractor {
     }
     
     func convertJSONToGuide(json: JSON) -> Guide? {
-        guard let userId = UUID(uuidString: json["userId"] as? String ?? ""),
-              let email = json["email"] as? String,
-              let availabilities = json["daysAvailable"] as? [String] else {
+        guard let userId = UUID(uuidString: json[Key.userId] as? String ?? ""),
+              let email = json[Key.email] as? String,
+              let availabilities = json[Key.daysAvailable] as? [String] else {
             return nil
         }
         
         // intermediate properties to be converted to its own struct
-        let sexString: String? = json["sex"] as? String
-        let areaDetails: JSON? = json["area"] as? JSON
+        let sexString: String? = json[Key.sex] as? String
+        let areaDetails: JSON? = json[Key.area] as? JSON
                 
-        let profileImg: String? = json["profileImg"] as? String
-        let name: String? = json["name"] as? String
-        let phone: String? = json["phone"] as? String
-        let dateJoined: Date? = json["dateJoined"] as? Date
+        let profileImg: String? = json[Key.profileImage] as? String
+        let name: String? = json[Key.name] as? String
+        let phone: String? = json[Key.phone] as? String
+        let dateJoined: Date? = json[Key.dateJoined] as? Date
         let daysAvailable: [Days] = getAvailableDays(availabilites: availabilities)
         let sex: Sex? = getSex(sexString: sexString)
-        let unavailableDates: [Date]? = json["unavailableDates"] as? [Date]
-        let yearsOfExperience: Int? = json["yearsOfExperience"] as? Int
-        let languages: [String]? = json["languages"] as? [String]
-        let accreditations: [String]? = json["accreditations"] as? [String]
-        let biography: String? = json["biography"] as? String
+        let unavailableDates: [Date]? = json[Key.unavailableDates] as? [Date]
+        let yearsOfExperience: Int? = json[Key.yearsOfExperience] as? Int
+        let languages: [String]? = json[Key.languages] as? [String]
+        let accreditations: [String]? = json[Key.accreditations] as? [String]
+        let biography: String? = json[Key.biography] as? String
         let area: Area? = self.convertJSONToArea(json: areaDetails ?? JSON())
         
         return Guide(userId: userId, email: email, profileImg: profileImg,
