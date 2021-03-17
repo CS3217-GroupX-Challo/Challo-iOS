@@ -32,7 +32,8 @@ struct GuidesListingPage: View {
                 .frame(width: geometry.size.width,
                        height: geometry.size.height / 5,
                        alignment: .center)
-                GuidesFiltersView(width: geometry.size.width / 5)
+                GuidesFiltersView(width: geometry.size.width / 5,
+                                  presenter: presenter)
                 GuidesCardListingsView(guides: guides,
                                        width: geometry.size.width)
             }

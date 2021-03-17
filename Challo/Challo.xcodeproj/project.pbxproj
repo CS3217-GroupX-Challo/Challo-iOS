@@ -39,6 +39,7 @@
 		AA9E87542601F00D00C2E389 /* GuideAPIInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E87532601F00D00C2E389 /* GuideAPIInteractor.swift */; };
 		AA9E8768260225C700C2E389 /* GuidesModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E8767260225C600C2E389 /* GuidesModule.swift */; };
 		AA9E8771260232BB00C2E389 /* GuidesCardListingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E8770260232BB00C2E389 /* GuidesCardListingsView.swift */; };
+		AA9E8785260242FA00C2E389 /* FilterTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E8784260242FA00C2E389 /* FilterTypes.swift */; };
 		B0F349AF3CB87F77584434C4 /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC2C4523E0BAD62412B118A /* Pods_Challo.framework */; };
 		D4A670D2B9132DB104111692 /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391AD75BD73BA41A633358D /* Pods_ChalloTests.framework */; };
 		E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234932225FB884F00EC90E9 /* ChalloApp.swift */; };
@@ -135,6 +136,7 @@
 		AA9E87532601F00D00C2E389 /* GuideAPIInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPIInteractor.swift; sourceTree = "<group>"; };
 		AA9E8767260225C600C2E389 /* GuidesModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesModule.swift; sourceTree = "<group>"; };
 		AA9E8770260232BB00C2E389 /* GuidesCardListingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesCardListingsView.swift; sourceTree = "<group>"; };
+		AA9E8784260242FA00C2E389 /* FilterTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTypes.swift; sourceTree = "<group>"; };
 		B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234931F25FB884F00EC90E9 /* Challo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234932225FB884F00EC90E9 /* ChalloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloApp.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				AA9E87392601B18D00C2E389 /* GuidesListingInteractor.swift */,
 				AA9E873E2601B22000C2E389 /* GuidesListingRouter.swift */,
 				AA9E8767260225C600C2E389 /* GuidesModule.swift */,
+				AA9E8784260242FA00C2E389 /* FilterTypes.swift */,
 			);
 			path = Guides;
 			sourceTree = "<group>";
@@ -825,6 +828,7 @@
 				6462023325FEFC7900D89514 /* PresenterProtocol.swift in Sources */,
 				E2D8969125FFAB8A0001B026 /* Card.swift in Sources */,
 				AA9E873F2601B22000C2E389 /* GuidesListingRouter.swift in Sources */,
+				AA9E8785260242FA00C2E389 /* FilterTypes.swift in Sources */,
 				E2D896D525FFB7F20001B026 /* LoginModule.swift in Sources */,
 				E2D8969925FFABA10001B026 /* BorderedButtonStyle.swift in Sources */,
 			);

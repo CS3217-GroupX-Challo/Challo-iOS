@@ -50,7 +50,17 @@ extension GuideAPIInteractor {
         let name: String? = json["name"] as? String
         let phone: String? = json["phone"] as? String
         let dateJoined: Date? = json["dateJoined"] as? Date
-        let sex: Sex? = json["sex"] as? Sex
+        let sexString: String? = json["sex"] as? String
+        
+        var sex: Sex?
+        if let string = sexString {
+            if string.lowercased().contains("male") {
+                sex = Sex.Male
+            } else {
+                sex = Sex.Female
+            }
+        }
+                
         let unavailableDates: [Date]? = json["unavailableDates"] as? [Date]
         let yearsOfExperience: Int? = json["yearsOfExperience"] as? Int
         let languages: [String]? = json["languages"] as? [String]
