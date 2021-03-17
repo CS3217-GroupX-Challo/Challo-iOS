@@ -19,7 +19,7 @@ struct GuidesCardDescriptionView: View {
         if let cardDescription = description {
             Text(cardDescription)
                 .font(.caption2)
-                .lineLimit(nil)
+                .lineLimit(3)
                 .padding(5)
                 .frame(width: width)
         }

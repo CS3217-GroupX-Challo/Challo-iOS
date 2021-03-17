@@ -45,6 +45,9 @@ struct GuideDetailsCard: View {
             }
             StarRatingsView(rating: (guide.rating as NSDecimalNumber).doubleValue)
                 .padding(5)
+            GuidesCardDescriptionView(title: "About",
+                                      description: guide.biography,
+                                      width: width * 2 / 3)
             GuidesCardDescriptionView(title: "Trails",
                                       description: trailsDescription,
                                       width: width * 2 / 3)
@@ -58,8 +61,9 @@ struct GuideDetailsCard: View {
                 // TODO add navigation
             }) {
                 Text("More info")
-                    .overlay(RoundedRectangle(cornerRadius: 3)
-                                .stroke(Color.themeTertiary, lineWidth: 2))
+                    .foregroundColor(Color.white)
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 5).fill(Color.themeTertiary))
             }
         }
         .overlay(RoundedRectangle(cornerRadius: 5)
