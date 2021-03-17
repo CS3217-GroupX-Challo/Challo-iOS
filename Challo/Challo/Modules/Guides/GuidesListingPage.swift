@@ -9,22 +9,11 @@ import SwiftUI
 
 struct GuidesListingPage: View {
     @State private var stuff: String = ""
-    var presenter: GuidesListingPresenter
     
-    var guide = Guide(userId: UUID(),
-                      email: "bob@gmail.com",
-                      profileImg: nil,
-                      name: "Bobby Yeo Shit Dog",
-                      phone: "1212121",
-                      dateJoined: Date(),
-                      sex: Sex.Male,
-                      daysAvailable: [],
-                      trails: [],
-                      unavailableDates: nil,
-                      yearsOfExperience: 20,
-                      languages: ["English", "Chinese"],
-                      accreditations: ["Diving", "Being useless"],
-                      biography: "Welcome to Singapore")
+    @ObservedObject var presenter: GuidesListingPresenter
+    var guides: [Guide] {
+        presenter.guides
+    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -46,16 +35,8 @@ struct GuidesListingPage: View {
                        height: geometry.size.height / 5,
                        alignment: .center)
                 GuidesFiltersView(width: geometry.size.width / 5)
-                ScrollView(showsIndicators: false) {
-                    HStack(spacing: geometry.size.width / 20) {
-                        GuideDetailsCard(guide: guide, width: geometry.size.width / 2)
-                        GuideDetailsCard(guide: guide, width: geometry.size.width / 2)
-                    }
-                    HStack(spacing: geometry.size.width / 20) {
-                        GuideDetailsCard(guide: guide, width: geometry.size.width / 2)
-                        GuideDetailsCard(guide: guide, width: geometry.size.width / 2)
-                    }
-                }
+                GuidesCardListingsView(guides: guides,
+                                       width: geometry.size.width)
             }
         }
         .onAppear {

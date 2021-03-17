@@ -10,6 +10,7 @@ import SwiftUI
 struct GuidesCardDescriptionView: View {
     var title: String
     var description: String?
+    var width: CGFloat
     
     var body: some View {
         Text(title)
@@ -20,6 +21,7 @@ struct GuidesCardDescriptionView: View {
                 .font(.caption2)
                 .lineLimit(nil)
                 .padding(5)
+                .frame(width: width)
         }
     }
 }

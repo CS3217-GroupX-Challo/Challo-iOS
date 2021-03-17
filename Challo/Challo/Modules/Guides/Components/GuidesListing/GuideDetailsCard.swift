@@ -36,7 +36,7 @@ struct GuideDetailsCard: View {
                 .scaledToFit()
                 .frame(width: width * 2 / 3)
                 .cornerRadius(10)
-                .padding(5)
+                .padding(10)
             if let name = nameDescription {
                 Text(name)
                     .bold()
@@ -46,11 +46,14 @@ struct GuideDetailsCard: View {
             StarRatingsView(rating: (rating as NSDecimalNumber).doubleValue)
                 .padding(5)
             GuidesCardDescriptionView(title: "Trails",
-                                      description: trailsDescription)
+                                      description: trailsDescription,
+                                      width: width * 2 / 3)
             GuidesCardDescriptionView(title: "Languages",
-                                      description: languagesDescription)
+                                      description: languagesDescription,
+                                      width: width * 2 / 3)
             GuidesCardDescriptionView(title: "Certifications",
-                                      description: creditationsDescription)
+                                      description: creditationsDescription,
+                                      width: width * 2 / 3)
             Button(action: {
                 // TODO add navigation
             }) {
