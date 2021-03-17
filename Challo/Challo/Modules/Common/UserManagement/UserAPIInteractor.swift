@@ -7,10 +7,7 @@
 import SwiftUI
 
 protocol UserAPIInteractor {
-
     typealias JSON = AlamofireManager.JSON
-    var api: AlamofireManager { get }
-
     func parseUser(apiResponse: JSON) -> UserCertificate?
     func storeCertificate(certificate: UserCertificate)
 }

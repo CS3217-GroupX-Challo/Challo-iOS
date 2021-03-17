@@ -5,40 +5,31 @@
 //  Created by Tan Le Yang on 17/3/21.
 //
 
-protocol LoginAPI: UserAPIInteractor {
+class LoginAPI: UserAPIInteractor {
 
-    var loginUrl: String { get }
-    var loginDelegate: LoginDelegate? { get }
-    func defaultLogin(email: String, password: String)
-}
+    private var api = AlamofireManager.alamofireManager
+    private var loginUrl = "/user/login"
+    weak var loginDelegate: LoginDelegate?
 
-extension LoginAPI {
-
-    func defaultLogin(email: String, password: String) {
-        let json = createLoginJson(email: email, password: password)
+    func defaultLogin(credentials: JSON) {
         let failureResponse = LoginResponse(success: false, certificate: nil)
         api.post(url: loginUrl,
                  headers: AlamofireManager.HEADER(),
-                 body: json) { res, err in
+                 body: credentials) { res, err in
             if let err = err {
                 print("Error: \(err)")
-                loginDelegate?.loginProcessCompleted(loginResponse: failureResponse)
+                self.loginDelegate?.loginProcessCompleted(loginResponse: failureResponse)
                 return
             }
             let parsed = self.parseUser(apiResponse: res)
             guard let certificate = parsed else {
                 print("Unable to parse api response \(res)")
-                loginDelegate?.loginProcessCompleted(loginResponse: failureResponse)
+                self.loginDelegate?.loginProcessCompleted(loginResponse: failureResponse)
                 return
             }
-            loginDelegate?.loginProcessCompleted(loginResponse: LoginResponse(success: true, certificate: certificate))
+            self.loginDelegate?.loginProcessCompleted(
+                loginResponse: LoginResponse(success: true, certificate: certificate)
+            )
         }
-    }
-
-    func createLoginJson(email: String, password: String) -> JSON {
-        var json = JSON()
-        json["email"] = email
-        json["password"] = password
-        return json
     }
 }
