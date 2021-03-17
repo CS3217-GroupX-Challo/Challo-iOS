@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct GuidesListingPage: View {
-    @State private var stuff: String = ""
-    
     @ObservedObject var presenter: GuidesListingPresenter
     var guides: [Guide] {
         presenter.guides
@@ -27,7 +25,7 @@ struct GuidesListingPage: View {
                             Spacer()
                         }
                         RoundedTextField(placeholder: "Search here...",
-                                         text: $stuff,
+                                         text: $presenter.searchKeyword,
                                          isPasswordField: false)
                     }
                 }

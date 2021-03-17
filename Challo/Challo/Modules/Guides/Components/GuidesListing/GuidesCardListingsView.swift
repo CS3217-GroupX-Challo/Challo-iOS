@@ -19,7 +19,7 @@ struct GuidesCardListingsView: View {
                         if index * 2 < guides.count {
                             GuideDetailsCard(guide: guides[index * 2],
                                              width: width / 2)
-                                .offset(x: index * 2 + 1 < guides.count ?
+                                .offset(x: index * 2 + 1 < guides.count || guides.count == 1 ?
                                             0 : -1 * (40 + width / 6)) // manual offset
                             if index * 2 + 1 < guides.count {
                                 GuideDetailsCard(guide: guides[index * 2 + 1],

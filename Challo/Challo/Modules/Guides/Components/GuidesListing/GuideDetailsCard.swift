@@ -43,7 +43,7 @@ struct GuideDetailsCard: View {
                     .font(.caption2)
                     .padding(5)
             }
-            StarRatingsView(rating: (rating as NSDecimalNumber).doubleValue)
+            StarRatingsView(rating: (guide.rating as NSDecimalNumber).doubleValue)
                 .padding(5)
             GuidesCardDescriptionView(title: "Trails",
                                       description: trailsDescription,

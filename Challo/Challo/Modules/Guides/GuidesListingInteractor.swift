@@ -21,6 +21,7 @@ class GuidesListingInteractor: InteractorProtocol, GuideAPIInteractor {
             }
             
             self.presenter.guides = self.parseGuides(response: response)
+            self.presenter.originalGuides = self.presenter.guides
         }
     }
 }
