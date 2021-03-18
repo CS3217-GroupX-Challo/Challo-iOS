@@ -5,13 +5,18 @@
 //  Created by Tan Le Yang on 18/3/21.
 //
 
-class GuideRegisterInteractor: RegisterInteractor {
+class GuideRegisterInteractor: RegisterInteractor, InteractorProtocol {
+
+    weak var presenter: RegisterPresenter!
 
     private let guideUrl = "/guide"
 
-    override func register(details: RegistrationDetails) {
+    func register(details: RegistrationDetails) {
         let json = createRegisterJson(details: details)
-        self.commonRegister(details: json) { response in
+        self.commonRegister(details: json) { [weak self] response in
+            guard let self = self else {
+                return
+            }
             self.registrationProcessCompleted(response: response)
             guard let json = self.createGuideJson(details: details,
                                                   certificate: response.certificate) else {

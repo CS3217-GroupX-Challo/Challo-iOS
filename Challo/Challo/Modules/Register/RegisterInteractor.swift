@@ -1,17 +1,25 @@
 import Combine
 
-class RegisterInteractor: InteractorProtocol, RegisterAPI {
+protocol RegisterInteractor: RegisterAPI, AnyObject {
 
-    let networkManager = AlamofireManager.alamofireManager
-    let registerUrl = "/user/register"
+    var networkManager: AlamofireManager { get }
+    var registerUrl: String { get }
+    var presenter: RegisterPresenter! { get set }
 
-    weak var presenter: RegisterPresenter!
+    func register(details: RegistrationDetails)
+    func createRegisterJson(details: RegistrationDetails) -> JSON
+    func registrationProcessCompleted(response: UserAPIResponse)
+    func registerUserType(url: String, body: JSON)
+}
 
-    func register(details: RegistrationDetails) {
-        let json = createRegisterJson(details: details)
-        self.commonRegister(details: json) { response in
-            self.registrationProcessCompleted(response: response)
-        }
+extension RegisterInteractor {
+
+    var networkManager: AlamofireManager {
+        AlamofireManager.alamofireManager
+    }
+
+    var registerUrl: String {
+        "/user/register"
     }
 
     func createRegisterJson(details: RegistrationDetails) -> JSON {

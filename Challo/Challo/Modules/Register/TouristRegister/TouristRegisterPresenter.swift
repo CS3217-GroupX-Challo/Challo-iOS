@@ -7,5 +7,14 @@
 
 import SwiftUI
 
-class TouristRegisterPresenter: RegisterPresenter {
+class TouristRegisterPresenter: RegisterPresenter, PresenterProtocol {
+
+    var interactor: RegisterInteractor!
+    var router: RegisterRouter?
+
+    @Published var name = ""
+    @Published var phone = ""
+    @Published var email = ""
+    @Published var password = ""
+    @Published var isShowingRegisterFailureAlert = false
 }

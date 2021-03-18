@@ -1,24 +1,30 @@
 import SwiftUI
 
-class RegisterPresenter: PresenterProtocol {
+protocol RegisterPresenter: AnyObject {
 
-    var interactor: RegisterInteractor!
-    var router: RegisterRouter?
+    var interactor: RegisterInteractor! { get set }
+    var router: RegisterRouter? { get set }
+    var name: String { get set }
+    var phone: String { get set }
+    var email: String { get set }
+    var password: String { get set }
+    var isShowingRegisterFailureAlert: Bool { get set }
 
-    @Published var name = ""
-    @Published var phone = ""
-    @Published var email = ""
-    @Published var password = ""
-    @Published var isShowingRegisterFailureAlert = false
+    func makeRegisterButton() -> AnyView
+    func submitRegistration()
+    func showRegisterFailureAlert()
+}
 
-    func makeRegisterButton() -> some View {
-        Button(action: submitRegistration, label: {
+extension RegisterPresenter {
+
+    func makeRegisterButton() -> AnyView {
+        AnyView(Button(action: submitRegistration, label: {
             Text("SIGN UP")
                 .bold()
-        }).buttonStyle(BorderedButtonStyle(borderColor: .themePrimary, foregroundColor: .themeForeground))
+        }).buttonStyle(BorderedButtonStyle(borderColor: .themePrimary, foregroundColor: .themeForeground)))
     }
 
-    private func submitRegistration() {
+    func submitRegistration() {
         let registrationDetails = RegistrationDetails(name: name,
                                                       phone: phone,
                                                       email: email,
