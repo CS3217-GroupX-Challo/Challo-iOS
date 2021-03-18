@@ -1,31 +1,19 @@
 import Combine
 
-class RegisterInteractor: InteractorProtocol, UserAPIInteractor {
+class RegisterInteractor: InteractorProtocol {
 
     typealias JSON = AlamofireManager.JSON
-    let api = AlamofireManager.alamofireManager
-    private let registerUrl = "/user/register"
+    private let api = RegisterAPI()
 
     weak var presenter: RegisterPresenter!
 
+    init() {
+        self.api.registerDelegate = self
+    }
+
     func register(details: RegistrationDetails) {
         let json = createRegisterJson(details: details)
-        api.post(url: registerUrl,
-                 headers: AlamofireManager.HEADER(),
-                 body: json) { res, err in
-            if let err = err {
-                print("ERR! \(err)")
-                self.presenter.showRegisterFailureAlert()
-                return
-            }
-
-            guard let certificate = self.parseUser(apiResponse: res) else {
-                self.presenter.showRegisterFailureAlert()
-                return
-            }
-
-            self.storeCertificate(certificate: certificate)
-        }
+        api.register(details: json)
     }
 
     private func createRegisterJson(details: RegistrationDetails) -> JSON {
@@ -35,5 +23,18 @@ class RegisterInteractor: InteractorProtocol, UserAPIInteractor {
         json["email"] = details.email
         json["password"] = details.password
         return json
+    }
+}
+
+// MARK: RegisterDelegate
+extension RegisterInteractor: RegisterDelegate {
+
+    func registrationProcessCompleted(response: RegisterResponse) {
+        guard let certificate = response.certificate, response.success else {
+            print("not working")
+            self.presenter.showRegisterFailureAlert()
+            return
+        }
+        api.storeCertificate(certificate: certificate)
     }
 }
