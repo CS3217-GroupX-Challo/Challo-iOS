@@ -21,7 +21,7 @@ struct GuideDetailsPage: View {
                       yearsOfExperience: 2,
                       languages: ["English", "Hindi"],
                       accreditations: nil,
-                      biography: "The best guide in the world!")
+                      biography: "The best guide in the world!\nWhat are we gonna do today?")
     
     var name: String {
         guide.name ?? "Guide"
@@ -60,7 +60,7 @@ struct GuideDetailsPage: View {
                        alignment: .center)
                 Spacer()
                 TabView {
-                    Text("About")
+                    GuideAboutDetailsView(guide: guide, width: geometry.size.width)
                         .tabItem {
                             Image(systemName: "info.circle.fill")
                             Text("About")

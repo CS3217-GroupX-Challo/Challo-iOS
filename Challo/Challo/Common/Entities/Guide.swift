@@ -47,4 +47,10 @@ struct Guide: User {
     
     /// A short description of the guide
     var biography: String?
+    
+    /// A short description of the guide's hobbies
+    var hobbies: String?
+    
+    /// A short description of the guide's memorable experiences
+    var memorableExperiences: String?
 }

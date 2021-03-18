@@ -34,4 +34,6 @@ struct Key {
     static let elevation = "elevation"
     static let lattitude = "lattitude"
     static let longitude = "longitude"
+    static let memorableExperiences = "memorableExperiences"
+    static let hobbies = "hobbies"
 }

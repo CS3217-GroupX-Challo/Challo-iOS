@@ -54,6 +54,8 @@ extension GuideAPIInteractor {
         let languages: [String]? = json[Key.languages] as? [String]
         let accreditations: [String]? = json[Key.accreditations] as? [String]
         let biography: String? = json[Key.biography] as? String
+        let memorableExperiences: String? = json[Key.memorableExperiences] as? String
+        let hobbies: String? = json[Key.hobbies] as? String
         let area: Area? = self.convertJSONToArea(json: areaDetails ?? JSON())
         
         return Guide(userId: userId, email: email, profileImg: profileImg,
@@ -61,7 +63,8 @@ extension GuideAPIInteractor {
                      sex: sex, daysAvailable: daysAvailable, trails: [],
                      unavailableDates: unavailableDates, yearsOfExperience: yearsOfExperience,
                      languages: languages,
-                     accreditations: accreditations, biography: biography)
+                     accreditations: accreditations, biography: biography,
+                     hobbies: hobbies, memorableExperiences: memorableExperiences)
     }
     
     private func getAvailableDays(availabilites: [String]) -> [Days] {
