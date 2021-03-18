@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class TouristRegisterPresenter: RegisterPresenter, PresenterProtocol {
+class TouristRegisterPresenter: RegisterPresenter, PresenterProtocol, ObservableObject {
 
     var interactor: RegisterInteractor!
     var router: RegisterRouter?

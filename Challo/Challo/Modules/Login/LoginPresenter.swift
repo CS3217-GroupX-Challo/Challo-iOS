@@ -40,11 +40,13 @@ extension LoginPresenter {
         guard let router = self.router else {
             fatalError("LoginRouter not setup")
         }
-        return AnyView(NavigationLink(destination: router.getRegistrationPage()) {
-            Text("SIGN UP")
-                .bold()
-        }.buttonStyle(BorderedButtonStyle(borderColor: .themePrimary,
-                                          foregroundColor: .themePrimary)))
+        return AnyView(
+            NavigationLink(destination: router.getRegistrationPage()) {
+                Text("SIGN UP")
+                    .bold()
+            }.buttonStyle(BorderedButtonStyle(borderColor: .themePrimary,
+                                              foregroundColor: .themePrimary))
+        )
     }
 
     func showLoginFailureAlert() {

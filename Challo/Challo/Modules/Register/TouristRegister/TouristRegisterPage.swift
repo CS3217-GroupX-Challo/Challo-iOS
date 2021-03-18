@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TouristRegisterPage: View {
-    var loginPresenter: LoginPresenter
-    @ObservedObject var registerPresenter: RegisterPresenter
+    var loginPresenter: TouristLoginPresenter
+    @ObservedObject var registerPresenter: TouristRegisterPresenter
 
     var body: some View {
         LoginRegisterBackground {
