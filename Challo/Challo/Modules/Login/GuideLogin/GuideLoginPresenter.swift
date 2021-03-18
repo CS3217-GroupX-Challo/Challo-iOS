@@ -7,5 +7,12 @@
 
 import SwiftUI
 
-class GuideLoginPresenter: LoginPresenter {
+class GuideLoginPresenter: LoginPresenter, PresenterProtocol {
+
+    var interactor: LoginInteractor!
+    var router: LoginRouter?
+
+    @Published var email = ""
+    @Published var password = ""
+    @Published var isShowingLoginFailureAlert = false
 }

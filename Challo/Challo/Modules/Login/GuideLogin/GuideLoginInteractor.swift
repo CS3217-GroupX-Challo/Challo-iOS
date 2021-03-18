@@ -5,5 +5,9 @@
 //  Created by Tan Le Yang on 17/3/21.
 //
 
-class GuideLoginInteractor: LoginInteractor {
+class GuideLoginInteractor: LoginInteractor, InteractorProtocol {
+
+    let networkManager = AlamofireManager.alamofireManager
+    let facebookLoginService: FacebookLoginService = FacebookLoginService()
+    weak var presenter: LoginPresenter!
 }

@@ -14,10 +14,6 @@ protocol RegisterInteractor: RegisterAPI, AnyObject {
 
 extension RegisterInteractor {
 
-    var networkManager: AlamofireManager {
-        AlamofireManager.alamofireManager
-    }
-
     var registerUrl: String {
         "/user/register"
     }

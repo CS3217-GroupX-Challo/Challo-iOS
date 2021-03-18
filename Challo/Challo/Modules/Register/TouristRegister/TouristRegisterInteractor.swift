@@ -7,6 +7,7 @@
 
 class TouristRegisterInteractor: RegisterInteractor, InteractorProtocol {
 
+    let networkManager = AlamofireManager.alamofireManager
     var presenter: RegisterPresenter!
 
     private let touristUrl = "/guide"
