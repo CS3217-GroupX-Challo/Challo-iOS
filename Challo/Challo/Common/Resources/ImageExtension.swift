@@ -12,4 +12,6 @@ extension Image {
     static let facebookIcon = Image("facebook-icon")
     static let challoTitle = Image("challo")
     static let guidesBackground = Image("guides-background")
+    static let profileBackground = Image("profile-background")
+    static let aboutTabIcon = Image("info-tab-icon")
 }
