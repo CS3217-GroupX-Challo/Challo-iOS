@@ -15,7 +15,7 @@ struct GuideRegisterPage: View {
         LoginRegisterBackground {
             GeometryReader { geometry in
                 VStack {
-                    ChalloTitle()
+                    ChalloEnterpriseTitle()
                     Card {
                         Text("Guides sign up")
                             .font(.largeTitle)

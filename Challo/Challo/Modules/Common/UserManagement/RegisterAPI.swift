@@ -5,29 +5,35 @@
 //  Created by Tan Le Yang on 18/3/21.
 //
 
-class RegisterAPI: UserAPIInteractor {
+protocol RegisterAPI: UserAPIInteractor {
 
-    weak var registerDelegate: RegisterDelegate?
-    private var api = AlamofireManager.alamofireManager
-    private var registerUrl = "/user/register"
+    var networkManager: AlamofireManager { get }
+    var registerUrl: String { get }
 
-    func register(details: JSON) {
-        let failureResponse = RegisterResponse(success: false)
-        api.post(url: registerUrl,
-                 headers: AlamofireManager.HEADER(),
-                 body: details) { res, err in
+    func commonRegister(details: JSON,
+                        callback: @escaping (UserAPIResponse) -> Void)
+}
+
+extension RegisterAPI {
+
+    func commonRegister(details: JSON,
+                        callback: @escaping (UserAPIResponse) -> Void) {
+        networkManager.post(url: registerUrl,
+                            headers: AlamofireManager.HEADER(),
+                            body: details) { res, err in
             if let err = err {
                 print("ERR! \(err)")
-                self.registerDelegate?.registrationProcessCompleted(response: failureResponse)
+                let failureResponse = UserAPIResponse(success: false, error: err)
+                callback(failureResponse)
                 return
             }
             guard let certificate = self.parseUser(apiResponse: res) else {
-                self.registerDelegate?.registrationProcessCompleted(response: failureResponse)
+                let failureResponse = UserAPIResponse(success: false)
+                callback(failureResponse)
                 return
             }
-
-            let sucessResponse = RegisterResponse(success: true, certificate: certificate)
-            self.registerDelegate?.registrationProcessCompleted(response: sucessResponse)
+            let successResponse = UserAPIResponse(success: true, certificate: certificate)
+            callback(successResponse)
         }
     }
 }

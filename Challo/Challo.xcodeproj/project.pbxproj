@@ -50,15 +50,14 @@
 		E234932A25FB885100EC90E9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E234932925FB885100EC90E9 /* Preview Assets.xcassets */; };
 		E234933525FB885100EC90E9 /* ChalloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234933425FB885100EC90E9 /* ChalloTests.swift */; };
 		E234934025FB885100EC90E9 /* ChalloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234933F25FB885100EC90E9 /* ChalloUITests.swift */; };
-		E26975E726030BB3003320EF /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26975E626030BB3003320EF /* RegisterResponse.swift */; };
-		E26975EC26030BDD003320EF /* RegisterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26975EB26030BDD003320EF /* RegisterDelegate.swift */; };
 		E26975F126030FD4003320EF /* GuideRegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26975F026030FD4003320EF /* GuideRegisterPage.swift */; };
 		E26975F626031030003320EF /* GuideRegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26975F526031030003320EF /* GuideRegisterInteractor.swift */; };
 		E26975FE2603105D003320EF /* GuideRegisterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26975FD2603105D003320EF /* GuideRegisterRouter.swift */; };
 		E26976032603108A003320EF /* GuideRegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26976022603108A003320EF /* GuideRegisterPresenter.swift */; };
 		E2697608260310C1003320EF /* GuideRegisterModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2697607260310C1003320EF /* GuideRegisterModule.swift */; };
+		E28B8D5F26036292009CFED7 /* UserAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B8D5E26036292009CFED7 /* UserAPIResponse.swift */; };
+		E28B8D6A260369FC009CFED7 /* ChalloEnterpriseTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B8D69260369FC009CFED7 /* ChalloEnterpriseTitle.swift */; };
 		E29995DB2602633100FCA70A /* RegisterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29995DA2602633100FCA70A /* RegisterAPI.swift */; };
-		E2C2440E2600B64C0085BAA4 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C2440D2600B64C0085BAA4 /* LoginResponse.swift */; };
 		E2C2441D2600B78E0085BAA4 /* UserAPIInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C2441C2600B78E0085BAA4 /* UserAPIInteractor.swift */; };
 		E2C244252600B96E0085BAA4 /* UserCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C244242600B96E0085BAA4 /* UserCertificate.swift */; };
 		E2D824AD2600C1B20023CBBB /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D824AC2600C1B20023CBBB /* UserState.swift */; };
@@ -158,15 +157,14 @@
 		E234933B25FB885100EC90E9 /* ChalloUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChalloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234933F25FB885100EC90E9 /* ChalloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloUITests.swift; sourceTree = "<group>"; };
 		E234934125FB885100EC90E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E26975E626030BB3003320EF /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
-		E26975EB26030BDD003320EF /* RegisterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDelegate.swift; sourceTree = "<group>"; };
 		E26975F026030FD4003320EF /* GuideRegisterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRegisterPage.swift; sourceTree = "<group>"; };
 		E26975F526031030003320EF /* GuideRegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRegisterInteractor.swift; sourceTree = "<group>"; };
 		E26975FD2603105D003320EF /* GuideRegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRegisterRouter.swift; sourceTree = "<group>"; };
 		E26976022603108A003320EF /* GuideRegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRegisterPresenter.swift; sourceTree = "<group>"; };
 		E2697607260310C1003320EF /* GuideRegisterModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRegisterModule.swift; sourceTree = "<group>"; };
+		E28B8D5E26036292009CFED7 /* UserAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIResponse.swift; sourceTree = "<group>"; };
+		E28B8D69260369FC009CFED7 /* ChalloEnterpriseTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloEnterpriseTitle.swift; sourceTree = "<group>"; };
 		E29995DA2602633100FCA70A /* RegisterAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAPI.swift; sourceTree = "<group>"; };
-		E2C2440D2600B64C0085BAA4 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		E2C2441C2600B78E0085BAA4 /* UserAPIInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIInteractor.swift; sourceTree = "<group>"; };
 		E2C244242600B96E0085BAA4 /* UserCertificate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCertificate.swift; sourceTree = "<group>"; };
 		E2D824AC2600C1B20023CBBB /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
@@ -428,6 +426,7 @@
 				E2D824AC2600C1B20023CBBB /* UserState.swift */,
 				E22333E026024C1D00B6A236 /* LoginAPI.swift */,
 				E29995DA2602633100FCA70A /* RegisterAPI.swift */,
+				E28B8D5E26036292009CFED7 /* UserAPIResponse.swift */,
 			);
 			path = UserManagement;
 			sourceTree = "<group>";
@@ -452,8 +451,6 @@
 				E2D8967025FFAB200001B026 /* RegisterPresenter.swift */,
 				E2D8967125FFAB200001B026 /* RegistrationDetails.swift */,
 				E2D896D925FFBA210001B026 /* RegisterRouter.swift */,
-				E26975E626030BB3003320EF /* RegisterResponse.swift */,
-				E26975EB26030BDD003320EF /* RegisterDelegate.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -470,7 +467,6 @@
 				E2D8967C25FFAB380001B026 /* LoginRouter.swift */,
 				E2D8967B25FFAB380001B026 /* LoginService.swift */,
 				E2D8969D25FFABBA0001B026 /* LoginForm.swift */,
-				E2C2440D2600B64C0085BAA4 /* LoginResponse.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -484,6 +480,7 @@
 				E2D8968E25FFAB8A0001B026 /* FacebookLoginButton.swift */,
 				E2D8968B25FFAB8A0001B026 /* LoginRegisterBackground.swift */,
 				E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */,
+				E28B8D69260369FC009CFED7 /* ChalloEnterpriseTitle.swift */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -781,7 +778,6 @@
 				6462025425FF002100D89514 /* Trail.swift in Sources */,
 				6462027525FF60D900D89514 /* Booking.swift in Sources */,
 				E22333F42602522D00B6A236 /* GuideLoginPresenter.swift in Sources */,
-				E2C2440E2600B64C0085BAA4 /* LoginResponse.swift in Sources */,
 				AA9E85C925FE70AD00C2E389 /* NetworkManager.swift in Sources */,
 				E223341D260257F600B6A236 /* TouristLoginPresenter.swift in Sources */,
 				AA9E85D625FE735800C2E389 /* NetworkError.swift in Sources */,
@@ -796,10 +792,8 @@
 				E2D896B425FFABE80001B026 /* Image+ImageAssets.swift in Sources */,
 				E2D8969225FFAB8A0001B026 /* RoundedTextField.swift in Sources */,
 				6462023625FEFC7900D89514 /* InteractorProtocol.swift in Sources */,
-				E26975EC26030BDD003320EF /* RegisterDelegate.swift in Sources */,
 				E223344A26025B7800B6A236 /* TouristRegisterRouter.swift in Sources */,
 				E26975FE2603105D003320EF /* GuideRegisterRouter.swift in Sources */,
-				E26975E726030BB3003320EF /* RegisterResponse.swift in Sources */,
 				E26975F626031030003320EF /* GuideRegisterInteractor.swift in Sources */,
 				6462023525FEFC7900D89514 /* RouterProtocol.swift in Sources */,
 				E22333EC2602503E00B6A236 /* GuideLoginPage.swift in Sources */,
@@ -807,6 +801,7 @@
 				E26976032603108A003320EF /* GuideRegisterPresenter.swift in Sources */,
 				E22334032602534700B6A236 /* GuideLoginModule.swift in Sources */,
 				6462027A25FF614F00D89514 /* BookingStatus.swift in Sources */,
+				E28B8D5F26036292009CFED7 /* UserAPIResponse.swift in Sources */,
 				E2D8968F25FFAB8A0001B026 /* ChalloTitle.swift in Sources */,
 				6462024425FEFD4F00D89514 /* User.swift in Sources */,
 				E2D8968325FFAB380001B026 /* LoginPresenter.swift in Sources */,
@@ -840,6 +835,7 @@
 				E2D824AD2600C1B20023CBBB /* UserState.swift in Sources */,
 				E2D896DA25FFBA210001B026 /* RegisterRouter.swift in Sources */,
 				E22333E126024C1D00B6A236 /* LoginAPI.swift in Sources */,
+				E28B8D6A260369FC009CFED7 /* ChalloEnterpriseTitle.swift in Sources */,
 				E2C2441D2600B78E0085BAA4 /* UserAPIInteractor.swift in Sources */,
 				E2D8968225FFAB380001B026 /* LoginRouter.swift in Sources */,
 				E2D8968525FFAB380001B026 /* LoginDelegate.swift in Sources */,

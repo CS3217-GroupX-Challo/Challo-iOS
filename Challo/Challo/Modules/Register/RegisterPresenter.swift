@@ -27,7 +27,6 @@ class RegisterPresenter: PresenterProtocol {
     }
 
     func showRegisterFailureAlert() {
-        print("functions is called")
         self.isShowingRegisterFailureAlert = true
     }
 }

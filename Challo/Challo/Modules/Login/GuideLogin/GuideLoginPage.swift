@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct GuideLoginPage: View {
-    @ObservedObject var loginPresenter: LoginPresenter
+    @ObservedObject var loginPresenter: GuideLoginPresenter
 
     var body: some View {
         LoginRegisterBackground {
             GeometryReader { geometry in
                 VStack {
-                    ChalloTitle()
+                    ChalloEnterpriseTitle()
                     Card {
                         Text("Guides Login")
                             .font(.largeTitle)

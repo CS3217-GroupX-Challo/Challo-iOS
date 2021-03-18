@@ -1,11 +1,13 @@
 //
-//  RegisterResponse.swift
+//  UserAPIResponse.swift
 //  Challo
 //
 //  Created by Tan Le Yang on 18/3/21.
 //
 
-struct RegisterResponse {
+struct UserAPIResponse {
+
     var success: Bool
     var certificate: UserCertificate?
+    var error: Error?
 }

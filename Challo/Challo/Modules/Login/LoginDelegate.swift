@@ -1,3 +1,3 @@
 protocol LoginDelegate: AnyObject {
-    func loginProcessCompleted(loginResponse: LoginResponse)
+    func loginProcessCompleted(response: UserAPIResponse)
 }

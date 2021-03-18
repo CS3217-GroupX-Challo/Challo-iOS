@@ -1,22 +1,20 @@
 import Combine
 
-class RegisterInteractor: InteractorProtocol {
+class RegisterInteractor: InteractorProtocol, RegisterAPI {
 
-    typealias JSON = AlamofireManager.JSON
-    private let api = RegisterAPI()
+    let networkManager = AlamofireManager.alamofireManager
+    let registerUrl = "/user/register"
 
     weak var presenter: RegisterPresenter!
 
-    init() {
-        self.api.registerDelegate = self
-    }
-
     func register(details: RegistrationDetails) {
         let json = createRegisterJson(details: details)
-        api.register(details: json)
+        self.commonRegister(details: json) { response in
+            self.registrationProcessCompleted(response: response)
+        }
     }
 
-    private func createRegisterJson(details: RegistrationDetails) -> JSON {
+    func createRegisterJson(details: RegistrationDetails) -> JSON {
         var json = JSON()
         json["name"] = details.name
         json["phone"] = details.phone
@@ -24,17 +22,27 @@ class RegisterInteractor: InteractorProtocol {
         json["password"] = details.password
         return json
     }
-}
 
-// MARK: RegisterDelegate
-extension RegisterInteractor: RegisterDelegate {
-
-    func registrationProcessCompleted(response: RegisterResponse) {
-        guard let certificate = response.certificate, response.success else {
-            print("not working")
+    func registrationProcessCompleted(response: UserAPIResponse) {
+        guard let certificate = response.certificate,
+              response.success,
+              response.error == nil else {
             self.presenter.showRegisterFailureAlert()
             return
         }
-        api.storeCertificate(certificate: certificate)
+        self.storeCertificate(certificate: certificate)
+        return
+    }
+
+    func registerUserType(url: String, body: JSON) {
+        networkManager.post(url: url,
+                            headers: AlamofireManager.HEADER(),
+                            body: body) { _, err in
+            if let err = err {
+                print("error: \(err)")
+                self.presenter.showRegisterFailureAlert()
+                return
+            }
+        }
     }
 }

@@ -5,31 +5,35 @@
 //  Created by Tan Le Yang on 17/3/21.
 //
 
-class LoginAPI: UserAPIInteractor {
+protocol LoginAPI: UserAPIInteractor {
 
-    private var api = AlamofireManager.alamofireManager
-    private var loginUrl = "/user/login"
-    weak var loginDelegate: LoginDelegate?
+    var networkManager: AlamofireManager { get }
+    var loginUrl: String { get }
 
-    func defaultLogin(credentials: JSON) {
-        let failureResponse = LoginResponse(success: false, certificate: nil)
-        api.post(url: loginUrl,
-                 headers: AlamofireManager.HEADER(),
-                 body: credentials) { res, err in
+    func commonLogin(credentials: JSON, callback: @escaping (UserAPIResponse) -> Void)
+}
+
+extension LoginAPI {
+
+    func commonLogin(credentials: JSON,
+                     callback: @escaping (UserAPIResponse) -> Void) {
+        networkManager.post(url: loginUrl,
+                            headers: AlamofireManager.HEADER(),
+                            body: credentials) { res, err in
             if let err = err {
                 print("Error: \(err)")
-                self.loginDelegate?.loginProcessCompleted(loginResponse: failureResponse)
+                let failureResponse = UserAPIResponse(success: false, error: err)
+                callback(failureResponse)
                 return
             }
-            let parsed = self.parseUser(apiResponse: res)
-            guard let certificate = parsed else {
+            guard let certificate = self.parseUser(apiResponse: res) else {
                 print("Unable to parse api response \(res)")
-                self.loginDelegate?.loginProcessCompleted(loginResponse: failureResponse)
+                let failureResponse = UserAPIResponse(success: false)
+                callback(failureResponse)
                 return
             }
-            self.loginDelegate?.loginProcessCompleted(
-                loginResponse: LoginResponse(success: true, certificate: certificate)
-            )
+            let successResponse = UserAPIResponse(success: true, certificate: certificate)
+            callback(successResponse)
         }
     }
 }

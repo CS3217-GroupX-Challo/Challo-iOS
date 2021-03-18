@@ -1,16 +1,14 @@
 import SwiftUI
 
-class LoginInteractor: InteractorProtocol {
+class LoginInteractor: InteractorProtocol, LoginAPI {
 
-    typealias JSON = AlamofireManager.JSON
-    private let api = LoginAPI()
-
+    let networkManager = AlamofireManager.alamofireManager
+    let loginUrl = "/user/login"
     weak var presenter: LoginPresenter!
 
     private var facebookLoginService = FacebookLoginService()
 
     init() {
-        api.loginDelegate = self
         facebookLoginService.loginDelegate = self
     }
 
@@ -20,7 +18,9 @@ class LoginInteractor: InteractorProtocol {
 
     func defaultLogin(email: String, password: String) {
         let json = createLoginJson(email: email, password: password)
-        api.defaultLogin(credentials: json)
+        self.commonLogin(credentials: json, callback: { response in
+            self.loginProcessCompleted(response: response)
+        })
     }
 
     private func createLoginJson(email: String, password: String) -> JSON {
@@ -34,11 +34,11 @@ class LoginInteractor: InteractorProtocol {
 // MARK: Login Delegate
 extension LoginInteractor: LoginDelegate {
 
-    func loginProcessCompleted(loginResponse: LoginResponse) {
-        guard let certificate = loginResponse.certificate, loginResponse.success else {
+    func loginProcessCompleted(response: UserAPIResponse) {
+        guard let certificate = response.certificate, response.success else {
             self.presenter.showLoginFailureAlert()
             return
         }
-        api.storeCertificate(certificate: certificate)
+        self.storeCertificate(certificate: certificate)
     }
 }
