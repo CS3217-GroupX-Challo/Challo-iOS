@@ -1,4 +1,5 @@
 import Combine
+import Foundation
 
 protocol RegisterInteractor: RegisterAPI, AnyObject {
 
@@ -43,7 +44,7 @@ extension RegisterInteractor {
                             headers: AlamofireManager.HEADER(),
                             body: body) { _, err in
             if let err = err {
-                print("error: \(err)")
+                ChalloLogger.logger.log("Failed to create specific user type \(err as NSObject)")
                 self.presenter.showRegisterFailureAlert()
                 return
             }

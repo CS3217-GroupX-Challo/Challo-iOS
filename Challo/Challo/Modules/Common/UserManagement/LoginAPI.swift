@@ -4,6 +4,7 @@
 //
 //  Created by Tan Le Yang on 17/3/21.
 //
+import Foundation
 
 protocol LoginAPI: UserAPIInteractor {
 
@@ -21,13 +22,13 @@ extension LoginAPI {
                             headers: AlamofireManager.HEADER(),
                             body: credentials) { res, err in
             if let err = err {
-                print("Error: \(err)")
+                ChalloLogger.logger.log("Error: \(err as NSObject)")
                 let failureResponse = UserAPIResponse(success: false, error: err)
                 callback(failureResponse)
                 return
             }
             guard let certificate = self.parseUser(apiResponse: res) else {
-                print("Unable to parse api response \(res)")
+                ChalloLogger.logger.log("Unable to parse api response \(res)")
                 let failureResponse = UserAPIResponse(success: false)
                 callback(failureResponse)
                 return

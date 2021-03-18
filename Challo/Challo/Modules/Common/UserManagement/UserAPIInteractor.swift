@@ -21,7 +21,7 @@ extension UserAPIInteractor {
               let email = data["email"] as? String,
               let tokenJson = data["token"] as? JSON,
               let token = tokenJson["token"] as? String else {
-            print("API response wrong shape: \(apiResponse)")
+            ChalloLogger.logger.log("API response wrong shape: \(apiResponse)")
             return nil
         }
         return UserCertificate(name: name,
@@ -37,7 +37,7 @@ extension UserAPIInteractor {
         globalState.email = certificate.email
         globalState.token = certificate.token
         globalState.userId = certificate.userId
-        print("LOGGED IN: \(globalState.loggedIn)")
-        print(globalState.email)
+        ChalloLogger.logger.log("Logged in: \(globalState.loggedIn)")
+        ChalloLogger.logger.log("Name: \(globalState.name)")
     }
 }

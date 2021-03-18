@@ -13,13 +13,12 @@ class FacebookLoginService: LoginService {
                       from: nil) { result, err in
             ApplicationDelegate.initializeSDK(nil)
             if err != nil {
-                print("ERROR: \(err!.localizedDescription)")
+                ChalloLogger.logger.log("Facebook error: \(err!.localizedDescription)")
                 self.loginDelegate?.loginProcessCompleted(response: failureResponse)
                 return
             }
 
             guard let isCancelled = result?.isCancelled, !isCancelled else {
-                print("User cancelled login process")
                 self.loginDelegate?.loginProcessCompleted(response: failureResponse)
                 return
             }
@@ -39,11 +38,11 @@ class FacebookLoginService: LoginService {
                 return
             }
             guard let email = profileData["email"] as? String else {
-                print("Failed to retrieve email")
+                ChalloLogger.logger.log("Failed to retrieve email from Facebook")
                 return
             }
             guard let token = AccessToken.current?.tokenString else {
-                print("Token not set")
+                ChalloLogger.logger.log("Token from Facebook not set")
                 self.loginDelegate?.loginProcessCompleted(response: failureResponse)
                 return
             }
