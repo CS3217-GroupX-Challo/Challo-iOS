@@ -24,7 +24,7 @@ struct GuideProfileDetailsView: View {
                 .font(.caption2)
                 .italic()
                 .padding(5)
-            Text("Speaks")
+            Text("Speaks \(languages)")
                 .font(.caption2)
                 .italic()
                 .padding(5)

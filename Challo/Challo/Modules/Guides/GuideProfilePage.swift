@@ -25,6 +25,21 @@ struct GuideProfilePage: View {
         presenter.reviews
     }
     
+    var languages: String {
+        convertLanguageArrayToString(languages: guide.languages ?? [])
+    }
+    
+    private func convertLanguageArrayToString(languages: [String]) -> String {
+        var result = ""
+        for i in 0..<languages.count {
+            result += languages[i]
+            if i != languages.count - 1 {
+                result += ", "
+            }
+        }
+        return result
+    }
+    
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -43,7 +58,7 @@ struct GuideProfilePage: View {
                             GuideProfileDetailsView(rating: (guide.rating as NSDecimalNumber).doubleValue,
                                                     name: name,
                                                     date: date,
-                                                    languages: "")
+                                                    languages: languages)
                             .offset(x: geometry.size.width / 20)
                             Spacer()
                             // TODO add button later

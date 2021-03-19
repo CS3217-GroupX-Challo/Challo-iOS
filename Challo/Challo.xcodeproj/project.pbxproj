@@ -325,6 +325,49 @@
 			path = Reviews;
 			sourceTree = "<group>";
 		};
+		AA2CE5B6260519F50019C328 /* GuidesListing */ = {
+			isa = PBXGroup;
+			children = (
+				AA2CE5B726051A100019C328 /* Views */,
+				AA9E87312601B16400C2E389 /* GuidesListingPresenter.swift */,
+				AA9E87392601B18D00C2E389 /* GuidesListingInteractor.swift */,
+				AA9E873E2601B22000C2E389 /* GuidesListingRouter.swift */,
+				AA9E8767260225C600C2E389 /* GuidesModule.swift */,
+				AA9E8784260242FA00C2E389 /* FilterTypes.swift */,
+			);
+			name = GuidesListing;
+			sourceTree = "<group>";
+		};
+		AA2CE5B726051A100019C328 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA9E870E26012A7700C2E389 /* GuidesListing */,
+				AA9E870826012A6400C2E389 /* GuidesListingPage.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		AA2CE5B826051A320019C328 /* GuideProfilePage */ = {
+			isa = PBXGroup;
+			children = (
+				AA2CE5B926051A480019C328 /* Views */,
+				AA2CE5972604EF2E0019C328 /* GuideProfilePagePresenter.swift */,
+				AA2CE59C2604EF7C0019C328 /* GuideProfilePageInteractor.swift */,
+				AA2CE5A12604EFE10019C328 /* GuideProfilePageRouter.swift */,
+				AA2CE5A62604F09E0019C328 /* GuideProfilePageModule.swift */,
+			);
+			name = GuideProfilePage;
+			sourceTree = "<group>";
+		};
+		AA2CE5B926051A480019C328 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AADCABF72603B57F00FB52C4 /* GuideDetails */,
+				AADCABEF2603AD2D00FB52C4 /* GuideProfilePage.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		AA9E85C725FE706300C2E389 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,27 +389,10 @@
 		AA9E870126012A1800C2E389 /* Guides */ = {
 			isa = PBXGroup;
 			children = (
-				AA9E87302601B11B00C2E389 /* Views */,
-				AA9E87312601B16400C2E389 /* GuidesListingPresenter.swift */,
-				AA9E87392601B18D00C2E389 /* GuidesListingInteractor.swift */,
-				AA9E873E2601B22000C2E389 /* GuidesListingRouter.swift */,
-				AA9E8767260225C600C2E389 /* GuidesModule.swift */,
-				AA9E8784260242FA00C2E389 /* FilterTypes.swift */,
-				AA2CE5972604EF2E0019C328 /* GuideProfilePagePresenter.swift */,
-				AA2CE59C2604EF7C0019C328 /* GuideProfilePageInteractor.swift */,
-				AA2CE5A12604EFE10019C328 /* GuideProfilePageRouter.swift */,
-				AA2CE5A62604F09E0019C328 /* GuideProfilePageModule.swift */,
+				AA2CE5B826051A320019C328 /* GuideProfilePage */,
+				AA2CE5B6260519F50019C328 /* GuidesListing */,
 			);
 			path = Guides;
-			sourceTree = "<group>";
-		};
-		AA9E870D26012A6F00C2E389 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				AADCABF72603B57F00FB52C4 /* GuideDetails */,
-				AA9E870E26012A7700C2E389 /* GuidesListing */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		AA9E870E26012A7700C2E389 /* GuidesListing */ = {
@@ -379,16 +405,6 @@
 				AA9E8770260232BB00C2E389 /* GuidesCardListingsView.swift */,
 			);
 			path = GuidesListing;
-			sourceTree = "<group>";
-		};
-		AA9E87302601B11B00C2E389 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				AADCABEF2603AD2D00FB52C4 /* GuideProfilePage.swift */,
-				AA9E870826012A6400C2E389 /* GuidesListingPage.swift */,
-				AA9E870D26012A6F00C2E389 /* Components */,
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 		AA9E87522601EFFA00C2E389 /* Guides */ = {
