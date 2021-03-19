@@ -7,12 +7,13 @@
 
 import SwiftUI
 
+/**
+ Singleton that holds the state of the user
+ */
 class UserState: ObservableObject {
 
-    @AppStorage("logged_in") var loggedIn = false {
-        // have to explicitly do this otherwise view won't update, not sure why...
-        willSet { objectWillChange.send() }
-    }
+    @Published
+    @AppStorage("logged_in") var loggedIn = false
     @AppStorage("email") var email = ""
     @AppStorage("name") var name = ""
     @AppStorage("token") var token = ""

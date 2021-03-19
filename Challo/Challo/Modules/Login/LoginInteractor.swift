@@ -2,8 +2,6 @@ import SwiftUI
 
 protocol LoginInteractor: LoginAPI, LoginDelegate {
 
-    var networkManager: AlamofireManager { get }
-    var loginUrl: String { get }
     var presenter: LoginPresenter! { get set }
     var facebookLoginService: FacebookLoginService { get }
 
@@ -12,10 +10,6 @@ protocol LoginInteractor: LoginAPI, LoginDelegate {
 }
 
 extension LoginInteractor {
-
-    var loginUrl: String {
-        "/user/login"
-    }
 
     func logInWithFacebook() {
         facebookLoginService.login()

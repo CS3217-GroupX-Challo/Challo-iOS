@@ -3,21 +3,12 @@ import Foundation
 
 protocol RegisterInteractor: RegisterAPI, AnyObject {
 
-    var networkManager: AlamofireManager { get }
-    var registerUrl: String { get }
     var presenter: RegisterPresenter! { get set }
 
     func register(details: RegistrationDetails)
-    func createRegisterJson(details: RegistrationDetails) -> JSON
-    func registrationProcessCompleted(response: UserAPIResponse)
-    func registerUserType(url: String, body: JSON)
 }
 
 extension RegisterInteractor {
-
-    var registerUrl: String {
-        "/user/register"
-    }
 
     func createRegisterJson(details: RegistrationDetails) -> JSON {
         var json = JSON()
