@@ -12,6 +12,7 @@ struct GuideDetailsCard: View {
     var width: CGFloat
     
     var rating: Decimal = 4.0
+    var presenter: GuidesListingPresenter
     
     var nameDescription: String? {
         guide.name
@@ -57,6 +58,10 @@ struct GuideDetailsCard: View {
             GuidesCardDescriptionView(title: "Certifications",
                                       description: creditationsDescription,
                                       width: width * 2 / 3)
+            if let router = presenter.router {
+                router.getGuideProfileDetailsPage(guide: guide)
+            }
+            /*
             Button(action: {
                 // TODO add navigation
             }) {
@@ -64,7 +69,7 @@ struct GuideDetailsCard: View {
                     .foregroundColor(Color.white)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 5).fill(Color.themeTertiary))
-            }
+            }*/
         }
         .overlay(RoundedRectangle(cornerRadius: 5)
                     .stroke(Color.gray, lineWidth: 0.5))

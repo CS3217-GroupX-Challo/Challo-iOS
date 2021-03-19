@@ -35,11 +35,14 @@ struct GuidesListingPage: View {
                 GuidesFiltersView(width: geometry.size.width / 5,
                                   presenter: presenter)
                 GuidesCardListingsView(guides: guides,
-                                       width: geometry.size.width)
+                                       width: geometry.size.width,
+                                       presenter: presenter)
             }
         }
         .onAppear {
-            presenter.interactor.populateGuides()
+            if presenter.guides.isEmpty {
+                presenter.interactor.populateGuides()
+            }
         }
         .edgesIgnoringSafeArea(.all)
     }

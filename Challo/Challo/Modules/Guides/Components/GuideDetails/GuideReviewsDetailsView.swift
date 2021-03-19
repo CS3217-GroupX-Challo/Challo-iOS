@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GuideReviewsDetailsView: View {
     var guide: Guide
-    var review: Review
+    var reviews: [Review]
     var width: CGFloat
     
     var body: some View {
@@ -20,18 +20,11 @@ struct GuideReviewsDetailsView: View {
                 .frame(width: width * 4 / 5, alignment: .leading)
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 30) {
-                    GuideReviewCard(review: review,
-                                    guide: guide,
-                                    width: width)
-                    GuideReviewCard(review: review,
-                                    guide: guide,
-                                    width: width)
-                    GuideReviewCard(review: review,
-                                    guide: guide,
-                                    width: width)
-                    GuideReviewCard(review: review,
-                                    guide: guide,
-                                    width: width)
+                    ForEach(reviews, id: \.reviewId) { review in
+                        GuideReviewCard(review: review,
+                                        guide: guide,
+                                        width: width)
+                    }
                 }
             }
             Spacer()

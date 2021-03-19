@@ -12,10 +12,9 @@ struct GuideAboutDetailsView: View {
     var width: CGFloat
     var height: CGFloat
     
-    var trail = Trail(trailId: UUID(), title: "Nandadevi Village", description: "Guided tours available from 1500 ₹",
-                      positions: [], distance: Decimal.zero, duration: Decimal.zero,
-                      elevation: Decimal.zero, images: [],
-                      area: Area(areaId: UUID(), areaName: "test", regionName: "test"))
+    var trail: Trail {
+        guide.trails.first!
+    }
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -24,11 +23,10 @@ struct GuideAboutDetailsView: View {
                     .foregroundColor(Color.themeTertiary)
                     .font(.largeTitle)
                     .bold()
-                HStack {
+                HStack(alignment: .top, spacing: 30) {
                     VStack(alignment: .leading, spacing: 15) {
                         GuideProfileParagraphView(title: "Bio",
                                                   content: guide.biography ?? "No description")
-                        Spacer()
                     }
                     .frame(width: width * 4 / 10)
                     VStack(alignment: .leading, spacing: 15) {
@@ -36,7 +34,6 @@ struct GuideAboutDetailsView: View {
                                                   content: guide.hobbies ?? "No hobbies listed")
                         GuideProfileParagraphView(title: "My most memorable experiences are...",
                                                   content: guide.memorableExperiences ?? "No experiences listed")
-                        Spacer()
                     }
                     .frame(width: width * 4 / 10)
                 }
@@ -45,20 +42,15 @@ struct GuideAboutDetailsView: View {
                         .font(.title3)
                         .bold()
                     ScrollView(.horizontal) {
-                        HStack(spacing: 15) {
-                            GuideTrailsDetailCard(trail: trail,
-                                                  width: width / 3)
-                            GuideTrailsDetailCard(trail: trail,
-                                                  width: width / 3)
-                            GuideTrailsDetailCard(trail: trail,
-                                                  width: width / 3)
-                            GuideTrailsDetailCard(trail: trail,
-                                                  width: width / 3)
+                        HStack(alignment: .top, spacing: 15) {
+                            ForEach(guide.trails, id: \.trailId) { trail in
+                                 GuideTrailsDetailCard(trail: trail,
+                                                       width: width / 3)
+                            }
                         }
                     }
                 }
             }
-            .frame(width: width)
         }
     }
 }

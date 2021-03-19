@@ -12,23 +12,20 @@ struct GuideTrailsDetailCard: View {
     var width: CGFloat
     
     var body: some View {
-        Card {
+        VStack(spacing: 10) {
             Image(trail.images.first ?? "trails-default-image")
                 .resizable()
-                .scaledToFill()
+                .scaledToFit()
                 .frame(width: width)
-                .padding(5)
             Text(trail.title)
                 .font(.title2)
                 .bold()
                 .lineLimit(nil)
                 .frame(width: width)
-                .padding(5)
+             
             Text(trail.description)
                 .lineLimit(nil)
                 .frame(width: width)
-                .padding(5)
         }
-        .frame(width: width)
     }
 }

@@ -6,30 +6,12 @@
 //
 import SwiftUI
 
-struct GuideDetailsPage: View {
-    var guide = Guide(userId: UUID(),
-                      email: "test",
-                      profileImg: nil,
-                      name: "Bobby",
-                      phone: "97121212",
-                      dateJoined: Date(),
-                      location: nil,
-                      sex: Sex.Male,
-                      daysAvailable: [],
-                      trails: [],
-                      unavailableDates: nil,
-                      yearsOfExperience: 2,
-                      languages: ["English", "Hindi"],
-                      accreditations: nil,
-                      biography: "The best guide in the world!\nWhat are we gonna do today?")
+struct GuideProfilePage: View {
+    @ObservedObject var presenter: GuideProfilePagePresenter
     
-    var trail = Trail(trailId: UUID(), title: "Nandadevi Village", description: "Guided tours available from 1500 ₹",
-                      positions: [], distance: Decimal.zero, duration: Decimal.zero,
-                      elevation: Decimal.zero, images: [],
-                      area: Area(areaId: UUID(), areaName: "test", regionName: "test"))
-    
-    var tourist = Tourist(userId: UUID(), email: "ss", profileImg: nil,
-                          name: "Bobby", phone: "123", dateJoined: Date(), sex: Sex.Male)
+    var guide: Guide {
+        presenter.guide
+    }
     
     var name: String {
         guide.name ?? "Guide"
@@ -39,11 +21,8 @@ struct GuideDetailsPage: View {
         guide.dateJoined?.description ?? ""
     }
     
-    var review: Review {
-        Review(reviewId: UUID(), rating: 3,
-               comment: "Best guide ever! Please tell him I love him :)\nYays!",
-               guide: guide, trail: trail,
-               createdAt: Date(), tourist: tourist)
+    var reviews: [Review] {
+        presenter.reviews
     }
     
     var body: some View {
@@ -83,7 +62,7 @@ struct GuideDetailsPage: View {
                             Text("About")
                         }
                     GuideReviewsDetailsView(guide: guide,
-                                            review: review,
+                                            reviews: reviews,
                                             width: geometry.size.width)
                         .tabItem {
                             Image(systemName: "star.fill")
