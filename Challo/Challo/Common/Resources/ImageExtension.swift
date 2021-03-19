@@ -14,4 +14,5 @@ extension Image {
     static let guidesBackground = Image("guides-background")
     static let profileBackground = Image("profile-background")
     static let aboutTabIcon = Image("info-tab-icon")
+    static let trailsDefaultImage = Image("trails-default-image")
 }

@@ -10,6 +10,12 @@ import SwiftUI
 struct GuideAboutDetailsView: View {
     var guide: Guide
     var width: CGFloat
+    var height: CGFloat
+    
+    var trail = Trail(trailId: UUID(), title: "Nandadevi Village", description: "Guided tours available from 1500 ₹",
+                      positions: [], distance: Decimal.zero, duration: Decimal.zero,
+                      elevation: Decimal.zero, images: [],
+                      area: Area(areaId: UUID(), areaName: "test", regionName: "test"))
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -20,30 +26,37 @@ struct GuideAboutDetailsView: View {
                     .bold()
                 HStack {
                     VStack(alignment: .leading, spacing: 15) {
-                        Text("Bio")
-                            .font(.title3)
-                            .bold()
-                        Text(guide.biography ?? "No description")
-                            .lineLimit(nil)
+                        GuideProfileParagraphView(title: "Bio",
+                                                  content: guide.biography ?? "No description")
                         Spacer()
                     }
                     .frame(width: width * 4 / 10)
                     VStack(alignment: .leading, spacing: 15) {
-                        Text("My hobbies are...")
-                            .font(.title3)
-                            .bold()
-                        Text(guide.hobbies ?? "No hobbies listed")
-                            .lineLimit(nil)
-                        Text("My most memorable experiences are...")
-                            .font(.title3)
-                            .bold()
-                        Text(guide.memorableExperiences ?? "No experiences listed")
-                            .lineLimit(nil)
+                        GuideProfileParagraphView(title: "My hobbies are...",
+                                                  content: guide.hobbies ?? "No hobbies listed")
+                        GuideProfileParagraphView(title: "My most memorable experiences are...",
+                                                  content: guide.memorableExperiences ?? "No experiences listed")
                         Spacer()
                     }
                     .frame(width: width * 4 / 10)
                 }
-                Spacer()
+                VStack(spacing: 15) {
+                    Text("Trails")
+                        .font(.title3)
+                        .bold()
+                    ScrollView(.horizontal) {
+                        HStack(spacing: 15) {
+                            GuideTrailsDetailCard(trail: trail,
+                                                  width: width / 3)
+                            GuideTrailsDetailCard(trail: trail,
+                                                  width: width / 3)
+                            GuideTrailsDetailCard(trail: trail,
+                                                  width: width / 3)
+                            GuideTrailsDetailCard(trail: trail,
+                                                  width: width / 3)
+                        }
+                    }
+                }
             }
             .frame(width: width)
         }

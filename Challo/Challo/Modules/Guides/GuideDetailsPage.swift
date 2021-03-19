@@ -46,10 +46,10 @@ struct GuideDetailsPage: View {
                                        alignment: .center)
                                 .clipShape(Circle())
                                 .offset(x: geometry.size.width / 20)
-                            GuidesProfileDetailsView(rating: (guide.rating as NSDecimalNumber).doubleValue,
-                                                     name: name,
-                                                     date: date,
-                                                     languages: "")
+                            GuideProfileDetailsView(rating: (guide.rating as NSDecimalNumber).doubleValue,
+                                                    name: name,
+                                                    date: date,
+                                                    languages: "")
                             .offset(x: geometry.size.width / 20)
                             Spacer()
                             // TODO add button later
@@ -60,7 +60,9 @@ struct GuideDetailsPage: View {
                        alignment: .center)
                 Spacer()
                 TabView {
-                    GuideAboutDetailsView(guide: guide, width: geometry.size.width)
+                    GuideAboutDetailsView(guide: guide,
+                                          width: geometry.size.width,
+                                          height: geometry.size.height)
                         .tabItem {
                             Image(systemName: "info.circle.fill")
                             Text("About")

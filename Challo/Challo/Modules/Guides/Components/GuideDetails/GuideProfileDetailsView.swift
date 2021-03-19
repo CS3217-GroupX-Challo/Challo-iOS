@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GuidesProfileDetailsView: View {
+struct GuideProfileDetailsView: View {
     var rating: Double
     var name: String
     var date: String
