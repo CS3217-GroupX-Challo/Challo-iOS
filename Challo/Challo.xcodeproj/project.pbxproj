@@ -72,7 +72,7 @@
 		E2D8968425FFAB380001B026 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8967E25FFAB380001B026 /* LoginInteractor.swift */; };
 		E2D8968525FFAB380001B026 /* LoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8967F25FFAB380001B026 /* LoginDelegate.swift */; };
 		E2D8968F25FFAB8A0001B026 /* ChalloTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */; };
-		E2D8969025FFAB8A0001B026 /* ImageBackgroundContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968B25FFAB8A0001B026 /* ImageBackgroundContainer.swift */; };
+		E2D8969025FFAB8A0001B026 /* LoginRegisterBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968B25FFAB8A0001B026 /* LoginRegisterBackground.swift */; };
 		E2D8969125FFAB8A0001B026 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968C25FFAB8A0001B026 /* Card.swift */; };
 		E2D8969225FFAB8A0001B026 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */; };
 		E2D8969325FFAB8A0001B026 /* FacebookLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968E25FFAB8A0001B026 /* FacebookLoginButton.swift */; };
@@ -83,6 +83,7 @@
 		E2D896B425FFABE80001B026 /* Image+ImageAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D896B225FFABE80001B026 /* Image+ImageAssets.swift */; };
 		E2D896B525FFABE80001B026 /* Color+ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D896B325FFABE80001B026 /* Color+ThemeColors.swift */; };
 		E2D896DA25FFBA210001B026 /* RegisterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D896D925FFBA210001B026 /* RegisterRouter.swift */; };
+		E2F7F3ED2604652300F728FB /* LoginRegisterContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F7F3EC2604652300F728FB /* LoginRegisterContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,7 +181,7 @@
 		E2D8967E25FFAB380001B026 /* LoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		E2D8967F25FFAB380001B026 /* LoginDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginDelegate.swift; sourceTree = "<group>"; };
 		E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChalloTitle.swift; sourceTree = "<group>"; };
-		E2D8968B25FFAB8A0001B026 /* ImageBackgroundContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBackgroundContainer.swift; sourceTree = "<group>"; };
+		E2D8968B25FFAB8A0001B026 /* LoginRegisterBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRegisterBackground.swift; sourceTree = "<group>"; };
 		E2D8968C25FFAB8A0001B026 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		E2D8968E25FFAB8A0001B026 /* FacebookLoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookLoginButton.swift; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 		E2D896B225FFABE80001B026 /* Image+ImageAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+ImageAssets.swift"; sourceTree = "<group>"; };
 		E2D896B325FFABE80001B026 /* Color+ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+ThemeColors.swift"; sourceTree = "<group>"; };
 		E2D896D925FFBA210001B026 /* RegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRouter.swift; sourceTree = "<group>"; };
+		E2F7F3EC2604652300F728FB /* LoginRegisterContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -433,12 +435,22 @@
 			path = UserManagement;
 			sourceTree = "<group>";
 		};
+		E2C8FA76260464600098BBE6 /* LoginRegister */ = {
+			isa = PBXGroup;
+			children = (
+				E2D8968B25FFAB8A0001B026 /* LoginRegisterBackground.swift */,
+				E2D8967925FFAB2B0001B026 /* Login */,
+				E2D8966F25FFAB130001B026 /* Register */,
+				E2F7F3EC2604652300F728FB /* LoginRegisterContainer.swift */,
+			);
+			path = LoginRegister;
+			sourceTree = "<group>";
+		};
 		E2D8966E25FFAAFC0001B026 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				E2C8FA76260464600098BBE6 /* LoginRegister */,
 				E2C2441A2600B74D0085BAA4 /* Common */,
-				E2D8967925FFAB2B0001B026 /* Login */,
-				E2D8966F25FFAB130001B026 /* Register */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -480,7 +492,6 @@
 				E2D8968C25FFAB8A0001B026 /* Card.swift */,
 				E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */,
 				E2D8968E25FFAB8A0001B026 /* FacebookLoginButton.swift */,
-				E2D8968B25FFAB8A0001B026 /* ImageBackgroundContainer.swift */,
 				E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */,
 				E28B8D69260369FC009CFED7 /* ChalloEnterpriseTitle.swift */,
 			);
@@ -808,7 +819,7 @@
 				E2D8968F25FFAB8A0001B026 /* ChalloTitle.swift in Sources */,
 				6462024425FEFD4F00D89514 /* User.swift in Sources */,
 				E2D8968325FFAB380001B026 /* LoginPresenter.swift in Sources */,
-				E2D8969025FFAB8A0001B026 /* ImageBackgroundContainer.swift in Sources */,
+				E2D8969025FFAB8A0001B026 /* LoginRegisterBackground.swift in Sources */,
 				E22334222602580D00B6A236 /* TouristLoginRouter.swift in Sources */,
 				E223344F26025BE700B6A236 /* TouristRegisterModule.swift in Sources */,
 				6462026625FF559400D89514 /* Sex.swift in Sources */,
@@ -826,6 +837,7 @@
 				E2D8968025FFAB380001B026 /* FacebookLoginService.swift in Sources */,
 				6462024A25FEFE1300D89514 /* Days.swift in Sources */,
 				6462026125FF022D00D89514 /* Area.swift in Sources */,
+				E2F7F3ED2604652300F728FB /* LoginRegisterContainer.swift in Sources */,
 				E2D8967425FFAB200001B026 /* RegistrationDetails.swift in Sources */,
 				E2C244252600B96E0085BAA4 /* UserCertificate.swift in Sources */,
 				E29995DB2602633100FCA70A /* RegisterAPI.swift in Sources */,
