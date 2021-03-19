@@ -22,10 +22,16 @@ extension RegistrationLogic {
             guard let self = self else {
                 return
             }
+
+            if !response.success {
+                callback(response)
+            }
+
             guard let json = self.createUserTypeJSON(details: details,
                                                      certificate: response.certificate) else {
                 return
             }
+
             self.registerUserType(url: self.userTypeUrl,
                                   body: json) { err in
                 if err != nil {
@@ -40,9 +46,11 @@ extension RegistrationLogic {
     func createRegisterJson(details: RegistrationDetails) -> JSON {
         var json = JSON()
         json["name"] = details.name
-        json["phone"] = details.phone
         json["email"] = details.email
         json["password"] = details.password
+        if let phone = details.phone {
+            json["phone"] = phone
+        }
         return json
     }
 }

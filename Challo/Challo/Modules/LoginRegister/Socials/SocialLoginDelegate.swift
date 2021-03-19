@@ -20,7 +20,7 @@ extension SocialLoginDelegate {
             return nil
         }
         return RegistrationDetails(name: name,
-                                   phone: "",
+                                   phone: nil,
                                    email: email,
                                    password: password)
     }

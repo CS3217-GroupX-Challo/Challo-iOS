@@ -29,9 +29,8 @@ class FacebookLoginService: SocialLoginService {
 
     private func makeGraphRequest() {
         let request = GraphRequest(graphPath: "me",
-                                   parameters: ["fields": ["email", "id", "name"]])
+                                   parameters: ["fields": "email,name,id"])
         let failureResponse = SocialLoginResponse(success: false)
-
         request.start { _, result, _ in
             guard let profileData = result as? [String: Any] else {
                 self.delegate?.socialLoginDidComplete(response: failureResponse)

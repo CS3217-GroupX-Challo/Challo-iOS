@@ -5,7 +5,7 @@
 //  Created by Tan Le Yang on 19/3/21.
 //
 
-class SocialLoginInteractor {
+class SocialLoginInteractor: CertificateManager {
 
     var loginLogic: LoginLogic
     var registerLogic: RegistrationLogic
@@ -30,9 +30,16 @@ extension SocialLoginInteractor: SocialLoginDelegate {
             return
         }
         // Try to register an account in case of first-time user, then login
-        registerLogic.register(details: details) { _ in }
-        loginLogic.login(email: details.email,
-                         password: details.password) { _ in }
+        registerLogic.register(details: details) { [weak self] _ in
+            self?.loginLogic.login(email: details.email,
+                                   password: details.password) { response in
+                guard let certificate = response.certificate,
+                      response.success else {
+                    return
+                }
+                self?.storeCertificate(certificate: certificate)
+            }
+        }
     }
 
     private func createRegistrationDetails(from response: SocialLoginResponse) -> RegistrationDetails? {
@@ -43,7 +50,7 @@ extension SocialLoginInteractor: SocialLoginDelegate {
             return nil
         }
         return RegistrationDetails(name: name,
-                                   phone: "",
+                                   phone: nil,
                                    email: email,
                                    password: password)
     }
