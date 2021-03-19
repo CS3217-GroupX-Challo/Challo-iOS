@@ -23,12 +23,27 @@ struct GuideDetailsPage: View {
                       accreditations: nil,
                       biography: "The best guide in the world!\nWhat are we gonna do today?")
     
+    var trail = Trail(trailId: UUID(), title: "Nandadevi Village", description: "Guided tours available from 1500 ₹",
+                      positions: [], distance: Decimal.zero, duration: Decimal.zero,
+                      elevation: Decimal.zero, images: [],
+                      area: Area(areaId: UUID(), areaName: "test", regionName: "test"))
+    
+    var tourist = Tourist(userId: UUID(), email: "ss", profileImg: nil,
+                          name: "Bobby", phone: "123", dateJoined: Date(), sex: Sex.Male)
+    
     var name: String {
         guide.name ?? "Guide"
     }
     
     var date: String {
         guide.dateJoined?.description ?? ""
+    }
+    
+    var review: Review {
+        Review(reviewId: UUID(), rating: 3,
+               comment: "Best guide ever! Please tell him I love him :)\nYays!",
+               guide: guide, trail: trail,
+               createdAt: Date(), tourist: tourist)
     }
     
     var body: some View {
@@ -67,7 +82,9 @@ struct GuideDetailsPage: View {
                             Image(systemName: "info.circle.fill")
                             Text("About")
                         }
-                    Text("Reviews")
+                    GuideReviewsDetailsView(guide: guide,
+                                            review: review,
+                                            width: geometry.size.width)
                         .tabItem {
                             Image(systemName: "star.fill")
                             Text("Reviews")
