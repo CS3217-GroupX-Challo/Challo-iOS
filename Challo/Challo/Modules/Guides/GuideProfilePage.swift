@@ -70,6 +70,8 @@ struct GuideProfilePage: View {
                         }
                 }
             }
+        }.onAppear {
+            presenter.interactor.getReviews()
         }
         .edgesIgnoringSafeArea(.all)
     }

@@ -6,7 +6,7 @@
 //
 import Foundation
 
-class GuidesListingInteractor: InteractorProtocol, GuideAPI, AreaAPI, ReviewAPI {
+class GuidesListingInteractor: InteractorProtocol, GuideAPI, AreaAPI {
     typealias JSON = AlamofireManager.JSON
     typealias HEADER = AlamofireManager.HEADER
     weak var presenter: GuidesListingPresenter!

@@ -15,5 +15,7 @@ class GuideProfilePagePresenter: PresenterProtocol {
     
     init(guide: Guide) {
         self.guide = guide
+        self.interactor = GuideProfilePageInteractor()
+        self.interactor.presenter = self
     }
 }
