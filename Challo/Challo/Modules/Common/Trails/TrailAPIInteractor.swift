@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 
 protocol TrailAPIInteractor: AreaAPIInteractor {
-    typealias JSON = AlamofireManager.JSON
+    typealias JSON = [String: Any]
     
     func parseTrail(response: JSON) -> [Trail]
 }

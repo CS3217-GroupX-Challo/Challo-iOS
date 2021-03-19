@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AreaAPIInteractor {
-    typealias JSON = AlamofireManager.JSON
+    typealias JSON = [String: Any]
     
     func parseAreas(response: JSON) -> [Area]
 }

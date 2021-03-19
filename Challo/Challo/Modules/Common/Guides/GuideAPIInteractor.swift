@@ -8,8 +8,7 @@
 import Foundation
 
 protocol GuideAPIInteractor: AreaAPIInteractor {
-    typealias JSON = AlamofireManager.JSON
-    typealias HEADER = AlamofireManager.HEADER
+    typealias JSON = [String: Any]
     
     func parseGuides(response: JSON) -> [Guide]
 }

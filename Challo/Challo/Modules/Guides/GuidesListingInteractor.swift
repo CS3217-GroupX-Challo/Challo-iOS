@@ -4,11 +4,14 @@
 //
 //  Created by Kester Ng on 17/3/21.
 //
+import Foundation
 
-class GuidesListingInteractor: InteractorProtocol, GuideAPI, AreaAPI {
+class GuidesListingInteractor: InteractorProtocol, GuideAPI, AreaAPI, ReviewAPI {
     typealias JSON = AlamofireManager.JSON
     typealias HEADER = AlamofireManager.HEADER
     weak var presenter: GuidesListingPresenter!
+    
+    var api = AlamofireManager.alamofireManager
     
     func populateGuides() {
         getGuides { [weak self] guides in
@@ -34,6 +37,7 @@ class GuidesListingInteractor: InteractorProtocol, GuideAPI, AreaAPI {
             self.presenter.filterTypes.locations = areaOptions
         }
     }
+    
     private func convertAreasToLocationOptions(areas: [Area]) -> [String] {
         var locationOptions: [String] = ["Default"]
         for area in areas {

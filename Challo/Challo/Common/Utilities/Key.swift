@@ -36,4 +36,11 @@ struct Key {
     static let longitude = "longitude"
     static let memorableExperiences = "memorableExperiences"
     static let hobbies = "hobbies"
+    static let reviewId = "reviewId"
+    static let rating = "rating"
+    static let comment = "comment"
+    static let guideId = "guideId"
+    static let touristId = "touristId"
+    static let createdAt = "createdAt"
+    static let activeSince = "activeSince"
 }
