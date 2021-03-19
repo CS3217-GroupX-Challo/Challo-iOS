@@ -12,7 +12,7 @@ struct TouristRegisterPage: View {
     @ObservedObject var registerPresenter: TouristRegisterPresenter
 
     var body: some View {
-        LoginRegisterBackground {
+        ImageBackgroundContainer {
             GeometryReader { geometry in
                 VStack {
                     ChalloTitle()

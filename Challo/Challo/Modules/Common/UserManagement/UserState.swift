@@ -8,12 +8,13 @@
 import SwiftUI
 
 /**
- Singleton that holds the state of the user
+ Singleton that holds the general state of the user
  */
 class UserState: ObservableObject {
 
-    @Published
-    @AppStorage("logged_in") var loggedIn = false
+    @AppStorage("logged_in") var loggedIn = false {
+        willSet { objectWillChange.send() }
+    }
     @AppStorage("email") var email = ""
     @AppStorage("name") var name = ""
     @AppStorage("token") var token = ""

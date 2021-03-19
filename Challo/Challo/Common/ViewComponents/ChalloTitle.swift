@@ -16,7 +16,7 @@ struct ChalloTitle: View {
 
 struct ChalloTitle_Previews: PreviewProvider {
     static var previews: some View {
-        LoginRegisterBackground {
+        ImageBackgroundContainer {
             ChalloTitle()
         }
     }

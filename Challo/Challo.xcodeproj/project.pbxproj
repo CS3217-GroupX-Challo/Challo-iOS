@@ -72,7 +72,7 @@
 		E2D8968425FFAB380001B026 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8967E25FFAB380001B026 /* LoginInteractor.swift */; };
 		E2D8968525FFAB380001B026 /* LoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8967F25FFAB380001B026 /* LoginDelegate.swift */; };
 		E2D8968F25FFAB8A0001B026 /* ChalloTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */; };
-		E2D8969025FFAB8A0001B026 /* LoginRegisterBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968B25FFAB8A0001B026 /* LoginRegisterBackground.swift */; };
+		E2D8969025FFAB8A0001B026 /* ImageBackgroundContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968B25FFAB8A0001B026 /* ImageBackgroundContainer.swift */; };
 		E2D8969125FFAB8A0001B026 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968C25FFAB8A0001B026 /* Card.swift */; };
 		E2D8969225FFAB8A0001B026 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */; };
 		E2D8969325FFAB8A0001B026 /* FacebookLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968E25FFAB8A0001B026 /* FacebookLoginButton.swift */; };
@@ -180,7 +180,7 @@
 		E2D8967E25FFAB380001B026 /* LoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		E2D8967F25FFAB380001B026 /* LoginDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginDelegate.swift; sourceTree = "<group>"; };
 		E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChalloTitle.swift; sourceTree = "<group>"; };
-		E2D8968B25FFAB8A0001B026 /* LoginRegisterBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRegisterBackground.swift; sourceTree = "<group>"; };
+		E2D8968B25FFAB8A0001B026 /* ImageBackgroundContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBackgroundContainer.swift; sourceTree = "<group>"; };
 		E2D8968C25FFAB8A0001B026 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		E2D8968E25FFAB8A0001B026 /* FacebookLoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookLoginButton.swift; sourceTree = "<group>"; };
@@ -480,7 +480,7 @@
 				E2D8968C25FFAB8A0001B026 /* Card.swift */,
 				E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */,
 				E2D8968E25FFAB8A0001B026 /* FacebookLoginButton.swift */,
-				E2D8968B25FFAB8A0001B026 /* LoginRegisterBackground.swift */,
+				E2D8968B25FFAB8A0001B026 /* ImageBackgroundContainer.swift */,
 				E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */,
 				E28B8D69260369FC009CFED7 /* ChalloEnterpriseTitle.swift */,
 			);
@@ -808,7 +808,7 @@
 				E2D8968F25FFAB8A0001B026 /* ChalloTitle.swift in Sources */,
 				6462024425FEFD4F00D89514 /* User.swift in Sources */,
 				E2D8968325FFAB380001B026 /* LoginPresenter.swift in Sources */,
-				E2D8969025FFAB8A0001B026 /* LoginRegisterBackground.swift in Sources */,
+				E2D8969025FFAB8A0001B026 /* ImageBackgroundContainer.swift in Sources */,
 				E22334222602580D00B6A236 /* TouristLoginRouter.swift in Sources */,
 				E223344F26025BE700B6A236 /* TouristRegisterModule.swift in Sources */,
 				6462026625FF559400D89514 /* Sex.swift in Sources */,

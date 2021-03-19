@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LoginRegisterBackground<Content: View>: ContainerView {
+struct ImageBackgroundContainer<Content: View>: ContainerView {
     var content: () -> Content
 
     var body: some View {
@@ -27,7 +27,7 @@ struct LoginRegisterBackground<Content: View>: ContainerView {
 
 struct Background_Previews: PreviewProvider {
     static var previews: some View {
-        LoginRegisterBackground {
+        ImageBackgroundContainer {
             Text("Hello!")
         }
     }

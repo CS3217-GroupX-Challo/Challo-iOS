@@ -11,7 +11,7 @@ struct TouristLoginPage: View {
     @ObservedObject var loginPresenter: TouristLoginPresenter
 
     var body: some View {
-        LoginRegisterBackground {
+        ImageBackgroundContainer {
             GeometryReader { geometry in
                 VStack {
                     ChalloTitle()
