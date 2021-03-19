@@ -39,7 +39,7 @@ struct GuidesListingPage: View {
             }
         }
         .onAppear {
-            presenter.interactor.getGuides()
+            presenter.interactor.populateGuides()
         }
         .edgesIgnoringSafeArea(.all)
     }

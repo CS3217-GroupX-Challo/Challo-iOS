@@ -8,13 +8,13 @@
 import Foundation
 import MapKit
 
-protocol TrailsAPIInteractor: AreaAPIInteractor {
+protocol TrailAPIInteractor: AreaAPIInteractor {
     typealias JSON = AlamofireManager.JSON
     
     func parseTrail(response: JSON) -> [Trail]
 }
 
-extension TrailsAPIInteractor {
+extension TrailAPIInteractor {
     func parseTrail(response: JSON) -> [Trail] {
         guard let data = response["data"],
               let trailsInfo = data as? [JSON] else {

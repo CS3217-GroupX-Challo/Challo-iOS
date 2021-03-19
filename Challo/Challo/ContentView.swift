@@ -7,7 +7,8 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView { () -> AnyView in
-            AnyView(GuideDetailsPage())
+            // AnyView(GuideDetailsPage())
+            guidesListingPage
             /*
             if !userState.loggedIn {
                 let (loginPage, _) = LoginModule.assemble()
