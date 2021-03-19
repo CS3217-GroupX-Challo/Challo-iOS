@@ -50,12 +50,10 @@
 		E234932A25FB885100EC90E9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E234932925FB885100EC90E9 /* Preview Assets.xcassets */; };
 		E234933525FB885100EC90E9 /* ChalloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234933425FB885100EC90E9 /* ChalloTests.swift */; };
 		E234934025FB885100EC90E9 /* ChalloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234933F25FB885100EC90E9 /* ChalloUITests.swift */; };
-		E267FCFA2604D86C0007815D /* RegistrationLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E267FCF92604D86C0007815D /* RegistrationLogic.swift */; };
-		E267FCFF2604DA400007815D /* TouristRegistrationLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E267FCFE2604DA400007815D /* TouristRegistrationLogic.swift */; };
-		E267FD072604DB780007815D /* GuideRegistrationLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E267FD062604DB780007815D /* GuideRegistrationLogic.swift */; };
-		E267FD0C2604DC490007815D /* LoginLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E267FD0B2604DC490007815D /* LoginLogic.swift */; };
-		E267FD112604DD260007815D /* GuideLoginLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E267FD102604DD260007815D /* GuideLoginLogic.swift */; };
-		E267FD162604DDA10007815D /* TouristLoginLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E267FD152604DDA10007815D /* TouristLoginLogic.swift */; };
+		E267FCFF2604DA400007815D /* TouristRegistrationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E267FCFE2604DA400007815D /* TouristRegistrationAPI.swift */; };
+		E267FD072604DB780007815D /* GuideRegistrationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E267FD062604DB780007815D /* GuideRegistrationAPI.swift */; };
+		E267FD112604DD260007815D /* GuideLoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E267FD102604DD260007815D /* GuideLoginAPI.swift */; };
+		E267FD162604DDA10007815D /* TouristLoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E267FD152604DDA10007815D /* TouristLoginAPI.swift */; };
 		E267FD242604ED450007815D /* CertificateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E267FD232604ED450007815D /* CertificateManager.swift */; };
 		E268C497260469F200AA5F53 /* SocialLoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268C496260469F200AA5F53 /* SocialLoginResponse.swift */; };
 		E268C49F26046CCF00AA5F53 /* SocialLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268C49E26046CCF00AA5F53 /* SocialLoginInteractor.swift */; };
@@ -91,6 +89,7 @@
 		E2D896B425FFABE80001B026 /* Image+ImageAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D896B225FFABE80001B026 /* Image+ImageAssets.swift */; };
 		E2D896B525FFABE80001B026 /* Color+ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D896B325FFABE80001B026 /* Color+ThemeColors.swift */; };
 		E2D896DA25FFBA210001B026 /* RegisterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D896D925FFBA210001B026 /* RegisterRouter.swift */; };
+		E2EF4C0F26050A3600851762 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EF4C0E26050A3600851762 /* UserAPI.swift */; };
 		E2F7F3ED2604652300F728FB /* LoginRegisterContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F7F3EC2604652300F728FB /* LoginRegisterContainer.swift */; };
 		E2F7F3F32604691D00F728FB /* SocialLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F7F3F22604691D00F728FB /* SocialLoginService.swift */; };
 		E2F7F3FB2604693700F728FB /* SocialLoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F7F3FA2604693700F728FB /* SocialLoginDelegate.swift */; };
@@ -169,12 +168,10 @@
 		E234933B25FB885100EC90E9 /* ChalloUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChalloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234933F25FB885100EC90E9 /* ChalloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloUITests.swift; sourceTree = "<group>"; };
 		E234934125FB885100EC90E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E267FCF92604D86C0007815D /* RegistrationLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationLogic.swift; sourceTree = "<group>"; };
-		E267FCFE2604DA400007815D /* TouristRegistrationLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristRegistrationLogic.swift; sourceTree = "<group>"; };
-		E267FD062604DB780007815D /* GuideRegistrationLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRegistrationLogic.swift; sourceTree = "<group>"; };
-		E267FD0B2604DC490007815D /* LoginLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLogic.swift; sourceTree = "<group>"; };
-		E267FD102604DD260007815D /* GuideLoginLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideLoginLogic.swift; sourceTree = "<group>"; };
-		E267FD152604DDA10007815D /* TouristLoginLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristLoginLogic.swift; sourceTree = "<group>"; };
+		E267FCFE2604DA400007815D /* TouristRegistrationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristRegistrationAPI.swift; sourceTree = "<group>"; };
+		E267FD062604DB780007815D /* GuideRegistrationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRegistrationAPI.swift; sourceTree = "<group>"; };
+		E267FD102604DD260007815D /* GuideLoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideLoginAPI.swift; sourceTree = "<group>"; };
+		E267FD152604DDA10007815D /* TouristLoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristLoginAPI.swift; sourceTree = "<group>"; };
 		E267FD232604ED450007815D /* CertificateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateManager.swift; sourceTree = "<group>"; };
 		E268C496260469F200AA5F53 /* SocialLoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginResponse.swift; sourceTree = "<group>"; };
 		E268C49E26046CCF00AA5F53 /* SocialLoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginInteractor.swift; sourceTree = "<group>"; };
@@ -210,6 +207,7 @@
 		E2D896B225FFABE80001B026 /* Image+ImageAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+ImageAssets.swift"; sourceTree = "<group>"; };
 		E2D896B325FFABE80001B026 /* Color+ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+ThemeColors.swift"; sourceTree = "<group>"; };
 		E2D896D925FFBA210001B026 /* RegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRouter.swift; sourceTree = "<group>"; };
+		E2EF4C0E26050A3600851762 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		E2F7F3EC2604652300F728FB /* LoginRegisterContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterContainer.swift; sourceTree = "<group>"; };
 		E2F7F3F22604691D00F728FB /* SocialLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginService.swift; sourceTree = "<group>"; };
 		E2F7F3FA2604693700F728FB /* SocialLoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginDelegate.swift; sourceTree = "<group>"; };
@@ -331,7 +329,7 @@
 				E22333F82602526200B6A236 /* GuideLoginRouter.swift */,
 				E22333FD2602532500B6A236 /* GuideLoginInteractor.swift */,
 				E22334022602534700B6A236 /* GuideLoginModule.swift */,
-				E267FD102604DD260007815D /* GuideLoginLogic.swift */,
+				E267FD102604DD260007815D /* GuideLoginAPI.swift */,
 			);
 			path = GuideLogin;
 			sourceTree = "<group>";
@@ -344,7 +342,7 @@
 				E22334212602580D00B6A236 /* TouristLoginRouter.swift */,
 				E22334262602586F00B6A236 /* TouristLoginInteractor.swift */,
 				E223342B2602589100B6A236 /* TouristLoginModule.swift */,
-				E267FD152604DDA10007815D /* TouristLoginLogic.swift */,
+				E267FD152604DDA10007815D /* TouristLoginAPI.swift */,
 			);
 			path = TouristLogin;
 			sourceTree = "<group>";
@@ -357,7 +355,7 @@
 				E223344426025B5E00B6A236 /* TouristRegisterInteractor.swift */,
 				E223344926025B7800B6A236 /* TouristRegisterRouter.swift */,
 				E223344E26025BE700B6A236 /* TouristRegisterModule.swift */,
-				E267FCFE2604DA400007815D /* TouristRegistrationLogic.swift */,
+				E267FCFE2604DA400007815D /* TouristRegistrationAPI.swift */,
 			);
 			path = TouristRegister;
 			sourceTree = "<group>";
@@ -370,7 +368,7 @@
 				E26975FD2603105D003320EF /* GuideRegisterRouter.swift */,
 				E26976022603108A003320EF /* GuideRegisterPresenter.swift */,
 				E2697607260310C1003320EF /* GuideRegisterModule.swift */,
-				E267FD062604DB780007815D /* GuideRegistrationLogic.swift */,
+				E267FD062604DB780007815D /* GuideRegistrationAPI.swift */,
 			);
 			path = GuideRegister;
 			sourceTree = "<group>";
@@ -456,6 +454,7 @@
 				E29995DA2602633100FCA70A /* RegisterAPI.swift */,
 				E28B8D5E26036292009CFED7 /* UserAPIResponse.swift */,
 				E267FD232604ED450007815D /* CertificateManager.swift */,
+				E2EF4C0E26050A3600851762 /* UserAPI.swift */,
 			);
 			path = UserManagement;
 			sourceTree = "<group>";
@@ -491,7 +490,6 @@
 				E2D8967025FFAB200001B026 /* RegisterPresenter.swift */,
 				E2D8967125FFAB200001B026 /* RegistrationDetails.swift */,
 				E2D896D925FFBA210001B026 /* RegisterRouter.swift */,
-				E267FCF92604D86C0007815D /* RegistrationLogic.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -505,7 +503,6 @@
 				E2D8967D25FFAB380001B026 /* LoginPresenter.swift */,
 				E2D8967C25FFAB380001B026 /* LoginRouter.swift */,
 				E2D8969D25FFABBA0001B026 /* LoginForm.swift */,
-				E267FD0B2604DC490007815D /* LoginLogic.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -861,7 +858,7 @@
 				E2D8968F25FFAB8A0001B026 /* ChalloTitle.swift in Sources */,
 				6462024425FEFD4F00D89514 /* User.swift in Sources */,
 				E2D8968325FFAB380001B026 /* LoginPresenter.swift in Sources */,
-				E267FD112604DD260007815D /* GuideLoginLogic.swift in Sources */,
+				E267FD112604DD260007815D /* GuideLoginAPI.swift in Sources */,
 				E2D8969025FFAB8A0001B026 /* LoginRegisterBackground.swift in Sources */,
 				E22334222602580D00B6A236 /* TouristLoginRouter.swift in Sources */,
 				E223344F26025BE700B6A236 /* TouristRegisterModule.swift in Sources */,
@@ -872,7 +869,7 @@
 				E2D896AD25FFABD70001B026 /* ContainerView.swift in Sources */,
 				6462023C25FEFD3800D89514 /* Guide.swift in Sources */,
 				E22333F92602526200B6A236 /* GuideLoginRouter.swift in Sources */,
-				E267FD162604DDA10007815D /* TouristLoginLogic.swift in Sources */,
+				E267FD162604DDA10007815D /* TouristLoginAPI.swift in Sources */,
 				6462024F25FF000700D89514 /* Tourist.swift in Sources */,
 				E2D8969325FFAB8A0001B026 /* FacebookLoginButton.swift in Sources */,
 				E22333FE2602532500B6A236 /* GuideLoginInteractor.swift in Sources */,
@@ -881,24 +878,23 @@
 				E2D8967325FFAB200001B026 /* RegisterPresenter.swift in Sources */,
 				E223344526025B5E00B6A236 /* TouristRegisterInteractor.swift in Sources */,
 				E2D8968025FFAB380001B026 /* FacebookLoginService.swift in Sources */,
-				E267FD0C2604DC490007815D /* LoginLogic.swift in Sources */,
 				6462024A25FEFE1300D89514 /* Days.swift in Sources */,
 				6462026125FF022D00D89514 /* Area.swift in Sources */,
 				E2F7F3ED2604652300F728FB /* LoginRegisterContainer.swift in Sources */,
 				E2D8967425FFAB200001B026 /* RegistrationDetails.swift in Sources */,
 				E2C244252600B96E0085BAA4 /* UserCertificate.swift in Sources */,
-				E267FCFF2604DA400007815D /* TouristRegistrationLogic.swift in Sources */,
+				E267FCFF2604DA400007815D /* TouristRegistrationAPI.swift in Sources */,
 				E29995DB2602633100FCA70A /* RegisterAPI.swift in Sources */,
+				E2EF4C0F26050A3600851762 /* UserAPI.swift in Sources */,
 				6462026B25FF574100D89514 /* CaseIterable+ParseString.swift in Sources */,
 				E223342C2602589100B6A236 /* TouristLoginModule.swift in Sources */,
 				E223340C2602578400B6A236 /* TouristLoginPage.swift in Sources */,
 				E2D896B525FFABE80001B026 /* Color+ThemeColors.swift in Sources */,
-				E267FD072604DB780007815D /* GuideRegistrationLogic.swift in Sources */,
+				E267FD072604DB780007815D /* GuideRegistrationAPI.swift in Sources */,
 				E2D8967525FFAB200001B026 /* RegisterInteractor.swift in Sources */,
 				E2D824AD2600C1B20023CBBB /* UserState.swift in Sources */,
 				E2D896DA25FFBA210001B026 /* RegisterRouter.swift in Sources */,
 				E22333E126024C1D00B6A236 /* LoginAPI.swift in Sources */,
-				E267FCFA2604D86C0007815D /* RegistrationLogic.swift in Sources */,
 				E28B8D6A260369FC009CFED7 /* ChalloEnterpriseTitle.swift in Sources */,
 				E2C2441D2600B78E0085BAA4 /* UserAPIInteractor.swift in Sources */,
 				E2D8968225FFAB380001B026 /* LoginRouter.swift in Sources */,

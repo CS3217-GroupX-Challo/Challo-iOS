@@ -18,10 +18,10 @@ class GuideRegisterModule: ViperModuleProtocol {
         presenter.router = router
         router.presenter = presenter
 
-        let loginLogic = GuideLoginLogic()
-        let registerLogic = GuideRegistrationLogic()
+        let loginAPI = GuideLoginAPI()
+        let registerAPI = GuideRegistrationAPI()
         let socialPresenter = SocialLoginPresenter
-            .createSocialLoginPresenter(loginLogic: loginLogic, registrationLogic: registerLogic)
+            .createSocialLoginPresenter(loginAPI: loginAPI, registerAPI: registerAPI)
     
         let registerView = AnyView(GuideRegisterPage(registerPresenter: presenter,
                                                      socialLoginPresenter: socialPresenter))

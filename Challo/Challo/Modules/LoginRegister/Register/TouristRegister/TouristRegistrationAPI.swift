@@ -5,7 +5,7 @@
 //  Created by Tan Le Yang on 19/3/21.
 //
 
-class TouristRegistrationLogic: RegistrationLogic {
+class TouristRegistrationAPI: RegisterAPI {
 
     let userTypeUrl = "/tourist"
     let networkManager = AlamofireManager.alamofireManager

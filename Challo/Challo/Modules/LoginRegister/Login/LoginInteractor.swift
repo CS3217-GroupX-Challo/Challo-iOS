@@ -1,6 +1,6 @@
 import SwiftUI
 
-protocol LoginInteractor: LoginAPI, AnyObject {
+protocol LoginInteractor: CertificateManager, AnyObject {
 
     var presenter: LoginPresenter! { get set }
 

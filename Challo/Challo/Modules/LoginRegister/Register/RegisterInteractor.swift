@@ -1,7 +1,7 @@
 import Combine
 import Foundation
 
-protocol RegisterInteractor: RegisterAPI, AnyObject {
+protocol RegisterInteractor: CertificateManager, AnyObject {
 
     var presenter: RegisterPresenter! { get set }
 

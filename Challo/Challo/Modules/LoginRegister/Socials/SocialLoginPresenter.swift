@@ -15,10 +15,10 @@ class SocialLoginPresenter {
         self.interactor = interactor
     }
 
-    static func createSocialLoginPresenter(loginLogic: LoginLogic,
-                                           registrationLogic: RegistrationLogic) -> SocialLoginPresenter {
-        let interactor = SocialLoginInteractor(loginLogic: loginLogic,
-                                               registrationLogic: registrationLogic)
+    static func createSocialLoginPresenter(loginAPI: LoginAPI,
+                                           registerAPI: RegisterAPI) -> SocialLoginPresenter {
+        let interactor = SocialLoginInteractor(loginAPI: loginAPI,
+                                               registerAPI: registerAPI)
         return SocialLoginPresenter(interactor: interactor)
     }
 

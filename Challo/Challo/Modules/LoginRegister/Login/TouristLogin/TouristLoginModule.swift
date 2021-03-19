@@ -17,10 +17,10 @@ final class TouristLoginModule: ViperModuleProtocol {
         presenter.router = router
         router.presenter = presenter
 
-        let loginLogic = TouristLoginLogic()
-        let registerLogic = TouristRegistrationLogic()
+        let loginAPI = TouristLoginAPI()
+        let registerAPI = TouristRegistrationAPI()
         let socialPresenter = SocialLoginPresenter
-            .createSocialLoginPresenter(loginLogic: loginLogic, registrationLogic: registerLogic)
+            .createSocialLoginPresenter(loginAPI: loginAPI, registerAPI: registerAPI)
 
         return (view: AnyView(TouristLoginPage(loginPresenter: presenter, socialLoginPresenter: socialPresenter)),
                 presenter: presenter)

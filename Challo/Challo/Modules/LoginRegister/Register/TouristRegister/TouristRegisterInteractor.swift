@@ -10,10 +10,10 @@ class TouristRegisterInteractor: RegisterInteractor, InteractorProtocol {
     let networkManager = AlamofireManager.alamofireManager
     weak var presenter: RegisterPresenter!
 
-    private let registrationLogic = TouristRegistrationLogic()
+    private let api = TouristRegistrationAPI()
 
     func register(details: RegistrationDetails) {
-        registrationLogic.register(details: details) { [weak self] response in
+        api.register(details: details) { [weak self] response in
             if response.error != nil {
                 self?.presenter.showRegisterFailureAlert()
                 return

@@ -9,7 +9,7 @@ class GuideLoginInteractor: LoginInteractor, InteractorProtocol {
 
     let networkManager = AlamofireManager.alamofireManager
     weak var presenter: LoginPresenter!
-    private let loginLogic = GuideLoginLogic()
+    private let loginLogic = GuideLoginAPI()
 
     func defaultLogin(email: String, password: String) {
         loginLogic.login(email: email, password: password) { [weak self] response in

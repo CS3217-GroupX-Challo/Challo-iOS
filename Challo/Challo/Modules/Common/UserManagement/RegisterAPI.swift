@@ -5,38 +5,53 @@
 //  Created by Tan Le Yang on 18/3/21.
 //
 
-import Foundation
+protocol RegisterAPI: UserAPI, AnyObject {
 
-protocol RegisterAPI: UserAPIInteractor {
-
-    func commonRegister(details: JSON,
-                        callback: @escaping (UserAPIResponse) -> Void)
+    var userTypeUrl: String { get }
+    func register(details: RegistrationDetails,
+                  callback: @escaping (UserAPIResponse) -> Void)
+    func createUserTypeJSON(details: RegistrationDetails,
+                            certificate: UserCertificate?) -> JSON?
 }
 
 extension RegisterAPI {
 
-    var registerUrl: String {
-        "/user/register"
-    }
-
-    func commonRegister(details: JSON,
-                        callback: @escaping (UserAPIResponse) -> Void) {
-        sendUserPostRequest(url: registerUrl,
-                            body: details,
-                            callback: callback)
-    }
-
-    func registerUserType(url: String,
-                          body: JSON,
-                          callback: @escaping (Error?) -> Void) {
-        networkManager.post(url: url,
-                            headers: AlamofireManager.HEADER(),
-                            body: body) { _, err in
-            if let err = err {
-                ChalloLogger.logger.log("Failed to create specific user type \(err as NSObject)")
-                callback(err)
+    func register(details: RegistrationDetails,
+                  callback: @escaping (UserAPIResponse) -> Void) {
+        let json = createRegisterJson(details: details)
+        self.commonRegister(details: json) { [weak self] response in
+            guard let self = self else {
+                return
             }
-            callback(nil)
+
+            if !response.success {
+                callback(response)
+            }
+
+            guard let json = self.createUserTypeJSON(details: details,
+                                                     certificate: response.certificate) else {
+                return
+            }
+
+            self.registerUserType(url: self.userTypeUrl,
+                                  body: json) { err in
+                if err != nil {
+                    callback(UserAPIResponse(success: false, error: err))
+                    return
+                }
+                callback(response)
+            }
         }
+    }
+
+    func createRegisterJson(details: RegistrationDetails) -> JSON {
+        var json = JSON()
+        json["name"] = details.name
+        json["email"] = details.email
+        json["password"] = details.password
+        if let phone = details.phone {
+            json["phone"] = phone
+        }
+        return json
     }
 }

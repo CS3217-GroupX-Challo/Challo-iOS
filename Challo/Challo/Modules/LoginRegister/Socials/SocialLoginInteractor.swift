@@ -7,14 +7,14 @@
 
 class SocialLoginInteractor: CertificateManager {
 
-    var loginLogic: LoginLogic
-    var registerLogic: RegistrationLogic
+    var loginAPI: LoginAPI
+    var registerAPI: RegisterAPI
 
     private var facebookLoginService = FacebookLoginService()
 
-    init(loginLogic: LoginLogic, registrationLogic: RegistrationLogic) {
-        self.loginLogic = loginLogic
-        self.registerLogic = registrationLogic
+    init(loginAPI: LoginAPI, registerAPI: RegisterAPI) {
+        self.loginAPI = loginAPI
+        self.registerAPI = registerAPI
         facebookLoginService.delegate = self
     }
 
@@ -30,9 +30,9 @@ extension SocialLoginInteractor: SocialLoginDelegate {
             return
         }
         // Try to register an account in case of first-time user, then login
-        registerLogic.register(details: details) { [weak self] _ in
-            self?.loginLogic.login(email: details.email,
-                                   password: details.password) { response in
+        registerAPI.register(details: details) { [weak self] _ in
+            self?.loginAPI.login(email: details.email,
+                                 password: details.password) { response in
                 guard let certificate = response.certificate,
                       response.success else {
                     return

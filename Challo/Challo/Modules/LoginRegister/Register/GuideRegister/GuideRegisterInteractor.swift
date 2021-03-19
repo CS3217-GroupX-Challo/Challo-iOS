@@ -10,10 +10,10 @@ class GuideRegisterInteractor: RegisterInteractor, InteractorProtocol {
     let networkManager = AlamofireManager.alamofireManager
     weak var presenter: RegisterPresenter!
 
-    private let registrationLogic = GuideRegistrationLogic()
+    private let api = GuideRegistrationAPI()
     
     func register(details: RegistrationDetails) {
-        registrationLogic.register(details: details) { [weak self] response in
+        api.register(details: details) { [weak self] response in
             if response.error != nil {
                 self?.presenter.showRegisterFailureAlert()
                 return

@@ -4,23 +4,29 @@
 //
 //  Created by Tan Le Yang on 17/3/21.
 //
-import Foundation
 
-protocol LoginAPI: UserAPIInteractor {
+protocol LoginAPI: UserAPI, AnyObject {
 
-    func commonLogin(credentials: JSON, callback: @escaping (UserAPIResponse) -> Void)
+    func login(email: String,
+               password: String,
+               callback: @escaping (UserAPIResponse) -> Void)
 }
 
 extension LoginAPI {
 
-    var loginUrl: String {
-        "/user/login"
+    func login(email: String,
+               password: String,
+               callback: @escaping (UserAPIResponse) -> Void) {
+        let json = createLoginJson(email: email, password: password)
+        self.commonLogin(credentials: json, callback: { response in
+            callback(response)
+        })
     }
 
-    func commonLogin(credentials: JSON,
-                     callback: @escaping (UserAPIResponse) -> Void) {
-        sendUserPostRequest(url: loginUrl,
-                            body: credentials,
-                            callback: callback)
+    func createLoginJson(email: String, password: String) -> JSON {
+        var json = JSON()
+        json["email"] = email
+        json["password"] = password
+        return json
     }
 }
