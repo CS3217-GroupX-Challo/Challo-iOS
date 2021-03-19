@@ -35,6 +35,7 @@
 		AA2CE59D2604EF7C0019C328 /* GuideProfilePageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE59C2604EF7C0019C328 /* GuideProfilePageInteractor.swift */; };
 		AA2CE5A22604EFE10019C328 /* GuideProfilePageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5A12604EFE10019C328 /* GuideProfilePageRouter.swift */; };
 		AA2CE5A72604F09E0019C328 /* GuideProfilePageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5A62604F09E0019C328 /* GuideProfilePageModule.swift */; };
+		AA2CE5AF260513950019C328 /* Date+Construct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5AE260513950019C328 /* Date+Construct.swift */; };
 		AA9E85C925FE70AD00C2E389 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E85C825FE70AD00C2E389 /* NetworkManager.swift */; };
 		AA9E85D625FE735800C2E389 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E85D525FE735800C2E389 /* NetworkError.swift */; };
 		AA9E85E125FE740500C2E389 /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E85E025FE740500C2E389 /* AlamofireManager.swift */; };
@@ -153,6 +154,7 @@
 		AA2CE59C2604EF7C0019C328 /* GuideProfilePageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePageInteractor.swift; sourceTree = "<group>"; };
 		AA2CE5A12604EFE10019C328 /* GuideProfilePageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePageRouter.swift; sourceTree = "<group>"; };
 		AA2CE5A62604F09E0019C328 /* GuideProfilePageModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePageModule.swift; sourceTree = "<group>"; };
+		AA2CE5AE260513950019C328 /* Date+Construct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Construct.swift"; sourceTree = "<group>"; };
 		AA9E85C825FE70AD00C2E389 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		AA9E85D525FE735800C2E389 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		AA9E85E025FE740500C2E389 /* AlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
@@ -585,6 +587,7 @@
 			children = (
 				E2D896AC25FFABD70001B026 /* ContainerView.swift */,
 				AA9E878F260265C300C2E389 /* Key.swift */,
+				AA2CE5AE260513950019C328 /* Date+Construct.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -868,6 +871,7 @@
 				6462027525FF60D900D89514 /* Booking.swift in Sources */,
 				E2C2440E2600B64C0085BAA4 /* LoginResponse.swift in Sources */,
 				AADCAC132604810100FB52C4 /* GuideReviewsDetailsView.swift in Sources */,
+				AA2CE5AF260513950019C328 /* Date+Construct.swift in Sources */,
 				AA2CE5A72604F09E0019C328 /* GuideProfilePageModule.swift in Sources */,
 				AA9E85C925FE70AD00C2E389 /* NetworkManager.swift in Sources */,
 				AA9E85D625FE735800C2E389 /* NetworkError.swift in Sources */,

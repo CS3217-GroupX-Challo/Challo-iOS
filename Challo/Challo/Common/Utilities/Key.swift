@@ -43,4 +43,7 @@ struct Key {
     static let touristId = "touristId"
     static let createdAt = "createdAt"
     static let activeSince = "activeSince"
+    static let guide = "guide"
+    static let tourist = "tourist"
+    static let trail = "trail"
 }

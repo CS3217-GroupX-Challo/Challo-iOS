@@ -61,15 +61,6 @@ struct GuideDetailsCard: View {
             if let router = presenter.router {
                 router.getGuideProfileDetailsPage(guide: guide)
             }
-            /*
-            Button(action: {
-                // TODO add navigation
-            }) {
-                Text("More info")
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .background(RoundedRectangle(cornerRadius: 5).fill(Color.themeTertiary))
-            }*/
         }
         .overlay(RoundedRectangle(cornerRadius: 5)
                     .stroke(Color.gray, lineWidth: 0.5))

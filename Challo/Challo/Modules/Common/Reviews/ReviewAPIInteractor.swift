@@ -40,13 +40,13 @@ extension ReviewAPIInteractor {
         }
         
         let comment: String? = json[Key.comment] as? String
-        let createdAt: Date? = json[Key.createdAt] as? Date
+        let createdAtString: String? = json[Key.createdAt] as? String
         return ReviewState(reviewId: reviewId,
                            rating: rating,
                            comment: comment,
                            guideId: guideId,
                            touristId: tourirstId,
                            trailId: trailId,
-                           createdAt: createdAt)
+                           createdAt: Date.construct(with: createdAtString ?? ""))
     }
 }

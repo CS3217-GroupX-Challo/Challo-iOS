@@ -44,8 +44,10 @@ struct GuideAboutDetailsView: View {
                     ScrollView(.horizontal) {
                         HStack(alignment: .top, spacing: 15) {
                             ForEach(guide.trails, id: \.trailId) { trail in
-                                 GuideTrailsDetailCard(trail: trail,
-                                                       width: width / 3)
+                                Spacer()
+                                GuideTrailsDetailCard(trail: trail,
+                                                      width: width / 3)
+                                Spacer()
                             }
                         }
                     }

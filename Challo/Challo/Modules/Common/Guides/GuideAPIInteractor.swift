@@ -41,6 +41,7 @@ extension GuideAPIInteractor {
         // intermediate properties to be converted to its own struct
         let sexString: String? = json[Key.sex] as? String
         let areaDetails: JSON? = json[Key.area] as? JSON
+        let ratingString: String? = json[Key.rating] as? String
                 
         let profileImg: String? = json[Key.profileImage] as? String
         let name: String? = json[Key.name] as? String
@@ -56,14 +57,19 @@ extension GuideAPIInteractor {
         let memorableExperiences: String? = json[Key.memorableExperiences] as? String
         let hobbies: String? = json[Key.hobbies] as? String
         let area: Area? = self.convertJSONToArea(json: areaDetails ?? JSON())
+        let rating: Decimal? = Decimal(string: ratingString ?? "")
+        let activeSince: String? = json[Key.activeSince] as? String
         
-        return Guide(userId: userId, email: email, profileImg: profileImg,
-                     name: name, phone: phone, dateJoined: dateJoined, location: area,
-                     sex: sex, daysAvailable: daysAvailable, trails: [],
-                     unavailableDates: unavailableDates, yearsOfExperience: yearsOfExperience,
-                     languages: languages,
-                     accreditations: accreditations, biography: biography,
-                     hobbies: hobbies, memorableExperiences: memorableExperiences)
+        var guide = Guide(userId: userId, email: email, profileImg: profileImg,
+                          name: name, phone: phone, dateJoined: dateJoined, location: area,
+                          sex: sex, daysAvailable: daysAvailable, trails: [],
+                          unavailableDates: unavailableDates, yearsOfExperience: yearsOfExperience,
+                          languages: languages,
+                          accreditations: accreditations, biography: biography,
+                          hobbies: hobbies, memorableExperiences: memorableExperiences)
+        guide.rating = rating ?? Decimal.zero
+        guide.dateJoined = Date.construct(with: activeSince ?? "")
+        return guide
     }
     
     private func getAvailableDays(availabilites: [String]) -> [Days] {
