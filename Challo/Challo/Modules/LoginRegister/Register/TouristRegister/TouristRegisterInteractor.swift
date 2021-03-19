@@ -8,32 +8,17 @@
 class TouristRegisterInteractor: RegisterInteractor, InteractorProtocol {
 
     let networkManager = AlamofireManager.alamofireManager
-    var presenter: RegisterPresenter!
+    weak var presenter: RegisterPresenter!
 
-    private let touristUrl = "/guide"
+    private let registrationLogic = TouristRegistrationLogic()
 
     func register(details: RegistrationDetails) {
-        let json = createRegisterJson(details: details)
-        self.commonRegister(details: json) { [weak self] response in
-            guard let self = self else {
+        registrationLogic.register(details: details) { [weak self] response in
+            if response.error != nil {
+                self?.presenter.showRegisterFailureAlert()
                 return
             }
-            self.registrationProcessCompleted(response: response)
-            guard let json = self.createTouristJson(details: details,
-                                                    certificate: response.certificate) else {
-                return
-            }
-            self.registerUserType(url: self.touristUrl, body: json)
+            self?.registrationProcessCompleted(response: response)
         }
-    }
-
-    private func createTouristJson(details: RegistrationDetails,
-                                   certificate: UserCertificate?) -> JSON? {
-        guard let userId = certificate?.userId else {
-            return nil
-        }
-        var json = JSON()
-        json["userId"] = userId
-        return json
     }
 }

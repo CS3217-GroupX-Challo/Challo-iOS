@@ -9,17 +9,12 @@ protocol LoginPresenter: AnyObject {
     var password: String { get set }
     var isShowingLoginFailureAlert: Bool { get set }
 
-    func makeLoginWithFacebookButton() -> AnyView
     func makeLoginButton() -> AnyView
     func makeRegisterButton() -> AnyView
     func showLoginFailureAlert()
 }
 
 extension LoginPresenter {
-
-    func makeLoginWithFacebookButton() -> AnyView {
-        AnyView(FacebookLoginButton(action: interactor.logInWithFacebook))
-    }
 
     func makeLoginButton() -> AnyView {
         AnyView(

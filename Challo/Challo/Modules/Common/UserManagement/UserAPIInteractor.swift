@@ -32,6 +32,7 @@ extension UserAPIInteractor {
     }
 
     func storeCertificate(certificate: UserCertificate) {
+        print("STORE CERTICICATE IS CALLED")
         let globalState = UserState.globalState
         globalState.loggedIn = true
         globalState.name = certificate.name

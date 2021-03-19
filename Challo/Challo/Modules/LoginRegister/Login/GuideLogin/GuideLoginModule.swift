@@ -17,6 +17,16 @@ final class GuideLoginModule: ViperModuleProtocol {
         presenter.interactor = interactor
         presenter.router = router
         router.presenter = presenter
-        return (view: AnyView(GuideLoginPage(loginPresenter: presenter)), presenter: presenter)
+    
+        let loginLogic = GuideLoginLogic()
+        let registerLogic = GuideRegistrationLogic()
+        let socialInteractor = SocialLoginInteractor(loginLogic: loginLogic,
+                                                     registrationLogic: registerLogic)
+        let socialPresenter = SocialLoginPresenter()
+        socialPresenter.interactor = socialInteractor
+    
+        return (view: AnyView(GuideLoginPage(loginPresenter: presenter,
+                                             socialLoginPresenter: socialPresenter)),
+                presenter: presenter)
     }
 }

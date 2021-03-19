@@ -10,31 +10,15 @@ class GuideRegisterInteractor: RegisterInteractor, InteractorProtocol {
     let networkManager = AlamofireManager.alamofireManager
     weak var presenter: RegisterPresenter!
 
-    private let guideUrl = "/guide"
-
+    private let registrationLogic = GuideRegistrationLogic()
+    
     func register(details: RegistrationDetails) {
-        let json = createRegisterJson(details: details)
-        self.commonRegister(details: json) { [weak self] response in
-            guard let self = self else {
+        registrationLogic.register(details: details) { [weak self] response in
+            if response.error != nil {
+                self?.presenter.showRegisterFailureAlert()
                 return
             }
-            self.registrationProcessCompleted(response: response)
-            guard let json = self.createGuideJson(details: details,
-                                                  certificate: response.certificate) else {
-                return
-            }
-            self.registerUserType(url: self.guideUrl, body: json)
+            self?.registrationProcessCompleted(response: response)
         }
-    }
-
-    private func createGuideJson(details: RegistrationDetails,
-                                 certificate: UserCertificate?) -> JSON? {
-        guard let userId = certificate?.userId else {
-            return nil
-        }
-        var json = createRegisterJson(details: details)
-        json.removeValue(forKey: "password")
-        json["userId"] = userId
-        return json
     }
 }

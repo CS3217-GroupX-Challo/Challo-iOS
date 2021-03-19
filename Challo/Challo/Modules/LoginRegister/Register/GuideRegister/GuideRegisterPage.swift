@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct GuideRegisterPage: View {
-    var loginPresenter: GuideLoginPresenter
+
     @ObservedObject var registerPresenter: GuideRegisterPresenter
+    var socialLoginPresenter: SocialLoginPresenter
 
     var body: some View {
         LoginRegisterContainer {
@@ -20,7 +21,7 @@ struct GuideRegisterPage: View {
                     .bold()
                     .foregroundColor(.themePrimary)
                 HStack {
-                    loginPresenter.makeLoginWithFacebookButton()
+                    socialLoginPresenter.makeLoginWithFacebookButton()
                 }
                 RegisterForm(name: $registerPresenter.name,
                              phone: $registerPresenter.phone,

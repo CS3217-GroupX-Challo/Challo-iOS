@@ -34,6 +34,7 @@ class AlamofireManager: NetworkManager {
               headers: HEADER,
               body: JSON,
               responseHandler: @escaping (JSON, Error?) -> Void) {
+        print("POST CALLED  :\(body)")
         AF.request(concatUrl(url: url),
                    method: .post,
                    parameters: body,

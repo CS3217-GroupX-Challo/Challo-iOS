@@ -8,6 +8,16 @@
 class TouristLoginInteractor: LoginInteractor, InteractorProtocol {
 
     let networkManager = AlamofireManager.alamofireManager
-    let facebookLoginService: FacebookLoginService = FacebookLoginService()
     weak var presenter: LoginPresenter!
+    private let loginLogic = TouristLoginLogic()
+
+    func defaultLogin(email: String, password: String) {
+        loginLogic.login(email: email, password: password) { [weak self] response in
+            if response.error != nil {
+                self?.presenter.showLoginFailureAlert()
+                return
+            }
+            self?.loginProcessCompleted(response: response)
+        }
+    }
 }

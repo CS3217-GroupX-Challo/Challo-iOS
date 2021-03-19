@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct GuideLoginPage: View {
+
     @ObservedObject var loginPresenter: GuideLoginPresenter
+    var socialLoginPresenter: SocialLoginPresenter
 
     var body: some View {
         LoginRegisterContainer {
@@ -19,7 +21,7 @@ struct GuideLoginPage: View {
                     .bold()
                     .foregroundColor(.themePrimary)
                 HStack {
-                    loginPresenter.makeLoginWithFacebookButton()
+                    socialLoginPresenter.makeLoginWithFacebookButton()
                 }
                 LoginForm(email: $loginPresenter.email,
                           password: $loginPresenter.password)

@@ -7,7 +7,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView { () -> AnyView in
             if !userState.loggedIn {
-                let (loginPage, _) = TouristLoginModule.assemble()
+                let (loginPage, _) = GuideLoginModule.assemble()
                 return loginPage
             } else {
                 return AnyView(Text("MOCK HOMEPAGE"))
