@@ -11,7 +11,6 @@ protocol RegisterInteractor: RegisterAPI, AnyObject {
 extension RegisterInteractor {
 
     func registrationProcessCompleted(response: UserAPIResponse) {
-        print("REGISTRATION PROCESS COMPELTED")
         guard let certificate = response.certificate,
               response.success,
               response.error == nil else {

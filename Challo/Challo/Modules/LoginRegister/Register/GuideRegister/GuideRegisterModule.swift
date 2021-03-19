@@ -20,10 +20,8 @@ class GuideRegisterModule: ViperModuleProtocol {
 
         let loginLogic = GuideLoginLogic()
         let registerLogic = GuideRegistrationLogic()
-        let socialInteractor = SocialLoginInteractor(loginLogic: loginLogic,
-                                                     registrationLogic: registerLogic)
-        let socialPresenter = SocialLoginPresenter()
-        socialPresenter.interactor = socialInteractor
+        let socialPresenter = SocialLoginPresenter
+            .createSocialLoginPresenter(loginLogic: loginLogic, registrationLogic: registerLogic)
     
         let registerView = AnyView(GuideRegisterPage(registerPresenter: presenter,
                                                      socialLoginPresenter: socialPresenter))

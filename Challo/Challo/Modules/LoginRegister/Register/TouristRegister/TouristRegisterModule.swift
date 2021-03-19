@@ -20,10 +20,8 @@ final class TouristRegisterModule: ViperModuleProtocol {
 
         let loginLogic = TouristLoginLogic()
         let registerLogic = TouristRegistrationLogic()
-        let socialInteractor = SocialLoginInteractor(loginLogic: loginLogic,
-                                                     registrationLogic: registerLogic)
-        let socialPresenter = SocialLoginPresenter()
-        socialPresenter.interactor = socialInteractor
+        let socialPresenter = SocialLoginPresenter
+            .createSocialLoginPresenter(loginLogic: loginLogic, registrationLogic: registerLogic)
 
         let registerView = AnyView(TouristRegisterPage(registerPresenter: presenter,
                                                        socialLoginPresenter: socialPresenter))
