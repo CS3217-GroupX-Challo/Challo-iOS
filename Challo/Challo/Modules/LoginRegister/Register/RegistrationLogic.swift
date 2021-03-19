@@ -6,6 +6,7 @@
 //
 
 protocol RegistrationLogic: RegisterAPI, AnyObject {
+
     var userTypeUrl: String { get }
     func register(details: RegistrationDetails,
                   callback: @escaping (UserAPIResponse) -> Void)
