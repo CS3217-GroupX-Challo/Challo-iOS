@@ -138,6 +138,8 @@
 		E244A7452606476B003DBD24 /* APINetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244A7442606476B003DBD24 /* APINetwork.swift */; };
 		E254F2562606343E00E25A56 /* TouristAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E254F2552606343E00E25A56 /* TouristAPIParser.swift */; };
 		E254F25E2606346300E25A56 /* TouristAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E254F25D2606346300E25A56 /* TouristAPI.swift */; };
+		E26CBC2826065794005DBD47 /* GuideAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC2726065794005DBD47 /* GuideAPIParserTests.swift */; };
+		E26CBC2D260657C7005DBD47 /* MockGuideAPIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC2C260657C7005DBD47 /* MockGuideAPIResponses.swift */; };
 		E2D8968F25FFAB8A0001B026 /* ChalloTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */; };
 		E2D8969125FFAB8A0001B026 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968C25FFAB8A0001B026 /* Card.swift */; };
 		E2D8969225FFAB8A0001B026 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */; };
@@ -324,6 +326,8 @@
 		E244A7442606476B003DBD24 /* APINetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINetwork.swift; sourceTree = "<group>"; };
 		E254F2552606343E00E25A56 /* TouristAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristAPIParser.swift; sourceTree = "<group>"; };
 		E254F25D2606346300E25A56 /* TouristAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristAPI.swift; sourceTree = "<group>"; };
+		E26CBC2726065794005DBD47 /* GuideAPIParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPIParserTests.swift; sourceTree = "<group>"; };
+		E26CBC2C260657C7005DBD47 /* MockGuideAPIResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGuideAPIResponses.swift; sourceTree = "<group>"; };
 		E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChalloTitle.swift; sourceTree = "<group>"; };
 		E2D8968C25FFAB8A0001B026 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
@@ -900,6 +904,7 @@
 			isa = PBXGroup;
 			children = (
 				E2E2869E26064B9100C058C3 /* MockUserAPIResponses.swift */,
+				E26CBC2C260657C7005DBD47 /* MockGuideAPIResponses.swift */,
 			);
 			path = TestingUtilities;
 			sourceTree = "<group>";
@@ -961,6 +966,7 @@
 			isa = PBXGroup;
 			children = (
 				E2E286C326064BED00C058C3 /* GuideAPITests.swift */,
+				E26CBC2726065794005DBD47 /* GuideAPIParserTests.swift */,
 			);
 			path = Guides;
 			sourceTree = "<group>";
@@ -1535,9 +1541,11 @@
 				E2E286CD26064BEE00C058C3 /* TrailAPITests.swift in Sources */,
 				E2E286BB26064BE400C058C3 /* UserAPIParserTests.swift in Sources */,
 				E2E286CC26064BEE00C058C3 /* AreaAPITests.swift in Sources */,
+				E26CBC2D260657C7005DBD47 /* MockGuideAPIResponses.swift in Sources */,
 				E2E286F126064C0300C058C3 /* GuidesProfileModuleTests.swift in Sources */,
 				E2E286CA26064BEE00C058C3 /* GuideAPITests.swift in Sources */,
 				E2E286EB26064C0300C058C3 /* SocialModuleTests.swift in Sources */,
+				E26CBC2826065794005DBD47 /* GuideAPIParserTests.swift in Sources */,
 				E2E286EA26064C0300C058C3 /* GuideRegisterModuleTests.swift in Sources */,
 				E2E286ED26064C0300C058C3 /* GuideLoginModuleTests.swift in Sources */,
 				E2E286CB26064BEE00C058C3 /* ReviewAPITests.swift in Sources */,
