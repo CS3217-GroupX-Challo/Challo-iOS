@@ -6,58 +6,62 @@
 //
 import SwiftUI
 
-protocol UserAPIInteractor {
+protocol UserAPIInteractor: CertificateManager {
 
+    var networkManager: AlamofireManager { get }
     typealias JSON = AlamofireManager.JSON
-    var api: AlamofireManager { get }
-
-    func parseUser(apiResponse: JSON) -> UserCertificate?
-    func storeCertificate(certificate: UserCertificate)
 }
 
 extension UserAPIInteractor {
 
-    func parseUser(apiResponse: JSON) -> UserCertificate? {
-        guard let data = apiResponse["data"] as? JSON,
-              let name = data["name"] as? String,
-              let userId = data["userId"] as? String,
-              let email = data["email"] as? String,
-              let tokenJson = data["token"] as? JSON,
-              let token = tokenJson["token"] as? String else {
-            print("API response wrong shape: \(apiResponse)")
-            return nil
+    func sendUserPostRequest(url: String,
+                             body: JSON,
+                             callback: @escaping (UserAPIResponse) -> Void) {
+        networkManager.post(url: url,
+                            headers: AlamofireManager.HEADER(),
+                            body: body) { res, err in
+            if let err = err {
+                handleErrorResponse(error: err, callback: callback)
+                return
+            }
+            handleSuccessResponse(response: res, callback: callback)
         }
-        return UserCertificate(name: name,
-                               email: email,
-                               token: token,
-                               userId: userId)
     }
 
-    func storeCertificate(certificate: UserCertificate) {
-        let globalState = UserState.globalState
-        globalState.loggedIn = true
-        globalState.name = certificate.name
-        globalState.email = certificate.email
-        globalState.token = certificate.token
-        globalState.userId = certificate.userId
-        print("LOGGED IN: \(globalState.loggedIn)")
-        print(globalState.email)
+    private func handleErrorResponse(error: Error,
+                                     callback: @escaping (UserAPIResponse) -> Void) {
+        ChalloLogger.logger.log("Error: \(error as NSObject)")
+        let failureResponse = UserAPIResponse(success: false, error: error)
+        callback(failureResponse)
+        return
+    }
+
+    private func handleSuccessResponse(response: JSON,
+                                       callback: @escaping (UserAPIResponse) -> Void) {
+        guard let certificate = self.parseUser(apiResponse: response) else {
+            ChalloLogger.logger.log("Unable to parse api response \(response)")
+            let failureResponse = UserAPIResponse(success: false)
+            callback(failureResponse)
+            return
+        }
+        let successResponse = UserAPIResponse(success: true, certificate: certificate)
+        callback(successResponse)
     }
     
     func convertJSONToTourist(json: JSON) -> Tourist? {
-        guard let userId = UUID(uuidString: json[Key.userId] as? String ?? ""),
-              let email = json[Key.email] as? String,
-              let name = json[Key.email] as? String else {
-            return nil
+            guard let userId = UUID(uuidString: json[Key.userId] as? String ?? ""),
+                  let email = json[Key.email] as? String,
+                  let name = json[Key.email] as? String else {
+                return nil
+            }
+            
+            let profileImg: String? = json[Key.profileImage] as? String
+            let activeSince: Date? = json[Key.activeSince] as? Date
+            let sex: Sex? = Sex(rawValue: json[Key.sex] as? String ?? "")
+            let phone: String? = json[Key.phone] as? String
+            
+            return Tourist(userId: userId, email: email, profileImg: profileImg,
+                           name: name, phone: phone,
+                           dateJoined: activeSince, sex: sex)
         }
-        
-        let profileImg: String? = json[Key.profileImage] as? String
-        let activeSince: Date? = json[Key.activeSince] as? Date
-        let sex: Sex? = Sex(rawValue: json[Key.sex] as? String ?? "")
-        let phone: String? = json[Key.phone] as? String
-        
-        return Tourist(userId: userId, email: email, profileImg: profileImg,
-                       name: name, phone: phone,
-                       dateJoined: activeSince, sex: sex)
-    }
 }
