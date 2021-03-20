@@ -8,13 +8,11 @@
 import Foundation
 import MapKit
 
-protocol TrailAPIInteractor: AreaAPIInteractor {
-    typealias JSON = [String: Any]
-    
-    func parseTrail(response: JSON) -> [Trail]
-}
+class TrailAPIParser {
 
-extension TrailAPIInteractor {
+    typealias JSON = [String: Any]
+    let areaParser = AreaAPIParser()
+
     func parseTrail(response: JSON) -> [Trail] {
         guard let data = response["data"],
               let trailsInfo = data as? [JSON] else {
@@ -29,7 +27,7 @@ extension TrailAPIInteractor {
         }
         return trails
     }
-    
+
     func convertJSONToTrail(json: JSON) -> Trail? {
         guard let trailId = UUID(uuidString: json[Key.trailId] as? String ?? ""),
               let title = json[Key.title] as? String,
@@ -37,7 +35,7 @@ extension TrailAPIInteractor {
               let positionsJSON = json[Key.positions] as? [JSON],
               let distanceString = json[Key.distance] as? String,
               let areaDetails = json[Key.area] as? JSON,
-              let area = self.convertJSONToArea(json: areaDetails) else {
+              let area = areaParser.convertJSONToArea(json: areaDetails) else {
             return nil
         }
         
@@ -68,7 +66,10 @@ extension TrailAPIInteractor {
                      images: images,
                      area: area)
     }
-    
+}
+
+extension TrailAPIParser {
+
     private func convertJSONToCLLCoordinatesArray(json: [JSON]?) -> [CLLocationCoordinate2D] {
         guard let coordinateDetails = json else {
             return []

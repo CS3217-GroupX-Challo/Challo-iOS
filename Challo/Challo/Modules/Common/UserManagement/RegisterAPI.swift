@@ -7,9 +7,13 @@
 
 import Foundation
 
-protocol RegisterAPI: UserAPI, AnyObject {
+protocol RegisterAPI: AnyObject {
 
+    typealias JSON = AlamofireManager.JSON
+    var userAPI: UserAPI { get }
     var userTypeUrl: String { get }
+    var networkManager: AlamofireManager { get }
+
     func register(details: RegistrationDetails,
                   callback: @escaping (UserAPIResponse) -> Void)
     func createUserTypeJSON(details: RegistrationDetails,
@@ -22,7 +26,7 @@ extension RegisterAPI {
     func register(details: RegistrationDetails,
                   callback: @escaping (UserAPIResponse) -> Void) {
         let json = createRegisterJson(details: details)
-        self.commonRegister(details: json) { [weak self] response in
+        self.userAPI.commonRegister(details: json) { [weak self] response in
             guard let self = self else {
                 return
             }

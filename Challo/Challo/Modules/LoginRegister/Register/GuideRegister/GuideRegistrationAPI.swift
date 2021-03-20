@@ -5,9 +5,11 @@
 //  Created by Tan Le Yang on 19/3/21.
 //
 
-class GuideRegistrationAPI: RegisterAPI, GuideAPI {
+class GuideRegistrationAPI: RegisterAPI {
 
-    let userTypeUrl = "/tourist"
+    let guideParser = GuideAPIParser()
+    let userAPI = UserAPI()
+    let userTypeUrl = "/guide"
     let networkManager = AlamofireManager.alamofireManager
 
     func createUserTypeJSON(details: RegistrationDetails, certificate: UserCertificate?) -> JSON? {
@@ -21,7 +23,10 @@ class GuideRegistrationAPI: RegisterAPI, GuideAPI {
     }
 
     func parseUserTypeJSON(json: JSON) -> User? {
-        let guide = convertJSONToGuide(json: json)
+        guard let data = json[Key.data] as? JSON else {
+            return nil
+        }
+        let guide = guideParser.convertJSONToGuide(json: data)
         return guide
     }
 }

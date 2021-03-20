@@ -7,23 +7,13 @@
 
 import Foundation
 
-protocol UserAPI: UserAPIInteractor {
-    func commonLogin(credentials: JSON,
-                     callback: @escaping (UserAPIResponse) -> Void)
-    func commonRegister(details: JSON,
-                        callback: @escaping (UserAPIResponse) -> Void)
-    func getTourist(userId: UUID, callback: @escaping (Tourist) -> Void, url: String)
-}
+class UserAPI {
 
-extension UserAPI {
-
-    var loginUrl: String {
-        "/user/login"
-    }
-
-    var registerUrl: String {
-        "/user/register"
-    }
+    private let loginUrl = "/user/login"
+    private let registerUrl = "/user/register"
+    let networkManager = AlamofireManager.alamofireManager
+    let userParser = UserAPIParser()
+    typealias JSON = AlamofireManager.JSON
 
     func commonLogin(credentials: JSON,
                      callback: @escaping (UserAPIResponse) -> Void) {
@@ -38,24 +28,41 @@ extension UserAPI {
                             body: details,
                             callback: callback)
     }
+}
 
-    func getTourist(userId: UUID, callback: @escaping (Tourist) -> Void, url: String = "/user") {
-        let api = AlamofireManager.alamofireManager
-        api.get(url: url + "/" + userId.uuidString,
-                headers: [String: String]()) { response, error in
-            if error != nil {
+extension UserAPI {
+
+    func sendUserPostRequest(url: String,
+                             body: JSON,
+                             callback: @escaping (UserAPIResponse) -> Void) {
+        networkManager.post(url: url,
+                            headers: AlamofireManager.HEADER(),
+                            body: body) { [weak self] res, err in
+            if let err = err {
+                self?.handleErrorResponse(error: err, callback: callback)
                 return
             }
-            
-            guard let touristInfo = response["data"] as? JSON else {
-                return
-            }
-            
-            guard let tourist = convertJSONToTourist(json: touristInfo) else {
-                return
-            }
-            
-            callback(tourist)
+            self?.handleSuccessResponse(response: res, callback: callback)
         }
+    }
+
+    private func handleErrorResponse(error: Error,
+                                     callback: @escaping (UserAPIResponse) -> Void) {
+        ChalloLogger.logger.log("Error: \(error as NSObject)")
+        let failureResponse = UserAPIResponse(success: false, error: error)
+        callback(failureResponse)
+        return
+    }
+
+    private func handleSuccessResponse(response: JSON,
+                                       callback: @escaping (UserAPIResponse) -> Void) {
+        guard let certificate = userParser.parseUser(apiResponse: response) else {
+            ChalloLogger.logger.log("Unable to parse api response \(response)")
+            let failureResponse = UserAPIResponse(success: false)
+            callback(failureResponse)
+            return
+        }
+        let successResponse = UserAPIResponse(success: true, certificate: certificate)
+        callback(successResponse)
     }
 }

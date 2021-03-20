@@ -6,15 +6,18 @@
 //
 import Foundation
 
-class GuidesListingInteractor: InteractorProtocol, GuideAPI, AreaAPI {
+class GuidesListingInteractor: InteractorProtocol {
+
     typealias JSON = AlamofireManager.JSON
     typealias HEADER = AlamofireManager.HEADER
     weak var presenter: GuidesListingPresenter!
     
     var api = AlamofireManager.alamofireManager
-    
+    let guideAPI = GuideAPI()
+    let areaAPI = AreaAPI()
+
     func populateGuides() {
-        getGuides { [weak self] guides in
+        guideAPI.getGuides { [weak self] guides in
             guard let self = self else {
                 return
             }
@@ -28,7 +31,7 @@ class GuidesListingInteractor: InteractorProtocol, GuideAPI, AreaAPI {
     // varies based on the various locations of guides
     // that are onboard the system
     func getLocationOptions() {
-        getAreas { [weak self] areas in
+        areaAPI.getAreas { [weak self] areas in
             guard let self = self else {
                 return
             }

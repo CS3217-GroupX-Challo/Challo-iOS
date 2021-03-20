@@ -7,9 +7,13 @@
 
 import Foundation
 
-protocol LoginAPI: UserAPI, AnyObject {
+protocol LoginAPI: AnyObject {
 
+    typealias JSON = AlamofireManager.JSON
+    var userAPI: UserAPI { get }
     var userTypeUrl: String { get }
+    var networkManager: AlamofireManager { get }
+
     func login(email: String,
                password: String,
                callback: @escaping (UserAPIResponse) -> Void)
@@ -22,7 +26,7 @@ extension LoginAPI {
                password: String,
                callback: @escaping (UserAPIResponse) -> Void) {
         let json = createLoginJson(email: email, password: password)
-        self.commonLogin(credentials: json, callback: { [weak self] response in
+        userAPI.commonLogin(credentials: json, callback: { [weak self] response in
             guard let self = self else {
                 return
             }

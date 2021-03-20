@@ -7,13 +7,10 @@
 
 import Foundation
 
-protocol ReviewAPIInteractor {
-    typealias JSON = [String: Any]
-    
-    func parseReviews(response: JSON) -> [ReviewState]
-}
+class ReviewAPIParser {
 
-extension ReviewAPIInteractor {
+    typealias JSON = [String: Any]
+
     func parseReviews(response: JSON) -> [ReviewState] {
         guard let data = response["data"],
               let reviewsInfo = data as? [JSON] else {
@@ -28,7 +25,7 @@ extension ReviewAPIInteractor {
         }
         return reviewStates
     }
-    
+
     func convertJSONToReview(json: JSON) -> ReviewState? {
         guard let reviewId = UUID(uuidString: json[Key.reviewId] as? String ?? ""),
               let ratingString = json[Key.rating] as? String,

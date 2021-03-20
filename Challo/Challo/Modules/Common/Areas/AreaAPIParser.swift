@@ -7,13 +7,10 @@
 
 import Foundation
 
-protocol AreaAPIInteractor {
+class AreaAPIParser {
+
     typealias JSON = [String: Any]
     
-    func parseAreas(response: JSON) -> [Area]
-}
-
-extension AreaAPIInteractor {
     func parseAreas(response: JSON) -> [Area] {
         guard let data = response["data"],
               let areasInfo = data as? [JSON] else {
@@ -28,7 +25,7 @@ extension AreaAPIInteractor {
         }
         return areas
     }
-    
+
     func convertJSONToArea(json: JSON) -> Area? {
         guard let areaId = UUID(uuidString: json[Key.areaId] as? String ?? ""),
               let country = json[Key.country] as? String,

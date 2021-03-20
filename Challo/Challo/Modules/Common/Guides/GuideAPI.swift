@@ -6,14 +6,14 @@
 //
 import Foundation
 
-protocol GuideAPI: GuideAPIInteractor, TrailAPIInteractor {
+class GuideAPI {
     // TODO: Add in post/put/delete methods
-    
-    func getGuides(callback: @escaping ([Guide]) -> Void, url: String)
-    func getGuide(guideId: UUID, callback: @escaping (Guide) -> Void, url: String)
-}
 
-extension GuideAPI {
+    typealias JSON = AlamofireManager.JSON
+
+    let guideParser = GuideAPIParser()
+    let trailParser = TrailAPIParser()
+
     func getGuides(callback: @escaping ([Guide]) -> Void, url: String = "/guide") {
         let api = AlamofireManager.alamofireManager
         api.get(url: url,
@@ -22,7 +22,7 @@ extension GuideAPI {
                 return
             }
             
-            let guides = self.parseGuides(response: response)
+            let guides = self.guideParser.parseGuides(response: response)
             var updatedGuidesWithTrail: [Guide] = []
             for var guide in guides {
                 api.get(url: "/guide/trail/" + guide.userId.uuidString,
@@ -30,14 +30,14 @@ extension GuideAPI {
                     if error != nil {
                         return
                     }
-                    guide.trails = parseTrail(response: response)
+                    guide.trails = self.trailParser.parseTrail(response: response)
                     updatedGuidesWithTrail.append(guide)
                     callback(updatedGuidesWithTrail)
                 }
             }
         }
     }
-    
+
     func getGuide(guideId: UUID, callback: @escaping (Guide) -> Void, url: String = "/guide") {
         let api = AlamofireManager.alamofireManager
         api.get(url: url + "/" + guideId.uuidString,
@@ -47,7 +47,7 @@ extension GuideAPI {
             }
             
             guard let guideInfo = response["data"] as? JSON,
-                  let guide = convertJSONToGuide(json: guideInfo) else {
+                  let guide = self.guideParser.convertJSONToGuide(json: guideInfo) else {
                 return
             }
             

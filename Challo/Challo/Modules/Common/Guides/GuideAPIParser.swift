@@ -7,13 +7,11 @@
 
 import Foundation
 
-protocol GuideAPIInteractor: AreaAPIInteractor {
-    typealias JSON = [String: Any]
-    
-    func parseGuides(response: JSON) -> [Guide]
-}
+class GuideAPIParser {
 
-extension GuideAPIInteractor {
+    typealias JSON = [String: Any]
+    let areaParser = AreaAPIParser()
+    
     func parseGuides(response: JSON) -> [Guide] {
         guard let data = response["data"],
               let guidesInfo = data as? [JSON] else {
@@ -30,7 +28,7 @@ extension GuideAPIInteractor {
         
         return guides
     }
-    
+
     func convertJSONToGuide(json: JSON) -> Guide? {
         guard let userId = UUID(uuidString: json[Key.userId] as? String ?? ""),
               let email = json[Key.email] as? String,
@@ -56,7 +54,7 @@ extension GuideAPIInteractor {
         let biography: String? = json[Key.biography] as? String
         let memorableExperiences: String? = json[Key.memorableExperiences] as? String
         let hobbies: String? = json[Key.hobbies] as? String
-        let area: Area? = self.convertJSONToArea(json: areaDetails ?? JSON())
+        let area: Area? = areaParser.convertJSONToArea(json: areaDetails ?? JSON())
         let rating: Decimal? = Decimal(string: ratingString ?? "")
         let activeSince: String? = json[Key.activeSince] as? String
         
@@ -71,7 +69,10 @@ extension GuideAPIInteractor {
         guide.dateJoined = Date.construct(with: activeSince ?? "")
         return guide
     }
-    
+}
+
+extension GuideAPIParser {
+
     private func getAvailableDays(availabilites: [String]) -> [Days] {
         var daysAvailable: [Days] = []
         for availability in availabilites {
@@ -81,7 +82,7 @@ extension GuideAPIInteractor {
         }
         return daysAvailable
     }
-    
+
     private func getSex(sexString: String?) -> Sex? {
         var sex: Sex
         guard let string = sexString else {

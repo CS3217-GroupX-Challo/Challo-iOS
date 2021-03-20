@@ -9,11 +9,13 @@ import Foundation
 
 /// It conforms to trail API and UserAPI as data from reviewAPI is dependent on
 /// the two APIs aforementioned
-protocol ReviewAPI: ReviewAPIInteractor, TrailAPI, UserAPI, GuideAPI {
-    func getReviewsForGuide(guideId: UUID, callback: @escaping ([Review]) -> Void, url: String)
-}
+class ReviewAPI {
 
-extension ReviewAPI {
+    let reviewParser = ReviewAPIParser()
+    let trailAPI = TrailAPI()
+    let touristAPI = TouristAPI()
+    let guideAPI = GuideAPI()
+
     func getReviewsForGuide(guideId: UUID,
                             callback: @escaping ([Review]) -> Void,
                             url: String = "/review?guideId=") {
@@ -23,13 +25,13 @@ extension ReviewAPI {
             if error != nil {
                 return
             }
-            
-            let reviewStates: [ReviewState] = parseReviews(response: response)
+
+            let reviewStates: [ReviewState] = self.reviewParser.parseReviews(response: response)
             var reviews: [Review] = []
             for reviewState in reviewStates {
-                getTrail(trailId: reviewState.trailId) { trail in
-                    getTourist(userId: reviewState.touristId) { tourist in
-                        getGuide(guideId: reviewState.guideId) { guide in
+                self.trailAPI.getTrail(trailId: reviewState.trailId) { trail in
+                    self.touristAPI.getTourist(userId: reviewState.touristId) { tourist in
+                        self.guideAPI.getGuide(guideId: reviewState.guideId) { guide in
                             let review = Review(reviewId: reviewState.reviewId, rating: reviewState.rating,
                                                 comment: reviewState.comment ?? "No comment", guide: guide,
                                                 trail: trail, createdAt: reviewState.createdAt ?? Date(),

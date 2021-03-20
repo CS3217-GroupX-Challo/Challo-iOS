@@ -7,11 +7,10 @@
 
 import Foundation
 
-protocol AreaAPI: AreaAPIInteractor {
-    func getAreas(url: String, callback: @escaping ([Area]) -> Void)
-}
+class AreaAPI {
 
-extension AreaAPI {
+    let areaParser = AreaAPIParser()
+
     func getAreas(url: String = "/area", callback: @escaping ([Area]) -> Void) {
         let api = AlamofireManager.alamofireManager
         api.get(url: url,
@@ -19,7 +18,7 @@ extension AreaAPI {
             if error != nil {
                 return
             }
-            let areas = self.parseAreas(response: response)
+            let areas = self.areaParser.parseAreas(response: response)
             callback(areas)
         }
     }

@@ -6,21 +6,21 @@
 //
 import Foundation
 
-protocol TrailAPI: TrailAPIInteractor {
-    func getTrail(trailId: UUID, callback: @escaping (Trail) -> Void, url: String)
-}
+class TrailAPI {
 
-extension TrailAPI {
+    typealias JSON = AlamofireManager.JSON
+    let parser = TrailAPIParser()
+
     func getTrail(trailId: UUID, callback: @escaping (Trail) -> Void, url: String = "/trail") {
         let api = AlamofireManager.alamofireManager
         api.get(url: url + "/" + trailId.uuidString,
-                headers: [String: String]()) { response, error in
+                headers: [String: String]()) { [weak self] response, error in
             if error != nil {
                 return
             }
             
             guard let trailInfo = response["data"] as? JSON,
-                  let trail = convertJSONToTrail(json: trailInfo) else {
+                  let trail = self?.parser.convertJSONToTrail(json: trailInfo) else {
                 return
             }
             
