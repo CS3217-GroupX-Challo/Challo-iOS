@@ -13,12 +13,8 @@ protocol MockAPIResponse {
 
 extension MockAPIResponse {
     static func removeUserProperty(key: String, json: JSON) -> JSON {
-        guard var data = json["data"] as? JSON else {
-            return JSON()
-        }
-        _ = data.removeValue(forKey: key)
         var newJson = json
-        newJson["data"] = data
+        _ = newJson.removeValue(forKey: key)
         return newJson
     }
 }

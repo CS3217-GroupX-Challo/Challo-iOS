@@ -25,29 +25,29 @@ class UserAPIParserTests: XCTestCase {
     }
 
     func testParseResponse_missingName_failToParse() {
-        let response = removeUserProperty(key: "name", json: Responses.validResponse)
+        let response = removeDataProperty(key: "name", json: Responses.validResponse)
         XCTAssertNil(parser.parseUser(apiResponse: response))
     }
 
     func testParseResponse_missingEmail_failToParse() {
-        let response = removeUserProperty(key: "email", json: Responses.validResponse)
+        let response = removeDataProperty(key: "email", json: Responses.validResponse)
         XCTAssertNil(parser.parseUser(apiResponse: response))
     }
 
     func testParseResponse_missingUserId_failToParse() {
-        let response = removeUserProperty(key: "userId", json: Responses.validResponse)
+        let response = removeDataProperty(key: "userId", json: Responses.validResponse)
         XCTAssertNil(parser.parseUser(apiResponse: response))
     }
 
     func testParseResponse_missingToken_failToParse() {
-        let response = removeUserProperty(key: "token", json: Responses.validResponse)
+        let response = removeDataProperty(key: "token", json: Responses.validResponse)
         XCTAssertNil(parser.parseUser(apiResponse: response))
     }
 }
 
 extension UserAPIParserTests {
 
-    func removeUserProperty(key: String, json: JSON) -> JSON {
+    func removeDataProperty(key: String, json: JSON) -> JSON {
         guard var data = json["data"] as? JSON else {
             XCTFail("JSON not in correct format")
             return JSON()

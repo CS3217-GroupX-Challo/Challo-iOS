@@ -131,6 +131,7 @@
 		AAF0C1E726066EBB00357E94 /* MockTouristAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C1E626066EBB00357E94 /* MockTouristAPIResponse.swift */; };
 		AAF0C1F2260671D100357E94 /* MockAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C1F1260671D100357E94 /* MockAPIResponse.swift */; };
 		AAF0C20526067BD900357E94 /* MockReviewAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C20426067BD900357E94 /* MockReviewAPIResponse.swift */; };
+		AAF0C21B260685E400357E94 /* ReviewAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C21A260685E400357E94 /* ReviewAPIParserTests.swift */; };
 		B0F349AF3CB87F77584434C4 /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC2C4523E0BAD62412B118A /* Pods_Challo.framework */; };
 		D4A670D2B9132DB104111692 /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391AD75BD73BA41A633358D /* Pods_ChalloTests.framework */; };
 		E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234932225FB884F00EC90E9 /* ChalloApp.swift */; };
@@ -144,6 +145,7 @@
 		E254F25E2606346300E25A56 /* TouristAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E254F25D2606346300E25A56 /* TouristAPI.swift */; };
 		E26CBC2826065794005DBD47 /* GuideAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC2726065794005DBD47 /* GuideAPIParserTests.swift */; };
 		E26CBC2D260657C7005DBD47 /* MockGuideAPIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC2C260657C7005DBD47 /* MockGuideAPIResponses.swift */; };
+		E26CBC4226067966005DBD47 /* RegisterPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC4126067966005DBD47 /* RegisterPresenterTests.swift */; };
 		E2D8968F25FFAB8A0001B026 /* ChalloTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */; };
 		E2D8969125FFAB8A0001B026 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968C25FFAB8A0001B026 /* Card.swift */; };
 		E2D8969225FFAB8A0001B026 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */; };
@@ -154,8 +156,6 @@
 		E2D896B525FFABE80001B026 /* Color+ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D896B325FFABE80001B026 /* Color+ThemeColors.swift */; };
 		E2E2869F26064B9100C058C3 /* MockUserAPIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E2869E26064B9100C058C3 /* MockUserAPIResponses.swift */; };
 		E2E286BB26064BE400C058C3 /* UserAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286BA26064BE400C058C3 /* UserAPIParserTests.swift */; };
-		E2E286CA26064BEE00C058C3 /* GuideAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C326064BED00C058C3 /* GuideAPITests.swift */; };
-		E2E286CB26064BEE00C058C3 /* ReviewAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C526064BED00C058C3 /* ReviewAPIParserTests.swift */; };
 		E2E286CC26064BEE00C058C3 /* AreaAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C726064BED00C058C3 /* AreaAPITests.swift */; };
 		E2E286CD26064BEE00C058C3 /* TrailAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C926064BEE00C058C3 /* TrailAPITests.swift */; };
 		E2E286E926064C0300C058C3 /* TouristRegisterModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286D726064C0200C058C3 /* TouristRegisterModuleTests.swift */; };
@@ -318,6 +318,7 @@
 		AAF0C1E626066EBB00357E94 /* MockTouristAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTouristAPIResponse.swift; sourceTree = "<group>"; };
 		AAF0C1F1260671D100357E94 /* MockAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIResponse.swift; sourceTree = "<group>"; };
 		AAF0C20426067BD900357E94 /* MockReviewAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReviewAPIResponse.swift; sourceTree = "<group>"; };
+		AAF0C21A260685E400357E94 /* ReviewAPIParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewAPIParserTests.swift; sourceTree = "<group>"; };
 		B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234931F25FB884F00EC90E9 /* Challo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234932225FB884F00EC90E9 /* ChalloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloApp.swift; sourceTree = "<group>"; };
@@ -336,6 +337,7 @@
 		E254F25D2606346300E25A56 /* TouristAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristAPI.swift; sourceTree = "<group>"; };
 		E26CBC2726065794005DBD47 /* GuideAPIParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPIParserTests.swift; sourceTree = "<group>"; };
 		E26CBC2C260657C7005DBD47 /* MockGuideAPIResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGuideAPIResponses.swift; sourceTree = "<group>"; };
+		E26CBC4126067966005DBD47 /* RegisterPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenterTests.swift; sourceTree = "<group>"; };
 		E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChalloTitle.swift; sourceTree = "<group>"; };
 		E2D8968C25FFAB8A0001B026 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
@@ -346,8 +348,6 @@
 		E2D896B325FFABE80001B026 /* Color+ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+ThemeColors.swift"; sourceTree = "<group>"; };
 		E2E2869E26064B9100C058C3 /* MockUserAPIResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserAPIResponses.swift; sourceTree = "<group>"; };
 		E2E286BA26064BE400C058C3 /* UserAPIParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAPIParserTests.swift; sourceTree = "<group>"; };
-		E2E286C326064BED00C058C3 /* GuideAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideAPITests.swift; sourceTree = "<group>"; };
-		E2E286C526064BED00C058C3 /* ReviewAPIParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewAPIParserTests.swift; sourceTree = "<group>"; };
 		E2E286C726064BED00C058C3 /* AreaAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaAPITests.swift; sourceTree = "<group>"; };
 		E2E286C926064BEE00C058C3 /* TrailAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailAPITests.swift; sourceTree = "<group>"; };
 		E2E286D726064C0200C058C3 /* TouristRegisterModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristRegisterModuleTests.swift; sourceTree = "<group>"; };
@@ -985,7 +985,6 @@
 		E2E286C226064BED00C058C3 /* Guides */ = {
 			isa = PBXGroup;
 			children = (
-				E2E286C326064BED00C058C3 /* GuideAPITests.swift */,
 				E26CBC2726065794005DBD47 /* GuideAPIParserTests.swift */,
 			);
 			path = Guides;
@@ -994,7 +993,7 @@
 		E2E286C426064BED00C058C3 /* Reviews */ = {
 			isa = PBXGroup;
 			children = (
-				E2E286C526064BED00C058C3 /* ReviewAPIParserTests.swift */,
+				AAF0C21A260685E400357E94 /* ReviewAPIParserTests.swift */,
 			);
 			path = Reviews;
 			sourceTree = "<group>";
@@ -1030,6 +1029,7 @@
 			children = (
 				E2E286D626064C0200C058C3 /* TouristRegister */,
 				E2E286D826064C0200C058C3 /* GuideRegister */,
+				E26CBC4126067966005DBD47 /* RegisterPresenterTests.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -1565,12 +1565,12 @@
 				E2E286CC26064BEE00C058C3 /* AreaAPITests.swift in Sources */,
 				E26CBC2D260657C7005DBD47 /* MockGuideAPIResponses.swift in Sources */,
 				E2E286F126064C0300C058C3 /* GuidesProfileModuleTests.swift in Sources */,
-				E2E286CA26064BEE00C058C3 /* GuideAPITests.swift in Sources */,
+				E26CBC4226067966005DBD47 /* RegisterPresenterTests.swift in Sources */,
 				E2E286EB26064C0300C058C3 /* SocialModuleTests.swift in Sources */,
 				E26CBC2826065794005DBD47 /* GuideAPIParserTests.swift in Sources */,
+				AAF0C21B260685E400357E94 /* ReviewAPIParserTests.swift in Sources */,
 				E2E286EA26064C0300C058C3 /* GuideRegisterModuleTests.swift in Sources */,
 				E2E286ED26064C0300C058C3 /* GuideLoginModuleTests.swift in Sources */,
-				E2E286CB26064BEE00C058C3 /* ReviewAPIParserTests.swift in Sources */,
 				E2E2869F26064B9100C058C3 /* MockUserAPIResponses.swift in Sources */,
 				E2E286EC26064C0300C058C3 /* LoginPresenterTests.swift in Sources */,
 				E2E286E926064C0300C058C3 /* TouristRegisterModuleTests.swift in Sources */,

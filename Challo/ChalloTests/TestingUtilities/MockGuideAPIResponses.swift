@@ -8,7 +8,7 @@
 import Foundation
 @testable import Challo
 
-struct MockGuideAPIResponses {
+struct MockGuideAPIResponses: MockAPIResponse {
 
     typealias JSON = NetworkManager.JSON
 
@@ -60,7 +60,7 @@ struct MockGuideAPIResponses {
     static let name = "Guide"
     static let phone = "12345678"
 
-    static var validJSON: JSON {
+    static var validGuideJSON: JSON {
         var json = JSON()
         json[Key.phone] = phone
         json[Key.name] = name
@@ -83,6 +83,13 @@ struct MockGuideAPIResponses {
         json[Key.userId] = userId
         json[Key.nickname] = nickname
         json[Key.hobbies] = hobbies
+        return json
+    }
+
+    static var validResponse: JSON {
+        var json = JSON()
+        json["message"] = "Guide found"
+        json["data"] = validGuideJSON
         return json
     }
 

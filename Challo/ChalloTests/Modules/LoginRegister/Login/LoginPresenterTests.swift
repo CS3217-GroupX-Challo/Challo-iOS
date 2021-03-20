@@ -11,13 +11,13 @@ import SwiftUI
 
 class LoginPresenterTests: XCTestCase {
 
-    private var presenter: LoginPresenterMock!
+    private var presenter: LoginPresenterImplementation!
     private var interactor: LoginInteractorMock!
     private var router: LoginRouterMock!
 
     override func setUp() {
         super.setUp()
-        let presenter = LoginPresenterMock()
+        let presenter = LoginPresenterImplementation()
         let interactor = LoginInteractorMock()
         let router = LoginRouterMock()
 
@@ -46,7 +46,7 @@ class LoginPresenterTests: XCTestCase {
     }
 }
 
-private class LoginPresenterMock: LoginPresenter {
+private class LoginPresenterImplementation: LoginPresenter {
 
     var interactor: LoginInteractor!
     

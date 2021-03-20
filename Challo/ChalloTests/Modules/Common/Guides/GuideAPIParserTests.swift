@@ -14,20 +14,18 @@ class GuideAPIParserTests: XCTestCase {
     private let parser = GuideAPIParser()
 
     func testConvertJSONToGuide_validJSON_successfullyParsed() throws {
-        let json = Responses.validJSON
+        let json = Responses.validGuideJSON
         let guide = try XCTUnwrap(parser.convertJSONToGuide(json: json))
         compareParsedGuide(guide: guide)
     }
 
     func testConvertJSONToGuide_missingUserID_returnsNil() {
-        var json = Responses.validJSON
-        json.removeValue(forKey: Key.userId)
+        let json = Responses.removeUserProperty(key: Key.userId, json: Responses.validGuideJSON)
         XCTAssertNil(parser.convertJSONToGuide(json: json))
     }
 
     func testConvertJSONToGuide_missingEmail_returnsNil() {
-        var json = Responses.validJSON
-        json.removeValue(forKey: Key.email)
+        let json = Responses.removeUserProperty(key: Key.email, json: Responses.validGuideJSON)
         XCTAssertNil(parser.convertJSONToGuide(json: json))
     }
 }
