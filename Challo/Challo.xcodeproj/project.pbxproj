@@ -147,7 +147,7 @@
 		E2D896B425FFABE80001B026 /* Image+ImageAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D896B225FFABE80001B026 /* Image+ImageAssets.swift */; };
 		E2D896B525FFABE80001B026 /* Color+ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D896B325FFABE80001B026 /* Color+ThemeColors.swift */; };
 		E2E2869F26064B9100C058C3 /* MockUserAPIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E2869E26064B9100C058C3 /* MockUserAPIResponses.swift */; };
-		E2E286BB26064BE400C058C3 /* CertificateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286BA26064BE400C058C3 /* CertificateManagerTests.swift */; };
+		E2E286BB26064BE400C058C3 /* UserAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286BA26064BE400C058C3 /* UserAPIParserTests.swift */; };
 		E2E286CA26064BEE00C058C3 /* GuideAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C326064BED00C058C3 /* GuideAPITests.swift */; };
 		E2E286CB26064BEE00C058C3 /* ReviewAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C526064BED00C058C3 /* ReviewAPITests.swift */; };
 		E2E286CC26064BEE00C058C3 /* AreaAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C726064BED00C058C3 /* AreaAPITests.swift */; };
@@ -333,7 +333,7 @@
 		E2D896B225FFABE80001B026 /* Image+ImageAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+ImageAssets.swift"; sourceTree = "<group>"; };
 		E2D896B325FFABE80001B026 /* Color+ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+ThemeColors.swift"; sourceTree = "<group>"; };
 		E2E2869E26064B9100C058C3 /* MockUserAPIResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserAPIResponses.swift; sourceTree = "<group>"; };
-		E2E286BA26064BE400C058C3 /* CertificateManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertificateManagerTests.swift; sourceTree = "<group>"; };
+		E2E286BA26064BE400C058C3 /* UserAPIParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAPIParserTests.swift; sourceTree = "<group>"; };
 		E2E286C326064BED00C058C3 /* GuideAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideAPITests.swift; sourceTree = "<group>"; };
 		E2E286C526064BED00C058C3 /* ReviewAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewAPITests.swift; sourceTree = "<group>"; };
 		E2E286C726064BED00C058C3 /* AreaAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaAPITests.swift; sourceTree = "<group>"; };
@@ -952,7 +952,7 @@
 		E2E286B926064BE400C058C3 /* UserManagement */ = {
 			isa = PBXGroup;
 			children = (
-				E2E286BA26064BE400C058C3 /* CertificateManagerTests.swift */,
+				E2E286BA26064BE400C058C3 /* UserAPIParserTests.swift */,
 			);
 			path = UserManagement;
 			sourceTree = "<group>";
@@ -1533,7 +1533,7 @@
 			files = (
 				E2E286EE26064C0300C058C3 /* TouristLoginModuleTests.swift in Sources */,
 				E2E286CD26064BEE00C058C3 /* TrailAPITests.swift in Sources */,
-				E2E286BB26064BE400C058C3 /* CertificateManagerTests.swift in Sources */,
+				E2E286BB26064BE400C058C3 /* UserAPIParserTests.swift in Sources */,
 				E2E286CC26064BEE00C058C3 /* AreaAPITests.swift in Sources */,
 				E2E286F126064C0300C058C3 /* GuidesProfileModuleTests.swift in Sources */,
 				E2E286CA26064BEE00C058C3 /* GuideAPITests.swift in Sources */,

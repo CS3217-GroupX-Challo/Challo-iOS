@@ -8,16 +8,16 @@
 import XCTest
 @testable import Challo
 
-class CertificateManagerTests: XCTestCase {
+class UserAPIParserTests: XCTestCase {
 
-    typealias JSON = AlamofireManager.JSON
+    typealias JSON = NetworkManager.JSON
     typealias Responses = MockUserAPIResponses
 
-    let manager = Manager()
+    let parser = UserAPIParser()
 
     func testParseResponse_validResponse_successfullyParsed() throws {
         let response = Responses.validResponse
-        let certificate = try XCTUnwrap(manager.parseUser(apiResponse: response))
+        let certificate = try XCTUnwrap(parser.parseUser(apiResponse: response))
         XCTAssertEqual(Responses.name, certificate.name)
         XCTAssertEqual(Responses.email, certificate.email)
         XCTAssertEqual(Responses.tokenString, certificate.token)
@@ -26,26 +26,26 @@ class CertificateManagerTests: XCTestCase {
 
     func testParseResponse_missingName_failToParse() {
         let response = removeUserProperty(key: "name", json: Responses.validResponse)
-        XCTAssertNil(manager.parseUser(apiResponse: response))
+        XCTAssertNil(parser.parseUser(apiResponse: response))
     }
 
     func testParseResponse_missingEmail_failToParse() {
         let response = removeUserProperty(key: "email", json: Responses.validResponse)
-        XCTAssertNil(manager.parseUser(apiResponse: response))
+        XCTAssertNil(parser.parseUser(apiResponse: response))
     }
 
     func testParseResponse_missingUserId_failToParse() {
         let response = removeUserProperty(key: "userId", json: Responses.validResponse)
-        XCTAssertNil(manager.parseUser(apiResponse: response))
+        XCTAssertNil(parser.parseUser(apiResponse: response))
     }
 
     func testParseResponse_missingToken_failToParse() {
         let response = removeUserProperty(key: "token", json: Responses.validResponse)
-        XCTAssertNil(manager.parseUser(apiResponse: response))
+        XCTAssertNil(parser.parseUser(apiResponse: response))
     }
 }
 
-extension CertificateManagerTests {
+extension UserAPIParserTests {
 
     func removeUserProperty(key: String, json: JSON) -> JSON {
         guard var data = json["data"] as? JSON else {
@@ -58,8 +58,4 @@ extension CertificateManagerTests {
         return newJson
     }
         
-}
-
-struct Manager: CertificateManager {
-    
 }

@@ -9,7 +9,7 @@
 
 struct MockUserAPIResponses {
 
-    typealias JSON = AlamofireManager.JSON
+    typealias JSON = NetworkManager.JSON
 
     static let email = "test@email.com"
     static let userId = "test12345"
