@@ -19,6 +19,7 @@ class UserState: ObservableObject {
     @AppStorage("name") var name = ""
     @AppStorage("token") var token = ""
     @AppStorage("userId") var userId = ""
+    var user: User?
 
     static let globalState = globalInstance
     private static let globalInstance = UserState()

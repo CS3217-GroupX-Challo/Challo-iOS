@@ -38,6 +38,7 @@ extension CertificateManager {
         globalState.email = certificate.email
         globalState.token = certificate.token
         globalState.userId = certificate.userId
+        globalState.user = certificate.user
         ChalloLogger.logger.log("Logged in: \(globalState.loggedIn)")
         ChalloLogger.logger.log("Name: \(globalState.name)")
     }

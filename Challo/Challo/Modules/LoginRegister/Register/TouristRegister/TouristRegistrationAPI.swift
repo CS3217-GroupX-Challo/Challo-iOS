@@ -18,4 +18,9 @@ class TouristRegistrationAPI: RegisterAPI {
         json["userId"] = userId
         return json
     }
+
+    func parseUserTypeJSON(json: JSON) -> User? {
+        let tourist = convertJSONToTourist(json: json)
+        return tourist
+    }
 }

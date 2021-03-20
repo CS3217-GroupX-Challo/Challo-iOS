@@ -5,6 +5,8 @@
 //  Created by Tan Le Yang on 18/3/21.
 //
 
+import Foundation
+
 protocol RegisterAPI: UserAPI, AnyObject {
 
     var userTypeUrl: String { get }
@@ -12,6 +14,7 @@ protocol RegisterAPI: UserAPI, AnyObject {
                   callback: @escaping (UserAPIResponse) -> Void)
     func createUserTypeJSON(details: RegistrationDetails,
                             certificate: UserCertificate?) -> JSON?
+    func parseUserTypeJSON(json: JSON) -> User?
 }
 
 extension RegisterAPI {
@@ -34,13 +37,30 @@ extension RegisterAPI {
             }
 
             self.registerUserType(url: self.userTypeUrl,
-                                  body: json) { err in
+                                  body: json) { res, err in
                 if err != nil {
                     callback(UserAPIResponse(success: false, error: err))
-                    return
                 }
-                callback(response)
+                
+                let user = self.parseUserTypeJSON(json: res)
+                var newResponse = response
+                newResponse.certificate?.user = user
+                callback(newResponse)
             }
+        }
+    }
+
+    func registerUserType(url: String,
+                          body: JSON,
+                          callback: @escaping (JSON, Error?) -> Void) {
+        networkManager.post(url: url,
+                            headers: AlamofireManager.HEADER(),
+                            body: body) { res, err in
+            if let err = err {
+                ChalloLogger.logger.log("Failed to create specific user type \(err as NSObject)")
+                callback(res, err)
+            }
+            callback(res, nil)
         }
     }
 

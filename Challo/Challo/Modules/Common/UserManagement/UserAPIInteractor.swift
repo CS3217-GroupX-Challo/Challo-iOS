@@ -63,5 +63,5 @@ extension UserAPIInteractor {
             return Tourist(userId: userId, email: email, profileImg: profileImg,
                            name: name, phone: phone,
                            dateJoined: activeSince, sex: sex)
-        }
+    }
 }

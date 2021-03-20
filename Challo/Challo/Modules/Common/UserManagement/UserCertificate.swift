@@ -10,4 +10,5 @@ struct UserCertificate {
     var email: String
     var token: String
     var userId: String
+    var user: User?
 }
