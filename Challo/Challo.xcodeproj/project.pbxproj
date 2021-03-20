@@ -140,6 +140,7 @@
 		E254F25E2606346300E25A56 /* TouristAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E254F25D2606346300E25A56 /* TouristAPI.swift */; };
 		E26CBC2826065794005DBD47 /* GuideAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC2726065794005DBD47 /* GuideAPIParserTests.swift */; };
 		E26CBC2D260657C7005DBD47 /* MockGuideAPIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC2C260657C7005DBD47 /* MockGuideAPIResponses.swift */; };
+		E26CBC4226067966005DBD47 /* RegisterPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC4126067966005DBD47 /* RegisterPresenterTests.swift */; };
 		E2D8968F25FFAB8A0001B026 /* ChalloTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */; };
 		E2D8969125FFAB8A0001B026 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968C25FFAB8A0001B026 /* Card.swift */; };
 		E2D8969225FFAB8A0001B026 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */; };
@@ -328,6 +329,7 @@
 		E254F25D2606346300E25A56 /* TouristAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristAPI.swift; sourceTree = "<group>"; };
 		E26CBC2726065794005DBD47 /* GuideAPIParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPIParserTests.swift; sourceTree = "<group>"; };
 		E26CBC2C260657C7005DBD47 /* MockGuideAPIResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGuideAPIResponses.swift; sourceTree = "<group>"; };
+		E26CBC4126067966005DBD47 /* RegisterPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenterTests.swift; sourceTree = "<group>"; };
 		E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChalloTitle.swift; sourceTree = "<group>"; };
 		E2D8968C25FFAB8A0001B026 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
@@ -1010,6 +1012,7 @@
 			children = (
 				E2E286D626064C0200C058C3 /* TouristRegister */,
 				E2E286D826064C0200C058C3 /* GuideRegister */,
+				E26CBC4126067966005DBD47 /* RegisterPresenterTests.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -1544,6 +1547,7 @@
 				E26CBC2D260657C7005DBD47 /* MockGuideAPIResponses.swift in Sources */,
 				E2E286F126064C0300C058C3 /* GuidesProfileModuleTests.swift in Sources */,
 				E2E286CA26064BEE00C058C3 /* GuideAPITests.swift in Sources */,
+				E26CBC4226067966005DBD47 /* RegisterPresenterTests.swift in Sources */,
 				E2E286EB26064C0300C058C3 /* SocialModuleTests.swift in Sources */,
 				E26CBC2826065794005DBD47 /* GuideAPIParserTests.swift in Sources */,
 				E2E286EA26064C0300C058C3 /* GuideRegisterModuleTests.swift in Sources */,
