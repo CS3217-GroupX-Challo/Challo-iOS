@@ -29,6 +29,8 @@
 		84541D0826065C510039F195 /* BlogWriterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84541D0126065C510039F195 /* BlogWriterInteractor.swift */; };
 		84541D0A26065C510039F195 /* BlogWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84541D0326065C510039F195 /* BlogWriter.swift */; };
 		84541D0B26065C510039F195 /* BlogWriterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84541D0426065C510039F195 /* BlogWriterPresenter.swift */; };
+		845814832606AAF0006A5D5F /* BlogWriterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845814822606AAF0006A5D5F /* BlogWriterButton.swift */; };
+		845814892606AB50006A5D5F /* BlogPostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845814882606AB50006A5D5F /* BlogPostTests.swift */; };
 		99EE910BF070DD5F6845522E /* Pods_Challo_ChalloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */; };
 		AA2CE55D260490F50019C328 /* GuideReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE55C260490F50019C328 /* GuideReviewCard.swift */; };
 		AA2CE5622604C14B0019C328 /* TrailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5612604C14B0019C328 /* TrailAPI.swift */; };
@@ -218,6 +220,8 @@
 		84541D0126065C510039F195 /* BlogWriterInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogWriterInteractor.swift; sourceTree = "<group>"; };
 		84541D0326065C510039F195 /* BlogWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogWriter.swift; sourceTree = "<group>"; };
 		84541D0426065C510039F195 /* BlogWriterPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogWriterPresenter.swift; sourceTree = "<group>"; };
+		845814822606AAF0006A5D5F /* BlogWriterButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogWriterButton.swift; sourceTree = "<group>"; };
+		845814882606AB50006A5D5F /* BlogPostTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogPostTests.swift; sourceTree = "<group>"; };
 		AA2CE55C260490F50019C328 /* GuideReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideReviewCard.swift; sourceTree = "<group>"; };
 		AA2CE5612604C14B0019C328 /* TrailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailAPI.swift; sourceTree = "<group>"; };
 		AA2CE5662604C7D90019C328 /* GuideAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPI.swift; sourceTree = "<group>"; };
@@ -457,11 +461,20 @@
 			isa = PBXGroup;
 			children = (
 				84541CFF26065C510039F195 /* BlogPost.swift */,
+				845814822606AAF0006A5D5F /* BlogWriterButton.swift */,
 				84541D0326065C510039F195 /* BlogWriter.swift */,
 				84541D0126065C510039F195 /* BlogWriterInteractor.swift */,
 				84541D0426065C510039F195 /* BlogWriterPresenter.swift */,
 				84541CFE26065C510039F195 /* BlogWriterRouter.swift */,
 				84541D0026065C510039F195 /* BlogWriterModule.swift */,
+			);
+			path = Blog;
+			sourceTree = "<group>";
+		};
+		845814872606AB36006A5D5F /* Blog */ = {
+			isa = PBXGroup;
+			children = (
+				845814882606AB50006A5D5F /* BlogPostTests.swift */,
 			);
 			path = Blog;
 			sourceTree = "<group>";
@@ -961,6 +974,7 @@
 				E2E286E426064C0300C058C3 /* Guides */,
 				E2E286D426064C0200C058C3 /* LoginRegister */,
 				E2E286E226064C0300C058C3 /* Map */,
+				845814872606AB36006A5D5F /* Blog */,
 				E2E286B826064BD200C058C3 /* Common */,
 			);
 			path = Modules;
@@ -1559,6 +1573,7 @@
 				E2D8969925FFABA10001B026 /* BorderedButtonStyle.swift in Sources */,
 				AAF0C08F2605B14600357E94 /* LoginPresenter.swift in Sources */,
 				AAF0C0712605B14600357E94 /* TouristRegisterPresenter.swift in Sources */,
+				845814832606AAF0006A5D5F /* BlogWriterButton.swift in Sources */,
 				AAF0C08A2605B14600357E94 /* GuideLoginPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1576,6 +1591,7 @@
 				E2E286EB26064C0300C058C3 /* SocialModuleTests.swift in Sources */,
 				E2E286EA26064C0300C058C3 /* GuideRegisterModuleTests.swift in Sources */,
 				E2E286ED26064C0300C058C3 /* GuideLoginModuleTests.swift in Sources */,
+				845814892606AB50006A5D5F /* BlogPostTests.swift in Sources */,
 				E2E286CB26064BEE00C058C3 /* ReviewAPITests.swift in Sources */,
 				E2E2869F26064B9100C058C3 /* MockUserAPIResponses.swift in Sources */,
 				E2E286EC26064C0300C058C3 /* LoginPresenterTests.swift in Sources */,

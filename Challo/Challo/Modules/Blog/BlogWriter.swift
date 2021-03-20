@@ -21,6 +21,24 @@ struct BlogWriter: View {
                 .font(.title)
 
             RoundedTextEditor($presenter.blogBody, placeholder: "Enter text")
+
+            buttons
+        }
+        .padding()
+        .alert(isPresented: $presenter.savingEnabled, content: {
+            Alert(title: Text("Not so fast!"),
+                  message: Text("Your post needs to at least have a title!"),
+                  dismissButton: .default(Text("Ok")))
+        })
+    }
+
+    private var buttons: some View {
+        HStack {
+            BlogWriterButton(action: presenter.saveBlogDraft, title: "Save Draft")
+
+            Spacer()
+
+            BlogWriterButton(action: presenter.publish, title: "Publish")
         }
         .padding()
     }

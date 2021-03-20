@@ -17,19 +17,26 @@ class BlogWriterPresenter: PresenterProtocol {
     }
     var router: BlogWriterRouter?
 
-    @Published var blogTitle: String = "" {
+    @Published var blogTitle = "" {
         didSet {
             interactor.updateBlog(title: blogTitle)
+            savingEnabled = interactor.isValidBlogPostTitle
         }
     }
-    @Published var blogBody: String = "" {
+    @Published var blogBody = "" {
         didSet {
             interactor.updateBlog(body: blogBody)
         }
     }
 
-    func saveBlogDraft() {
+    @Published var savingEnabled = false
 
+    func saveBlogDraft() {
+        // TODO: Implement persistence
+    }
+
+    func publish() {
+        // TODO: Implement API
     }
 
 }

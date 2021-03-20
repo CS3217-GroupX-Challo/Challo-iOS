@@ -16,7 +16,8 @@ class BlogWriterInteractor: InteractorProtocol {
         if let blogPost = blogPost {
             self.blogPost = blogPost
         } else {
-            self.blogPost = BlogPost(author: UUID())
+            let loggedInUser = UserState.globalState
+            self.blogPost = BlogPost(author: loggedInUser)
         }
     }
 
@@ -27,6 +28,10 @@ class BlogWriterInteractor: InteractorProtocol {
         if let newBody = body {
             blogPost.body = newBody
         }
+    }
+
+    var isValidBlogPostTitle: Bool {
+        blogPost.isValidTitle
     }
 
 }
