@@ -9,39 +9,22 @@ protocol LoginPresenter: AnyObject {
     var password: String { get set }
     var isShowingLoginFailureAlert: Bool { get set }
 
-    func makeLoginButton() -> AnyView
-    func makeRegisterButton() -> AnyView
+    func login()
+    func getRegistrationPage() -> AnyView
     func showLoginFailureAlert()
 }
 
 extension LoginPresenter {
 
-    func makeLoginButton() -> AnyView {
-        AnyView(
-            Button(action: { [weak self] in
-                guard let self = self else {
-                    return
-                }
-                self.interactor.defaultLogin(email: self.email, password: self.password)
-            }, label: {
-                Text("SIGN IN")
-                    .bold()
-            }).buttonStyle(BorderedButtonStyle(borderColor: .themePrimary,
-                                               foregroundColor: .themePrimary))
-        )
+    func login() {
+        self.interactor.defaultLogin(email: self.email, password: self.password)
     }
 
-    func makeRegisterButton() -> AnyView {
+    func getRegistrationPage() -> AnyView {
         guard let router = self.router else {
             fatalError("LoginRouter not setup")
         }
-        return AnyView(
-            NavigationLink(destination: router.getRegistrationPage()) {
-                Text("SIGN UP")
-                    .bold()
-            }.buttonStyle(BorderedButtonStyle(borderColor: .themePrimary,
-                                              foregroundColor: .themePrimary))
-        )
+        return router.getRegistrationPage()
     }
 
     func showLoginFailureAlert() {

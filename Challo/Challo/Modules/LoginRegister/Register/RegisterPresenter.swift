@@ -10,19 +10,11 @@ protocol RegisterPresenter: AnyObject {
     var password: String { get set }
     var isShowingRegisterFailureAlert: Bool { get set }
 
-    func makeRegisterButton() -> AnyView
     func submitRegistration()
     func showRegisterFailureAlert()
 }
 
 extension RegisterPresenter {
-
-    func makeRegisterButton() -> AnyView {
-        AnyView(Button(action: submitRegistration, label: {
-            Text("SIGN UP")
-                .bold()
-        }).buttonStyle(BorderedButtonStyle(borderColor: .themePrimary, foregroundColor: .themeForeground)))
-    }
 
     func submitRegistration() {
         let registrationDetails = RegistrationDetails(name: name,

@@ -22,7 +22,7 @@ class SocialLoginPresenter {
         return SocialLoginPresenter(interactor: interactor)
     }
 
-    func makeLoginWithFacebookButton() -> AnyView {
-        AnyView(FacebookLoginButton(action: interactor.loginWithFacebook))
+    func loginWithFacebook() {
+        interactor.loginWithFacebook()
     }
 }

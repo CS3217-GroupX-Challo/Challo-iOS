@@ -21,13 +21,13 @@ struct GuideRegisterPage: View {
                     .bold()
                     .foregroundColor(.themePrimary)
                 HStack {
-                    socialLoginPresenter.makeLoginWithFacebookButton()
+                    FacebookLoginButton(action: socialLoginPresenter.loginWithFacebook)
                 }
                 RegisterForm(name: $registerPresenter.name,
                              phone: $registerPresenter.phone,
                              email: $registerPresenter.email,
                              password: $registerPresenter.password)
-                registerPresenter.makeRegisterButton()
+                RegisterButton(presenter: registerPresenter)
             }
         }
         .alert(isPresented: $registerPresenter.isShowingRegisterFailureAlert) {

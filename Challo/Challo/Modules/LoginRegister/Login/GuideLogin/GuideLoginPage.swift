@@ -21,13 +21,13 @@ struct GuideLoginPage: View {
                     .bold()
                     .foregroundColor(.themePrimary)
                 HStack {
-                    socialLoginPresenter.makeLoginWithFacebookButton()
+                    FacebookLoginButton(action: socialLoginPresenter.loginWithFacebook)
                 }
                 LoginForm(email: $loginPresenter.email,
                           password: $loginPresenter.password)
                 HStack {
-                    loginPresenter.makeRegisterButton()
-                    loginPresenter.makeLoginButton()
+                    RegisterNavigationButton(presenter: loginPresenter)
+                    LoginButton(presenter: loginPresenter)
                 }
             }
         }
