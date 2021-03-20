@@ -146,6 +146,21 @@
 		E2D896AD25FFABD70001B026 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D896AC25FFABD70001B026 /* ContainerView.swift */; };
 		E2D896B425FFABE80001B026 /* Image+ImageAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D896B225FFABE80001B026 /* Image+ImageAssets.swift */; };
 		E2D896B525FFABE80001B026 /* Color+ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D896B325FFABE80001B026 /* Color+ThemeColors.swift */; };
+		E2E2869F26064B9100C058C3 /* MockUserAPIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E2869E26064B9100C058C3 /* MockUserAPIResponses.swift */; };
+		E2E286BB26064BE400C058C3 /* CertificateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286BA26064BE400C058C3 /* CertificateManagerTests.swift */; };
+		E2E286CA26064BEE00C058C3 /* GuideAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C326064BED00C058C3 /* GuideAPITests.swift */; };
+		E2E286CB26064BEE00C058C3 /* ReviewAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C526064BED00C058C3 /* ReviewAPITests.swift */; };
+		E2E286CC26064BEE00C058C3 /* AreaAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C726064BED00C058C3 /* AreaAPITests.swift */; };
+		E2E286CD26064BEE00C058C3 /* TrailAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C926064BEE00C058C3 /* TrailAPITests.swift */; };
+		E2E286E926064C0300C058C3 /* TouristRegisterModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286D726064C0200C058C3 /* TouristRegisterModuleTests.swift */; };
+		E2E286EA26064C0300C058C3 /* GuideRegisterModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286D926064C0200C058C3 /* GuideRegisterModuleTests.swift */; };
+		E2E286EB26064C0300C058C3 /* SocialModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286DB26064C0200C058C3 /* SocialModuleTests.swift */; };
+		E2E286EC26064C0300C058C3 /* LoginPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286DD26064C0200C058C3 /* LoginPresenterTests.swift */; };
+		E2E286ED26064C0300C058C3 /* GuideLoginModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286DF26064C0200C058C3 /* GuideLoginModuleTests.swift */; };
+		E2E286EE26064C0300C058C3 /* TouristLoginModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286E126064C0200C058C3 /* TouristLoginModuleTests.swift */; };
+		E2E286EF26064C0300C058C3 /* MapModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286E326064C0300C058C3 /* MapModuleTests.swift */; };
+		E2E286F026064C0300C058C3 /* GuidesListingModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286E626064C0300C058C3 /* GuidesListingModuleTests.swift */; };
+		E2E286F126064C0300C058C3 /* GuidesProfileModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286E826064C0300C058C3 /* GuidesProfileModuleTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -317,6 +332,21 @@
 		E2D896AC25FFABD70001B026 /* ContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		E2D896B225FFABE80001B026 /* Image+ImageAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+ImageAssets.swift"; sourceTree = "<group>"; };
 		E2D896B325FFABE80001B026 /* Color+ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+ThemeColors.swift"; sourceTree = "<group>"; };
+		E2E2869E26064B9100C058C3 /* MockUserAPIResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserAPIResponses.swift; sourceTree = "<group>"; };
+		E2E286BA26064BE400C058C3 /* CertificateManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertificateManagerTests.swift; sourceTree = "<group>"; };
+		E2E286C326064BED00C058C3 /* GuideAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideAPITests.swift; sourceTree = "<group>"; };
+		E2E286C526064BED00C058C3 /* ReviewAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewAPITests.swift; sourceTree = "<group>"; };
+		E2E286C726064BED00C058C3 /* AreaAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaAPITests.swift; sourceTree = "<group>"; };
+		E2E286C926064BEE00C058C3 /* TrailAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailAPITests.swift; sourceTree = "<group>"; };
+		E2E286D726064C0200C058C3 /* TouristRegisterModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristRegisterModuleTests.swift; sourceTree = "<group>"; };
+		E2E286D926064C0200C058C3 /* GuideRegisterModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideRegisterModuleTests.swift; sourceTree = "<group>"; };
+		E2E286DB26064C0200C058C3 /* SocialModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialModuleTests.swift; sourceTree = "<group>"; };
+		E2E286DD26064C0200C058C3 /* LoginPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPresenterTests.swift; sourceTree = "<group>"; };
+		E2E286DF26064C0200C058C3 /* GuideLoginModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideLoginModuleTests.swift; sourceTree = "<group>"; };
+		E2E286E126064C0200C058C3 /* TouristLoginModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristLoginModuleTests.swift; sourceTree = "<group>"; };
+		E2E286E326064C0300C058C3 /* MapModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapModuleTests.swift; sourceTree = "<group>"; };
+		E2E286E626064C0300C058C3 /* GuidesListingModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidesListingModuleTests.swift; sourceTree = "<group>"; };
+		E2E286E826064C0300C058C3 /* GuidesProfileModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidesProfileModuleTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -755,6 +785,10 @@
 		E234933325FB885100EC90E9 /* ChalloTests */ = {
 			isa = PBXGroup;
 			children = (
+				E2E286B726064BCE00C058C3 /* Modules */,
+				E2E286B626064BC600C058C3 /* Common */,
+				E2E286B126064BB500C058C3 /* Networking */,
+				E2E2869D26064B7F00C058C3 /* TestingUtilities */,
 				E234933425FB885100EC90E9 /* ChalloTests.swift */,
 				E234933625FB885100EC90E9 /* Info.plist */,
 			);
@@ -860,6 +894,201 @@
 				E2D896B225FFABE80001B026 /* Image+ImageAssets.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		E2E2869D26064B7F00C058C3 /* TestingUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				E2E2869E26064B9100C058C3 /* MockUserAPIResponses.swift */,
+			);
+			path = TestingUtilities;
+			sourceTree = "<group>";
+		};
+		E2E286B126064BB500C058C3 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286B526064BC000C058C3 /* Alamofire */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		E2E286B526064BC000C058C3 /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Alamofire;
+			sourceTree = "<group>";
+		};
+		E2E286B626064BC600C058C3 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E2E286B726064BCE00C058C3 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286E426064C0300C058C3 /* Guides */,
+				E2E286D426064C0200C058C3 /* LoginRegister */,
+				E2E286E226064C0300C058C3 /* Map */,
+				E2E286B826064BD200C058C3 /* Common */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		E2E286B826064BD200C058C3 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286C626064BED00C058C3 /* Areas */,
+				E2E286C226064BED00C058C3 /* Guides */,
+				E2E286C426064BED00C058C3 /* Reviews */,
+				E2E286C826064BEE00C058C3 /* Trails */,
+				E2E286B926064BE400C058C3 /* UserManagement */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E2E286B926064BE400C058C3 /* UserManagement */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286BA26064BE400C058C3 /* CertificateManagerTests.swift */,
+			);
+			path = UserManagement;
+			sourceTree = "<group>";
+		};
+		E2E286C226064BED00C058C3 /* Guides */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286C326064BED00C058C3 /* GuideAPITests.swift */,
+			);
+			path = Guides;
+			sourceTree = "<group>";
+		};
+		E2E286C426064BED00C058C3 /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286C526064BED00C058C3 /* ReviewAPITests.swift */,
+			);
+			path = Reviews;
+			sourceTree = "<group>";
+		};
+		E2E286C626064BED00C058C3 /* Areas */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286C726064BED00C058C3 /* AreaAPITests.swift */,
+			);
+			path = Areas;
+			sourceTree = "<group>";
+		};
+		E2E286C826064BEE00C058C3 /* Trails */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286C926064BEE00C058C3 /* TrailAPITests.swift */,
+			);
+			path = Trails;
+			sourceTree = "<group>";
+		};
+		E2E286D426064C0200C058C3 /* LoginRegister */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286D526064C0200C058C3 /* Register */,
+				E2E286DA26064C0200C058C3 /* Socials */,
+				E2E286DC26064C0200C058C3 /* Login */,
+			);
+			path = LoginRegister;
+			sourceTree = "<group>";
+		};
+		E2E286D526064C0200C058C3 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286D626064C0200C058C3 /* TouristRegister */,
+				E2E286D826064C0200C058C3 /* GuideRegister */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		E2E286D626064C0200C058C3 /* TouristRegister */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286D726064C0200C058C3 /* TouristRegisterModuleTests.swift */,
+			);
+			path = TouristRegister;
+			sourceTree = "<group>";
+		};
+		E2E286D826064C0200C058C3 /* GuideRegister */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286D926064C0200C058C3 /* GuideRegisterModuleTests.swift */,
+			);
+			path = GuideRegister;
+			sourceTree = "<group>";
+		};
+		E2E286DA26064C0200C058C3 /* Socials */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286DB26064C0200C058C3 /* SocialModuleTests.swift */,
+			);
+			path = Socials;
+			sourceTree = "<group>";
+		};
+		E2E286DC26064C0200C058C3 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286DD26064C0200C058C3 /* LoginPresenterTests.swift */,
+				E2E286DE26064C0200C058C3 /* GuideLogin */,
+				E2E286E026064C0200C058C3 /* TouristLogin */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		E2E286DE26064C0200C058C3 /* GuideLogin */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286DF26064C0200C058C3 /* GuideLoginModuleTests.swift */,
+			);
+			path = GuideLogin;
+			sourceTree = "<group>";
+		};
+		E2E286E026064C0200C058C3 /* TouristLogin */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286E126064C0200C058C3 /* TouristLoginModuleTests.swift */,
+			);
+			path = TouristLogin;
+			sourceTree = "<group>";
+		};
+		E2E286E226064C0300C058C3 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286E326064C0300C058C3 /* MapModuleTests.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		E2E286E426064C0300C058C3 /* Guides */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286E526064C0300C058C3 /* GuidesListing */,
+				E2E286E726064C0300C058C3 /* GuidesProfile */,
+			);
+			path = Guides;
+			sourceTree = "<group>";
+		};
+		E2E286E526064C0300C058C3 /* GuidesListing */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286E626064C0300C058C3 /* GuidesListingModuleTests.swift */,
+			);
+			path = GuidesListing;
+			sourceTree = "<group>";
+		};
+		E2E286E726064C0300C058C3 /* GuidesProfile */ = {
+			isa = PBXGroup;
+			children = (
+				E2E286E826064C0300C058C3 /* GuidesProfileModuleTests.swift */,
+			);
+			path = GuidesProfile;
 			sourceTree = "<group>";
 		};
 		EB8898A86AE48A027123AD32 /* Frameworks */ = {
@@ -1302,7 +1531,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2E286EE26064C0300C058C3 /* TouristLoginModuleTests.swift in Sources */,
+				E2E286CD26064BEE00C058C3 /* TrailAPITests.swift in Sources */,
+				E2E286BB26064BE400C058C3 /* CertificateManagerTests.swift in Sources */,
+				E2E286CC26064BEE00C058C3 /* AreaAPITests.swift in Sources */,
+				E2E286F126064C0300C058C3 /* GuidesProfileModuleTests.swift in Sources */,
+				E2E286CA26064BEE00C058C3 /* GuideAPITests.swift in Sources */,
+				E2E286EB26064C0300C058C3 /* SocialModuleTests.swift in Sources */,
+				E2E286EA26064C0300C058C3 /* GuideRegisterModuleTests.swift in Sources */,
+				E2E286ED26064C0300C058C3 /* GuideLoginModuleTests.swift in Sources */,
+				E2E286CB26064BEE00C058C3 /* ReviewAPITests.swift in Sources */,
+				E2E2869F26064B9100C058C3 /* MockUserAPIResponses.swift in Sources */,
+				E2E286EC26064C0300C058C3 /* LoginPresenterTests.swift in Sources */,
+				E2E286E926064C0300C058C3 /* TouristRegisterModuleTests.swift in Sources */,
+				E2E286EF26064C0300C058C3 /* MapModuleTests.swift in Sources */,
 				E234933525FB885100EC90E9 /* ChalloTests.swift in Sources */,
+				E2E286F026064C0300C058C3 /* GuidesListingModuleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
