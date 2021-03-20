@@ -127,6 +127,9 @@
 		AAF0C188260617B800357E94 /* SettingsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C187260617B800357E94 /* SettingsModule.swift */; };
 		AAF0C18D2606193700357E94 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C18C2606193700357E94 /* SettingsPage.swift */; };
 		AAF0C19626061E3900357E94 /* SettingsListElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C19526061E3900357E94 /* SettingsListElement.swift */; };
+		AAF0C1DF26066E5400357E94 /* TouristAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C1DE26066E5400357E94 /* TouristAPIParserTests.swift */; };
+		AAF0C1E726066EBB00357E94 /* MockTouristAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C1E626066EBB00357E94 /* MockTouristAPIResponse.swift */; };
+		AAF0C1F2260671D100357E94 /* MockAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C1F1260671D100357E94 /* MockAPIResponse.swift */; };
 		B0F349AF3CB87F77584434C4 /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC2C4523E0BAD62412B118A /* Pods_Challo.framework */; };
 		D4A670D2B9132DB104111692 /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391AD75BD73BA41A633358D /* Pods_ChalloTests.framework */; };
 		E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234932225FB884F00EC90E9 /* ChalloApp.swift */; };
@@ -308,6 +311,9 @@
 		AAF0C187260617B800357E94 /* SettingsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModule.swift; sourceTree = "<group>"; };
 		AAF0C18C2606193700357E94 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		AAF0C19526061E3900357E94 /* SettingsListElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListElement.swift; sourceTree = "<group>"; };
+		AAF0C1DE26066E5400357E94 /* TouristAPIParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristAPIParserTests.swift; sourceTree = "<group>"; };
+		AAF0C1E626066EBB00357E94 /* MockTouristAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTouristAPIResponse.swift; sourceTree = "<group>"; };
+		AAF0C1F1260671D100357E94 /* MockAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIResponse.swift; sourceTree = "<group>"; };
 		B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234931F25FB884F00EC90E9 /* Challo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234932225FB884F00EC90E9 /* ChalloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloApp.swift; sourceTree = "<group>"; };
@@ -737,6 +743,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		AAF0C1DD26066D6C00357E94 /* Tourists */ = {
+			isa = PBXGroup;
+			children = (
+				AAF0C1DE26066E5400357E94 /* TouristAPIParserTests.swift */,
+			);
+			path = Tourists;
+			sourceTree = "<group>";
+		};
 		E234931625FB884F00EC90E9 = {
 			isa = PBXGroup;
 			children = (
@@ -899,7 +913,9 @@
 		E2E2869D26064B7F00C058C3 /* TestingUtilities */ = {
 			isa = PBXGroup;
 			children = (
+				AAF0C1E626066EBB00357E94 /* MockTouristAPIResponse.swift */,
 				E2E2869E26064B9100C058C3 /* MockUserAPIResponses.swift */,
+				AAF0C1F1260671D100357E94 /* MockAPIResponse.swift */,
 			);
 			path = TestingUtilities;
 			sourceTree = "<group>";
@@ -940,6 +956,7 @@
 		E2E286B826064BD200C058C3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				AAF0C1DD26066D6C00357E94 /* Tourists */,
 				E2E286C626064BED00C058C3 /* Areas */,
 				E2E286C226064BED00C058C3 /* Guides */,
 				E2E286C426064BED00C058C3 /* Reviews */,
@@ -1534,6 +1551,7 @@
 				E2E286EE26064C0300C058C3 /* TouristLoginModuleTests.swift in Sources */,
 				E2E286CD26064BEE00C058C3 /* TrailAPITests.swift in Sources */,
 				E2E286BB26064BE400C058C3 /* UserAPIParserTests.swift in Sources */,
+				AAF0C1DF26066E5400357E94 /* TouristAPIParserTests.swift in Sources */,
 				E2E286CC26064BEE00C058C3 /* AreaAPITests.swift in Sources */,
 				E2E286F126064C0300C058C3 /* GuidesProfileModuleTests.swift in Sources */,
 				E2E286CA26064BEE00C058C3 /* GuideAPITests.swift in Sources */,
@@ -1546,7 +1564,9 @@
 				E2E286E926064C0300C058C3 /* TouristRegisterModuleTests.swift in Sources */,
 				E2E286EF26064C0300C058C3 /* MapModuleTests.swift in Sources */,
 				E234933525FB885100EC90E9 /* ChalloTests.swift in Sources */,
+				AAF0C1E726066EBB00357E94 /* MockTouristAPIResponse.swift in Sources */,
 				E2E286F026064C0300C058C3 /* GuidesListingModuleTests.swift in Sources */,
+				AAF0C1F2260671D100357E94 /* MockAPIResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
