@@ -154,7 +154,6 @@
 		E2D896B525FFABE80001B026 /* Color+ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D896B325FFABE80001B026 /* Color+ThemeColors.swift */; };
 		E2E2869F26064B9100C058C3 /* MockUserAPIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E2869E26064B9100C058C3 /* MockUserAPIResponses.swift */; };
 		E2E286BB26064BE400C058C3 /* UserAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286BA26064BE400C058C3 /* UserAPIParserTests.swift */; };
-		E2E286CA26064BEE00C058C3 /* GuideAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C326064BED00C058C3 /* GuideAPITests.swift */; };
 		E2E286CB26064BEE00C058C3 /* ReviewAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C526064BED00C058C3 /* ReviewAPITests.swift */; };
 		E2E286CC26064BEE00C058C3 /* AreaAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C726064BED00C058C3 /* AreaAPITests.swift */; };
 		E2E286CD26064BEE00C058C3 /* TrailAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C926064BEE00C058C3 /* TrailAPITests.swift */; };
@@ -346,7 +345,6 @@
 		E2D896B325FFABE80001B026 /* Color+ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+ThemeColors.swift"; sourceTree = "<group>"; };
 		E2E2869E26064B9100C058C3 /* MockUserAPIResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserAPIResponses.swift; sourceTree = "<group>"; };
 		E2E286BA26064BE400C058C3 /* UserAPIParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAPIParserTests.swift; sourceTree = "<group>"; };
-		E2E286C326064BED00C058C3 /* GuideAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideAPITests.swift; sourceTree = "<group>"; };
 		E2E286C526064BED00C058C3 /* ReviewAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewAPITests.swift; sourceTree = "<group>"; };
 		E2E286C726064BED00C058C3 /* AreaAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaAPITests.swift; sourceTree = "<group>"; };
 		E2E286C926064BEE00C058C3 /* TrailAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailAPITests.swift; sourceTree = "<group>"; };
@@ -984,7 +982,6 @@
 		E2E286C226064BED00C058C3 /* Guides */ = {
 			isa = PBXGroup;
 			children = (
-				E2E286C326064BED00C058C3 /* GuideAPITests.swift */,
 				E26CBC2726065794005DBD47 /* GuideAPIParserTests.swift */,
 			);
 			path = Guides;
@@ -1564,7 +1561,6 @@
 				E2E286CC26064BEE00C058C3 /* AreaAPITests.swift in Sources */,
 				E26CBC2D260657C7005DBD47 /* MockGuideAPIResponses.swift in Sources */,
 				E2E286F126064C0300C058C3 /* GuidesProfileModuleTests.swift in Sources */,
-				E2E286CA26064BEE00C058C3 /* GuideAPITests.swift in Sources */,
 				E26CBC4226067966005DBD47 /* RegisterPresenterTests.swift in Sources */,
 				E2E286EB26064C0300C058C3 /* SocialModuleTests.swift in Sources */,
 				E26CBC2826065794005DBD47 /* GuideAPIParserTests.swift in Sources */,
