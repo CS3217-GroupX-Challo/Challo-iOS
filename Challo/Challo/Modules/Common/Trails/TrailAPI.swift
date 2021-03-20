@@ -31,12 +31,13 @@ class TrailAPI {
     func getAllTrails(callback: @escaping ([Trail]) -> Void) {
         let api = AlamofireManager.alamofireManager
         api.get(url: "/trail",
-                headers: [String: String]()) { response, error in
+                headers: [String: String]()) { [weak self] response, error in
             if error != nil {
                 return
             }
-            
-            let trails = parseTrail(response: response)
+            guard let trails = self?.parser.parseTrail(response: response) else {
+                return
+            }
             
             callback(trails)
         }
