@@ -6,6 +6,12 @@
 //
 
 class TouristLoginAPI: LoginAPI {
-    
+
+    let userTypeUrl = "/tourist"
+
     let networkManager = AlamofireManager.alamofireManager
+
+    func parseUserTypeJson(json: JSON) -> User? {
+        convertJSONToTourist(json: json)
+    }
 }
