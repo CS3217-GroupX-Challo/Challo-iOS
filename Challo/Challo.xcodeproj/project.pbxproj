@@ -132,6 +132,8 @@
 		AAF0C1F2260671D100357E94 /* MockAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C1F1260671D100357E94 /* MockAPIResponse.swift */; };
 		AAF0C20526067BD900357E94 /* MockReviewAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C20426067BD900357E94 /* MockReviewAPIResponse.swift */; };
 		AAF0C21B260685E400357E94 /* ReviewAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C21A260685E400357E94 /* ReviewAPIParserTests.swift */; };
+		AAF0C223260687CB00357E94 /* MockTrailAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C222260687CB00357E94 /* MockTrailAPIResponse.swift */; };
+		AAF0C23026068DA400357E94 /* TrailAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C22F26068DA400357E94 /* TrailAPIParserTests.swift */; };
 		B0F349AF3CB87F77584434C4 /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC2C4523E0BAD62412B118A /* Pods_Challo.framework */; };
 		D4A670D2B9132DB104111692 /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391AD75BD73BA41A633358D /* Pods_ChalloTests.framework */; };
 		E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234932225FB884F00EC90E9 /* ChalloApp.swift */; };
@@ -319,6 +321,8 @@
 		AAF0C1F1260671D100357E94 /* MockAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIResponse.swift; sourceTree = "<group>"; };
 		AAF0C20426067BD900357E94 /* MockReviewAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReviewAPIResponse.swift; sourceTree = "<group>"; };
 		AAF0C21A260685E400357E94 /* ReviewAPIParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewAPIParserTests.swift; sourceTree = "<group>"; };
+		AAF0C222260687CB00357E94 /* MockTrailAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrailAPIResponse.swift; sourceTree = "<group>"; };
+		AAF0C22F26068DA400357E94 /* TrailAPIParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailAPIParserTests.swift; sourceTree = "<group>"; };
 		B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234931F25FB884F00EC90E9 /* Challo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234932225FB884F00EC90E9 /* ChalloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloApp.swift; sourceTree = "<group>"; };
@@ -924,6 +928,7 @@
 				AAF0C1F1260671D100357E94 /* MockAPIResponse.swift */,
 				E26CBC2C260657C7005DBD47 /* MockGuideAPIResponses.swift */,
 				AAF0C20426067BD900357E94 /* MockReviewAPIResponse.swift */,
+				AAF0C222260687CB00357E94 /* MockTrailAPIResponse.swift */,
 			);
 			path = TestingUtilities;
 			sourceTree = "<group>";
@@ -1010,6 +1015,7 @@
 			isa = PBXGroup;
 			children = (
 				E2E286C926064BEE00C058C3 /* TrailAPITests.swift */,
+				AAF0C22F26068DA400357E94 /* TrailAPIParserTests.swift */,
 			);
 			path = Trails;
 			sourceTree = "<group>";
@@ -1559,8 +1565,10 @@
 			files = (
 				E2E286EE26064C0300C058C3 /* TouristLoginModuleTests.swift in Sources */,
 				AAF0C20526067BD900357E94 /* MockReviewAPIResponse.swift in Sources */,
+				AAF0C23026068DA400357E94 /* TrailAPIParserTests.swift in Sources */,
 				E2E286CD26064BEE00C058C3 /* TrailAPITests.swift in Sources */,
 				E2E286BB26064BE400C058C3 /* UserAPIParserTests.swift in Sources */,
+				AAF0C223260687CB00357E94 /* MockTrailAPIResponse.swift in Sources */,
 				AAF0C1DF26066E5400357E94 /* TouristAPIParserTests.swift in Sources */,
 				E2E286CC26064BEE00C058C3 /* AreaAPITests.swift in Sources */,
 				E26CBC2D260657C7005DBD47 /* MockGuideAPIResponses.swift in Sources */,

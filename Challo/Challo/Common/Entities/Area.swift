@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Area {
+struct Area: Equatable {
     let areaId: UUID
     
     let areaName: String
