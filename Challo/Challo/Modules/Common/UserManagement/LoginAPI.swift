@@ -25,8 +25,8 @@ extension LoginAPI {
 
     func createLoginJson(email: String, password: String) -> JSON {
         var json = JSON()
-        json["email"] = email
-        json["password"] = password
+        json[Key.email] = email
+        json[Key.password] = password
         return json
     }
 }

@@ -46,11 +46,11 @@ extension RegisterAPI {
 
     func createRegisterJson(details: RegistrationDetails) -> JSON {
         var json = JSON()
-        json["name"] = details.name
-        json["email"] = details.email
-        json["password"] = details.password
+        json[Key.name] = details.name
+        json[Key.email] = details.email
+        json[Key.password] = details.password
         if let phone = details.phone {
-            json["phone"] = phone
+            json[Key.phone] = phone
         }
         return json
     }

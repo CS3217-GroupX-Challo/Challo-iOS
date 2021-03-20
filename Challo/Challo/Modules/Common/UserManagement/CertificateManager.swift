@@ -16,12 +16,12 @@ protocol CertificateManager {
 extension CertificateManager {
 
     func parseUser(apiResponse: JSON) -> UserCertificate? {
-        guard let data = apiResponse["data"] as? JSON,
-              let name = data["name"] as? String,
-              let userId = data["userId"] as? String,
-              let email = data["email"] as? String,
-              let tokenJson = data["token"] as? JSON,
-              let token = tokenJson["token"] as? String else {
+        guard let data = apiResponse[Key.data] as? JSON,
+              let name = data[Key.name] as? String,
+              let userId = data[Key.userId] as? String,
+              let email = data[Key.email] as? String,
+              let tokenJson = data[Key.token] as? JSON,
+              let token = tokenJson[Key.token] as? String else {
             ChalloLogger.logger.log("API response wrong shape: \(apiResponse)")
             return nil
         }

@@ -29,24 +29,24 @@ class FacebookLoginService: SocialLoginService {
 
     private func makeGraphRequest() {
         let request = GraphRequest(graphPath: "me",
-                                   parameters: ["fields": "email,name,id"])
+                                   parameters: ["fields": "\(Key.fbEmail),\(Key.fbName),\(Key.fbId)"])
         let failureResponse = SocialLoginResponse(success: false)
         request.start { _, result, _ in
             guard let profileData = result as? [String: Any] else {
                 self.delegate?.socialLoginDidComplete(response: failureResponse)
                 return
             }
-            guard let email = profileData["email"] as? String else {
+            guard let email = profileData[Key.fbEmail] as? String else {
                 ChalloLogger.logger.log("Failed to retrieve email from Facebook")
                 self.delegate?.socialLoginDidComplete(response: failureResponse)
                 return
             }
-            guard let socialId = profileData["id"] as? String else {
+            guard let socialId = profileData[Key.fbId] as? String else {
                 ChalloLogger.logger.log("Failed to retrieve id from Facebook")
                 self.delegate?.socialLoginDidComplete(response: failureResponse)
                 return
             }
-            guard let name = profileData["name"] as? String else {
+            guard let name = profileData[Key.fbName] as? String else {
                 ChalloLogger.logger.log("Failed to retrieve name from Facebook")
                 self.delegate?.socialLoginDidComplete(response: failureResponse)
                 return
