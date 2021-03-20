@@ -8,6 +8,8 @@ target 'Challo' do
   # Pods for Challo
   pod 'FBSDKLoginKit'
   pod 'Alamofire'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
 
   target 'ChalloTests' do
     inherit! :search_paths

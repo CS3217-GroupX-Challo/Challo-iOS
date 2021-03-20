@@ -7,11 +7,22 @@
 
 import SwiftUI
 import FBSDKCoreKit
+import GoogleMaps
+import GooglePlaces
 
 @main
 struct ChalloApp: App {
 
     var userState = UserState.globalState
+    
+    init() {
+        guard let apiKey = ProcessInfo.processInfo.environment["google_maps_api_key"] else {
+            return
+        }
+        GMSServices.provideAPIKey(apiKey)
+        GMSPlacesClient.provideAPIKey(apiKey)
+        ChalloLogger.logger.info("Google API has been set!")
+    }
 
     var body: some Scene {
         WindowGroup {

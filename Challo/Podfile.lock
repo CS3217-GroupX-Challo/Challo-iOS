@@ -10,22 +10,35 @@ PODS:
     - FBSDKLoginKit/Login (= 9.1.0)
   - FBSDKLoginKit/Login (9.1.0):
     - FBSDKCoreKit (~> 9.1.0)
+  - GoogleMaps (4.2.0):
+    - GoogleMaps/Maps (= 4.2.0)
+  - GoogleMaps/Base (4.2.0)
+  - GoogleMaps/Maps (4.2.0):
+    - GoogleMaps/Base
+  - GooglePlaces (4.2.0):
+    - GoogleMaps/Base (= 4.2.0)
 
 DEPENDENCIES:
   - Alamofire
   - FBSDKLoginKit
+  - GoogleMaps
+  - GooglePlaces
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - GoogleMaps
+    - GooglePlaces
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   FBSDKCoreKit: a00fe2efd780c195a5e09201bf51c56106245b40
   FBSDKLoginKit: d98498c598ec09de657385a9349a1f21119b7f86
+  GoogleMaps: eb03e327edfd70b06de1e6e321653f73712df7ad
+  GooglePlaces: 196a9dd88580dcb3f3df46f415057703d0d2a310
 
-PODFILE CHECKSUM: be34afcc2cb7e6c04296b7328dfbf4667794217f
+PODFILE CHECKSUM: 05b60c12d59d32cafb461ff23879d2b2277fdf4b
 
 COCOAPODS: 1.10.1

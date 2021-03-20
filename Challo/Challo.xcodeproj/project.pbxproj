@@ -115,6 +115,11 @@
 		AAF0C0942605B14600357E94 /* TouristLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C0682605B14600357E94 /* TouristLoginInteractor.swift */; };
 		AAF0C0952605B14600357E94 /* TouristLoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C0692605B14600357E94 /* TouristLoginPage.swift */; };
 		AAF0C0962605B14600357E94 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C06A2605B14600357E94 /* LoginRouter.swift */; };
+		AAF0C09F2605D87E00357E94 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C09E2605D87E00357E94 /* MapPresenter.swift */; };
+		AAF0C0A72605D88E00357E94 /* MapRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C0A62605D88E00357E94 /* MapRouter.swift */; };
+		AAF0C0AC2605D89A00357E94 /* MapInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C0AB2605D89A00357E94 /* MapInteractor.swift */; };
+		AAF0C0B12605D9D000357E94 /* MapModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C0B02605D9D000357E94 /* MapModule.swift */; };
+		AAF0C0BA2605DA8000357E94 /* InteractiveMapPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C0B92605DA8000357E94 /* InteractiveMapPage.swift */; };
 		B0F349AF3CB87F77584434C4 /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC2C4523E0BAD62412B118A /* Pods_Challo.framework */; };
 		D4A670D2B9132DB104111692 /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391AD75BD73BA41A633358D /* Pods_ChalloTests.framework */; };
 		E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234932225FB884F00EC90E9 /* ChalloApp.swift */; };
@@ -266,6 +271,11 @@
 		AAF0C0682605B14600357E94 /* TouristLoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristLoginInteractor.swift; sourceTree = "<group>"; };
 		AAF0C0692605B14600357E94 /* TouristLoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristLoginPage.swift; sourceTree = "<group>"; };
 		AAF0C06A2605B14600357E94 /* LoginRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		AAF0C09E2605D87E00357E94 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
+		AAF0C0A62605D88E00357E94 /* MapRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouter.swift; sourceTree = "<group>"; };
+		AAF0C0AB2605D89A00357E94 /* MapInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInteractor.swift; sourceTree = "<group>"; };
+		AAF0C0B02605D9D000357E94 /* MapModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModule.swift; sourceTree = "<group>"; };
+		AAF0C0B92605DA8000357E94 /* InteractiveMapPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveMapPage.swift; sourceTree = "<group>"; };
 		B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234931F25FB884F00EC90E9 /* Challo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234932225FB884F00EC90E9 /* ChalloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloApp.swift; sourceTree = "<group>"; };
@@ -389,20 +399,10 @@
 			path = Reviews;
 			sourceTree = "<group>";
 		};
-		AA2CE5B926051A480019C328 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				AADCABF72603B57F00FB52C4 /* Component */,
-			);
-			name = Views;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		AA2CE5C926051C610019C328 /* GuidesProfile */ = {
 			isa = PBXGroup;
 			children = (
 				AA2CE5CA26051C860019C328 /* Views */,
-				AA2CE5B926051A480019C328 /* Views */,
 				AA2CE5972604EF2E0019C328 /* GuideProfilePagePresenter.swift */,
 				AA2CE59C2604EF7C0019C328 /* GuideProfilePageInteractor.swift */,
 				AA2CE5A12604EFE10019C328 /* GuideProfilePageRouter.swift */,
@@ -436,12 +436,12 @@
 		AA2CE5CC26051CBD0019C328 /* GuidesListing */ = {
 			isa = PBXGroup;
 			children = (
+				AA2CE5D026051CD90019C328 /* Views */,
 				AA9E87312601B16400C2E389 /* GuidesListingPresenter.swift */,
 				AA9E87392601B18D00C2E389 /* GuidesListingInteractor.swift */,
 				AA9E873E2601B22000C2E389 /* GuidesListingRouter.swift */,
 				AA9E8767260225C600C2E389 /* GuidesModule.swift */,
 				AA9E8784260242FA00C2E389 /* FilterTypes.swift */,
-				AA2CE5D026051CD90019C328 /* Views */,
 			);
 			path = GuidesListing;
 			sourceTree = "<group>";
@@ -519,13 +519,6 @@
 				AA2CE5612604C14B0019C328 /* TrailAPI.swift */,
 			);
 			path = Trails;
-			sourceTree = "<group>";
-		};
-		AADCABF72603B57F00FB52C4 /* Component */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Component;
 			sourceTree = "<group>";
 		};
 		AAF0C0372605B14600357E94 /* LoginRegister */ = {
@@ -635,6 +628,26 @@
 			path = TouristLogin;
 			sourceTree = "<group>";
 		};
+		AAF0C09D2605D3D600357E94 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				AAF0C0B82605DA5900357E94 /* Views */,
+				AAF0C09E2605D87E00357E94 /* MapPresenter.swift */,
+				AAF0C0A62605D88E00357E94 /* MapRouter.swift */,
+				AAF0C0AB2605D89A00357E94 /* MapInteractor.swift */,
+				AAF0C0B02605D9D000357E94 /* MapModule.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		AAF0C0B82605DA5900357E94 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AAF0C0B92605DA8000357E94 /* InteractiveMapPage.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		E234931625FB884F00EC90E9 = {
 			isa = PBXGroup;
 			children = (
@@ -728,6 +741,7 @@
 		E2D8966E25FFAAFC0001B026 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				AAF0C09D2605D3D600357E94 /* Map */,
 				AAF0C0372605B14600357E94 /* LoginRegister */,
 				AA9E870126012A1800C2E389 /* Guides */,
 				E2C2441A2600B74D0085BAA4 /* Common */,
@@ -801,6 +815,7 @@
 				E234931D25FB884F00EC90E9 /* Resources */,
 				D1147EAFD4B6180D50B77CB4 /* [CP] Embed Pods Frameworks */,
 				AA9E861D25FF46D100C2E389 /* ShellScript */,
+				BE70A06388CC49D1098AC7D2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -839,6 +854,7 @@
 				E234933825FB885100EC90E9 /* Frameworks */,
 				E234933925FB885100EC90E9 /* Resources */,
 				74A5AEE9CFC38C5CF296937A /* [CP] Embed Pods Frameworks */,
+				1BD96F2AC0624E5F2A4A8985 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -941,6 +957,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		1BD96F2AC0624E5F2A4A8985 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		74A5AEE9CFC38C5CF296937A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -974,6 +1007,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		BE70A06388CC49D1098AC7D2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		D1147EAFD4B6180D50B77CB4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1047,7 +1097,9 @@
 				AAF0C0302605B10200357E94 /* UserCertificate.swift in Sources */,
 				AAF0C06C2605B14600357E94 /* LoginRegisterBackground.swift in Sources */,
 				AADCABF02603AD2D00FB52C4 /* GuideProfilePage.swift in Sources */,
+				AAF0C0A72605D88E00357E94 /* MapRouter.swift in Sources */,
 				6462027525FF60D900D89514 /* Booking.swift in Sources */,
+				AAF0C0B12605D9D000357E94 /* MapModule.swift in Sources */,
 				AADCAC132604810100FB52C4 /* GuideReviewsDetailsView.swift in Sources */,
 				AA2CE5AF260513950019C328 /* Date+Construct.swift in Sources */,
 				AAF0C02D2605B10200357E94 /* UserAPIInteractor.swift in Sources */,
@@ -1105,9 +1157,11 @@
 				6462026625FF559400D89514 /* Sex.swift in Sources */,
 				E2D896AD25FFABD70001B026 /* ContainerView.swift in Sources */,
 				6462023C25FEFD3800D89514 /* Guide.swift in Sources */,
+				AAF0C0AC2605D89A00357E94 /* MapInteractor.swift in Sources */,
 				AAF0C0742605B14600357E94 /* TouristRegisterRouter.swift in Sources */,
 				6462024F25FF000700D89514 /* Tourist.swift in Sources */,
 				AA9E87962602689200C2E389 /* TrailAPIInteractor.swift in Sources */,
+				AAF0C09F2605D87E00357E94 /* MapPresenter.swift in Sources */,
 				E2D8969325FFAB8A0001B026 /* FacebookLoginButton.swift in Sources */,
 				AA9E878B26025DDF00C2E389 /* AreaAPIInteractor.swift in Sources */,
 				AA2CE5892604DDDA0019C328 /* ReviewState.swift in Sources */,
@@ -1129,6 +1183,7 @@
 				E2D896B525FFABE80001B026 /* Color+ThemeColors.swift in Sources */,
 				AAF0C0872605B14600357E94 /* GuideLoginPresenter.swift in Sources */,
 				AAF0C0902605B14600357E94 /* TouristLoginPresenter.swift in Sources */,
+				AAF0C0BA2605DA8000357E94 /* InteractiveMapPage.swift in Sources */,
 				AA9E871026012B1400C2E389 /* DropDownMenu.swift in Sources */,
 				AAF0C07B2605B14600357E94 /* GuideRegistrationAPI.swift in Sources */,
 				AAF0C0852605B14600357E94 /* LoginInteractor.swift in Sources */,

@@ -3,16 +3,19 @@ import SwiftUI
 struct ContentView: View {
 
     @EnvironmentObject var userState: UserState
+    var (view, presenter) = MapModule.assemble()
 
     var body: some View {
         
         NavigationView { () -> AnyView in
+            view
+            /*
             if !userState.loggedIn {
                 let (loginPage, _) = GuideLoginModule.assemble()
                 return loginPage
             } else {
                 return AnyView(Text("MOCK HOMEPAGE"))
-            }
+            }*/
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
