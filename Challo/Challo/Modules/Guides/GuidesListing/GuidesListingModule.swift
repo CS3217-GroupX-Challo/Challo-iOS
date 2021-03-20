@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-final class GuidesModule: ViperModuleProtocol {
+final class GuidesListingModule: ViperModuleProtocol {
     static func assemble() -> (view: AnyView, presenter: GuidesListingPresenter) {
         let interactor = GuidesListingInteractor()
         let router = GuidesListingRouter()

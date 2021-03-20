@@ -49,7 +49,7 @@
 		AA9E873A2601B18D00C2E389 /* GuidesListingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E87392601B18D00C2E389 /* GuidesListingInteractor.swift */; };
 		AA9E873F2601B22000C2E389 /* GuidesListingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E873E2601B22000C2E389 /* GuidesListingRouter.swift */; };
 		AA9E87542601F00D00C2E389 /* GuideAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E87532601F00D00C2E389 /* GuideAPIParser.swift */; };
-		AA9E8768260225C700C2E389 /* GuidesModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E8767260225C600C2E389 /* GuidesModule.swift */; };
+		AA9E8768260225C700C2E389 /* GuidesListingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E8767260225C600C2E389 /* GuidesListingModule.swift */; };
 		AA9E8771260232BB00C2E389 /* GuidesCardListingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E8770260232BB00C2E389 /* GuidesCardListingsView.swift */; };
 		AA9E8785260242FA00C2E389 /* FilterTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E8784260242FA00C2E389 /* FilterTypes.swift */; };
 		AA9E878B26025DDF00C2E389 /* AreaAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E878A26025DDF00C2E389 /* AreaAPIParser.swift */; };
@@ -134,6 +134,8 @@
 		AAF0C21B260685E400357E94 /* ReviewAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C21A260685E400357E94 /* ReviewAPIParserTests.swift */; };
 		AAF0C223260687CB00357E94 /* MockTrailAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C222260687CB00357E94 /* MockTrailAPIResponse.swift */; };
 		AAF0C23026068DA400357E94 /* TrailAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C22F26068DA400357E94 /* TrailAPIParserTests.swift */; };
+		AAF0C23E260697AB00357E94 /* GuidesListingModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C23D260697AB00357E94 /* GuidesListingModuleTests.swift */; };
+		AAF0C24E260699AE00357E94 /* SettingsModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C24D260699AE00357E94 /* SettingsModuleTests.swift */; };
 		B0F349AF3CB87F77584434C4 /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC2C4523E0BAD62412B118A /* Pods_Challo.framework */; };
 		D4A670D2B9132DB104111692 /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391AD75BD73BA41A633358D /* Pods_ChalloTests.framework */; };
 		E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234932225FB884F00EC90E9 /* ChalloApp.swift */; };
@@ -160,8 +162,6 @@
 		E2D896B525FFABE80001B026 /* Color+ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D896B325FFABE80001B026 /* Color+ThemeColors.swift */; };
 		E2E2869F26064B9100C058C3 /* MockUserAPIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E2869E26064B9100C058C3 /* MockUserAPIResponses.swift */; };
 		E2E286BB26064BE400C058C3 /* UserAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286BA26064BE400C058C3 /* UserAPIParserTests.swift */; };
-		E2E286CB26064BEE00C058C3 /* ReviewAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C526064BED00C058C3 /* ReviewAPITests.swift */; };
-		E2E286CC26064BEE00C058C3 /* AreaAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C726064BED00C058C3 /* AreaAPITests.swift */; };
 		E2E286CD26064BEE00C058C3 /* TrailAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286C926064BEE00C058C3 /* TrailAPITests.swift */; };
 		E2E286E926064C0300C058C3 /* TouristRegisterModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286D726064C0200C058C3 /* TouristRegisterModuleTests.swift */; };
 		E2E286EA26064C0300C058C3 /* GuideRegisterModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286D926064C0200C058C3 /* GuideRegisterModuleTests.swift */; };
@@ -170,8 +170,6 @@
 		E2E286ED26064C0300C058C3 /* GuideLoginModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286DF26064C0200C058C3 /* GuideLoginModuleTests.swift */; };
 		E2E286EE26064C0300C058C3 /* TouristLoginModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286E126064C0200C058C3 /* TouristLoginModuleTests.swift */; };
 		E2E286EF26064C0300C058C3 /* MapModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286E326064C0300C058C3 /* MapModuleTests.swift */; };
-		E2E286F026064C0300C058C3 /* GuidesListingModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286E626064C0300C058C3 /* GuidesListingModuleTests.swift */; };
-		E2E286F126064C0300C058C3 /* GuidesProfileModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E286E826064C0300C058C3 /* GuidesProfileModuleTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,7 +239,7 @@
 		AA9E87392601B18D00C2E389 /* GuidesListingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingInteractor.swift; sourceTree = "<group>"; };
 		AA9E873E2601B22000C2E389 /* GuidesListingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingRouter.swift; sourceTree = "<group>"; };
 		AA9E87532601F00D00C2E389 /* GuideAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPIParser.swift; sourceTree = "<group>"; };
-		AA9E8767260225C600C2E389 /* GuidesModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesModule.swift; sourceTree = "<group>"; };
+		AA9E8767260225C600C2E389 /* GuidesListingModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingModule.swift; sourceTree = "<group>"; };
 		AA9E8770260232BB00C2E389 /* GuidesCardListingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesCardListingsView.swift; sourceTree = "<group>"; };
 		AA9E8784260242FA00C2E389 /* FilterTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTypes.swift; sourceTree = "<group>"; };
 		AA9E878A26025DDF00C2E389 /* AreaAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPIParser.swift; sourceTree = "<group>"; };
@@ -326,6 +324,8 @@
 		AAF0C21A260685E400357E94 /* ReviewAPIParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewAPIParserTests.swift; sourceTree = "<group>"; };
 		AAF0C222260687CB00357E94 /* MockTrailAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrailAPIResponse.swift; sourceTree = "<group>"; };
 		AAF0C22F26068DA400357E94 /* TrailAPIParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailAPIParserTests.swift; sourceTree = "<group>"; };
+		AAF0C23D260697AB00357E94 /* GuidesListingModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingModuleTests.swift; sourceTree = "<group>"; };
+		AAF0C24D260699AE00357E94 /* SettingsModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleTests.swift; sourceTree = "<group>"; };
 		B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234931F25FB884F00EC90E9 /* Challo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234932225FB884F00EC90E9 /* ChalloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloApp.swift; sourceTree = "<group>"; };
@@ -357,8 +357,6 @@
 		E2D896B325FFABE80001B026 /* Color+ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+ThemeColors.swift"; sourceTree = "<group>"; };
 		E2E2869E26064B9100C058C3 /* MockUserAPIResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserAPIResponses.swift; sourceTree = "<group>"; };
 		E2E286BA26064BE400C058C3 /* UserAPIParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAPIParserTests.swift; sourceTree = "<group>"; };
-		E2E286C526064BED00C058C3 /* ReviewAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewAPITests.swift; sourceTree = "<group>"; };
-		E2E286C726064BED00C058C3 /* AreaAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaAPITests.swift; sourceTree = "<group>"; };
 		E2E286C926064BEE00C058C3 /* TrailAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailAPITests.swift; sourceTree = "<group>"; };
 		E2E286D726064C0200C058C3 /* TouristRegisterModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristRegisterModuleTests.swift; sourceTree = "<group>"; };
 		E2E286D926064C0200C058C3 /* GuideRegisterModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideRegisterModuleTests.swift; sourceTree = "<group>"; };
@@ -367,8 +365,6 @@
 		E2E286DF26064C0200C058C3 /* GuideLoginModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideLoginModuleTests.swift; sourceTree = "<group>"; };
 		E2E286E126064C0200C058C3 /* TouristLoginModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristLoginModuleTests.swift; sourceTree = "<group>"; };
 		E2E286E326064C0300C058C3 /* MapModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapModuleTests.swift; sourceTree = "<group>"; };
-		E2E286E626064C0300C058C3 /* GuidesListingModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidesListingModuleTests.swift; sourceTree = "<group>"; };
-		E2E286E826064C0300C058C3 /* GuidesProfileModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidesProfileModuleTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -512,7 +508,7 @@
 				AA9E87312601B16400C2E389 /* GuidesListingPresenter.swift */,
 				AA9E87392601B18D00C2E389 /* GuidesListingInteractor.swift */,
 				AA9E873E2601B22000C2E389 /* GuidesListingRouter.swift */,
-				AA9E8767260225C600C2E389 /* GuidesModule.swift */,
+				AA9E8767260225C600C2E389 /* GuidesListingModule.swift */,
 				AA9E8784260242FA00C2E389 /* FilterTypes.swift */,
 			);
 			path = GuidesListing;
@@ -767,6 +763,22 @@
 			path = Tourists;
 			sourceTree = "<group>";
 		};
+		AAF0C2452606980D00357E94 /* GuidesListingModule */ = {
+			isa = PBXGroup;
+			children = (
+				AAF0C23D260697AB00357E94 /* GuidesListingModuleTests.swift */,
+			);
+			path = GuidesListingModule;
+			sourceTree = "<group>";
+		};
+		AAF0C24C2606999E00357E94 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AAF0C24D260699AE00357E94 /* SettingsModuleTests.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		E234931625FB884F00EC90E9 = {
 			isa = PBXGroup;
 			children = (
@@ -965,6 +977,7 @@
 		E2E286B726064BCE00C058C3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				AAF0C24C2606999E00357E94 /* Settings */,
 				E2E286E426064C0300C058C3 /* Guides */,
 				E2E286D426064C0200C058C3 /* LoginRegister */,
 				E2E286E226064C0300C058C3 /* Map */,
@@ -1108,26 +1121,9 @@
 		E2E286E426064C0300C058C3 /* Guides */ = {
 			isa = PBXGroup;
 			children = (
-				E2E286E526064C0300C058C3 /* GuidesListing */,
-				E2E286E726064C0300C058C3 /* GuidesProfile */,
+				AAF0C2452606980D00357E94 /* GuidesListingModule */,
 			);
 			path = Guides;
-			sourceTree = "<group>";
-		};
-		E2E286E526064C0300C058C3 /* GuidesListing */ = {
-			isa = PBXGroup;
-			children = (
-				E2E286E626064C0300C058C3 /* GuidesListingModuleTests.swift */,
-			);
-			path = GuidesListing;
-			sourceTree = "<group>";
-		};
-		E2E286E726064C0300C058C3 /* GuidesProfile */ = {
-			isa = PBXGroup;
-			children = (
-				E2E286E826064C0300C058C3 /* GuidesProfileModuleTests.swift */,
-			);
-			path = GuidesProfile;
 			sourceTree = "<group>";
 		};
 		EB8898A86AE48A027123AD32 /* Frameworks */ = {
@@ -1518,7 +1514,7 @@
 				6462026125FF022D00D89514 /* Area.swift in Sources */,
 				AA9E872226012CEB00C2E389 /* GuidesListingTitle.swift in Sources */,
 				AADCAC0626045AF700FB52C4 /* GuideProfileParagraphView.swift in Sources */,
-				AA9E8768260225C700C2E389 /* GuidesModule.swift in Sources */,
+				AA9E8768260225C700C2E389 /* GuidesListingModule.swift in Sources */,
 				E254F2562606343E00E25A56 /* TouristAPIParser.swift in Sources */,
 				AAF0C06F2605B14600357E94 /* RegisterButton.swift in Sources */,
 				AAF0C07E2605B14600357E94 /* GuideRegisterRouter.swift in Sources */,
@@ -1574,15 +1570,16 @@
 				AAF0C20526067BD900357E94 /* MockReviewAPIResponse.swift in Sources */,
 				AAF0C23026068DA400357E94 /* TrailAPIParserTests.swift in Sources */,
 				E2E286CD26064BEE00C058C3 /* TrailAPITests.swift in Sources */,
+				AAF0C24E260699AE00357E94 /* SettingsModuleTests.swift in Sources */,
 				E2E286BB26064BE400C058C3 /* UserAPIParserTests.swift in Sources */,
 				AAF0C223260687CB00357E94 /* MockTrailAPIResponse.swift in Sources */,
 				AAF0C1DF26066E5400357E94 /* TouristAPIParserTests.swift in Sources */,
 				E26CBC2D260657C7005DBD47 /* MockGuideAPIResponses.swift in Sources */,
-				E2E286F126064C0300C058C3 /* GuidesProfileModuleTests.swift in Sources */,
 				E26CBC4226067966005DBD47 /* RegisterPresenterTests.swift in Sources */,
 				E26CBC4D260683ED005DBD47 /* MockAreaAPIResponse.swift in Sources */,
 				E2E286EB26064C0300C058C3 /* SocialModuleTests.swift in Sources */,
 				E26CBC2826065794005DBD47 /* GuideAPIParserTests.swift in Sources */,
+				AAF0C23E260697AB00357E94 /* GuidesListingModuleTests.swift in Sources */,
 				AAF0C21B260685E400357E94 /* ReviewAPIParserTests.swift in Sources */,
 				E2E286EA26064C0300C058C3 /* GuideRegisterModuleTests.swift in Sources */,
 				E2E286ED26064C0300C058C3 /* GuideLoginModuleTests.swift in Sources */,
@@ -1593,7 +1590,6 @@
 				E234933525FB885100EC90E9 /* ChalloTests.swift in Sources */,
 				AAF0C1E726066EBB00357E94 /* MockTouristAPIResponse.swift in Sources */,
 				E26CBC5226068537005DBD47 /* AreaAPIParserTests.swift in Sources */,
-				E2E286F026064C0300C058C3 /* GuidesListingModuleTests.swift in Sources */,
 				AAF0C1F2260671D100357E94 /* MockAPIResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

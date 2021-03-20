@@ -1,17 +1,17 @@
 //
-//  MapModuleTests.swift
+//  GuidesModuleTests.swift
 //  ChalloTests
 //
-//  Created by Tan Le Yang on 20/3/21.
+//  Created by Kester Ng on 21/3/21.
 //
 
 @testable import Challo
 import XCTest
 import SwiftUI
 
-class MapModuleTests: XCTestCase {
+class GuidesListingModuleTests: XCTestCase {
     func testAssemble_returnsPresenterWithCorrectPropertiesAndView() {
-        let (view, presenter) = MapModule.assemble()
+        let (view, presenter) = GuidesListingModule.assemble()
         XCTAssertNotNil(view, "Wrong view returned")
         XCTAssertNotNil(presenter, "Wrong presenter returned")
         XCTAssertNotNil(presenter.router, "Presenter properties not assigned")
