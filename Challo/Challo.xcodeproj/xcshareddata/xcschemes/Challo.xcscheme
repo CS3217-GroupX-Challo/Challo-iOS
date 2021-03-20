@@ -76,6 +76,11 @@
             value = "http://challo-api-staging.herokuapp.com/api"
             isEnabled = "YES">
          </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "google_maps_api_key"
+            value = "AIzaSyBf4UUNjUwdWq79hcObEcsidHbWOYWy0Ao"
+            isEnabled = "YES">
+         </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction

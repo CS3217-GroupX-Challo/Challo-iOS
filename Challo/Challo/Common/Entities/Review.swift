@@ -22,6 +22,8 @@ struct Review {
     
     let trail: Trail
     
+    let createdAt: Date
+    
     /// The author of the review
     let tourist: Tourist
 }

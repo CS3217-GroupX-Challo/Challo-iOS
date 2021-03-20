@@ -20,10 +20,12 @@ struct Guide: User {
     
     var dateJoined: Date?
     
+    var location: Area?
+    
     var sex: Sex?
     
     /// A decimal rating of the guide, ranging from 1-5
-    let rating: Decimal = 0
+    var rating: Decimal = 0
     
     /// An array of Days in which the guide is available for booking
     var daysAvailable: [Days] = []
@@ -45,4 +47,10 @@ struct Guide: User {
     
     /// A short description of the guide
     var biography: String?
+    
+    /// A short description of the guide's hobbies
+    var hobbies: String?
+    
+    /// A short description of the guide's memorable experiences
+    var memorableExperiences: String?
 }

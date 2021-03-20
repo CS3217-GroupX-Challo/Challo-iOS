@@ -8,8 +8,8 @@
 import Alamofire
 
 class AlamofireManager: NetworkManager {
-    typealias JSON = [String: Any]
-    typealias HEADER = [String: String]
+    typealias JSON = NetworkManager.JSON
+    typealias HEADER = NetworkManager.HEADER
     
     static let alamofireManager = AlamofireManager()
     private var apiPath = ProcessInfo.processInfo.environment["api_path"]
@@ -80,7 +80,7 @@ class AlamofireManager: NetworkManager {
     
     private func invokeHandler(response: AFDataResponse<Data>,
                                reponseHandler: @escaping (JSON, Error?) -> Void) {
-        let (result, error) =  self.grabResponseData(response: response)
+        let (result, error) = self.grabResponseData(response: response)
         reponseHandler(result, error)
     }
     

@@ -5,6 +5,6 @@
 //  Created by Shao Yi on 15/3/21.
 //
 
-enum Days: CaseIterable {
+enum Days: String, CaseIterable {
     case Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
 }

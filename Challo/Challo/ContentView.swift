@@ -1,21 +1,29 @@
-//
-//  ContentView.swift
-//  Challo
-//
-//  Created by Tan Le Yang on 12/3/21.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+
+    @EnvironmentObject var userState: UserState
+    var (view, _) = SettingsModule.assemble()
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        NavigationView { () -> AnyView in
+            view
+            /*
+            if !userState.loggedIn {
+                let (loginPage, _) = TouristLoginModule.assemble()
+                return loginPage
+            } else {
+                return AnyView(Text("MOCK HOMEPAGE"))
+            }*/
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        let (loginPage, _) = GuideLoginModule.assemble()
+        return loginPage
     }
 }
