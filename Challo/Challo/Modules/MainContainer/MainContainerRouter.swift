@@ -15,11 +15,15 @@ class MainContainerRouter: RouterProtocol {
     var profilePage: AnyView
     var trailsPage: AnyView
     var guidesPage: AnyView
+    var mapsPage: AnyView
+    var settingsPage: AnyView
     
     init() {
         profilePage = TouristLoginModule.assemble().view
         trailsPage = TrailListingModule.assemble().view
         guidesPage = GuidesModule.assemble().view
+        mapsPage = MapModule.assemble().view
+        settingsPage = SettingsModule.assemble().view
     }
 
 }

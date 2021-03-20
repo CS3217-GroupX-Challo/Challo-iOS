@@ -27,4 +27,12 @@ class MainContainerPresenter: PresenterProtocol, ObservableObject {
     func getGuidePage() -> AnyView? {
         router?.guidesPage
     }
+    
+    func getMapsPage() -> AnyView? {
+        router?.mapsPage
+    }
+    
+    func getSettingsPage() -> AnyView? {
+        router?.settingsPage
+    }
 }
