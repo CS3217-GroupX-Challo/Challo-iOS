@@ -6,6 +6,10 @@ protocol ContainerView: View {
 }
 
 extension ContainerView {
+    var id: UUID {
+        UUID()
+    }
+    
     init(@ViewBuilder _ content: @escaping () -> Content) {
         self.init(content: content)
     }
