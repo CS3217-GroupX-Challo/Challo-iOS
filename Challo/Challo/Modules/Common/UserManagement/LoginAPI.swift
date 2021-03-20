@@ -5,11 +5,15 @@
 //  Created by Tan Le Yang on 17/3/21.
 //
 
+import Foundation
+
 protocol LoginAPI: UserAPI, AnyObject {
 
+    var userTypeUrl: String { get }
     func login(email: String,
                password: String,
                callback: @escaping (UserAPIResponse) -> Void)
+    func parseUserTypeJson(json: JSON) -> User?
 }
 
 extension LoginAPI {
@@ -18,15 +22,47 @@ extension LoginAPI {
                password: String,
                callback: @escaping (UserAPIResponse) -> Void) {
         let json = createLoginJson(email: email, password: password)
-        self.commonLogin(credentials: json, callback: { response in
-            callback(response)
+        self.commonLogin(credentials: json, callback: { [weak self] response in
+            guard let self = self else {
+                return
+            }
+
+            guard let userId = response.certificate?.userId else {
+                callback(UserAPIResponse(success: false))
+                return
+            }
+
+            self.getUserType(url: self.userTypeUrl,
+                             userId: userId) { json, err in
+                if err != nil {
+                    callback(UserAPIResponse(success: false))
+                }
+                
+                let user = self.parseUserTypeJson(json: json)
+                var newResponse = response
+                newResponse.certificate?.user = user
+                callback(newResponse)
+            }
         })
+    }
+
+    func getUserType(url: String,
+                     userId: String,
+                     callback: @escaping (JSON, Error?) -> Void) {
+        networkManager.get(url: url + "/" + userId,
+                           headers: AlamofireManager.HEADER()) { res, err in
+            if let err = err {
+                ChalloLogger.logger.log("Failed to get specific user type \(err as NSObject)")
+                callback(res, err)
+            }
+            callback(res, nil)
+        }
     }
 
     func createLoginJson(email: String, password: String) -> JSON {
         var json = JSON()
-        json["email"] = email
-        json["password"] = password
+        json[Key.email] = email
+        json[Key.password] = password
         return json
     }
 }

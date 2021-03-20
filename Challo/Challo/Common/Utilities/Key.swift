@@ -12,6 +12,9 @@ struct Key {
     static let state = "state"
     static let userId = "userId"
     static let email = "email"
+    static let password = "password"
+    static let token = "token"
+    static let data = "data"
     static let daysAvailable = "daysAvailable"
     static let sex = "sex"
     static let area = "area"
@@ -46,4 +49,11 @@ struct Key {
     static let guide = "guide"
     static let tourist = "tourist"
     static let trail = "trail"
+}
+
+// MARK: Facebook API-Response keys
+extension Key {
+    static let fbName = "name"
+    static let fbEmail = "email"
+    static let fbId = "id"
 }

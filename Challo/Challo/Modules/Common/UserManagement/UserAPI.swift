@@ -39,20 +39,6 @@ extension UserAPI {
                             callback: callback)
     }
 
-    func registerUserType(url: String,
-                          body: JSON,
-                          callback: @escaping (Error?) -> Void) {
-        networkManager.post(url: url,
-                            headers: AlamofireManager.HEADER(),
-                            body: body) { _, err in
-            if let err = err {
-                ChalloLogger.logger.log("Failed to create specific user type \(err as NSObject)")
-                callback(err)
-            }
-            callback(nil)
-        }
-    }
-    
     func getTourist(userId: UUID, callback: @escaping (Tourist) -> Void, url: String = "/user") {
         let api = AlamofireManager.alamofireManager
         api.get(url: url + "/" + userId.uuidString,
