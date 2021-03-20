@@ -48,6 +48,17 @@
 		649FA14E2605DCEF00F36BD6 /* TrailAPIInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA14B2605DCEF00F36BD6 /* TrailAPIInteractor.swift */; };
 		649FA14F2605DCEF00F36BD6 /* TrailAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA14C2605DCEF00F36BD6 /* TrailAPIError.swift */; };
 		649FA1502605DCEF00F36BD6 /* TrailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA14D2605DCEF00F36BD6 /* TrailAPI.swift */; };
+		649FA1552605DE8E00F36BD6 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1542605DE8E00F36BD6 /* MapView.swift */; };
+		649FA15A2605E6C200F36BD6 /* TrailProfileLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1592605E6C200F36BD6 /* TrailProfileLocation.swift */; };
+		649FA162260605C100F36BD6 /* APIInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA161260605C100F36BD6 /* APIInteractor.swift */; };
+		649FA1672606106D00F36BD6 /* TrailProfileBasicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1662606106D00F36BD6 /* TrailProfileBasicInfo.swift */; };
+		649FA16C2606116800F36BD6 /* TrailProfileDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA16B2606116800F36BD6 /* TrailProfileDescription.swift */; };
+		649FA1712606136F00F36BD6 /* TrailProfileReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1702606136F00F36BD6 /* TrailProfileReviews.swift */; };
+		649FA17626061D6900F36BD6 /* TrailProfileReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA17526061D6900F36BD6 /* TrailProfileReview.swift */; };
+		649FA17B26061EE400F36BD6 /* TrailProfileStickyBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA17A26061EE400F36BD6 /* TrailProfileStickyBar.swift */; };
+		649FA183260620E200F36BD6 /* View+InnerShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA182260620E200F36BD6 /* View+InnerShadow.swift */; };
+		649FA1882606228F00F36BD6 /* View+If.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1872606228F00F36BD6 /* View+If.swift */; };
+		649FA18D260629D400F36BD6 /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA18C260629D400F36BD6 /* CustomDateFormatter.swift */; };
 		99EE910BF070DD5F6845522E /* Pods_Challo_ChalloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */; };
 		AA2CE55D260490F50019C328 /* GuideReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE55C260490F50019C328 /* GuideReviewCard.swift */; };
 		AA2CE5672604C7D90019C328 /* GuideAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5662604C7D90019C328 /* GuideAPI.swift */; };
@@ -255,6 +266,17 @@
 		649FA14B2605DCEF00F36BD6 /* TrailAPIInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailAPIInteractor.swift; sourceTree = "<group>"; };
 		649FA14C2605DCEF00F36BD6 /* TrailAPIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailAPIError.swift; sourceTree = "<group>"; };
 		649FA14D2605DCEF00F36BD6 /* TrailAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailAPI.swift; sourceTree = "<group>"; };
+		649FA1542605DE8E00F36BD6 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		649FA1592605E6C200F36BD6 /* TrailProfileLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileLocation.swift; sourceTree = "<group>"; };
+		649FA161260605C100F36BD6 /* APIInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIInteractor.swift; sourceTree = "<group>"; };
+		649FA1662606106D00F36BD6 /* TrailProfileBasicInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileBasicInfo.swift; sourceTree = "<group>"; };
+		649FA16B2606116800F36BD6 /* TrailProfileDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileDescription.swift; sourceTree = "<group>"; };
+		649FA1702606136F00F36BD6 /* TrailProfileReviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileReviews.swift; sourceTree = "<group>"; };
+		649FA17526061D6900F36BD6 /* TrailProfileReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileReview.swift; sourceTree = "<group>"; };
+		649FA17A26061EE400F36BD6 /* TrailProfileStickyBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileStickyBar.swift; sourceTree = "<group>"; };
+		649FA182260620E200F36BD6 /* View+InnerShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+InnerShadow.swift"; sourceTree = "<group>"; };
+		649FA1872606228F00F36BD6 /* View+If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+If.swift"; sourceTree = "<group>"; };
+		649FA18C260629D400F36BD6 /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 		AA2CE55C260490F50019C328 /* GuideReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideReviewCard.swift; sourceTree = "<group>"; };
 		AA2CE5662604C7D90019C328 /* GuideAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPI.swift; sourceTree = "<group>"; };
 		AA2CE56B2604CDEB0019C328 /* AreaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPI.swift; sourceTree = "<group>"; };
@@ -531,10 +553,10 @@
 		649FA10F2605DC0600F36BD6 /* TrailProfile */ = {
 			isa = PBXGroup;
 			children = (
+				649FA1132605DC0600F36BD6 /* Views */,
 				649FA1102605DC0600F36BD6 /* TrailProfileRouter.swift */,
 				649FA1112605DC0600F36BD6 /* TrailProfilePresenter.swift */,
 				649FA1122605DC0600F36BD6 /* TrailProfileModule.swift */,
-				649FA1132605DC0600F36BD6 /* Views */,
 				649FA1192605DC0600F36BD6 /* TrailProfileInteractor.swift */,
 			);
 			path = TrailProfile;
@@ -555,6 +577,12 @@
 				649FA1162605DC0600F36BD6 /* TrailProfileDetails.swift */,
 				649FA1172605DC0600F36BD6 /* TrailProfileLandmarks.swift */,
 				649FA1182605DC0600F36BD6 /* TrailProfileSectionTitle.swift */,
+				649FA1592605E6C200F36BD6 /* TrailProfileLocation.swift */,
+				649FA1662606106D00F36BD6 /* TrailProfileBasicInfo.swift */,
+				649FA16B2606116800F36BD6 /* TrailProfileDescription.swift */,
+				649FA1702606136F00F36BD6 /* TrailProfileReviews.swift */,
+				649FA17526061D6900F36BD6 /* TrailProfileReview.swift */,
+				649FA17A26061EE400F36BD6 /* TrailProfileStickyBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -971,6 +999,7 @@
 				AA9E878926025DC600C2E389 /* Areas */,
 				AA9E87522601EFFA00C2E389 /* Guides */,
 				E2C2441B2600B76C0085BAA4 /* UserManagement */,
+				649FA161260605C100F36BD6 /* APIInteractor.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1018,6 +1047,9 @@
 				AA9E870F26012B1400C2E389 /* DropDownMenu.swift */,
 				AA9E871726012BE400C2E389 /* StarRatingsView.swift */,
 				AAF0C0192605B05E00357E94 /* ChalloEnterpriseTitle.swift */,
+				649FA1542605DE8E00F36BD6 /* MapView.swift */,
+				649FA182260620E200F36BD6 /* View+InnerShadow.swift */,
+				649FA1872606228F00F36BD6 /* View+If.swift */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -1037,6 +1069,7 @@
 				AA9E878F260265C300C2E389 /* Key.swift */,
 				AA2CE5AE260513950019C328 /* Date+Construct.swift */,
 				AAF0C0142605AFC300357E94 /* ChalloLogger.swift */,
+				649FA18C260629D400F36BD6 /* CustomDateFormatter.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1459,7 +1492,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint autocorrect && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		BE70A06388CC49D1098AC7D2 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1560,6 +1593,7 @@
 				AAF0C19626061E3900357E94 /* SettingsListElement.swift in Sources */,
 				AA2CE5AF260513950019C328 /* Date+Construct.swift in Sources */,
 				AAF0C02D2605B10200357E94 /* UserAPIParser.swift in Sources */,
+				649FA15A2605E6C200F36BD6 /* TrailProfileLocation.swift in Sources */,
 				649FA11E2605DC0600F36BD6 /* TrailListingCardDetail.swift in Sources */,
 				AAF0C0752605B14600357E94 /* TouristRegistrationAPI.swift in Sources */,
 				AA2CE5A72604F09E0019C328 /* GuideProfilePageModule.swift in Sources */,
@@ -1569,13 +1603,16 @@
 				649FA11C2605DC0600F36BD6 /* TrailListingPresenter.swift in Sources */,
 				AAF0C0772605B14600357E94 /* RegisterInteractor.swift in Sources */,
 				AAF0C06E2605B14600357E94 /* RegisterRouter.swift in Sources */,
+				649FA162260605C100F36BD6 /* APIInteractor.swift in Sources */,
 				AA9E85D625FE735800C2E389 /* NetworkError.swift in Sources */,
 				AA9E871D26012C2C00C2E389 /* GuideDetailsCard.swift in Sources */,
 				E234932525FB884F00EC90E9 /* ContentView.swift in Sources */,
 				AAF0C0292605B10200357E94 /* CertificateManager.swift in Sources */,
+				649FA18D260629D400F36BD6 /* CustomDateFormatter.swift in Sources */,
 				649FA11F2605DC0600F36BD6 /* TrailListingCard.swift in Sources */,
 				AA9E85E125FE740500C2E389 /* AlamofireManager.swift in Sources */,
 				AAF0C0922605B14600357E94 /* TouristLoginRouter.swift in Sources */,
+				649FA16C2606116800F36BD6 /* TrailProfileDescription.swift in Sources */,
 				AA9E871826012BE400C2E389 /* StarRatingsView.swift in Sources */,
 				AAF0C0942605B14600357E94 /* TouristLoginInteractor.swift in Sources */,
 				649FA1272605DC0600F36BD6 /* TrailProfileSectionTitle.swift in Sources */,
@@ -1609,6 +1646,7 @@
 				AAF0C0892605B14600357E94 /* GuideLoginAPI.swift in Sources */,
 				AAF0C0CE2605E37900357E94 /* GoogleMapsView.swift in Sources */,
 				AAF0C0802605B14600357E94 /* SocialLoginDelegate.swift in Sources */,
+				649FA17626061D6900F36BD6 /* TrailProfileReview.swift in Sources */,
 				649FA1362605DC0E00F36BD6 /* MainContainerPresenter.swift in Sources */,
 				AADCABF92603B59600FB52C4 /* GuideProfileDetailsView.swift in Sources */,
 				AAF0C0882605B14600357E94 /* GuideLoginInteractor.swift in Sources */,
@@ -1625,6 +1663,7 @@
 				AAF0C18D2606193700357E94 /* SettingsPage.swift in Sources */,
 				6462024425FEFD4F00D89514 /* User.swift in Sources */,
 				AA2CE56C2604CDEB0019C328 /* AreaAPI.swift in Sources */,
+				649FA183260620E200F36BD6 /* View+InnerShadow.swift in Sources */,
 				AAF0C0862605B14600357E94 /* LoginButton.swift in Sources */,
 				AAF0C07C2605B14600357E94 /* GuideRegisterInteractor.swift in Sources */,
 				AA9E8771260232BB00C2E389 /* GuidesCardListingsView.swift in Sources */,
@@ -1649,11 +1688,13 @@
 				AAF0C0932605B14600357E94 /* TouristLoginAPI.swift in Sources */,
 				AAF0C07D2605B14600357E94 /* GuideRegisterPage.swift in Sources */,
 				6462026125FF022D00D89514 /* Area.swift in Sources */,
+				649FA17B26061EE400F36BD6 /* TrailProfileStickyBar.swift in Sources */,
 				AA9E872226012CEB00C2E389 /* GuidesListingTitle.swift in Sources */,
 				AADCAC0626045AF700FB52C4 /* GuideProfileParagraphView.swift in Sources */,
 				AA9E8768260225C700C2E389 /* GuidesModule.swift in Sources */,
 				E254F2562606343E00E25A56 /* TouristAPIParser.swift in Sources */,
 				AAF0C06F2605B14600357E94 /* RegisterButton.swift in Sources */,
+				649FA1552605DE8E00F36BD6 /* MapView.swift in Sources */,
 				AAF0C07E2605B14600357E94 /* GuideRegisterRouter.swift in Sources */,
 				AAF0C0812605B14600357E94 /* SocialLoginResponse.swift in Sources */,
 				AAF0C08E2605B14600357E94 /* LoginForm.swift in Sources */,
@@ -1673,6 +1714,7 @@
 				AAF0C06D2605B14600357E94 /* RegisterPresenter.swift in Sources */,
 				AA2CE55D260490F50019C328 /* GuideReviewCard.swift in Sources */,
 				649FA1502605DCEF00F36BD6 /* TrailAPI.swift in Sources */,
+				649FA1712606136F00F36BD6 /* TrailProfileReviews.swift in Sources */,
 				AA2CE5672604C7D90019C328 /* GuideAPI.swift in Sources */,
 				AAF0C02E2605B10200357E94 /* UserAPIResponse.swift in Sources */,
 				AA2CE5A22604EFE10019C328 /* GuideProfilePageRouter.swift in Sources */,
@@ -1702,6 +1744,8 @@
 				AA9E8785260242FA00C2E389 /* FilterTypes.swift in Sources */,
 				AAF0C0782605B14600357E94 /* RegistrationDetails.swift in Sources */,
 				649FA1352605DC0E00F36BD6 /* MainContainerInteractor.swift in Sources */,
+				649FA1672606106D00F36BD6 /* TrailProfileBasicInfo.swift in Sources */,
+				649FA1882606228F00F36BD6 /* View+If.swift in Sources */,
 				E2D8969925FFABA10001B026 /* BorderedButtonStyle.swift in Sources */,
 				AAF0C08F2605B14600357E94 /* LoginPresenter.swift in Sources */,
 				AAF0C0712605B14600357E94 /* TouristRegisterPresenter.swift in Sources */,

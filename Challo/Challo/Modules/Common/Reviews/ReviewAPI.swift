@@ -16,11 +16,22 @@ class ReviewAPI {
     let touristAPI = TouristAPI()
     let guideAPI = GuideAPI()
 
-    func getReviewsForGuide(guideId: UUID,
-                            callback: @escaping ([Review]) -> Void,
-                            url: String = "/review?guideId=") {
-        let api = APINetwork.api
-        api.get(url: url + guideId.uuidString,
+    private func buildGetReviewsUrl(guideId: UUID?, trailId: UUID?) -> String {
+        var hasQuery = false
+        var url = "/review"
+        if let guideId = guideId {
+            url += "?guideId=\(guideId.uuidString)"
+            hasQuery = true
+        }
+        if let trailId = trailId {
+            url += (hasQuery ? "&" : "?") + "trailId=\(trailId.uuidString)"
+        }
+        return url
+    }
+    
+    private func getReviews(callback: @escaping ([Review]) -> Void, guideId: UUID? = nil, trailId: UUID? = nil) {
+        let api = AlamofireManager.alamofireManager
+        api.get(url: buildGetReviewsUrl(guideId: guideId, trailId: trailId),
                 headers: [String: String]()) { response, error in
             if error != nil {
                 return
@@ -43,5 +54,13 @@ class ReviewAPI {
                 }
             }
         }
+    }
+    
+    func getReviewsForTrail(trailId: UUID, callback: @escaping ([Review]) -> Void) {
+        getReviews(callback: callback, trailId: trailId)
+    }
+    
+    func getReviewsForGuide(guideId: UUID, callback: @escaping ([Review]) -> Void) {
+        getReviews(callback: callback, guideId: guideId)
     }
 }

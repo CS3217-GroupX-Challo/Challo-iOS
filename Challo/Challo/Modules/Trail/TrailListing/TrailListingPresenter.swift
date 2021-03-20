@@ -29,8 +29,8 @@ class TrailListingPresenter: PresenterProtocol, ObservableObject {
     }
     
     func transformTrailToTrailListingCard(_ trail: Trail) -> TrailListingCard {
-        TrailListingCard(title: trail.title, tags: ["DISCOUNTED", "Most Popular"], lowestFeePerPax: 1_000,
-                         tourDescription: trail.description, rating: trail.rating, numOfReviews: 389)
+        TrailListingCard(title: trail.title, tags: trail.tags, lowestFeePerPax: trail.lowestFee,
+                         tourDescription: trail.description, rating: trail.rating, numOfReviews: trail.numOfReviews)
     }
     
     func populateTrailProfilePage(trailIndex: Int) {

@@ -10,8 +10,8 @@ import SwiftUI
 struct PageLayout<ChildContent: View>: View {
     
     let titleLabel: String
-    let headerContent: AnyView? = nil
-    let makeChildContent: () -> ChildContent
+    var headerContent: AnyView?
+    let makeChildContent: (_: GeometryProxy) -> ChildContent
     
     var body: some View {
         GeometryReader { geometry in
@@ -30,7 +30,7 @@ struct PageLayout<ChildContent: View>: View {
                 .frame(width: geometry.size.width,
                        height: geometry.size.height / 5,
                        alignment: .center)
-                makeChildContent()
+                makeChildContent(geometry)
             }
         }
         .edgesIgnoringSafeArea(.all)

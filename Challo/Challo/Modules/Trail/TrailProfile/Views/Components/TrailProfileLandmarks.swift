@@ -8,15 +8,20 @@
 import SwiftUI
 
 struct TrailProfileLandmarks: View {
-    let landmarks: [String]
+    let trail: Trail
     
-    @ViewBuilder
-    func makeLandmark(_ index: Int) -> some View {
-        let landmark = landmarks[index]
-        HStack {
+    var landmarks: [String] {
+        trail.landmarks
+    }
+
+    func makeLandmark(_ index: Int) -> AnyView? {
+        guard index < landmarks.count else {
+            return nil
+        }
+        return AnyView(HStack {
             Text("\(index)").padding()
                 .overlay(
-                    Circle().stroke(Color.themePrimary, lineWidth: 1.5)
+                    Circle().stroke(Color.themeTertiary, lineWidth: 1.5)
                         .padding(6)
                   )
             VStack(alignment: .leading) {
@@ -25,9 +30,9 @@ struct TrailProfileLandmarks: View {
                 } else if index == landmarks.count - 1 {
                     Text("End Point:").bold()
                 }
-                Text(landmark)
+                Text(landmarks[index])
             }.font(.callout)
-        }
+        })
     }
     
     var body: some View {

@@ -33,35 +33,22 @@ class TrailAPIParser {
               let title = json[Key.title] as? String,
               let description = json[Key.description] as? String,
               let positionsJSON = json[Key.positions] as? [JSON],
-              let distanceString = json[Key.distance] as? String,
               let areaDetails = json[Key.area] as? JSON,
               let area = areaParser.convertJSONToArea(json: areaDetails) else {
             return nil
         }
         
         let positions = convertJSONToCLLCoordinatesArray(json: positionsJSON)
-        
-        guard let distance = Double(distanceString) else {
-            return nil
-        }
-        
-        var rating: Double = 0
-        if let ratingString = json[Key.rating] as? String {
-            rating = Double(ratingString) ?? rating
-        }
-                
-        var duration: Double = 0
-        if let durationString = json[Key.duration] as? String {
-            duration = Double(durationString) ?? duration
-        }
-        
-        var elevation: Double = 0
-        if let elevationString = json[Key.elevation] as? String {
-            elevation = Double(elevationString) ?? elevation
-        }
-        
+        let distance = convertJSONDoubleValueToDouble(json[Key.distance])
+        let rating = convertJSONDoubleValueToDouble(json[Key.rating])
+        let duration = convertJSONDoubleValueToDouble(json[Key.duration])
+        let elevation = convertJSONDoubleValueToDouble(json[Key.elevation])
+        let numOfReviews = convertJSONIntValueToInt(json[Key.numOfReviews])
         let images: [String] = json[Key.images] as? [String] ?? []
-        
+        let tags: [String] = json[Key.tags] as? [String] ?? []
+        let landmarks: [String] = json[Key.landmarks] as? [String] ?? []
+        let lowestFee = convertJSONIntValueToInt(json[Key.lowestFee])
+
         return Trail(trailId: trailId,
                      title: title,
                      description: description,
@@ -71,7 +58,11 @@ class TrailAPIParser {
                      duration: duration,
                      elevation: elevation,
                      images: images,
-                     area: area)
+                     area: area,
+                     numOfReviews: numOfReviews,
+                     lowestFee: lowestFee,
+                     tags: tags,
+                     landmarks: landmarks)
     }
 }
 

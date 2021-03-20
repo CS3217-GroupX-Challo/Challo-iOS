@@ -11,18 +11,25 @@ struct TrailProfilePage: View {
     @EnvironmentObject var presenter: TrailProfilePresenter
     
     var body: some View {
-        UnwrapView(presenter.currentTrail) { trail in
+        VStack(spacing: 0) {
             GeometryReader { geometry in
-                VStack {
-                    Image.guidesBackground
-                        .resizable()
-                        .frame(width: geometry.size.width,
-                               height: geometry.size.height / 4,
-                               alignment: .center)
-                    TrailProfileDetails(trail: trail)
-                        .padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 50))
+                ScrollView(.vertical) {
+                    VStack {
+                        Image.guidesBackground
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: geometry.size.width,
+                                   height: geometry.size.height / 3.0,
+                                   alignment: .center)
+                        TrailProfileDetails()
+                            .padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 50))
+                    }
+                    Spacer().frame(height: 100)
                 }
-            }.edgesIgnoringSafeArea(.all)
-        }
+            }
+            TrailProfileStickyBar()
+                .innerShadow(color: .gray, radius: 0.03, exclude: [.bottom, .leading, .trailing])
+                .frame(maxHeight: 100)
+        }.edgesIgnoringSafeArea(.all)
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StarRatingsView: View {
     var rating: Double
-    var numOfReviews: Int? = nil
+    var numOfReviews: Int?
     
     var maxRating: Int = 5
     let onImage = Image(systemName: "star.fill")
@@ -17,11 +17,15 @@ struct StarRatingsView: View {
     let offColor = Color.gray
     let onColor = Color.yellow
     
+    var maxHeight: CGFloat = 15
+    
     var body: some View {
         HStack {
             HStack(spacing: 1) {
                 ForEach(1..<maxRating + 1) { number in
-                    onImage
+                    onImage.resizable()
+                        .scaledToFit()
+                        .frame(maxHeight: maxHeight)
                         .foregroundColor(Double(number) > self.rating ? self.offColor : self.onColor)
                 }
             }

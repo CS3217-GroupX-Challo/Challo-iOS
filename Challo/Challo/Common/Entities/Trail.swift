@@ -37,5 +37,13 @@ struct Trail {
     let area: Area
     
     /// Array of guides who are capable of guiding this trail
-    let guides: [Guide] = []
+    var guides: [Guide] = []
+    
+    let numOfReviews: Int
+    
+    let lowestFee: Int
+    
+    var tags: [String] = []
+    
+    var landmarks: [String] = []
 }

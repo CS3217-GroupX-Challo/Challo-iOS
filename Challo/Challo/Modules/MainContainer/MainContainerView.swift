@@ -59,5 +59,6 @@ struct MainContainerView: View {
                     .tag(4)
             }.accentColor(.themeTertiary)
         }.navigationViewStyle(StackNavigationViewStyle())
+        .accentColor(.themeTertiary)
     }
 }

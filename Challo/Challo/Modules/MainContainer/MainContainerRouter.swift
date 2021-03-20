@@ -17,19 +17,9 @@ class MainContainerRouter: RouterProtocol {
     var guidesPage: AnyView
     
     init() {
-        profilePage = AnyView(Text("MOCK HOMEPAGE"))
+        profilePage = TouristLoginModule.assemble().view
         trailsPage = TrailListingModule.assemble().view
         guidesPage = GuidesModule.assemble().view
-        print("init main cont router")
-    }
-    
-    func getProfileView() -> AnyView {
-//        if !userState.loggedIn {
-//            let (loginPage, _) = TouristLoginModule.assemble()
-//            return loginPage
-//        } else {
-            return AnyView(Text("MOCK HOMEPAGE"))
-//        }
     }
 
 }
