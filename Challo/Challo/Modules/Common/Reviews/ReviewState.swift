@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ReviewState {
+struct ReviewState: Equatable {
     let reviewId: UUID
     
     let rating: Int
