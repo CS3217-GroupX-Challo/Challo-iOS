@@ -9,11 +9,11 @@ import Foundation
 
 class TouristAPI {
 
-    typealias JSON = AlamofireManager.JSON
+    typealias JSON = NetworkManager.JSON
     let touristParser = TouristAPIParser()
 
     func getTourist(userId: UUID, callback: @escaping (Tourist) -> Void, url: String = "/user") {
-        let api = AlamofireManager.alamofireManager
+        let api = APINetwork.api
         api.get(url: url + "/" + userId.uuidString,
                 headers: [String: String]()) { [weak self] response, error in
             if error != nil {

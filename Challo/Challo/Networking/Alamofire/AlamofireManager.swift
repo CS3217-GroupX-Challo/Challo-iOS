@@ -8,8 +8,8 @@
 import Alamofire
 
 class AlamofireManager: NetworkManager {
-    typealias JSON = [String: Any]
-    typealias HEADER = [String: String]
+    typealias JSON = NetworkManager.JSON
+    typealias HEADER = NetworkManager.HEADER
     
     static let alamofireManager = AlamofireManager()
     private var apiPath = ProcessInfo.processInfo.environment["api_path"]

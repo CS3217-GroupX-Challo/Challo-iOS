@@ -7,7 +7,7 @@
 
 protocol CertificateManager {
 
-    typealias JSON = AlamofireManager.JSON
+    typealias JSON = NetworkManager.JSON
 
     func storeCertificate(certificate: UserCertificate)
 }

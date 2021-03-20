@@ -12,7 +12,7 @@ class AreaAPI {
     let areaParser = AreaAPIParser()
 
     func getAreas(url: String = "/area", callback: @escaping ([Area]) -> Void) {
-        let api = AlamofireManager.alamofireManager
+        let api = APINetwork.api
         api.get(url: url,
                 headers: [String: String]()) { response, error in
             if error != nil {

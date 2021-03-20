@@ -8,11 +8,11 @@ import Foundation
 
 class TrailAPI {
 
-    typealias JSON = AlamofireManager.JSON
+    typealias JSON = NetworkManager.JSON
     let parser = TrailAPIParser()
 
     func getTrail(trailId: UUID, callback: @escaping (Trail) -> Void, url: String = "/trail") {
-        let api = AlamofireManager.alamofireManager
+        let api = APINetwork.api
         api.get(url: url + "/" + trailId.uuidString,
                 headers: [String: String]()) { [weak self] response, error in
             if error != nil {

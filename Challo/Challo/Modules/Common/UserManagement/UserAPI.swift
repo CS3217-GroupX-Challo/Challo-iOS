@@ -11,9 +11,9 @@ class UserAPI {
 
     private let loginUrl = "/user/login"
     private let registerUrl = "/user/register"
-    let networkManager = AlamofireManager.alamofireManager
+    let networkManager = APINetwork.api
     let userParser = UserAPIParser()
-    typealias JSON = AlamofireManager.JSON
+    typealias JSON = NetworkManager.JSON
 
     func commonLogin(credentials: JSON,
                      callback: @escaping (UserAPIResponse) -> Void) {
@@ -36,7 +36,7 @@ extension UserAPI {
                              body: JSON,
                              callback: @escaping (UserAPIResponse) -> Void) {
         networkManager.post(url: url,
-                            headers: AlamofireManager.HEADER(),
+                            headers: NetworkManager.HEADER(),
                             body: body) { [weak self] res, err in
             if let err = err {
                 self?.handleErrorResponse(error: err, callback: callback)

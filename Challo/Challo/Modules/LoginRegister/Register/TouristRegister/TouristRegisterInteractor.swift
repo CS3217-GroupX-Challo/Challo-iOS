@@ -7,7 +7,6 @@
 
 class TouristRegisterInteractor: RegisterInteractor, InteractorProtocol {
 
-    let networkManager = AlamofireManager.alamofireManager
     weak var presenter: RegisterPresenter!
 
     private let api = TouristRegistrationAPI()

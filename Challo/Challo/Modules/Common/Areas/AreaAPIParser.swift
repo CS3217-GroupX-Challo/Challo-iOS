@@ -9,7 +9,7 @@ import Foundation
 
 class AreaAPIParser {
 
-    typealias JSON = [String: Any]
+    typealias JSON = NetworkManager.JSON
     
     func parseAreas(response: JSON) -> [Area] {
         guard let data = response["data"],

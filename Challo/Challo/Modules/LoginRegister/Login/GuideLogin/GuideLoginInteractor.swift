@@ -7,7 +7,6 @@
 
 class GuideLoginInteractor: LoginInteractor, InteractorProtocol {
 
-    let networkManager = AlamofireManager.alamofireManager
     weak var presenter: LoginPresenter!
     private let loginLogic = GuideLoginAPI()
 

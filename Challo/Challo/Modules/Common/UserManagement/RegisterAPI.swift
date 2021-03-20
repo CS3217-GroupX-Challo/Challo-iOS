@@ -9,10 +9,9 @@ import Foundation
 
 protocol RegisterAPI: AnyObject {
 
-    typealias JSON = AlamofireManager.JSON
+    typealias JSON = NetworkManager.JSON
     var userAPI: UserAPI { get }
     var userTypeUrl: String { get }
-    var networkManager: AlamofireManager { get }
 
     func register(details: RegistrationDetails,
                   callback: @escaping (UserAPIResponse) -> Void)
@@ -57,8 +56,9 @@ extension RegisterAPI {
     func registerUserType(url: String,
                           body: JSON,
                           callback: @escaping (JSON, Error?) -> Void) {
+        let networkManager = APINetwork.api
         networkManager.post(url: url,
-                            headers: AlamofireManager.HEADER(),
+                            headers: NetworkManager.HEADER(),
                             body: body) { res, err in
             if let err = err {
                 ChalloLogger.logger.log("Failed to create specific user type \(err as NSObject)")

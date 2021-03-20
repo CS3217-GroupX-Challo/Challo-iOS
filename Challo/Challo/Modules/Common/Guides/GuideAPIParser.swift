@@ -9,7 +9,7 @@ import Foundation
 
 class GuideAPIParser {
 
-    typealias JSON = [String: Any]
+    typealias JSON = NetworkManager.JSON
     let areaParser = AreaAPIParser()
     
     func parseGuides(response: JSON) -> [Guide] {

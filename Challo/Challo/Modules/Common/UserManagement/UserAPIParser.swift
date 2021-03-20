@@ -8,8 +8,8 @@ import SwiftUI
 
 class UserAPIParser {
 
-    let networkManager = AlamofireManager.alamofireManager
-    typealias JSON = AlamofireManager.JSON
+    let networkManager = APINetwork.api
+    typealias JSON = NetworkManager.JSON
 
     func parseUser(apiResponse: JSON) -> UserCertificate? {
         guard let data = apiResponse[Key.data] as? JSON,

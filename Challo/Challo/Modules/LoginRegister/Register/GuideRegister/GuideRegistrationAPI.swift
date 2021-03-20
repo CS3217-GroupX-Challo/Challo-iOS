@@ -10,7 +10,6 @@ class GuideRegistrationAPI: RegisterAPI {
     let guideParser = GuideAPIParser()
     let userAPI = UserAPI()
     let userTypeUrl = "/guide"
-    let networkManager = AlamofireManager.alamofireManager
 
     func createUserTypeJSON(details: RegistrationDetails, certificate: UserCertificate?) -> JSON? {
         guard let userId = certificate?.userId else {

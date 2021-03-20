@@ -9,7 +9,7 @@ import Foundation
 
 class ReviewAPIParser {
 
-    typealias JSON = [String: Any]
+    typealias JSON = NetworkManager.JSON
 
     func parseReviews(response: JSON) -> [ReviewState] {
         guard let data = response["data"],

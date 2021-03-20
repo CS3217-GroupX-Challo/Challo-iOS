@@ -7,7 +7,6 @@
 
 class TouristLoginInteractor: LoginInteractor, InteractorProtocol {
 
-    let networkManager = AlamofireManager.alamofireManager
     weak var presenter: LoginPresenter!
     private let api = TouristLoginAPI()
 

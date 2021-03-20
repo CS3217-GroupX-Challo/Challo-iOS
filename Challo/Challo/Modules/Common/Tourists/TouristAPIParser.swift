@@ -9,7 +9,7 @@ import Foundation
 
 class TouristAPIParser {
 
-    typealias JSON = AlamofireManager.JSON
+    typealias JSON = NetworkManager.JSON
 
     func convertJSONToTourist(json: JSON) -> Tourist? {
             guard let userId = UUID(uuidString: json[Key.userId] as? String ?? ""),

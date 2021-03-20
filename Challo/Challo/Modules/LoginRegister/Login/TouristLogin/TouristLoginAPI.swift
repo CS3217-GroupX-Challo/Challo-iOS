@@ -9,7 +9,6 @@ class TouristLoginAPI: LoginAPI {
 
     let userAPI = UserAPI()
     let touristParser = TouristAPIParser()
-    let networkManager = AlamofireManager.alamofireManager
     let userTypeUrl = "/tourist"
 
     func parseUserTypeJson(json: JSON) -> User? {

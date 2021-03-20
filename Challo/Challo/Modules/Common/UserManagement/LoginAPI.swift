@@ -9,10 +9,9 @@ import Foundation
 
 protocol LoginAPI: AnyObject {
 
-    typealias JSON = AlamofireManager.JSON
+    typealias JSON = NetworkManager.JSON
     var userAPI: UserAPI { get }
     var userTypeUrl: String { get }
-    var networkManager: AlamofireManager { get }
 
     func login(email: String,
                password: String,
@@ -53,8 +52,9 @@ extension LoginAPI {
     func getUserType(url: String,
                      userId: String,
                      callback: @escaping (JSON, Error?) -> Void) {
+        let networkManager = APINetwork.api
         networkManager.get(url: url + "/" + userId,
-                           headers: AlamofireManager.HEADER()) { res, err in
+                           headers: NetworkManager.HEADER()) { res, err in
             if let err = err {
                 ChalloLogger.logger.log("Failed to get specific user type \(err as NSObject)")
                 callback(res, err)

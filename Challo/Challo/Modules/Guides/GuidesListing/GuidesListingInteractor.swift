@@ -8,11 +8,10 @@ import Foundation
 
 class GuidesListingInteractor: InteractorProtocol {
 
-    typealias JSON = AlamofireManager.JSON
-    typealias HEADER = AlamofireManager.HEADER
+    typealias JSON = NetworkManager.JSON
+    typealias HEADER = NetworkManager.HEADER
     weak var presenter: GuidesListingPresenter!
     
-    var api = AlamofireManager.alamofireManager
     let guideAPI = GuideAPI()
     let areaAPI = AreaAPI()
 

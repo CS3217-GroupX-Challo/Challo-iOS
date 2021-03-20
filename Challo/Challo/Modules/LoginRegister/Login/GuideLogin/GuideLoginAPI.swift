@@ -10,7 +10,6 @@ class GuideLoginAPI: LoginAPI {
     let guideParser = GuideAPIParser()
     let userAPI = UserAPI()
     let userTypeUrl = "/guide"
-    let networkManager = AlamofireManager.alamofireManager
 
     func parseUserTypeJson(json: JSON) -> User? {
         guard let data = json[Key.data] as? JSON else {

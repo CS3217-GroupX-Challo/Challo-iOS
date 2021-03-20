@@ -9,7 +9,6 @@ class TouristRegistrationAPI: RegisterAPI {
 
     let userAPI = UserAPI()
     let userTypeUrl = "/tourist"
-    let networkManager = AlamofireManager.alamofireManager
     private let parser = TouristAPIParser()
 
     func createUserTypeJSON(details: RegistrationDetails, certificate: UserCertificate?) -> JSON? {

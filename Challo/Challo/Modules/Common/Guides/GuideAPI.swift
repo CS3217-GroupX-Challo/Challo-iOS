@@ -9,13 +9,13 @@ import Foundation
 class GuideAPI {
     // TODO: Add in post/put/delete methods
 
-    typealias JSON = AlamofireManager.JSON
+    typealias JSON = NetworkManager.JSON
 
     let guideParser = GuideAPIParser()
     let trailParser = TrailAPIParser()
 
     func getGuides(callback: @escaping ([Guide]) -> Void, url: String = "/guide") {
-        let api = AlamofireManager.alamofireManager
+        let api = APINetwork.api
         api.get(url: url,
                 headers: [String: String]()) { response, error in
             if error != nil {
@@ -39,7 +39,7 @@ class GuideAPI {
     }
 
     func getGuide(guideId: UUID, callback: @escaping (Guide) -> Void, url: String = "/guide") {
-        let api = AlamofireManager.alamofireManager
+        let api = APINetwork.api
         api.get(url: url + "/" + guideId.uuidString,
                 headers: [String: String]()) { response, error in
             if error != nil {

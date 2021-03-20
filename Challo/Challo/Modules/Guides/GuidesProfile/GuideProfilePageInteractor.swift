@@ -9,7 +9,6 @@ class GuideProfilePageInteractor: InteractorProtocol {
 
     let reviewAPI = ReviewAPI()
     weak var presenter: GuideProfilePagePresenter!
-    var networkManager = AlamofireManager.alamofireManager
     
     func getReviews() {
         reviewAPI.getReviewsForGuide(guideId: presenter.guide.userId) { [weak self] reviews in

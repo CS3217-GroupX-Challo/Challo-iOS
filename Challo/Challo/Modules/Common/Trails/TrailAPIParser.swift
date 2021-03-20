@@ -10,7 +10,7 @@ import MapKit
 
 class TrailAPIParser {
 
-    typealias JSON = [String: Any]
+    typealias JSON = NetworkManager.JSON
     let areaParser = AreaAPIParser()
 
     func parseTrail(response: JSON) -> [Trail] {

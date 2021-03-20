@@ -19,7 +19,7 @@ class ReviewAPI {
     func getReviewsForGuide(guideId: UUID,
                             callback: @escaping ([Review]) -> Void,
                             url: String = "/review?guideId=") {
-        let api = AlamofireManager.alamofireManager
+        let api = APINetwork.api
         api.get(url: url + guideId.uuidString,
                 headers: [String: String]()) { response, error in
             if error != nil {
