@@ -27,4 +27,18 @@ class TrailAPI {
             callback(trail)
         }
     }
+    
+    func getAllTrails(callback: @escaping ([Trail]) -> Void) {
+        let api = AlamofireManager.alamofireManager
+        api.get(url: "/trail",
+                headers: [String: String]()) { response, error in
+            if error != nil {
+                return
+            }
+            
+            let trails = parseTrail(response: response)
+            
+            callback(trails)
+        }
+    }
 }

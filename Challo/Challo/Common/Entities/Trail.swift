@@ -16,17 +16,19 @@ struct Trail {
     
     let description: String
     
+    let rating: Double
+    
     /// Array of coordinates mapping the route of the trail
     let positions: [CLLocationCoordinate2D]
     
     /// Estimated distance of the trail in meters
-    let distance: Decimal
+    let distance: Double
     
     /// Estimated time needed to complete the trail
-    let duration: Decimal
+    let duration: Double
     
     /// Estimated elevation of the trail in meters
-    let elevation: Decimal
+    let elevation: Double
     
     /// Paths to images of the trail
     let images: [String]

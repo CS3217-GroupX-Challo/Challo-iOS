@@ -40,18 +40,24 @@ class TrailAPIParser {
         }
         
         let positions = convertJSONToCLLCoordinatesArray(json: positionsJSON)
-        guard let distance = Decimal(string: distanceString) else {
+        
+        guard let distance = Double(distanceString) else {
             return nil
         }
+        
+        var rating: Double = 0
+        if let ratingString = json[Key.rating] as? String {
+            rating = Double(ratingString) ?? rating
+        }
                 
-        var duration = Decimal(0)
+        var duration: Double = 0
         if let durationString = json[Key.duration] as? String {
-            duration = Decimal(string: durationString) ?? Decimal(0)
+            duration = Double(durationString) ?? duration
         }
         
-        var elevation = Decimal(0)
+        var elevation: Double = 0
         if let elevationString = json[Key.elevation] as? String {
-            elevation = Decimal(string: elevationString) ?? Decimal(0)
+            elevation = Double(elevationString) ?? elevation
         }
         
         let images: [String] = json[Key.images] as? [String] ?? []
@@ -59,6 +65,7 @@ class TrailAPIParser {
         return Trail(trailId: trailId,
                      title: title,
                      description: description,
+                     rating: rating,
                      positions: positions,
                      distance: distance,
                      duration: duration,

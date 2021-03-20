@@ -9,7 +9,9 @@
 struct Key {
     static let areaId = "areaId"
     static let country = "country"
+    static let division = "division"
     static let state = "state"
+    static let village = "village"
     static let userId = "userId"
     static let email = "email"
     static let password = "password"

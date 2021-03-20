@@ -10,7 +10,11 @@ import Foundation
 struct Area {
     let areaId: UUID
     
-    let areaName: String
+    let village: String
     
-    let regionName: String
+    let division: String
+    
+    let state: String
+    
+    let country: String
 }
