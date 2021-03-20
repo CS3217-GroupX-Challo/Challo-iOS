@@ -60,42 +60,42 @@ class ReviewAPIParserTests: XCTestCase {
     func testConvertJSONToReview_withJSONOne_returnCorrectReview() throws {
         let json = Response.reviewJSONOne
         let review = try XCTUnwrap(parser.convertJSONToReview(json: json))
-        XCTAssertEqual(review, Response.reviewStateOne, "Parsed incorrectly")
+        XCTAssertEqual(review, Response.reviewStateOne, "Converted incorrectly")
     }
     
     func testConvertJSONToReview_withJSONTwo_returnCorrectReview() throws {
         let json = Response.reviewJSONTwo
         let review = try XCTUnwrap(parser.convertJSONToReview(json: json))
-        XCTAssertEqual(review, Response.reviewStateTwo, "Parsed incorrectly")
+        XCTAssertEqual(review, Response.reviewStateTwo, "Converted incorrectly")
     }
     
     func testConvertJSONToReview_withMissingReviewId_returnsNil() {
         let json = Response.removeUserProperty(key: Key.reviewId,
                                                json: Response.reviewJSONOne)
-        XCTAssertNil(parser.convertJSONToReview(json: json), "Parsed incorrectly")
+        XCTAssertNil(parser.convertJSONToReview(json: json), "Converted incorrectly")
     }
     
     func testConvertJSONToReview_withMissingRating_returnsNil() {
         let json = Response.removeUserProperty(key: Key.rating,
                                                json: Response.reviewJSONOne)
-        XCTAssertNil(parser.convertJSONToReview(json: json), "Parsed incorrectly")
+        XCTAssertNil(parser.convertJSONToReview(json: json), "Converted incorrectly")
     }
     
     func testConvertJSONToReview_withMissingGuideId_returnsNil() {
         let json = Response.removeUserProperty(key: Key.guideId,
                                                json: Response.reviewJSONOne)
-        XCTAssertNil(parser.convertJSONToReview(json: json), "Parsed incorrectly")
+        XCTAssertNil(parser.convertJSONToReview(json: json), "Converted incorrectly")
     }
     
     func testConvertJSONToReview_withMissingTrailId_returnsNil() {
         let json = Response.removeUserProperty(key: Key.trailId,
                                                json: Response.reviewJSONOne)
-        XCTAssertNil(parser.convertJSONToReview(json: json), "Parsed incorrectly")
+        XCTAssertNil(parser.convertJSONToReview(json: json), "Converted incorrectly")
     }
     
     func testConvertJSONToReview_withMissingTouristId_returnsNil() {
         let json = Response.removeUserProperty(key: Key.touristId,
                                                json: Response.reviewJSONOne)
-        XCTAssertNil(parser.convertJSONToReview(json: json), "Parsed incorrectly")
+        XCTAssertNil(parser.convertJSONToReview(json: json), "Converted incorrectly")
     }
 }
