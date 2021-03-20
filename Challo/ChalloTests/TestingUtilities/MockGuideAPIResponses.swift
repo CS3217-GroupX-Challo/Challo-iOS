@@ -12,8 +12,7 @@ struct MockGuideAPIResponses: MockAPIResponse {
 
     typealias JSON = NetworkManager.JSON
 
-    static let userUUID = UUID(uuidString: userId)!
-    static let userId = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+    static let userId = UUID(uuidString: "3fa85f64-5717-4562-b3fc-2c963f66afa6") ?? UUID()
     static let nickname = "nickname"
     static let biography = "bio"
     static let hobbies = "hobbies"
@@ -28,11 +27,10 @@ struct MockGuideAPIResponses: MockAPIResponse {
     static let daysAvailable = ["Monday"]
     static let daysAvailableEnum: [Days] = [.Monday]
     static let dateOfBirth = "2021-03-20"
-    static let areaId = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-    static let areaUUID = UUID(uuidString: areaId)!
+    static let areaId = UUID(uuidString: "3fa85f64-5717-4562-b3fc-2c963f66afa6") ?? UUID()
     static var area: JSON {
         var json = JSON()
-        json[Key.areaId] = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        json[Key.areaId] = areaId.uuidString
         json[Key.village] = "village"
         json[Key.division] = "division3"
         json[Key.state] = "state"
@@ -40,7 +38,7 @@ struct MockGuideAPIResponses: MockAPIResponse {
         return json
     }
     static var areaStruct: Area {
-        Area(areaId: areaUUID,
+        Area(areaId: areaId,
              areaName: area[Key.state] as? String ?? "",
              regionName: area[Key.country] as? String ?? "")
     }
@@ -60,7 +58,7 @@ struct MockGuideAPIResponses: MockAPIResponse {
     static let name = "Guide"
     static let phone = "12345678"
 
-    static var validGuideJSON: JSON {
+    static var guideJSONOne: JSON {
         var json = JSON()
         json[Key.phone] = phone
         json[Key.name] = name
@@ -71,7 +69,7 @@ struct MockGuideAPIResponses: MockAPIResponse {
         json[Key.dateJoined] = dateJoined
         json[Key.rating] = rating
         json[Key.area] = area
-        json[Key.areaId] = areaId
+        json[Key.areaId] = areaId.uuidString
         json[Key.dateOfBirth] = dateOfBirth
         json[Key.daysAvailable] = daysAvailable
         json[Key.unavailableDates] = unavailableDates
@@ -80,7 +78,7 @@ struct MockGuideAPIResponses: MockAPIResponse {
         json[Key.accreditations] = accrediations
         json[Key.memorableExperiences] = memorableExperiences
         json[Key.biography] = biography
-        json[Key.userId] = userId
+        json[Key.userId] = userId.uuidString
         json[Key.nickname] = nickname
         json[Key.hobbies] = hobbies
         return json
@@ -89,12 +87,12 @@ struct MockGuideAPIResponses: MockAPIResponse {
     static var validResponse: JSON {
         var json = JSON()
         json["message"] = "Guide found"
-        json["data"] = validGuideJSON
+        json["data"] = [guideJSONOne, guideJSONOne]
         return json
     }
 
     static var expectedGuide: Guide {
-        Guide(userId: userUUID, email: email, profileImg: profileImg, name: name, phone: phone,
+        Guide(userId: userId, email: email, profileImg: profileImg, name: name, phone: phone,
               dateJoined: dateJoinedParsed, location: areaStruct, sex: sexEnum,
               rating: rating, daysAvailable: daysAvailableEnum, trails: [],
               unavailableDates: unavailableDatesParsed, yearsOfExperience: yearsOfExperience,
