@@ -64,6 +64,7 @@
 		64A6B3AD2606BF7B0046EFDD /* GuideAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3AC2606BF7B0046EFDD /* GuideAPIParser.swift */; };
 		64A6B3B52606BFA50046EFDD /* ReviewAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3B42606BFA50046EFDD /* ReviewAPIParser.swift */; };
 		64F560D926076A1E0079AA98 /* SettingsLogOutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F560D826076A1E0079AA98 /* SettingsLogOutButton.swift */; };
+		64F560E426076DF30079AA98 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F560E326076DF30079AA98 /* Loading.swift */; };
 		99EE910BF070DD5F6845522E /* Pods_Challo_ChalloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */; };
 		AA2CE55D260490F50019C328 /* GuideReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE55C260490F50019C328 /* GuideReviewCard.swift */; };
 		AA2CE5672604C7D90019C328 /* GuideAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5662604C7D90019C328 /* GuideAPI.swift */; };
@@ -311,6 +312,7 @@
 		64A6B3AC2606BF7B0046EFDD /* GuideAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPIParser.swift; sourceTree = "<group>"; };
 		64A6B3B42606BFA50046EFDD /* ReviewAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPIParser.swift; sourceTree = "<group>"; };
 		64F560D826076A1E0079AA98 /* SettingsLogOutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLogOutButton.swift; sourceTree = "<group>"; };
+		64F560E326076DF30079AA98 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		AA2CE55C260490F50019C328 /* GuideReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideReviewCard.swift; sourceTree = "<group>"; };
 		AA2CE5662604C7D90019C328 /* GuideAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPI.swift; sourceTree = "<group>"; };
 		AA2CE56B2604CDEB0019C328 /* AreaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPI.swift; sourceTree = "<group>"; };
@@ -1162,6 +1164,7 @@
 				649FA1542605DE8E00F36BD6 /* MapView.swift */,
 				649FA182260620E200F36BD6 /* View+InnerShadow.swift */,
 				649FA1872606228F00F36BD6 /* View+If.swift */,
+				64F560E326076DF30079AA98 /* Loading.swift */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -1714,6 +1717,7 @@
 				AA2CE5AF260513950019C328 /* Date+Construct.swift in Sources */,
 				AAF0C02D2605B10200357E94 /* UserAPIParser.swift in Sources */,
 				649FA15A2605E6C200F36BD6 /* TrailProfileLocation.swift in Sources */,
+				64F560E426076DF30079AA98 /* Loading.swift in Sources */,
 				649FA11E2605DC0600F36BD6 /* TrailListingCardDetail.swift in Sources */,
 				AAF0C0752605B14600357E94 /* TouristRegistrationAPI.swift in Sources */,
 				AA9E85C925FE70AD00C2E389 /* NetworkManager.swift in Sources */,
