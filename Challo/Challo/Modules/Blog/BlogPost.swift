@@ -6,11 +6,7 @@ struct BlogPost {
     var author: UUID
 
     init(author: UserStateProtocol) {
-        guard let userID = UUID(uuidString: author.userId) else {
-            self.author = UUID()
-            return
-        }
-        self.author = userID
+        self.author = UUID(uuidString: author.userId) ?? UUID()
     }
 
     internal init(title: String, body: String, author: UUID) {
