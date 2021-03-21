@@ -5,4 +5,14 @@
 //  Created by Tan Le Yang on 20/3/21.
 //
 
-import Foundation
+@testable import Challo
+import XCTest
+import SwiftUI
+
+class TouristRegisterModuleTests: XCTestCase {
+    func testAssemble_returnsPresenterWithCorrectPropertiesAndView() {
+        let (_, presenter) = TouristRegisterModule.assemble()
+        XCTAssertNotNil(presenter.router, "Presenter properties not assigned")
+        XCTAssertNotNil(presenter.interactor, "Presenter properties not assigned")
+    }
+}

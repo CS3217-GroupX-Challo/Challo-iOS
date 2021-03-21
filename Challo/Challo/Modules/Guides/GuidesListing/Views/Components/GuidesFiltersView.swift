@@ -15,11 +15,11 @@ struct GuidesFiltersView: View {
     
     var body: some View {
         HStack(alignment: .top) {
-            DropDownMenu(selectedOption: $test,
+            DropDownMenu(selectedOption: $presenter.locationFilterType,
                          menuItems: presenter.filterTypes.locations,
                          menuTitle: "Location",
                          width: width)
-            DropDownMenu(selectedOption: $test,
+            DropDownMenu(selectedOption: $presenter.ratingFilterType,
                          menuItems: presenter.filterTypes.popularityTypes,
                          menuTitle: "Popularity",
                          width: width)

@@ -39,6 +39,7 @@ class GuideAPIParser: APIParser {
         // intermediate properties to be converted to its own struct
         let sexString: String? = json[Key.sex] as? String
         let areaDetails: JSON? = json[Key.area] as? JSON
+        let unavailableDateStrings: [String]? = json[Key.unavailableDates] as? [String]
                 
         let profileImg: String? = json[Key.profileImage] as? String
         let name: String? = json[Key.name] as? String
@@ -46,7 +47,7 @@ class GuideAPIParser: APIParser {
         let dateJoined: Date? = json[Key.dateJoined] as? Date
         let daysAvailable: [Days] = getAvailableDays(availabilites: availabilities)
         let sex: Sex? = getSex(sexString: sexString)
-        let unavailableDates: [Date]? = json[Key.unavailableDates] as? [Date]
+        let unavailableDates: [Date]? = unavailableDateStrings?.compactMap { Date.construct(with: $0) }
         let yearsOfExperience = convertJSONIntValueToInt(json[Key.yearsOfExperience])
         let languages: [String]? = json[Key.languages] as? [String]
         let accreditations: [String]? = json[Key.accreditations] as? [String]
@@ -89,7 +90,7 @@ extension GuideAPIParser {
             
         }
         
-        if string.lowercased().contains("male") {
+        if string.lowercased() == "male" {
             sex = Sex.Male
         } else {
             sex = Sex.Female

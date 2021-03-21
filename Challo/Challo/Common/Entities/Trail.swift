@@ -47,3 +47,18 @@ struct Trail {
     
     var landmarks: [String] = []
 }
+
+extension Trail: Equatable {
+    static func == (lhs: Trail, rhs: Trail) -> Bool {
+        lhs.trailId == rhs.trailId &&
+            lhs.area == rhs.area &&
+            lhs.title == rhs.title &&
+            lhs.description == rhs.description &&
+            lhs.positions.count == rhs.positions.count &&
+            lhs.distance == rhs.distance &&
+            lhs.elevation == rhs.elevation &&
+            lhs.duration == rhs.duration &&
+            lhs.guides.count == rhs.guides.count &&
+            lhs.images == rhs.images
+    }
+}

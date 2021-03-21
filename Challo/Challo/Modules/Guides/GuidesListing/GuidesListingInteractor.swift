@@ -12,9 +12,15 @@ class GuidesListingInteractor: InteractorProtocol {
     typealias HEADER = NetworkManager.HEADER
     weak var presenter: GuidesListingPresenter!
     
-    let guideAPI = GuideAPI()
-    let areaAPI = AreaAPI()
-
+    var guideAPI: GuideAPI
+    var areaAPI: AreaAPI
+    
+    // Dependency injection
+    init(guideAPI: GuideAPI, areaAPI: AreaAPI) {
+        self.guideAPI = guideAPI
+        self.areaAPI = areaAPI
+    }
+    
     func populateGuides() {
         guideAPI.getGuides { [weak self] guides in
             guard let self = self else {

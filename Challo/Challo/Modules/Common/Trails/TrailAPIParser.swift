@@ -30,6 +30,7 @@ class TrailAPIParser: AreaAPIParser {
     func convertJSONToTrail(json: JSON) -> Trail? {
             guard let trailId = UUID(uuidString: json[Key.trailId] as? String ?? ""),
                   let title = json[Key.title] as? String,
+                  let distanceJSONValue = json[Key.distance],
                   let description = json[Key.description] as? String,
                   let positionsJSON = json[Key.positions] as? [JSON],
                   let areaDetails = json[Key.area] as? JSON,
@@ -38,7 +39,7 @@ class TrailAPIParser: AreaAPIParser {
             }
             
             let positions = convertJSONToCLLCoordinatesArray(json: positionsJSON)
-            let distance = convertJSONDoubleValueToDouble(json[Key.distance])
+            let distance = convertJSONDoubleValueToDouble(distanceJSONValue)
             let rating = convertJSONDoubleValueToDouble(json[Key.rating])
             let duration = convertJSONDoubleValueToDouble(json[Key.duration])
             let elevation = convertJSONDoubleValueToDouble(json[Key.elevation])

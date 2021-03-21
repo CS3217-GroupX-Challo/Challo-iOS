@@ -5,7 +5,7 @@
 //  Created by Tan Le Yang on 19/3/21.
 //
 
-class SocialLoginInteractor: CertificateManager {
+class SocialLoginInteractor {
 
     var loginAPI: LoginAPI
     var registerAPI: RegisterAPI
@@ -37,7 +37,8 @@ extension SocialLoginInteractor: SocialLoginDelegate {
                       response.success else {
                     return
                 }
-                self?.storeCertificate(certificate: certificate)
+                let certificateManager = CertificateManager.manager
+                certificateManager.storeCertificate(certificate: certificate)
             }
         }
     }

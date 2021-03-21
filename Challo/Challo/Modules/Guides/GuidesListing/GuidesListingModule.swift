@@ -1,14 +1,16 @@
 //
-//  GuidesModule.swift
+//  GuidesListingModule.swift
 //  Challo
 //
-//  Created by Kester Ng on 17/3/21.
+//  Created by Kester Ng on 21/3/21.
 //
+
 import SwiftUI
 
-final class GuidesModule: ViperModuleProtocol {
+final class GuidesListingModule: ViperModuleProtocol {
     static func assemble() -> (view: AnyView, presenter: GuidesListingPresenter) {
-        let interactor = GuidesListingInteractor()
+        let interactor = GuidesListingInteractor(guideAPI: GuideAPI(),
+                                                 areaAPI: AreaAPI())
         let router = GuidesListingRouter()
         let presenter = GuidesListingPresenter()
         interactor.presenter = presenter

@@ -10,7 +10,7 @@ import SwiftUI
 /**
  Singleton that holds the general state of the user
  */
-class UserState: ObservableObject {
+class UserState: UserStateProtocol, ObservableObject {
 
     @AppStorage("logged_in") var loggedIn = false {
         willSet { objectWillChange.send() }
@@ -21,7 +21,7 @@ class UserState: ObservableObject {
     @AppStorage("userId") var userId = ""
     var user: User?
 
-    static let globalState = globalInstance
+    static var globalState: UserStateProtocol = globalInstance
     private static let globalInstance = UserState()
 
     // reset user defaults for testing

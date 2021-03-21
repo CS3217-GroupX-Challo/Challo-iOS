@@ -5,10 +5,13 @@
 //  Created by Kester Ng on 19/3/21.
 //
 
-class GuideProfilePageInteractor: InteractorProtocol {
-
-    let reviewAPI = ReviewAPI()
-    weak var presenter: GuideProfilePagePresenter!
+class GuideProfileInteractor: InteractorProtocol {
+    weak var presenter: GuideProfilePresenter!
+    let reviewAPI: ReviewAPI
+    
+    init(reviewAPI: ReviewAPI) {
+        self.reviewAPI = reviewAPI
+    }
     
     func getReviews() {
         reviewAPI.getReviewsForGuide(guideId: presenter.guide.userId) { [weak self] reviews in

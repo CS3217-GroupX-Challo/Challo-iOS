@@ -9,10 +9,19 @@ class GuideRegisterInteractor: RegisterInteractor, InteractorProtocol {
 
     weak var presenter: RegisterPresenter!
 
-    private let api = GuideRegistrationAPI()
+    private let registerAPI: RegisterAPI
+    var certificateManager = CertificateManager()
+
+    init(registerAPI: RegisterAPI) {
+        self.registerAPI = registerAPI
+    }
+
+    convenience init() {
+        self.init(registerAPI: GuideRegistrationAPI())
+    }
     
     func register(details: RegistrationDetails) {
-        api.register(details: details) { [weak self] response in
+        registerAPI.register(details: details) { [weak self] response in
             if response.error != nil {
                 self?.presenter.showRegisterFailureAlert()
                 return

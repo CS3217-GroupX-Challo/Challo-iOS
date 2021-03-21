@@ -11,13 +11,13 @@ import SwiftUI
 
 class LoginPresenterTests: XCTestCase {
 
-    private var presenter: LoginPresenterMock!
+    private var presenter: LoginPresenterImplementation!
     private var interactor: LoginInteractorMock!
     private var router: LoginRouterMock!
 
     override func setUp() {
         super.setUp()
-        let presenter = LoginPresenterMock()
+        let presenter = LoginPresenterImplementation()
         let interactor = LoginInteractorMock()
         let router = LoginRouterMock()
 
@@ -32,21 +32,21 @@ class LoginPresenterTests: XCTestCase {
 
     func testLogin_interactorLoginMethodCalled() {
         presenter.login()
-        XCTAssertTrue(interactor.loginWasCalled)
+        XCTAssertTrue(interactor.loginWasCalled, "Interactor not called")
     }
 
     func testShowAlert_showAlertVariableToggled() {
         presenter.showLoginFailureAlert()
-        XCTAssertTrue(presenter.isShowingLoginFailureAlert)
+        XCTAssertTrue(presenter.isShowingLoginFailureAlert, "Login alert variable not toggled")
     }
 
     func testGetRegistrationPage_routerReturnsPage() {
         _ = presenter.getRegistrationPage()
-        XCTAssertTrue(router.routerWasCalled)
+        XCTAssertTrue(router.routerWasCalled, "Router not called")
     }
 }
 
-private class LoginPresenterMock: LoginPresenter {
+class LoginPresenterImplementation: LoginPresenter {
 
     var interactor: LoginInteractor!
     
@@ -61,6 +61,7 @@ private class LoginPresenterMock: LoginPresenter {
 
 private class LoginInteractorMock: LoginInteractor {
 
+    var certificateManager: CertificateManager = MockCertificateManager(state: MockUserState())
     var loginWasCalled = false
     weak var presenter: LoginPresenter!
     

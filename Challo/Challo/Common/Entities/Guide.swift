@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Guide: User {
+struct Guide: User, Equatable {
     var userId: UUID
     
     var email: String

@@ -21,7 +21,7 @@ class MainContainerRouter: RouterProtocol {
     init() {
         profilePage = TouristLoginModule.assemble().view
         trailsPage = TrailListingModule.assemble().view
-        guidesPage = GuidesModule.assemble().view
+        guidesPage = GuidesListingModule.assemble().view
         mapsPage = MapModule.assemble().view
         settingsPage = SettingsModule.assemble().view
     }
