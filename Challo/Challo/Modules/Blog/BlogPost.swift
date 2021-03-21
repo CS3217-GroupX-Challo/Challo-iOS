@@ -19,3 +19,7 @@ struct BlogPost {
         title.range(of: "^\\S+", options: .regularExpression) != nil
     }
 }
+
+extension BlogPost: Equatable {
+    // BlogPost members are all equatable
+}
