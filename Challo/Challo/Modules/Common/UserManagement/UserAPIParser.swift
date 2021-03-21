@@ -1,5 +1,5 @@
 //
-//  UserAPIInteractor.swift
+//  UserAPIParser.swift
 //  Challo
 //
 //  Created by Tan Le Yang on 16/3/21.

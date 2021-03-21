@@ -12,8 +12,6 @@ import GooglePlaces
 
 @main
 struct ChalloApp: App {
-
-    var userState = UserState.globalState
     
     init() {
         guard let apiKey = ProcessInfo.processInfo.environment["google_maps_api_key"] else {
@@ -34,7 +32,6 @@ struct ChalloApp: App {
                         sourceApplication: nil,
                         annotation: UIApplication.OpenURLOptionsKey.annotation)
                 })
-                .environmentObject(userState)
         }
     }
 }

@@ -11,7 +11,6 @@ struct GuideDetailsCard: View {
     var guide: Guide
     var width: CGFloat
     
-    var rating: Decimal = 4.0
     var presenter: GuidesListingPresenter
     
     var nameDescription: String? {
@@ -35,36 +34,46 @@ struct GuideDetailsCard: View {
             Image(guide.profileImg ?? "avatar-image")
                 .resizable()
                 .scaledToFit()
-                .frame(width: width * 2 / 3)
                 .cornerRadius(10)
+                .frame(width: width, height: 200)
                 .padding(10)
             if let name = nameDescription {
                 Text(name)
                     .bold()
                     .font(.caption2)
                     .padding(5)
+                    .frame(height: 5)
             }
-            StarRatingsView(rating: (guide.rating as NSDecimalNumber).doubleValue)
+            StarRatingsView(rating: guide.rating)
                 .padding(5)
+                .frame(maxWidth: width)
             GuidesCardDescriptionView(title: "About",
                                       description: guide.biography,
-                                      width: width * 2 / 3)
+                                      width: width)
+                .frame(height: 80)
             GuidesCardDescriptionView(title: "Trails",
                                       description: trailsDescription,
-                                      width: width * 2 / 3)
+                                      width: width)
+                .frame(height: 35)
             GuidesCardDescriptionView(title: "Languages",
                                       description: languagesDescription,
-                                      width: width * 2 / 3)
+                                      width: width)
+                .frame(height: 35)
             GuidesCardDescriptionView(title: "Certifications",
                                       description: creditationsDescription,
-                                      width: width * 2 / 3)
+                                      width: width)
+                .frame(height: 80)
             if let router = presenter.router {
                 router.getGuideProfileDetailsPage(guide: guide)
+                    .frame(maxHeight: 50)
             }
-        }
-        .overlay(RoundedRectangle(cornerRadius: 5)
-                    .stroke(Color.gray, lineWidth: 0.5))
-        .shadow(radius: 5)
+        }.background(
+            RoundedRectangle(cornerRadius: 5)
+                .strokeBorder(Color.gray, lineWidth: 0.5)
+                .background(Color.white)
+                .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 3, y: 3)
+        )
+        .frame(height: 650)
     }
     
     private func convertTrailsToString(trails: [Trail]) -> String {

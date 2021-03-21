@@ -43,7 +43,7 @@ class GuidesListingInteractor: InteractorProtocol {
     private func convertAreasToLocationOptions(areas: [Area]) -> [String] {
         var locationOptions: [String] = ["Default"]
         for area in areas {
-            locationOptions.append(area.areaName)
+            locationOptions.append(area.village)
         }
         return locationOptions
     }

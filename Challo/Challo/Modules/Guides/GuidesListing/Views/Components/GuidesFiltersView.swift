@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct GuidesFiltersView: View {
-    @State private var test: String = ""
     var width: CGFloat
+
+    @State private var test: String = ""
     @ObservedObject var presenter: GuidesListingPresenter
     
     var body: some View {
