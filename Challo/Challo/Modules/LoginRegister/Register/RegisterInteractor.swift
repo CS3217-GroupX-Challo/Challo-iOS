@@ -1,8 +1,9 @@
 import Combine
 import Foundation
 
-protocol RegisterInteractor: CertificateManager, AnyObject {
+protocol RegisterInteractor: AnyObject {
 
+    var certificateManager: CertificateManager { get }
     var presenter: RegisterPresenter! { get set }
 
     func register(details: RegistrationDetails)
@@ -17,7 +18,6 @@ extension RegisterInteractor {
             self.presenter.showRegisterFailureAlert()
             return
         }
-        self.storeCertificate(certificate: certificate)
-        return
+        certificateManager.storeCertificate(certificate: certificate)
     }
 }

@@ -61,6 +61,7 @@ private class LoginPresenterImplementation: LoginPresenter {
 
 private class LoginInteractorMock: LoginInteractor {
 
+    var certificateManager: CertificateManager = MockCertificateManager(state: MockUserState())
     var loginWasCalled = false
     weak var presenter: LoginPresenter!
     

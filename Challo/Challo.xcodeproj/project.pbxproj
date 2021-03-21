@@ -173,10 +173,11 @@
 		AAF0C26A26070CE000357E94 /* MockGuideAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C26926070CE000357E94 /* MockGuideAPI.swift */; };
 		AAF0C26F26070E8400357E94 /* GuidesListingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C26E26070E8400357E94 /* GuidesListingModule.swift */; };
 		AAF0C27D26070F6D00357E94 /* MockAreaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C27C26070F6D00357E94 /* MockAreaAPI.swift */; };
-		AAF0C288260711A600357E94 /* GuideProfileInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C287260711A600357E94 /* GuideProfileInteractorTests.swift */; };
 		AAF0C290260711B700357E94 /* MockReviewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C28F260711B700357E94 /* MockReviewsAPI.swift */; };
 		AAF0C2A92607159C00357E94 /* GuideProfilePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C2A82607159C00357E94 /* GuideProfilePresenterTests.swift */; };
 		AAF0C2B2260716FA00357E94 /* DateConstructTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C2B1260716FA00357E94 /* DateConstructTests.swift */; };
+		AAF0C2C0260719A500357E94 /* GuidesListingPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C2BF260719A500357E94 /* GuidesListingPresenterTests.swift */; };
+		AAF0C2C8260719C200357E94 /* GuideProfileInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C2C7260719C200357E94 /* GuideProfileInteractorTests.swift */; };
 		B0F349AF3CB87F77584434C4 /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC2C4523E0BAD62412B118A /* Pods_Challo.framework */; };
 		D4A670D2B9132DB104111692 /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391AD75BD73BA41A633358D /* Pods_ChalloTests.framework */; };
 		E21308AC2607192800F16DE0 /* MockUserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21308AB2607192800F16DE0 /* MockUserState.swift */; };
@@ -194,6 +195,11 @@
 		E26CBC4226067966005DBD47 /* RegisterPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC4126067966005DBD47 /* RegisterPresenterTests.swift */; };
 		E26CBC4D260683ED005DBD47 /* MockAreaAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC4C260683ED005DBD47 /* MockAreaAPIResponse.swift */; };
 		E26CBC5226068537005DBD47 /* AreaAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC5126068537005DBD47 /* AreaAPIParserTests.swift */; };
+		E2857AC72607245300097750 /* TouristRegisterInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857AC62607245300097750 /* TouristRegisterInteractorTests.swift */; };
+		E2857ACC2607265D00097750 /* MockRegisterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857ACB2607265D00097750 /* MockRegisterAPI.swift */; };
+		E2857AD126072DE500097750 /* GuideRegisterInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857AD026072DE500097750 /* GuideRegisterInteractorTests.swift */; };
+		E2A1C85C26071B0A006285D1 /* UserStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A1C85B26071B0A006285D1 /* UserStateProtocol.swift */; };
+		E2B97AD826071FD4003690F5 /* MockCertificateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B97AD726071FD4003690F5 /* MockCertificateManager.swift */; };
 		E2D8968F25FFAB8A0001B026 /* ChalloTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */; };
 		E2D8969125FFAB8A0001B026 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968C25FFAB8A0001B026 /* Card.swift */; };
 		E2D8969225FFAB8A0001B026 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */; };
@@ -405,10 +411,12 @@
 		AAF0C26926070CE000357E94 /* MockGuideAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGuideAPI.swift; sourceTree = "<group>"; };
 		AAF0C26E26070E8400357E94 /* GuidesListingModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingModule.swift; sourceTree = "<group>"; };
 		AAF0C27C26070F6D00357E94 /* MockAreaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAreaAPI.swift; sourceTree = "<group>"; };
-		AAF0C287260711A600357E94 /* GuideProfileInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuideProfileInteractorTests.swift; path = ../../../../../../../../../../../GuideProfileInteractorTests.swift; sourceTree = "<group>"; };
+		AAF0C287260711A600357E94 /* GuideProfileInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuideProfileInteractorTests.swift; path = /GuideProfileInteractorTests.swift; sourceTree = "<absolute>"; };
 		AAF0C28F260711B700357E94 /* MockReviewsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReviewsAPI.swift; sourceTree = "<group>"; };
 		AAF0C2A82607159C00357E94 /* GuideProfilePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePresenterTests.swift; sourceTree = "<group>"; };
 		AAF0C2B1260716FA00357E94 /* DateConstructTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConstructTests.swift; sourceTree = "<group>"; };
+		AAF0C2BF260719A500357E94 /* GuidesListingPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingPresenterTests.swift; sourceTree = "<group>"; };
+		AAF0C2C7260719C200357E94 /* GuideProfileInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfileInteractorTests.swift; sourceTree = "<group>"; };
 		B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E21308AB2607192800F16DE0 /* MockUserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserState.swift; sourceTree = "<group>"; };
 		E234931F25FB884F00EC90E9 /* Challo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -431,6 +439,12 @@
 		E26CBC4126067966005DBD47 /* RegisterPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenterTests.swift; sourceTree = "<group>"; };
 		E26CBC4C260683ED005DBD47 /* MockAreaAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAreaAPIResponse.swift; sourceTree = "<group>"; };
 		E26CBC5126068537005DBD47 /* AreaAPIParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPIParserTests.swift; sourceTree = "<group>"; };
+		E2857AC62607245300097750 /* TouristRegisterInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristRegisterInteractorTests.swift; sourceTree = "<group>"; };
+		E2857ACB2607265D00097750 /* MockRegisterAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRegisterAPI.swift; sourceTree = "<group>"; };
+		E2857AD026072DE500097750 /* GuideRegisterInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRegisterInteractorTests.swift; sourceTree = "<group>"; };
+		E2A1C85B26071B0A006285D1 /* UserStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateProtocol.swift; sourceTree = "<group>"; };
+		E2B88BF52607234500E83909 /* GuideProfilePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuideProfilePresenterTests.swift; path = ChalloTests/Modules/Guides/GuideProfile/GuideProfilePresenterTests.swift; sourceTree = "<group>"; };
+		E2B97AD726071FD4003690F5 /* MockCertificateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCertificateManager.swift; sourceTree = "<group>"; };
 		E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChalloTitle.swift; sourceTree = "<group>"; };
 		E2D8968C25FFAB8A0001B026 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
@@ -946,8 +960,8 @@
 		AAF0C2862607118D00357E94 /* GuideProfile */ = {
 			isa = PBXGroup;
 			children = (
-				AAF0C287260711A600357E94 /* GuideProfileInteractorTests.swift */,
 				AAF0C2A82607159C00357E94 /* GuideProfilePresenterTests.swift */,
+				AAF0C2C7260719C200357E94 /* GuideProfileInteractorTests.swift */,
 			);
 			path = GuideProfile;
 			sourceTree = "<group>";
@@ -963,12 +977,14 @@
 		E234931625FB884F00EC90E9 = {
 			isa = PBXGroup;
 			children = (
+				E2B88BF52607234500E83909 /* GuideProfilePresenterTests.swift */,
 				E234932125FB884F00EC90E9 /* Challo */,
 				E234933325FB885100EC90E9 /* ChalloTests */,
 				E234933E25FB885100EC90E9 /* ChalloUITests */,
 				E234932025FB884F00EC90E9 /* Products */,
 				338C21FD425FDC2B407B5536 /* Pods */,
 				EB8898A86AE48A027123AD32 /* Frameworks */,
+				E2A1C85726071A88006285D1 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1041,8 +1057,17 @@
 			children = (
 				AAF0C23D260697AB00357E94 /* GuidesListingModuleTests.swift */,
 				AAF0C26126070C9700357E94 /* GuidesListingInteractorTests.swift */,
+				AAF0C2BF260719A500357E94 /* GuidesListingPresenterTests.swift */,
 			);
 			path = GuidesListing;
+			sourceTree = "<group>";
+		};
+		E2A1C85726071A88006285D1 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				AAF0C287260711A600357E94 /* GuideProfileInteractorTests.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		E2C2441A2600B74D0085BAA4 /* Common */ = {
@@ -1070,6 +1095,7 @@
 				AAF0C0262605B10100357E94 /* UserAPIResponse.swift */,
 				AAF0C0282605B10200357E94 /* UserCertificate.swift */,
 				AAF0C0232605B10100357E94 /* UserState.swift */,
+				E2A1C85B26071B0A006285D1 /* UserStateProtocol.swift */,
 			);
 			path = UserManagement;
 			sourceTree = "<group>";
@@ -1152,6 +1178,7 @@
 				AAF0C27C26070F6D00357E94 /* MockAreaAPI.swift */,
 				AAF0C28F260711B700357E94 /* MockReviewsAPI.swift */,
 				E21308AB2607192800F16DE0 /* MockUserState.swift */,
+				E2B97AD726071FD4003690F5 /* MockCertificateManager.swift */,
 			);
 			path = TestingUtilities;
 			sourceTree = "<group>";
@@ -1261,6 +1288,7 @@
 				E2E286D626064C0200C058C3 /* TouristRegister */,
 				E2E286D826064C0200C058C3 /* GuideRegister */,
 				E26CBC4126067966005DBD47 /* RegisterPresenterTests.swift */,
+				E2857ACB2607265D00097750 /* MockRegisterAPI.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -1269,6 +1297,7 @@
 			isa = PBXGroup;
 			children = (
 				E2E286D726064C0200C058C3 /* TouristRegisterModuleTests.swift */,
+				E2857AC62607245300097750 /* TouristRegisterInteractorTests.swift */,
 			);
 			path = TouristRegister;
 			sourceTree = "<group>";
@@ -1277,6 +1306,7 @@
 			isa = PBXGroup;
 			children = (
 				E2E286D926064C0200C058C3 /* GuideRegisterModuleTests.swift */,
+				E2857AD026072DE500097750 /* GuideRegisterInteractorTests.swift */,
 			);
 			path = GuideRegister;
 			sourceTree = "<group>";
@@ -1662,6 +1692,7 @@
 				E234932525FB884F00EC90E9 /* ContentView.swift in Sources */,
 				AAF0C0292605B10200357E94 /* CertificateManager.swift in Sources */,
 				649FA18D260629D400F36BD6 /* CustomDateFormatter.swift in Sources */,
+				E2A1C85C26071B0A006285D1 /* UserStateProtocol.swift in Sources */,
 				649FA11F2605DC0600F36BD6 /* TrailListingCard.swift in Sources */,
 				AA9E85E125FE740500C2E389 /* AlamofireManager.swift in Sources */,
 				AAF0C0922605B14600357E94 /* TouristLoginRouter.swift in Sources */,
@@ -1806,6 +1837,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAF0C2A92607159C00357E94 /* GuideProfilePresenterTests.swift in Sources */,
 				E2E286EE26064C0300C058C3 /* TouristLoginModuleTests.swift in Sources */,
 				AAF0C20526067BD900357E94 /* MockReviewAPIResponse.swift in Sources */,
 				AAF0C290260711B700357E94 /* MockReviewsAPI.swift in Sources */,
@@ -1813,21 +1845,25 @@
 				E2E286CD26064BEE00C058C3 /* TrailAPITests.swift in Sources */,
 				AAF0C24E260699AE00357E94 /* SettingsModuleTests.swift in Sources */,
 				E2E286BB26064BE400C058C3 /* UserAPIParserTests.swift in Sources */,
+				E2857AC72607245300097750 /* TouristRegisterInteractorTests.swift in Sources */,
 				AAF0C223260687CB00357E94 /* MockTrailAPIResponse.swift in Sources */,
 				AAF0C1DF26066E5400357E94 /* TouristAPIParserTests.swift in Sources */,
 				E26CBC2D260657C7005DBD47 /* MockGuideAPIResponses.swift in Sources */,
-				AAF0C2A92607159C00357E94 /* GuideProfilePresenterTests.swift in Sources */,
+				E2B97AD826071FD4003690F5 /* MockCertificateManager.swift in Sources */,
 				AAF0C26A26070CE000357E94 /* MockGuideAPI.swift in Sources */,
+				AAF0C2C0260719A500357E94 /* GuidesListingPresenterTests.swift in Sources */,
 				E26CBC4226067966005DBD47 /* RegisterPresenterTests.swift in Sources */,
 				E21308AC2607192800F16DE0 /* MockUserState.swift in Sources */,
+				AAF0C2C8260719C200357E94 /* GuideProfileInteractorTests.swift in Sources */,
+				E2857ACC2607265D00097750 /* MockRegisterAPI.swift in Sources */,
 				E26CBC4D260683ED005DBD47 /* MockAreaAPIResponse.swift in Sources */,
+				E2857AD126072DE500097750 /* GuideRegisterInteractorTests.swift in Sources */,
 				E2E286EB26064C0300C058C3 /* SocialModuleTests.swift in Sources */,
 				AAF0C26226070C9700357E94 /* GuidesListingInteractorTests.swift in Sources */,
 				E26CBC2826065794005DBD47 /* GuideAPIParserTests.swift in Sources */,
 				AAF0C23E260697AB00357E94 /* GuidesListingModuleTests.swift in Sources */,
 				AAF0C21B260685E400357E94 /* ReviewAPIParserTests.swift in Sources */,
 				AAF0C27D26070F6D00357E94 /* MockAreaAPI.swift in Sources */,
-				AAF0C288260711A600357E94 /* GuideProfileInteractorTests.swift in Sources */,
 				E2E286EA26064C0300C058C3 /* GuideRegisterModuleTests.swift in Sources */,
 				E2E286ED26064C0300C058C3 /* GuideLoginModuleTests.swift in Sources */,
 				AAF0C2B2260716FA00357E94 /* DateConstructTests.swift in Sources */,

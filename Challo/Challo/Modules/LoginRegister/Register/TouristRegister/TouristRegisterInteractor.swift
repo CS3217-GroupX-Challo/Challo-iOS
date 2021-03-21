@@ -10,8 +10,9 @@ class TouristRegisterInteractor: RegisterInteractor, InteractorProtocol {
     weak var presenter: RegisterPresenter!
 
     private let registerAPI: RegisterAPI
+    var certificateManager = CertificateManager()
     
-    init(registerAPI: TouristRegistrationAPI) {
+    init(registerAPI: RegisterAPI) {
         self.registerAPI = registerAPI
     }
 
@@ -21,7 +22,8 @@ class TouristRegisterInteractor: RegisterInteractor, InteractorProtocol {
 
     func register(details: RegistrationDetails) {
         registerAPI.register(details: details) { [weak self] response in
-            if response.error != nil {
+            if response.error != nil,
+               !response.success {
                 self?.presenter.showRegisterFailureAlert()
                 return
             }

@@ -40,7 +40,7 @@ class RegisterPresenterTests: XCTestCase {
     }
 }
 
-private class RegisterPresenterImplementation: RegisterPresenter {
+class RegisterPresenterImplementation: RegisterPresenter {
 
     var interactor: RegisterInteractor!
     
@@ -58,6 +58,8 @@ private class RegisterPresenterImplementation: RegisterPresenter {
 }
 
 private class RegisterInteractorMock: RegisterInteractor {
+
+    var certificateManager: CertificateManager = MockCertificateManager(state: MockUserState())
 
     var registerWasCalled = false
 

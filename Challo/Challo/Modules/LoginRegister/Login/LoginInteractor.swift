@@ -1,7 +1,8 @@
 import SwiftUI
 
-protocol LoginInteractor: CertificateManager, AnyObject {
+protocol LoginInteractor: AnyObject {
 
+    var certificateManager: CertificateManager { get }
     var presenter: LoginPresenter! { get set }
 
     func defaultLogin(email: String, password: String)
@@ -14,6 +15,6 @@ extension LoginInteractor {
             self.presenter.showLoginFailureAlert()
             return
         }
-        self.storeCertificate(certificate: certificate)
+        certificateManager.storeCertificate(certificate: certificate)
     }
 }

@@ -7,7 +7,7 @@
 
 @testable import Challo
 
-class MockUserState: UserState {
+class MockUserState: UserStateProtocol {
 
     var loggedIn = false 
     var email = ""
@@ -15,6 +15,15 @@ class MockUserState: UserState {
     var token = ""
     var userId = ""
     var user: User?
+    var certificate: UserCertificate?
 
-    static let 
+    func storeCertificate(certificate: UserCertificate) {
+        loggedIn = true
+        name = certificate.name
+        email = certificate.email
+        token = certificate.token
+        userId = certificate.userId
+        user = certificate.user
+        self.certificate = certificate
+    }
 }

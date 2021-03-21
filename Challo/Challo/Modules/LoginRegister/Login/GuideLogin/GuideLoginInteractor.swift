@@ -9,6 +9,7 @@ class GuideLoginInteractor: LoginInteractor, InteractorProtocol {
 
     weak var presenter: LoginPresenter!
     private let loginAPI: LoginAPI
+    var certificateManager = CertificateManager.manager
 
     init(loginAPI: GuideLoginAPI) {
         self.loginAPI = loginAPI

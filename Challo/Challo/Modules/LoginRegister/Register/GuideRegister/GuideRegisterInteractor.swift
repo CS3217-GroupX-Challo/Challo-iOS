@@ -10,8 +10,9 @@ class GuideRegisterInteractor: RegisterInteractor, InteractorProtocol {
     weak var presenter: RegisterPresenter!
 
     private let registerAPI: RegisterAPI
+    var certificateManager = CertificateManager()
 
-    init(registerAPI: GuideRegistrationAPI) {
+    init(registerAPI: RegisterAPI) {
         self.registerAPI = registerAPI
     }
 
