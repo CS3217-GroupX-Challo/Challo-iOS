@@ -40,6 +40,7 @@ class GuideAPIParser {
         let sexString: String? = json[Key.sex] as? String
         let areaDetails: JSON? = json[Key.area] as? JSON
         let ratingString: String? = json[Key.rating] as? String
+        let unavailableDateStrings: [String]? = json[Key.unavailableDates] as? [String]
                 
         let profileImg: String? = json[Key.profileImage] as? String
         let name: String? = json[Key.name] as? String
@@ -47,7 +48,7 @@ class GuideAPIParser {
         let dateJoined: Date? = json[Key.dateJoined] as? Date
         let daysAvailable: [Days] = getAvailableDays(availabilites: availabilities)
         let sex: Sex? = getSex(sexString: sexString)
-        let unavailableDates: [Date]? = json[Key.unavailableDates] as? [Date]
+        let unavailableDates: [Date]? = unavailableDateStrings?.compactMap { Date.construct(with: $0) }
         let yearsOfExperience: Int? = json[Key.yearsOfExperience] as? Int
         let languages: [String]? = json[Key.languages] as? [String]
         let accreditations: [String]? = json[Key.accreditations] as? [String]
@@ -90,7 +91,7 @@ extension GuideAPIParser {
             
         }
         
-        if string.lowercased().contains("male") {
+        if string.lowercased() == "male" {
             sex = Sex.Male
         } else {
             sex = Sex.Female

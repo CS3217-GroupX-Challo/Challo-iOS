@@ -16,66 +16,50 @@ class GuideAPIParserTests: XCTestCase {
     func testConvertJSONToGuide_validJSON_successfullyParsed() throws {
         let json = Responses.guideJSONOne
         let guide = try XCTUnwrap(parser.convertJSONToGuide(json: json))
-        compareParsedGuide(guide: guide)
+        XCTAssertEqual(Responses.guideOne, guide, "Converted incorrectly")
     }
 
     func testConvertJSONToGuide_missingUserID_returnsNil() {
         let json = Responses.removeUserProperty(key: Key.userId, json: Responses.guideJSONOne)
-        XCTAssertNil(parser.convertJSONToGuide(json: json))
+        XCTAssertNil(parser.convertJSONToGuide(json: json), "Converted incorrectly")
     }
 
     func testConvertJSONToGuide_missingEmail_returnsNil() {
         let json = Responses.removeUserProperty(key: Key.email, json: Responses.guideJSONOne)
-        XCTAssertNil(parser.convertJSONToGuide(json: json))
+        XCTAssertNil(parser.convertJSONToGuide(json: json), "Converted incorrectly")
     }
 
     func testParseGuides_validResponse_returnsCorrectGuides() {
         let response = Responses.validResponse
         let guides = parser.parseGuides(response: response)
 
-        XCTAssertEqual(2, guides.count)
-        compareParsedGuide(guide: guides[0])
-        compareParsedGuide(guide: guides[1])
+        XCTAssertEqual(2, guides.count, "Parsed incorrectly")
+        XCTAssertEqual(Responses.guideOne, guides[0], "Parsed incorrectly")
+        XCTAssertEqual(Responses.guideTwo, guides[1], "Parsed incorrectly")
     }
 
-    func testParseGuides_singleGuideResponse_returnsCorrectGuides() {
+    func testParseGuides_withGuideOne_returnsCorrectGuides() {
         var response = Responses.validResponse
         response["data"] = [Responses.guideJSONOne]
         let guides = parser.parseGuides(response: response)
     
-        XCTAssertEqual(1, guides.count)
-        compareParsedGuide(guide: guides[0])
+        XCTAssertEqual(1, guides.count, "Parsed incorrectly")
+        XCTAssertEqual(Responses.guideOne, guides[0], "Parsed incorrectly")
     }
 
-    func testParseGuides_emptyData_returnsEmptyCollection() {
+    func testParseGuides_emptyResponseData_returnsEmptyCollection() {
         var response = Responses.validResponse
         response["data"] = []
         let guides = parser.parseGuides(response: response)
 
-        XCTAssertTrue(guides.isEmpty)
+        XCTAssertTrue(guides.isEmpty, "Parsed incorrectly")
     }
 
     func testParseGuides_invalidData_returnsEmptyCollection() {
         var response = Responses.validResponse
-        response["data"] = [Responses.expectedGuide] // invalid as JSON is expected
+        response["data"] = [Responses.guideOne] // invalid as JSON is expected
         let guides = parser.parseGuides(response: response)
 
-        XCTAssertTrue(guides.isEmpty)
-    }
-}
-
-extension GuideAPIParserTests {
-
-    private func compareParsedGuide(guide: Guide) {
-        XCTAssertEqual(Responses.name, guide.name)
-        XCTAssertEqual(Responses.email, guide.email)
-        XCTAssertEqual(Responses.biography, guide.biography)
-        XCTAssertEqual(Responses.accrediations, guide.accreditations)
-        XCTAssertEqual(Responses.dateJoinedParsed, guide.dateJoined)
-        XCTAssertEqual(Responses.phone, guide.phone)
-        XCTAssertEqual(Responses.userId, guide.userId)
-        XCTAssertEqual(Responses.areaStruct, guide.location)
-        XCTAssertEqual(Responses.hobbies, guide.hobbies)
-        XCTAssertEqual(Responses.sexEnum, guide.sex)
+        XCTAssertTrue(guides.isEmpty, "Parsed incorrectly")
     }
 }

@@ -67,7 +67,7 @@ struct MockGuideAPIResponses: MockAPIResponse {
         json[Key.profileImage] = profileImg
         json[Key.activeSince] = activeSince
         json[Key.dateJoined] = dateJoined
-        json[Key.rating] = rating
+        json[Key.rating] = "\(rating)"
         json[Key.area] = area
         json[Key.areaId] = areaId.uuidString
         json[Key.dateOfBirth] = dateOfBirth
@@ -84,19 +84,100 @@ struct MockGuideAPIResponses: MockAPIResponse {
         return json
     }
 
-    static var validResponse: JSON {
+    static let userIdTwo = UUID(uuidString: "85e6f125-91be-45f6-bb27-0a3a468a487a") ?? UUID()
+    static let nicknameTwo = "nickname2"
+    static let biographyTwo = "bio2"
+    static let hobbiesTwo = "hobbies2"
+    static let memorableExperiencesTwo = "memorableExperiences2"
+    static let accrediationsTwo = ["expert trekking"]
+    static let languagesTwo = ["English", "Spanish"]
+    static let yearsOfExperienceTwo = 3
+    static let unavailableDatesTwo = ["2021-03-24"]
+    static var unavailableDatesParsedTwo: [Date] {
+        unavailableDates.compactMap { Date.construct(with: $0) }
+    }
+    static let daysAvailableTwo = ["Monday"]
+    static let daysAvailableEnumTwo: [Days] = [.Monday]
+    static let dateOfBirthTwo = "2021-03-20"
+    static let areaIdTwo = UUID(uuidString: "eff7f093-87ed-4eb4-bc01-8adf9a7ac71d") ?? UUID()
+    static var areaTwo: JSON {
         var json = JSON()
-        json["message"] = "Guide found"
-        json["data"] = [guideJSONOne, guideJSONOne]
+        json[Key.areaId] = areaIdTwo.uuidString
+        json[Key.village] = "villageTwo"
+        json[Key.division] = "divisionTwo"
+        json[Key.state] = "stateTwo"
+        json[Key.country] = "Pakistan"
+        return json
+    }
+    static var areaStructTwo: Area {
+        Area(areaId: areaIdTwo,
+             areaName: areaTwo[Key.state] as? String ?? "",
+             regionName: areaTwo[Key.country] as? String ?? "")
+    }
+    static let ratingTwo: Decimal = 2
+    static let dateJoinedTwo = "2021-03-21T16:20:08.213Z"
+    static var dateJoinedParsedTwo: Date? {
+        Date.construct(with: dateJoinedTwo)
+    }
+    static let activeSinceTwo = "2021-03-21T16:20:08.213Z"
+    static var activeSinceParsedTwo: Date? {
+        Date.construct(with: activeSinceTwo)
+    }
+    static let profileImgTwo = "profileImg2"
+    static let sexTwo = "female"
+    static var sexEnumTwo = Sex.Female
+    static let emailTwo = "guide2@example.com"
+    static let nameTwo = "Guide2"
+    static let phoneTwo = "87654321"
+
+    static var guideJSONTwo: JSON {
+        var json = JSON()
+        json[Key.phone] = phoneTwo
+        json[Key.name] = nameTwo
+        json[Key.email] = emailTwo
+        json[Key.sex] = sexTwo
+        json[Key.profileImage] = profileImgTwo
+        json[Key.activeSince] = activeSinceTwo
+        json[Key.dateJoined] = dateJoinedTwo
+        json[Key.rating] = "\(ratingTwo)"
+        json[Key.area] = areaTwo
+        json[Key.areaId] = areaIdTwo.uuidString
+        json[Key.dateOfBirth] = dateOfBirthTwo
+        json[Key.daysAvailable] = daysAvailableTwo
+        json[Key.unavailableDates] = unavailableDatesTwo
+        json[Key.yearsOfExperience] = yearsOfExperienceTwo
+        json[Key.languages] = languagesTwo
+        json[Key.accreditations] = accrediationsTwo
+        json[Key.memorableExperiences] = memorableExperiencesTwo
+        json[Key.biography] = biographyTwo
+        json[Key.userId] = userIdTwo.uuidString
+        json[Key.nickname] = nicknameTwo
+        json[Key.hobbies] = hobbiesTwo
         return json
     }
 
-    static var expectedGuide: Guide {
+    static var validResponse: JSON {
+        var json = JSON()
+        json["message"] = "Guide found"
+        json["data"] = [guideJSONOne, guideJSONTwo]
+        return json
+    }
+
+    static var guideOne: Guide {
         Guide(userId: userId, email: email, profileImg: profileImg, name: name, phone: phone,
               dateJoined: dateJoinedParsed, location: areaStruct, sex: sexEnum,
               rating: rating, daysAvailable: daysAvailableEnum, trails: [],
               unavailableDates: unavailableDatesParsed, yearsOfExperience: yearsOfExperience,
               languages: languages, accreditations: accrediations, biography: biography,
               hobbies: hobbies, memorableExperiences: memorableExperiences)
+    }
+
+    static var guideTwo: Guide {
+        Guide(userId: userIdTwo, email: emailTwo, profileImg: profileImgTwo, name: nameTwo,
+              phone: phoneTwo, dateJoined: dateJoinedParsedTwo, location: areaStructTwo,
+              sex: sexEnumTwo, rating: ratingTwo, daysAvailable: daysAvailableEnumTwo, trails: [],
+              unavailableDates: unavailableDatesParsedTwo, yearsOfExperience: yearsOfExperienceTwo,
+              languages: languagesTwo, accreditations: accrediationsTwo, biography: biographyTwo,
+              hobbies: hobbiesTwo, memorableExperiences: memorableExperiencesTwo)
     }
 }
