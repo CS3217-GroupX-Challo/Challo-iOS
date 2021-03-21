@@ -62,6 +62,7 @@
 		64A6B3A82606BF660046EFDD /* AreaAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3A72606BF660046EFDD /* AreaAPIParser.swift */; };
 		64A6B3AD2606BF7B0046EFDD /* GuideAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3AC2606BF7B0046EFDD /* GuideAPIParser.swift */; };
 		64A6B3B52606BFA50046EFDD /* ReviewAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3B42606BFA50046EFDD /* ReviewAPIParser.swift */; };
+		848391322607559D00773E39 /* BlogWriterModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848391312607559D00773E39 /* BlogWriterModuleTests.swift */; };
 		848D754526074DD100D2665B /* RoundedTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D754426074DD100D2665B /* RoundedTextEditor.swift */; };
 		84FFD70626074B6500C3EA4E /* BlogWriterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD6FF26074B6500C3EA4E /* BlogWriterRouter.swift */; };
 		84FFD70726074B6500C3EA4E /* BlogPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD70026074B6500C3EA4E /* BlogPost.swift */; };
@@ -313,6 +314,7 @@
 		64A6B3A72606BF660046EFDD /* AreaAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPIParser.swift; sourceTree = "<group>"; };
 		64A6B3AC2606BF7B0046EFDD /* GuideAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPIParser.swift; sourceTree = "<group>"; };
 		64A6B3B42606BFA50046EFDD /* ReviewAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPIParser.swift; sourceTree = "<group>"; };
+		848391312607559D00773E39 /* BlogWriterModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogWriterModuleTests.swift; sourceTree = "<group>"; };
 		848D754426074DD100D2665B /* RoundedTextEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextEditor.swift; sourceTree = "<group>"; };
 		84FFD6FF26074B6500C3EA4E /* BlogWriterRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogWriterRouter.swift; sourceTree = "<group>"; };
 		84FFD70026074B6500C3EA4E /* BlogPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogPost.swift; sourceTree = "<group>"; };
@@ -680,13 +682,13 @@
 		84FFD6FE26074B6500C3EA4E /* Blog */ = {
 			isa = PBXGroup;
 			children = (
-				84FFD6FF26074B6500C3EA4E /* BlogWriterRouter.swift */,
 				84FFD70026074B6500C3EA4E /* BlogPost.swift */,
-				84FFD70126074B6500C3EA4E /* BlogWriterButton.swift */,
-				84FFD70226074B6500C3EA4E /* BlogWriterModule.swift */,
-				84FFD70326074B6500C3EA4E /* BlogWriterInteractor.swift */,
 				84FFD70426074B6500C3EA4E /* BlogWriter.swift */,
+				84FFD70126074B6500C3EA4E /* BlogWriterButton.swift */,
 				84FFD70526074B6500C3EA4E /* BlogWriterPresenter.swift */,
+				84FFD6FF26074B6500C3EA4E /* BlogWriterRouter.swift */,
+				84FFD70326074B6500C3EA4E /* BlogWriterInteractor.swift */,
+				84FFD70226074B6500C3EA4E /* BlogWriterModule.swift */,
 			);
 			path = Blog;
 			sourceTree = "<group>";
@@ -695,6 +697,7 @@
 			isa = PBXGroup;
 			children = (
 				84FFD71126074BD200C3EA4E /* BlogPostTests.swift */,
+				848391312607559D00773E39 /* BlogWriterModuleTests.swift */,
 			);
 			path = Blog;
 			sourceTree = "<group>";
@@ -1928,6 +1931,7 @@
 				AAF0C23E260697AB00357E94 /* GuidesListingModuleTests.swift in Sources */,
 				AAF0C21B260685E400357E94 /* ReviewAPIParserTests.swift in Sources */,
 				AAF0C27D26070F6D00357E94 /* MockAreaAPI.swift in Sources */,
+				848391322607559D00773E39 /* BlogWriterModuleTests.swift in Sources */,
 				E2E286EA26064C0300C058C3 /* GuideRegisterModuleTests.swift in Sources */,
 				E2E286ED26064C0300C058C3 /* GuideLoginModuleTests.swift in Sources */,
 				AAF0C2B2260716FA00357E94 /* DateConstructTests.swift in Sources */,
@@ -2003,6 +2007,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2064,6 +2069,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -2092,7 +2098,6 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Challo/Preview Content\"";
 				DEVELOPMENT_TEAM = 85DLX3B73C;
 				ENABLE_PREVIEWS = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = Challo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2117,7 +2122,6 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Challo/Preview Content\"";
 				DEVELOPMENT_TEAM = 85DLX3B73C;
 				ENABLE_PREVIEWS = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = Challo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
