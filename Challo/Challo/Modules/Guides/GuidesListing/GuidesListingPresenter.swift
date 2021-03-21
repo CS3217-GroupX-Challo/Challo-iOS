@@ -36,12 +36,6 @@ class GuidesListingPresenter: PresenterProtocol {
         }
     }
     
-    @Published var locationFilterType: String = "Default" {
-        didSet {
-            applyFiltering()
-        }
-    }
-    
     @Published var guides: [Guide] = []
     var originalGuides: [Guide] = []
 }
@@ -103,7 +97,7 @@ extension GuidesListingPresenter {
                 return false
             }
             
-            return guide.rating <= ratingToFilter
+            return guide.rating >= ratingToFilter
         }
     }
 }
