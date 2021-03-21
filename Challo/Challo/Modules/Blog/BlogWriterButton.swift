@@ -11,11 +11,13 @@ struct BlogWriterButton: View {
 
     var action: () -> Void
     var title: String
+    var color: Color
 
     var body: some View {
         Button(action: action, label: {
             Text(title).bold()
-        }).buttonStyle(BorderedButtonStyle(borderColor: .themePrimary, foregroundColor: .themeForeground))
+        })
+        .buttonStyle(BorderedButtonStyle(borderColor: color, foregroundColor: .themeForeground))
     }
 
 }

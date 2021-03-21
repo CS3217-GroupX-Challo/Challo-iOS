@@ -30,15 +30,29 @@ struct BlogWriter: View {
 
     private var buttons: some View {
         HStack {
-            BlogWriterButton(action: presenter.saveBlogDraft, title: "Save Draft")
-                .disabled(presenter.savingDisabled)
+            let savingDisabled = presenter.savingDisabled
+            BlogWriterButton(
+                action: presenter.saveBlogDraft,
+                title: "Save Draft",
+                color: buttonColor(disabled: savingDisabled)
+            )
+            .disabled(savingDisabled)
 
             Spacer()
 
-            BlogWriterButton(action: presenter.publish, title: "Publish")
-                .disabled(presenter.publishingDisabled)
+            let publishingDisabled = presenter.publishingDisabled
+            BlogWriterButton(
+                action: presenter.publish,
+                title: "Publish",
+                color: buttonColor(disabled: publishingDisabled)
+            )
+            .disabled(publishingDisabled)
         }
         .padding()
+    }
+
+    private func buttonColor(disabled: Bool) -> Color {
+        disabled ? .gray : .themePrimary
     }
 
 }
