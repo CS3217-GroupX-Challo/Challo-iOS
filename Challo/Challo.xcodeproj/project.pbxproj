@@ -569,13 +569,13 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
-		649FA1042605DC0600F36BD6 /* Trail */ = {
+		649FA1042605DC0600F36BD6 /* Trails */ = {
 			isa = PBXGroup;
 			children = (
 				649FA1052605DC0600F36BD6 /* TrailListing */,
 				649FA10F2605DC0600F36BD6 /* TrailProfile */,
 			);
-			path = Trail;
+			path = Trails;
 			sourceTree = "<group>";
 		};
 		649FA1052605DC0600F36BD6 /* TrailListing */ = {
@@ -1059,7 +1059,8 @@
 		E241E623260750170078A2BD /* Trails */ = {
 			isa = PBXGroup;
 			children = (
-				E241E637260756030078A2BD /* Trail */,
+				E241E624260750330078A2BD /* TrailListing */,
+				E241E6382607564F0078A2BD /* TrailProfile */,
 			);
 			path = Trails;
 			sourceTree = "<group>";
@@ -1071,15 +1072,6 @@
 				E241E632260753650078A2BD /* TrailListingPresenterTests.swift */,
 			);
 			path = TrailListing;
-			sourceTree = "<group>";
-		};
-		E241E637260756030078A2BD /* Trail */ = {
-			isa = PBXGroup;
-			children = (
-				E241E6382607564F0078A2BD /* TrailProfile */,
-				E241E624260750330078A2BD /* TrailListing */,
-			);
-			path = Trail;
 			sourceTree = "<group>";
 		};
 		E241E6382607564F0078A2BD /* TrailProfile */ = {
@@ -1145,7 +1137,7 @@
 				AAF0C1702606174000357E94 /* Settings */,
 				AAF0C09D2605D3D600357E94 /* Map */,
 				649FA12C2605DC0E00F36BD6 /* MainContainer */,
-				649FA1042605DC0600F36BD6 /* Trail */,
+				649FA1042605DC0600F36BD6 /* Trails */,
 				AAF0C0372605B14600357E94 /* LoginRegister */,
 				AA9E870126012A1800C2E389 /* Guides */,
 				E2C2441A2600B74D0085BAA4 /* Common */,
