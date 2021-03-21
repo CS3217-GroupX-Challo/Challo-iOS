@@ -13,4 +13,9 @@ class MockReviewsAPI: ReviewAPI {
         let mockReviews = [Review]()
         callback(mockReviews)
     }
+
+    override func getReviewsForTrail(trailId: UUID, callback: @escaping ([Review]) -> Void) {
+        let mockReviews = [Review]()
+        callback(mockReviews)
+    }
 }

@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct SettingsPage: View {
-    @State var settingOptionViews: [SettingsListElement<AnyView>]
+
+    @EnvironmentObject var presenter: SettingsPresenter
     
     var body: some View {
         VStack {
-            List(settingOptionViews, id: \.id) { settingOptionView in
+            List(presenter.settingOptionViews, id: \.id) { settingOptionView in
                 settingOptionView
             }
         }
