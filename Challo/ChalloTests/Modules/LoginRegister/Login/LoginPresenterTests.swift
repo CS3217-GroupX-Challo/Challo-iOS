@@ -46,7 +46,7 @@ class LoginPresenterTests: XCTestCase {
     }
 }
 
-private class LoginPresenterImplementation: LoginPresenter {
+class LoginPresenterImplementation: LoginPresenter {
 
     var interactor: LoginInteractor!
     

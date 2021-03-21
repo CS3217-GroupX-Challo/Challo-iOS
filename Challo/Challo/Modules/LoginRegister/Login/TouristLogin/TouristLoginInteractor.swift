@@ -11,7 +11,7 @@ class TouristLoginInteractor: LoginInteractor, InteractorProtocol {
     private let loginAPI: LoginAPI
     var certificateManager = CertificateManager.manager
 
-    init(loginAPI: TouristLoginAPI) {
+    init(loginAPI: LoginAPI) {
         self.loginAPI = loginAPI
     }
 
