@@ -63,6 +63,7 @@
 		64A6B3A82606BF660046EFDD /* AreaAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3A72606BF660046EFDD /* AreaAPIParser.swift */; };
 		64A6B3AD2606BF7B0046EFDD /* GuideAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3AC2606BF7B0046EFDD /* GuideAPIParser.swift */; };
 		64A6B3B52606BFA50046EFDD /* ReviewAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3B42606BFA50046EFDD /* ReviewAPIParser.swift */; };
+		64F560D926076A1E0079AA98 /* SettingsLogOutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F560D826076A1E0079AA98 /* SettingsLogOutButton.swift */; };
 		99EE910BF070DD5F6845522E /* Pods_Challo_ChalloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */; };
 		AA2CE55D260490F50019C328 /* GuideReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE55C260490F50019C328 /* GuideReviewCard.swift */; };
 		AA2CE5672604C7D90019C328 /* GuideAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5662604C7D90019C328 /* GuideAPI.swift */; };
@@ -309,6 +310,7 @@
 		64A6B3A72606BF660046EFDD /* AreaAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPIParser.swift; sourceTree = "<group>"; };
 		64A6B3AC2606BF7B0046EFDD /* GuideAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPIParser.swift; sourceTree = "<group>"; };
 		64A6B3B42606BFA50046EFDD /* ReviewAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPIParser.swift; sourceTree = "<group>"; };
+		64F560D826076A1E0079AA98 /* SettingsLogOutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLogOutButton.swift; sourceTree = "<group>"; };
 		AA2CE55C260490F50019C328 /* GuideReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideReviewCard.swift; sourceTree = "<group>"; };
 		AA2CE5662604C7D90019C328 /* GuideAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPI.swift; sourceTree = "<group>"; };
 		AA2CE56B2604CDEB0019C328 /* AreaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPI.swift; sourceTree = "<group>"; };
@@ -949,6 +951,7 @@
 			isa = PBXGroup;
 			children = (
 				AAF0C19526061E3900357E94 /* SettingsListElement.swift */,
+				64F560D826076A1E0079AA98 /* SettingsLogOutButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1772,6 +1775,7 @@
 				AAF0C0892605B14600357E94 /* GuideLoginAPI.swift in Sources */,
 				AAF0C0CE2605E37900357E94 /* GoogleMapsView.swift in Sources */,
 				AAF0C0802605B14600357E94 /* SocialLoginDelegate.swift in Sources */,
+				64F560D926076A1E0079AA98 /* SettingsLogOutButton.swift in Sources */,
 				649FA17626061D6900F36BD6 /* TrailProfileReview.swift in Sources */,
 				649FA1362605DC0E00F36BD6 /* MainContainerPresenter.swift in Sources */,
 				AADCABF92603B59600FB52C4 /* GuideProfileDetailsView.swift in Sources */,
