@@ -7,6 +7,9 @@
 
 import Combine
 
+/// Presenter in a VIPER module
+///
+/// This component is responsible for all presentation logic of the module
 protocol PresenterProtocol: ObservableObject {
     associatedtype InteractorProtocol
     associatedtype RouterProtocol

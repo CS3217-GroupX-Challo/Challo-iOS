@@ -7,6 +7,10 @@
 
 import Foundation
 
+/// Representation of a Guide user
+///
+/// Representation Invariants:
+/// - `rating` is a decimal number ranging from 0-5
 struct Guide: User, Equatable {
     var userId: UUID
     
@@ -24,7 +28,7 @@ struct Guide: User, Equatable {
     
     var sex: Sex?
     
-    /// A decimal rating of the guide, ranging from 1-5
+    /// Rating of the guide, ranging from 0-5
     var rating: Double = 0
     
     /// An array of Days in which the guide is available for booking
