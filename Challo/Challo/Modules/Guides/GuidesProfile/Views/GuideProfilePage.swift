@@ -55,7 +55,7 @@ struct GuideProfilePage: View {
                                        alignment: .center)
                                 .clipShape(Circle())
                                 .offset(x: geometry.size.width / 20)
-                            GuideProfileDetailsView(rating: (guide.rating as NSDecimalNumber).doubleValue,
+                            GuideProfileDetailsView(rating: guide.rating,
                                                     name: name,
                                                     date: date,
                                                     languages: languages)

@@ -25,10 +25,11 @@ struct GuidesListingPage: View {
             VStack {
                 GuidesFiltersView(width: geometry.size.width / 5,
                                   presenter: presenter)
+                    .padding(.top, 20)
                 GuidesCardListingsView(guides: guides,
                                        width: geometry.size.width,
                                        presenter: presenter)
-            }
+            }.padding(.bottom, 80)
         }.onAppear {
             if presenter.guides.isEmpty {
                 presenter.interactor.populateGuides()

@@ -25,7 +25,7 @@ struct Guide: User {
     var sex: Sex?
     
     /// A decimal rating of the guide, ranging from 1-5
-    var rating: Decimal = 0
+    var rating: Double = 0
     
     /// An array of Days in which the guide is available for booking
     var daysAvailable: [Days] = []
