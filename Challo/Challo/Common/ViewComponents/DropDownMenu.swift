@@ -31,7 +31,11 @@ struct DropDownMenu: View {
                                height: 6,
                                alignment: .center)
                         .foregroundColor(.black)
-                }
+                }.padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 40)
+                        .stroke(Color.themeTertiary, lineWidth: 1.5)
+                )
                 .onTapGesture {
                     self.isExpanded.toggle()
                 }

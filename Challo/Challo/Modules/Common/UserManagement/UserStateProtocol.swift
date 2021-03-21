@@ -5,6 +5,8 @@
 //  Created by Tan Le Yang on 21/3/21.
 //
 
+import Combine
+
 protocol UserStateProtocol: AnyObject {
 
     var loggedIn: Bool { get set }
