@@ -7,6 +7,12 @@
 
 import Foundation
 
+/// Representation of a Booking
+///
+/// Representation Invariants:
+/// - `fee` is more than 0 and is given in RP
+/// - `guide` is capable of guiding `trail`
+/// - `tourist` has a booking for `trail` with `guide`
 struct Booking {
     let bookingId: UUID
     

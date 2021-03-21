@@ -7,23 +7,26 @@
 
 import Foundation
 
-/*
- Representation Invariant: `guide` is capable of guiding `trail`
- */
+/// Representation of a Review
+///
+/// Representation Invariants:
+/// - `guide` is capable of guiding `trail`
+/// - `tourist` has a booking for `trail` with `guide`
+/// - `rating` is an integer from 1-5
 struct Review {
     let reviewId: UUID
     
-    /// Rating is an integer from 1 to 5
     let rating: Int
 
     let comment: String
     
+    /// Recipient of the review
     let guide: Guide
     
     let trail: Trail
     
     let createdAt: Date
     
-    /// The author of the review
+    /// Author of the review
     let tourist: Tourist
 }

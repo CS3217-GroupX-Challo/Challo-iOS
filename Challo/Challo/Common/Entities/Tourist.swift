@@ -5,6 +5,7 @@
 //  Created by Shao Yi on 15/3/21.
 //
 
+/// Representation of a Tourist user
 import Foundation
 
 struct Tourist: User {

@@ -8,6 +8,17 @@
 import Foundation
 import MapKit
 
+/// Representation of a Trail
+///
+/// Representation Invariants:
+/// - `rating` is a decimal number ranging from 0-5
+/// - `positions` is guaranteed non-empty and the first element is the starting point of the trail
+/// - `distance` and `elevation` are in meters
+/// - `duration` is in hours
+/// - `images` contains the URLs to images of the trail
+/// - `numOfReview`is non-negative
+/// - `lowestFee` is more than 0 and is in RP
+/// - `landmarks` is non-empty, where the first element is the starting point of the trail and the last element is the end point
 struct Trail {
     /// Unique id fo the trail
     let trailId: UUID
