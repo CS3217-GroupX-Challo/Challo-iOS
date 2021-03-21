@@ -31,12 +31,12 @@ class RegisterPresenterTests: XCTestCase {
         presenter.phone = "12345678"
         presenter.password = "abc123"
         presenter.submitRegistration()
-        XCTAssertTrue(interactor.registerWasCalled)
+        XCTAssertTrue(interactor.registerWasCalled, "Interactor not called")
     }
 
     func testShowAlert_showAlertVariableToggled() {
         presenter.showRegisterFailureAlert()
-        XCTAssertTrue(presenter.isShowingRegisterFailureAlert)
+        XCTAssertTrue(presenter.isShowingRegisterFailureAlert, "Register alert variable not toggled")
     }
 }
 

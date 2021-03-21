@@ -32,17 +32,17 @@ class LoginPresenterTests: XCTestCase {
 
     func testLogin_interactorLoginMethodCalled() {
         presenter.login()
-        XCTAssertTrue(interactor.loginWasCalled)
+        XCTAssertTrue(interactor.loginWasCalled, "Interactor not called")
     }
 
     func testShowAlert_showAlertVariableToggled() {
         presenter.showLoginFailureAlert()
-        XCTAssertTrue(presenter.isShowingLoginFailureAlert)
+        XCTAssertTrue(presenter.isShowingLoginFailureAlert, "Login alert variable not toggled")
     }
 
     func testGetRegistrationPage_routerReturnsPage() {
         _ = presenter.getRegistrationPage()
-        XCTAssertTrue(router.routerWasCalled)
+        XCTAssertTrue(router.routerWasCalled, "Router not called")
     }
 }
 
