@@ -32,25 +32,4 @@ class GuidesListingInteractor: InteractorProtocol {
         }
     }
     
-    // location options for filtering location
-    // varies based on the various locations of guides
-    // that are onboard the system
-    func getLocationOptions() {
-        areaAPI.getAreas { [weak self] areas in
-            guard let self = self else {
-                return
-            }
-            
-            let areaOptions = self.convertAreasToLocationOptions(areas: areas)
-            self.presenter.filterTypes.locations = areaOptions
-        }
-    }
-    
-    private func convertAreasToLocationOptions(areas: [Area]) -> [String] {
-        var locationOptions: [String] = ["Default"]
-        for area in areas {
-            locationOptions.append(area.village)
-        }
-        return locationOptions
-    }
 }

@@ -12,6 +12,7 @@ protocol RegisterPresenter: AnyObject {
 
     func submitRegistration()
     func showRegisterFailureAlert()
+    
 }
 
 extension RegisterPresenter {

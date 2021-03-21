@@ -14,7 +14,6 @@ class GuidesListingPresenterTests: XCTestCase {
         XCTAssertEqual(presenter.filterTypes, FilterTypes(), "Not initialized properly")
         XCTAssertEqual(presenter.languageFilterType, "Default", "Not initialized properly")
         XCTAssertEqual(presenter.ratingFilterType, "Default", "Not initialized properly")
-        XCTAssertEqual(presenter.locationFilterType, "Default", "Not initialized properly")
         XCTAssertEqual(presenter.sexFilterType, "Default", "Not initialized properly")
     }
 }

@@ -19,7 +19,7 @@ struct TrailProfileLandmarks: View {
             return nil
         }
         return AnyView(HStack {
-            Text("\(index)").padding()
+            Text("\(index + 1)").padding()
                 .overlay(
                     Circle().stroke(Color.themeTertiary, lineWidth: 1.5)
                         .padding(6)

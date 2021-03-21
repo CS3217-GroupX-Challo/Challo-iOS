@@ -17,6 +17,6 @@ final class SettingsModule: ViperModuleProtocol {
         presenter.router = router
         router.presenter = presenter
         presenter.initializeSettingOptionsViews()
-        return (AnyView(SettingsPage(settingOptionViews: presenter.settingOptionViews)), presenter)
+        return (AnyView(SettingsPage().environmentObject(presenter)), presenter)
     }
 }

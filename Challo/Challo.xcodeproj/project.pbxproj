@@ -22,6 +22,7 @@
 		6462027025FF5E5E00D89514 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6462026F25FF5E5E00D89514 /* Review.swift */; };
 		6462027525FF60D900D89514 /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6462027425FF60D900D89514 /* Booking.swift */; };
 		6462027A25FF614F00D89514 /* BookingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6462027925FF614F00D89514 /* BookingStatus.swift */; };
+		647CFFBC2607605300C3C7F9 /* GuideProfilePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647CFFBB2607605300C3C7F9 /* GuideProfilePresenterTests.swift */; };
 		649FA11A2605DC0600F36BD6 /* TrailListingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1062605DC0600F36BD6 /* TrailListingInteractor.swift */; };
 		649FA11B2605DC0600F36BD6 /* TrailListingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1072605DC0600F36BD6 /* TrailListingModule.swift */; };
 		649FA11C2605DC0600F36BD6 /* TrailListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1082605DC0600F36BD6 /* TrailListingPresenter.swift */; };
@@ -62,6 +63,8 @@
 		64A6B3A82606BF660046EFDD /* AreaAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3A72606BF660046EFDD /* AreaAPIParser.swift */; };
 		64A6B3AD2606BF7B0046EFDD /* GuideAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3AC2606BF7B0046EFDD /* GuideAPIParser.swift */; };
 		64A6B3B52606BFA50046EFDD /* ReviewAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3B42606BFA50046EFDD /* ReviewAPIParser.swift */; };
+		64F560D926076A1E0079AA98 /* SettingsLogOutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F560D826076A1E0079AA98 /* SettingsLogOutButton.swift */; };
+		64F560E426076DF30079AA98 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F560E326076DF30079AA98 /* Loading.swift */; };
 		848391322607559D00773E39 /* BlogWriterModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848391312607559D00773E39 /* BlogWriterModuleTests.swift */; };
 		848391462607589700773E39 /* BlogWriterInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848391452607589700773E39 /* BlogWriterInteractorTests.swift */; };
 		8483915426075D4200773E39 /* BlogWriterPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483915326075D4200773E39 /* BlogWriterPresenterTests.swift */; };
@@ -188,7 +191,6 @@
 		AAF0C26F26070E8400357E94 /* GuidesListingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C26E26070E8400357E94 /* GuidesListingModule.swift */; };
 		AAF0C27D26070F6D00357E94 /* MockAreaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C27C26070F6D00357E94 /* MockAreaAPI.swift */; };
 		AAF0C290260711B700357E94 /* MockReviewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C28F260711B700357E94 /* MockReviewsAPI.swift */; };
-		AAF0C2A92607159C00357E94 /* GuideProfilePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C2A82607159C00357E94 /* GuideProfilePresenterTests.swift */; };
 		AAF0C2B2260716FA00357E94 /* DateConstructTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C2B1260716FA00357E94 /* DateConstructTests.swift */; };
 		AAF0C2C0260719A500357E94 /* GuidesListingPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C2BF260719A500357E94 /* GuidesListingPresenterTests.swift */; };
 		AAF0C2C8260719C200357E94 /* GuideProfileInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C2C7260719C200357E94 /* GuideProfileInteractorTests.swift */; };
@@ -201,6 +203,10 @@
 		E234932A25FB885100EC90E9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E234932925FB885100EC90E9 /* Preview Assets.xcassets */; };
 		E234933525FB885100EC90E9 /* ChalloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234933425FB885100EC90E9 /* ChalloTests.swift */; };
 		E234934025FB885100EC90E9 /* ChalloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234933F25FB885100EC90E9 /* ChalloUITests.swift */; };
+		E241E626260750590078A2BD /* MockTrailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241E625260750590078A2BD /* MockTrailAPI.swift */; };
+		E241E62E260751D90078A2BD /* TrailListingInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241E62D260751D90078A2BD /* TrailListingInteractorTests.swift */; };
+		E241E633260753650078A2BD /* TrailListingPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241E632260753650078A2BD /* TrailListingPresenterTests.swift */; };
+		E241E63A2607565D0078A2BD /* TrailProfileInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241E6392607565D0078A2BD /* TrailProfileInteractorTests.swift */; };
 		E244A7452606476B003DBD24 /* APINetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244A7442606476B003DBD24 /* APINetwork.swift */; };
 		E254F2562606343E00E25A56 /* TouristAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E254F2552606343E00E25A56 /* TouristAPIParser.swift */; };
 		E254F25E2606346300E25A56 /* TouristAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E254F25D2606346300E25A56 /* TouristAPI.swift */; };
@@ -278,6 +284,7 @@
 		6462026F25FF5E5E00D89514 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		6462027425FF60D900D89514 /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		6462027925FF614F00D89514 /* BookingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingStatus.swift; sourceTree = "<group>"; };
+		647CFFBB2607605300C3C7F9 /* GuideProfilePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePresenterTests.swift; sourceTree = "<group>"; };
 		649FA1062605DC0600F36BD6 /* TrailListingInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailListingInteractor.swift; sourceTree = "<group>"; };
 		649FA1072605DC0600F36BD6 /* TrailListingModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailListingModule.swift; sourceTree = "<group>"; };
 		649FA1082605DC0600F36BD6 /* TrailListingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailListingPresenter.swift; sourceTree = "<group>"; };
@@ -318,6 +325,8 @@
 		64A6B3A72606BF660046EFDD /* AreaAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPIParser.swift; sourceTree = "<group>"; };
 		64A6B3AC2606BF7B0046EFDD /* GuideAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPIParser.swift; sourceTree = "<group>"; };
 		64A6B3B42606BFA50046EFDD /* ReviewAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPIParser.swift; sourceTree = "<group>"; };
+		64F560D826076A1E0079AA98 /* SettingsLogOutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLogOutButton.swift; sourceTree = "<group>"; };
+		64F560E326076DF30079AA98 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		848391312607559D00773E39 /* BlogWriterModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogWriterModuleTests.swift; sourceTree = "<group>"; };
 		848391452607589700773E39 /* BlogWriterInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogWriterInteractorTests.swift; sourceTree = "<group>"; };
 		8483915326075D4200773E39 /* BlogWriterPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogWriterPresenterTests.swift; sourceTree = "<group>"; };
@@ -442,9 +451,7 @@
 		AAF0C26926070CE000357E94 /* MockGuideAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGuideAPI.swift; sourceTree = "<group>"; };
 		AAF0C26E26070E8400357E94 /* GuidesListingModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingModule.swift; sourceTree = "<group>"; };
 		AAF0C27C26070F6D00357E94 /* MockAreaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAreaAPI.swift; sourceTree = "<group>"; };
-		AAF0C287260711A600357E94 /* GuideProfileInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuideProfileInteractorTests.swift; path = /GuideProfileInteractorTests.swift; sourceTree = "<absolute>"; };
 		AAF0C28F260711B700357E94 /* MockReviewsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReviewsAPI.swift; sourceTree = "<group>"; };
-		AAF0C2A82607159C00357E94 /* GuideProfilePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePresenterTests.swift; sourceTree = "<group>"; };
 		AAF0C2B1260716FA00357E94 /* DateConstructTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConstructTests.swift; sourceTree = "<group>"; };
 		AAF0C2BF260719A500357E94 /* GuidesListingPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingPresenterTests.swift; sourceTree = "<group>"; };
 		AAF0C2C7260719C200357E94 /* GuideProfileInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfileInteractorTests.swift; sourceTree = "<group>"; };
@@ -462,6 +469,10 @@
 		E234933B25FB885100EC90E9 /* ChalloUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChalloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234933F25FB885100EC90E9 /* ChalloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloUITests.swift; sourceTree = "<group>"; };
 		E234934125FB885100EC90E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E241E625260750590078A2BD /* MockTrailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrailAPI.swift; sourceTree = "<group>"; };
+		E241E62D260751D90078A2BD /* TrailListingInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailListingInteractorTests.swift; sourceTree = "<group>"; };
+		E241E632260753650078A2BD /* TrailListingPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailListingPresenterTests.swift; sourceTree = "<group>"; };
+		E241E6392607565D0078A2BD /* TrailProfileInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileInteractorTests.swift; sourceTree = "<group>"; };
 		E244A7442606476B003DBD24 /* APINetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINetwork.swift; sourceTree = "<group>"; };
 		E254F2552606343E00E25A56 /* TouristAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristAPIParser.swift; sourceTree = "<group>"; };
 		E254F25D2606346300E25A56 /* TouristAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristAPI.swift; sourceTree = "<group>"; };
@@ -477,7 +488,6 @@
 		E2A1C85B26071B0A006285D1 /* UserStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateProtocol.swift; sourceTree = "<group>"; };
 		E2A354992607306300612889 /* GuideLoginInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideLoginInteractorTests.swift; sourceTree = "<group>"; };
 		E2A3549E2607319700612889 /* TouristLoginInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristLoginInteractorTests.swift; sourceTree = "<group>"; };
-		E2B88BF52607234500E83909 /* GuideProfilePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuideProfilePresenterTests.swift; path = ChalloTests/Modules/Guides/GuideProfile/GuideProfilePresenterTests.swift; sourceTree = "<group>"; };
 		E2B97AD726071FD4003690F5 /* MockCertificateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCertificateManager.swift; sourceTree = "<group>"; };
 		E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChalloTitle.swift; sourceTree = "<group>"; };
 		E2D8968C25FFAB8A0001B026 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -589,13 +599,13 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
-		649FA1042605DC0600F36BD6 /* Trail */ = {
+		649FA1042605DC0600F36BD6 /* Trails */ = {
 			isa = PBXGroup;
 			children = (
 				649FA1052605DC0600F36BD6 /* TrailListing */,
 				649FA10F2605DC0600F36BD6 /* TrailProfile */,
 			);
-			path = Trail;
+			path = Trails;
 			sourceTree = "<group>";
 		};
 		649FA1052605DC0600F36BD6 /* TrailListing */ = {
@@ -996,6 +1006,7 @@
 			isa = PBXGroup;
 			children = (
 				AAF0C19526061E3900357E94 /* SettingsListElement.swift */,
+				64F560D826076A1E0079AA98 /* SettingsLogOutButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1019,8 +1030,8 @@
 		AAF0C2862607118D00357E94 /* GuideProfile */ = {
 			isa = PBXGroup;
 			children = (
-				AAF0C2A82607159C00357E94 /* GuideProfilePresenterTests.swift */,
 				AAF0C2C7260719C200357E94 /* GuideProfileInteractorTests.swift */,
+				647CFFBB2607605300C3C7F9 /* GuideProfilePresenterTests.swift */,
 			);
 			path = GuideProfile;
 			sourceTree = "<group>";
@@ -1037,14 +1048,12 @@
 		E234931625FB884F00EC90E9 = {
 			isa = PBXGroup;
 			children = (
-				E2B88BF52607234500E83909 /* GuideProfilePresenterTests.swift */,
 				E234932125FB884F00EC90E9 /* Challo */,
 				E234933325FB885100EC90E9 /* ChalloTests */,
 				E234933E25FB885100EC90E9 /* ChalloUITests */,
 				E234932025FB884F00EC90E9 /* Products */,
 				338C21FD425FDC2B407B5536 /* Pods */,
 				EB8898A86AE48A027123AD32 /* Frameworks */,
-				E2A1C85726071A88006285D1 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1103,6 +1112,32 @@
 			path = ChalloUITests;
 			sourceTree = "<group>";
 		};
+		E241E623260750170078A2BD /* Trails */ = {
+			isa = PBXGroup;
+			children = (
+				E241E624260750330078A2BD /* TrailListing */,
+				E241E6382607564F0078A2BD /* TrailProfile */,
+			);
+			path = Trails;
+			sourceTree = "<group>";
+		};
+		E241E624260750330078A2BD /* TrailListing */ = {
+			isa = PBXGroup;
+			children = (
+				E241E62D260751D90078A2BD /* TrailListingInteractorTests.swift */,
+				E241E632260753650078A2BD /* TrailListingPresenterTests.swift */,
+			);
+			path = TrailListing;
+			sourceTree = "<group>";
+		};
+		E241E6382607564F0078A2BD /* TrailProfile */ = {
+			isa = PBXGroup;
+			children = (
+				E241E6392607565D0078A2BD /* TrailProfileInteractorTests.swift */,
+			);
+			path = TrailProfile;
+			sourceTree = "<group>";
+		};
 		E254F2542606341F00E25A56 /* Tourists */ = {
 			isa = PBXGroup;
 			children = (
@@ -1120,14 +1155,6 @@
 				AAF0C2BF260719A500357E94 /* GuidesListingPresenterTests.swift */,
 			);
 			path = GuidesListing;
-			sourceTree = "<group>";
-		};
-		E2A1C85726071A88006285D1 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				AAF0C287260711A600357E94 /* GuideProfileInteractorTests.swift */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		E2C2441A2600B74D0085BAA4 /* Common */ = {
@@ -1166,7 +1193,7 @@
 				AAF0C1702606174000357E94 /* Settings */,
 				AAF0C09D2605D3D600357E94 /* Map */,
 				649FA12C2605DC0E00F36BD6 /* MainContainer */,
-				649FA1042605DC0600F36BD6 /* Trail */,
+				649FA1042605DC0600F36BD6 /* Trails */,
 				AAF0C0372605B14600357E94 /* LoginRegister */,
 				AA9E870126012A1800C2E389 /* Guides */,
 				84FFD6FE26074B6500C3EA4E /* Blog */,
@@ -1193,6 +1220,7 @@
 				649FA1542605DE8E00F36BD6 /* MapView.swift */,
 				649FA182260620E200F36BD6 /* View+InnerShadow.swift */,
 				649FA1872606228F00F36BD6 /* View+If.swift */,
+				64F560E326076DF30079AA98 /* Loading.swift */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -1242,6 +1270,7 @@
 				AAF0C28F260711B700357E94 /* MockReviewsAPI.swift */,
 				E21308AB2607192800F16DE0 /* MockUserState.swift */,
 				E2B97AD726071FD4003690F5 /* MockCertificateManager.swift */,
+				E241E625260750590078A2BD /* MockTrailAPI.swift */,
 			);
 			path = TestingUtilities;
 			sourceTree = "<group>";
@@ -1272,6 +1301,7 @@
 		E2E286B726064BCE00C058C3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				E241E623260750170078A2BD /* Trails */,
 				AAF0C24C2606999E00357E94 /* Settings */,
 				E2E286E426064C0300C058C3 /* Guides */,
 				E2E286D426064C0200C058C3 /* LoginRegister */,
@@ -1745,6 +1775,7 @@
 				AA2CE5AF260513950019C328 /* Date+Construct.swift in Sources */,
 				AAF0C02D2605B10200357E94 /* UserAPIParser.swift in Sources */,
 				649FA15A2605E6C200F36BD6 /* TrailProfileLocation.swift in Sources */,
+				64F560E426076DF30079AA98 /* Loading.swift in Sources */,
 				649FA11E2605DC0600F36BD6 /* TrailListingCardDetail.swift in Sources */,
 				AAF0C0752605B14600357E94 /* TouristRegistrationAPI.swift in Sources */,
 				AA9E85C925FE70AD00C2E389 /* NetworkManager.swift in Sources */,
@@ -1803,6 +1834,7 @@
 				84FFD70826074B6500C3EA4E /* BlogWriterButton.swift in Sources */,
 				AAF0C0802605B14600357E94 /* SocialLoginDelegate.swift in Sources */,
 				84FFD70726074B6500C3EA4E /* BlogPost.swift in Sources */,
+				64F560D926076A1E0079AA98 /* SettingsLogOutButton.swift in Sources */,
 				649FA17626061D6900F36BD6 /* TrailProfileReview.swift in Sources */,
 				649FA1362605DC0E00F36BD6 /* MainContainerPresenter.swift in Sources */,
 				AADCABF92603B59600FB52C4 /* GuideProfileDetailsView.swift in Sources */,
@@ -1913,8 +1945,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAF0C2A92607159C00357E94 /* GuideProfilePresenterTests.swift in Sources */,
 				8483916426077DA600773E39 /* StringRegexCheckTests.swift in Sources */,
+				E241E633260753650078A2BD /* TrailListingPresenterTests.swift in Sources */,
 				E2A3549F2607319700612889 /* TouristLoginInteractorTests.swift in Sources */,
 				E2E286EE26064C0300C058C3 /* TouristLoginModuleTests.swift in Sources */,
 				8483915426075D4200773E39 /* BlogWriterPresenterTests.swift in Sources */,
@@ -1923,9 +1955,11 @@
 				AAF0C23026068DA400357E94 /* TrailAPIParserTests.swift in Sources */,
 				E2E286CD26064BEE00C058C3 /* TrailAPITests.swift in Sources */,
 				84FFD71226074BD200C3EA4E /* BlogPostTests.swift in Sources */,
+				647CFFBC2607605300C3C7F9 /* GuideProfilePresenterTests.swift in Sources */,
 				AAF0C24E260699AE00357E94 /* SettingsModuleTests.swift in Sources */,
 				E2E286BB26064BE400C058C3 /* UserAPIParserTests.swift in Sources */,
 				E2857AC72607245300097750 /* TouristRegisterInteractorTests.swift in Sources */,
+				E241E62E260751D90078A2BD /* TrailListingInteractorTests.swift in Sources */,
 				AAF0C223260687CB00357E94 /* MockTrailAPIResponse.swift in Sources */,
 				AAF0C1DF26066E5400357E94 /* TouristAPIParserTests.swift in Sources */,
 				E26CBC2D260657C7005DBD47 /* MockGuideAPIResponses.swift in Sources */,
@@ -1933,6 +1967,7 @@
 				AAF0C26A26070CE000357E94 /* MockGuideAPI.swift in Sources */,
 				AAF0C2C0260719A500357E94 /* GuidesListingPresenterTests.swift in Sources */,
 				E2A3549A2607306300612889 /* GuideLoginInteractorTests.swift in Sources */,
+				E241E626260750590078A2BD /* MockTrailAPI.swift in Sources */,
 				E26CBC4226067966005DBD47 /* RegisterPresenterTests.swift in Sources */,
 				E21308AC2607192800F16DE0 /* MockUserState.swift in Sources */,
 				AAF0C2C8260719C200357E94 /* GuideProfileInteractorTests.swift in Sources */,
@@ -1954,6 +1989,7 @@
 				E2E2869F26064B9100C058C3 /* MockUserAPIResponses.swift in Sources */,
 				E2E286EC26064C0300C058C3 /* LoginPresenterTests.swift in Sources */,
 				E2E286E926064C0300C058C3 /* TouristRegisterModuleTests.swift in Sources */,
+				E241E63A2607565D0078A2BD /* TrailProfileInteractorTests.swift in Sources */,
 				E2E286EF26064C0300C058C3 /* MapModuleTests.swift in Sources */,
 				E234933525FB885100EC90E9 /* ChalloTests.swift in Sources */,
 				AAF0C1E726066EBB00357E94 /* MockTouristAPIResponse.swift in Sources */,
