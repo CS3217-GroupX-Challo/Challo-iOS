@@ -7,6 +7,6 @@ struct ContentView: View {
     }
 
     var body: some View {
-        MainContainer
+        BlogWriterModule.assemble().view
     }
 }

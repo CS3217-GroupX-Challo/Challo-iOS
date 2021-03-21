@@ -34,4 +34,8 @@ class BlogWriterInteractor: InteractorProtocol {
         blogPost.isValidTitle
     }
 
+    var canBePublished: Bool {
+        blogPost.canBePublished
+    }
+
 }

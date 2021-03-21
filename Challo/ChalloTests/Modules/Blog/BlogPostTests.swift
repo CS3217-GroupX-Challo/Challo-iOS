@@ -10,7 +10,7 @@ import XCTest
 
 class BlogPostTests: XCTestCase {
 
-    func testRegex() {
+    func testIsValidTitle() {
         let noTitle = BlogPost(title: "", body: "", author: UUID())
         XCTAssertFalse(noTitle.isValidTitle)
 
@@ -19,6 +19,23 @@ class BlogPostTests: XCTestCase {
 
         let validTitle = BlogPost(title: "Some valid string", body: "", author: UUID())
         XCTAssertTrue(validTitle.isValidTitle)
+    }
+
+    func testCanBePublished() {
+        let invalidTitleBlogInvalidText = BlogPost(title: "    ", body: "", author: UUID())
+        XCTAssertFalse(invalidTitleBlogInvalidText.canBePublished)
+
+        let invalidTitleBlogValidText = BlogPost(title: "    ", body: "Random Text", author: UUID())
+        XCTAssertFalse(invalidTitleBlogValidText.canBePublished)
+
+        let validTitleEmptyText = BlogPost(title: "Some title", body: "", author: UUID())
+        XCTAssertFalse(validTitleEmptyText.canBePublished)
+
+        let validTitleOnlyWhiteSpaceText = BlogPost(title: "Some title", body: "      ", author: UUID())
+        XCTAssertFalse(validTitleOnlyWhiteSpaceText.canBePublished)
+
+        let validTitleValidText = BlogPost(title: "Some title", body: "Random text", author: UUID())
+        XCTAssertTrue(validTitleValidText.canBePublished)
     }
 
 }

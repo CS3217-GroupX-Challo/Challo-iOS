@@ -65,6 +65,8 @@
 		848391322607559D00773E39 /* BlogWriterModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848391312607559D00773E39 /* BlogWriterModuleTests.swift */; };
 		848391462607589700773E39 /* BlogWriterInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848391452607589700773E39 /* BlogWriterInteractorTests.swift */; };
 		8483915426075D4200773E39 /* BlogWriterPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483915326075D4200773E39 /* BlogWriterPresenterTests.swift */; };
+		8483915F26077D4800773E39 /* String+WhiteSpaceCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483915E26077D4800773E39 /* String+WhiteSpaceCheck.swift */; };
+		8483916426077DA600773E39 /* StringRegexCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483916326077DA600773E39 /* StringRegexCheckTests.swift */; };
 		848D754526074DD100D2665B /* RoundedTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D754426074DD100D2665B /* RoundedTextEditor.swift */; };
 		84FFD70626074B6500C3EA4E /* BlogWriterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD6FF26074B6500C3EA4E /* BlogWriterRouter.swift */; };
 		84FFD70726074B6500C3EA4E /* BlogPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD70026074B6500C3EA4E /* BlogPost.swift */; };
@@ -319,6 +321,8 @@
 		848391312607559D00773E39 /* BlogWriterModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogWriterModuleTests.swift; sourceTree = "<group>"; };
 		848391452607589700773E39 /* BlogWriterInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogWriterInteractorTests.swift; sourceTree = "<group>"; };
 		8483915326075D4200773E39 /* BlogWriterPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogWriterPresenterTests.swift; sourceTree = "<group>"; };
+		8483915E26077D4800773E39 /* String+WhiteSpaceCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+WhiteSpaceCheck.swift"; sourceTree = "<group>"; };
+		8483916326077DA600773E39 /* StringRegexCheckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringRegexCheckTests.swift; sourceTree = "<group>"; };
 		848D754426074DD100D2665B /* RoundedTextEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextEditor.swift; sourceTree = "<group>"; };
 		84FFD6FF26074B6500C3EA4E /* BlogWriterRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogWriterRouter.swift; sourceTree = "<group>"; };
 		84FFD70026074B6500C3EA4E /* BlogPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogPost.swift; sourceTree = "<group>"; };
@@ -1025,6 +1029,7 @@
 			isa = PBXGroup;
 			children = (
 				AAF0C2B1260716FA00357E94 /* DateConstructTests.swift */,
+				8483916326077DA600773E39 /* StringRegexCheckTests.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1206,6 +1211,7 @@
 				E2D896AC25FFABD70001B026 /* ContainerView.swift */,
 				AA9E878F260265C300C2E389 /* Key.swift */,
 				AA2CE5AE260513950019C328 /* Date+Construct.swift */,
+				8483915E26077D4800773E39 /* String+WhiteSpaceCheck.swift */,
 				AAF0C0142605AFC300357E94 /* ChalloLogger.swift */,
 				649FA18C260629D400F36BD6 /* CustomDateFormatter.swift */,
 			);
@@ -1792,6 +1798,7 @@
 				AAF0C0822605B14600357E94 /* SocialLoginInteractor.swift in Sources */,
 				AAF0C0832605B14600357E94 /* SocialLoginPresenter.swift in Sources */,
 				AAF0C0892605B14600357E94 /* GuideLoginAPI.swift in Sources */,
+				8483915F26077D4800773E39 /* String+WhiteSpaceCheck.swift in Sources */,
 				AAF0C0CE2605E37900357E94 /* GoogleMapsView.swift in Sources */,
 				84FFD70826074B6500C3EA4E /* BlogWriterButton.swift in Sources */,
 				AAF0C0802605B14600357E94 /* SocialLoginDelegate.swift in Sources */,
@@ -1907,6 +1914,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAF0C2A92607159C00357E94 /* GuideProfilePresenterTests.swift in Sources */,
+				8483916426077DA600773E39 /* StringRegexCheckTests.swift in Sources */,
 				E2A3549F2607319700612889 /* TouristLoginInteractorTests.swift in Sources */,
 				E2E286EE26064C0300C058C3 /* TouristLoginModuleTests.swift in Sources */,
 				8483915426075D4200773E39 /* BlogWriterPresenterTests.swift in Sources */,

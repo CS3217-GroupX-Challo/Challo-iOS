@@ -25,20 +25,18 @@ struct BlogWriter: View {
             buttons
         }
         .padding()
-        .alert(isPresented: $presenter.savingEnabled, content: {
-            Alert(title: Text("Not so fast!"),
-                  message: Text("Your post needs to at least have a title!"),
-                  dismissButton: .default(Text("Ok")))
-        })
+
     }
 
     private var buttons: some View {
         HStack {
             BlogWriterButton(action: presenter.saveBlogDraft, title: "Save Draft")
+                .disabled(presenter.savingDisabled)
 
             Spacer()
 
             BlogWriterButton(action: presenter.publish, title: "Publish")
+                .disabled(presenter.publishingDisabled)
         }
         .padding()
     }

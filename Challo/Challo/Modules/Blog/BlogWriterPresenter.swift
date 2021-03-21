@@ -20,7 +20,6 @@ class BlogWriterPresenter: PresenterProtocol {
     @Published var blogTitle = "" {
         didSet {
             interactor.updateBlog(title: blogTitle)
-            savingEnabled = interactor.isValidBlogPostTitle
         }
     }
     @Published var blogBody = "" {
@@ -29,14 +28,28 @@ class BlogWriterPresenter: PresenterProtocol {
         }
     }
 
-    @Published var savingEnabled = false
+    var savingDisabled: Bool {
+        !interactor.isValidBlogPostTitle
+    }
+
+    var publishingDisabled: Bool {
+        !interactor.canBePublished
+    }
 
     func saveBlogDraft() {
         // TODO: Implement persistence
+        guard !savingDisabled else {
+            return
+        }
+        print("Save button - I was called")
     }
 
     func publish() {
         // TODO: Implement API
+        guard !publishingDisabled else {
+            return
+        }
+        print("Publish button - I was called")
     }
 
 }

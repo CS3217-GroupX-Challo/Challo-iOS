@@ -10,25 +10,42 @@ import XCTest
 
 class BlogWriterPresenterTests: XCTestCase {
 
-    func testSavingEnabledProperty() {
+    func testSavingDisabledProperty() {
         let presenter = BlogWriterPresenter()
         presenter.router = BlogWriterRouter()
 
         let invalidTitleDraft = BlogPost(title: "", body: "Random string", author: UUID())
         presenter.interactor = BlogWriterInteractor(blogPost: invalidTitleDraft)
-        XCTAssertFalse(presenter.savingEnabled)
+        XCTAssertTrue(presenter.savingDisabled)
 
         let whitespaceTitleDraft = BlogPost(title: "     ", body: "Random string", author: UUID())
         presenter.interactor = BlogWriterInteractor(blogPost: whitespaceTitleDraft)
-        XCTAssertFalse(presenter.savingEnabled)
+        XCTAssertTrue(presenter.savingDisabled)
 
         let validTitleDraft = BlogPost(title: "Some title", body: "Random string", author: UUID())
         presenter.interactor = BlogWriterInteractor(blogPost: validTitleDraft)
-        XCTAssertTrue(presenter.savingEnabled)
+        XCTAssertFalse(presenter.savingDisabled)
 
         let validDraftEmptyBody = BlogPost(title: "Some title", body: "", author: UUID())
         presenter.interactor = BlogWriterInteractor(blogPost: validDraftEmptyBody)
-        XCTAssertTrue(presenter.savingEnabled)
+        XCTAssertFalse(presenter.savingDisabled)
+    }
+
+    func testPublishDisabledProperty() {
+        let presenter = BlogWriterPresenter()
+        presenter.router = BlogWriterRouter()
+
+        let invalidTitleInvalidBodyDraft = BlogPost(title: "", body: "    ", author: UUID())
+        presenter.interactor = BlogWriterInteractor(blogPost: invalidTitleInvalidBodyDraft)
+        XCTAssertTrue(presenter.publishingDisabled)
+
+        let validTitleEmptyBodyDraft = BlogPost(title: "Some title", body: "", author: UUID())
+        presenter.interactor = BlogWriterInteractor(blogPost: validTitleEmptyBodyDraft)
+        XCTAssertFalse(presenter.publishingDisabled)
+
+        let validDraft = BlogPost(title: "Some title", body: "Random string", author: UUID())
+        presenter.interactor = BlogWriterInteractor(blogPost: validDraft)
+        XCTAssertFalse(presenter.publishingDisabled)
     }
 
 }

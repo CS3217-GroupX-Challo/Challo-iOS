@@ -16,7 +16,11 @@ struct BlogPost {
     }
 
     var isValidTitle: Bool {
-        title.range(of: "^\\S+", options: .regularExpression) != nil
+        !title.isEmptyOrOnlyWhiteSpace
+    }
+
+    var canBePublished: Bool {
+        isValidTitle && !body.isEmptyOrOnlyWhiteSpace
     }
 }
 
