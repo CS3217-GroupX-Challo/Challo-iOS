@@ -8,10 +8,18 @@
 class GuideLoginInteractor: LoginInteractor, InteractorProtocol {
 
     weak var presenter: LoginPresenter!
-    private let loginLogic = GuideLoginAPI()
+    private let loginAPI: LoginAPI
+
+    init(loginAPI: GuideLoginAPI) {
+        self.loginAPI = loginAPI
+    }
+
+    convenience init() {
+        self.init(loginAPI: GuideLoginAPI())
+    }
 
     func defaultLogin(email: String, password: String) {
-        loginLogic.login(email: email, password: password) { [weak self] response in
+        loginAPI.login(email: email, password: password) { [weak self] response in
             if response.error != nil {
                 self?.presenter.showLoginFailureAlert()
                 return

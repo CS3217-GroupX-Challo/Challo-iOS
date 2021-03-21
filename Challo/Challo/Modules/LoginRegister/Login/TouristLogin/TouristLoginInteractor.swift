@@ -8,10 +8,18 @@
 class TouristLoginInteractor: LoginInteractor, InteractorProtocol {
 
     weak var presenter: LoginPresenter!
-    private let api = TouristLoginAPI()
+    private let loginAPI: LoginAPI
+
+    init(loginAPI: TouristLoginAPI) {
+        self.loginAPI = loginAPI
+    }
+
+    convenience init() {
+        self.init(loginAPI: TouristLoginAPI())
+    }
 
     func defaultLogin(email: String, password: String) {
-        api.login(email: email, password: password) { [weak self] response in
+        loginAPI.login(email: email, password: password) { [weak self] response in
             if response.error != nil {
                 self?.presenter.showLoginFailureAlert()
                 return
