@@ -62,6 +62,15 @@
 		64A6B3A82606BF660046EFDD /* AreaAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3A72606BF660046EFDD /* AreaAPIParser.swift */; };
 		64A6B3AD2606BF7B0046EFDD /* GuideAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3AC2606BF7B0046EFDD /* GuideAPIParser.swift */; };
 		64A6B3B52606BFA50046EFDD /* ReviewAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3B42606BFA50046EFDD /* ReviewAPIParser.swift */; };
+		848D754526074DD100D2665B /* RoundedTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D754426074DD100D2665B /* RoundedTextEditor.swift */; };
+		84FFD70626074B6500C3EA4E /* BlogWriterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD6FF26074B6500C3EA4E /* BlogWriterRouter.swift */; };
+		84FFD70726074B6500C3EA4E /* BlogPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD70026074B6500C3EA4E /* BlogPost.swift */; };
+		84FFD70826074B6500C3EA4E /* BlogWriterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD70126074B6500C3EA4E /* BlogWriterButton.swift */; };
+		84FFD70926074B6500C3EA4E /* BlogWriterModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD70226074B6500C3EA4E /* BlogWriterModule.swift */; };
+		84FFD70A26074B6500C3EA4E /* BlogWriterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD70326074B6500C3EA4E /* BlogWriterInteractor.swift */; };
+		84FFD70B26074B6500C3EA4E /* BlogWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD70426074B6500C3EA4E /* BlogWriter.swift */; };
+		84FFD70C26074B6500C3EA4E /* BlogWriterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD70526074B6500C3EA4E /* BlogWriterPresenter.swift */; };
+		84FFD71226074BD200C3EA4E /* BlogPostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD71126074BD200C3EA4E /* BlogPostTests.swift */; };
 		99EE910BF070DD5F6845522E /* Pods_Challo_ChalloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */; };
 		AA2CE55D260490F50019C328 /* GuideReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE55C260490F50019C328 /* GuideReviewCard.swift */; };
 		AA2CE5672604C7D90019C328 /* GuideAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5662604C7D90019C328 /* GuideAPI.swift */; };
@@ -304,6 +313,15 @@
 		64A6B3A72606BF660046EFDD /* AreaAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPIParser.swift; sourceTree = "<group>"; };
 		64A6B3AC2606BF7B0046EFDD /* GuideAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPIParser.swift; sourceTree = "<group>"; };
 		64A6B3B42606BFA50046EFDD /* ReviewAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPIParser.swift; sourceTree = "<group>"; };
+		848D754426074DD100D2665B /* RoundedTextEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextEditor.swift; sourceTree = "<group>"; };
+		84FFD6FF26074B6500C3EA4E /* BlogWriterRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogWriterRouter.swift; sourceTree = "<group>"; };
+		84FFD70026074B6500C3EA4E /* BlogPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogPost.swift; sourceTree = "<group>"; };
+		84FFD70126074B6500C3EA4E /* BlogWriterButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogWriterButton.swift; sourceTree = "<group>"; };
+		84FFD70226074B6500C3EA4E /* BlogWriterModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogWriterModule.swift; sourceTree = "<group>"; };
+		84FFD70326074B6500C3EA4E /* BlogWriterInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogWriterInteractor.swift; sourceTree = "<group>"; };
+		84FFD70426074B6500C3EA4E /* BlogWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogWriter.swift; sourceTree = "<group>"; };
+		84FFD70526074B6500C3EA4E /* BlogWriterPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogWriterPresenter.swift; sourceTree = "<group>"; };
+		84FFD71126074BD200C3EA4E /* BlogPostTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogPostTests.swift; sourceTree = "<group>"; };
 		AA2CE55C260490F50019C328 /* GuideReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideReviewCard.swift; sourceTree = "<group>"; };
 		AA2CE5662604C7D90019C328 /* GuideAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPI.swift; sourceTree = "<group>"; };
 		AA2CE56B2604CDEB0019C328 /* AreaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPI.swift; sourceTree = "<group>"; };
@@ -657,6 +675,28 @@
 				64A6B3962606BB100046EFDD /* TrailAPIParser.swift */,
 			);
 			path = Trails;
+			sourceTree = "<group>";
+		};
+		84FFD6FE26074B6500C3EA4E /* Blog */ = {
+			isa = PBXGroup;
+			children = (
+				84FFD6FF26074B6500C3EA4E /* BlogWriterRouter.swift */,
+				84FFD70026074B6500C3EA4E /* BlogPost.swift */,
+				84FFD70126074B6500C3EA4E /* BlogWriterButton.swift */,
+				84FFD70226074B6500C3EA4E /* BlogWriterModule.swift */,
+				84FFD70326074B6500C3EA4E /* BlogWriterInteractor.swift */,
+				84FFD70426074B6500C3EA4E /* BlogWriter.swift */,
+				84FFD70526074B6500C3EA4E /* BlogWriterPresenter.swift */,
+			);
+			path = Blog;
+			sourceTree = "<group>";
+		};
+		84FFD71026074BA000C3EA4E /* Blog */ = {
+			isa = PBXGroup;
+			children = (
+				84FFD71126074BD200C3EA4E /* BlogPostTests.swift */,
+			);
+			path = Blog;
 			sourceTree = "<group>";
 		};
 		AA2CE57F2604D5F60019C328 /* Reviews */ = {
@@ -1115,6 +1155,7 @@
 				649FA1042605DC0600F36BD6 /* Trail */,
 				AAF0C0372605B14600357E94 /* LoginRegister */,
 				AA9E870126012A1800C2E389 /* Guides */,
+				84FFD6FE26074B6500C3EA4E /* Blog */,
 				E2C2441A2600B74D0085BAA4 /* Common */,
 			);
 			path = Modules;
@@ -1131,6 +1172,7 @@
 				E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */,
 				E2D8968E25FFAB8A0001B026 /* FacebookLoginButton.swift */,
 				E2D8968D25FFAB8A0001B026 /* RoundedTextField.swift */,
+				848D754426074DD100D2665B /* RoundedTextEditor.swift */,
 				AA9E870F26012B1400C2E389 /* DropDownMenu.swift */,
 				AA9E871726012BE400C2E389 /* StarRatingsView.swift */,
 				AAF0C0192605B05E00357E94 /* ChalloEnterpriseTitle.swift */,
@@ -1219,6 +1261,7 @@
 				E2E286E426064C0300C058C3 /* Guides */,
 				E2E286D426064C0200C058C3 /* LoginRegister */,
 				E2E286E226064C0300C058C3 /* Map */,
+				84FFD71026074BA000C3EA4E /* Blog */,
 				E2E286B826064BD200C058C3 /* Common */,
 			);
 			path = Modules;
@@ -1694,6 +1737,7 @@
 				649FA1252605DC0600F36BD6 /* TrailProfileDetails.swift in Sources */,
 				649FA11C2605DC0600F36BD6 /* TrailListingPresenter.swift in Sources */,
 				AAF0C0772605B14600357E94 /* RegisterInteractor.swift in Sources */,
+				84FFD70B26074B6500C3EA4E /* BlogWriter.swift in Sources */,
 				AAF0C06E2605B14600357E94 /* RegisterRouter.swift in Sources */,
 				649FA162260605C100F36BD6 /* APIParser.swift in Sources */,
 				AA9E85D625FE735800C2E389 /* NetworkError.swift in Sources */,
@@ -1715,6 +1759,7 @@
 				E2D896B425FFABE80001B026 /* Image+ImageAssets.swift in Sources */,
 				AAF0C17E2606179700357E94 /* SettingsInteractor.swift in Sources */,
 				AAF0C02F2605B10200357E94 /* LoginAPI.swift in Sources */,
+				84FFD70626074B6500C3EA4E /* BlogWriterRouter.swift in Sources */,
 				AAF0C0952605B14600357E94 /* TouristLoginPage.swift in Sources */,
 				E2D8969225FFAB8A0001B026 /* RoundedTextField.swift in Sources */,
 				AAF0C26F26070E8400357E94 /* GuidesListingModule.swift in Sources */,
@@ -1739,7 +1784,9 @@
 				AAF0C0832605B14600357E94 /* SocialLoginPresenter.swift in Sources */,
 				AAF0C0892605B14600357E94 /* GuideLoginAPI.swift in Sources */,
 				AAF0C0CE2605E37900357E94 /* GoogleMapsView.swift in Sources */,
+				84FFD70826074B6500C3EA4E /* BlogWriterButton.swift in Sources */,
 				AAF0C0802605B14600357E94 /* SocialLoginDelegate.swift in Sources */,
+				84FFD70726074B6500C3EA4E /* BlogPost.swift in Sources */,
 				649FA17626061D6900F36BD6 /* TrailProfileReview.swift in Sources */,
 				649FA1362605DC0E00F36BD6 /* MainContainerPresenter.swift in Sources */,
 				AADCABF92603B59600FB52C4 /* GuideProfileDetailsView.swift in Sources */,
@@ -1795,9 +1842,11 @@
 				6462026B25FF574100D89514 /* CaseIterable+ParseString.swift in Sources */,
 				E2D896B525FFABE80001B026 /* Color+ThemeColors.swift in Sources */,
 				AAF0C0872605B14600357E94 /* GuideLoginPresenter.swift in Sources */,
+				84FFD70926074B6500C3EA4E /* BlogWriterModule.swift in Sources */,
 				AAF0C0902605B14600357E94 /* TouristLoginPresenter.swift in Sources */,
 				AAF0C0BA2605DA8000357E94 /* InteractiveMapPage.swift in Sources */,
 				AA9E871026012B1400C2E389 /* DropDownMenu.swift in Sources */,
+				848D754526074DD100D2665B /* RoundedTextEditor.swift in Sources */,
 				AAF0C07B2605B14600357E94 /* GuideRegistrationAPI.swift in Sources */,
 				AAF0C0852605B14600357E94 /* LoginInteractor.swift in Sources */,
 				AAF0C0842605B14600357E94 /* FacebookLoginService.swift in Sources */,
@@ -1818,6 +1867,7 @@
 				649FA1222605DC0600F36BD6 /* TrailProfilePresenter.swift in Sources */,
 				AA2CE59D2604EF7C0019C328 /* GuideProfileInteractor.swift in Sources */,
 				AAF0C07F2605B14600357E94 /* SocialLoginService.swift in Sources */,
+				84FFD70C26074B6500C3EA4E /* BlogWriterPresenter.swift in Sources */,
 				649FA1422605DC4900F36BD6 /* PageLayout.swift in Sources */,
 				AA9E87322601B16400C2E389 /* GuidesListingPresenter.swift in Sources */,
 				AA9E872726012F7F00C2E389 /* GuidesFiltersView.swift in Sources */,
@@ -1837,6 +1887,7 @@
 				649FA1882606228F00F36BD6 /* View+If.swift in Sources */,
 				E2D8969925FFABA10001B026 /* BorderedButtonStyle.swift in Sources */,
 				AAF0C08F2605B14600357E94 /* LoginPresenter.swift in Sources */,
+				84FFD70A26074B6500C3EA4E /* BlogWriterInteractor.swift in Sources */,
 				AAF0C0712605B14600357E94 /* TouristRegisterPresenter.swift in Sources */,
 				AAF0C08A2605B14600357E94 /* GuideLoginPage.swift in Sources */,
 			);
@@ -1853,6 +1904,7 @@
 				AAF0C290260711B700357E94 /* MockReviewsAPI.swift in Sources */,
 				AAF0C23026068DA400357E94 /* TrailAPIParserTests.swift in Sources */,
 				E2E286CD26064BEE00C058C3 /* TrailAPITests.swift in Sources */,
+				84FFD71226074BD200C3EA4E /* BlogPostTests.swift in Sources */,
 				AAF0C24E260699AE00357E94 /* SettingsModuleTests.swift in Sources */,
 				E2E286BB26064BE400C058C3 /* UserAPIParserTests.swift in Sources */,
 				E2857AC72607245300097750 /* TouristRegisterInteractorTests.swift in Sources */,
@@ -2040,12 +2092,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Challo/Preview Content\"";
 				DEVELOPMENT_TEAM = 85DLX3B73C;
 				ENABLE_PREVIEWS = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = Challo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.GroupX.Challo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2063,12 +2117,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Challo/Preview Content\"";
 				DEVELOPMENT_TEAM = 85DLX3B73C;
 				ENABLE_PREVIEWS = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = Challo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.GroupX.Challo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
