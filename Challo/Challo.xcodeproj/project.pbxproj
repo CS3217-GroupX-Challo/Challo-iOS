@@ -22,12 +22,50 @@
 		6462027025FF5E5E00D89514 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6462026F25FF5E5E00D89514 /* Review.swift */; };
 		6462027525FF60D900D89514 /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6462027425FF60D900D89514 /* Booking.swift */; };
 		6462027A25FF614F00D89514 /* BookingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6462027925FF614F00D89514 /* BookingStatus.swift */; };
+		649FA11A2605DC0600F36BD6 /* TrailListingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1062605DC0600F36BD6 /* TrailListingInteractor.swift */; };
+		649FA11B2605DC0600F36BD6 /* TrailListingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1072605DC0600F36BD6 /* TrailListingModule.swift */; };
+		649FA11C2605DC0600F36BD6 /* TrailListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1082605DC0600F36BD6 /* TrailListingPresenter.swift */; };
+		649FA11D2605DC0600F36BD6 /* TrailListingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA10A2605DC0600F36BD6 /* TrailListingPage.swift */; };
+		649FA11E2605DC0600F36BD6 /* TrailListingCardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA10C2605DC0600F36BD6 /* TrailListingCardDetail.swift */; };
+		649FA11F2605DC0600F36BD6 /* TrailListingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA10D2605DC0600F36BD6 /* TrailListingCard.swift */; };
+		649FA1202605DC0600F36BD6 /* TrailListingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA10E2605DC0600F36BD6 /* TrailListingRouter.swift */; };
+		649FA1212605DC0600F36BD6 /* TrailProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1102605DC0600F36BD6 /* TrailProfileRouter.swift */; };
+		649FA1222605DC0600F36BD6 /* TrailProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1112605DC0600F36BD6 /* TrailProfilePresenter.swift */; };
+		649FA1232605DC0600F36BD6 /* TrailProfileModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1122605DC0600F36BD6 /* TrailProfileModule.swift */; };
+		649FA1242605DC0600F36BD6 /* TrailProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1142605DC0600F36BD6 /* TrailProfilePage.swift */; };
+		649FA1252605DC0600F36BD6 /* TrailProfileDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1162605DC0600F36BD6 /* TrailProfileDetails.swift */; };
+		649FA1262605DC0600F36BD6 /* TrailProfileLandmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1172605DC0600F36BD6 /* TrailProfileLandmarks.swift */; };
+		649FA1272605DC0600F36BD6 /* TrailProfileSectionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1182605DC0600F36BD6 /* TrailProfileSectionTitle.swift */; };
+		649FA1282605DC0600F36BD6 /* TrailProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1192605DC0600F36BD6 /* TrailProfileInteractor.swift */; };
+		649FA1322605DC0E00F36BD6 /* MainContainerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA12D2605DC0E00F36BD6 /* MainContainerModule.swift */; };
+		649FA1332605DC0E00F36BD6 /* MainContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA12E2605DC0E00F36BD6 /* MainContainerView.swift */; };
+		649FA1342605DC0E00F36BD6 /* MainContainerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA12F2605DC0E00F36BD6 /* MainContainerRouter.swift */; };
+		649FA1352605DC0E00F36BD6 /* MainContainerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1302605DC0E00F36BD6 /* MainContainerInteractor.swift */; };
+		649FA1362605DC0E00F36BD6 /* MainContainerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1312605DC0E00F36BD6 /* MainContainerPresenter.swift */; };
+		649FA13B2605DC3700F36BD6 /* UnwrapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA13A2605DC3700F36BD6 /* UnwrapView.swift */; };
+		649FA1412605DC4900F36BD6 /* PageTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA13F2605DC4800F36BD6 /* PageTitle.swift */; };
+		649FA1422605DC4900F36BD6 /* PageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1402605DC4800F36BD6 /* PageLayout.swift */; };
+		649FA14F2605DCEF00F36BD6 /* TrailAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA14C2605DCEF00F36BD6 /* TrailAPIError.swift */; };
+		649FA1502605DCEF00F36BD6 /* TrailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA14D2605DCEF00F36BD6 /* TrailAPI.swift */; };
+		649FA1552605DE8E00F36BD6 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1542605DE8E00F36BD6 /* MapView.swift */; };
+		649FA15A2605E6C200F36BD6 /* TrailProfileLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1592605E6C200F36BD6 /* TrailProfileLocation.swift */; };
+		649FA162260605C100F36BD6 /* APIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA161260605C100F36BD6 /* APIParser.swift */; };
+		649FA1672606106D00F36BD6 /* TrailProfileBasicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1662606106D00F36BD6 /* TrailProfileBasicInfo.swift */; };
+		649FA16C2606116800F36BD6 /* TrailProfileDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA16B2606116800F36BD6 /* TrailProfileDescription.swift */; };
+		649FA1712606136F00F36BD6 /* TrailProfileReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1702606136F00F36BD6 /* TrailProfileReviews.swift */; };
+		649FA17626061D6900F36BD6 /* TrailProfileReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA17526061D6900F36BD6 /* TrailProfileReview.swift */; };
+		649FA17B26061EE400F36BD6 /* TrailProfileStickyBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA17A26061EE400F36BD6 /* TrailProfileStickyBar.swift */; };
+		649FA183260620E200F36BD6 /* View+InnerShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA182260620E200F36BD6 /* View+InnerShadow.swift */; };
+		649FA1882606228F00F36BD6 /* View+If.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA1872606228F00F36BD6 /* View+If.swift */; };
+		649FA18D260629D400F36BD6 /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FA18C260629D400F36BD6 /* CustomDateFormatter.swift */; };
+		64A6B3972606BB100046EFDD /* TrailAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3962606BB100046EFDD /* TrailAPIParser.swift */; };
+		64A6B3A82606BF660046EFDD /* AreaAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3A72606BF660046EFDD /* AreaAPIParser.swift */; };
+		64A6B3AD2606BF7B0046EFDD /* GuideAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3AC2606BF7B0046EFDD /* GuideAPIParser.swift */; };
+		64A6B3B52606BFA50046EFDD /* ReviewAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6B3B42606BFA50046EFDD /* ReviewAPIParser.swift */; };
 		99EE910BF070DD5F6845522E /* Pods_Challo_ChalloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */; };
 		AA2CE55D260490F50019C328 /* GuideReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE55C260490F50019C328 /* GuideReviewCard.swift */; };
-		AA2CE5622604C14B0019C328 /* TrailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5612604C14B0019C328 /* TrailAPI.swift */; };
 		AA2CE5672604C7D90019C328 /* GuideAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5662604C7D90019C328 /* GuideAPI.swift */; };
 		AA2CE56C2604CDEB0019C328 /* AreaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE56B2604CDEB0019C328 /* AreaAPI.swift */; };
-		AA2CE5812604D60A0019C328 /* ReviewAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5802604D60A0019C328 /* ReviewAPIParser.swift */; };
 		AA2CE5892604DDDA0019C328 /* ReviewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5882604DDDA0019C328 /* ReviewState.swift */; };
 		AA2CE5932604E3F70019C328 /* ReviewAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5922604E3F70019C328 /* ReviewAPI.swift */; };
 		AA2CE5982604EF2E0019C328 /* GuideProfilePagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5972604EF2E0019C328 /* GuideProfilePagePresenter.swift */; };
@@ -48,13 +86,9 @@
 		AA9E87322601B16400C2E389 /* GuidesListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E87312601B16400C2E389 /* GuidesListingPresenter.swift */; };
 		AA9E873A2601B18D00C2E389 /* GuidesListingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E87392601B18D00C2E389 /* GuidesListingInteractor.swift */; };
 		AA9E873F2601B22000C2E389 /* GuidesListingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E873E2601B22000C2E389 /* GuidesListingRouter.swift */; };
-		AA9E87542601F00D00C2E389 /* GuideAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E87532601F00D00C2E389 /* GuideAPIParser.swift */; };
-		AA9E8768260225C700C2E389 /* GuidesListingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E8767260225C600C2E389 /* GuidesListingModule.swift */; };
 		AA9E8771260232BB00C2E389 /* GuidesCardListingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E8770260232BB00C2E389 /* GuidesCardListingsView.swift */; };
 		AA9E8785260242FA00C2E389 /* FilterTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E8784260242FA00C2E389 /* FilterTypes.swift */; };
-		AA9E878B26025DDF00C2E389 /* AreaAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E878A26025DDF00C2E389 /* AreaAPIParser.swift */; };
 		AA9E8790260265C300C2E389 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E878F260265C300C2E389 /* Key.swift */; };
-		AA9E87962602689200C2E389 /* TrailAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E87952602689200C2E389 /* TrailAPIParser.swift */; };
 		AADCABF02603AD2D00FB52C4 /* GuideProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADCABEF2603AD2D00FB52C4 /* GuideProfilePage.swift */; };
 		AADCABF92603B59600FB52C4 /* GuideProfileDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADCABF82603B59600FB52C4 /* GuideProfileDetailsView.swift */; };
 		AADCAC012603C45F00FB52C4 /* GuideAboutDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADCAC002603C45F00FB52C4 /* GuideAboutDetailsView.swift */; };
@@ -134,7 +168,7 @@
 		AAF0C21B260685E400357E94 /* ReviewAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C21A260685E400357E94 /* ReviewAPIParserTests.swift */; };
 		AAF0C223260687CB00357E94 /* MockTrailAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C222260687CB00357E94 /* MockTrailAPIResponse.swift */; };
 		AAF0C23026068DA400357E94 /* TrailAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C22F26068DA400357E94 /* TrailAPIParserTests.swift */; };
-		AAF0C23E260697AB00357E94 /* GuidesListingModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C23D260697AB00357E94 /* GuidesListingModuleTests.swift */; };
+		AAF0C23E260697AB00357E94 /* GuidesModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C23D260697AB00357E94 /* GuidesModuleTests.swift */; };
 		AAF0C24E260699AE00357E94 /* SettingsModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C24D260699AE00357E94 /* SettingsModuleTests.swift */; };
 		B0F349AF3CB87F77584434C4 /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC2C4523E0BAD62412B118A /* Pods_Challo.framework */; };
 		D4A670D2B9132DB104111692 /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391AD75BD73BA41A633358D /* Pods_ChalloTests.framework */; };
@@ -147,6 +181,7 @@
 		E244A7452606476B003DBD24 /* APINetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244A7442606476B003DBD24 /* APINetwork.swift */; };
 		E254F2562606343E00E25A56 /* TouristAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E254F2552606343E00E25A56 /* TouristAPIParser.swift */; };
 		E254F25E2606346300E25A56 /* TouristAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E254F25D2606346300E25A56 /* TouristAPI.swift */; };
+		E26485EF2606FC3B008B0A83 /* GuidesModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26485EE2606FC3B008B0A83 /* GuidesModule.swift */; };
 		E26CBC2826065794005DBD47 /* GuideAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC2726065794005DBD47 /* GuideAPIParserTests.swift */; };
 		E26CBC2D260657C7005DBD47 /* MockGuideAPIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC2C260657C7005DBD47 /* MockGuideAPIResponses.swift */; };
 		E26CBC4226067966005DBD47 /* RegisterPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC4126067966005DBD47 /* RegisterPresenterTests.swift */; };
@@ -213,11 +248,49 @@
 		6462026F25FF5E5E00D89514 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		6462027425FF60D900D89514 /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		6462027925FF614F00D89514 /* BookingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingStatus.swift; sourceTree = "<group>"; };
+		649FA1062605DC0600F36BD6 /* TrailListingInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailListingInteractor.swift; sourceTree = "<group>"; };
+		649FA1072605DC0600F36BD6 /* TrailListingModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailListingModule.swift; sourceTree = "<group>"; };
+		649FA1082605DC0600F36BD6 /* TrailListingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailListingPresenter.swift; sourceTree = "<group>"; };
+		649FA10A2605DC0600F36BD6 /* TrailListingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailListingPage.swift; sourceTree = "<group>"; };
+		649FA10C2605DC0600F36BD6 /* TrailListingCardDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailListingCardDetail.swift; sourceTree = "<group>"; };
+		649FA10D2605DC0600F36BD6 /* TrailListingCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailListingCard.swift; sourceTree = "<group>"; };
+		649FA10E2605DC0600F36BD6 /* TrailListingRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailListingRouter.swift; sourceTree = "<group>"; };
+		649FA1102605DC0600F36BD6 /* TrailProfileRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailProfileRouter.swift; sourceTree = "<group>"; };
+		649FA1112605DC0600F36BD6 /* TrailProfilePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailProfilePresenter.swift; sourceTree = "<group>"; };
+		649FA1122605DC0600F36BD6 /* TrailProfileModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailProfileModule.swift; sourceTree = "<group>"; };
+		649FA1142605DC0600F36BD6 /* TrailProfilePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailProfilePage.swift; sourceTree = "<group>"; };
+		649FA1162605DC0600F36BD6 /* TrailProfileDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailProfileDetails.swift; sourceTree = "<group>"; };
+		649FA1172605DC0600F36BD6 /* TrailProfileLandmarks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailProfileLandmarks.swift; sourceTree = "<group>"; };
+		649FA1182605DC0600F36BD6 /* TrailProfileSectionTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailProfileSectionTitle.swift; sourceTree = "<group>"; };
+		649FA1192605DC0600F36BD6 /* TrailProfileInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailProfileInteractor.swift; sourceTree = "<group>"; };
+		649FA12D2605DC0E00F36BD6 /* MainContainerModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContainerModule.swift; sourceTree = "<group>"; };
+		649FA12E2605DC0E00F36BD6 /* MainContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContainerView.swift; sourceTree = "<group>"; };
+		649FA12F2605DC0E00F36BD6 /* MainContainerRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContainerRouter.swift; sourceTree = "<group>"; };
+		649FA1302605DC0E00F36BD6 /* MainContainerInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContainerInteractor.swift; sourceTree = "<group>"; };
+		649FA1312605DC0E00F36BD6 /* MainContainerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContainerPresenter.swift; sourceTree = "<group>"; };
+		649FA13A2605DC3700F36BD6 /* UnwrapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnwrapView.swift; sourceTree = "<group>"; };
+		649FA13F2605DC4800F36BD6 /* PageTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTitle.swift; sourceTree = "<group>"; };
+		649FA1402605DC4800F36BD6 /* PageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageLayout.swift; sourceTree = "<group>"; };
+		649FA14C2605DCEF00F36BD6 /* TrailAPIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailAPIError.swift; sourceTree = "<group>"; };
+		649FA14D2605DCEF00F36BD6 /* TrailAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailAPI.swift; sourceTree = "<group>"; };
+		649FA1542605DE8E00F36BD6 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		649FA1592605E6C200F36BD6 /* TrailProfileLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileLocation.swift; sourceTree = "<group>"; };
+		649FA161260605C100F36BD6 /* APIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIParser.swift; sourceTree = "<group>"; };
+		649FA1662606106D00F36BD6 /* TrailProfileBasicInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileBasicInfo.swift; sourceTree = "<group>"; };
+		649FA16B2606116800F36BD6 /* TrailProfileDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileDescription.swift; sourceTree = "<group>"; };
+		649FA1702606136F00F36BD6 /* TrailProfileReviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileReviews.swift; sourceTree = "<group>"; };
+		649FA17526061D6900F36BD6 /* TrailProfileReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileReview.swift; sourceTree = "<group>"; };
+		649FA17A26061EE400F36BD6 /* TrailProfileStickyBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileStickyBar.swift; sourceTree = "<group>"; };
+		649FA182260620E200F36BD6 /* View+InnerShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+InnerShadow.swift"; sourceTree = "<group>"; };
+		649FA1872606228F00F36BD6 /* View+If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+If.swift"; sourceTree = "<group>"; };
+		649FA18C260629D400F36BD6 /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
+		64A6B3962606BB100046EFDD /* TrailAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailAPIParser.swift; sourceTree = "<group>"; };
+		64A6B3A72606BF660046EFDD /* AreaAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPIParser.swift; sourceTree = "<group>"; };
+		64A6B3AC2606BF7B0046EFDD /* GuideAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPIParser.swift; sourceTree = "<group>"; };
+		64A6B3B42606BFA50046EFDD /* ReviewAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPIParser.swift; sourceTree = "<group>"; };
 		AA2CE55C260490F50019C328 /* GuideReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideReviewCard.swift; sourceTree = "<group>"; };
-		AA2CE5612604C14B0019C328 /* TrailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailAPI.swift; sourceTree = "<group>"; };
 		AA2CE5662604C7D90019C328 /* GuideAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPI.swift; sourceTree = "<group>"; };
 		AA2CE56B2604CDEB0019C328 /* AreaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPI.swift; sourceTree = "<group>"; };
-		AA2CE5802604D60A0019C328 /* ReviewAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPIParser.swift; sourceTree = "<group>"; };
 		AA2CE5882604DDDA0019C328 /* ReviewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewState.swift; sourceTree = "<group>"; };
 		AA2CE5922604E3F70019C328 /* ReviewAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPI.swift; sourceTree = "<group>"; };
 		AA2CE5972604EF2E0019C328 /* GuideProfilePagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePagePresenter.swift; sourceTree = "<group>"; };
@@ -238,13 +311,9 @@
 		AA9E87312601B16400C2E389 /* GuidesListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingPresenter.swift; sourceTree = "<group>"; };
 		AA9E87392601B18D00C2E389 /* GuidesListingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingInteractor.swift; sourceTree = "<group>"; };
 		AA9E873E2601B22000C2E389 /* GuidesListingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingRouter.swift; sourceTree = "<group>"; };
-		AA9E87532601F00D00C2E389 /* GuideAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPIParser.swift; sourceTree = "<group>"; };
-		AA9E8767260225C600C2E389 /* GuidesListingModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingModule.swift; sourceTree = "<group>"; };
 		AA9E8770260232BB00C2E389 /* GuidesCardListingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesCardListingsView.swift; sourceTree = "<group>"; };
 		AA9E8784260242FA00C2E389 /* FilterTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTypes.swift; sourceTree = "<group>"; };
-		AA9E878A26025DDF00C2E389 /* AreaAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPIParser.swift; sourceTree = "<group>"; };
 		AA9E878F260265C300C2E389 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
-		AA9E87952602689200C2E389 /* TrailAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailAPIParser.swift; sourceTree = "<group>"; };
 		AADCABEF2603AD2D00FB52C4 /* GuideProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePage.swift; sourceTree = "<group>"; };
 		AADCABF82603B59600FB52C4 /* GuideProfileDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfileDetailsView.swift; sourceTree = "<group>"; };
 		AADCAC002603C45F00FB52C4 /* GuideAboutDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAboutDetailsView.swift; sourceTree = "<group>"; };
@@ -324,7 +393,7 @@
 		AAF0C21A260685E400357E94 /* ReviewAPIParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewAPIParserTests.swift; sourceTree = "<group>"; };
 		AAF0C222260687CB00357E94 /* MockTrailAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrailAPIResponse.swift; sourceTree = "<group>"; };
 		AAF0C22F26068DA400357E94 /* TrailAPIParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailAPIParserTests.swift; sourceTree = "<group>"; };
-		AAF0C23D260697AB00357E94 /* GuidesListingModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingModuleTests.swift; sourceTree = "<group>"; };
+		AAF0C23D260697AB00357E94 /* GuidesModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesModuleTests.swift; sourceTree = "<group>"; };
 		AAF0C24D260699AE00357E94 /* SettingsModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleTests.swift; sourceTree = "<group>"; };
 		B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234931F25FB884F00EC90E9 /* Challo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -342,6 +411,7 @@
 		E244A7442606476B003DBD24 /* APINetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINetwork.swift; sourceTree = "<group>"; };
 		E254F2552606343E00E25A56 /* TouristAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristAPIParser.swift; sourceTree = "<group>"; };
 		E254F25D2606346300E25A56 /* TouristAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristAPI.swift; sourceTree = "<group>"; };
+		E26485EE2606FC3B008B0A83 /* GuidesModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesModule.swift; sourceTree = "<group>"; };
 		E26CBC2726065794005DBD47 /* GuideAPIParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPIParserTests.swift; sourceTree = "<group>"; };
 		E26CBC2C260657C7005DBD47 /* MockGuideAPIResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGuideAPIResponses.swift; sourceTree = "<group>"; };
 		E26CBC4126067966005DBD47 /* RegisterPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenterTests.swift; sourceTree = "<group>"; };
@@ -457,12 +527,110 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		649FA1042605DC0600F36BD6 /* Trail */ = {
+			isa = PBXGroup;
+			children = (
+				649FA1052605DC0600F36BD6 /* TrailListing */,
+				649FA10F2605DC0600F36BD6 /* TrailProfile */,
+			);
+			path = Trail;
+			sourceTree = "<group>";
+		};
+		649FA1052605DC0600F36BD6 /* TrailListing */ = {
+			isa = PBXGroup;
+			children = (
+				649FA1062605DC0600F36BD6 /* TrailListingInteractor.swift */,
+				649FA1072605DC0600F36BD6 /* TrailListingModule.swift */,
+				649FA1082605DC0600F36BD6 /* TrailListingPresenter.swift */,
+				649FA1092605DC0600F36BD6 /* Views */,
+				649FA10E2605DC0600F36BD6 /* TrailListingRouter.swift */,
+			);
+			path = TrailListing;
+			sourceTree = "<group>";
+		};
+		649FA1092605DC0600F36BD6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				649FA10A2605DC0600F36BD6 /* TrailListingPage.swift */,
+				649FA10B2605DC0600F36BD6 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		649FA10B2605DC0600F36BD6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				649FA10C2605DC0600F36BD6 /* TrailListingCardDetail.swift */,
+				649FA10D2605DC0600F36BD6 /* TrailListingCard.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		649FA10F2605DC0600F36BD6 /* TrailProfile */ = {
+			isa = PBXGroup;
+			children = (
+				649FA1132605DC0600F36BD6 /* Views */,
+				649FA1102605DC0600F36BD6 /* TrailProfileRouter.swift */,
+				649FA1112605DC0600F36BD6 /* TrailProfilePresenter.swift */,
+				649FA1122605DC0600F36BD6 /* TrailProfileModule.swift */,
+				649FA1192605DC0600F36BD6 /* TrailProfileInteractor.swift */,
+			);
+			path = TrailProfile;
+			sourceTree = "<group>";
+		};
+		649FA1132605DC0600F36BD6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				649FA1142605DC0600F36BD6 /* TrailProfilePage.swift */,
+				649FA1152605DC0600F36BD6 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		649FA1152605DC0600F36BD6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				649FA1162605DC0600F36BD6 /* TrailProfileDetails.swift */,
+				649FA1172605DC0600F36BD6 /* TrailProfileLandmarks.swift */,
+				649FA1182605DC0600F36BD6 /* TrailProfileSectionTitle.swift */,
+				649FA1592605E6C200F36BD6 /* TrailProfileLocation.swift */,
+				649FA1662606106D00F36BD6 /* TrailProfileBasicInfo.swift */,
+				649FA16B2606116800F36BD6 /* TrailProfileDescription.swift */,
+				649FA1702606136F00F36BD6 /* TrailProfileReviews.swift */,
+				649FA17526061D6900F36BD6 /* TrailProfileReview.swift */,
+				649FA17A26061EE400F36BD6 /* TrailProfileStickyBar.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		649FA12C2605DC0E00F36BD6 /* MainContainer */ = {
+			isa = PBXGroup;
+			children = (
+				649FA12D2605DC0E00F36BD6 /* MainContainerModule.swift */,
+				649FA12E2605DC0E00F36BD6 /* MainContainerView.swift */,
+				649FA12F2605DC0E00F36BD6 /* MainContainerRouter.swift */,
+				649FA1302605DC0E00F36BD6 /* MainContainerInteractor.swift */,
+				649FA1312605DC0E00F36BD6 /* MainContainerPresenter.swift */,
+			);
+			path = MainContainer;
+			sourceTree = "<group>";
+		};
+		649FA14A2605DCEF00F36BD6 /* Trails */ = {
+			isa = PBXGroup;
+			children = (
+				649FA14C2605DCEF00F36BD6 /* TrailAPIError.swift */,
+				649FA14D2605DCEF00F36BD6 /* TrailAPI.swift */,
+				64A6B3962606BB100046EFDD /* TrailAPIParser.swift */,
+			);
+			path = Trails;
+			sourceTree = "<group>";
+		};
 		AA2CE57F2604D5F60019C328 /* Reviews */ = {
 			isa = PBXGroup;
 			children = (
-				AA2CE5802604D60A0019C328 /* ReviewAPIParser.swift */,
 				AA2CE5882604DDDA0019C328 /* ReviewState.swift */,
 				AA2CE5922604E3F70019C328 /* ReviewAPI.swift */,
+				64A6B3B42606BFA50046EFDD /* ReviewAPIParser.swift */,
 			);
 			path = Reviews;
 			sourceTree = "<group>";
@@ -508,8 +676,8 @@
 				AA9E87312601B16400C2E389 /* GuidesListingPresenter.swift */,
 				AA9E87392601B18D00C2E389 /* GuidesListingInteractor.swift */,
 				AA9E873E2601B22000C2E389 /* GuidesListingRouter.swift */,
-				AA9E8767260225C600C2E389 /* GuidesListingModule.swift */,
 				AA9E8784260242FA00C2E389 /* FilterTypes.swift */,
+				E26485EE2606FC3B008B0A83 /* GuidesModule.swift */,
 			);
 			path = GuidesListing;
 			sourceTree = "<group>";
@@ -566,8 +734,8 @@
 		AA9E87522601EFFA00C2E389 /* Guides */ = {
 			isa = PBXGroup;
 			children = (
-				AA9E87532601F00D00C2E389 /* GuideAPIParser.swift */,
 				AA2CE5662604C7D90019C328 /* GuideAPI.swift */,
+				64A6B3AC2606BF7B0046EFDD /* GuideAPIParser.swift */,
 			);
 			path = Guides;
 			sourceTree = "<group>";
@@ -575,19 +743,10 @@
 		AA9E878926025DC600C2E389 /* Areas */ = {
 			isa = PBXGroup;
 			children = (
-				AA9E878A26025DDF00C2E389 /* AreaAPIParser.swift */,
 				AA2CE56B2604CDEB0019C328 /* AreaAPI.swift */,
+				64A6B3A72606BF660046EFDD /* AreaAPIParser.swift */,
 			);
 			path = Areas;
-			sourceTree = "<group>";
-		};
-		AA9E87942602688100C2E389 /* Trails */ = {
-			isa = PBXGroup;
-			children = (
-				AA9E87952602689200C2E389 /* TrailAPIParser.swift */,
-				AA2CE5612604C14B0019C328 /* TrailAPI.swift */,
-			);
-			path = Trails;
 			sourceTree = "<group>";
 		};
 		AAF0C0372605B14600357E94 /* LoginRegister */ = {
@@ -763,14 +922,6 @@
 			path = Tourists;
 			sourceTree = "<group>";
 		};
-		AAF0C2452606980D00357E94 /* GuidesListingModule */ = {
-			isa = PBXGroup;
-			children = (
-				AAF0C23D260697AB00357E94 /* GuidesListingModuleTests.swift */,
-			);
-			path = GuidesListingModule;
-			sourceTree = "<group>";
-		};
 		AAF0C24C2606999E00357E94 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -855,15 +1006,24 @@
 			path = Tourists;
 			sourceTree = "<group>";
 		};
+		E26485FC2606FEC2008B0A83 /* GuidesListing */ = {
+			isa = PBXGroup;
+			children = (
+				AAF0C23D260697AB00357E94 /* GuidesModuleTests.swift */,
+			);
+			path = GuidesListing;
+			sourceTree = "<group>";
+		};
 		E2C2441A2600B74D0085BAA4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				E254F2542606341F00E25A56 /* Tourists */,
+				649FA14A2605DCEF00F36BD6 /* Trails */,
 				AA2CE57F2604D5F60019C328 /* Reviews */,
-				AA9E87942602688100C2E389 /* Trails */,
 				AA9E878926025DC600C2E389 /* Areas */,
 				AA9E87522601EFFA00C2E389 /* Guides */,
 				E2C2441B2600B76C0085BAA4 /* UserManagement */,
+				649FA161260605C100F36BD6 /* APIParser.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -888,6 +1048,8 @@
 			children = (
 				AAF0C1702606174000357E94 /* Settings */,
 				AAF0C09D2605D3D600357E94 /* Map */,
+				649FA12C2605DC0E00F36BD6 /* MainContainer */,
+				649FA1042605DC0600F36BD6 /* Trail */,
 				AAF0C0372605B14600357E94 /* LoginRegister */,
 				AA9E870126012A1800C2E389 /* Guides */,
 				E2C2441A2600B74D0085BAA4 /* Common */,
@@ -898,6 +1060,9 @@
 		E2D8968925FFAB700001B026 /* ViewComponents */ = {
 			isa = PBXGroup;
 			children = (
+				649FA1402605DC4800F36BD6 /* PageLayout.swift */,
+				649FA13F2605DC4800F36BD6 /* PageTitle.swift */,
+				649FA13A2605DC3700F36BD6 /* UnwrapView.swift */,
 				E2D8969725FFAB970001B026 /* ButtonStyles */,
 				E2D8968C25FFAB8A0001B026 /* Card.swift */,
 				E2D8968A25FFAB8A0001B026 /* ChalloTitle.swift */,
@@ -906,6 +1071,9 @@
 				AA9E870F26012B1400C2E389 /* DropDownMenu.swift */,
 				AA9E871726012BE400C2E389 /* StarRatingsView.swift */,
 				AAF0C0192605B05E00357E94 /* ChalloEnterpriseTitle.swift */,
+				649FA1542605DE8E00F36BD6 /* MapView.swift */,
+				649FA182260620E200F36BD6 /* View+InnerShadow.swift */,
+				649FA1872606228F00F36BD6 /* View+If.swift */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -925,6 +1093,7 @@
 				AA9E878F260265C300C2E389 /* Key.swift */,
 				AA2CE5AE260513950019C328 /* Date+Construct.swift */,
 				AAF0C0142605AFC300357E94 /* ChalloLogger.swift */,
+				649FA18C260629D400F36BD6 /* CustomDateFormatter.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -946,8 +1115,8 @@
 				AAF0C1F1260671D100357E94 /* MockAPIResponse.swift */,
 				E26CBC2C260657C7005DBD47 /* MockGuideAPIResponses.swift */,
 				E26CBC4C260683ED005DBD47 /* MockAreaAPIResponse.swift */,
-				AAF0C20426067BD900357E94 /* MockReviewAPIResponse.swift */,
 				AAF0C222260687CB00357E94 /* MockTrailAPIResponse.swift */,
+				AAF0C20426067BD900357E94 /* MockReviewAPIResponse.swift */,
 			);
 			path = TestingUtilities;
 			sourceTree = "<group>";
@@ -1121,7 +1290,7 @@
 		E2E286E426064C0300C058C3 /* Guides */ = {
 			isa = PBXGroup;
 			children = (
-				AAF0C2452606980D00357E94 /* GuidesListingModule */,
+				E26485FC2606FEC2008B0A83 /* GuidesListing */,
 			);
 			path = Guides;
 			sourceTree = "<group>";
@@ -1340,7 +1509,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint autocorrect && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		BE70A06388CC49D1098AC7D2 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1427,6 +1596,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				649FA1212605DC0600F36BD6 /* TrailProfileRouter.swift in Sources */,
 				6462025425FF002100D89514 /* Trail.swift in Sources */,
 				AAF0C0302605B10200357E94 /* UserCertificate.swift in Sources */,
 				AAF0C06C2605B14600357E94 /* LoginRegisterBackground.swift in Sources */,
@@ -1440,20 +1610,29 @@
 				AAF0C19626061E3900357E94 /* SettingsListElement.swift in Sources */,
 				AA2CE5AF260513950019C328 /* Date+Construct.swift in Sources */,
 				AAF0C02D2605B10200357E94 /* UserAPIParser.swift in Sources */,
+				649FA15A2605E6C200F36BD6 /* TrailProfileLocation.swift in Sources */,
+				649FA11E2605DC0600F36BD6 /* TrailListingCardDetail.swift in Sources */,
 				AAF0C0752605B14600357E94 /* TouristRegistrationAPI.swift in Sources */,
 				AA2CE5A72604F09E0019C328 /* GuideProfilePageModule.swift in Sources */,
 				AA9E85C925FE70AD00C2E389 /* NetworkManager.swift in Sources */,
 				AAF0C02A2605B10200357E94 /* RegisterAPI.swift in Sources */,
+				649FA1252605DC0600F36BD6 /* TrailProfileDetails.swift in Sources */,
+				649FA11C2605DC0600F36BD6 /* TrailListingPresenter.swift in Sources */,
 				AAF0C0772605B14600357E94 /* RegisterInteractor.swift in Sources */,
 				AAF0C06E2605B14600357E94 /* RegisterRouter.swift in Sources */,
+				649FA162260605C100F36BD6 /* APIParser.swift in Sources */,
 				AA9E85D625FE735800C2E389 /* NetworkError.swift in Sources */,
 				AA9E871D26012C2C00C2E389 /* GuideDetailsCard.swift in Sources */,
 				E234932525FB884F00EC90E9 /* ContentView.swift in Sources */,
 				AAF0C0292605B10200357E94 /* CertificateManager.swift in Sources */,
+				649FA18D260629D400F36BD6 /* CustomDateFormatter.swift in Sources */,
+				649FA11F2605DC0600F36BD6 /* TrailListingCard.swift in Sources */,
 				AA9E85E125FE740500C2E389 /* AlamofireManager.swift in Sources */,
 				AAF0C0922605B14600357E94 /* TouristLoginRouter.swift in Sources */,
+				649FA16C2606116800F36BD6 /* TrailProfileDescription.swift in Sources */,
 				AA9E871826012BE400C2E389 /* StarRatingsView.swift in Sources */,
 				AAF0C0942605B14600357E94 /* TouristLoginInteractor.swift in Sources */,
+				649FA1272605DC0600F36BD6 /* TrailProfileSectionTitle.swift in Sources */,
 				E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */,
 				AA9E872C2601303C00C2E389 /* GuidesCardDescriptionView.swift in Sources */,
 				AAF0C0702605B14600357E94 /* TouristRegisterInteractor.swift in Sources */,
@@ -1464,11 +1643,16 @@
 				E2D8969225FFAB8A0001B026 /* RoundedTextField.swift in Sources */,
 				AAF0C0792605B14600357E94 /* GuideRegisterPresenter.swift in Sources */,
 				AAF0C07A2605B14600357E94 /* GuideRegisterModule.swift in Sources */,
+				649FA13B2605DC3700F36BD6 /* UnwrapView.swift in Sources */,
+				649FA1262605DC0600F36BD6 /* TrailProfileLandmarks.swift in Sources */,
+				64A6B3A82606BF660046EFDD /* AreaAPIParser.swift in Sources */,
 				AA9E8790260265C300C2E389 /* Key.swift in Sources */,
 				E244A7452606476B003DBD24 /* APINetwork.swift in Sources */,
 				AAF0C0962605B14600357E94 /* LoginRouter.swift in Sources */,
+				649FA11B2605DC0600F36BD6 /* TrailListingModule.swift in Sources */,
 				AAF0C0732605B14600357E94 /* TouristRegisterPage.swift in Sources */,
-				AA2CE5622604C14B0019C328 /* TrailAPI.swift in Sources */,
+				649FA11D2605DC0600F36BD6 /* TrailListingPage.swift in Sources */,
+				649FA1342605DC0E00F36BD6 /* MainContainerRouter.swift in Sources */,
 				6462023625FEFC7900D89514 /* InteractorProtocol.swift in Sources */,
 				AAF0C08D2605B14600357E94 /* RegisterNavigationButton.swift in Sources */,
 				AAF0C0722605B14600357E94 /* TouristRegisterModule.swift in Sources */,
@@ -1479,19 +1663,24 @@
 				AAF0C0892605B14600357E94 /* GuideLoginAPI.swift in Sources */,
 				AAF0C0CE2605E37900357E94 /* GoogleMapsView.swift in Sources */,
 				AAF0C0802605B14600357E94 /* SocialLoginDelegate.swift in Sources */,
+				649FA17626061D6900F36BD6 /* TrailProfileReview.swift in Sources */,
+				649FA1362605DC0E00F36BD6 /* MainContainerPresenter.swift in Sources */,
 				AADCABF92603B59600FB52C4 /* GuideProfileDetailsView.swift in Sources */,
 				AAF0C0882605B14600357E94 /* GuideLoginInteractor.swift in Sources */,
 				6462027025FF5E5E00D89514 /* Review.swift in Sources */,
 				AAF0C06B2605B14600357E94 /* LoginRegisterContainer.swift in Sources */,
 				AA9E870926012A6400C2E389 /* GuidesListingPage.swift in Sources */,
+				649FA1202605DC0600F36BD6 /* TrailListingRouter.swift in Sources */,
 				AAF0C0152605AFC300357E94 /* ChalloLogger.swift in Sources */,
 				6462027A25FF614F00D89514 /* BookingStatus.swift in Sources */,
 				AAF0C02C2605B10200357E94 /* UserAPI.swift in Sources */,
 				AAF0C1762606178900357E94 /* SettingsPresenter.swift in Sources */,
+				649FA1242605DC0600F36BD6 /* TrailProfilePage.swift in Sources */,
 				E2D8968F25FFAB8A0001B026 /* ChalloTitle.swift in Sources */,
 				AAF0C18D2606193700357E94 /* SettingsPage.swift in Sources */,
 				6462024425FEFD4F00D89514 /* User.swift in Sources */,
 				AA2CE56C2604CDEB0019C328 /* AreaAPI.swift in Sources */,
+				649FA183260620E200F36BD6 /* View+InnerShadow.swift in Sources */,
 				AAF0C0862605B14600357E94 /* LoginButton.swift in Sources */,
 				AAF0C07C2605B14600357E94 /* GuideRegisterInteractor.swift in Sources */,
 				AA9E8771260232BB00C2E389 /* GuidesCardListingsView.swift in Sources */,
@@ -1502,25 +1691,30 @@
 				AAF0C0AC2605D89A00357E94 /* MapInteractor.swift in Sources */,
 				AAF0C0742605B14600357E94 /* TouristRegisterRouter.swift in Sources */,
 				6462024F25FF000700D89514 /* Tourist.swift in Sources */,
-				AA9E87962602689200C2E389 /* TrailAPIParser.swift in Sources */,
 				AAF0C09F2605D87E00357E94 /* MapPresenter.swift in Sources */,
 				E2D8969325FFAB8A0001B026 /* FacebookLoginButton.swift in Sources */,
-				AA9E878B26025DDF00C2E389 /* AreaAPIParser.swift in Sources */,
+				649FA1332605DC0E00F36BD6 /* MainContainerView.swift in Sources */,
+				649FA1412605DC4900F36BD6 /* PageTitle.swift in Sources */,
+				649FA14F2605DCEF00F36BD6 /* TrailAPIError.swift in Sources */,
+				64A6B3AD2606BF7B0046EFDD /* GuideAPIParser.swift in Sources */,
 				AA2CE5892604DDDA0019C328 /* ReviewState.swift in Sources */,
 				6462023425FEFC7900D89514 /* ViperModuleProtocol.swift in Sources */,
 				6462024A25FEFE1300D89514 /* Days.swift in Sources */,
 				AAF0C0932605B14600357E94 /* TouristLoginAPI.swift in Sources */,
+				64A6B3B52606BFA50046EFDD /* ReviewAPIParser.swift in Sources */,
 				AAF0C07D2605B14600357E94 /* GuideRegisterPage.swift in Sources */,
 				6462026125FF022D00D89514 /* Area.swift in Sources */,
+				649FA17B26061EE400F36BD6 /* TrailProfileStickyBar.swift in Sources */,
 				AA9E872226012CEB00C2E389 /* GuidesListingTitle.swift in Sources */,
 				AADCAC0626045AF700FB52C4 /* GuideProfileParagraphView.swift in Sources */,
-				AA9E8768260225C700C2E389 /* GuidesListingModule.swift in Sources */,
 				E254F2562606343E00E25A56 /* TouristAPIParser.swift in Sources */,
+				E26485EF2606FC3B008B0A83 /* GuidesModule.swift in Sources */,
 				AAF0C06F2605B14600357E94 /* RegisterButton.swift in Sources */,
+				649FA1552605DE8E00F36BD6 /* MapView.swift in Sources */,
 				AAF0C07E2605B14600357E94 /* GuideRegisterRouter.swift in Sources */,
 				AAF0C0812605B14600357E94 /* SocialLoginResponse.swift in Sources */,
 				AAF0C08E2605B14600357E94 /* LoginForm.swift in Sources */,
-				AA2CE5812604D60A0019C328 /* ReviewAPIParser.swift in Sources */,
+				649FA11A2605DC0600F36BD6 /* TrailListingInteractor.swift in Sources */,
 				AA9E873A2601B18D00C2E389 /* GuidesListingInteractor.swift in Sources */,
 				6462026B25FF574100D89514 /* CaseIterable+ParseString.swift in Sources */,
 				E2D896B525FFABE80001B026 /* Color+ThemeColors.swift in Sources */,
@@ -1533,16 +1727,22 @@
 				AAF0C0842605B14600357E94 /* FacebookLoginService.swift in Sources */,
 				AAF0C06D2605B14600357E94 /* RegisterPresenter.swift in Sources */,
 				AA2CE55D260490F50019C328 /* GuideReviewCard.swift in Sources */,
+				649FA1502605DCEF00F36BD6 /* TrailAPI.swift in Sources */,
+				649FA1712606136F00F36BD6 /* TrailProfileReviews.swift in Sources */,
 				AA2CE5672604C7D90019C328 /* GuideAPI.swift in Sources */,
 				AAF0C02E2605B10200357E94 /* UserAPIResponse.swift in Sources */,
 				AA2CE5A22604EFE10019C328 /* GuideProfilePageRouter.swift in Sources */,
 				AAF0C08B2605B14600357E94 /* GuideLoginRouter.swift in Sources */,
 				AA2CE5982604EF2E0019C328 /* GuideProfilePagePresenter.swift in Sources */,
 				AAF0C08C2605B14600357E94 /* GuideLoginModule.swift in Sources */,
-				AA9E87542601F00D00C2E389 /* GuideAPIParser.swift in Sources */,
+				AAF0C188260617B800357E94 /* SettingsModule.swift in Sources */,
+				649FA1232605DC0600F36BD6 /* TrailProfileModule.swift in Sources */,
+				649FA1322605DC0E00F36BD6 /* MainContainerModule.swift in Sources */,
+				649FA1282605DC0600F36BD6 /* TrailProfileInteractor.swift in Sources */,
+				649FA1222605DC0600F36BD6 /* TrailProfilePresenter.swift in Sources */,
 				AA2CE59D2604EF7C0019C328 /* GuideProfilePageInteractor.swift in Sources */,
 				AAF0C07F2605B14600357E94 /* SocialLoginService.swift in Sources */,
-				AAF0C188260617B800357E94 /* SettingsModule.swift in Sources */,
+				649FA1422605DC4900F36BD6 /* PageLayout.swift in Sources */,
 				AA9E87322601B16400C2E389 /* GuidesListingPresenter.swift in Sources */,
 				AA9E872726012F7F00C2E389 /* GuidesFiltersView.swift in Sources */,
 				AAF0C02B2605B10200357E94 /* UserState.swift in Sources */,
@@ -1555,6 +1755,10 @@
 				AA9E873F2601B22000C2E389 /* GuidesListingRouter.swift in Sources */,
 				AA9E8785260242FA00C2E389 /* FilterTypes.swift in Sources */,
 				AAF0C0782605B14600357E94 /* RegistrationDetails.swift in Sources */,
+				649FA1352605DC0E00F36BD6 /* MainContainerInteractor.swift in Sources */,
+				649FA1672606106D00F36BD6 /* TrailProfileBasicInfo.swift in Sources */,
+				64A6B3972606BB100046EFDD /* TrailAPIParser.swift in Sources */,
+				649FA1882606228F00F36BD6 /* View+If.swift in Sources */,
 				E2D8969925FFABA10001B026 /* BorderedButtonStyle.swift in Sources */,
 				AAF0C08F2605B14600357E94 /* LoginPresenter.swift in Sources */,
 				AAF0C0712605B14600357E94 /* TouristRegisterPresenter.swift in Sources */,
@@ -1579,7 +1783,7 @@
 				E26CBC4D260683ED005DBD47 /* MockAreaAPIResponse.swift in Sources */,
 				E2E286EB26064C0300C058C3 /* SocialModuleTests.swift in Sources */,
 				E26CBC2826065794005DBD47 /* GuideAPIParserTests.swift in Sources */,
-				AAF0C23E260697AB00357E94 /* GuidesListingModuleTests.swift in Sources */,
+				AAF0C23E260697AB00357E94 /* GuidesModuleTests.swift in Sources */,
 				AAF0C21B260685E400357E94 /* ReviewAPIParserTests.swift in Sources */,
 				E2E286EA26064C0300C058C3 /* GuideRegisterModuleTests.swift in Sources */,
 				E2E286ED26064C0300C058C3 /* GuideLoginModuleTests.swift in Sources */,
@@ -1669,7 +1873,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1724,7 +1928,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

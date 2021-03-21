@@ -30,8 +30,10 @@ struct MockAreaAPIResponse: MockAPIResponse {
 
     static var areaStateOne: Area {
         Area(areaId: areaIdOne,
-             areaName: stateOne,
-             regionName: countryOne)
+             village: villageOne,
+             division: divisionOne,
+             state: stateOne,
+             country: countryOne)
     }
 
     static let areaIdTwo = UUID(uuidString: "eff7f093-87ed-4eb4-bc01-8adf9a7ac71d") ?? UUID()
@@ -52,8 +54,10 @@ struct MockAreaAPIResponse: MockAPIResponse {
 
     static var areaStateTwo: Area {
         Area(areaId: areaIdTwo,
-             areaName: stateTwo,
-             regionName: countryTwo)
+             village: villageTwo,
+             division: divisionTwo,
+             state: stateTwo,
+             country: countryTwo)
     }
 
     static var validAreaResponse: JSON {

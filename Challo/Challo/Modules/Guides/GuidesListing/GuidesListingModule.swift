@@ -16,6 +16,7 @@ final class GuidesListingModule: ViperModuleProtocol {
         presenter.router = router
         router.presenter = presenter
         interactor.getLocationOptions()
+        presenter.interactor.populateGuides()
         return (AnyView(GuidesListingPage(presenter: presenter)), presenter: presenter)
     }
 }

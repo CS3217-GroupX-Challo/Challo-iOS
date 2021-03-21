@@ -17,10 +17,13 @@ struct MockTrailAPIResponse: MockAPIResponse {
     static let trailIdOne = UUID(uuidString: "6d38efad-27ec-4c9b-af77-ff40414e4aa4") ?? UUID()
     static let titleOne: String = "Sunkiya Forest Trail"
     static let descriptionOne: String = "A very nice trail!"
-    static let distanceOne = Decimal(1_500)
-    static let elevationOne = Decimal(1_200)
-    static let durationOne = Decimal(600)
+    static let distanceOne: Double = 1_500
+    static let elevationOne: Double = 1_200
+    static let durationOne: Double = 600
     static let imagesOne: [String] = ["test.img", "hello.img"]
+    static let lowestFeeOne: Int = 100
+    static let ratingOne: Double = 1
+    static let numOfReviewsOne: Int = 1
     
     static var areaOne: JSON {
         var json = JSON()
@@ -50,6 +53,9 @@ struct MockTrailAPIResponse: MockAPIResponse {
         json[Key.images] = imagesOne
         json[Key.area] = areaOne
         json[Key.title] = titleOne
+        json[Key.lowestFee] = lowestFeeOne
+        json[Key.rating] = ratingOne
+        json[Key.numOfReviews] = numOfReviewsOne
         return json
     }
     
@@ -59,18 +65,22 @@ struct MockTrailAPIResponse: MockAPIResponse {
         }
         
         return Trail(trailId: trailIdOne, title: titleOne, description: descriptionOne,
-                     positions: convertJSONToCLLCoordinatesArray(json: positionsOne),
-                     distance: distanceOne, duration: durationOne,
-                     elevation: elevationOne, images: imagesOne, area: area)
+                     rating: ratingOne, positions: convertJSONToCLLCoordinatesArray(json: positionsOne),
+                     distance: distanceOne, duration: durationOne, elevation: elevationOne,
+                     images: imagesOne, area: area, numOfReviews: numOfReviewsOne,
+                     lowestFee: lowestFeeOne)
     }
         
     static let trailIdTwo = UUID(uuidString: "8646f41e-5246-4b73-b694-b7106326e6e2") ?? UUID()
     static let titleTwo: String = "Sunkiya Forest Trail"
     static let descriptionTwo: String = "A very nice trail! Yay!"
-    static let distanceTwo = Decimal(150)
-    static let elevationTwo = Decimal(100)
-    static let durationTwo = Decimal(6_020)
+    static let distanceTwo: Double = 150
+    static let elevationTwo: Double = 100
+    static let durationTwo: Double = 6_020
     static let imagesTwo: [String] = ["test.img", "hello.img", "byebye.img"]
+    static let lowestFeeTwo: Int = 100
+    static let ratingTwo: Double = 1
+    static let numOfReviewsTwo: Int = 1
     
     static var areaTwo: JSON {
         var json = JSON()
@@ -109,9 +119,10 @@ struct MockTrailAPIResponse: MockAPIResponse {
         }
         
         return Trail(trailId: trailIdTwo, title: titleTwo, description: descriptionTwo,
-                     positions: convertJSONToCLLCoordinatesArray(json: positionsTwo),
-                     distance: distanceTwo, duration: durationTwo,
-                     elevation: elevationTwo, images: imagesTwo, area: area)
+                     rating: ratingTwo, positions: convertJSONToCLLCoordinatesArray(json: positionsTwo),
+                     distance: distanceTwo, duration: durationTwo, elevation: elevationTwo,
+                     images: imagesTwo, area: area, numOfReviews: numOfReviewsTwo,
+                     lowestFee: lowestFeeTwo)
     }
     
     static var response: JSON {

@@ -13,15 +13,18 @@ struct GuidesCardDescriptionView: View {
     var width: CGFloat
     
     var body: some View {
-        Text(title)
-            .bold()
-            .font(.caption2)
-        if let cardDescription = description {
-            Text(cardDescription)
+        VStack(spacing: 3) {
+            Text(title)
+                .bold()
                 .font(.caption2)
-                .lineLimit(3)
-                .padding(5)
-                .frame(width: width)
+                .frame(height: 5)
+            if let cardDescription = description {
+                Text(cardDescription)
+                    .font(.caption2)
+                    .lineLimit(3)
+                    .padding(5)
+                    .frame(width: width)
+            }
         }
     }
 }

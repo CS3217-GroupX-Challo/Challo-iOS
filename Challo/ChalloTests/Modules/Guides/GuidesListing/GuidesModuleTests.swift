@@ -9,9 +9,9 @@
 import XCTest
 import SwiftUI
 
-class GuidesListingModuleTests: XCTestCase {
+class GuidesModuleTests: XCTestCase {
     func testAssemble_returnsPresenterWithCorrectPropertiesAndView() {
-        let (view, presenter) = GuidesListingModule.assemble()
+        let (view, presenter) = GuidesModule.assemble()
         XCTAssertNotNil(view, "Wrong view returned")
         XCTAssertNotNil(presenter, "Wrong presenter returned")
         XCTAssertNotNil(presenter.router, "Presenter properties not assigned")

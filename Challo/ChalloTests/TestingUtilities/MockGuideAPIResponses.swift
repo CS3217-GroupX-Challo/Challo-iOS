@@ -39,10 +39,12 @@ struct MockGuideAPIResponses: MockAPIResponse {
     }
     static var areaStruct: Area {
         Area(areaId: areaId,
-             areaName: area[Key.state] as? String ?? "",
-             regionName: area[Key.country] as? String ?? "")
+             village: area[Key.village] as? String ?? "",
+             division: area[Key.division] as? String ?? "",
+             state: area[Key.state] as? String ?? "",
+             country: area[Key.country] as? String ?? "")
     }
-    static let rating: Decimal = 2
+    static let rating: Double = 2
     static let dateJoined = "2021-03-20T16:20:08.213Z"
     static var dateJoinedParsed: Date? {
         Date.construct(with: dateJoined)
@@ -111,10 +113,12 @@ struct MockGuideAPIResponses: MockAPIResponse {
     }
     static var areaStructTwo: Area {
         Area(areaId: areaIdTwo,
-             areaName: areaTwo[Key.state] as? String ?? "",
-             regionName: areaTwo[Key.country] as? String ?? "")
+             village: areaTwo[Key.village] as? String ?? "",
+             division: areaTwo[Key.division] as? String ?? "",
+             state: areaTwo[Key.state] as? String ?? "",
+             country: areaTwo[Key.country] as? String ?? "")
     }
-    static let ratingTwo: Decimal = 2
+    static let ratingTwo: Double = 2
     static let dateJoinedTwo = "2021-03-21T16:20:08.213Z"
     static var dateJoinedParsedTwo: Date? {
         Date.construct(with: dateJoinedTwo)

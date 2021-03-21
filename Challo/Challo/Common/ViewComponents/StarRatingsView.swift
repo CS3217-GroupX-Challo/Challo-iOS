@@ -9,18 +9,28 @@ import SwiftUI
 
 struct StarRatingsView: View {
     var rating: Double
+    var numOfReviews: Int?
     
     var maxRating: Int = 5
-    var onImage = Image(systemName: "star.fill")
+    let onImage = Image(systemName: "star.fill")
 
-    var offColor = Color.gray
-    var onColor = Color.yellow
+    let offColor = Color.gray
+    let onColor = Color.yellow
+    
+    var maxHeight: CGFloat = 15
     
     var body: some View {
         HStack {
-            ForEach(1..<maxRating + 1) { number in
-                onImage
-                    .foregroundColor(Double(number) > self.rating ? self.offColor : self.onColor)
+            HStack(spacing: 1) {
+                ForEach(1..<maxRating + 1) { number in
+                    onImage.resizable()
+                        .scaledToFit()
+                        .frame(maxHeight: maxHeight)
+                        .foregroundColor(Double(number) > self.rating ? self.offColor : self.onColor)
+                }
+            }
+            if let unwrappedNumOfReviews = numOfReviews {
+                Text("(\(unwrappedNumOfReviews) Reviews)").foregroundColor(.gray)
             }
         }
     }

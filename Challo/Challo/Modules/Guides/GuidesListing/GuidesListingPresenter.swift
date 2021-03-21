@@ -99,7 +99,7 @@ extension GuidesListingPresenter {
         }
         
         guides = guides.filter { guide in
-            guard let ratingToFilter = Decimal(string: ratingFilterType) else {
+            guard let ratingToFilter = Double(ratingFilterType) else {
                 return false
             }
             
