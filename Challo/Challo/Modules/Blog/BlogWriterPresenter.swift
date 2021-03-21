@@ -41,7 +41,6 @@ class BlogWriterPresenter: PresenterProtocol {
         guard !savingDisabled else {
             return
         }
-        print("Save button - I was called")
     }
 
     func publish() {
@@ -49,7 +48,6 @@ class BlogWriterPresenter: PresenterProtocol {
         guard !publishingDisabled else {
             return
         }
-        print("Publish button - I was called")
     }
 
 }

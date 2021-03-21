@@ -20,14 +20,16 @@ struct RoundedTextEditor: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             TextEditor(text: $text)
-                .autocapitalization(.allCharacters)
+                .autocapitalization(.sentences)
                 .cornerRadius(cornerRadius)
+                .padding()
 
             let textBox = text.isEmpty && !placeholder.isEmpty
                 ? Text(placeholder).foregroundColor(.gray)
                 : Text("")
             textBox.textFieldStyle(RoundedTextFieldStyle())
                 .padding()
+                .padding(.vertical)
         }
         .foregroundColor(.primary)
         .overlay(
