@@ -11,7 +11,7 @@ class GuidesListingRouter: RouterProtocol {
     weak var presenter: GuidesListingPresenter!
     
     func getGuideProfileDetailsPage(guide: Guide) -> some View {
-        NavigationLink(destination: GuideProfilePage(presenter: GuideProfilePagePresenter(guide: guide))) {
+        NavigationLink(destination: GuideProfilePage(presenter: GuideProfilePresenter(guide: guide))) {
             Text("More info")
                 .foregroundColor(Color.white)
                 .padding()

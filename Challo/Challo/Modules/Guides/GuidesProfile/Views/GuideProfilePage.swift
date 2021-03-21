@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct GuideProfilePage: View {
-    @ObservedObject var presenter: GuideProfilePagePresenter
+    @ObservedObject var presenter: GuideProfilePresenter
     
     var guide: Guide {
         presenter.guide

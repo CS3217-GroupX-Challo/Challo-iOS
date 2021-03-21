@@ -68,10 +68,9 @@
 		AA2CE56C2604CDEB0019C328 /* AreaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE56B2604CDEB0019C328 /* AreaAPI.swift */; };
 		AA2CE5892604DDDA0019C328 /* ReviewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5882604DDDA0019C328 /* ReviewState.swift */; };
 		AA2CE5932604E3F70019C328 /* ReviewAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5922604E3F70019C328 /* ReviewAPI.swift */; };
-		AA2CE5982604EF2E0019C328 /* GuideProfilePagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5972604EF2E0019C328 /* GuideProfilePagePresenter.swift */; };
-		AA2CE59D2604EF7C0019C328 /* GuideProfilePageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE59C2604EF7C0019C328 /* GuideProfilePageInteractor.swift */; };
-		AA2CE5A22604EFE10019C328 /* GuideProfilePageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5A12604EFE10019C328 /* GuideProfilePageRouter.swift */; };
-		AA2CE5A72604F09E0019C328 /* GuideProfilePageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5A62604F09E0019C328 /* GuideProfilePageModule.swift */; };
+		AA2CE5982604EF2E0019C328 /* GuideProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5972604EF2E0019C328 /* GuideProfilePresenter.swift */; };
+		AA2CE59D2604EF7C0019C328 /* GuideProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE59C2604EF7C0019C328 /* GuideProfileInteractor.swift */; };
+		AA2CE5A22604EFE10019C328 /* GuideProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5A12604EFE10019C328 /* GuideProfileRouter.swift */; };
 		AA2CE5AF260513950019C328 /* Date+Construct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CE5AE260513950019C328 /* Date+Construct.swift */; };
 		AA9E85C925FE70AD00C2E389 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E85C825FE70AD00C2E389 /* NetworkManager.swift */; };
 		AA9E85D625FE735800C2E389 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E85D525FE735800C2E389 /* NetworkError.swift */; };
@@ -168,8 +167,16 @@
 		AAF0C21B260685E400357E94 /* ReviewAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C21A260685E400357E94 /* ReviewAPIParserTests.swift */; };
 		AAF0C223260687CB00357E94 /* MockTrailAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C222260687CB00357E94 /* MockTrailAPIResponse.swift */; };
 		AAF0C23026068DA400357E94 /* TrailAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C22F26068DA400357E94 /* TrailAPIParserTests.swift */; };
-		AAF0C23E260697AB00357E94 /* GuidesModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C23D260697AB00357E94 /* GuidesModuleTests.swift */; };
+		AAF0C23E260697AB00357E94 /* GuidesListingModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C23D260697AB00357E94 /* GuidesListingModuleTests.swift */; };
 		AAF0C24E260699AE00357E94 /* SettingsModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C24D260699AE00357E94 /* SettingsModuleTests.swift */; };
+		AAF0C26226070C9700357E94 /* GuidesListingInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C26126070C9700357E94 /* GuidesListingInteractorTests.swift */; };
+		AAF0C26A26070CE000357E94 /* MockGuideAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C26926070CE000357E94 /* MockGuideAPI.swift */; };
+		AAF0C26F26070E8400357E94 /* GuidesListingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C26E26070E8400357E94 /* GuidesListingModule.swift */; };
+		AAF0C27D26070F6D00357E94 /* MockAreaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C27C26070F6D00357E94 /* MockAreaAPI.swift */; };
+		AAF0C282260710D400357E94 /* GuidesListingPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C281260710D400357E94 /* GuidesListingPresenterTests.swift */; };
+		AAF0C288260711A600357E94 /* GuideProfileInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C287260711A600357E94 /* GuideProfileInteractorTests.swift */; };
+		AAF0C290260711B700357E94 /* MockReviewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C28F260711B700357E94 /* MockReviewsAPI.swift */; };
+		AAF0C2A92607159C00357E94 /* GuideProfilePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0C2A82607159C00357E94 /* GuideProfilePresenterTests.swift */; };
 		B0F349AF3CB87F77584434C4 /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC2C4523E0BAD62412B118A /* Pods_Challo.framework */; };
 		D4A670D2B9132DB104111692 /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391AD75BD73BA41A633358D /* Pods_ChalloTests.framework */; };
 		E234932325FB884F00EC90E9 /* ChalloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234932225FB884F00EC90E9 /* ChalloApp.swift */; };
@@ -181,7 +188,6 @@
 		E244A7452606476B003DBD24 /* APINetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244A7442606476B003DBD24 /* APINetwork.swift */; };
 		E254F2562606343E00E25A56 /* TouristAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E254F2552606343E00E25A56 /* TouristAPIParser.swift */; };
 		E254F25E2606346300E25A56 /* TouristAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E254F25D2606346300E25A56 /* TouristAPI.swift */; };
-		E26485EF2606FC3B008B0A83 /* GuidesModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26485EE2606FC3B008B0A83 /* GuidesModule.swift */; };
 		E26CBC2826065794005DBD47 /* GuideAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC2726065794005DBD47 /* GuideAPIParserTests.swift */; };
 		E26CBC2D260657C7005DBD47 /* MockGuideAPIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC2C260657C7005DBD47 /* MockGuideAPIResponses.swift */; };
 		E26CBC4226067966005DBD47 /* RegisterPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CBC4126067966005DBD47 /* RegisterPresenterTests.swift */; };
@@ -293,10 +299,9 @@
 		AA2CE56B2604CDEB0019C328 /* AreaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPI.swift; sourceTree = "<group>"; };
 		AA2CE5882604DDDA0019C328 /* ReviewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewState.swift; sourceTree = "<group>"; };
 		AA2CE5922604E3F70019C328 /* ReviewAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPI.swift; sourceTree = "<group>"; };
-		AA2CE5972604EF2E0019C328 /* GuideProfilePagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePagePresenter.swift; sourceTree = "<group>"; };
-		AA2CE59C2604EF7C0019C328 /* GuideProfilePageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePageInteractor.swift; sourceTree = "<group>"; };
-		AA2CE5A12604EFE10019C328 /* GuideProfilePageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePageRouter.swift; sourceTree = "<group>"; };
-		AA2CE5A62604F09E0019C328 /* GuideProfilePageModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePageModule.swift; sourceTree = "<group>"; };
+		AA2CE5972604EF2E0019C328 /* GuideProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePresenter.swift; sourceTree = "<group>"; };
+		AA2CE59C2604EF7C0019C328 /* GuideProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfileInteractor.swift; sourceTree = "<group>"; };
+		AA2CE5A12604EFE10019C328 /* GuideProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfileRouter.swift; sourceTree = "<group>"; };
 		AA2CE5AE260513950019C328 /* Date+Construct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Construct.swift"; sourceTree = "<group>"; };
 		AA9E85C825FE70AD00C2E389 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		AA9E85D525FE735800C2E389 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -393,8 +398,16 @@
 		AAF0C21A260685E400357E94 /* ReviewAPIParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewAPIParserTests.swift; sourceTree = "<group>"; };
 		AAF0C222260687CB00357E94 /* MockTrailAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrailAPIResponse.swift; sourceTree = "<group>"; };
 		AAF0C22F26068DA400357E94 /* TrailAPIParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailAPIParserTests.swift; sourceTree = "<group>"; };
-		AAF0C23D260697AB00357E94 /* GuidesModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesModuleTests.swift; sourceTree = "<group>"; };
+		AAF0C23D260697AB00357E94 /* GuidesListingModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingModuleTests.swift; sourceTree = "<group>"; };
 		AAF0C24D260699AE00357E94 /* SettingsModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleTests.swift; sourceTree = "<group>"; };
+		AAF0C26126070C9700357E94 /* GuidesListingInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingInteractorTests.swift; sourceTree = "<group>"; };
+		AAF0C26926070CE000357E94 /* MockGuideAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGuideAPI.swift; sourceTree = "<group>"; };
+		AAF0C26E26070E8400357E94 /* GuidesListingModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingModule.swift; sourceTree = "<group>"; };
+		AAF0C27C26070F6D00357E94 /* MockAreaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAreaAPI.swift; sourceTree = "<group>"; };
+		AAF0C281260710D400357E94 /* GuidesListingPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuidesListingPresenterTests.swift; path = ../../../../../../../../../../../GuidesListingPresenterTests.swift; sourceTree = "<group>"; };
+		AAF0C287260711A600357E94 /* GuideProfileInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuideProfileInteractorTests.swift; path = ../../../../../../../../../../../GuideProfileInteractorTests.swift; sourceTree = "<group>"; };
+		AAF0C28F260711B700357E94 /* MockReviewsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReviewsAPI.swift; sourceTree = "<group>"; };
+		AAF0C2A82607159C00357E94 /* GuideProfilePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePresenterTests.swift; sourceTree = "<group>"; };
 		B80BF62921A7ECE90E2050F2 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234931F25FB884F00EC90E9 /* Challo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E234932225FB884F00EC90E9 /* ChalloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloApp.swift; sourceTree = "<group>"; };
@@ -411,7 +424,6 @@
 		E244A7442606476B003DBD24 /* APINetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINetwork.swift; sourceTree = "<group>"; };
 		E254F2552606343E00E25A56 /* TouristAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristAPIParser.swift; sourceTree = "<group>"; };
 		E254F25D2606346300E25A56 /* TouristAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristAPI.swift; sourceTree = "<group>"; };
-		E26485EE2606FC3B008B0A83 /* GuidesModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesModule.swift; sourceTree = "<group>"; };
 		E26CBC2726065794005DBD47 /* GuideAPIParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPIParserTests.swift; sourceTree = "<group>"; };
 		E26CBC2C260657C7005DBD47 /* MockGuideAPIResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGuideAPIResponses.swift; sourceTree = "<group>"; };
 		E26CBC4126067966005DBD47 /* RegisterPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenterTests.swift; sourceTree = "<group>"; };
@@ -639,10 +651,9 @@
 			isa = PBXGroup;
 			children = (
 				AA2CE5CA26051C860019C328 /* Views */,
-				AA2CE5972604EF2E0019C328 /* GuideProfilePagePresenter.swift */,
-				AA2CE59C2604EF7C0019C328 /* GuideProfilePageInteractor.swift */,
-				AA2CE5A12604EFE10019C328 /* GuideProfilePageRouter.swift */,
-				AA2CE5A62604F09E0019C328 /* GuideProfilePageModule.swift */,
+				AA2CE5972604EF2E0019C328 /* GuideProfilePresenter.swift */,
+				AA2CE59C2604EF7C0019C328 /* GuideProfileInteractor.swift */,
+				AA2CE5A12604EFE10019C328 /* GuideProfileRouter.swift */,
 			);
 			path = GuidesProfile;
 			sourceTree = "<group>";
@@ -677,7 +688,7 @@
 				AA9E87392601B18D00C2E389 /* GuidesListingInteractor.swift */,
 				AA9E873E2601B22000C2E389 /* GuidesListingRouter.swift */,
 				AA9E8784260242FA00C2E389 /* FilterTypes.swift */,
-				E26485EE2606FC3B008B0A83 /* GuidesModule.swift */,
+				AAF0C26E26070E8400357E94 /* GuidesListingModule.swift */,
 			);
 			path = GuidesListing;
 			sourceTree = "<group>";
@@ -930,6 +941,15 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		AAF0C2862607118D00357E94 /* GuideProfile */ = {
+			isa = PBXGroup;
+			children = (
+				AAF0C287260711A600357E94 /* GuideProfileInteractorTests.swift */,
+				AAF0C2A82607159C00357E94 /* GuideProfilePresenterTests.swift */,
+			);
+			path = GuideProfile;
+			sourceTree = "<group>";
+		};
 		E234931625FB884F00EC90E9 = {
 			isa = PBXGroup;
 			children = (
@@ -1009,7 +1029,9 @@
 		E26485FC2606FEC2008B0A83 /* GuidesListing */ = {
 			isa = PBXGroup;
 			children = (
-				AAF0C23D260697AB00357E94 /* GuidesModuleTests.swift */,
+				AAF0C23D260697AB00357E94 /* GuidesListingModuleTests.swift */,
+				AAF0C26126070C9700357E94 /* GuidesListingInteractorTests.swift */,
+				AAF0C281260710D400357E94 /* GuidesListingPresenterTests.swift */,
 			);
 			path = GuidesListing;
 			sourceTree = "<group>";
@@ -1117,6 +1139,9 @@
 				E26CBC4C260683ED005DBD47 /* MockAreaAPIResponse.swift */,
 				AAF0C222260687CB00357E94 /* MockTrailAPIResponse.swift */,
 				AAF0C20426067BD900357E94 /* MockReviewAPIResponse.swift */,
+				AAF0C26926070CE000357E94 /* MockGuideAPI.swift */,
+				AAF0C27C26070F6D00357E94 /* MockAreaAPI.swift */,
+				AAF0C28F260711B700357E94 /* MockReviewsAPI.swift */,
 			);
 			path = TestingUtilities;
 			sourceTree = "<group>";
@@ -1290,6 +1315,7 @@
 		E2E286E426064C0300C058C3 /* Guides */ = {
 			isa = PBXGroup;
 			children = (
+				AAF0C2862607118D00357E94 /* GuideProfile */,
 				E26485FC2606FEC2008B0A83 /* GuidesListing */,
 			);
 			path = Guides;
@@ -1613,7 +1639,6 @@
 				649FA15A2605E6C200F36BD6 /* TrailProfileLocation.swift in Sources */,
 				649FA11E2605DC0600F36BD6 /* TrailListingCardDetail.swift in Sources */,
 				AAF0C0752605B14600357E94 /* TouristRegistrationAPI.swift in Sources */,
-				AA2CE5A72604F09E0019C328 /* GuideProfilePageModule.swift in Sources */,
 				AA9E85C925FE70AD00C2E389 /* NetworkManager.swift in Sources */,
 				AAF0C02A2605B10200357E94 /* RegisterAPI.swift in Sources */,
 				649FA1252605DC0600F36BD6 /* TrailProfileDetails.swift in Sources */,
@@ -1641,6 +1666,7 @@
 				AAF0C02F2605B10200357E94 /* LoginAPI.swift in Sources */,
 				AAF0C0952605B14600357E94 /* TouristLoginPage.swift in Sources */,
 				E2D8969225FFAB8A0001B026 /* RoundedTextField.swift in Sources */,
+				AAF0C26F26070E8400357E94 /* GuidesListingModule.swift in Sources */,
 				AAF0C0792605B14600357E94 /* GuideRegisterPresenter.swift in Sources */,
 				AAF0C07A2605B14600357E94 /* GuideRegisterModule.swift in Sources */,
 				649FA13B2605DC3700F36BD6 /* UnwrapView.swift in Sources */,
@@ -1708,7 +1734,6 @@
 				AA9E872226012CEB00C2E389 /* GuidesListingTitle.swift in Sources */,
 				AADCAC0626045AF700FB52C4 /* GuideProfileParagraphView.swift in Sources */,
 				E254F2562606343E00E25A56 /* TouristAPIParser.swift in Sources */,
-				E26485EF2606FC3B008B0A83 /* GuidesModule.swift in Sources */,
 				AAF0C06F2605B14600357E94 /* RegisterButton.swift in Sources */,
 				649FA1552605DE8E00F36BD6 /* MapView.swift in Sources */,
 				AAF0C07E2605B14600357E94 /* GuideRegisterRouter.swift in Sources */,
@@ -1731,16 +1756,16 @@
 				649FA1712606136F00F36BD6 /* TrailProfileReviews.swift in Sources */,
 				AA2CE5672604C7D90019C328 /* GuideAPI.swift in Sources */,
 				AAF0C02E2605B10200357E94 /* UserAPIResponse.swift in Sources */,
-				AA2CE5A22604EFE10019C328 /* GuideProfilePageRouter.swift in Sources */,
+				AA2CE5A22604EFE10019C328 /* GuideProfileRouter.swift in Sources */,
 				AAF0C08B2605B14600357E94 /* GuideLoginRouter.swift in Sources */,
-				AA2CE5982604EF2E0019C328 /* GuideProfilePagePresenter.swift in Sources */,
+				AA2CE5982604EF2E0019C328 /* GuideProfilePresenter.swift in Sources */,
 				AAF0C08C2605B14600357E94 /* GuideLoginModule.swift in Sources */,
 				AAF0C188260617B800357E94 /* SettingsModule.swift in Sources */,
 				649FA1232605DC0600F36BD6 /* TrailProfileModule.swift in Sources */,
 				649FA1322605DC0E00F36BD6 /* MainContainerModule.swift in Sources */,
 				649FA1282605DC0600F36BD6 /* TrailProfileInteractor.swift in Sources */,
 				649FA1222605DC0600F36BD6 /* TrailProfilePresenter.swift in Sources */,
-				AA2CE59D2604EF7C0019C328 /* GuideProfilePageInteractor.swift in Sources */,
+				AA2CE59D2604EF7C0019C328 /* GuideProfileInteractor.swift in Sources */,
 				AAF0C07F2605B14600357E94 /* SocialLoginService.swift in Sources */,
 				649FA1422605DC4900F36BD6 /* PageLayout.swift in Sources */,
 				AA9E87322601B16400C2E389 /* GuidesListingPresenter.swift in Sources */,
@@ -1772,6 +1797,7 @@
 			files = (
 				E2E286EE26064C0300C058C3 /* TouristLoginModuleTests.swift in Sources */,
 				AAF0C20526067BD900357E94 /* MockReviewAPIResponse.swift in Sources */,
+				AAF0C290260711B700357E94 /* MockReviewsAPI.swift in Sources */,
 				AAF0C23026068DA400357E94 /* TrailAPIParserTests.swift in Sources */,
 				E2E286CD26064BEE00C058C3 /* TrailAPITests.swift in Sources */,
 				AAF0C24E260699AE00357E94 /* SettingsModuleTests.swift in Sources */,
@@ -1779,12 +1805,18 @@
 				AAF0C223260687CB00357E94 /* MockTrailAPIResponse.swift in Sources */,
 				AAF0C1DF26066E5400357E94 /* TouristAPIParserTests.swift in Sources */,
 				E26CBC2D260657C7005DBD47 /* MockGuideAPIResponses.swift in Sources */,
+				AAF0C2A92607159C00357E94 /* GuideProfilePresenterTests.swift in Sources */,
+				AAF0C26A26070CE000357E94 /* MockGuideAPI.swift in Sources */,
 				E26CBC4226067966005DBD47 /* RegisterPresenterTests.swift in Sources */,
 				E26CBC4D260683ED005DBD47 /* MockAreaAPIResponse.swift in Sources */,
 				E2E286EB26064C0300C058C3 /* SocialModuleTests.swift in Sources */,
+				AAF0C26226070C9700357E94 /* GuidesListingInteractorTests.swift in Sources */,
 				E26CBC2826065794005DBD47 /* GuideAPIParserTests.swift in Sources */,
-				AAF0C23E260697AB00357E94 /* GuidesModuleTests.swift in Sources */,
+				AAF0C23E260697AB00357E94 /* GuidesListingModuleTests.swift in Sources */,
 				AAF0C21B260685E400357E94 /* ReviewAPIParserTests.swift in Sources */,
+				AAF0C27D26070F6D00357E94 /* MockAreaAPI.swift in Sources */,
+				AAF0C288260711A600357E94 /* GuideProfileInteractorTests.swift in Sources */,
+				AAF0C282260710D400357E94 /* GuidesListingPresenterTests.swift in Sources */,
 				E2E286EA26064C0300C058C3 /* GuideRegisterModuleTests.swift in Sources */,
 				E2E286ED26064C0300C058C3 /* GuideLoginModuleTests.swift in Sources */,
 				E2E2869F26064B9100C058C3 /* MockUserAPIResponses.swift in Sources */,

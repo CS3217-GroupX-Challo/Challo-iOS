@@ -6,16 +6,16 @@
 //
 import Combine
 
-class GuideProfilePagePresenter: PresenterProtocol {
-    var router: GuideProfilePageRouter?
-    var interactor: GuideProfilePageInteractor!
+class GuideProfilePresenter: PresenterProtocol {
+    var router: GuideProfileRouter?
+    var interactor: GuideProfileInteractor!
     
     var guide: Guide
     @Published var reviews: [Review] = []
     
     init(guide: Guide) {
         self.guide = guide
-        self.interactor = GuideProfilePageInteractor()
+        self.interactor = GuideProfileInteractor(reviewAPI: ReviewAPI())
         self.interactor.presenter = self
     }
 }
