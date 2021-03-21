@@ -39,9 +39,17 @@ class BlogWriterPresenterTests: XCTestCase {
         presenter.interactor = BlogWriterInteractor(blogPost: invalidTitleInvalidBodyDraft)
         XCTAssertTrue(presenter.publishingDisabled)
 
+        let invalidTitleValidBodyDraft = BlogPost(title: "", body: "Some text", author: UUID())
+        presenter.interactor = BlogWriterInteractor(blogPost: invalidTitleValidBodyDraft)
+        XCTAssertTrue(presenter.publishingDisabled)
+
         let validTitleEmptyBodyDraft = BlogPost(title: "Some title", body: "", author: UUID())
         presenter.interactor = BlogWriterInteractor(blogPost: validTitleEmptyBodyDraft)
-        XCTAssertFalse(presenter.publishingDisabled)
+        XCTAssertTrue(presenter.publishingDisabled)
+
+        let validTitleWhiteSpaceBodyDraft = BlogPost(title: "Some title", body: "      ", author: UUID())
+        presenter.interactor = BlogWriterInteractor(blogPost: validTitleWhiteSpaceBodyDraft)
+        XCTAssertTrue(presenter.publishingDisabled)
 
         let validDraft = BlogPost(title: "Some title", body: "Random string", author: UUID())
         presenter.interactor = BlogWriterInteractor(blogPost: validDraft)
