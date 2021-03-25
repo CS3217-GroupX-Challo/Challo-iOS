@@ -25,6 +25,7 @@ jobs:
     - name: Install dependencies
       run: |
         cd Challo/
+        xcodegen generate
         pod install
       shell: bash
 
