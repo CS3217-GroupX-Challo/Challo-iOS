@@ -16,18 +16,14 @@ jobs:
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_12.app
     
-    - name: Install xcodegen
-      run: |
-        /usr/local/opt/curl/bin/curl --silent --create-dirs --location --output /Users/runner/action-xcodegen/xcodegen.zip https://github.com/yonaskolb/XcodeGen/releases/latest/download/xcodegen.zip
-        /usr/bin/unzip -q -o /Users/runner/action-xcodegen/xcodegen.zip
-        /bin/rm /Users/runner/action-xcodegen/xcodegen.zip
-        /Users/runner/action-xcodegen/xcodegen/install.sh
-        /bin/rm -rf /Users/runner/action-xcodegen/
-     
+    - name: Navigate to project directory
+      run: cd Challo/
+    
+    - name: Xcodegen
+      uses: xavierLowmiller/xcodegen-action@1.0.0
+      
     - name: Install dependencies
       run: |
-        cd Challo/
-        /usr/local/bin/xcodegen generate
         pod install
       shell: bash
 
