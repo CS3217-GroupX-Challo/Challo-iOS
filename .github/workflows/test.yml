@@ -4,15 +4,7 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'     
-        required: true
-        default: 'warning'
-      tags:
-        description: 'Test scenario tags'  
+    branches: [ master ] 
 
 jobs:
   build-and-test:
@@ -24,14 +16,18 @@ jobs:
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_12.app
     
-    - name: Setup xcodegen
-      uses: xavierLowmiller/xcodegen-action@1.0.0
-      with:
-        spec: project.yaml
-    
+    - name: Install xcodegen
+      run: |
+        /usr/local/opt/curl/bin/curl --silent --create-dirs --location --output /Users/runner/action-xcodegen/xcodegen.zip https://github.com/yonaskolb/XcodeGen/releases/latest/download/xcodegen.zip
+        /usr/bin/unzip -q -o /Users/runner/action-xcodegen/xcodegen.zip
+        /bin/rm /Users/runner/action-xcodegen/xcodegen.zip
+        /Users/runner/action-xcodegen/xcodegen/install.sh
+        /bin/rm -rf /Users/runner/action-xcodegen/
+     
     - name: Install dependencies
       run: |
         cd Challo/
+        /usr/local/bin/xcodegen generate
         pod install
       shell: bash
 
