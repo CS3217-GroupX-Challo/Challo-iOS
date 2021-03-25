@@ -29,6 +29,26 @@
       onlyGenerateCoverageForSpecifiedTargets = "NO"
       shouldUseLaunchSchemeArgsEnv = "NO">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C458E4288FF021D1684C9CCE"
+               BuildableName = "ChalloTests.xctest"
+               BlueprintName = "ChalloTests"
+               ReferencedContainer = "container:Challo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E99AC25DA62D814FF628E27D"
+               BuildableName = "ChalloUITests.xctest"
+               BlueprintName = "ChalloUITests"
+               ReferencedContainer = "container:Challo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

@@ -83,6 +83,9 @@ targets:
       path: Challo
     type: application
     scheme:
+      testTargets:
+        - ChalloTests
+        - ChalloUITests
       environmentVariables:
         api_path: "http://challo-api-staging.herokuapp.com/api"
         google_maps_api_key: "AIzaSyBf4UUNjUwdWq79hcObEcsidHbWOYWy0Ao"

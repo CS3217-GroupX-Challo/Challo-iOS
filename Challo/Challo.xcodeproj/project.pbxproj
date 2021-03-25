@@ -26,6 +26,7 @@
 		10F276AD42FB5325D6568B0C /* SocialLoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ED7F50CC5774281EA43529 /* SocialLoginDelegate.swift */; };
 		11E4F651D26C7E810973613B /* MapModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A636435CD86DF7F73380CF /* MapModuleTests.swift */; };
 		122A95EF65C223AB16DB332E /* GuideProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7B79A575EC333CDE82F34 /* GuideProfilePresenter.swift */; };
+		1475EF5E0B2A3F5FF4FDB2E4 /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588ABF4B7EDA3BA83F083ADF /* Pods_ChalloTests.framework */; };
 		164F1481A9D1A9EF92D83645 /* MockGuideAPIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F761C5AA727606DE077D5C61 /* MockGuideAPIResponses.swift */; };
 		16D65893756311FD48A30B8B /* GuideTrailsDetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BB9EA2C58F460EEDBEF8F7 /* GuideTrailsDetailCard.swift */; };
 		19E56BFA2448D32552A183D6 /* GuidesCardListingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE4814041E0B1635C7E461 /* GuidesCardListingsView.swift */; };
@@ -100,9 +101,7 @@
 		6C8CCC2919BB7C8210E4E39E /* GuidesListingPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EA54790418CE886137A397 /* GuidesListingPresenterTests.swift */; };
 		6CBD02644B00921549DC7927 /* UserStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB0CB8165178121205C882E /* UserStateProtocol.swift */; };
 		6DD4710267E0C4AEE8E3A695 /* GuideRegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FC78FF793F82FF4A80EF99 /* GuideRegisterPresenter.swift */; };
-		6EA6D3009EC435202965D143 /* Pods_Challo_ChalloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E132833A9E8A0D62BA76C630 /* Pods_Challo_ChalloUITests.framework */; };
 		7131ADAE49F0868AE6244A6D /* MockUserAPIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155D10F67EB37F72A3402E5A /* MockUserAPIResponses.swift */; };
-		71EA5E5C017D44FE7B6096DB /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C3BC9228590E656195D784 /* Pods_Challo.framework */; };
 		73E03636F16845ABE88F9DBB /* MockGuideAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3879B2D4821E074101A6F5 /* MockGuideAPI.swift */; };
 		740EB063C236F52AA03E0182 /* GuideLoginModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54DA5B3E6A881C3BFCB6844 /* GuideLoginModule.swift */; };
 		74269B6AC974949C9A680717 /* TrailProfileLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983860E5002646C423BEF32E /* TrailProfileLocation.swift */; };
@@ -154,6 +153,7 @@
 		A7EB7BEDD7D93B81BE17F0AD /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60DD66F3BEA4CD8F262B677 /* LoginInteractor.swift */; };
 		A9E7093DAF000A324CC516EC /* TrailAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A3897B2A1DA4762339119 /* TrailAPIParser.swift */; };
 		AB842B45C6CEE78B0E9AD2B0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0D6FB4C2ECB69C03F192E2 /* MapView.swift */; };
+		ACA2A2AF08B6AD4B2155570A /* Pods_Challo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 241F72D788DC683F04D7FC3B /* Pods_Challo.framework */; };
 		AEDEC3256B9A12D20B0D0BE4 /* TrailProfileReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB9D71751CA4570787EBEE9 /* TrailProfileReview.swift */; };
 		AF42E2FD9ACD1A8077F0CE96 /* GuideRegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23FB3A66FCC91DF58F965A7 /* GuideRegisterInteractor.swift */; };
 		AF4E6F12D0F7531D17097861 /* MockTouristAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D22803F5BB51634C89E1D4D /* MockTouristAPIResponse.swift */; };
@@ -169,6 +169,7 @@
 		BBC5F4DD98A7732A89C25992 /* RegisterPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA19D0E74DCE705145C9774 /* RegisterPresenterTests.swift */; };
 		BD2A0636D46A35F577CC9351 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4A790066882496E92BED35 /* LoginRouter.swift */; };
 		BDE7F64F73D66144B9608B59 /* UserAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04483691152969B124C6FE86 /* UserAPIParser.swift */; };
+		BFB370AF8CA678B05AC0FB78 /* Pods_Challo_ChalloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A99D967C59C12FDB4712E07 /* Pods_Challo_ChalloUITests.framework */; };
 		C518393CB77804994E94864B /* GuideLoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED9482B782BA91BB7EF0B4D /* GuideLoginPage.swift */; };
 		C8DCF7F722E731A0D64DB0CD /* DropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081216CB534447FCFE93EEB3 /* DropDownMenu.swift */; };
 		C9D4892C656BA9C7914AC381 /* GuideAboutDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839D24B1C08434313D6146B /* GuideAboutDetailsView.swift */; };
@@ -180,7 +181,6 @@
 		CF16574F866F5398C9D1106C /* GuideLoginInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE43E596F8C3CA6B55DFEB4 /* GuideLoginInteractorTests.swift */; };
 		D0D67AE046EC73B4AB494850 /* GuideProfileParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB0885D73459D3AE15940A /* GuideProfileParagraphView.swift */; };
 		D128543F411C87F6207A53C5 /* GuideReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E646B77401C703DD0F75D807 /* GuideReviewCard.swift */; };
-		D162BEE1CC1AF32E5ECE538B /* Pods_ChalloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF84683A957F9BAC7F91E219 /* Pods_ChalloTests.framework */; };
 		D17D8F5EA71DD6F2778F57B3 /* GuideAPIParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166AC3F33B74EDC4C4A051C1 /* GuideAPIParserTests.swift */; };
 		D377FBE1F61850C6B453C982 /* TrailProfileBasicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBD5DFA227C300B6950B825 /* TrailProfileBasicInfo.swift */; };
 		D3FFA13F48D562F282C989E5 /* GuidesListingModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C7F118AE1A2EEBAAA92F3 /* GuidesListingModuleTests.swift */; };
@@ -258,7 +258,6 @@
 		10163389C1C3F90064635FFE /* ChalloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloApp.swift; sourceTree = "<group>"; };
 		1083C9C3F136147664A61A0F /* FacebookLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginButton.swift; sourceTree = "<group>"; };
 		1119095CDBD35E54B519F647 /* TrailListingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailListingCard.swift; sourceTree = "<group>"; };
-		121BFEAA721F78B752DB727B /* Pods-ChalloTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChalloTests.debug.xcconfig"; path = "Target Support Files/Pods-ChalloTests/Pods-ChalloTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1477EB2F060C92BEEC796B0A /* TrailProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfilePage.swift; sourceTree = "<group>"; };
 		14FC78FF793F82FF4A80EF99 /* GuideRegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRegisterPresenter.swift; sourceTree = "<group>"; };
 		151A9281E3DDFCEF490ED81F /* TrailListingPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailListingPresenterTests.swift; sourceTree = "<group>"; };
@@ -279,29 +278,31 @@
 		2074442145C2BB09CE097C95 /* AlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
 		21F5712657526EC50C35FF09 /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
 		22611D3CE75914770DC6BF49 /* InteractiveMapPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveMapPage.swift; sourceTree = "<group>"; };
+		241F72D788DC683F04D7FC3B /* Pods_Challo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		241F8A07D5A4CD28FEA5353F /* TrailListingModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailListingModule.swift; sourceTree = "<group>"; };
 		24260DAE13112F1A30DA7E8E /* MainContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerView.swift; sourceTree = "<group>"; };
 		24DFC8B8C3CAD2CF39EEE131 /* SettingsListElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListElement.swift; sourceTree = "<group>"; };
 		2577F1F6CFFBEC35375DDB75 /* GuidesListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingPresenter.swift; sourceTree = "<group>"; };
 		281A99664BEDAECAF61F21D3 /* TrailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailAPI.swift; sourceTree = "<group>"; };
 		285A049E40677157F1CDC85D /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
+		28E63E058D64D96DE4F5FF72 /* Pods-ChalloTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChalloTests.release.xcconfig"; path = "Target Support Files/Pods-ChalloTests/Pods-ChalloTests.release.xcconfig"; sourceTree = "<group>"; };
 		29CCD6970685E21D9FD8AE36 /* SocialLoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginResponse.swift; sourceTree = "<group>"; };
+		2B7DCCAEE06443748977AF0D /* Pods-ChalloTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChalloTests.debug.xcconfig"; path = "Target Support Files/Pods-ChalloTests/Pods-ChalloTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2BB0BEB9B70D0AEE20292F71 /* GuidesListingTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingTitle.swift; sourceTree = "<group>"; };
 		2CB9D71751CA4570787EBEE9 /* TrailProfileReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileReview.swift; sourceTree = "<group>"; };
 		2F2C356B752A799CABFD478B /* MockTrailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrailAPI.swift; sourceTree = "<group>"; };
 		3066ED90A20657CAD8B895D3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		336B4A8C3796B7B1E74D0C24 /* ReviewAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPI.swift; sourceTree = "<group>"; };
 		33D5AA9EC08E408F9544B731 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
-		35FDB5A93757CE44414D10DA /* Pods-Challo-ChalloUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo-ChalloUITests.release.xcconfig"; path = "Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3AF788062B8243EBB9D416F9 /* FilterTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTypes.swift; sourceTree = "<group>"; };
 		3B8DA849828A275E0193B7D8 /* GoogleMapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsView.swift; sourceTree = "<group>"; };
 		3BB0CB8165178121205C882E /* UserStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateProtocol.swift; sourceTree = "<group>"; };
 		3D155DEC2479ED2209F32B0F /* AreaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPI.swift; sourceTree = "<group>"; };
-		3EEACC3A38A5BC75634DC30A /* .keep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
+		3EEACC3A38A5BC75634DC30A /* .keep */ = {isa = PBXFileReference; path = .keep; sourceTree = "<group>"; };
 		3F7C0414C0E13094E609F992 /* ChalloLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloLogger.swift; sourceTree = "<group>"; };
 		405395237D564C574BCE96BD /* GuideAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPI.swift; sourceTree = "<group>"; };
-		41B37414A55FA87BE9165750 /* Challo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		41F96152B1F53E1CB103B6AC /* .keep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
+		41B37414A55FA87BE9165750 /* Challo.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Challo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		41F96152B1F53E1CB103B6AC /* .keep */ = {isa = PBXFileReference; path = .keep; sourceTree = "<group>"; };
 		4220C207E9745A0C10069F86 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		453C32D793EC2C4EDC9C393E /* GuideDetailsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailsCard.swift; sourceTree = "<group>"; };
 		48B0F0099DCBE51A3F560C87 /* BookingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingStatus.swift; sourceTree = "<group>"; };
@@ -316,8 +317,10 @@
 		4C65E2F28A41D544163EDC7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4C7C7F118AE1A2EEBAAA92F3 /* GuidesListingModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingModuleTests.swift; sourceTree = "<group>"; };
 		4C90A84B21781F966ADE45D8 /* RegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRouter.swift; sourceTree = "<group>"; };
+		4DE9AFCB5976E99E43BB0C7C /* Pods-Challo-ChalloUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo-ChalloUITests.release.xcconfig"; path = "Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4E4201A423F89F31977F1275 /* TrailProfileSectionTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileSectionTitle.swift; sourceTree = "<group>"; };
 		4EAA2FB3410386D517DFC130 /* TouristRegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristRegisterInteractor.swift; sourceTree = "<group>"; };
+		4EB0BD103CEEB19276CBE6BD /* Pods-Challo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo.debug.xcconfig"; path = "Target Support Files/Pods-Challo/Pods-Challo.debug.xcconfig"; sourceTree = "<group>"; };
 		4EFAAD3C73B3FD261F7E34D3 /* TouristLoginModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristLoginModuleTests.swift; sourceTree = "<group>"; };
 		5187997668F427F29584C33D /* TouristLoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristLoginPresenter.swift; sourceTree = "<group>"; };
 		51B91E3C3371121270C28572 /* TrailProfileReviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileReviews.swift; sourceTree = "<group>"; };
@@ -325,9 +328,11 @@
 		539EE6FA8A88DCBEDB92A890 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
 		55A636435CD86DF7F73380CF /* MapModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModuleTests.swift; sourceTree = "<group>"; };
 		585CF59E749411C4E643CE9C /* Trail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trail.swift; sourceTree = "<group>"; };
+		588ABF4B7EDA3BA83F083ADF /* Pods_ChalloTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChalloTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A7578EC31CAB0117BC189C7 /* TouristLoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristLoginInteractor.swift; sourceTree = "<group>"; };
 		5B8A3897B2A1DA4762339119 /* TrailAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailAPIParser.swift; sourceTree = "<group>"; };
 		5BDB6EA6A41A79093AC4BE45 /* GuidesFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesFiltersView.swift; sourceTree = "<group>"; };
+		5BF14BFB78142CFEB322997B /* Pods-Challo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo.release.xcconfig"; path = "Target Support Files/Pods-Challo/Pods-Challo.release.xcconfig"; sourceTree = "<group>"; };
 		5C292F8F0AB3BE2CD08081D0 /* GuideRegistrationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRegistrationAPI.swift; sourceTree = "<group>"; };
 		5D672FA886AC146A5A630A16 /* TouristAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristAPIParser.swift; sourceTree = "<group>"; };
 		5D9E2ED71D74CD48D48EB4F2 /* GuideAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPIParser.swift; sourceTree = "<group>"; };
@@ -345,6 +350,7 @@
 		67E2FF7242D255F6C627777D /* SocialLoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginPresenter.swift; sourceTree = "<group>"; };
 		6839D24B1C08434313D6146B /* GuideAboutDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAboutDetailsView.swift; sourceTree = "<group>"; };
 		69595C6059BFA178EC5E0FE9 /* GuideProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePage.swift; sourceTree = "<group>"; };
+		6A99D967C59C12FDB4712E07 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BE0DA9FCF98B949BE122D12 /* TouristLoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristLoginAPI.swift; sourceTree = "<group>"; };
 		6D22803F5BB51634C89E1D4D /* MockTouristAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTouristAPIResponse.swift; sourceTree = "<group>"; };
 		6E7E24586DB170B9EC72AE32 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
@@ -355,14 +361,12 @@
 		70E2B82DF01714EB4FAD9858 /* GuideProfileInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfileInteractorTests.swift; sourceTree = "<group>"; };
 		70EA54790418CE886137A397 /* GuidesListingPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingPresenterTests.swift; sourceTree = "<group>"; };
 		71F2C0906E8A847030E0CF7A /* TrailProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileRouter.swift; sourceTree = "<group>"; };
-		72CD0BA4CB2382214D02B33B /* Pods-Challo-ChalloUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo-ChalloUITests.debug.xcconfig"; path = "Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		72D0FD2CCC9AC3C755597018 /* LoginPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenterTests.swift; sourceTree = "<group>"; };
 		73392DA6695363EBA63E8F70 /* Days.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Days.swift; sourceTree = "<group>"; };
 		7472E40B17DD984E8E6D7C86 /* SettingsModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleTests.swift; sourceTree = "<group>"; };
 		7486314DBE6AC18D0F4367C9 /* TouristLoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristLoginRouter.swift; sourceTree = "<group>"; };
 		74B80A2B30CCB6B942E1308F /* MapRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouter.swift; sourceTree = "<group>"; };
 		74FA42C0F0D49DF44DF77E74 /* TrailProfileLandmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileLandmarks.swift; sourceTree = "<group>"; };
-		75C3BC9228590E656195D784 /* Pods_Challo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77271A6FC71F102A39AFA54C /* GuidesListingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingInteractor.swift; sourceTree = "<group>"; };
 		77C815BF6548FEA0E07AEA24 /* TouristRegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristRegisterRouter.swift; sourceTree = "<group>"; };
 		781D6CB8A8F5615B6FC857E3 /* GuideRegisterInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRegisterInteractorTests.swift; sourceTree = "<group>"; };
@@ -385,11 +389,9 @@
 		8CE958A6648B2380F3F637C8 /* ReviewAPIParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPIParserTests.swift; sourceTree = "<group>"; };
 		9383FBCD7A79A45FBDFB9C22 /* FacebookLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginService.swift; sourceTree = "<group>"; };
 		94129EF9AB04157D1240300E /* RegisterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButton.swift; sourceTree = "<group>"; };
-		978EA29BC46C1147F409AF17 /* Pods-Challo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo.debug.xcconfig"; path = "Target Support Files/Pods-Challo/Pods-Challo.debug.xcconfig"; sourceTree = "<group>"; };
 		97E6AD5980ABA7F7184B2D97 /* TrailListingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailListingPage.swift; sourceTree = "<group>"; };
 		983860E5002646C423BEF32E /* TrailProfileLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileLocation.swift; sourceTree = "<group>"; };
 		98ED7F50CC5774281EA43529 /* SocialLoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginDelegate.swift; sourceTree = "<group>"; };
-		9CC1508BAF19E309054E1C51 /* Pods-Challo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo.release.xcconfig"; path = "Target Support Files/Pods-Challo/Pods-Challo.release.xcconfig"; sourceTree = "<group>"; };
 		9DE0D12438D03CE3B3DDC761 /* TrailProfileModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileModule.swift; sourceTree = "<group>"; };
 		A2A01727137CF1F847B0C1FF /* MainContainerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerInteractor.swift; sourceTree = "<group>"; };
 		A308FACD47E500EC491DF6D0 /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
@@ -411,13 +413,13 @@
 		B11D4F2AF8CA210951B72130 /* MockLoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoginAPI.swift; sourceTree = "<group>"; };
 		B23FB3A66FCC91DF58F965A7 /* GuideRegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRegisterInteractor.swift; sourceTree = "<group>"; };
 		B28CD5C19DFE4A045330DA75 /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
-		B4CE1AA691DF822478C22D54 /* Pods-ChalloTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChalloTests.release.xcconfig"; path = "Target Support Files/Pods-ChalloTests/Pods-ChalloTests.release.xcconfig"; sourceTree = "<group>"; };
 		B5CAF550887C9543465ACF24 /* RegisterNavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNavigationButton.swift; sourceTree = "<group>"; };
 		B8023DA902694C7FA0FD82CF /* MockAreaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAreaAPI.swift; sourceTree = "<group>"; };
 		B86C3B8B5449588EEC94304B /* GuidesListingInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidesListingInteractorTests.swift; sourceTree = "<group>"; };
 		B8F37D2549CA5AE402A0E70C /* TrailProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileInteractor.swift; sourceTree = "<group>"; };
 		B8F9479E1F74F4F21DF6BC7A /* Image+ImageAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+ImageAssets.swift"; sourceTree = "<group>"; };
 		B91677B9F127AD1E8F736303 /* APIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIParser.swift; sourceTree = "<group>"; };
+		B98413EAC0988A72BC90B8A8 /* Pods-Challo-ChalloUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challo-ChalloUITests.debug.xcconfig"; path = "Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BAA19D0E74DCE705145C9774 /* RegisterPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenterTests.swift; sourceTree = "<group>"; };
 		BBBD5DFA227C300B6950B825 /* TrailProfileBasicInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailProfileBasicInfo.swift; sourceTree = "<group>"; };
 		BC0F9C0A7AE280D24FE957B6 /* AreaAPIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPIParser.swift; sourceTree = "<group>"; };
@@ -457,7 +459,6 @@
 		DE57A665C5CE9809E990248F /* ChalloTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChalloTests.swift; sourceTree = "<group>"; };
 		DF8D1E2428E77A3A92450B0D /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
 		E0D3A93AA660F79DBE889A31 /* TrailListingInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailListingInteractorTests.swift; sourceTree = "<group>"; };
-		E132833A9E8A0D62BA76C630 /* Pods_Challo_ChalloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challo_ChalloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E24D265311AA798391D4E14F /* TouristLoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristLoginPage.swift; sourceTree = "<group>"; };
 		E2ED6427922AB3C7AC73F18D /* TouristRegistrationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristRegistrationAPI.swift; sourceTree = "<group>"; };
 		E445EF0AA1F2013768950AC0 /* ChalloUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ChalloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -481,32 +482,31 @@
 		FC2F32A74F3561EB4C07677B /* MainContainerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerPresenter.swift; sourceTree = "<group>"; };
 		FD18005D901CCBA11F7677C2 /* TouristAPIParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristAPIParserTests.swift; sourceTree = "<group>"; };
 		FDE7B79A575EC333CDE82F34 /* GuideProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProfilePresenter.swift; sourceTree = "<group>"; };
-		FF84683A957F9BAC7F91E219 /* Pods_ChalloTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChalloTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF86BB2BC15FD5816B6C0218 /* TrailListingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailListingInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		177F482902D9CDB191668AF0 /* Frameworks */ = {
+		1D243F200E36ED3C5067409C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D162BEE1CC1AF32E5ECE538B /* Pods_ChalloTests.framework in Frameworks */,
+				BFB370AF8CA678B05AC0FB78 /* Pods_Challo_ChalloUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8C780E55DA2CB029D802EF33 /* Frameworks */ = {
+		B777F8936D0FCC3307675D3C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71EA5E5C017D44FE7B6096DB /* Pods_Challo.framework in Frameworks */,
+				ACA2A2AF08B6AD4B2155570A /* Pods_Challo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EBC20D6E999EA85A2400E742 /* Frameworks */ = {
+		CE67FB3208741EB7227E6DA8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EA6D3009EC435202965D143 /* Pods_Challo_ChalloUITests.framework in Frameworks */,
+				1475EF5E0B2A3F5FF4FDB2E4 /* Pods_ChalloTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,6 +535,7 @@
 				03E9953B9CBE1C77506296ED /* Networking */,
 				F419FC04F1A6151DFDD61B98 /* TestingUtilities */,
 			);
+			name = ChalloTests;
 			path = ChalloTests;
 			sourceTree = "<group>";
 		};
@@ -594,8 +595,8 @@
 				00DFC140D507BA2BDF7194E4 /* ChalloTests */,
 				89CCA6C2E652038DABEE8AE3 /* ChalloUITests */,
 				B41D5C5F37244B8D4E6F6860 /* Products */,
-				3DB5E83C2FEAE7394C221E42 /* Pods */,
-				949C4337A486259ECBB96F5F /* Frameworks */,
+				4A1B976DD41F4CD75B5C714C /* Pods */,
+				5662203176597BEC3DED6AEF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -761,19 +762,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		3DB5E83C2FEAE7394C221E42 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				978EA29BC46C1147F409AF17 /* Pods-Challo.debug.xcconfig */,
-				9CC1508BAF19E309054E1C51 /* Pods-Challo.release.xcconfig */,
-				72CD0BA4CB2382214D02B33B /* Pods-Challo-ChalloUITests.debug.xcconfig */,
-				35FDB5A93757CE44414D10DA /* Pods-Challo-ChalloUITests.release.xcconfig */,
-				121BFEAA721F78B752DB727B /* Pods-ChalloTests.debug.xcconfig */,
-				B4CE1AA691DF822478C22D54 /* Pods-ChalloTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		3E5BA213CFB4A6481882A6A4 /* Guides */ = {
 			isa = PBXGroup;
 			children = (
@@ -807,6 +795,20 @@
 			path = Guides;
 			sourceTree = "<group>";
 		};
+		4A1B976DD41F4CD75B5C714C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4EB0BD103CEEB19276CBE6BD /* Pods-Challo.debug.xcconfig */,
+				5BF14BFB78142CFEB322997B /* Pods-Challo.release.xcconfig */,
+				B98413EAC0988A72BC90B8A8 /* Pods-Challo-ChalloUITests.debug.xcconfig */,
+				4DE9AFCB5976E99E43BB0C7C /* Pods-Challo-ChalloUITests.release.xcconfig */,
+				2B7DCCAEE06443748977AF0D /* Pods-ChalloTests.debug.xcconfig */,
+				28E63E058D64D96DE4F5FF72 /* Pods-ChalloTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		4FF1B65E4EB79AE77A205CC7 /* TouristLogin */ = {
 			isa = PBXGroup;
 			children = (
@@ -814,6 +816,16 @@
 				4EFAAD3C73B3FD261F7E34D3 /* TouristLoginModuleTests.swift */,
 			);
 			path = TouristLogin;
+			sourceTree = "<group>";
+		};
+		5662203176597BEC3DED6AEF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				241F72D788DC683F04D7FC3B /* Pods_Challo.framework */,
+				6A99D967C59C12FDB4712E07 /* Pods_Challo_ChalloUITests.framework */,
+				588ABF4B7EDA3BA83F083ADF /* Pods_ChalloTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		57342A9682562CBD375A4735 /* Login */ = {
@@ -1018,6 +1030,7 @@
 				1B74F337A9AEADD404D128B1 /* ChalloUITests.swift */,
 				0A96F3F6F6E95D45FDF54FAB /* Info.plist */,
 			);
+			name = ChalloUITests;
 			path = ChalloUITests;
 			sourceTree = "<group>";
 		};
@@ -1040,16 +1053,6 @@
 				3B5EFE7A302EB0E10D9E5C9F /* Components */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		949C4337A486259ECBB96F5F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				75C3BC9228590E656195D784 /* Pods_Challo.framework */,
-				E132833A9E8A0D62BA76C630 /* Pods_Challo_ChalloUITests.framework */,
-				FF84683A957F9BAC7F91E219 /* Pods_ChalloTests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		95CD5140618822D93EE46481 /* Common */ = {
@@ -1402,6 +1405,7 @@
 				7E270D61E62402ADC3EB4088 /* Networking */,
 				835C53FA951D277D5E6DF5B7 /* Preview Content */,
 			);
+			name = Challo;
 			path = Challo;
 			sourceTree = "<group>";
 		};
@@ -1425,13 +1429,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C5CE743BB791A438037CE72 /* Build configuration list for PBXNativeTarget "Challo" */;
 			buildPhases = (
-				94D868A00A88583DAB0DE1A7 /* [CP] Check Pods Manifest.lock */,
+				8A811D2B943CD57DF543B1E4 /* [CP] Check Pods Manifest.lock */,
 				E2A710BCEF6E5CE2EEBC218A /* Sources */,
 				C8D2DB1F035DFEC9FCA9F82D /* Resources */,
 				AC232A4D4E8491BA26EB9444 /* Run Script */,
-				8C780E55DA2CB029D802EF33 /* Frameworks */,
-				C258497CEC3BEC003B6A572B /* [CP] Embed Pods Frameworks */,
-				10C8487790A2191A5B37900D /* [CP] Copy Pods Resources */,
+				B777F8936D0FCC3307675D3C /* Frameworks */,
+				59D626722368C8F4839AD8F6 /* [CP] Embed Pods Frameworks */,
+				FF323BDD39B669AED4E2C701 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1446,9 +1450,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B311B39C6676A86E2B18CA83 /* Build configuration list for PBXNativeTarget "ChalloTests" */;
 			buildPhases = (
-				EEBBE1DE6ED2A14A7AB533F9 /* [CP] Check Pods Manifest.lock */,
+				FF23D32D1C1EE8492830946B /* [CP] Check Pods Manifest.lock */,
 				6A4EAE1F6804BEBB4552DB5B /* Sources */,
-				177F482902D9CDB191668AF0 /* Frameworks */,
+				CE67FB3208741EB7227E6DA8 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1464,11 +1468,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F676285F373368F5353314D /* Build configuration list for PBXNativeTarget "ChalloUITests" */;
 			buildPhases = (
-				0AF0101A7B08D98278B05FBB /* [CP] Check Pods Manifest.lock */,
+				0CB0FCD811FCB87509164B6E /* [CP] Check Pods Manifest.lock */,
 				858492386CAF4080B00FD092 /* Sources */,
-				EBC20D6E999EA85A2400E742 /* Frameworks */,
-				19CA6CAE756FBA4AB67B100B /* [CP] Embed Pods Frameworks */,
-				39CCA0E71BCB70AAE30AB843 /* [CP] Copy Pods Resources */,
+				1D243F200E36ED3C5067409C /* Frameworks */,
+				0E89A6F988F0B1964CF16D99 /* [CP] Embed Pods Frameworks */,
+				CFFC345749149430582452CC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1533,7 +1537,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0AF0101A7B08D98278B05FBB /* [CP] Check Pods Manifest.lock */ = {
+		0CB0FCD811FCB87509164B6E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1555,24 +1559,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		10C8487790A2191A5B37900D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		19CA6CAE756FBA4AB67B100B /* [CP] Embed Pods Frameworks */ = {
+		0E89A6F988F0B1964CF16D99 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1589,24 +1576,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		39CCA0E71BCB70AAE30AB843 /* [CP] Copy Pods Resources */ = {
+		59D626722368C8F4839AD8F6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		94D868A00A88583DAB0DE1A7 /* [CP] Check Pods Manifest.lock */ = {
+		8A811D2B943CD57DF543B1E4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1646,24 +1633,24 @@
 			shellPath = /bin/sh;
 			shellScript = "# Homebrew install location for ARM\nPATH=/usr/local/opt/openssl/bin:/Users/tanle/Library/Python/3.8/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/opt/homebrew/bin\n\nif which swiftlint >/dev/null; then\n    swiftlint autocorrect && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		C258497CEC3BEC003B6A572B /* [CP] Embed Pods Frameworks */ = {
+		CFFC345749149430582452CC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Challo-ChalloUITests/Pods-Challo-ChalloUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EEBBE1DE6ED2A14A7AB533F9 /* [CP] Check Pods Manifest.lock */ = {
+		FF23D32D1C1EE8492830946B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1683,6 +1670,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF323BDD39B669AED4E2C701 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Challo/Pods-Challo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1999,7 +2003,7 @@
 		};
 		5891F4C1BAA9E784EB4B3EEB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4CE1AA691DF822478C22D54 /* Pods-ChalloTests.release.xcconfig */;
+			baseConfigurationReference = 28E63E058D64D96DE4F5FF72 /* Pods-ChalloTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2084,14 +2088,13 @@
 		};
 		762EB4AC3034F915CE7F8222 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 978EA29BC46C1147F409AF17 /* Pods-Challo.debug.xcconfig */;
+			baseConfigurationReference = 4EB0BD103CEEB19276CBE6BD /* Pods-Challo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Challo/Preview Content\"";
-				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Challo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2108,7 +2111,7 @@
 		};
 		764393432803D2DEF6720B87 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 72CD0BA4CB2382214D02B33B /* Pods-Challo-ChalloUITests.debug.xcconfig */;
+			baseConfigurationReference = B98413EAC0988A72BC90B8A8 /* Pods-Challo-ChalloUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2129,7 +2132,7 @@
 		};
 		881AFFDD9C03F2F0FBE38950 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 121BFEAA721F78B752DB727B /* Pods-ChalloTests.debug.xcconfig */;
+			baseConfigurationReference = 2B7DCCAEE06443748977AF0D /* Pods-ChalloTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2151,7 +2154,7 @@
 		};
 		A43D57A113DBA9423B701809 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 35FDB5A93757CE44414D10DA /* Pods-Challo-ChalloUITests.release.xcconfig */;
+			baseConfigurationReference = 4DE9AFCB5976E99E43BB0C7C /* Pods-Challo-ChalloUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2172,14 +2175,13 @@
 		};
 		D6229B34B81B71F112B7F297 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CC1508BAF19E309054E1C51 /* Pods-Challo.release.xcconfig */;
+			baseConfigurationReference = 5BF14BFB78142CFEB322997B /* Pods-Challo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Challo/Preview Content\"";
-				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Challo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
