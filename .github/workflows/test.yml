@@ -16,14 +16,13 @@ jobs:
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_12.app
     
-    - name: Navigate to project directory
-      run: cd Challo/
-    
     - name: Xcodegen
+      runs: cd Challo/
       uses: xavierLowmiller/xcodegen-action@1.0.0
       
     - name: Install dependencies
       run: |
+        cd Challo/
         pod install
       shell: bash
 
