@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B035537CA9759DD37C5B1F41"
-               BuildableName = "Challo.app"
-               BlueprintName = "Challo"
+               BlueprintIdentifier = "C458E4288FF021D1684C9CCE"
+               BuildableName = "ChalloTests.xctest"
+               BlueprintName = "ChalloTests"
                ReferencedContainer = "container:Challo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,9 +33,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B035537CA9759DD37C5B1F41"
-            BuildableName = "Challo.app"
-            BlueprintName = "Challo"
+            BlueprintIdentifier = "C458E4288FF021D1684C9CCE"
+            BuildableName = "ChalloTests.xctest"
+            BlueprintName = "ChalloTests"
             ReferencedContainer = "container:Challo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,16 +64,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B035537CA9759DD37C5B1F41"
-            BuildableName = "Challo.app"
-            BlueprintName = "Challo"
+            BlueprintIdentifier = "C458E4288FF021D1684C9CCE"
+            BuildableName = "ChalloTests.xctest"
+            BlueprintName = "ChalloTests"
             ReferencedContainer = "container:Challo.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <CommandLineArguments>
       </CommandLineArguments>
       <EnvironmentVariables>
@@ -99,9 +98,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B035537CA9759DD37C5B1F41"
-            BuildableName = "Challo.app"
-            BlueprintName = "Challo"
+            BlueprintIdentifier = "C458E4288FF021D1684C9CCE"
+            BuildableName = "ChalloTests.xctest"
+            BlueprintName = "ChalloTests"
             ReferencedContainer = "container:Challo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

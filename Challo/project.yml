@@ -1,0 +1,144 @@
+options:
+  defaultConfig: Release
+  bundleIdPrefix: com.GroupX.Challo
+  xcodeVersion: "12.3"
+  deploymentTarget:
+    iOS: 14.3
+  groupSortPosition: bottom
+configs:
+  Debug: debug
+  Release: release
+name: Challo
+schemes:
+  Challo:
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+    build:
+      targets:
+        Challo:
+        - running
+        - testing
+        - profiling
+        - analyzing
+        - archiving
+    profile:
+      config: Release
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+      - ChalloTests
+      - ChalloUITests
+settings:
+  configs:
+    Debug:
+      CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: YES
+      IPHONEOS_DEPLOYMENT_TARGET: 14.3
+      MTL_ENABLE_DEBUG_INFO: INCLUDE_SOURCE
+      MTL_FAST_MATH: YES
+      SDKROOT: iphoneos
+      SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+      SWIFT_OPTIMIZATION_LEVEL: -Onone
+    Release:
+      CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: YES
+      IPHONEOS_DEPLOYMENT_TARGET: 14.3
+      MTL_FAST_MATH: YES
+      SDKROOT: iphoneos
+      SWIFT_COMPILATION_MODE: wholemodule
+      SWIFT_OPTIMIZATION_LEVEL: -O
+targets:
+  Challo:
+    platform: iOS
+    postbuildScripts:
+    - runOnlyWhenInstalling: false
+      script: "# Homebrew install location for ARM\nPATH=${PATH}:/opt/homebrew/bin\n\nif
+        which swiftlint >/dev/null; then\n    swiftlint autocorrect && swiftlint\nelse\n
+        \ echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n"
+      shell: /bin/sh
+    settings:
+      configs:
+        Debug:
+          ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+          CODE_SIGN_IDENTITY: Apple Development
+          CODE_SIGN_STYLE: Automatic
+          DEVELOPMENT_ASSET_PATHS: '"Challo/Preview Content"'
+          INFOPLIST_FILE: Challo/Info.plist
+          IPHONEOS_DEPLOYMENT_TARGET: 14.0
+          PROVISIONING_PROFILE_SPECIFIER: 
+          SWIFT_VERSION: 5.0
+        Release:
+          ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+          CODE_SIGN_IDENTITY: Apple Development
+          CODE_SIGN_STYLE: Automatic
+          DEVELOPMENT_ASSET_PATHS: '"Challo/Preview Content"'
+          INFOPLIST_FILE: Challo/Info.plist
+          IPHONEOS_DEPLOYMENT_TARGET: 14.0
+          PROVISIONING_PROFILE_SPECIFIER: 
+          SWIFT_VERSION: 5.0
+    sources:
+    - name: Challo
+      path: Challo
+    type: application
+    scheme:
+      environmentVariables:
+        api_path: "http://challo-api-staging.herokuapp.com/api"
+        google_maps_api_key: "AIzaSyBf4UUNjUwdWq79hcObEcsidHbWOYWy0Ao"
+  ChalloTests:
+    dependencies:
+    - target: Challo
+    platform: iOS
+    settings:
+      configs:
+        Debug:
+          ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES: YES
+          BUNDLE_LOADER: $(TEST_HOST)
+          CODE_SIGN_STYLE: Automatic
+          INFOPLIST_FILE: ChalloTests/Info.plist
+          IPHONEOS_DEPLOYMENT_TARGET: 14.0
+          SWIFT_VERSION: 5.0
+          TEST_HOST: $(BUILT_PRODUCTS_DIR)/Challo.app/Challo
+        Release:
+          ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES: YES
+          BUNDLE_LOADER: $(TEST_HOST)
+          CODE_SIGN_STYLE: Automatic
+          INFOPLIST_FILE: ChalloTests/Info.plist
+          IPHONEOS_DEPLOYMENT_TARGET: 14.0
+          SWIFT_VERSION: 5.0
+          TEST_HOST: $(BUILT_PRODUCTS_DIR)/Challo.app/Challo
+    sources:
+    - name: ChalloTests
+      path: ChalloTests
+    type: bundle.unit-test
+    scheme:
+      environmentVariables:
+        api_path: "http://challo-api-staging.herokuapp.com/api"
+        google_maps_api_key: "AIzaSyBf4UUNjUwdWq79hcObEcsidHbWOYWy0Ao"
+  ChalloUITests:
+    dependencies:
+    - target: Challo
+    platform: iOS
+    settings:
+      configs:
+        Debug:
+          ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES: YES
+          CODE_SIGN_STYLE: Automatic
+          INFOPLIST_FILE: ChalloUITests/Info.plist
+          SWIFT_VERSION: 5.0
+          TEST_TARGET_NAME: Challo
+        Release:
+          ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES: YES
+          CODE_SIGN_STYLE: Automatic
+          INFOPLIST_FILE: ChalloUITests/Info.plist
+          SWIFT_VERSION: 5.0
+          TEST_TARGET_NAME: Challo
+    sources:
+    - name: ChalloUITests
+      path: ChalloUITests
+    type: bundle.ui-testing
+    scheme:
+      environmentVariables:
+        api_path: "http://challo-api-staging.herokuapp.com/api"
+        google_maps_api_key: "AIzaSyBf4UUNjUwdWq79hcObEcsidHbWOYWy0Ao"
