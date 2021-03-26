@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: [ master ] 
 
 jobs:
   build-and-test:
@@ -16,9 +16,16 @@ jobs:
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_12.app
     
+    - name: Xcodegen
+      run: |
+        git clone https://github.com/yonaskolb/XcodeGen.git
+        cd XcodeGen
+        make install
+      
     - name: Install dependencies
       run: |
         cd Challo/
+        xcodegen generate
         pod install
       shell: bash
 
