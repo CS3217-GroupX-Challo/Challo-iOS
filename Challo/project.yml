@@ -1,9 +1,8 @@
 options:
   defaultConfig: Release
-  bundleIdPrefix: com.GroupX.Challo
-  xcodeVersion: "12.3"
+  bundleIdPrefix: com.GroupX
   deploymentTarget:
-    iOS: 14.3
+    iOS: 14.0
   groupSortPosition: bottom
 configs:
   Debug: debug
