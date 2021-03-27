@@ -9,6 +9,20 @@ import SwiftUI
 
 struct TripCard: View {
 
+    // TODO: remove, just for testing
+    static var trips: [Trip] {
+        let tripName = "Beginner Himalayan Introduction"
+        let tripDate = Date(timeIntervalSinceReferenceDate: 10_000)
+        let guideName = "Challo Naveen"
+        let duration = "3 hours"
+        let trip = Trip(tripName: tripName,
+                        tripDate: tripDate,
+                        duration: duration,
+                        guideName: guideName)
+        
+        return [trip, trip, trip, trip, trip]
+    }
+
     var trip: Trip
     var width: CGFloat
     
