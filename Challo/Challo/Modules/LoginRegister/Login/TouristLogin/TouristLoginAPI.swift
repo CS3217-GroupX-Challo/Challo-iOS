@@ -6,8 +6,9 @@
 //
 
 class TouristLoginAPI: LoginAPI {
-
-    let userAPI = UserAPI()
+    let networkManager: AlamofireManager = APINetwork.getNetworkManager()
+    let userAPI = UserAPI(userParser: UserAPIParser(),
+                          networkManager: APINetwork.getNetworkManager())
     let touristParser = TouristAPIParser()
     let userTypeUrl = "/tourist"
 

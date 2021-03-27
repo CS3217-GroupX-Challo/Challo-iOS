@@ -9,8 +9,14 @@ import SwiftUI
 
 final class GuidesListingModule: ViperModuleProtocol {
     static func assemble() -> (view: AnyView, presenter: GuidesListingPresenter) {
-        let interactor = GuidesListingInteractor(guideAPI: GuideAPI(),
-                                                 areaAPI: AreaAPI())
+        let guideAPI = GuideAPI(guideParser: GuideAPIParser(),
+                                trailParser: TrailAPIParser(),
+                                networkManager: APINetwork.getNetworkManager())
+        let areaAPI = AreaAPI(areaParser: AreaAPIParser(),
+                              networkManager: APINetwork.getNetworkManager())
+        
+        let interactor = GuidesListingInteractor(guideAPI: guideAPI,
+                                                 areaAPI: areaAPI)
         let router = GuidesListingRouter()
         let presenter = GuidesListingPresenter()
         interactor.presenter = presenter

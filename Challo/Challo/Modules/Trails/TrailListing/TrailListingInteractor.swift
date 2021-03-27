@@ -15,7 +15,9 @@ class TrailListingInteractor: InteractorProtocol {
     }
     
     convenience init() {
-        self.init(trailAPI: TrailAPI())
+        let trailAPI = TrailAPI(parser: TrailAPIParser(),
+                                networkManager: APINetwork.getNetworkManager())
+        self.init(trailAPI: trailAPI)
     }
 
     func getAllTrails(callback: @escaping ([Trail]) -> Void) {
