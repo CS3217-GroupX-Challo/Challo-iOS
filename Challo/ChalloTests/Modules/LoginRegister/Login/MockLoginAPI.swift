@@ -10,7 +10,9 @@
 class MockLoginAPI: LoginAPI {
 
     typealias JSON = NetworkManager.JSON
-    var userAPI = UserAPI()
+    var networkManager: AlamofireManager = APINetwork.getNetworkManager()
+    var userAPI = UserAPI(userParser: UserAPIParser(),
+                          networkManager: APINetwork.getNetworkManager())
     var userTypeUrl = "/"
 
     let testEmail = "example@mail.com"

@@ -10,7 +10,9 @@
 class MockRegisterAPI: RegisterAPI {
 
     typealias JSON = NetworkManager.JSON
-    var userAPI = UserAPI()
+    var userAPI = UserAPI(userParser: UserAPIParser(),
+                          networkManager: APINetwork.getNetworkManager())
+    var networkManager = APINetwork.getNetworkManager()
     var userTypeUrl = ""
     var shouldSucceed = true
 
