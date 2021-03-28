@@ -17,7 +17,10 @@ class GuideAPITests: XCTestCase {
                                 networkManager: MockNetworkManager(json: JSON()))
         guideAPI.getGuides { guides in
             XCTAssertEqual(guides.count, 1, "Number of guides is wrong")
-            XCTAssertEqual(guides[0], MockGuideAPIResponses.guideOne, "First guide is wrong")
+            var guide = MockGuideAPIResponses.guideOne
+            let trailAPIParser = MockTrailAPIParser()
+            guide.trails = trailAPIParser.parseTrail(response: JSON())
+            XCTAssertEqual(guides[0], guide, "First guide is wrong")
         }
     }
 }
