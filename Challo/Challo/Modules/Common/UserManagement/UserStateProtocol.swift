@@ -34,4 +34,12 @@ extension UserStateProtocol {
         userId = certificate.userId
         user = certificate.user
     }
+
+    func logIn() {
+        loggedIn = true
+    }
+
+    func logOut() {
+        loggedIn = false
+    }
 }

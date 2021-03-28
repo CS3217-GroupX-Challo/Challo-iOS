@@ -10,7 +10,8 @@ import SwiftUI
 class GuideRegisterModule: ViperModuleProtocol {
 
     static func assemble(userState: UserStateProtocol) -> (view: AnyView, presenter: GuideRegisterPresenter) {
-        let interactor = GuideRegisterInteractor()
+        let certManager = CertificateManager(userState: userState)
+        let interactor = GuideRegisterInteractor(certificateManager: certManager)
         let presenter = GuideRegisterPresenter()
         let router = GuideRegisterRouter()
         interactor.presenter = presenter
@@ -21,7 +22,7 @@ class GuideRegisterModule: ViperModuleProtocol {
         let loginAPI = GuideLoginAPI()
         let registerAPI = GuideRegistrationAPI()
         let socialPresenter = SocialLoginPresenter
-            .createSocialLoginPresenter(loginAPI: loginAPI, registerAPI: registerAPI)
+            .createSocialLoginPresenter(loginAPI: loginAPI, registerAPI: registerAPI, certificateManager: certManager)
     
         let registerView = AnyView(GuideRegisterPage(registerPresenter: presenter,
                                                      socialLoginPresenter: socialPresenter))

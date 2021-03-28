@@ -10,14 +10,15 @@ class GuideRegisterInteractor: RegisterInteractor, InteractorProtocol {
     weak var presenter: RegisterPresenter!
 
     private let registerAPI: RegisterAPI
-    var certificateManager = CertificateManager()
+    var certificateManager: CertificateManager
 
-    init(registerAPI: RegisterAPI) {
+    init(registerAPI: RegisterAPI, certificateManager: CertificateManager) {
         self.registerAPI = registerAPI
+        self.certificateManager = certificateManager
     }
 
-    convenience init() {
-        self.init(registerAPI: GuideRegistrationAPI())
+    convenience init(certificateManager: CertificateManager) {
+        self.init(registerAPI: GuideRegistrationAPI(), certificateManager: certificateManager)
     }
     
     func register(details: RegistrationDetails) {

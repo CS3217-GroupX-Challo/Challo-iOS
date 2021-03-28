@@ -30,7 +30,7 @@ class UserState: UserStateProtocol, ObservableObject {
 
     init() {
         guard UserState.instances == 0 else {
-            ChalloLogger.logger.fault("[FATAL]: Attempted to spawn another UserState")
+            ChalloLogger.logger.fault("Attempted to spawn another UserState")
             fatalError("UserState should not be initiailised more than once")
         }
         loggedIn = false
@@ -44,14 +44,6 @@ class UserState: UserStateProtocol, ObservableObject {
         let sample = UserState()
         instances = initialCount
         return sample
-    }
-    
-    func logOut() {
-        loggedIn = false
-    }
-
-    func logIn() {
-        loggedIn = true
     }
 
     var certificate: UserCertificate? {
