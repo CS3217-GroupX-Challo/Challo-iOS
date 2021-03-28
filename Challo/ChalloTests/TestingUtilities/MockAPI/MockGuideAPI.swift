@@ -10,9 +10,9 @@
 class MockGuideAPI: GuideAPI {
     
     init() {
-        super.init(guideParser: GuideAPIParser(),
-                   trailParser: TrailAPIParser(),
-                   networkManager: APINetwork.getNetworkManager())
+        super.init(guideParser: MockGuideAPIParser(),
+                   trailParser: MockTrailAPIParser(),
+                   networkManager: MockNetworkManager(json: JSON()))
     }
     
     override func getGuides(callback: @escaping ([Guide]) -> Void, url: String = "/guide") {

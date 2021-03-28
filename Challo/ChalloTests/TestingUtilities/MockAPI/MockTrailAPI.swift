@@ -10,8 +10,8 @@
 class MockTrailAPI: TrailAPI {
     
     init() {
-        super.init(parser: TrailAPIParser(),
-                   networkManager: APINetwork.getNetworkManager())
+        super.init(parser: MockTrailAPIParser(),
+                   networkManager: MockNetworkManager(json: JSON()))
     }
     
     override func getAllTrails(callback: @escaping ([Trail]) -> Void) {

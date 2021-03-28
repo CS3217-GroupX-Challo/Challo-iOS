@@ -12,8 +12,7 @@ class MockAreaAPI: AreaAPI {
     
     init() {
         super.init(areaParser: MockAreaAPIParser(),
-                   networkManager: MockNetworkManager(parser: MockAreaAPIParser(),
-                                                      json: JSON()))
+                   networkManager: MockNetworkManager(json: JSON()))
     }
     
     // mocking this function instead

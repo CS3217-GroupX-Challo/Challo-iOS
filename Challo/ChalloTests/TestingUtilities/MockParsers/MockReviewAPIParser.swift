@@ -9,6 +9,6 @@
 
 class MockReviewAPIParser: ReviewAPIParser {
     override func parseReviews(response: ReviewAPIParser.JSON) -> [ReviewState] {
-        [MockReviewAPIResponse.reviewStateOne, MockReviewAPIResponse.reviewStateTwo]
+        []
     }
 }

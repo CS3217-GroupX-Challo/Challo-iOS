@@ -9,6 +9,6 @@
 
 class MockTouristAPIParser: TouristAPIParser {
     override func convertJSONToTourist(json: TouristAPIParser.JSON) -> Tourist? {
-        nil
+        MockTouristAPIResponse.tourist
     }
 }

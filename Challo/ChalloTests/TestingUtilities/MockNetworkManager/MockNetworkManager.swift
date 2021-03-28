@@ -10,11 +10,9 @@
 class MockNetworkManager: NetworkManager {
     typealias JSON = NetworkManager.JSON
     
-    let parser: APIParser
     let json: JSON
     
-    init(parser: APIParser, json: JSON) {
-        self.parser = parser
+    init(json: JSON) {
         self.json = json
     }
     

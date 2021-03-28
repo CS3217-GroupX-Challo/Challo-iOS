@@ -9,12 +9,13 @@
 import Foundation
 
 class MockReviewsAPI: ReviewAPI {
+    typealias JSON = NetworkManager.JSON
+    
     init() {
-        super.init(reviewParser: ReviewAPIParser(), trailAPI: MockTrailAPI(),
-                   touristAPI: TouristAPI(touristParser: TouristAPIParser(),
-                                          networkManager: APINetwork.getNetworkManager()),
+        super.init(reviewParser: MockReviewAPIParser(), trailAPI: MockTrailAPI(),
+                   touristAPI: MockTouristAPI(),
                    guideAPI: MockGuideAPI(),
-                   networkManager: APINetwork.getNetworkManager())
+                   networkManager: MockNetworkManager(json: JSON()))
     }
     
     override func getReviewsForGuide(guideId: UUID, callback: @escaping ([Review]) -> Void) {
