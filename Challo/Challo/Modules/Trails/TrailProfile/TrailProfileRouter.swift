@@ -10,4 +10,9 @@ import SwiftUI
 class TrailProfileRouter: RouterProtocol {
     
     weak var presenter: TrailProfilePresenter!
+
+    func getBookingPage() -> some View {
+        TrailBookingPage()
+            .environmentObject(presenter)
+    }
 }

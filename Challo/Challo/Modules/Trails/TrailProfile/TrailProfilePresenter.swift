@@ -27,6 +27,7 @@ class TrailProfilePresenter: PresenterProtocol, ObservableObject {
         interactor.getReviewsForTrail(trailId: trail.trailId, callback: didGetReviewsForTrail)
     }
     
-    func onTapBookTrailButton() {
+    func onTapBookTrailButton() -> some View {
+        router?.getBookingPage()
     }
 }
