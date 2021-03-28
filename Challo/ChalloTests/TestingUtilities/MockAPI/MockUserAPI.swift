@@ -9,7 +9,7 @@
 
 class MockUserAPI: UserAPI {
 
-    var shouldSucceed = false
+    var shouldSucceed = true
 
     init() {
         super.init(userParser: MockUserAPIParser(),
@@ -19,7 +19,7 @@ class MockUserAPI: UserAPI {
     override func commonLogin(credentials: JSON,
                               callback: @escaping (UserAPIResponse) -> Void) {
         let response = shouldSucceed
-            ? UserAPIResponse(success: true)
+            ? UserAPIResponse(success: true, certificate: MockUserAPIResponses.certificate)
             : UserAPIResponse(success: false)
         callback(response)
     }
@@ -27,7 +27,7 @@ class MockUserAPI: UserAPI {
     override func commonRegister(details: JSON,
                                  callback: @escaping (UserAPIResponse) -> Void) {
         let response = shouldSucceed
-            ? UserAPIResponse(success: true)
+            ? UserAPIResponse(success: true, certificate: MockUserAPIResponses.certificate)
             : UserAPIResponse(success: false)
         callback(response)
     }
