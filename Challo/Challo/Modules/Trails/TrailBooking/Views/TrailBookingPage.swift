@@ -20,7 +20,11 @@ struct TrailBookingPage: View {
                             .resizable()
                             .scaledToFill()
                             .frame(width: geometry.size.width,
-                                   height: geometry.size.height / 3.0,
+                                   height: geometry.size.height * (1 / 4.0),
+                                   alignment: .center)
+                        TrailBookingOptions()
+                            .frame(width: geometry.size.width,
+                                   height: geometry.size.height * (1 / 2.0),
                                    alignment: .center)
                         TrailProfileDetails()
                             .padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 50))
