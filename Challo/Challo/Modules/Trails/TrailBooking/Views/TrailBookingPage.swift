@@ -22,7 +22,7 @@ struct TrailBookingPage: View {
                             .frame(width: geometry.size.width,
                                    height: geometry.size.height * (1 / 4.0),
                                    alignment: .center)
-                        TrailBookingOptions()
+                        TrailBookingOptions(presenter: TrailBookingPresenter())
                             .frame(width: geometry.size.width,
                                    height: geometry.size.height * (1 / 2.0),
                                    alignment: .center)
