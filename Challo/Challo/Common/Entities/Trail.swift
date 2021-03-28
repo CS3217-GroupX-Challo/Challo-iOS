@@ -18,7 +18,7 @@ import MapKit
 /// - `images` contains the URLs to images of the trail
 /// - `numOfReview`is non-negative
 /// - `lowestFee` is more than 0 and is in RP
-/// - `landmarks` is non-empty, where the first element is the starting point of the trail and the last element is the end point
+/// - `landmarks` is non-empty, where the first element is the start of the trail and the last element is the end
 struct Trail {
     /// Unique id fo the trail
     let trailId: UUID
