@@ -36,7 +36,8 @@ class SettingsPresenter: PresenterProtocol, ObservableObject {
             loggedInSettingOptions.append(logOutButton)
         }
         guard let state = userState as? UserState else {
-            fatalError("userState variable should be of type UserState")
+            // fatalError("userState variable should be of type UserState")
+            return
         }
         let loggedInSubscriber = state.$loggedIn.sink(receiveValue: toggleOptionsFrom)
         cancellables.insert(loggedInSubscriber)

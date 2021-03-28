@@ -34,14 +34,24 @@ class UserState: UserStateProtocol, ObservableObject {
         UserState.instances += 1
     }
 
-    /// Sample user state strictly for use in previews. Do NOT use it beyond that.
-    internal static var sampleUserState: UserState {
-        let initialCount = instances
-        instances = 0
-        let sample = UserState()
-        instances = initialCount
-        return sample
+    var certificate: UserCertificate? {
+        guard loggedIn else {
+            return nil
+        }
+        return UserCertificate(name: name,
+                               email: email,
+                               token: token,
+                               userId: userId)
     }
+}
+
+internal class PreviewUserState: UserStateProtocol {
+
+    var loggedIn: Bool = false
+    var email: String = ""
+    var name: String = ""
+    var token: String = ""
+    var userId: String = ""
 
     var certificate: UserCertificate? {
         guard loggedIn else {
@@ -52,4 +62,7 @@ class UserState: UserStateProtocol, ObservableObject {
                                token: token,
                                userId: userId)
     }
+
+    var user: User?
+
 }
