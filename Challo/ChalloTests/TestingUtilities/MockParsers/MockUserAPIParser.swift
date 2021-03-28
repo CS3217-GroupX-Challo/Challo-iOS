@@ -8,7 +8,15 @@
 @testable import Challo
 
 class MockUserAPIParser: UserAPIParser {
-    override func parseUser(apiResponse: UserAPIParser.JSON) -> UserCertificate? {
-        nil
+
+    typealias JSON = NetworkManager.JSON
+    typealias Response = MockUserAPIResponses
+
+    override func parseUser(apiResponse: JSON) -> UserCertificate? {
+        guard let success = apiResponse["success"] as? Bool,
+              success else {
+            return nil
+        }
+        return Response.certificate
     }
 }

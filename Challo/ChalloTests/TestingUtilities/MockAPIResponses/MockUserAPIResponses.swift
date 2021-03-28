@@ -48,4 +48,18 @@ struct MockUserAPIResponses {
         json["data"] = validUser
         return json
     }
+    
+    static var failureResponse: JSON {
+        var json = JSON()
+        json["message"] = "Failed to login"
+        return json
+    }
+
+    static var certificate: UserCertificate {
+        UserCertificate(name: name,
+                        email: email,
+                        token: tokenString,
+                        userId: userId,
+                        user: nil)
+    }
 }
