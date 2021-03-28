@@ -5,7 +5,6 @@
 //  Created by Shao Yi on 15/3/21.
 //
 
-/// Representation of a Tourist user
 import Foundation
 
 struct Tourist: User {
@@ -22,4 +21,8 @@ struct Tourist: User {
     var dateJoined: Date?
     
     var sex: Sex?
+}
+
+// MARK: Equatable
+extension Tourist: Equatable {
 }

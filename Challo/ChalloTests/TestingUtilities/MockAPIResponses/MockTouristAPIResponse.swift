@@ -39,4 +39,10 @@ struct MockTouristAPIResponse: MockAPIResponse {
         json["data"] = validTouristJSON
         return json
     }
+    
+    static var tourist: Tourist {
+        Tourist(userId: userId, email: email, profileImg: profileImg,
+                name: name, phone: phone,
+                dateJoined: dateJoined, sex: sex)
+    }
 }

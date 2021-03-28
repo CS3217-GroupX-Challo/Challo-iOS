@@ -5,7 +5,8 @@
 //  Created by Tan Le Yang on 20/3/21.
 //
 
-struct APINetwork {
-
-    static let api = AlamofireManager.alamofireManager
+struct APINetwork {    
+    static func getNetworkManager() -> NetworkManager {
+        AlamofireManager.alamofireManager
+    }
 }

@@ -17,7 +17,16 @@ class TrailProfileInteractor: InteractorProtocol {
     }
 
     convenience init() {
-        self.init(reviewAPI: ReviewAPI())
+        let networkManager = APINetwork.getNetworkManager()
+        let trailAPI = TrailAPI(parser: TrailAPIParser(), networkManager: networkManager)
+        let touristAPI = TouristAPI(touristParser: TouristAPIParser(), networkManager: networkManager)
+        let guideAPI = GuideAPI(guideParser: GuideAPIParser(), trailParser: TrailAPIParser(),
+                                networkManager: networkManager)
+        
+        let reviewAPI = ReviewAPI(reviewParser: ReviewAPIParser(), trailAPI: trailAPI,
+                                  touristAPI: touristAPI, guideAPI: guideAPI,
+                                  networkManager: networkManager)
+        self.init(reviewAPI: reviewAPI)
     }
 
     func getReviewsForTrail(trailId: UUID, callback: @escaping ([Review]) -> Void) {
