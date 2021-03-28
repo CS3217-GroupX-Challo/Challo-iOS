@@ -23,9 +23,6 @@ class UserState: UserStateProtocol, ObservableObject {
     @AppStorage("userId") var userId = ""
     var user: User?
 
-    static var globalState: UserState = globalInstance
-    private static let globalInstance = UserState()
-
     private static var instances = 0
 
     init() {
