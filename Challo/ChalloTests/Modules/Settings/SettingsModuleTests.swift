@@ -11,7 +11,7 @@ import SwiftUI
 
 class SettingsModuleTests: XCTestCase {
     func testAssemble_returnsPresenterWithCorrectPropertiesAndView() {
-        let (view, presenter) = SettingsModule.assemble()
+        let (view, presenter) = SettingsModule.assemble(userState: UserState.sampleUserState)
         XCTAssertNotNil(view, "Wrong view returned")
         XCTAssertNotNil(presenter, "Wrong presenter returned")
         XCTAssertNotNil(presenter.router, "Presenter properties not assigned")
