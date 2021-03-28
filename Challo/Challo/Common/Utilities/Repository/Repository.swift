@@ -7,47 +7,51 @@
 
 import Foundation
 
-/// Protocol for the repository pattern
-///
-/// A repository is an abstraction of the data layer and serves as the central component for handling domain objects
-protocol Repository {
-    /// The type of domain object for which this repository contains
-    associatedtype Entity
+/// A base implementation of the repository, keyed using UUID
+class Repository<T>: RepositoryProtocol {
+    private var repository: [UUID: T]
     
-    /// The type of key that uniquely identifies an entity
-    associatedtype Key: Hashable
+    init(_ initialRepository: [UUID: T]? = nil) {
+        repository = initialRepository ?? [UUID: T]()
+    }
     
-    /// Retrieves all entities found in the repository
-    func getAll() -> [Entity]
+    func getAll() -> [T] {
+        Array(repository.values)
+    }
     
-    /// Retrieves an entity by its unique key
-    /// - Returns
-    ///     - the retrieved entity matched by the given key, or nil if no entity is matched by the key
-    func getByKey(_ key: Key) -> Entity?
+    func getByKey(_ key: UUID) -> T? {
+        repository[key]
+    }
     
-    /// Stores an entity into repository.
-    ///
-    /// An optional key can be provided to specify the unique idenitifer of the entity.
-    /// If a key is not provided, the repository should auto generate a key
-    /// - Parameters
-    ///     - `entity`: the entity to store inside the repository
-    ///     - `key`: an optional key can be provided to specify the unique idenitifer of the entity
-    /// - Returns
-    ///     - the key that unique identifies the stored entity,
-    ///     - or nil if the given key is already found in the repository and store is not performed
-    func store(_ entity: Entity, key: Key?) -> Key?
+    private func checkIfExistingKey(_ key: UUID) -> Bool {
+        repository.keys.contains(key)
+    }
     
-    /// Delete an entity by its unique key
-    /// A delete operation fails when the key does not exist in the repository
-    /// - Returns
-    ///     - the deleted entity, or nil if deletion fails.
-    func deleteByKey(_ key: Key) -> Entity?
+    @discardableResult
+    func insert(_ entity: T, key: UUID?) -> UUID? {
+        let keyToUse = key ?? UUID()
+        
+        guard !checkIfExistingKey(keyToUse) else {
+            return nil
+        }
+        repository[keyToUse] = entity
+        return keyToUse
+    }
     
-    /// Delete an entity by its unique key
-    /// An update operation fails when the key does not exist in the repository
-    /// - Parameters
-    ///     - `entity`: the updated entity
-    /// - Returns
-    ///     - the updated entity, or nil if deletion fails.
-    func updateByKey(entity: Entity, key: Key) -> Entity?
+    func deleteByKey(_ key: UUID) -> T? {
+        repository.removeValue(forKey: key)
+    }
+    
+    func updateByKey(entity: T, key: UUID) -> T? {
+        guard checkIfExistingKey(key) else {
+            return nil
+        }
+        repository[key] = entity
+        return entity
+    }
+    
+    func upsert(entity: T, key: UUID) -> T {
+        repository[key] = entity
+        return entity
+    }
 }
