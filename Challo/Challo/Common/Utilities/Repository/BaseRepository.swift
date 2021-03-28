@@ -9,10 +9,10 @@ import Foundation
 
 /// A basic implementation of the repository, keyed using UUID
 class BaseRepository<T>: Repository {
-    var repository: [UUID:T]
+    private var repository: [UUID: T]
     
-    init() {
-        repository = [UUID:T]()
+    init(_ initialRepository: [UUID: T]? = nil) {
+        repository = initialRepository ?? [UUID: T]()
     }
     
     func getAll() -> [T] {
@@ -23,14 +23,15 @@ class BaseRepository<T>: Repository {
         repository[key]
     }
     
-    private func checkIfKeyExists(_ key: UUID) -> Bool {
+    private func checkIfExistingKey(_ key: UUID) -> Bool {
         repository.keys.contains(key)
     }
     
+    @discardableResult
     func store(_ entity: T, key: UUID?) -> UUID? {
         let keyToUse = key ?? UUID()
         
-        guard checkIfKeyExists(keyToUse) else {
+        guard !checkIfExistingKey(keyToUse) else {
             return nil
         }
         repository[keyToUse] = entity
@@ -42,7 +43,7 @@ class BaseRepository<T>: Repository {
     }
     
     func updateByKey(entity: T, key: UUID) -> T? {
-        guard checkIfKeyExists(key) else {
+        guard checkIfExistingKey(key) else {
             return nil
         }
         repository[key] = entity

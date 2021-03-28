@@ -27,23 +27,27 @@ protocol Repository {
     
     /// Stores an entity into repository.
     ///
-    /// An optional key can be provided to specify the unique idenitifer of the entity. If a key is not provided, the repository should auto generate a key
+    /// An optional key can be provided to specify the unique idenitifer of the entity.
+    /// If a key is not provided, the repository should auto generate a key
     /// - Parameters
     ///     - `entity`: the entity to store inside the repository
     ///     - `key`: an optional key can be provided to specify the unique idenitifer of the entity
     /// - Returns
-    ///     - the key that unique identifies the stored entity, or nil if the given key is already found in the repository and store is not performed
+    ///     - the key that unique identifies the stored entity,
+    ///     - or nil if the given key is already found in the repository and store is not performed
     func store(_ entity: Entity, key: Key?) -> Key?
     
     /// Delete an entity by its unique key
+    /// A delete operation fails when the key does not exist in the repository
     /// - Returns
-    ///     - the deleted entity, or nil if deletion fails. A delete operation fails when the key does not exist in the repository
+    ///     - the deleted entity, or nil if deletion fails.
     func deleteByKey(_ key: Key) -> Entity?
     
     /// Delete an entity by its unique key
+    /// An update operation fails when the key does not exist in the repository
     /// - Parameters
     ///     - `entity`: the updated entity
     /// - Returns
-    ///     - the updated entity, or nil if deletion fails. An update operation fails when the key does not exist in the repository
+    ///     - the updated entity, or nil if deletion fails.
     func updateByKey(entity: Entity, key: Key) -> Entity?
 }
