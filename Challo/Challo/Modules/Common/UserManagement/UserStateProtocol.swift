@@ -18,6 +18,10 @@ protocol UserStateProtocol: AnyObject {
     var user: User? { get set }
     
     func storeCertificate(certificate: UserCertificate)
+
+    func logIn()
+
+    func logOut()
 }
 
 extension UserStateProtocol {

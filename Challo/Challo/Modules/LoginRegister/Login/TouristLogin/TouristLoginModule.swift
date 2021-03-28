@@ -8,10 +8,10 @@ import SwiftUI
 
 final class TouristLoginModule: ViperModuleProtocol {
 
-    static func assemble() -> (view: AnyView, presenter: TouristLoginPresenter) {
+    static func assemble(userState: UserStateProtocol) -> (view: AnyView, presenter: TouristLoginPresenter) {
         let interactor = TouristLoginInteractor()
         let presenter = TouristLoginPresenter()
-        let router = TouristLoginRouter()
+        let router = TouristLoginRouter(userState: userState)
         interactor.presenter = presenter
         presenter.interactor = interactor
         presenter.router = router

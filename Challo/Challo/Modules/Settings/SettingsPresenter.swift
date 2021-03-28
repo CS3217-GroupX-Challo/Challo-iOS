@@ -11,12 +11,17 @@ import Combine
 class SettingsPresenter: PresenterProtocol, ObservableObject {
     var router: SettingsRouter?
     var interactor: SettingsInteractor!
+    let userState: UserStateProtocol!
     
     @Published var settingOptionViews: [SettingsListElement<AnyView>] = []
     var loggedInSettingOptions: [SettingsListElement<AnyView>] = []
     var loggedOutSettingOptions: [SettingsListElement<AnyView>] = []
     
     private var cancellables: Set<AnyCancellable> = []
+
+    init(userState: UserStateProtocol) {
+        self.userState = userState
+    }
     
     private func toggleOptionsFrom(loggedInState loggedIn: Bool) {
         if loggedIn {
@@ -30,9 +35,12 @@ class SettingsPresenter: PresenterProtocol, ObservableObject {
         if let logOutButton = makeLogOutButton() {
             loggedInSettingOptions.append(logOutButton)
         }
-        let loggedInSubscriber = UserState.globalState.$loggedIn.sink(receiveValue: toggleOptionsFrom)
+        guard let state = userState as? UserState else {
+            fatalError("userState variable should be of type UserState")
+        }
+        let loggedInSubscriber = state.$loggedIn.sink(receiveValue: toggleOptionsFrom)
         cancellables.insert(loggedInSubscriber)
-        toggleOptionsFrom(loggedInState: UserState.globalState.loggedIn)
+        toggleOptionsFrom(loggedInState: userState.loggedIn)
     }
     
     func onTapLogOut() {

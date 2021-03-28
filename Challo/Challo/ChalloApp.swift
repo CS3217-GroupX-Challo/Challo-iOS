@@ -12,8 +12,11 @@ import GooglePlaces
 
 @main
 struct ChalloApp: App {
+
+    private let globalUserState: UserStateProtocol
     
     init() {
+        globalUserState = UserState()
         guard let apiKey = ProcessInfo.processInfo.environment["google_maps_api_key"] else {
             return
         }
@@ -24,7 +27,7 @@ struct ChalloApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(userState: globalUserState)
                 .onOpenURL(perform: { url in
                     ApplicationDelegate.shared.application(
                         UIApplication.shared,

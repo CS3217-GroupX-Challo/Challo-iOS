@@ -8,7 +8,7 @@
 import SwiftUI
 
 /**
- Singleton that holds the general state of the user
+ General state of user.
  */
 class UserState: UserStateProtocol, ObservableObject {
     
@@ -26,13 +26,32 @@ class UserState: UserStateProtocol, ObservableObject {
     static var globalState: UserState = globalInstance
     private static let globalInstance = UserState()
 
-    // reset user defaults for testing
-    private init() {
-        self.loggedIn = false
+    private static var instances = 0
+
+    init() {
+        guard UserState.instances == 0 else {
+            ChalloLogger.logger.fault("[FATAL]: Attempted to spawn another UserState")
+            fatalError("UserState should not be initiailised more than once")
+        }
+        loggedIn = false
+        UserState.instances += 1
+    }
+
+    /// Sample user state strictly for use in previews. Do NOT use it beyond that.
+    internal static var sampleUserState: UserState {
+        let initialCount = instances
+        instances = 0
+        let sample = UserState()
+        instances = initialCount
+        return sample
     }
     
     func logOut() {
         loggedIn = false
+    }
+
+    func logIn() {
+        loggedIn = true
     }
 
     var certificate: UserCertificate? {

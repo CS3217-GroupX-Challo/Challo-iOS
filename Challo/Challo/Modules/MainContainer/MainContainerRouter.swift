@@ -10,7 +10,6 @@ import SwiftUI
 class MainContainerRouter: RouterProtocol {
     
     weak var presenter: MainContainerPresenter!
-    var userState = UserState.globalState
     
     var profilePage: AnyView
     var trailsPage: AnyView
@@ -18,12 +17,12 @@ class MainContainerRouter: RouterProtocol {
     var mapsPage: AnyView
     var settingsPage: AnyView
     
-    init() {
-        profilePage = TouristLoginModule.assemble().view
-        trailsPage = TrailListingModule.assemble().view
-        guidesPage = GuidesListingModule.assemble().view
-        mapsPage = MapModule.assemble().view
-        settingsPage = SettingsModule.assemble().view
+    init(userState: UserStateProtocol) {
+        profilePage = TouristLoginModule.assemble(userState: userState).view
+        trailsPage = TrailListingModule.assemble(userState: userState).view
+        guidesPage = GuidesListingModule.assemble(userState: userState).view
+        mapsPage = MapModule.assemble(userState: userState).view
+        settingsPage = SettingsModule.assemble(userState: userState).view
     }
 
 }
