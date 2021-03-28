@@ -10,7 +10,7 @@
 class MockLoginAPI: LoginAPI {
 
     typealias JSON = NetworkManager.JSON
-    var networkManager: AlamofireManager = APINetwork.getNetworkManager()
+    var networkManager = APINetwork.getNetworkManager()
     var userAPI = UserAPI(userParser: UserAPIParser(),
                           networkManager: APINetwork.getNetworkManager())
     var userTypeUrl = "/"

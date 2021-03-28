@@ -9,6 +9,6 @@
 
 class MockTrailAPIParser: TrailAPIParser {
     override func parseTrail(response: TrailAPIParser.JSON) -> [Trail] {
-        return []
+        []
     }
 }

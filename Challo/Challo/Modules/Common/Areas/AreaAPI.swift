@@ -10,9 +10,9 @@ import Foundation
 class AreaAPI {
 
     private let areaParser: AreaAPIParser
-    private let networkManager: AlamofireManager
+    private let networkManager: NetworkManager
     
-    init(areaParser: AreaAPIParser, networkManager: AlamofireManager) {
+    init(areaParser: AreaAPIParser, networkManager: NetworkManager) {
         self.areaParser = areaParser
         self.networkManager = networkManager
     }

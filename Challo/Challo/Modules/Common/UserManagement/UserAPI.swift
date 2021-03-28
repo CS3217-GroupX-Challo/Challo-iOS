@@ -12,10 +12,10 @@ class UserAPI {
     private let loginUrl = "/user/login"
     private let registerUrl = "/user/register"
     
-    private let networkManager: AlamofireManager
+    private let networkManager: NetworkManager
     private let userParser: UserAPIParser
    
-    init(userParser: UserAPIParser, networkManager: AlamofireManager) {
+    init(userParser: UserAPIParser, networkManager: NetworkManager) {
         self.userParser = userParser
         self.networkManager = networkManager
     }

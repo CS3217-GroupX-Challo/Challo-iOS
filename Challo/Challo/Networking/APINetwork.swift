@@ -6,7 +6,7 @@
 //
 
 struct APINetwork {    
-    static func getNetworkManager() -> AlamofireManager {
+    static func getNetworkManager() -> NetworkManager {
         AlamofireManager.alamofireManager
     }
 }

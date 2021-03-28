@@ -11,9 +11,9 @@ class TouristAPI {
 
     typealias JSON = NetworkManager.JSON
     private let touristParser: TouristAPIParser
-    private let networkManager: AlamofireManager
+    private let networkManager: NetworkManager
     
-    init(touristParser: TouristAPIParser, networkManager: AlamofireManager) {
+    init(touristParser: TouristAPIParser, networkManager: NetworkManager) {
         self.touristParser = touristParser
         self.networkManager = networkManager
     }

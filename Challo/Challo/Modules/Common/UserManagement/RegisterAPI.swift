@@ -12,7 +12,7 @@ protocol RegisterAPI: AnyObject {
     typealias JSON = NetworkManager.JSON
     var userAPI: UserAPI { get }
     var userTypeUrl: String { get }
-    var networkManager: AlamofireManager { get }
+    var networkManager: NetworkManager { get }
 
     func register(details: RegistrationDetails,
                   callback: @escaping (UserAPIResponse) -> Void)

@@ -9,6 +9,6 @@
 
 class MockUserAPIParser: UserAPIParser {
     override func parseUser(apiResponse: UserAPIParser.JSON) -> UserCertificate? {
-        return nil
+        nil
     }
 }

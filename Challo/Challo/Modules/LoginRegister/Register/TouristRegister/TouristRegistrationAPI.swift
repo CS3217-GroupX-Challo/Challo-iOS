@@ -6,7 +6,7 @@
 //
 
 class TouristRegistrationAPI: RegisterAPI {
-    let networkManager: AlamofireManager = APINetwork.getNetworkManager()
+    let networkManager = APINetwork.getNetworkManager()
     let userAPI = UserAPI(userParser: UserAPIParser(),
                           networkManager: APINetwork.getNetworkManager())
     let userTypeUrl = "/tourist"

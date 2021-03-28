@@ -8,10 +8,12 @@
 @testable import Challo
 
 class MockAreaAPI: AreaAPI {
+    typealias JSON = NetworkManager.JSON
     
     init() {
-        super.init(areaParser: AreaAPIParser(),
-                   networkManager: APINetwork.getNetworkManager())
+        super.init(areaParser: MockAreaAPIParser(),
+                   networkManager: MockNetworkManager(parser: MockAreaAPIParser(),
+                                                      json: JSON()))
     }
     
     // mocking this function instead

@@ -13,9 +13,9 @@ class GuideAPI {
 
     private let guideParser: GuideAPIParser
     private let trailParser: TrailAPIParser
-    private let networkManager: AlamofireManager
+    private let networkManager: NetworkManager
 
-    init(guideParser: GuideAPIParser, trailParser: TrailAPIParser, networkManager: AlamofireManager) {
+    init(guideParser: GuideAPIParser, trailParser: TrailAPIParser, networkManager: NetworkManager) {
         self.guideParser = guideParser
         self.trailParser = trailParser
         self.networkManager = networkManager

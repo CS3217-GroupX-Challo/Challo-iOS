@@ -10,9 +10,9 @@ class TrailAPI {
 
     typealias JSON = NetworkManager.JSON
     private let parser: TrailAPIParser
-    private let networkManager: AlamofireManager
+    private let networkManager: NetworkManager
     
-    init(parser: TrailAPIParser, networkManager: AlamofireManager) {
+    init(parser: TrailAPIParser, networkManager: NetworkManager) {
         self.parser = parser
         self.networkManager = networkManager
     }

@@ -9,10 +9,10 @@
 
 class MockGuideAPIParser: GuideAPIParser {
     override func parseGuides(response: GuideAPIParser.JSON) -> [Guide] {
-        return [MockGuideAPIResponses.guideOne, MockGuideAPIResponses.guideTwo]
+        [MockGuideAPIResponses.guideOne, MockGuideAPIResponses.guideTwo]
     }
     
     override func convertJSONToGuide(json: GuideAPIParser.JSON) -> Guide? {
-        return MockGuideAPIResponses.guideOne
+        MockGuideAPIResponses.guideOne
     }
 }

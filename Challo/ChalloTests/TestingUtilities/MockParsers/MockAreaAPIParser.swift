@@ -9,10 +9,10 @@
 
 class MockAreaAPIParser: AreaAPIParser {
     override func parseAreas(response: AreaAPIParser.JSON) -> [Area] {
-        return [MockAreaAPIResponse.areaStateOne, MockAreaAPIResponse.areaStateTwo]
+        [MockAreaAPIResponse.areaStateOne, MockAreaAPIResponse.areaStateTwo]
     }
     
     override func convertJSONToArea(json: AreaAPIParser.JSON) -> Area? {
-        return MockAreaAPIResponse.areaStateOne
+        MockAreaAPIResponse.areaStateOne
     }
 }
