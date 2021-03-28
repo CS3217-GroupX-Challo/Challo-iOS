@@ -6,9 +6,10 @@
 //
 
 class GuideLoginAPI: LoginAPI {
-
+    let networkManager = APINetwork.getNetworkManager()
     let guideParser = GuideAPIParser()
-    let userAPI = UserAPI()
+    let userAPI = UserAPI(userParser: UserAPIParser(),
+                          networkManager: APINetwork.getNetworkManager())
     let userTypeUrl = "/guide"
 
     func parseUserTypeJson(json: JSON) -> User? {

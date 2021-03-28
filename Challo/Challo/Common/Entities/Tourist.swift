@@ -23,3 +23,7 @@ struct Tourist: User {
     
     var sex: Sex?
 }
+
+// MARK: Equatable
+extension Tourist: Equatable {
+}

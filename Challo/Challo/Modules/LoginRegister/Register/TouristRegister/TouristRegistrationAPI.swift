@@ -6,8 +6,9 @@
 //
 
 class TouristRegistrationAPI: RegisterAPI {
-
-    let userAPI = UserAPI()
+    let networkManager = APINetwork.getNetworkManager()
+    let userAPI = UserAPI(userParser: UserAPIParser(),
+                          networkManager: APINetwork.getNetworkManager())
     let userTypeUrl = "/tourist"
     private let parser = TouristAPIParser()
 

@@ -12,3 +12,12 @@ struct UserCertificate {
     var userId: String
     var user: User?
 }
+
+extension UserCertificate: Equatable {
+    static func == (lhs: UserCertificate, rhs: UserCertificate) -> Bool {
+        lhs.name == rhs.name &&
+        lhs.email == rhs.email &&
+        lhs.token == rhs.token &&
+        lhs.userId == rhs.userId
+    }
+}

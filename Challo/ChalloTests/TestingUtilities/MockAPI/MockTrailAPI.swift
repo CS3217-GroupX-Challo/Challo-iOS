@@ -8,6 +8,12 @@
 @testable import Challo
 
 class MockTrailAPI: TrailAPI {
+    
+    init() {
+        super.init(parser: MockTrailAPIParser(),
+                   networkManager: MockNetworkManager(json: JSON()))
+    }
+    
     override func getAllTrails(callback: @escaping ([Trail]) -> Void) {
         let trails = [MockTrailAPIResponse.trailOne, MockTrailAPIResponse.trailTwo]
         callback(trails.compactMap { $0 })
