@@ -50,6 +50,7 @@ class Repository<T>: RepositoryProtocol {
         return entity
     }
     
+    @discardableResult
     func upsert(entity: T, key: UUID) -> T {
         repository[key] = entity
         return entity
