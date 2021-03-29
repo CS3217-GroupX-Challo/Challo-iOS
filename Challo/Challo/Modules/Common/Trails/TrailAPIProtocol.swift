@@ -8,15 +8,11 @@
 import Foundation
 
 protocol TrailAPIProtocol: APIProtocol {
-    func getTrails(callback: @escaping ([Trail]) -> Void, url: String)
+    func getTrails(callback: @escaping ([Trail]) -> Void)
     func getTrail(trailId: UUID, callback: @escaping (Trail) -> Void, url: String)
 }
 
-extension TrailAPIProtocol {
-    func getTrails(callback: @escaping ([Trail]) -> Void, url: String = "/trail") {
-        getTrails(callback: callback, url: url)
-    }
-    
+extension TrailAPIProtocol {    
     func getTrail(trailId: UUID, callback: @escaping (Trail) -> Void, url: String = "/trail") {
         getTrail(trailId: trailId, callback: callback, url: url)
     }

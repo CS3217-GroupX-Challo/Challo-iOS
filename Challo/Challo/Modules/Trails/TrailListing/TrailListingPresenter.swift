@@ -19,13 +19,9 @@ class TrailListingPresenter: PresenterProtocol, ObservableObject {
         router?.trailProfilePage
     }
     
-    private func didGetAllTrails(trails: [Trail]) {
-        self.trails = trails
-        trailListingCards = trails.map(transformTrailToTrailListingCard)
-    }
-    
     func getAllTrails() {
-        interactor.getAllTrails(callback: didGetAllTrails)
+        self.trails = interactor.getAllTrails()
+        trailListingCards = trails.map(transformTrailToTrailListingCard)
     }
     
     func transformTrailToTrailListingCard(_ trail: Trail) -> TrailListingCard {

@@ -5,11 +5,17 @@
 //  Created by Shao Yi on 29/3/21.
 //
 
-class AreaRepository: Repository<Area> {
+protocol AreaRepositoryProtocol: Repository<Area> {
+    func fetchAreassAndRefresh()
+}
+
+class AreaRepository: Repository<Area>, AreaRepositoryProtocol {
     let areaAPI: AreaAPIProtocol
     
     init(areaAPI: AreaAPIProtocol) {
         self.areaAPI = areaAPI
+        super.init()
+        fetchAreassAndRefresh()
     }
     
     private func refreshAreas(_ areas: [Area]) {
@@ -18,7 +24,7 @@ class AreaRepository: Repository<Area> {
         }
     }
     
-    func fetchTrailsAndRefresh() {
+    func fetchAreassAndRefresh() {
         areaAPI.getAreas { [weak self] areas in
             self?.refreshAreas(areas)
         }

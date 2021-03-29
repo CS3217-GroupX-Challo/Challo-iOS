@@ -1,19 +1,16 @@
 //
-//  TrailRepository.swift
-//  Challo
+//  MockTrailRepository.swift
+//  ChalloTests
 //
 //  Created by Shao Yi on 29/3/21.
 //
 
-protocol TrailRepositoryProtocol: Repository<Trail> {
-    func fetchTrailsAndRefresh()
-}
+@testable import Challo
 
-class TrailRepository: Repository<Trail>, TrailRepositoryProtocol {
-    let trailAPI: TrailAPIProtocol
+class MockTrailRepository: Repository<Trail>, TrailRepositoryProtocol {
+    let trailAPI = MockTrailAPI()
     
-    init(trailAPI: TrailAPIProtocol) {
-        self.trailAPI = trailAPI
+    init() {
         super.init()
         fetchTrailsAndRefresh()
     }
