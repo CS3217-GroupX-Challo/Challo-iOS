@@ -9,9 +9,15 @@ import SwiftUI
 
 class GuidesListingRouter: RouterProtocol {
     weak var presenter: GuidesListingPresenter!
+    let reviewAPI: ReviewAPIProtocol
+    
+    init(reviewAPI: ReviewAPIProtocol) {
+        self.reviewAPI = reviewAPI
+    }
     
     func getGuideProfileDetailsPage(guide: Guide) -> some View {
-        NavigationLink(destination: GuideProfilePage(presenter: GuideProfilePresenter(guide: guide))) {
+        NavigationLink(destination: GuideProfilePage(presenter: GuideProfilePresenter(guide: guide,
+                                                                                      reviewAPI: reviewAPI))) {
             Text("More info")
                 .foregroundColor(Color.white)
                 .padding()

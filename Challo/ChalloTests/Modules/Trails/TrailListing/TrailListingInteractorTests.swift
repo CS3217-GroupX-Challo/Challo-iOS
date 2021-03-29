@@ -16,7 +16,7 @@ class TrailListingInteractorTests: XCTestCase {
         interactor.presenter = presenter
         let trails = interactor.getAllTrails()
         XCTAssertEqual(2, trails.count, "Not retrived correctly")
-        XCTAssertEqual(MockTrailAPIResponse.trailOne, trails[0], "Not retrived correctly")
-        XCTAssertEqual(MockTrailAPIResponse.trailTwo, trails[1], "Not retrived correctly")
+        XCTAssertTrue(trails.allSatisfy([MockTrailAPIResponse.trailOne, MockTrailAPIResponse.trailTwo].contains),
+                      "Not populated correctly")
     }
 }
