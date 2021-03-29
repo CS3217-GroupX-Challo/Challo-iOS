@@ -17,12 +17,14 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (4.2.0):
     - GoogleMaps/Base (= 4.2.0)
+  - Swinject (2.7.1)
 
 DEPENDENCIES:
   - Alamofire
   - FBSDKLoginKit
   - GoogleMaps
   - GooglePlaces
+  - Swinject
 
 SPEC REPOS:
   trunk:
@@ -31,6 +33,7 @@ SPEC REPOS:
     - FBSDKLoginKit
     - GoogleMaps
     - GooglePlaces
+    - Swinject
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
@@ -38,7 +41,8 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: d98498c598ec09de657385a9349a1f21119b7f86
   GoogleMaps: eb03e327edfd70b06de1e6e321653f73712df7ad
   GooglePlaces: 196a9dd88580dcb3f3df46f415057703d0d2a310
+  Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: d157de56b10887c78b361f14aa7068858b85bda6
+PODFILE CHECKSUM: f3bbad446ec66b3ebd1defde04b050dd15597bd6
 
 COCOAPODS: 1.10.1
