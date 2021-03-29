@@ -12,7 +12,7 @@ protocol AreaAPIProtocol: APIProtocol {
 }
 
 extension AreaAPIProtocol {
-    func getAreas(url: String = "/area", callback: @escaping ([Area]) -> Void) {
-        getAreas(url: url, callback: callback)
+    func getAreas(callback: @escaping ([Area]) -> Void) {
+        getAreas(url: "/area", callback: callback)
     }
 }

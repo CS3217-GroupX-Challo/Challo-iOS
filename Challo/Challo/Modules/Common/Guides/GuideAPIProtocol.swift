@@ -13,11 +13,11 @@ protocol GuideAPIProtocol: APIProtocol {
 }
 
 extension GuideAPIProtocol {
-    func getGuides(callback: @escaping ([Guide]) -> Void, url: String = "/guide") {
-        getGuides(callback: callback, url: url)
+    func getGuides(callback: @escaping ([Guide]) -> Void) {
+        getGuides(callback: callback, url: "/guide")
     }
     
-    func getGuide(guideId: UUID, callback: @escaping (Guide) -> Void, url: String = "/guide") {
-        getGuide(guideId: guideId, callback: callback, url: url)
+    func getGuide(guideId: UUID, callback: @escaping (Guide) -> Void) {
+        getGuide(guideId: guideId, callback: callback, url: "/guide")
     }
 }

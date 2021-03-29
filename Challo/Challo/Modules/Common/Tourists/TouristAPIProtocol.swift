@@ -12,7 +12,7 @@ protocol TouristAPIProtocol {
 }
 
 extension TouristAPIProtocol {
-    func getTourist(userId: UUID, callback: @escaping (Tourist) -> Void, url: String = "/user") {
-        getTourist(userId: userId, callback: callback, url: url)
+    func getTourist(userId: UUID, callback: @escaping (Tourist) -> Void) {
+        getTourist(userId: userId, callback: callback, url: "/user")
     }
 }

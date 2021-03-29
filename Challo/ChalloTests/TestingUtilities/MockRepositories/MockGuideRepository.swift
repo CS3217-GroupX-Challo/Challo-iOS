@@ -21,9 +21,10 @@ class MockGuideRepository: Repository<Guide>, GuideRepositoryProtocol {
         }
     }
     
-    func fetchGuidesAndRefresh() {
+    func fetchGuidesAndRefresh(didRefresh: (([Guide]) -> Void)? = nil) {
         guideAPI.getGuides { [weak self] guides in
             self?.refreshGuides(guides)
+            didRefresh?(guides)
         }
     }
 }

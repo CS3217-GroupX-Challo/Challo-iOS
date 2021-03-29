@@ -5,10 +5,6 @@
 //  Created by Shao Yi on 29/3/21.
 //
 
-protocol GuideRepositoryProtocol: Repository<Guide> {
-    func fetchGuidesAndRefresh()
-}
-
 class GuideRepository: Repository<Guide>, GuideRepositoryProtocol {
     let guideAPI: GuideAPIProtocol
     
@@ -24,9 +20,10 @@ class GuideRepository: Repository<Guide>, GuideRepositoryProtocol {
         }
     }
     
-    func fetchGuidesAndRefresh() {
+    func fetchGuidesAndRefresh(didRefresh: (([Guide]) -> Void)? = nil) {
         guideAPI.getGuides { [weak self] guides in
             self?.refreshGuides(guides)
+            didRefresh?(guides)
         }
     }
 }

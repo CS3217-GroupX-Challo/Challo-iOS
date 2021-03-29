@@ -13,7 +13,7 @@ protocol TrailAPIProtocol: APIProtocol {
 }
 
 extension TrailAPIProtocol {    
-    func getTrail(trailId: UUID, callback: @escaping (Trail) -> Void, url: String = "/trail") {
-        getTrail(trailId: trailId, callback: callback, url: url)
+    func getTrail(trailId: UUID, callback: @escaping (Trail) -> Void) {
+        getTrail(trailId: trailId, callback: callback, url: "/trail")
     }
 }

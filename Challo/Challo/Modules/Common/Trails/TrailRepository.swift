@@ -5,10 +5,6 @@
 //  Created by Shao Yi on 29/3/21.
 //
 
-protocol TrailRepositoryProtocol: Repository<Trail> {
-    func fetchTrailsAndRefresh()
-}
-
 class TrailRepository: Repository<Trail>, TrailRepositoryProtocol {
     let trailAPI: TrailAPIProtocol
     
@@ -24,9 +20,10 @@ class TrailRepository: Repository<Trail>, TrailRepositoryProtocol {
         }
     }
     
-    func fetchTrailsAndRefresh() {
+    func fetchTrailsAndRefresh(didRefresh: (([Trail]) -> Void)? = nil) {
         trailAPI.getTrails { [weak self] trails in
             self?.refreshTrails(trails)
+            didRefresh?(trails)
         }
     }
 }

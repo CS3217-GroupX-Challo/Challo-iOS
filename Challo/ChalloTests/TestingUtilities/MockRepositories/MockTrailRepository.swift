@@ -21,9 +21,10 @@ class MockTrailRepository: Repository<Trail>, TrailRepositoryProtocol {
         }
     }
     
-    func fetchTrailsAndRefresh() {
+    func fetchTrailsAndRefresh(didRefresh: (([Trail]) -> Void)? = nil) {
         trailAPI.getTrails { [weak self] trails in
             self?.refreshTrails(trails)
+            didRefresh?(trails)
         }
     }
 }
