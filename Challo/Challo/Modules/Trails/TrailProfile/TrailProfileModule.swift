@@ -8,7 +8,6 @@
 import SwiftUI
 
 class TrailProfileModule: ViperModuleProtocol {
-    
     var reviewAPI: ReviewAPIProtocol
     
     init(reviewAPI: ReviewAPIProtocol) {

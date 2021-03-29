@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Representation of a Tourist user
 struct Tourist: User {
     var userId: UUID
     

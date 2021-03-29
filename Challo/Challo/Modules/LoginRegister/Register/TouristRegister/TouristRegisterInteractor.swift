@@ -8,16 +8,17 @@
 class TouristRegisterInteractor: RegisterInteractor, InteractorProtocol {
 
     weak var presenter: RegisterPresenter!
+    var certificateManager: CertificateManager
 
     private let registerAPI: RegisterAPI
-    var certificateManager = CertificateManager()
     
-    init(registerAPI: RegisterAPI) {
+    init(registerAPI: RegisterAPI, certificateManager: CertificateManager) {
         self.registerAPI = registerAPI
+        self.certificateManager = certificateManager
     }
 
-    convenience init() {
-        self.init(registerAPI: TouristRegistrationAPI())
+    convenience init(certificateManager: CertificateManager) {
+        self.init(registerAPI: TouristRegistrationAPI(), certificateManager: certificateManager)
     }
 
     func register(details: RegistrationDetails) {

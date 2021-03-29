@@ -9,8 +9,13 @@ import SwiftUI
 
 class SettingsRouter: RouterProtocol {
     weak var presenter: SettingsPresenter!
+    let userState: UserStateProtocol
+
+    init(userState: UserStateProtocol) {
+        self.userState = userState
+    }
         
     func getLoginPage() -> AnyView {
-        TouristLoginModule().assemble().view
+        TouristLoginModule(userState: userState).assemble().view
     }
 }

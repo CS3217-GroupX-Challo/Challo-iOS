@@ -12,7 +12,7 @@ class TrailListingModule: ViperModuleProtocol {
     let trailRepository: TrailRepositoryProtocol
     let reviewAPI: ReviewAPIProtocol
     
-    init(trailRepository: TrailRepositoryProtocol, reviewAPI: ReviewAPIProtocol) {
+    init(trailRepository: TrailRepositoryProtocol, reviewAPI: ReviewAPIProtocol, userState: UserStateProtocol) {
         self.trailRepository = trailRepository
         self.reviewAPI = reviewAPI
     }

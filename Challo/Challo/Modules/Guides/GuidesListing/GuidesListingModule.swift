@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-final class GuidesListingModule: ViperModuleProtocol {
-    
+final class GuidesListingModule: ViperModuleProtocol {    
     let guideRepository: GuideRepositoryProtocol
     let reviewAPI: ReviewAPIProtocol
 

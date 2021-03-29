@@ -21,7 +21,8 @@ class GuideRegisterInteractorTests: XCTestCase {
         self.userState = MockUserState()
         self.mockCertificateManager = MockCertificateManager(state: userState)
         self.registerAPI = MockRegisterAPI()
-        self.interactor = GuideRegisterInteractor(registerAPI: self.registerAPI)
+        self.interactor = GuideRegisterInteractor(registerAPI: self.registerAPI,
+                                                  certificateManager: mockCertificateManager)
         self.presenter = RegisterPresenterImplementation()
         self.interactor.presenter = self.presenter
         self.interactor.certificateManager = mockCertificateManager

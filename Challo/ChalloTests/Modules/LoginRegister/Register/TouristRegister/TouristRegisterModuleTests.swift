@@ -11,7 +11,8 @@ import SwiftUI
 
 class TouristRegisterModuleTests: XCTestCase {
     func testAssemble_returnsPresenterWithCorrectPropertiesAndView() {
-        let (_, presenter) = TouristRegisterModule().assemble()
+        let userState = MockUserState()
+        let (_, presenter) = TouristRegisterModule(userState: userState).assemble()
         XCTAssertNotNil(presenter.router, "Presenter properties not assigned")
         XCTAssertNotNil(presenter.interactor, "Presenter properties not assigned")
     }

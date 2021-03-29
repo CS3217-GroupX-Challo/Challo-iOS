@@ -10,8 +10,7 @@ import SwiftUI
 class MainContainerRouter: RouterProtocol {
     
     weak var presenter: MainContainerPresenter!
-    var userState = UserState.globalState
-    
+    let userState: UserStateProtocol
     var apiContainer = APIContainer()
     var repositoryContainer: RepositoryContainer
     var profilePage: AnyView
@@ -20,7 +19,8 @@ class MainContainerRouter: RouterProtocol {
     var mapsPage: AnyView
     var settingsPage: AnyView
     
-    init() {
+    init(userState: UserStateProtocol) {
+        self.userState = userState
         repositoryContainer = RepositoryContainer(apiContainer: apiContainer)
         
         guard let trailRepository = repositoryContainer.container.resolve(TrailRepositoryProtocol.self) else {
@@ -33,11 +33,12 @@ class MainContainerRouter: RouterProtocol {
             fatalError("Failed to resolve reviewAPI in MainContainer")
         }
         
-        profilePage = TouristLoginModule().assemble().view
-        trailsPage = TrailListingModule(trailRepository: trailRepository, reviewAPI: reviewAPI).assemble().view
+        profilePage = TouristLoginModule(userState: userState).assemble().view
+        trailsPage = TrailListingModule(trailRepository: trailRepository, reviewAPI: reviewAPI,
+                                        userState: userState).assemble().view
         guidesPage = GuidesListingModule(guideRepository: guideRepository, reviewAPI: reviewAPI).assemble().view
         mapsPage = MapModule().assemble().view
-        settingsPage = SettingsModule().assemble().view
+        settingsPage = SettingsModule(userState: userState).assemble().view
     }
 
 }

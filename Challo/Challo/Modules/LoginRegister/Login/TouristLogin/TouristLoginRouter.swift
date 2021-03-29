@@ -10,8 +10,13 @@ import SwiftUI
 class TouristLoginRouter: LoginRouter, RouterProtocol {
 
     weak var presenter: LoginPresenter!
+    let userState: UserStateProtocol
+
+    init(userState: UserStateProtocol) {
+        self.userState = userState
+    }
 
     func getRegistrationPage() -> AnyView {
-        TouristRegisterModule().assemble().view
+        TouristRegisterModule(userState: userState).assemble().view
     }
 }
