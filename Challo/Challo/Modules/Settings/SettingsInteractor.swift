@@ -7,8 +7,13 @@
 
 class SettingsInteractor: InteractorProtocol {
     var presenter: SettingsPresenter!
+    private weak var userState: UserStateProtocol!
+
+    init(userState: UserStateProtocol) {
+        self.userState = userState
+    }
     
     func onTapLogOut() {
-        UserState.globalState.logOut()
+        userState.logOut()
     }
 }

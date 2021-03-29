@@ -16,9 +16,11 @@ class SocialLoginPresenter {
     }
 
     static func createSocialLoginPresenter(loginAPI: LoginAPI,
-                                           registerAPI: RegisterAPI) -> SocialLoginPresenter {
+                                           registerAPI: RegisterAPI,
+                                           certificateManager: CertificateManager) -> SocialLoginPresenter {
         let interactor = SocialLoginInteractor(loginAPI: loginAPI,
-                                               registerAPI: registerAPI)
+                                               registerAPI: registerAPI,
+                                               certificateManager: certificateManager)
         return SocialLoginPresenter(interactor: interactor)
     }
 

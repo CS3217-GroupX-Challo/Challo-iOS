@@ -8,10 +8,11 @@
 import SwiftUI
 
 class TrailListingModule: ViperModuleProtocol {
-    static func assemble() -> (view: AnyView, presenter: TrailListingPresenter) {
+
+    static func assemble(userState: UserStateProtocol) -> (view: AnyView, presenter: TrailListingPresenter) {
         let interactor = TrailListingInteractor()
         let presenter = TrailListingPresenter()
-        let router = TrailListingRouter()
+        let router = TrailListingRouter(userState: userState)
         interactor.presenter = presenter
         presenter.interactor = interactor
         presenter.router = router

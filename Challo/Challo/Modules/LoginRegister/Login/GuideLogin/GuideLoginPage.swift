@@ -41,7 +41,8 @@ struct GuideLoginPage: View {
 
 struct GuideLoginPage_Previews: PreviewProvider {
     static var previews: some View {
-        let (view, _) = GuideLoginModule.assemble()
+        let sampleState = PreviewUserState()
+        let (view, _) = GuideLoginModule.assemble(userState: sampleState)
         return view
     }
 }

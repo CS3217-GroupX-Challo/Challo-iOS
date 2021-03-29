@@ -13,6 +13,7 @@ class MockCertificateManager: CertificateManager {
 
     init(state: MockUserState) {
         self.state = state
+        super.init(userState: state)
     }
 
     override func storeCertificate(certificate: UserCertificate) {

@@ -40,7 +40,8 @@ struct TouristRegisterPage: View {
 
 struct TouristRegisterPage_Previews: PreviewProvider {
     static var previews: some View {
-        let (view, _) = TouristRegisterModule.assemble()
+        let sampleState = PreviewUserState()
+        let (view, _) = TouristRegisterModule.assemble(userState: sampleState)
         return view
     }
 }

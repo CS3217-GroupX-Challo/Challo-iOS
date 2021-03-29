@@ -26,4 +26,5 @@ class MockUserState: UserStateProtocol {
         user = certificate.user
         self.certificate = certificate
     }
+
 }

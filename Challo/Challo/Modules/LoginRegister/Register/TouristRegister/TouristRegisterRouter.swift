@@ -8,5 +8,4 @@
 class TouristRegisterRouter: RegisterRouter, RouterProtocol {
 
     weak var presenter: TouristRegisterPresenter!
-
 }
