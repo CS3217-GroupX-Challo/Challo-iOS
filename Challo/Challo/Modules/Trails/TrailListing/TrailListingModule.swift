@@ -25,7 +25,6 @@ class TrailListingModule: ViperModuleProtocol {
         presenter.interactor = interactor
         presenter.router = router
         router.presenter = presenter
-        presenter.getAllTrails()
         return (view: AnyView(TrailListingPage().environmentObject(presenter)), presenter: presenter)
     }
 }

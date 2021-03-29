@@ -18,13 +18,8 @@ class GuidesListingInteractor: InteractorProtocol {
         self.guideRepository = guideRepository
     }
     
-    func didFetchGuides(guides: [Guide]) {
-        self.presenter.guides = guides
-        self.presenter.originalGuides = guides
-    }
-    
     func populateGuides() {
-        guideRepository.fetchGuidesAndRefresh(didRefresh: self.didFetchGuides)
+        guideRepository.fetchGuidesAndRefresh(didRefresh: presenter.didPopulateGuides)
     }
     
 }
