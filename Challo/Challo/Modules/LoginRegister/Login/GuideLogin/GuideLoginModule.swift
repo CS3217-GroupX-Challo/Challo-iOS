@@ -9,7 +9,7 @@ import SwiftUI
 
 final class GuideLoginModule: ViperModuleProtocol {
 
-    static func assemble() -> (view: AnyView, presenter: GuideLoginPresenter) {
+    func assemble() -> (view: AnyView, presenter: GuideLoginPresenter) {
         let interactor = GuideLoginInteractor()
         let presenter = GuideLoginPresenter()
         let router = GuideLoginRouter()

@@ -11,6 +11,6 @@ class SettingsRouter: RouterProtocol {
     weak var presenter: SettingsPresenter!
         
     func getLoginPage() -> AnyView {
-        TouristLoginModule.assemble().view
+        TouristLoginModule().assemble().view
     }
 }

@@ -11,7 +11,7 @@ import SwiftUI
 
 class GuideRegisterModuleTests: XCTestCase {
     func testAssemble_returnsPresenterWithCorrectPropertiesAndView() {
-        let (_, presenter) = GuideRegisterModule.assemble()
+        let (_, presenter) = GuideRegisterModule().assemble()
         XCTAssertNotNil(presenter.router, "Presenter properties not assigned")
         XCTAssertNotNil(presenter.interactor, "Presenter properties not assigned")
     }

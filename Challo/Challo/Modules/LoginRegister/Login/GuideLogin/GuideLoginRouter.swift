@@ -12,6 +12,6 @@ class GuideLoginRouter: LoginRouter, RouterProtocol {
     weak var presenter: LoginPresenter!
 
     func getRegistrationPage() -> AnyView {
-        GuideRegisterModule.assemble().view
+        GuideRegisterModule().assemble().view
     }
 }

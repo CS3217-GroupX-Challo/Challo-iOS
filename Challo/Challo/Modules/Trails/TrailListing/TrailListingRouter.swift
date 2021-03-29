@@ -14,7 +14,7 @@ class TrailListingRouter: RouterProtocol {
     var trailProfilePresenter: TrailProfilePresenter
     
     init() {
-        let (view, presenter) = TrailProfileModule.assemble()
+        let (view, presenter) = TrailProfileModule().assemble()
         trailProfilePage = view
         trailProfilePresenter = presenter
     }

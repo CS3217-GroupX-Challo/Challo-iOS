@@ -8,7 +8,7 @@ import SwiftUI
 
 final class TouristLoginModule: ViperModuleProtocol {
 
-    static func assemble() -> (view: AnyView, presenter: TouristLoginPresenter) {
+    func assemble() -> (view: AnyView, presenter: TouristLoginPresenter) {
         let interactor = TouristLoginInteractor()
         let presenter = TouristLoginPresenter()
         let router = TouristLoginRouter()

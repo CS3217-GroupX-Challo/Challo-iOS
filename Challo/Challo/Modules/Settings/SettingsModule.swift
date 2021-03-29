@@ -8,7 +8,7 @@
 import SwiftUI
 
 final class SettingsModule: ViperModuleProtocol {
-    static func assemble() -> (view: AnyView, presenter: SettingsPresenter) {
+    func assemble() -> (view: AnyView, presenter: SettingsPresenter) {
         let presenter = SettingsPresenter()
         let interactor = SettingsInteractor()
         let router = SettingsRouter()

@@ -8,7 +8,7 @@
 import SwiftUI
 
 final class GuidesListingModule: ViperModuleProtocol {
-    static func assemble() -> (view: AnyView, presenter: GuidesListingPresenter) {
+    func assemble() -> (view: AnyView, presenter: GuidesListingPresenter) {
         let guideAPI = GuideAPI(guideParser: GuideAPIParser(),
                                 trailParser: TrailAPIParser(),
                                 networkManager: APINetwork.getNetworkManager())

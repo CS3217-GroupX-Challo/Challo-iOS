@@ -9,7 +9,7 @@ import SwiftUI
 
 class GuideRegisterModule: ViperModuleProtocol {
 
-    static func assemble() -> (view: AnyView, presenter: GuideRegisterPresenter) {
+    func assemble() -> (view: AnyView, presenter: GuideRegisterPresenter) {
         let interactor = GuideRegisterInteractor()
         let presenter = GuideRegisterPresenter()
         let router = GuideRegisterRouter()

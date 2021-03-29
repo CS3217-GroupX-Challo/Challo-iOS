@@ -8,7 +8,7 @@
 import SwiftUI
 
 class MainContainerModule: ViperModuleProtocol {
-    static func assemble() -> (view: AnyView, presenter: MainContainerPresenter) {
+    func assemble() -> (view: AnyView, presenter: MainContainerPresenter) {
         let interactor = MainContainerInteractor()
         let presenter = MainContainerPresenter()
         let router = MainContainerRouter()

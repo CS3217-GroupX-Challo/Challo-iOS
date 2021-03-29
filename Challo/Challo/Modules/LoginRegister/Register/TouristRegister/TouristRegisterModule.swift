@@ -9,7 +9,7 @@ import SwiftUI
 
 final class TouristRegisterModule: ViperModuleProtocol {
 
-    static func assemble() -> (view: AnyView, presenter: TouristRegisterPresenter) {
+    func assemble() -> (view: AnyView, presenter: TouristRegisterPresenter) {
         let interactor = TouristRegisterInteractor()
         let presenter = TouristRegisterPresenter()
         let router = TouristRegisterRouter()

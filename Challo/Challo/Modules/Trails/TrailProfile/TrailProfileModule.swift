@@ -8,7 +8,7 @@
 import SwiftUI
 
 class TrailProfileModule: ViperModuleProtocol {
-    static func assemble() -> (view: AnyView, presenter: TrailProfilePresenter) {
+    func assemble() -> (view: AnyView, presenter: TrailProfilePresenter) {
         let interactor = TrailProfileInteractor()
         let presenter = TrailProfilePresenter()
         interactor.presenter = presenter
