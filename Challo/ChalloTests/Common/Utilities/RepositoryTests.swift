@@ -107,7 +107,7 @@ class RepositoryTests: XCTestCase {
         XCTAssertNil(returnedEntityForNonExistingKey)
         let retrievedEntities = repository.getAll()
         XCTAssertTrue(retrievedEntities.count == 2)
-        XCTAssertTrue(retrievedEntities.elementsEqual([sampleStrA, sampleStrB]))
+        XCTAssertTrue([sampleStrA, sampleStrB].allSatisfy(retrievedEntities.contains))
     }
     
     func testUpdateByKey_existingKey_entityDeleted() {
@@ -137,7 +137,7 @@ class RepositoryTests: XCTestCase {
         XCTAssertNil(returnedEntityForNonExistingKey)
         let retrievedEntities = repository.getAll()
         XCTAssertTrue(retrievedEntities.count == 2)
-        XCTAssertEqual(retrievedEntities, [sampleStrA, sampleStrB])
+        XCTAssertTrue([sampleStrA, sampleStrB].allSatisfy(retrievedEntities.contains))
     }
     
     func testUpsert_nonExistingKey_entityStored() {

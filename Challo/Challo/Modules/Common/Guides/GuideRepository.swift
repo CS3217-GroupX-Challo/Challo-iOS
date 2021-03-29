@@ -6,7 +6,11 @@
 //
 
 class GuideRepository: Repository<Guide> {
-    let guideAPI = GuideAPI()
+    let guideAPI: GuideAPIProtocol
+    
+    init(guideAPI: GuideAPIProtocol) {
+        self.guideAPI = guideAPI
+    }
     
     private func refreshGuides(_ guides: [Guide]) {
         for guide in guides {

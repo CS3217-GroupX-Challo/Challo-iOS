@@ -6,7 +6,11 @@
 //
 
 class AreaRepository: Repository<Area> {
-    let areaAPI = AreaAPI()
+    let areaAPI: AreaAPIProtocol
+    
+    init(areaAPI: AreaAPIProtocol) {
+        self.areaAPI = areaAPI
+    }
     
     private func refreshAreas(_ areas: [Area]) {
         for area in areas {
@@ -20,4 +24,3 @@ class AreaRepository: Repository<Area> {
         }
     }
 }
-

@@ -6,7 +6,7 @@
 //
 import Foundation
 
-class GuideAPI {
+class GuideAPI: APIProtocol {
     // TODO: Add in post/put/delete methods
 
     typealias JSON = NetworkManager.JSON

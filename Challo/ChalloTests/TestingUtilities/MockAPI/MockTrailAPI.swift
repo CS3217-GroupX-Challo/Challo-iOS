@@ -14,7 +14,7 @@ class MockTrailAPI: TrailAPI {
                    networkManager: MockNetworkManager(json: JSON()))
     }
     
-    override func getAllTrails(callback: @escaping ([Trail]) -> Void) {
+    override func getTrails(callback: @escaping ([Trail]) -> Void) {
         let trails = [MockTrailAPIResponse.trailOne, MockTrailAPIResponse.trailTwo]
         callback(trails.compactMap { $0 })
     }

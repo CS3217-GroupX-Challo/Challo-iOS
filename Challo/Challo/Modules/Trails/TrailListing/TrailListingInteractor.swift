@@ -21,6 +21,6 @@ class TrailListingInteractor: InteractorProtocol {
     }
 
     func getAllTrails(callback: @escaping ([Trail]) -> Void) {
-        trailAPI.getAllTrails(callback: callback)
+        trailAPI.getTrails(callback: callback)
     }
 }

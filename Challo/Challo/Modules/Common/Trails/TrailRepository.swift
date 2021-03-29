@@ -6,7 +6,11 @@
 //
 
 class TrailRepository: Repository<Trail> {
-    let trailAPI = TrailAPI()
+    let trailAPI: TrailAPIProtocol
+    
+    init(trailAPI: TrailAPIProtocol) {
+        self.trailAPI = trailAPI
+    }
     
     private func refreshTrails(_ trails: [Trail]) {
         for trail in trails {
@@ -15,7 +19,7 @@ class TrailRepository: Repository<Trail> {
     }
     
     func fetchTrailsAndRefresh() {
-        trailAPI.getAllTrails { [weak self] trails in
+        trailAPI.getTrails { [weak self] trails in
             self?.refreshTrails(trails)
         }
     }

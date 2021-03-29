@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TouristAPI {
+class TouristAPI: APIProtocol {
 
     typealias JSON = NetworkManager.JSON
     private let touristParser: TouristAPIParser
