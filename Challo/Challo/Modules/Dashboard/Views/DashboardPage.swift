@@ -31,9 +31,9 @@ struct DashboardPage: View {
                         .bold()
                         .padding(.leading, 40)
                     
-                    TripCardListingsView(
+                    BookingCardListingsView(
                         width: geometry.size.width * 0.6,
-                        trips: TripCard.trips)
+                        bookings: [])
                     
                 }
             }
