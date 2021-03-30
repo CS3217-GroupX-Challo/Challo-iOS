@@ -12,6 +12,7 @@ class BookingAPI: BookingAPIProtocol {
 
     typealias JSON = NetworkManager.JSON
 
+    private let url = "/booking"
     private let bookingParser: BookingAPIParser
     private let networkManager: NetworkManager
     private let guideAPI: GuideAPI
@@ -30,12 +31,12 @@ class BookingAPI: BookingAPIProtocol {
         self.trailAPI = trailAPI
     }
 
-    func getBookingsForTourist(id: UUID, callback: @escaping ([Booking]) -> Void, url: String = "/booking") {
+    func getBookingsForTourist(id: UUID, callback: @escaping ([Booking]) -> Void) {
         let fullURL = url + "/?touristId=\(id.uuidString)"
         getBookings(url: fullURL, callback: callback)
     }
 
-    func getBookingsForGuide(id: UUID, callback: @escaping ([Booking]) -> Void, url: String = "/booking") {
+    func getBookingsForGuide(id: UUID, callback: @escaping ([Booking]) -> Void) {
         let fullURL = url + "/?guideId=\(id.uuidString)"
         getBookings(url: fullURL, callback: callback)
     }

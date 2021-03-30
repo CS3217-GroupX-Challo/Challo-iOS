@@ -8,7 +8,6 @@
 import Foundation
 
 protocol BookingAPIProtocol {
-
-    func getBookingsForTourist(id: UUID, callback: @escaping ([Booking]) -> Void, url: String)
-    func getBookingsForGuide(id: UUID, callback: @escaping ([Booking]) -> Void, url: String)
+    func getBookingsForTourist(id: UUID, callback: @escaping ([Booking]) -> Void)
+    func getBookingsForGuide(id: UUID, callback: @escaping ([Booking]) -> Void)
 }

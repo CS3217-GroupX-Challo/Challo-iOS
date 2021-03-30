@@ -6,7 +6,7 @@
 //
 
 enum BookingStatus: String {
-    case Pending = "Pending"
-    case Paid = "Paid"
-    case Completed = "Completed"
+    case Pending
+    case Paid
+    case Completed
 }
