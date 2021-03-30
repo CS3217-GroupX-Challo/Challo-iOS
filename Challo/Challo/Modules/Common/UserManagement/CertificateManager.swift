@@ -18,5 +18,6 @@ class CertificateManager {
         globalState.storeCertificate(certificate: certificate)
         ChalloLogger.logger.log("Logged in")
         ChalloLogger.logger.log("Name: \(certificate.name)")
+        ChalloLogger.logger.log("User id: \(certificate.userId)")
     }
 }

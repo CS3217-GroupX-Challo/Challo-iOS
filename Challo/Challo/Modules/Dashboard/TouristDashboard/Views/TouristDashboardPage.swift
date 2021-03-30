@@ -34,13 +34,19 @@ struct TouristDashboardPage: View {
                         .bold()
                         .padding(.leading, 40)
                     
-                    BookingCardListingsView(
-                        width: geometry.size.width * 0.6,
-                        bookings: [])
-                    
+                    if presenter.isLoading {
+                        Loading(isAnimating: .constant(true), style: .large)
+                    } else {
+                        BookingCardListingsView(
+                            width: geometry.size.width * 0.6,
+                            bookings: $presenter.bookings)
+                    }
                 }
             }
         }
         .ignoresSafeArea()
+        .onAppear {
+            presenter.populateBookings()
+        }
     }
 }

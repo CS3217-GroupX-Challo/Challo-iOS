@@ -10,7 +10,7 @@ import SwiftUI
 struct BookingCardListingsView: View {
 
     var width: CGFloat
-    var bookings: [Booking]
+    @Binding var bookings: [Booking]
 
     var body: some View {
         ScrollView(showsIndicators: false) {
