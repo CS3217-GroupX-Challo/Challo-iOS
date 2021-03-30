@@ -13,20 +13,17 @@ class MapMarkerRepository: MapMarkerRepositoryInterface {
     
     private var data: [NSManagedObjectID: MapMarker]
     private var repository: CoreDataRepository<Marker>
-    private var container: CoreDataContainer
     
     init() {
         self.data = [NSManagedObjectID: MapMarker]()
-        let container = CoreDataContainer()
-        self.container = container
-        self.repository = CoreDataRepository<Marker>(managedObjectContext: container.managedObjectContext)
+        self.repository = CoreDataRepository<Marker>(managedObjectContext: CoreDataContainer.managedObjectContext)
     }
     
     func getAllMapMarkers() -> [MapMarker] {
         data = [NSManagedObjectID: MapMarker]() // reset data
         let result = repository.getAll()
         return result.map { marker in
-            let mapMarker = convertMarkerObjectToMapMarker(marker: marker)
+            let mapMarker = MapMarkerRepository.convertMarkerObjectToMapMarker(marker: marker)
             data[marker.objectID] = mapMarker
             return mapMarker
         }
@@ -62,7 +59,7 @@ class MapMarkerRepository: MapMarkerRepositoryInterface {
     
     private func saveNewMapMarkers(mapMarkers: [MapMarker]) {
         for mapMarker in mapMarkers {
-            let marker = Marker(context: container.managedObjectContext)
+            let marker = Marker(context: CoreDataContainer.managedObjectContext)
             marker.id = mapMarker.id.uuidString
             marker.comments = mapMarker.comments
             marker.longitude = mapMarker.position.longitude
@@ -72,7 +69,7 @@ class MapMarkerRepository: MapMarkerRepositoryInterface {
         }
     }
     
-    private func convertMarkerObjectToMapMarker(marker: Marker) -> MapMarker {
+    static func convertMarkerObjectToMapMarker(marker: Marker) -> MapMarker {
         MapMarker(id: UUID(uuidString: marker.id ?? "") ?? UUID(),
                   position: CLLocationCoordinate2D(latitude: marker.latitude,
                                                    longitude: marker.longitude),

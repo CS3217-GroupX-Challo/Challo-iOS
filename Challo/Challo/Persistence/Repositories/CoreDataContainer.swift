@@ -8,7 +8,7 @@
 import CoreData
 
 class CoreDataContainer {
-    lazy var persistentContainer: NSPersistentContainer = {
+    static var persistentContainer: NSPersistentContainer = {
       let container = NSPersistentContainer(name: "Challo")
       container.loadPersistentStores { _, error in
         if let error = error as NSError? {
@@ -18,7 +18,7 @@ class CoreDataContainer {
       return container
     }()
     
-    var managedObjectContext: NSManagedObjectContext {
+    static var managedObjectContext: NSManagedObjectContext {
         persistentContainer.viewContext
     }
 }
