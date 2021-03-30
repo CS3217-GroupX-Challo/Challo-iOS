@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct DashboardPage: View {
+struct TouristDashboardPage: View {
+    
+    @ObservedObject var presenter: TouristDashboardPresenter
+
     var body: some View {
         VStack {
             GeometryReader { geometry in
@@ -39,11 +42,5 @@ struct DashboardPage: View {
             }
         }
         .ignoresSafeArea()
-    }
-}
-
-struct DashboardPage_Previews: PreviewProvider {
-    static var previews: some View {
-        DashboardPage()
     }
 }
