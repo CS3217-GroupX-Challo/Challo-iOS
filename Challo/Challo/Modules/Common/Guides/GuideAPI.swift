@@ -41,9 +41,6 @@ class GuideAPI: GuideAPIProtocol {
                         return
                     }
                     guide.trails = self.trailParser.parseTrail(response: response)
-                    print("TEST GUIDE ID: \(guide.userId.uuidString)")
-                    print("TEST TRAIL ID: \(guide.trails[0].trailId.uuidString)")
-                    print("TEST DAYS AVAILABLE: \(guide.daysAvailable)")
                     updatedGuidesWithTrail.append(guide)
                     callback(updatedGuidesWithTrail)
                 }

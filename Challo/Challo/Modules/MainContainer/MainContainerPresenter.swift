@@ -11,6 +11,7 @@ import Combine
 class MainContainerPresenter: PresenterProtocol, ObservableObject {
 
     @Published var profileTab: AnyView?
+    @Published var tabSelection = 0
 
     var interactor: MainContainerInteractor!
     var router: MainContainerRouter?
