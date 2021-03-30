@@ -19,6 +19,6 @@ class TouristDashboardInteractorTests: XCTestCase {
         interactor.presenter = presenter
         interactor.populateBookings()
         
-        XCTAssertEqual(MockBookingAPIResponses.bookings, presenter.bookings)
+        XCTAssertEqual(MockBookingAPIResponses.bookings, presenter.upcomingBookings)
     }
 }
