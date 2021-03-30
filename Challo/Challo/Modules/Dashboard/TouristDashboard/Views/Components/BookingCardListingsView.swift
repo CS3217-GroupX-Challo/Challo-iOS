@@ -17,6 +17,7 @@ struct BookingCardListingsView: View {
             if bookings.isEmpty {
                 Text("You don't have any upcoming trips")
                     .foregroundColor(.themeForeground)
+                    .padding()
             }
             ForEach(bookings.indices) { index in
                 BookingCard(booking: bookings[index], width: width)

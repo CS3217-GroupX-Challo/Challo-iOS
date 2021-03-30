@@ -18,7 +18,7 @@ struct Header: View {
             Spacer()
             VStack(alignment: .leading) {
                 Text(title)
-                    .foregroundColor(.themePrimary)
+                    .foregroundColor(.themeSecondary)
                     .font(.largeTitle)
                     .bold()
                 Text(subtitle)

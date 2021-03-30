@@ -35,9 +35,7 @@ struct TouristDashboardPage: View {
                         .padding(.leading, 40)
                     
                     if presenter.isLoading {
-                        VStack {
-                            Loading(isAnimating: .constant(true), style: .large)
-                        }
+                        Loading(isAnimating: .constant(true), style: .large)
                     } else {
                         BookingCardListingsView(
                             width: geometry.size.width * 0.6,
