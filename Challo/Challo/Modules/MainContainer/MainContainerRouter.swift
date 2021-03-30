@@ -18,6 +18,7 @@ class MainContainerRouter: RouterProtocol {
     var guidesPage: AnyView
     var mapsPage: AnyView
     var settingsPage: AnyView
+    var loginPage: AnyView
     
     init(userState: UserStateProtocol) {
         self.userState = userState
@@ -33,12 +34,13 @@ class MainContainerRouter: RouterProtocol {
             fatalError("Failed to resolve reviewAPI in MainContainer")
         }
         
-        profilePage = TouristLoginModule(userState: userState).assemble().view
+        loginPage = TouristLoginModule(userState: userState).assemble().view
         trailsPage = TrailListingModule(trailRepository: trailRepository, reviewAPI: reviewAPI,
                                         userState: userState).assemble().view
         guidesPage = GuidesListingModule(guideRepository: guideRepository, reviewAPI: reviewAPI).assemble().view
         mapsPage = MapModule().assemble().view
         settingsPage = SettingsModule(userState: userState).assemble().view
+        profilePage = AnyView(Text("hello"))
     }
 
 }

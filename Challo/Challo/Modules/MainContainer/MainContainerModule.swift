@@ -20,12 +20,14 @@ class MainContainerModule: ViperModuleProtocol {
             fatalError("userState is not initialised")
         }
         let interactor = MainContainerInteractor(userState: userState)
-        let presenter = MainContainerPresenter()
+        let presenter = MainContainerPresenter(userState: userState)
         let router = MainContainerRouter(userState: userState)
         interactor.presenter = presenter
         presenter.interactor = interactor
         presenter.router = router
         router.presenter = presenter
-        return (view: AnyView(MainContainerView().environmentObject(presenter)), presenter: presenter)
+        presenter.initializeProfileTab()
+        return (view: AnyView(MainContainerView().environmentObject(presenter)),
+                presenter: presenter)
     }
 }
