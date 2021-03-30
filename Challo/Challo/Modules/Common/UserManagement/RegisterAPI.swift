@@ -12,6 +12,7 @@ protocol RegisterAPI: AnyObject {
     typealias JSON = NetworkManager.JSON
     var userAPI: UserAPI { get }
     var userTypeUrl: String { get }
+    var networkManager: NetworkManager { get }
 
     func register(details: RegistrationDetails,
                   callback: @escaping (UserAPIResponse) -> Void)
@@ -56,7 +57,6 @@ extension RegisterAPI {
     func registerUserType(url: String,
                           body: JSON,
                           callback: @escaping (JSON, Error?) -> Void) {
-        let networkManager = APINetwork.api
         networkManager.post(url: url,
                             headers: NetworkManager.HEADER(),
                             body: body) { res, err in

@@ -12,6 +12,7 @@ protocol LoginAPI: AnyObject {
     typealias JSON = NetworkManager.JSON
     var userAPI: UserAPI { get }
     var userTypeUrl: String { get }
+    var networkManager: NetworkManager { get }
 
     func login(email: String,
                password: String,
@@ -52,7 +53,6 @@ extension LoginAPI {
     func getUserType(url: String,
                      userId: String,
                      callback: @escaping (JSON, Error?) -> Void) {
-        let networkManager = APINetwork.api
         networkManager.get(url: url + "/" + userId,
                            headers: NetworkManager.HEADER()) { res, err in
             if let err = err {

@@ -18,6 +18,10 @@ protocol UserStateProtocol: AnyObject {
     var user: User? { get set }
     
     func storeCertificate(certificate: UserCertificate)
+
+    func logIn()
+
+    func logOut()
 }
 
 extension UserStateProtocol {
@@ -29,5 +33,18 @@ extension UserStateProtocol {
         token = certificate.token
         userId = certificate.userId
         user = certificate.user
+    }
+
+    func logIn() {
+        loggedIn = true
+    }
+
+    func logOut() {
+        loggedIn = false
+        name = ""
+        email = ""
+        token = ""
+        userId = ""
+        user = nil
     }
 }

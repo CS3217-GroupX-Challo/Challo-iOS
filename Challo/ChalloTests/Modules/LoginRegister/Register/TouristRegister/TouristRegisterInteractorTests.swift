@@ -21,7 +21,8 @@ class TouristRegisterInteractorTests: XCTestCase {
         self.userState = MockUserState()
         self.mockCertificateManager = MockCertificateManager(state: userState)
         self.registerAPI = MockRegisterAPI()
-        self.interactor = TouristRegisterInteractor(registerAPI: self.registerAPI)
+        self.interactor = TouristRegisterInteractor(registerAPI: self.registerAPI,
+                                                    certificateManager: mockCertificateManager)
         self.presenter = RegisterPresenterImplementation()
         self.interactor.presenter = self.presenter
         self.interactor.certificateManager = mockCertificateManager

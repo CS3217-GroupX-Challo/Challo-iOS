@@ -6,18 +6,28 @@
 //
 import Foundation
 
-class GuideAPI {
+class GuideAPI: GuideAPIProtocol {
     // TODO: Add in post/put/delete methods
 
     typealias JSON = NetworkManager.JSON
 
-    let guideParser = GuideAPIParser()
-    let trailParser = TrailAPIParser()
+    private let guideParser: GuideAPIParser
+    private let trailParser: TrailAPIParser
+    private let networkManager: NetworkManager
 
+    init(guideParser: GuideAPIParser, trailParser: TrailAPIParser, networkManager: NetworkManager) {
+        self.guideParser = guideParser
+        self.trailParser = trailParser
+        self.networkManager = networkManager
+    }
+    
     func getGuides(callback: @escaping ([Guide]) -> Void, url: String = "/guide") {
-        let api = APINetwork.api
-        api.get(url: url,
-                headers: [String: String]()) { response, error in
+        networkManager.get(url: url,
+                           headers: [String: String]()) { [weak self] response, error in
+            guard let self = self else {
+                return
+            }
+            
             if error != nil {
                 return
             }
@@ -25,8 +35,8 @@ class GuideAPI {
             let guides = self.guideParser.parseGuides(response: response)
             var updatedGuidesWithTrail: [Guide] = []
             for var guide in guides {
-                api.get(url: "/guide/trail/" + guide.userId.uuidString,
-                        headers: [String: String]()) { response, error in
+                self.networkManager.get(url: "/guide/trail/" + guide.userId.uuidString,
+                                        headers: [String: String]()) { response, error in
                     if error != nil {
                         return
                     }
@@ -39,9 +49,8 @@ class GuideAPI {
     }
 
     func getGuide(guideId: UUID, callback: @escaping (Guide) -> Void, url: String = "/guide") {
-        let api = APINetwork.api
-        api.get(url: url + "/" + guideId.uuidString,
-                headers: [String: String]()) { response, error in
+        networkManager.get(url: url + "/" + guideId.uuidString,
+                           headers: [String: String]()) { response, error in
             if error != nil {
                 return
             }

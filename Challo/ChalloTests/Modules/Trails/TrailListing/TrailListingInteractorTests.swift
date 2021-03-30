@@ -11,13 +11,13 @@ import XCTest
 class TrailListingInteractorTests: XCTestCase {
 
     func testGetAllTrails_withMockAPI_correctTrailsReceived() {
-        let interactor = TrailListingInteractor(trailAPI: MockTrailAPI())
+        let interactor = TrailListingInteractor(trailRepository: MockTrailRepository())
         let presenter = TrailListingPresenter()
         interactor.presenter = presenter
-        interactor.getAllTrails { trails in
-            XCTAssertEqual(2, trails.count, "Not retrived correctly")
-            XCTAssertEqual(MockTrailAPIResponse.trailOne, trails[0], "Not retrived correctly")
-            XCTAssertEqual(MockTrailAPIResponse.trailTwo, trails[1], "Not retrived correctly")
-        }
+        interactor.getAllTrails()
+        XCTAssertEqual(2, presenter.trails.count, "Not retrived correctly")
+        XCTAssertTrue(presenter.trails.allSatisfy([MockTrailAPIResponse.trailOne,
+                                                   MockTrailAPIResponse.trailTwo].contains),
+                      "Not populated correctly")
     }
 }

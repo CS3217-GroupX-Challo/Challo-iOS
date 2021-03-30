@@ -9,15 +9,11 @@ import Foundation
 
 class TrailProfileInteractor: InteractorProtocol {
 
-    private let reviewAPI: ReviewAPI
+    private let reviewAPI: ReviewAPIProtocol
     weak var presenter: TrailProfilePresenter!
 
-    init(reviewAPI: ReviewAPI) {
+    init(reviewAPI: ReviewAPIProtocol) {
         self.reviewAPI = reviewAPI
-    }
-
-    convenience init() {
-        self.init(reviewAPI: ReviewAPI())
     }
 
     func getReviewsForTrail(trailId: UUID, callback: @escaping ([Review]) -> Void) {

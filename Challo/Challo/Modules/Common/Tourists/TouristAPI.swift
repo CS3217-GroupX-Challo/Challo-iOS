@@ -7,15 +7,20 @@
 
 import Foundation
 
-class TouristAPI {
+class TouristAPI: TouristAPIProtocol {
 
     typealias JSON = NetworkManager.JSON
-    let touristParser = TouristAPIParser()
+    private let touristParser: TouristAPIParser
+    private let networkManager: NetworkManager
+    
+    init(touristParser: TouristAPIParser, networkManager: NetworkManager) {
+        self.touristParser = touristParser
+        self.networkManager = networkManager
+    }
 
     func getTourist(userId: UUID, callback: @escaping (Tourist) -> Void, url: String = "/user") {
-        let api = APINetwork.api
-        api.get(url: url + "/" + userId.uuidString,
-                headers: [String: String]()) { [weak self] response, error in
+        networkManager.get(url: url + "/" + userId.uuidString,
+                           headers: [String: String]()) { [weak self] response, error in
             if error != nil {
                 return
             }

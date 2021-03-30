@@ -12,23 +12,29 @@ struct TrailListingPage: View {
     @EnvironmentObject var presenter: TrailListingPresenter
     
     var cardList: some View {
-        VStack(spacing: 30) {
-            ForEach(presenter.trailListingCards.indices) { index in
-                NavigationLink(destination: presenter.trailProfilePage) {
-                    presenter.trailListingCards[index]
-                }.buttonStyle(PlainButtonStyle())
-                .simultaneousGesture(TapGesture().onEnded {
-                    presenter.populateTrailProfilePage(trailIndex: index)
-                })
+        Group {
+            if presenter.isLoading {
+                Loading(isAnimating: .constant(true), style: .large)
+            } else {
+                ScrollView {
+                    VStack(spacing: 30) {
+                        ForEach(presenter.trailListingCards.indices) { index in
+                            NavigationLink(destination: presenter.trailProfilePage) {
+                                presenter.trailListingCards[index]
+                            }.buttonStyle(PlainButtonStyle())
+                            .simultaneousGesture(TapGesture().onEnded {
+                                presenter.populateTrailProfilePage(trailIndex: index)
+                            })
+                        }
+                    }.padding(EdgeInsets(top: 50, leading: 60, bottom: 30, trailing: 60))
+                }
             }
-        }.padding(EdgeInsets(top: 50, leading: 60, bottom: 30, trailing: 60))
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     var body: some View {
         PageLayout(titleLabel: "Find Your Very\nOwn Trail") { _ in
-            ScrollView {
-                cardList
-            }
-        }
+            cardList
+        }.onAppear(perform: presenter.onPageAppear)
     }
 }

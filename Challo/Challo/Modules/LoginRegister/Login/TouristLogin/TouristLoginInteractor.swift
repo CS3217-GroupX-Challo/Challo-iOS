@@ -9,14 +9,15 @@ class TouristLoginInteractor: LoginInteractor, InteractorProtocol {
 
     weak var presenter: LoginPresenter!
     private let loginAPI: LoginAPI
-    var certificateManager = CertificateManager.manager
+    var certificateManager: CertificateManager
 
-    init(loginAPI: LoginAPI) {
+    init(loginAPI: LoginAPI, certificateManager: CertificateManager) {
         self.loginAPI = loginAPI
+        self.certificateManager = certificateManager
     }
 
-    convenience init() {
-        self.init(loginAPI: TouristLoginAPI())
+    convenience init(certificateManager: CertificateManager) {
+        self.init(loginAPI: TouristLoginAPI(), certificateManager: certificateManager)
     }
 
     func defaultLogin(email: String, password: String) {

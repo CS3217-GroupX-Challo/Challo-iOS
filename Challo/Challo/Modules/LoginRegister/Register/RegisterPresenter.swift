@@ -9,6 +9,7 @@ protocol RegisterPresenter: AnyObject {
     var email: String { get set }
     var password: String { get set }
     var isShowingRegisterFailureAlert: Bool { get set }
+    var isShowingRegisterSuccessAlert: Bool { get set }
 
     func submitRegistration()
     func showRegisterFailureAlert()
@@ -27,5 +28,9 @@ extension RegisterPresenter {
 
     func showRegisterFailureAlert() {
         self.isShowingRegisterFailureAlert = true
+    }
+
+    func showRegisterSuccessAlert() {
+        self.isShowingRegisterSuccessAlert = true
     }
 }

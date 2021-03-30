@@ -8,8 +8,14 @@
 import SwiftUI
 
 class TrailProfileModule: ViperModuleProtocol {
-    static func assemble() -> (view: AnyView, presenter: TrailProfilePresenter) {
-        let interactor = TrailProfileInteractor()
+    var reviewAPI: ReviewAPIProtocol
+    
+    init(reviewAPI: ReviewAPIProtocol) {
+        self.reviewAPI = reviewAPI
+    }
+    
+    func assemble() -> (view: AnyView, presenter: TrailProfilePresenter) {
+        let interactor = TrailProfileInteractor(reviewAPI: reviewAPI)
         let presenter = TrailProfilePresenter()
         let router = TrailProfileRouter()
         interactor.presenter = presenter

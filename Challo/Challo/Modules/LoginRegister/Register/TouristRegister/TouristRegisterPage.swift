@@ -35,12 +35,10 @@ struct TouristRegisterPage: View {
                   message: Text("Please check that you've filled in all your details"),
                   dismissButton: .default(Text("Close")))
         }
-    }
-}
-
-struct TouristRegisterPage_Previews: PreviewProvider {
-    static var previews: some View {
-        let (view, _) = TouristRegisterModule.assemble()
-        return view
+        .alert(isPresented: $registerPresenter.isShowingRegisterSuccessAlert) {
+            Alert(title: Text("Successfully signed up!"),
+                  message: Text("You may now sign in with your account"),
+                  dismissButton: .default(Text("Close")))
+        }
     }
 }

@@ -9,12 +9,23 @@ import Foundation
 
 /// It conforms to trail API and UserAPI as data from reviewAPI is dependent on
 /// the two APIs aforementioned
-class ReviewAPI {
+class ReviewAPI: ReviewAPIProtocol {
 
-    let reviewParser = ReviewAPIParser()
-    let trailAPI = TrailAPI()
-    let touristAPI = TouristAPI()
-    let guideAPI = GuideAPI()
+    private let reviewParser: ReviewAPIParser
+    private let trailAPI: TrailAPI
+    private let touristAPI: TouristAPI
+    private let guideAPI: GuideAPI
+    private let networkManager: NetworkManager
+    
+    init(reviewParser: ReviewAPIParser, trailAPI: TrailAPI,
+         touristAPI: TouristAPI, guideAPI: GuideAPI,
+         networkManager: NetworkManager) {
+        self.reviewParser = reviewParser
+        self.trailAPI = trailAPI
+        self.touristAPI = touristAPI
+        self.guideAPI = guideAPI
+        self.networkManager = networkManager
+    }
 
     private func buildGetReviewsUrl(guideId: UUID?, trailId: UUID?) -> String {
         var hasQuery = false
@@ -30,9 +41,8 @@ class ReviewAPI {
     }
     
     private func getReviews(callback: @escaping ([Review]) -> Void, guideId: UUID? = nil, trailId: UUID? = nil) {
-        let api = AlamofireManager.alamofireManager
-        api.get(url: buildGetReviewsUrl(guideId: guideId, trailId: trailId),
-                headers: [String: String]()) { response, error in
+        networkManager.get(url: buildGetReviewsUrl(guideId: guideId, trailId: trailId),
+                           headers: [String: String]()) { response, error in
             if error != nil {
                 return
             }

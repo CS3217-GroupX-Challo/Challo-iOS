@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ReviewAPIParser {
+class ReviewAPIParser: APIParser {
 
     typealias JSON = NetworkManager.JSON
 

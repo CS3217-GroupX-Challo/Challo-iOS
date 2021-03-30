@@ -12,7 +12,7 @@ import Dispatch
 class TrailListingPresenterTests: XCTestCase {
 
     func testGetAllTrails_fromMockAPI_correctTrailsPopulated() {
-        let interactor = TrailListingInteractor(trailAPI: MockTrailAPI())
+        let interactor = TrailListingInteractor(trailRepository: MockTrailRepository())
         let presenter = TrailListingPresenter()
         presenter.interactor = interactor
         interactor.presenter = presenter

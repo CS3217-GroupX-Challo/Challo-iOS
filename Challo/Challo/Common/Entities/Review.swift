@@ -13,7 +13,7 @@ import Foundation
 /// - `guide` is capable of guiding `trail`
 /// - `tourist` has a booking for `trail` with `guide`
 /// - `rating` is an integer from 1-5
-struct Review {
+struct Review: Equatable {
     let reviewId: UUID
     
     let rating: Int

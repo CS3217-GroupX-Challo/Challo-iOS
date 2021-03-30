@@ -10,15 +10,15 @@ import XCTest
 
 class GuidesListingInteractorTests: XCTestCase {
     func testPopulateGuides_withMockAPI_presenterGuidesPopulatedWithSameGuidesRetrievedFromAPI() {
-        let interactor = GuidesListingInteractor(guideAPI: MockGuideAPI(),
-                                                 areaAPI: MockAreaAPI())
+        let interactor = GuidesListingInteractor(guideRepository: MockGuideRepository())
         let presenter = GuidesListingPresenter()
         interactor.presenter = presenter
         interactor.populateGuides()
         
         XCTAssertEqual(presenter.guides.count, 2, "Not populated correctly")
-        XCTAssertEqual(presenter.guides[0], MockGuideAPIResponses.guideOne, "Not populated correctly")
-        XCTAssertEqual(presenter.guides[1], MockGuideAPIResponses.guideTwo, "Not populated correctly")
+        XCTAssertTrue(presenter.guides.allSatisfy([MockGuideAPIResponses.guideTwo,
+                                                   MockGuideAPIResponses.guideOne].contains),
+                      "Not populated correctly")
     }
 
 }

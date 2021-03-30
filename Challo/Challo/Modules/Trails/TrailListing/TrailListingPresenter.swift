@@ -12,6 +12,7 @@ class TrailListingPresenter: PresenterProtocol, ObservableObject {
     var interactor: TrailListingInteractor!
     var router: TrailListingRouter?
     
+    @Published var isLoading = false
     var trails: [Trail] = []
     var trailListingCards: [TrailListingCard] = []
     
@@ -19,13 +20,14 @@ class TrailListingPresenter: PresenterProtocol, ObservableObject {
         router?.trailProfilePage
     }
     
-    private func didGetAllTrails(trails: [Trail]) {
+    func didGetAllTrails(_ trails: [Trail]) {
         self.trails = trails
         trailListingCards = trails.map(transformTrailToTrailListingCard)
+        isLoading = false
     }
     
     func getAllTrails() {
-        interactor.getAllTrails(callback: didGetAllTrails)
+        interactor.getAllTrails()
     }
     
     func transformTrailToTrailListingCard(_ trail: Trail) -> TrailListingCard {
@@ -37,4 +39,10 @@ class TrailListingPresenter: PresenterProtocol, ObservableObject {
         let trail = trails[trailIndex]
         router?.populateTrailProfilePageFor(trail: trail)
     }
+    
+    func onPageAppear() {
+        isLoading = true
+        getAllTrails()
+    }
+    
 }
