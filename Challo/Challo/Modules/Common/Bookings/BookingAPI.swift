@@ -8,7 +8,7 @@
 import Foundation
 import Dispatch
 
-class BookingAPI {
+class BookingAPI: BookingAPIProtocol {
 
     typealias JSON = NetworkManager.JSON
 
@@ -31,7 +31,17 @@ class BookingAPI {
     }
 
     func getBookingsForTourist(id: UUID, callback: @escaping ([Booking]) -> Void, url: String = "/booking") {
-        networkManager.get(url: url + "/?touristId=" + id.uuidString,
+        let fullURL = url + "/?touristId=\(id.uuidString)"
+        getBookings(url: fullURL, callback: callback)
+    }
+
+    func getBookingsForGuide(id: UUID, callback: @escaping ([Booking]) -> Void, url: String = "/booking") {
+        let fullURL = url + "/?guideId=\(id.uuidString)"
+        getBookings(url: fullURL, callback: callback)
+    }
+    
+    private func getBookings(url: String, callback: @escaping ([Booking]) -> Void) {
+        networkManager.get(url: url,
                            headers: [String: String]()) { [weak self] response, error in
             guard let self = self else {
                 return
@@ -56,7 +66,7 @@ class BookingAPI {
             }
         }
     }
-    
+
     private func handleBookingsJSON(json: JSON,
                                     group: DispatchGroup,
                                     callback: @escaping (Booking) -> Void) {
