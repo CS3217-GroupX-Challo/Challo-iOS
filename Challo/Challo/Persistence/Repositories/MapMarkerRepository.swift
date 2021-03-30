@@ -24,10 +24,7 @@ class MapMarkerRepository: MapMarkerRepositoryInterface {
     
     func getAllMapMarkers() -> [MapMarker] {
         data = [NSManagedObjectID: MapMarker]() // reset data
-        guard let result = repository.getAll() as? [Marker] else {
-            return []
-        }
-        
+        let result = repository.getAll()
         return result.map { marker in
             let mapMarker = convertMarkerObjectToMapMarker(marker: marker)
             data[marker.objectID] = mapMarker
@@ -51,9 +48,9 @@ class MapMarkerRepository: MapMarkerRepositoryInterface {
     
     private func updateMapMarkers(mapMarkers: [MapMarker]) {
         for mapMaker in mapMarkers {
-            if let objectId = data.first(where: {$0.value == mapMaker})?.key,
-               let managedObject = repository.getByKey(objectId) as? Marker {
-                managedObject.setValue(mapMaker.id.uuidString, forKey:"id")
+            if let objectId = data.first(where: { $0.value == mapMaker })?.key,
+               let managedObject = repository.getByKey(objectId) {
+                managedObject.setValue(mapMaker.id.uuidString, forKey: "id")
                 managedObject.setValue(mapMaker.position.latitude, forKey: "latitude")
                 managedObject.setValue(mapMaker.position.longitude, forKey: "longitude")
                 managedObject.setValue(mapMaker.date, forKey: "date")
@@ -65,7 +62,7 @@ class MapMarkerRepository: MapMarkerRepositoryInterface {
     
     private func saveNewMapMarkers(mapMarkers: [MapMarker]) {
         for mapMarker in mapMarkers {
-            let marker = Marker()
+            let marker = Marker(context: container.managedObjectContext)
             marker.id = mapMarker.id.uuidString
             marker.comments = mapMarker.comments
             marker.longitude = mapMarker.position.longitude

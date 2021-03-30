@@ -9,7 +9,7 @@ import CoreData
 import os
 
 class CoreDataRepository<T: NSManagedObject>: RepositoryProtocol {
-    typealias Entity = NSManagedObject
+    typealias Entity = T
     
     typealias Key = NSManagedObjectID
     
@@ -21,11 +21,11 @@ class CoreDataRepository<T: NSManagedObject>: RepositoryProtocol {
     init(managedObjectContext: NSManagedObjectContext) {
         self.managedObjectContext = managedObjectContext
     }
-
-    func getAll() -> [NSManagedObject] {
-        let fetchRequest = Entity.fetchRequest()
+    
+    func getAll() -> [T] {
+        let fetchRequest = T.fetchRequest()
         do {
-            if let fetchResults = try managedObjectContext.fetch(fetchRequest) as? [Entity] {
+            if let fetchResults = try managedObjectContext.fetch(fetchRequest) as? [T] {
                 return fetchResults
             } else {
                 return []
@@ -36,19 +36,17 @@ class CoreDataRepository<T: NSManagedObject>: RepositoryProtocol {
         }
     }
     
-    func getByKey(_ key: NSManagedObjectID) -> NSManagedObject? {
+    func getByKey(_ key: NSManagedObjectID) -> T? {
         do {
-            return try managedObjectContext.existingObject(with: key) 
+            return try managedObjectContext.existingObject(with: key) as? T
         } catch {
             logger.log("\(error.localizedDescription)")
             return nil
         }
     }
     
-    // Creating a nsmanagedobject will use this context
-    // hence just call managedObjectContext.save()
     @discardableResult
-    func insert(_ entity: NSManagedObject, key: NSManagedObjectID?) -> NSManagedObjectID? {
+    func insert(_ entity: T, key: NSManagedObjectID?) -> NSManagedObjectID? {
         do {
             try managedObjectContext.save()
             return key
@@ -59,7 +57,7 @@ class CoreDataRepository<T: NSManagedObject>: RepositoryProtocol {
     }
     
     @discardableResult
-    func deleteByKey(_ key: NSManagedObjectID) -> NSManagedObject? {
+    func deleteByKey(_ key: NSManagedObjectID) -> T? {
         guard let object = getByKey(key) else {
             return nil
         }
@@ -73,10 +71,8 @@ class CoreDataRepository<T: NSManagedObject>: RepositoryProtocol {
         }
     }
     
-    // default implementation
-    // each managedobject needs to have its own properties updated
     @discardableResult
-    func updateByKey(entity: NSManagedObject, key: NSManagedObjectID) -> NSManagedObject? {
+    func updateByKey(entity: T, key: NSManagedObjectID) -> T? {
         do {
             try managedObjectContext.save()
             return entity
@@ -86,10 +82,7 @@ class CoreDataRepository<T: NSManagedObject>: RepositoryProtocol {
         }
     }
     
-    // default implementation
-    // each managedobject needs to have its own properties updated
-    @discardableResult
-    func upsert(entity: NSManagedObject, key: NSManagedObjectID) -> NSManagedObject {
+    func upsert(entity: T, key: NSManagedObjectID) -> T {
         entity
     }
 }

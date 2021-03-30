@@ -16,6 +16,7 @@ final class MapModule: ViperModuleProtocol {
         presenter.interactor = interactor
         presenter.router = router
         router.presenter = presenter
-        return (AnyView(InteractiveMapPage()), presenter: presenter)
+        return (AnyView(InteractiveMapPage(presenter: presenter)),
+                presenter: presenter)
     }
 }
