@@ -11,10 +11,18 @@ class TouristDashboardPresenter: PresenterProtocol, ObservableObject {
     
     var router: TouristDashboardRouter?
     var interactor: TouristDashboardInteractor!
+    unowned let userState: UserStateProtocol!
 
     @Published var isLoading = false
     
     @Published var bookings: [Booking] = []
+    
+    @Published var name: String
+    
+    init(userState: UserStateProtocol) {
+        self.userState = userState
+        self.name = userState.name
+    }
     
     func populateBookings() {
         isLoading = true

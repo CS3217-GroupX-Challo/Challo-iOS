@@ -23,7 +23,7 @@ final class TouristDashboardModule: ViperModuleProtocol {
         }
         let interactor = TouristDashboardInteractor(bookingsRepository: bookingsRepository, userState: userState)
         let router = TouristDashboardRouter()
-        let presenter = TouristDashboardPresenter()
+        let presenter = TouristDashboardPresenter(userState: userState)
         interactor.presenter = presenter
         presenter.interactor = interactor
         presenter.router = router

@@ -62,7 +62,7 @@ class BookingAPI: BookingAPIProtocol {
                 }
             }
             
-            bookingsGroup.notify(queue: DispatchQueue.global()) {
+            bookingsGroup.notify(queue: DispatchQueue.main) {
                 callback(bookings)
             }
         }

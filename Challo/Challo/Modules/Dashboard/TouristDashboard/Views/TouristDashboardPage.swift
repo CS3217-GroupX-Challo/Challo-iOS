@@ -15,7 +15,7 @@ struct TouristDashboardPage: View {
         VStack {
             GeometryReader { geometry in
                 VStack(alignment: .leading) {
-                    Header(title: "Challo Bernie",
+                    Header(title: presenter.name,
                            subtitle: "Ready to begin your journey with us?",
                            image: Image.mountainBackground)
                         .frame(width: geometry.size.width,
@@ -35,7 +35,9 @@ struct TouristDashboardPage: View {
                         .padding(.leading, 40)
                     
                     if presenter.isLoading {
-                        Loading(isAnimating: .constant(true), style: .large)
+                        VStack {
+                            Loading(isAnimating: .constant(true), style: .large)
+                        }
                     } else {
                         BookingCardListingsView(
                             width: geometry.size.width * 0.6,
