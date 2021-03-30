@@ -14,6 +14,12 @@ class BookingAPIParserTests: XCTestCase {
     typealias Response = MockBookingAPIResponses
     let parser = BookingAPIParser()
 
+    func testExtractBookingJSON_validResponse_correctNumberOfJSON() {
+        let response = Response.validResponse
+        let extractedJSON = parser.extractBookingsJSON(response: response)
+        XCTAssertEqual(Response.bookingJSONList.count, extractedJSON.count)
+    }
+
     func testExtractTrailID_correctTrailIDReturned() {
         let json = Response.bookingJSONOne
         let extractedId = parser.extractTrailID(json: json)

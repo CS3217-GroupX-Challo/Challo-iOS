@@ -39,6 +39,10 @@ struct MockBookingAPIResponses {
         return json
     }
 
+    static var bookingJSONList: [JSON] {
+        [bookingJSONOne]
+    }
+
     static var bookingOne: Booking? {
         guard let trail = bookingTrailOne else {
             return nil
@@ -59,5 +63,10 @@ struct MockBookingAPIResponses {
         var json = JSON()
         json["data"] = [bookingJSONOne]
         return json
+    }
+
+    static var bookings: [Booking] {
+        [bookingOne]
+            .compactMap { $0 }
     }
 }
