@@ -7,4 +7,6 @@
 
 class MapInteractor: InteractorProtocol {
     var presenter: MapPresenter!
+    var mapStore = MapStore(mapMarkerRepository: MapMarkerRepository(),
+                            mapRouteRepository: MapRouteRepository())
 }
