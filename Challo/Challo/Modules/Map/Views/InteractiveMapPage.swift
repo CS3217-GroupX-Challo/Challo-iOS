@@ -9,6 +9,8 @@ import SwiftUI
 import GoogleMaps
 
 struct InteractiveMapPage: View {
+    @ObservedObject var presenter: MapPresenter
+    
     var body: some View {
         GoogleMapsView()
             .edgesIgnoringSafeArea(.all)
