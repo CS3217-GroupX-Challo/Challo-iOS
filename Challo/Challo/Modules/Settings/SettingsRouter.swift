@@ -16,6 +16,6 @@ class SettingsRouter: RouterProtocol {
     }
         
     func getLoginPage() -> AnyView {
-        TouristLoginModule.assemble(userState: userState).view
+        TouristLoginModule(userState: userState).assemble().view
     }
 }

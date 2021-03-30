@@ -17,6 +17,6 @@ class GuideLoginRouter: LoginRouter, RouterProtocol {
     }
 
     func getRegistrationPage() -> AnyView {
-        GuideRegisterModule.assemble(userState: userState).view
+        GuideRegisterModule(userState: userState).assemble().view
     }
 }

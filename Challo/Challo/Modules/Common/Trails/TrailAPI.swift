@@ -6,7 +6,7 @@
 //
 import Foundation
 
-class TrailAPI {
+class TrailAPI: TrailAPIProtocol {
 
     typealias JSON = NetworkManager.JSON
     private let parser: TrailAPIParser
@@ -33,7 +33,7 @@ class TrailAPI {
         }
     }
     
-    func getAllTrails(callback: @escaping ([Trail]) -> Void) {
+    func getTrails(callback: @escaping ([Trail]) -> Void) {
         networkManager.get(url: "/trail",
                            headers: [String: String]()) { [weak self] response, error in
             if error != nil {

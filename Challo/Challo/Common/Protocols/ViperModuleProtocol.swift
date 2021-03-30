@@ -13,5 +13,5 @@ import SwiftUI
 protocol ViperModuleProtocol {
     associatedtype Presenter: PresenterProtocol
 
-    static func assemble(userState: UserStateProtocol) -> (view: AnyView, presenter: Presenter)
+    func assemble() -> (view: AnyView, presenter: Presenter)
 }

@@ -9,7 +9,17 @@ import SwiftUI
 
 class GuideRegisterModule: ViperModuleProtocol {
 
-    static func assemble(userState: UserStateProtocol) -> (view: AnyView, presenter: GuideRegisterPresenter) {
+    weak var userState: UserStateProtocol?
+    
+    init(userState: UserStateProtocol) {
+        self.userState = userState
+    }
+    
+    func assemble() -> (view: AnyView, presenter: GuideRegisterPresenter) {
+        guard let userState = userState else {
+            fatalError("userState is nil in GuideRegisterModule")
+        }
+        
         let certManager = CertificateManager(userState: userState)
         let interactor = GuideRegisterInteractor(certificateManager: certManager)
         let presenter = GuideRegisterPresenter()

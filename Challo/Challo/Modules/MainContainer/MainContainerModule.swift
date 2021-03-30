@@ -8,7 +8,17 @@
 import SwiftUI
 
 class MainContainerModule: ViperModuleProtocol {
-    static func assemble(userState: UserStateProtocol) -> (view: AnyView, presenter: MainContainerPresenter) {
+
+    weak var userState: UserStateProtocol?
+    
+    init(userState: UserStateProtocol) {
+        self.userState = userState
+    }
+    
+    func assemble() -> (view: AnyView, presenter: MainContainerPresenter) {
+        guard let userState = userState else {
+            fatalError("userState is not initialised")
+        }
         let interactor = MainContainerInteractor(userState: userState)
         let presenter = MainContainerPresenter()
         let router = MainContainerRouter(userState: userState)

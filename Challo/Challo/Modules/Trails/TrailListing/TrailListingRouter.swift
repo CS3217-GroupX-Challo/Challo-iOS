@@ -10,13 +10,11 @@ import SwiftUI
 class TrailListingRouter: RouterProtocol {
     
     weak var presenter: TrailListingPresenter!
-    let userState: UserStateProtocol
     var trailProfilePage: AnyView
     var trailProfilePresenter: TrailProfilePresenter
     
-    init(userState: UserStateProtocol) {
-        self.userState = userState
-        let (view, presenter) = TrailProfileModule.assemble(userState: userState)
+    init(reviewAPI: ReviewAPIProtocol) {
+        let (view, presenter) = TrailProfileModule(reviewAPI: reviewAPI).assemble()
         trailProfilePage = view
         trailProfilePresenter = presenter
     }

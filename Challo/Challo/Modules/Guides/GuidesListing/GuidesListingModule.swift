@@ -7,24 +7,23 @@
 
 import SwiftUI
 
-final class GuidesListingModule: ViperModuleProtocol {
+final class GuidesListingModule: ViperModuleProtocol {    
+    let guideRepository: GuideRepositoryProtocol
+    let reviewAPI: ReviewAPIProtocol
 
-    static func assemble(userState: UserStateProtocol) -> (view: AnyView, presenter: GuidesListingPresenter) {
-        let guideAPI = GuideAPI(guideParser: GuideAPIParser(),
-                                trailParser: TrailAPIParser(),
-                                networkManager: APINetwork.getNetworkManager())
-        let areaAPI = AreaAPI(areaParser: AreaAPIParser(),
-                              networkManager: APINetwork.getNetworkManager())
-        
-        let interactor = GuidesListingInteractor(guideAPI: guideAPI,
-                                                 areaAPI: areaAPI)
-        let router = GuidesListingRouter()
+    init(guideRepository: GuideRepositoryProtocol, reviewAPI: ReviewAPIProtocol) {
+        self.guideRepository = guideRepository
+        self.reviewAPI = reviewAPI
+    }
+    
+    func assemble() -> (view: AnyView, presenter: GuidesListingPresenter) {        
+        let interactor = GuidesListingInteractor(guideRepository: guideRepository)
+        let router = GuidesListingRouter(reviewAPI: reviewAPI)
         let presenter = GuidesListingPresenter()
         interactor.presenter = presenter
         presenter.interactor = interactor
         presenter.router = router
         router.presenter = presenter
-        presenter.interactor.populateGuides()
         return (AnyView(GuidesListingPage(presenter: presenter)), presenter: presenter)
     }
 }

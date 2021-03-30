@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AreaAPI {
+class AreaAPI: AreaAPIProtocol {
 
     private let areaParser: AreaAPIParser
     private let networkManager: NetworkManager

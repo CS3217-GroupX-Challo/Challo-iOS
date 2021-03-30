@@ -38,11 +38,3 @@ struct TouristLoginPage: View {
         }
     }
 }
-
-struct TouristLoginPage_Previews: PreviewProvider {
-    static var previews: some View {
-        let sampleState = PreviewUserState()
-        let (view, _) = TouristLoginModule.assemble(userState: sampleState)
-        return view
-    }
-}

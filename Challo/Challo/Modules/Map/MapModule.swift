@@ -8,8 +8,7 @@
 import SwiftUI
 
 final class MapModule: ViperModuleProtocol {
-
-    static func assemble(userState: UserStateProtocol) -> (view: AnyView, presenter: MapPresenter) {
+    func assemble() -> (view: AnyView, presenter: MapPresenter) {
         let interactor = MapInteractor()
         let router = MapRouter()
         let presenter = MapPresenter()

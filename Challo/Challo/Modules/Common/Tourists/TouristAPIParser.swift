@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TouristAPIParser {
+class TouristAPIParser: APIParser {
 
     typealias JSON = NetworkManager.JSON
 

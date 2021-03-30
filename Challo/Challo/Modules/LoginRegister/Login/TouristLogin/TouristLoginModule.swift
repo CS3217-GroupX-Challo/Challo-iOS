@@ -8,7 +8,17 @@ import SwiftUI
 
 final class TouristLoginModule: ViperModuleProtocol {
 
-    static func assemble(userState: UserStateProtocol) -> (view: AnyView, presenter: TouristLoginPresenter) {
+    weak var userState: UserStateProtocol?
+    
+    init(userState: UserStateProtocol) {
+        self.userState = userState
+    }
+    
+    func assemble() -> (view: AnyView, presenter: TouristLoginPresenter) {
+        guard let userState = userState else {
+            fatalError("userState is nil in TouristLoginModule")
+        }
+
         let certManager = CertificateManager(userState: userState)
         let interactor = TouristLoginInteractor(certificateManager: certManager)
         let presenter = TouristLoginPresenter()

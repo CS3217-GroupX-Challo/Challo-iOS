@@ -7,7 +7,7 @@
 
 import Foundation
 
-class UserAPI {
+class UserAPI: APIProtocol {
     typealias JSON = NetworkManager.JSON
     private let loginUrl = "/user/login"
     private let registerUrl = "/user/register"

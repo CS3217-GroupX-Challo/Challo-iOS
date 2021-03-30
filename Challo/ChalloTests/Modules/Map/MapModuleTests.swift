@@ -11,7 +11,7 @@ import SwiftUI
 
 class MapModuleTests: XCTestCase {
     func testAssemble_returnsPresenterWithCorrectPropertiesAndView() {
-        let (view, presenter) = MapModule.assemble(userState: MockUserState())
+        let (view, presenter) = MapModule().assemble()
         XCTAssertNotNil(view, "Wrong view returned")
         XCTAssertNotNil(presenter, "Wrong presenter returned")
         XCTAssertNotNil(presenter.router, "Presenter properties not assigned")

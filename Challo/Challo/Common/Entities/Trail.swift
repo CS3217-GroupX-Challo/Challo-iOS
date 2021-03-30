@@ -49,7 +49,7 @@ struct Trail {
     let area: Area
     
     /// Array of guides who are capable of guiding this trail
-    var guides: [Guide] = []
+    var guideIds: [UUID] = []
     
     let numOfReviews: Int
     
@@ -70,7 +70,7 @@ extension Trail: Equatable {
             lhs.distance == rhs.distance &&
             lhs.elevation == rhs.elevation &&
             lhs.duration == rhs.duration &&
-            lhs.guides.count == rhs.guides.count &&
+            lhs.guideIds.count == rhs.guideIds.count &&
             lhs.images == rhs.images
     }
 }

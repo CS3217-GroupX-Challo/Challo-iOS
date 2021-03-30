@@ -9,7 +9,7 @@ import Foundation
 
 /// It conforms to trail API and UserAPI as data from reviewAPI is dependent on
 /// the two APIs aforementioned
-class ReviewAPI {
+class ReviewAPI: ReviewAPIProtocol {
 
     private let reviewParser: ReviewAPIParser
     private let trailAPI: TrailAPI
