@@ -16,9 +16,11 @@ import Foundation
 struct Booking {
     let bookingId: UUID
     
-    let fee: Decimal
+    let fee: Double
     
     let date: Date
+
+    let createdAt: Date
         
     let status: BookingStatus
     
