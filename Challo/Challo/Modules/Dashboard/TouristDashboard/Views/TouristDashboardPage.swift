@@ -29,7 +29,7 @@ struct TouristDashboardPage: View {
                         .frame(height: geometry.size.height * 0.10)
                         .padding()
 
-                    Text("Upcoming trips")
+                    Text("Upcoming bookings")
                         .font(.title2)
                         .bold()
                         .padding(.leading, 40)
@@ -39,14 +39,14 @@ struct TouristDashboardPage: View {
                     } else {
                         BookingCardListingsView(
                             width: geometry.size.width * 0.6,
-                            bookings: $presenter.bookings)
+                            bookings: $presenter.upcomingBookings)
                     }
                 }
             }
         }
         .ignoresSafeArea()
         .onAppear {
-            presenter.populateBookings()
+            presenter.refresh()
         }
     }
 }

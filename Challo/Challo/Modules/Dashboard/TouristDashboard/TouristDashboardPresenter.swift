@@ -15,13 +15,18 @@ class TouristDashboardPresenter: PresenterProtocol, ObservableObject {
 
     @Published var isLoading = false
     
-    @Published var bookings: [Booking] = []
+    @Published var upcomingBookings: [Booking] = []
     
     @Published var name: String
     
     init(userState: UserStateProtocol) {
         self.userState = userState
         self.name = userState.name
+    }
+
+    func refresh() {
+        self.name = userState.name
+        populateBookings()
     }
     
     func populateBookings() {
@@ -30,7 +35,13 @@ class TouristDashboardPresenter: PresenterProtocol, ObservableObject {
     }
 
     func didPopulateBookings(bookings: [Booking]) {
-        self.bookings = bookings
+        self.upcomingBookings = filterUpcomingBookings(bookings: bookings)
         isLoading = false
+    }
+
+    private func filterUpcomingBookings(bookings: [Booking]) -> [Booking] {
+        bookings.filter {
+            $0.status == .Paid || $0.status == .Pending
+        }
     }
 }

@@ -41,5 +41,10 @@ extension UserStateProtocol {
 
     func logOut() {
         loggedIn = false
+        name = ""
+        email = ""
+        token = ""
+        userId = ""
+        user = nil
     }
 }
