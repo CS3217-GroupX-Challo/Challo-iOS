@@ -35,5 +35,11 @@ class RepositoryContainer {
             }
             return GuideRepository(guideAPI: guideAPI)
         }
+        container.register(BookingRepositoryProtocol.self) { [weak self] _ in
+            guard let bookingAPI = self?.apiContainer?.container.resolve(BookingAPIProtocol.self) else {
+                fatalError("Failed to resolve BookingAPIProtocol in RepositoryContainer")
+            }
+            return BookingRepository(bookingAPI: bookingAPI)
+        }
     }
 }
