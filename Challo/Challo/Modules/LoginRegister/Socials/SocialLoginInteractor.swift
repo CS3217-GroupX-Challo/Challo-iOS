@@ -9,12 +9,14 @@ class SocialLoginInteractor {
 
     var loginAPI: LoginAPI
     var registerAPI: RegisterAPI
+    var certificateManager: CertificateManager
 
     private var facebookLoginService = FacebookLoginService()
 
-    init(loginAPI: LoginAPI, registerAPI: RegisterAPI) {
+    init(loginAPI: LoginAPI, registerAPI: RegisterAPI, certificateManager: CertificateManager) {
         self.loginAPI = loginAPI
         self.registerAPI = registerAPI
+        self.certificateManager = certificateManager
         facebookLoginService.delegate = self
     }
 
@@ -37,8 +39,7 @@ extension SocialLoginInteractor: SocialLoginDelegate {
                       response.success else {
                     return
                 }
-                let certificateManager = CertificateManager.manager
-                certificateManager.storeCertificate(certificate: certificate)
+                self?.certificateManager.storeCertificate(certificate: certificate)
             }
         }
     }

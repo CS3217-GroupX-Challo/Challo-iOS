@@ -13,8 +13,8 @@ class TrailListingRouter: RouterProtocol {
     var trailProfilePage: AnyView
     var trailProfilePresenter: TrailProfilePresenter
     
-    init() {
-        let (view, presenter) = TrailProfileModule.assemble()
+    init(reviewAPI: ReviewAPIProtocol) {
+        let (view, presenter) = TrailProfileModule(reviewAPI: reviewAPI).assemble()
         trailProfilePage = view
         trailProfilePresenter = presenter
     }

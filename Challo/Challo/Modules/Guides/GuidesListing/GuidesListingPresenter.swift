@@ -12,6 +12,8 @@ class GuidesListingPresenter: PresenterProtocol {
     var interactor: GuidesListingInteractor!
     var filterTypes = FilterTypes()
     
+    @Published var isLoading = false
+    
     @Published var searchKeyword: String = "" {
         didSet {
             applyFiltering()
@@ -38,6 +40,17 @@ class GuidesListingPresenter: PresenterProtocol {
     
     @Published var guides: [Guide] = []
     var originalGuides: [Guide] = []
+    
+    func didPopulateGuides(guides: [Guide]) {
+        self.guides = guides
+        originalGuides = guides
+        isLoading = false
+    }
+    
+    func populateGuides() {
+        isLoading = true
+        interactor.populateGuides()
+    }
 }
 
 // MARK: - Filtering logic

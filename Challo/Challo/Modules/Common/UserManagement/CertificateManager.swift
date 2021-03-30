@@ -7,12 +7,11 @@
 
 class CertificateManager {
 
-    static let manager = CertificateManager()
     var globalState: UserStateProtocol
     typealias JSON = NetworkManager.JSON
 
-    init() {
-        self.globalState = UserState.globalState
+    init(userState: UserStateProtocol) {
+        self.globalState = userState
     }
 
     func storeCertificate(certificate: UserCertificate) {

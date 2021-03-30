@@ -8,8 +8,11 @@
 class MainContainerInteractor: InteractorProtocol {
 
     weak var presenter: MainContainerPresenter!
-    
-    private var userState = UserState.globalState
+    let userState: UserStateProtocol!
+
+    init(userState: UserStateProtocol) {
+        self.userState = userState
+    }
     
     func checkIfUserLoggedIn() -> Bool {
         userState.loggedIn

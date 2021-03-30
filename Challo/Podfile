@@ -10,6 +10,7 @@ target 'Challo' do
   pod 'Alamofire'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'Swinject'
 
   target 'ChalloTests' do
     inherit! :search_paths

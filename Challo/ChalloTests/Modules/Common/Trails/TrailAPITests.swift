@@ -15,7 +15,7 @@ class TrailAPITests: XCTestCase {
     func testGetAllTrail_withTwoTrailsFromMocks_getsTwoTrails() {
         let trailAPI = TrailAPI(parser: MockTrailAPIParser(),
                                 networkManager: MockNetworkManager(json: JSON()))
-        trailAPI.getAllTrails { trails in
+        trailAPI.getTrails { trails in
             XCTAssertEqual(trails.count, 2, "Number of trails is wrong")
             XCTAssertEqual(trails[0], MockTrailAPIResponse.trailOne, "Trail one is wrong")
             XCTAssertEqual(trails[1], MockTrailAPIResponse.trailTwo, "Trail two is wrong")

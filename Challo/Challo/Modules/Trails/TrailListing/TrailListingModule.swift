@@ -8,15 +8,23 @@
 import SwiftUI
 
 class TrailListingModule: ViperModuleProtocol {
-    static func assemble() -> (view: AnyView, presenter: TrailListingPresenter) {
-        let interactor = TrailListingInteractor()
+    
+    let trailRepository: TrailRepositoryProtocol
+    let reviewAPI: ReviewAPIProtocol
+    
+    init(trailRepository: TrailRepositoryProtocol, reviewAPI: ReviewAPIProtocol, userState: UserStateProtocol) {
+        self.trailRepository = trailRepository
+        self.reviewAPI = reviewAPI
+    }
+    
+    func assemble() -> (view: AnyView, presenter: TrailListingPresenter) {
+        let interactor = TrailListingInteractor(trailRepository: trailRepository)
         let presenter = TrailListingPresenter()
-        let router = TrailListingRouter()
+        let router = TrailListingRouter(reviewAPI: reviewAPI)
         interactor.presenter = presenter
         presenter.interactor = interactor
         presenter.router = router
         router.presenter = presenter
-        presenter.getAllTrails()
         return (view: AnyView(TrailListingPage().environmentObject(presenter)), presenter: presenter)
     }
 }

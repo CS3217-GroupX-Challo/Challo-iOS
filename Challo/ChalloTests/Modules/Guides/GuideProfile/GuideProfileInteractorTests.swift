@@ -10,7 +10,7 @@ import XCTest
 
 class GuideProfileInteractorTests: XCTestCase {
     func testGetReviews_emptyReviews_populatePresenterReviewsWithEmptyArray() {
-        let presenter = GuideProfilePresenter(guide: MockGuideAPIResponses.guideOne)
+        let presenter = GuideProfilePresenter(guide: MockGuideAPIResponses.guideOne, reviewAPI: MockReviewsAPI())
         presenter.interactor = GuideProfileInteractor(reviewAPI: MockReviewsAPI())
         let interactor = presenter.interactor
         interactor?.presenter = presenter
