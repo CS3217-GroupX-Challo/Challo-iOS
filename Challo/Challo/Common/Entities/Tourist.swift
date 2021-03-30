@@ -5,9 +5,9 @@
 //  Created by Shao Yi on 15/3/21.
 //
 
-/// Representation of a Tourist user
 import Foundation
 
+/// Representation of a Tourist user
 struct Tourist: User {
     var userId: UUID
     
@@ -22,4 +22,8 @@ struct Tourist: User {
     var dateJoined: Date?
     
     var sex: Sex?
+}
+
+// MARK: Equatable
+extension Tourist: Equatable {
 }

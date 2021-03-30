@@ -7,18 +7,14 @@
 
 class TrailListingInteractor: InteractorProtocol {
 
-    private var trailAPI: TrailAPI
+    private var trailRepository: TrailRepositoryProtocol
     weak var presenter: TrailListingPresenter!
 
-    init(trailAPI: TrailAPI) {
-        self.trailAPI = trailAPI
-    }
-    
-    convenience init() {
-        self.init(trailAPI: TrailAPI())
+    init(trailRepository: TrailRepositoryProtocol) {
+        self.trailRepository = trailRepository
     }
 
-    func getAllTrails(callback: @escaping ([Trail]) -> Void) {
-        trailAPI.getAllTrails(callback: callback)
+    func getAllTrails() {
+        trailRepository.fetchTrailsAndRefresh(didRefresh: presenter.didGetAllTrails)
     }
 }

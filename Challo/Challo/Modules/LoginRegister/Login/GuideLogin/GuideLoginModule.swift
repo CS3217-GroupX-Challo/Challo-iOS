@@ -9,10 +9,22 @@ import SwiftUI
 
 final class GuideLoginModule: ViperModuleProtocol {
 
-    static func assemble() -> (view: AnyView, presenter: GuideLoginPresenter) {
-        let interactor = GuideLoginInteractor()
+    weak var userState: UserStateProtocol?
+    
+    init(userState: UserStateProtocol) {
+        self.userState = userState
+        print("here")
+    }
+    
+    func assemble() -> (view: AnyView, presenter: GuideLoginPresenter) {
+        guard let userState = userState else {
+            fatalError("userState is nil in GuideLoginModule")
+        }
+        
+        let certManager = CertificateManager(userState: userState)
+        let interactor = GuideLoginInteractor(certificateManager: certManager)
         let presenter = GuideLoginPresenter()
-        let router = GuideLoginRouter()
+        let router = GuideLoginRouter(userState: userState)
         interactor.presenter = presenter
         presenter.interactor = interactor
         presenter.router = router
@@ -21,7 +33,7 @@ final class GuideLoginModule: ViperModuleProtocol {
         let loginAPI = GuideLoginAPI()
         let registerAPI = GuideRegistrationAPI()
         let socialPresenter = SocialLoginPresenter
-            .createSocialLoginPresenter(loginAPI: loginAPI, registerAPI: registerAPI)
+            .createSocialLoginPresenter(loginAPI: loginAPI, registerAPI: registerAPI, certificateManager: certManager)
     
         return (view: AnyView(GuideLoginPage(loginPresenter: presenter,
                                              socialLoginPresenter: socialPresenter)),

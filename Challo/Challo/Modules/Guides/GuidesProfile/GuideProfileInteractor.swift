@@ -7,9 +7,9 @@
 
 class GuideProfileInteractor: InteractorProtocol {
     weak var presenter: GuideProfilePresenter!
-    let reviewAPI: ReviewAPI
+    let reviewAPI: ReviewAPIProtocol
     
-    init(reviewAPI: ReviewAPI) {
+    init(reviewAPI: ReviewAPIProtocol) {
         self.reviewAPI = reviewAPI
     }
     

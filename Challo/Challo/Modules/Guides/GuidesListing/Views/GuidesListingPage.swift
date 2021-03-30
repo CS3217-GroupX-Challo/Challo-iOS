@@ -22,18 +22,22 @@ struct GuidesListingPage: View {
     
     var body: some View {
         PageLayout(titleLabel: "Let us guide\nyour way", headerContent: AnyView(headerContent)) { geometry in
-            VStack {
-                GuidesFiltersView(width: geometry.size.width / 5,
-                                  presenter: presenter)
-                    .padding(.top, 20)
-                GuidesCardListingsView(guides: guides,
-                                       width: geometry.size.width,
-                                       presenter: presenter)
-            }.padding(.bottom, 80)
+            Group {
+                if presenter.isLoading {
+                    Loading(isAnimating: .constant(true), style: .large)
+                } else {
+                    VStack {
+                        GuidesFiltersView(width: geometry.size.width / 5,
+                                          presenter: presenter)
+                            .padding(.top, 20)
+                        GuidesCardListingsView(guides: guides,
+                                               width: geometry.size.width,
+                                               presenter: presenter)
+                    }.padding(.bottom, 80)
+                }
+            }.frame(maxWidth: .infinity, maxHeight: .infinity)
         }.onAppear {
-            if presenter.guides.isEmpty {
-                presenter.interactor.populateGuides()
-            }
+            presenter.populateGuides()
         }
     }
 }

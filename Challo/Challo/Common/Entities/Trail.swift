@@ -18,7 +18,8 @@ import MapKit
 /// - `images` contains the URLs to images of the trail
 /// - `numOfReview`is non-negative
 /// - `lowestFee` is more than 0 and is in RP
-/// - `landmarks` is non-empty, where the first element is the starting point of the trail and the last element is the end point
+/// - `landmarks` is non-empty, where the first element is the starting point of the trail and
+///     the last element is the end point
 struct Trail {
     /// Unique id fo the trail
     let trailId: UUID
@@ -48,7 +49,7 @@ struct Trail {
     let area: Area
     
     /// Array of guides who are capable of guiding this trail
-    var guides: [Guide] = []
+    var guideIds: [UUID] = []
     
     let numOfReviews: Int
     
@@ -69,7 +70,7 @@ extension Trail: Equatable {
             lhs.distance == rhs.distance &&
             lhs.elevation == rhs.elevation &&
             lhs.duration == rhs.duration &&
-            lhs.guides.count == rhs.guides.count &&
+            lhs.guideIds.count == rhs.guideIds.count &&
             lhs.images == rhs.images
     }
 }

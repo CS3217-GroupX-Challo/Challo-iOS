@@ -7,14 +7,19 @@
 
 import Foundation
 
-class AreaAPI {
+class AreaAPI: AreaAPIProtocol {
 
-    let areaParser = AreaAPIParser()
+    private let areaParser: AreaAPIParser
+    private let networkManager: NetworkManager
+    
+    init(areaParser: AreaAPIParser, networkManager: NetworkManager) {
+        self.areaParser = areaParser
+        self.networkManager = networkManager
+    }
 
     func getAreas(url: String = "/area", callback: @escaping ([Area]) -> Void) {
-        let api = APINetwork.api
-        api.get(url: url,
-                headers: [String: String]()) { response, error in
+        networkManager.get(url: url,
+                           headers: [String: String]()) { response, error in
             if error != nil {
                 return
             }

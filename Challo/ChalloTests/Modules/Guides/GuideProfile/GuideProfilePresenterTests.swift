@@ -10,7 +10,7 @@ import XCTest
 
 class GuideProfilePresenterTests: XCTestCase {
     func testConstruct() {
-        let presenter = GuideProfilePresenter(guide: MockGuideAPIResponses.guideOne)
+        let presenter = GuideProfilePresenter(guide: MockGuideAPIResponses.guideOne, reviewAPI: MockReviewsAPI())
         XCTAssertEqual(presenter.guide, MockGuideAPIResponses.guideOne, "Not initialized properly")
         XCTAssertEqual(presenter.reviews.count, 0, "not initialized properly")
     }

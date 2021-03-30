@@ -21,7 +21,7 @@ class GuideLoginInteractorTests: XCTestCase {
         self.userState = MockUserState()
         self.mockCertificateManager = MockCertificateManager(state: userState)
         self.loginAPI = MockLoginAPI()
-        self.interactor = GuideLoginInteractor(loginAPI: self.loginAPI)
+        self.interactor = GuideLoginInteractor(loginAPI: self.loginAPI, certificateManager: mockCertificateManager)
         self.presenter = LoginPresenterImplementation()
         self.interactor.presenter = self.presenter
         self.interactor.certificateManager = mockCertificateManager

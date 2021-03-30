@@ -13,9 +13,9 @@ class GuideProfilePresenter: PresenterProtocol {
     var guide: Guide
     @Published var reviews: [Review] = []
     
-    init(guide: Guide) {
+    init(guide: Guide, reviewAPI: ReviewAPIProtocol) {
         self.guide = guide
-        self.interactor = GuideProfileInteractor(reviewAPI: ReviewAPI())
+        self.interactor = GuideProfileInteractor(reviewAPI: reviewAPI)
         self.interactor.presenter = self
     }
 }

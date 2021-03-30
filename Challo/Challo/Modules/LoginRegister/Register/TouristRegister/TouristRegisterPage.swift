@@ -37,10 +37,3 @@ struct TouristRegisterPage: View {
         }
     }
 }
-
-struct TouristRegisterPage_Previews: PreviewProvider {
-    static var previews: some View {
-        let (view, _) = TouristRegisterModule.assemble()
-        return view
-    }
-}

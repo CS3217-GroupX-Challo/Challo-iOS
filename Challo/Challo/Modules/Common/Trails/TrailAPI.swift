@@ -6,15 +6,20 @@
 //
 import Foundation
 
-class TrailAPI {
+class TrailAPI: TrailAPIProtocol {
 
     typealias JSON = NetworkManager.JSON
-    let parser = TrailAPIParser()
+    private let parser: TrailAPIParser
+    private let networkManager: NetworkManager
+    
+    init(parser: TrailAPIParser, networkManager: NetworkManager) {
+        self.parser = parser
+        self.networkManager = networkManager
+    }
 
     func getTrail(trailId: UUID, callback: @escaping (Trail) -> Void, url: String = "/trail") {
-        let api = APINetwork.api
-        api.get(url: url + "/" + trailId.uuidString,
-                headers: [String: String]()) { [weak self] response, error in
+        networkManager.get(url: url + "/" + trailId.uuidString,
+                           headers: [String: String]()) { [weak self] response, error in
             if error != nil {
                 return
             }
@@ -28,10 +33,9 @@ class TrailAPI {
         }
     }
     
-    func getAllTrails(callback: @escaping ([Trail]) -> Void) {
-        let api = AlamofireManager.alamofireManager
-        api.get(url: "/trail",
-                headers: [String: String]()) { [weak self] response, error in
+    func getTrails(callback: @escaping ([Trail]) -> Void) {
+        networkManager.get(url: "/trail",
+                           headers: [String: String]()) { [weak self] response, error in
             if error != nil {
                 return
             }

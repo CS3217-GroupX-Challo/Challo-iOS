@@ -7,14 +7,19 @@
 
 import Foundation
 
-class UserAPI {
-
+class UserAPI: APIProtocol {
+    typealias JSON = NetworkManager.JSON
     private let loginUrl = "/user/login"
     private let registerUrl = "/user/register"
-    let networkManager = APINetwork.api
-    let userParser = UserAPIParser()
-    typealias JSON = NetworkManager.JSON
-
+    
+    private let networkManager: NetworkManager
+    private let userParser: UserAPIParser
+   
+    init(userParser: UserAPIParser, networkManager: NetworkManager) {
+        self.userParser = userParser
+        self.networkManager = networkManager
+    }
+    
     func commonLogin(credentials: JSON,
                      callback: @escaping (UserAPIResponse) -> Void) {
         sendUserPostRequest(url: loginUrl,

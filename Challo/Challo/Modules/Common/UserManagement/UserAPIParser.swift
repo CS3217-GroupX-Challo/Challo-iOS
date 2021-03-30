@@ -7,8 +7,6 @@
 import SwiftUI
 
 class UserAPIParser {
-
-    let networkManager = APINetwork.api
     typealias JSON = NetworkManager.JSON
 
     func parseUser(apiResponse: JSON) -> UserCertificate? {
