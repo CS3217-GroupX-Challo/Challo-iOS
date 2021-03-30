@@ -22,4 +22,10 @@ extension Date {
         let finalDate = calendar.date(from: components)
         return finalDate
     }
+
+    func destruct() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: self)
+    }
 }

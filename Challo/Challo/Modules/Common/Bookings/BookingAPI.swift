@@ -116,3 +116,20 @@ class BookingAPI: BookingAPIProtocol {
         }
     }
 }
+
+// MARK: Making bookings
+extension BookingAPI {
+
+    func makeBooking(bookingDetails: BookingDetails, callback: @escaping ((Bool, Error?) -> Void)) {
+        let json = bookingDetails.convertToJSON()
+        networkManager.post(url: url,
+                            headers: [String: String](),
+                            body: json) { response, err in
+            if let error = err {
+                callback(false, error)
+                return
+            }
+            callback(true, nil)
+        }
+    }
+}
