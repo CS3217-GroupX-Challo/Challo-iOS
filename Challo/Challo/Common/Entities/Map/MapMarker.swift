@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-struct Marker {
+struct MapMarker {
     var id: UUID
     
     /// Coordinates of the position of the marker on the map
@@ -23,9 +23,8 @@ struct Marker {
 }
 
 // MARK: - Equatable
-extension Marker: Equatable {
-    static func ==(lhs: Marker, rhs: Marker) -> Bool {
-        lhs.position.latitude == rhs.position.latitude &&
-            lhs.position.longitude == rhs.position.longitude
+extension MapMarker: Equatable {
+    static func == (lhs: MapMarker, rhs: MapMarker) -> Bool {
+        lhs.id == rhs.id
     }
 }
