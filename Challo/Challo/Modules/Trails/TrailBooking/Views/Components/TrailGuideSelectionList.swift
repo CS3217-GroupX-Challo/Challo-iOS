@@ -10,7 +10,7 @@ import SwiftUI
 struct TrailGuideSelectionList: View {
     
     @Binding var guides: [Guide]
-    @Binding var selectedIndex: Int?
+    @Binding var selectedGuideId: UUID?
     var cardWidth: CGFloat
     var cardHeight: CGFloat
 
@@ -26,7 +26,16 @@ struct TrailGuideSelectionList: View {
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(guides, id: \.userId) { guide in
-                            TrailGuideSelectionCard(guide: guide, width: cardWidth, height: cardHeight)
+                            TrailGuideSelectionCard(guide: guide,
+                                                    width: cardWidth,
+                                                    height: cardHeight,
+                                                    selected: selectedGuideId == guide.userId)
+                                .gesture(
+                                    TapGesture()
+                                        .onEnded { _ in
+                                            selectedGuideId = guide.userId
+                                        }
+                                )
                         }
                     }
                 }

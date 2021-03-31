@@ -15,13 +15,16 @@ class TrailBookingInteractor: InteractorProtocol {
     private let trailRepository: TrailRepositoryProtocol
     private let guideRepository: GuideRepositoryProtocol
     private let bookingAPI: BookingAPIProtocol
+    private let userState: UserStateProtocol
 
     init(trailRepository: TrailRepositoryProtocol,
          guideRepository: GuideRepositoryProtocol,
-         bookingAPI: BookingAPIProtocol) {
+         bookingAPI: BookingAPIProtocol,
+         userState: UserStateProtocol) {
         self.trailRepository = trailRepository
         self.guideRepository = guideRepository
         self.bookingAPI = bookingAPI
+        self.userState = userState
     }
 
     func getGuidesForTrail(trailId: UUID, didRetrieveGuides: @escaping ([Guide]) -> Void) {
@@ -50,7 +53,21 @@ class TrailBookingInteractor: InteractorProtocol {
         }
     }
 
-    func makeBooking(bookingDetails: BookingDetails, callback: @escaping (Bool, Error?) -> Void) {
+    func makeBooking(bookingForm: TrailBookingForm,
+                     callback: @escaping (Bool, Error?) -> Void) {
+        guard let touristId = UUID(uuidString: userState.userId),
+              userState.loggedIn else {
+            ChalloLogger.logger.fault("User trying to make booking without signing in")
+            callback(false, nil)
+            return
+        }
+
+        let bookingDetails = BookingDetails(touristId: touristId,
+                                            guideId: bookingForm.guideId,
+                                            trailId: bookingForm.trailId,
+                                            date: bookingForm.date,
+                                            numberOfPax: bookingForm.numberOfPax,
+                                            totalFee: bookingForm.totalFee)
         self.bookingAPI.makeBooking(bookingDetails: bookingDetails, callback: callback)
     }
 }

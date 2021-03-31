@@ -30,7 +30,8 @@ final class TrailBookingModule: ViperModuleProtocol {
     func assemble() -> (view: AnyView, presenter: TrailBookingPresenter) {
         let interactor = TrailBookingInteractor(trailRepository: trailRepository,
                                                 guideRepository: guideRepository,
-                                                bookingAPI: bookingAPI)
+                                                bookingAPI: bookingAPI,
+                                                userState: userState)
         let presenter = TrailBookingPresenter()
         let router = TrailBookingRouter()
         interactor.presenter = presenter

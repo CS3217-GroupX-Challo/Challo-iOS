@@ -33,6 +33,16 @@ struct TrailBookingPage: View {
                 }
             }
         }
+        .alert(isPresented: $presenter.isShowingBookingFailureAlert) {
+            Alert(title: Text("Unable to make booking"),
+                  message: Text(presenter.bookingFailureMessage),
+                  dismissButton: .default(Text("Close")))
+        }
+        .alert(isPresented: $presenter.isShowingBookingSuccessAlert) {
+            Alert(title: Text("Booking made successfully!"),
+                  message: Text("Your booking has been made successfully."),
+                  dismissButton: .default(Text("Close")))
+        }
         .onAppear {
             guard let trail = trailProfilePresenter.currentTrail else {
                 return

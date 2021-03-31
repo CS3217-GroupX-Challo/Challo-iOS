@@ -22,12 +22,20 @@ struct TrailBookingOptions: View {
                                   paxRange: $presenter.paxRange)
                 TrailDateSelection(selectedDate: $presenter.selectedDate)
                 TrailGuideSelectionList(guides: $presenter.availableGuides,
-                                        selectedIndex: $presenter.selectedGuideIdx,
+                                        selectedGuideId: $presenter.selectedGuideId,
                                         cardWidth: width / 3,
                                         cardHeight: width / 3)
             }
-            Text("Total cost: \(presenter.totalPriceString)")
-                .font(.title3)
+            HStack {
+                Text("Total cost: \(presenter.totalPriceString)")
+                    .font(.title3)
+                Spacer()
+                Button(action: presenter.makeBooking) {
+                    Text("Confirm")
+                        .bold()
+                }
+                .buttonStyle(BorderedButtonStyle(borderColor: .themeTertiary, foregroundColor: .themeForeground))
+            }
         }
         .padding()
         .frame(width: width,

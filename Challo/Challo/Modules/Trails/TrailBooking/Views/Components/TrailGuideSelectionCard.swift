@@ -12,8 +12,9 @@ struct TrailGuideSelectionCard: View {
     var guide: Guide
     var width: CGFloat
     var height: CGFloat
+    var selected: Bool
 
-    var body: some View {
+    var card: some View {
         Card {
             Image(guide.profileImg ?? "avatar-image")
                 .resizable()
@@ -32,5 +33,14 @@ struct TrailGuideSelectionCard: View {
         .frame(width: width,
                height: height,
                alignment: .center)
+
+    }
+
+    var body: some View {
+        if selected {
+            card.background(Color.blue)
+        } else {
+            card
+        }
     }
 }
