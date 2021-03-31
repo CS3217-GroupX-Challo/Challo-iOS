@@ -28,8 +28,15 @@ class MainContainerPresenter: PresenterProtocol, ObservableObject {
         guard let state = userState as? UserState else {
             return
         }
-        let loggedInSubscriber = state.$loggedIn.sink(receiveValue: toggleLoggedIn)
-        cancellables.insert(loggedInSubscriber)
+
+        state.$loggedIn.sink { [weak self] value in
+            guard let self = self else {
+                return
+            }
+            
+            self.toggleLoggedIn(loggedInState: value)
+        }.store(in: &cancellables)
+
         toggleLoggedIn(loggedInState: state.loggedIn)
     }
 

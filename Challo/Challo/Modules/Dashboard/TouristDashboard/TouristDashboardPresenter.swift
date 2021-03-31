@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class TouristDashboardPresenter: PresenterProtocol, ObservableObject {
+class TouristDashboardPresenter: PresenterProtocol {
     
     var router: TouristDashboardRouter?
     var interactor: TouristDashboardInteractor!
