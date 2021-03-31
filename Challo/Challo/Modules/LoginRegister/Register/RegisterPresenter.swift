@@ -8,8 +8,9 @@ protocol RegisterPresenter: AnyObject {
     var phone: String { get set }
     var email: String { get set }
     var password: String { get set }
-    var isShowingRegisterFailureAlert: Bool { get set }
-    var isShowingRegisterSuccessAlert: Bool { get set }
+    var isShowingRegisterAlert: Bool { get set }
+    var registerAlertTitle: String { get set }
+    var registerAlertMessage: String { get set }
 
     func submitRegistration()
     func showRegisterFailureAlert()
@@ -27,10 +28,14 @@ extension RegisterPresenter {
     }
 
     func showRegisterFailureAlert() {
-        self.isShowingRegisterFailureAlert = true
+        self.isShowingRegisterAlert = true
+        self.registerAlertTitle = "Failed to register"
+        self.registerAlertMessage = "Please check your details again"
     }
 
     func showRegisterSuccessAlert() {
-        self.isShowingRegisterSuccessAlert = true
+        self.isShowingRegisterAlert = true
+        self.registerAlertTitle = "Registration successful!"
+        self.registerAlertMessage = "You may now sign in with your account"
     }
 }

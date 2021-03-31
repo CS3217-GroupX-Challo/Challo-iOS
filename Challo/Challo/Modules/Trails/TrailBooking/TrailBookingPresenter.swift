@@ -44,9 +44,10 @@ class TrailBookingPresenter: PresenterProtocol {
     @Published var availableGuides = [Guide]()
     @Published var selectedGuideId: UUID?
 
-    @Published var isShowingBookingSuccessAlert = false
-    @Published var isShowingBookingFailureAlert = true
-    @Published var bookingFailureMessage = ""
+    @Published var isShowingBookingStatusAlert = false
+    @Published var bookingStatusTitle = ""
+    @Published var bookingStatusMessage = ""
+    @Published var isSuccessAlert = false
 
     func populateTrailBookingPage(for trail: Trail) {
         self.trail = trail
@@ -60,8 +61,7 @@ class TrailBookingPresenter: PresenterProtocol {
     func makeBooking() {
         let (fieldsAllValid, message) = checkAllFieldsValid()
         if !fieldsAllValid {
-            bookingFailureMessage = message
-            isShowingBookingFailureAlert = true
+            failureAlert(message: message)
         }
 
         guard let guideId = selectedGuideId,
@@ -78,13 +78,26 @@ class TrailBookingPresenter: PresenterProtocol {
             if let error = err,
                !success {
                 ChalloLogger.logger.log("Failed to make booking: \(error.localizedDescription)")
-                self?.bookingFailureMessage = "Oops, something went wrong! Please try again!"
-                self?.isShowingBookingFailureAlert = true
+                self?.failureAlert(message: "Oops! Something went wrong, please try again.")
                 return
             }
             
-            self?.isShowingBookingSuccessAlert = true
+            self?.successAlert(message: "Your booking has been made successfully!")
         }
+    }
+
+    private func failureAlert(message: String) {
+        self.isSuccessAlert = false
+        self.bookingStatusMessage = message
+        self.bookingStatusTitle = "Failed to make booking"
+        self.isShowingBookingStatusAlert = true
+    }
+
+    private func successAlert(message: String) {
+        self.isSuccessAlert = true
+        self.bookingStatusMessage = message
+        self.bookingStatusTitle = "Booking Submitted"
+        self.isShowingBookingStatusAlert = true
     }
 }
 

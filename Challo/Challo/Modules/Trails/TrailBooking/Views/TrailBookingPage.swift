@@ -34,16 +34,15 @@ struct TrailBookingPage: View {
                 }
             }
         }
-        .alert(isPresented: $presenter.isShowingBookingFailureAlert) {
-            Alert(title: Text("Unable to make booking"),
-                  message: Text(presenter.bookingFailureMessage),
-                  dismissButton: .default(Text("Close")))
-        }
-        .alert(isPresented: $presenter.isShowingBookingSuccessAlert) {
-            Alert(title: Text("Booking made successfully!"),
-                  message: Text("Your booking has been made successfully."),
+        .alert(isPresented: $presenter.isShowingBookingStatusAlert) {
+            Alert(title: Text(presenter.bookingStatusTitle),
+                  message: Text(presenter.bookingStatusMessage),
                   dismissButton: Alert.Button.default(
-                    Text("Okay"), action: { self.presentationMode.wrappedValue.dismiss() }
+                    Text("Okay"), action: {
+                        if self.presenter.isSuccessAlert {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                    }
                   ))
         }
         .onAppear {
