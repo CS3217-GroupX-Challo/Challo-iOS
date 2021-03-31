@@ -29,7 +29,7 @@ class TrailProfileModule: ViperModuleProtocol {
     
     func assemble() -> (view: AnyView, presenter: TrailProfilePresenter) {
         let interactor = TrailProfileInteractor(reviewAPI: reviewAPI)
-        let presenter = TrailProfilePresenter()
+        let presenter = TrailProfilePresenter(userState: userState)
         let router = TrailProfileRouter(trailProfilePresenter: presenter,
                                         userState: userState,
                                         trailRepository: trailRepository,

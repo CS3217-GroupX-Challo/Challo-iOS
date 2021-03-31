@@ -9,13 +9,23 @@ import SwiftUI
 
 class TrailProfilePresenter: PresenterProtocol, ObservableObject {
 
+    var userState: UserStateProtocol
     var interactor: TrailProfileInteractor!
     var router: TrailProfileRouter?
     var trailBookingPage: AnyView? {
         router?.trailBookingPage
     }
 
+    init(userState: UserStateProtocol) {
+        self.userState = userState
+    }
+
     @Published var isLoadingReviews = false
+    @Published var isShowingNotLoggedInAlert = false
+    var userCanMakeBooking: Bool {
+        userState.loggedIn
+    }
+
     var reviews: [Review] = []
     var currentTrail: Trail?
     
@@ -30,7 +40,10 @@ class TrailProfilePresenter: PresenterProtocol, ObservableObject {
         interactor.getReviewsForTrail(trailId: trail.trailId, callback: didGetReviewsForTrail)
     }
     
-    func onTapBookTrailButton() -> some View {
-        router?.trailBookingPage
+    func onTapBookTrailButton() {
+        if userState.loggedIn {
+            return
+        }
+        isShowingNotLoggedInAlert = true
     }
 }

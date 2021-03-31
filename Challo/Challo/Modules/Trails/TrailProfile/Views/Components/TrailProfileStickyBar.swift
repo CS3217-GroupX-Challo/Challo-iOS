@@ -13,7 +13,7 @@ struct TrailProfileStickyBar: View {
     var body: some View {
         HStack {
             Spacer()
-            NavigationLink(destination: presenter.onTapBookTrailButton()) {
+            NavigationLink(destination: presenter.trailBookingPage) {
                 Text("Book This Trail")
                     .padding()
                     .foregroundColor(.white)
@@ -24,6 +24,10 @@ struct TrailProfileStickyBar: View {
                             .stroke(Color.themeTertiary, lineWidth: 1))
                     .padding([.top, .bottom], 10)
                     .font(Font.system(size: 15, weight: .semibold))
+            }
+            .disabled(!presenter.userCanMakeBooking)
+            .onTapGesture {
+                presenter.onTapBookTrailButton()
             }
         }.padding(EdgeInsets(top: 15, leading: 50, bottom: 15, trailing: 50))
     }
