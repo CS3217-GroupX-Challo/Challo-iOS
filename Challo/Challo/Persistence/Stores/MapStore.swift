@@ -17,7 +17,7 @@ class MapStore {
         self.mapRouteRepository = mapRouteRepository
         self.mapItineraryRepository = mapItineraryRepository
     }
-    
+
     func getAllMapMarkers() -> [MapMarker] {
         mapMarkerRepository.getAllMapMarkers()
     }
