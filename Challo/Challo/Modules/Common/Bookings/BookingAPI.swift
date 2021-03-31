@@ -128,10 +128,6 @@ class BookingAPI: BookingAPIProtocol {
             }
         }
     }
-}
-
-// MARK: Making bookings
-extension BookingAPI {
 
     func makeBooking(bookingDetails: BookingDetails, callback: @escaping ((Bool, Error?) -> Void)) {
         let json = bookingDetails.convertToJSON()
