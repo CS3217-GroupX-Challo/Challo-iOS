@@ -41,17 +41,17 @@ class MapItineraryRepository: MapItineraryRepositoryInterface {
     }
     
     func saveMapItineraries(mapItineraries: [MapItinerary]) {
-        let mapItineraries = getAllMapItineraries()
+        let currentMapItineraries = getAllMapItineraries()
         
         let existingMapItineraries = mapItineraries.filter { mapItinerary in
-            mapItineraries.contains(mapItinerary)
+            currentMapItineraries.contains(mapItinerary)
         }
         
         let newMapItineraries = mapItineraries.filter { mapItinerary in
             !existingMapItineraries.contains(mapItinerary)
         }
         
-        saveMapItineraries(mapItineraries: newMapItineraries)
+        saveNewMapItineraries(mapItineraries: newMapItineraries)
         updateMapItineraries(mapItineraries: existingMapItineraries)
     }
     
@@ -88,9 +88,9 @@ class MapItineraryRepository: MapItineraryRepositoryInterface {
         var filteredMarkers = [Marker]()
         
         for marker in markers {
-            if mapMarkers.firstIndex(where: { mapMarker in
+            if mapMarkers.contains(where: { mapMarker in
                 mapMarker.id.uuidString == marker.id
-            }) != nil {
+            }) {
                 filteredMarkers.append(marker)
             }
         }
@@ -103,9 +103,9 @@ class MapItineraryRepository: MapItineraryRepositoryInterface {
         var filteredRoutes = [Route]()
         
         for route in routes {
-            if mapRoutes.first(where: { mapRoute in
+            if mapRoutes.contains(where: { mapRoute in
                 mapRoute.id.uuidString == route.id
-            }) != nil {
+            }) {
                 filteredRoutes.append(route)
             }
         }

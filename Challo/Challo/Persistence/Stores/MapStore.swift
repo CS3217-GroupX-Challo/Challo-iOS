@@ -8,11 +8,14 @@
 class MapStore {
     private var mapMarkerRepository: MapMarkerRepositoryInterface
     private var mapRouteRepository: MapRouteRepositoryInterface
+    private var mapItineraryRepository: MapItineraryRepositoryInterface
     
     init(mapMarkerRepository: MapMarkerRepositoryInterface,
-         mapRouteRepository: MapRouteRepositoryInterface) {
+         mapRouteRepository: MapRouteRepositoryInterface,
+         mapItineraryRepository: MapItineraryRepositoryInterface) {
         self.mapMarkerRepository = mapMarkerRepository
         self.mapRouteRepository = mapRouteRepository
+        self.mapItineraryRepository = mapItineraryRepository
     }
     
     func getAllMapMarkers() -> [MapMarker] {
@@ -29,5 +32,13 @@ class MapStore {
     
     func saveMapRoutes(mapRoutes: [MapRoute]) {
         mapRouteRepository.saveMapRoutes(mapRoutes: mapRoutes)
+    }
+    
+    func saveMapItineraries(mapItineraries: [MapItinerary]) {
+        mapItineraryRepository.saveMapItineraries(mapItineraries: mapItineraries)
+    }
+    
+    func getAllMapItineraries() -> [MapItinerary] {
+        mapItineraryRepository.getAllMapItineraries()
     }
 }
