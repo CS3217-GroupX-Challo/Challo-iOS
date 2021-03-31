@@ -18,7 +18,8 @@ struct MockTouristAPIResponse: MockAPIResponse {
     static let sex = Sex.Male
     static let password: String = "123"
     static let profileImg: String? = nil
-    static let dateJoined: Date? = Date.construct(with: "2021-03-20T17:54:59.022Z")
+    static let dateJoinedString: String = "2021-03-20T17:54:59.022Z"
+    static let dateJoined: Date? = Date.construct(with: dateJoinedString)
     
     static var validTouristJSON: JSON {
         var json = JSON()
@@ -29,7 +30,7 @@ struct MockTouristAPIResponse: MockAPIResponse {
         json[Key.phone] = phone
         json[Key.sex] = "male"
         json[Key.profileImage] = nil
-        json[Key.dateJoined] = dateJoined
+        json[Key.dateJoined] = dateJoinedString
         return json
     }
     

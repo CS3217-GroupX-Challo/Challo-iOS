@@ -17,7 +17,8 @@ struct MockReviewAPIResponse: MockAPIResponse {
     static let touristIdOne = UUID(uuidString: "efecd96d-b46f-4152-9963-9a6df8abec14") ?? UUID()
     static let trailIdOne = UUID(uuidString: "e26fc1aa-e82e-4098-86d6-f9c07af70899") ?? UUID()
     static let commentOne: String = "Best guide ever!"
-    static let createdAtOne: Date? = Date.construct(with: "2021-03-20T18:52:50.741Z")
+    static let createAtOneString: String = "2021-03-20T18:52:50.741Z"
+    static let createdAtOne: Date? = Date.construct(with: createAtOneString)
     
     static var reviewJSONOne: JSON {
         var json = JSON()
@@ -27,7 +28,7 @@ struct MockReviewAPIResponse: MockAPIResponse {
         json[Key.trailId] = trailIdOne.uuidString
         json[Key.touristId] = touristIdOne.uuidString
         json[Key.comment] = commentOne
-        json[Key.createdAt] = createdAtOne
+        json[Key.createdAt] = createAtOneString
         return json
     }
     
@@ -43,7 +44,8 @@ struct MockReviewAPIResponse: MockAPIResponse {
     static let touristIdTwo = UUID(uuidString: "efecd96d-b46f-4152-9963-9a6df8abec14") ?? UUID()
     static let trailIdTwo = UUID(uuidString: "aa76f93c-d1a6-4eec-8551-ecc6f8994b5c") ?? UUID()
     static let commentTwo: String = "Best guide ever! Please vote for him!"
-    static let createdAtTwo: Date? = Date.construct(with: "2021-03-20T18:52:50.741Z")
+    static let createdAtTwoString: String = "2021-03-20T18:52:50.741Z"
+    static let createdAtTwo: Date? = Date.construct(with: createdAtTwoString)
     
     static var reviewJSONTwo: JSON {
         var json = JSON()
@@ -53,7 +55,7 @@ struct MockReviewAPIResponse: MockAPIResponse {
         json[Key.trailId] = trailIdTwo.uuidString
         json[Key.touristId] = touristIdTwo.uuidString
         json[Key.comment] = commentTwo
-        json[Key.createdAt] = createdAtTwo
+        json[Key.createdAt] = createdAtTwoString
         return json
     }
     
