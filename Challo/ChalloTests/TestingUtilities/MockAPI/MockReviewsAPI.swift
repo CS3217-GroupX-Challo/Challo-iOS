@@ -27,4 +27,8 @@ class MockReviewsAPI: ReviewAPI {
         let mockReviews = [Review]()
         callback(mockReviews)
     }
+
+    override func getReviewForBooking(bookingId: UUID, guide: Guide, trail: Trail, tourist: Tourist, callback: @escaping (Review?) -> Void) {
+        callback(nil)
+    }
 }

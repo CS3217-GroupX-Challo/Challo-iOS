@@ -16,7 +16,8 @@ class BookingAPITests: XCTestCase {
                                         networkManager: MockNetworkManager(json: JSON()),
                                         guideAPI: MockGuideAPI(),
                                         touristAPI: MockTouristAPI(),
-                                        trailAPI: MockTrailAPI())
+                                        trailAPI: MockTrailAPI(),
+                                        reviewAPI: MockReviewsAPI())
 
     func testGetBookingsForTourist_correctBookingsRetrieved() {
         bookingAPI.getBookingsForTourist(id: UUID()) { bookings in

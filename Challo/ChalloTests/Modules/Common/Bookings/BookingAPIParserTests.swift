@@ -49,7 +49,8 @@ class BookingAPIParserTests: XCTestCase {
         let convertedBooking = parser.convertJSONToBooking(json: json,
                                                            guide: guide,
                                                            trail: trail,
-                                                           tourist: tourist)
+                                                           tourist: tourist,
+                                                           review: nil)
         XCTAssertEqual(Response.bookingOne, convertedBooking)
     }
 }
