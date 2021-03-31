@@ -18,17 +18,20 @@ class BookingAPI: BookingAPIProtocol {
     private let guideAPI: GuideAPI
     private let touristAPI: TouristAPI
     private let trailAPI: TrailAPI
+    private let reviewAPI: ReviewAPI
     
     init(bookingParser: BookingAPIParser,
          networkManager: NetworkManager,
          guideAPI: GuideAPI,
          touristAPI: TouristAPI,
-         trailAPI: TrailAPI) {
+         trailAPI: TrailAPI,
+         reviewAPI: ReviewAPI) {
         self.bookingParser = bookingParser
         self.networkManager = networkManager
         self.guideAPI = guideAPI
         self.touristAPI = touristAPI
         self.trailAPI = trailAPI
+        self.reviewAPI = reviewAPI
     }
 
     func getBookingsForTourist(id: UUID, callback: @escaping ([Booking]) -> Void) {
@@ -77,7 +80,8 @@ class BookingAPI: BookingAPIProtocol {
         var trail: Trail?
 
         let internalGroup = DispatchGroup()
-        guard let guideID = bookingParser.extractGuideID(json: json),
+        guard let bookingID = bookingParser.extractBookingID(json: json),
+              let guideID = bookingParser.extractGuideID(json: json),
               let touristID = bookingParser.extractTouristID(json: json),
               let trailID = bookingParser.extractTrailID(json: json) else {
             return
@@ -104,15 +108,24 @@ class BookingAPI: BookingAPIProtocol {
         internalGroup.notify(queue: DispatchQueue.global()) {
             guard let guide = guide,
                   let tourist = tourist,
-                  let trail = trail,
-                  let booking = self.bookingParser.convertJSONToBooking(json: json,
-                                                                        guide: guide,
-                                                                        trail: trail,
-                                                                        tourist: tourist) else {
+                  let trail = trail else {
                 return group.leave()
             }
-            callback(booking)
-            group.leave()
+            
+            self.reviewAPI.getReviewForBooking(bookingId: bookingID,
+                                               guide: guide,
+                                               trail: trail,
+                                               tourist: tourist) { review in
+                guard let booking = self.bookingParser.convertJSONToBooking(json: json,
+                                                                            guide: guide,
+                                                                            trail: trail,
+                                                                            tourist: tourist,
+                                                                            review: review) else {
+                    return group.leave()
+                }
+                callback(booking)
+                group.leave()
+            }
         }
     }
 }

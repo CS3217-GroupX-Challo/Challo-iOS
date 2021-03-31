@@ -29,7 +29,11 @@ class MockBookingAPIParser: BookingAPIParser {
         Response.guideIdOne
     }
     
-    override func convertJSONToBooking(json: JSON, guide: Guide, trail: Trail, tourist: Tourist) -> Booking? {
+    override func convertJSONToBooking(json: JSON,
+                                       guide: Guide,
+                                       trail: Trail,
+                                       tourist: Tourist,
+                                       review: Review?) -> Booking? {
         Response.bookingOne
     }
 }

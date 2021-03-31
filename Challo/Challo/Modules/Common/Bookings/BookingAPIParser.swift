@@ -20,6 +20,10 @@ class BookingAPIParser: APIParser {
         return bookingsInfo
     }
 
+    func extractBookingID(json: JSON) -> UUID? {
+        UUID(uuidString: json[Key.bookingId] as? String ?? "")
+    }
+
     func extractTrailID(json: JSON) -> UUID? {
         UUID(uuidString: json[Key.trailId] as? String ?? "")
     }
@@ -32,7 +36,11 @@ class BookingAPIParser: APIParser {
         UUID(uuidString: json[Key.guideId] as? String ?? "")
     }
     
-    func convertJSONToBooking(json: JSON, guide: Guide, trail: Trail, tourist: Tourist) -> Booking? {
+    func convertJSONToBooking(json: JSON,
+                              guide: Guide,
+                              trail: Trail,
+                              tourist: Tourist,
+                              review: Review?) -> Booking? {
         guard let bookingID = UUID(uuidString: json[Key.bookingId] as? String ?? ""),
               let createdAtString = json[Key.createdAt] as? String,
               let dateString = json[Key.date] as? String,
@@ -56,6 +64,6 @@ class BookingAPIParser: APIParser {
                        guide: guide,
                        trail: trail,
                        tourist: tourist,
-                       review: nil)
+                       review: review)
     }
 }

@@ -51,11 +51,17 @@ class APIContainer {
         let trailAPI = TrailAPI(parser: trailParser, networkManager: networkManager)
         let guideAPI = GuideAPI(guideParser: guideParser, trailParser: trailParser, networkManager: networkManager)
         let touristAPI = TouristAPI(touristParser: touristParser, networkManager: networkManager)
+        let reviewAPI = ReviewAPI(reviewParser: reviewParser,
+                                  trailAPI: trailAPI,
+                                  touristAPI: touristAPI,
+                                  guideAPI: guideAPI,
+                                  networkManager: networkManager)
         let bookingAPI = BookingAPI(bookingParser: bookingParser,
                                     networkManager: networkManager,
                                     guideAPI: guideAPI,
                                     touristAPI: touristAPI,
-                                    trailAPI: trailAPI)
+                                    trailAPI: trailAPI,
+                                    reviewAPI: reviewAPI)
         container.register(GuideAPIProtocol.self) { _ in
             guideAPI
         }
@@ -66,8 +72,7 @@ class APIContainer {
             touristAPI
         }
         container.register(ReviewAPIProtocol.self) { _ in
-            ReviewAPI(reviewParser: reviewParser, trailAPI: trailAPI, touristAPI: touristAPI, guideAPI: guideAPI,
-                      networkManager: networkManager)
+            reviewAPI
         }
         container.register(AreaAPIProtocol.self, name: ContainerNames.area.rawValue) { _ in
             AreaAPI(areaParser: areaParser, networkManager: networkManager)
@@ -76,5 +81,4 @@ class APIContainer {
             bookingAPI
         }
     }
-    
 }

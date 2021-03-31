@@ -15,7 +15,8 @@ class MockBookingAPI: BookingAPI {
                    networkManager: MockNetworkManager(json: NetworkManager.JSON()),
                    guideAPI: MockGuideAPI(),
                    touristAPI: MockTouristAPI(),
-                   trailAPI: MockTrailAPI())
+                   trailAPI: MockTrailAPI(),
+                   reviewAPI: MockReviewsAPI())
     }
 
     override func getBookingsForTourist(id: UUID, callback: @escaping ([Booking]) -> Void) {
