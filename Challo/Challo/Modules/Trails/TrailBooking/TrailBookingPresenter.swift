@@ -18,9 +18,9 @@ class TrailBookingPresenter: PresenterProtocol {
     }
 
     var pricePerPaxString: String {
-        String(pricePerPax)
+        String(pricePerPax) + " Rp"
     }
-    @Published var totalPriceString: String = "$0.00"
+    @Published var totalPriceString: String = "0.00 Rp"
     @Published var selectedPax: Int = 0 {
         didSet {
             setTotalPriceString()
@@ -111,7 +111,7 @@ extension TrailBookingPresenter {
 
     private func setTotalPriceString() {
         let totalPrice = Double(selectedPax * pricePerPax)
-        totalPriceString = "$" + String(format: "%.2f", totalPrice)
+        totalPriceString = String(format: "%.2f", totalPrice) + " Rp"
     }
 
     private func filterAvailableGuides() {
