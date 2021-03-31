@@ -10,6 +10,8 @@ import SwiftUI
 struct TrailBookingOptions: View {
 
     @ObservedObject var presenter: TrailBookingPresenter
+    var width: CGFloat
+    var height: CGFloat
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -20,17 +22,16 @@ struct TrailBookingOptions: View {
                                   paxRange: $presenter.paxRange)
                 TrailDateSelection(selectedDate: $presenter.selectedDate)
                 TrailGuideSelectionList(guides: $presenter.availableGuides,
-                                        selectedIndex: $presenter.selectedGuideIdx)
+                                        selectedIndex: $presenter.selectedGuideIdx,
+                                        cardWidth: width / 3,
+                                        cardHeight: width / 3)
             }
             Text("Total cost: \(presenter.totalPriceString)")
                 .font(.title3)
         }
         .padding()
-    }
-}
-
-struct TrailBookingOptions_Previews: PreviewProvider {
-    static var previews: some View {
-        TrailBookingOptions(presenter: TrailBookingPresenter())
+        .frame(width: width,
+               height: height,
+               alignment: .center)
     }
 }

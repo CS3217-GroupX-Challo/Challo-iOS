@@ -28,10 +28,21 @@ class TrailBookingPresenter: PresenterProtocol {
         }
     }
     @Published var paxRange = [1, 2, 3, 4, 5]
-    @Published var selectedDate = Date()
+    @Published var selectedDate = Date() {
+        didSet {
+            filterAvailableGuides()
+        }
+    }
     @Published var availableGuides = [Guide]()
     @Published var selectedGuideIdx: Int?
-    
+
+    func populateTrailBookingPage(for trail: Trail) {
+        self.trail = trail
+        interactor.getGuidesForTrail(trailId: trail.trailId) { [weak self] guides in
+            self?.originalGuides = guides
+            self?.filterAvailableGuides()
+        }
+    }
 }
 
 extension TrailBookingPresenter {
@@ -53,7 +64,6 @@ extension TrailBookingPresenter {
                 ChalloLogger.logger.fault("Unable to get the day of week of selected booking date")
                 return false
             }
-            
             return guide.daysAvailable.contains(dayOfWeek)
         }
     }

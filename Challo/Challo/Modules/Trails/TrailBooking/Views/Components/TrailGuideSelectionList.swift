@@ -11,12 +11,24 @@ struct TrailGuideSelectionList: View {
     
     @Binding var guides: [Guide]
     @Binding var selectedIndex: Int?
+    var cardWidth: CGFloat
+    var cardHeight: CGFloat
 
     var body: some View {
-        ScrollView(.horizontal) {
-            HStack {
-                ForEach(guides.indices) { index in
-                    TrailGuideSelectionCard(guide: guides[index], width: 300, height: 300)
+        VStack(alignment: .leading) {
+            Text("Select your guide")
+                .foregroundColor(.themeTertiary)
+            if guides.isEmpty {
+                Text("No guides are available on your selected date, please choose another date!")
+                    .padding()
+                    .foregroundColor(.themeForeground)
+            } else {
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(guides, id: \.userId) { guide in
+                            TrailGuideSelectionCard(guide: guide, width: cardWidth, height: cardHeight)
+                        }
+                    }
                 }
             }
         }

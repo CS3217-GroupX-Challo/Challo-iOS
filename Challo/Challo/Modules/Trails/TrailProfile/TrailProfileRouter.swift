@@ -26,9 +26,4 @@ class TrailProfileRouter: RouterProtocol {
         self.trailBookingPage = view
         self.trailBookingPresenter = presenter
     }
-
-    func getBookingPage() -> some View {
-        TrailBookingPage()
-            .environmentObject(presenter)
-    }
 }

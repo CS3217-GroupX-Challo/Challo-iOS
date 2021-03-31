@@ -37,8 +37,7 @@ final class TrailBookingModule: ViperModuleProtocol {
         presenter.interactor = interactor
         presenter.router = router
         router.presenter = presenter
-        return (view: AnyView(TrailBookingPage()
-                                .environmentObject(presenter)
+        return (view: AnyView(TrailBookingPage(presenter: presenter)
                                 .environmentObject(trailProfilePresenter)),
                 presenter: presenter)
     }

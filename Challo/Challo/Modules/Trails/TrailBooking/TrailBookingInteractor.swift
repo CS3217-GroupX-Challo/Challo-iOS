@@ -41,9 +41,9 @@ class TrailBookingInteractor: InteractorProtocol {
             }
             
             // refresh the guide repo
-            self?.guideRepository.fetchGuidesAndRefresh { [weak self] _ in
-                let validGuides = trail.guideIds.compactMap { guideId in
-                    self?.guideRepository.getByKey(guideId)
+            self?.guideRepository.fetchGuidesAndRefresh { guides in
+                let validGuides = guides.filter {
+                    $0.trails.contains(trail)
                 }
                 didRetrieveGuides(validGuides)
             }

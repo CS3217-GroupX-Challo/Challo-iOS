@@ -11,6 +11,9 @@ class TrailProfilePresenter: PresenterProtocol, ObservableObject {
 
     var interactor: TrailProfileInteractor!
     var router: TrailProfileRouter?
+    var trailBookingPage: AnyView? {
+        router?.trailBookingPage
+    }
 
     @Published var isLoadingReviews = false
     var reviews: [Review] = []
@@ -28,6 +31,6 @@ class TrailProfilePresenter: PresenterProtocol, ObservableObject {
     }
     
     func onTapBookTrailButton() -> some View {
-        router?.getBookingPage()
+        router?.trailBookingPage
     }
 }
