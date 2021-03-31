@@ -10,16 +10,12 @@ import SwiftUI
 struct TrailDateSelection: View {
 
     @Binding var selectedDate: Date
+    var dateRange: ClosedRange<Date>
 
     var body: some View {
         DatePicker("Date",
                    selection: $selectedDate,
+                   in: dateRange,
                    displayedComponents: .date)
-    }
-}
-
-struct TrailDateSelection_Previews: PreviewProvider {
-    static var previews: some View {
-        TrailDateSelection(selectedDate: .constant(Date()))
     }
 }

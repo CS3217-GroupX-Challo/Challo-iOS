@@ -21,10 +21,3 @@ struct TrailPaxSelection: View {
         .pickerStyle(MenuPickerStyle())
     }
 }
-
-struct TrailPaxSelection_Previews: PreviewProvider {
-    static var previews: some View {
-        TrailPaxSelection(selectedPax: .constant(0),
-                          paxRange: .constant([1, 2, 3, 4, 5]))
-    }
-}

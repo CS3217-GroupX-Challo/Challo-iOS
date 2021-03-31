@@ -34,6 +34,11 @@ class TrailBookingPresenter: PresenterProtocol {
             selectedGuideId = nil
         }
     }
+    var validDateRange: ClosedRange<Date> {
+        let today = Date()
+        let sixMonthsLater = Calendar.current.date(byAdding: .month, value: 6, to: Date()) ?? today
+        return today...sixMonthsLater
+    }
 
     private var originalGuides = [Guide]()
     @Published var availableGuides = [Guide]()

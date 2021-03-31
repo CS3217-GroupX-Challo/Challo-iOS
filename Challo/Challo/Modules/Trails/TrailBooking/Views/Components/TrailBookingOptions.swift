@@ -20,7 +20,8 @@ struct TrailBookingOptions: View {
             Form {
                 TrailPaxSelection(selectedPax: $presenter.selectedPax,
                                   paxRange: $presenter.paxRange)
-                TrailDateSelection(selectedDate: $presenter.selectedDate)
+                TrailDateSelection(selectedDate: $presenter.selectedDate,
+                                   dateRange: presenter.validDateRange)
                 TrailGuideSelectionList(guides: $presenter.availableGuides,
                                         selectedGuideId: $presenter.selectedGuideId,
                                         cardWidth: width / 3,
