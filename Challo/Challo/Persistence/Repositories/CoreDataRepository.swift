@@ -86,3 +86,13 @@ class CoreDataRepository<T: NSManagedObject>: RepositoryProtocol {
         entity
     }
 }
+
+extension CoreDataRepository {
+    func commit() {
+        do {
+            try managedObjectContext.save()
+        } catch {
+            logger.log("\(error.localizedDescription)")
+        }
+    }
+}

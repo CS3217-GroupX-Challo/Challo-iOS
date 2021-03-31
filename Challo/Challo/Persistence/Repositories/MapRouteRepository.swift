@@ -49,6 +49,7 @@ class MapRouteRepository: MapRouteRepositoryInterface {
         
         updateMapRoutes(mapRoutes: existingMapRoutes)
         saveNewMapRoutes(mapRoutes: toSaveMapRoutes)
+        repository.commit()
     }
     
     private func updateMapRoutes(mapRoutes: [MapRoute]) {
@@ -58,7 +59,6 @@ class MapRouteRepository: MapRouteRepositoryInterface {
                 managedObject.comments = mapRoute.comments
                 managedObject.date = mapRoute.date
                 managedObject.id = mapRoute.id.uuidString
-                repository.updateByKey(entity: managedObject, key: objectId)
             }
         }
     }
@@ -81,8 +81,6 @@ class MapRouteRepository: MapRouteRepositoryInterface {
                     marker.routeEnd = route
                 }
             }
-            
-            repository.insert(route, key: route.objectID)
         }
     }
     

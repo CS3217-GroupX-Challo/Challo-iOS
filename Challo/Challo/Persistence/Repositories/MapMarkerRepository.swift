@@ -41,6 +41,7 @@ class MapMarkerRepository: MapMarkerRepositoryInterface {
         
         updateMapMarkers(mapMarkers: mapMarkersToUpdate)
         saveNewMapMarkers(mapMarkers: toSaveMapMarkers)
+        repository.commit()
     }
     
     private func updateMapMarkers(mapMarkers: [MapMarker]) {
@@ -52,7 +53,6 @@ class MapMarkerRepository: MapMarkerRepositoryInterface {
                 managedObject.setValue(mapMaker.position.longitude, forKey: "longitude")
                 managedObject.setValue(mapMaker.date, forKey: "date")
                 managedObject.setValue(mapMaker.comments, forKey: "comments")
-                repository.updateByKey(entity: managedObject, key: objectId)
             }
         }
     }
@@ -65,7 +65,6 @@ class MapMarkerRepository: MapMarkerRepositoryInterface {
             marker.longitude = mapMarker.position.longitude
             marker.latitude = mapMarker.position.latitude
             marker.date = mapMarker.date
-            repository.insert(marker, key: marker.objectID)
         }
     }
     

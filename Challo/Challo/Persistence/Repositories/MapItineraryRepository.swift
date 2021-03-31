@@ -53,6 +53,7 @@ class MapItineraryRepository: MapItineraryRepositoryInterface {
         
         saveNewMapItineraries(mapItineraries: newMapItineraries)
         updateMapItineraries(mapItineraries: existingMapItineraries)
+        repository.commit()
     }
     
     private func saveNewMapItineraries(mapItineraries: [MapItinerary]) {
@@ -64,7 +65,6 @@ class MapItineraryRepository: MapItineraryRepositoryInterface {
             itinerary.id = mapItinerary.id.uuidString
             itinerary.markers = NSSet(array: getRelatedMapMarkers(mapMarkers: mapItinerary.markers))
             itinerary.routes = NSSet(array: getRelatedMapRoutes(mapRoutes: mapItinerary.routes))
-            repository.insert(itinerary, key: itinerary.objectID)
         }
     }
     
@@ -78,7 +78,6 @@ class MapItineraryRepository: MapItineraryRepositoryInterface {
                 itinerary.id = mapItinerary.id.uuidString
                 itinerary.markers = NSSet(array: getRelatedMapMarkers(mapMarkers: mapItinerary.markers))
                 itinerary.routes = NSSet(array: getRelatedMapRoutes(mapRoutes: mapItinerary.routes))
-                repository.updateByKey(entity: itinerary, key: itinerary.objectID)
             }
         }
     }
