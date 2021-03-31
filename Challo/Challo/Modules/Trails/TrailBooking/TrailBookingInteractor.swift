@@ -8,13 +8,17 @@
 import Foundation
 import Dispatch
 
-class TrailBookingInteractor {
+class TrailBookingInteractor: InteractorProtocol {
 
-    private let trailRepository: TrailRepository
-    private let guideRepository: GuideRepository
-    private let bookingAPI: BookingAPI
+    weak var presenter: TrailBookingPresenter!
 
-    init(trailRepository: TrailRepository, guideRepository: GuideRepository, bookingAPI: BookingAPI) {
+    private let trailRepository: TrailRepositoryProtocol
+    private let guideRepository: GuideRepositoryProtocol
+    private let bookingAPI: BookingAPIProtocol
+
+    init(trailRepository: TrailRepositoryProtocol,
+         guideRepository: GuideRepositoryProtocol,
+         bookingAPI: BookingAPIProtocol) {
         self.trailRepository = trailRepository
         self.guideRepository = guideRepository
         self.bookingAPI = bookingAPI

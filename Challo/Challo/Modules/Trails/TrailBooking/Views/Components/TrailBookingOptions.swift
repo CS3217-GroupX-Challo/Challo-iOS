@@ -19,6 +19,8 @@ struct TrailBookingOptions: View {
                 TrailPaxSelection(selectedPax: $presenter.selectedPax,
                                   paxRange: $presenter.paxRange)
                 TrailDateSelection(selectedDate: $presenter.selectedDate)
+                TrailGuideSelectionList(guides: $presenter.availableGuides,
+                                        selectedIndex: $presenter.selectedGuideIdx)
             }
             Text("Total cost: \(presenter.totalPriceString)")
                 .font(.title3)

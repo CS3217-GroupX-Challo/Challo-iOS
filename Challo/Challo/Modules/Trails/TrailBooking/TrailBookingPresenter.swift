@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-class TrailBookingPresenter: ObservableObject {
+class TrailBookingPresenter: PresenterProtocol {
+
+    var interactor: TrailBookingInteractor!
+    var router: TrailBookingRouter?
 
     private var trail: Trail?
     private var pricePerPax: Int {
@@ -27,7 +30,7 @@ class TrailBookingPresenter: ObservableObject {
     @Published var paxRange = [1, 2, 3, 4, 5]
     @Published var selectedDate = Date()
     @Published var availableGuides = [Guide]()
-
+    @Published var selectedGuideIdx: Int?
     
 }
 
