@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Itinerary" representedClassName="Itinerary" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="lastModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="markers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Marker" inverseName="itinerary" inverseEntity="Marker"/>
+        <relationship name="routes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Route" inverseName="itinerary" inverseEntity="Route"/>
+    </entity>
     <entity name="Marker" representedClassName="Marker" syncable="YES" codeGenerationType="class">
         <attribute name="comments" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="itinerary" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Itinerary" inverseName="markers" inverseEntity="Itinerary"/>
         <relationship name="routeEnd" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Route" inverseName="end" inverseEntity="Route"/>
         <relationship name="routeStart" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Route" inverseName="start" inverseEntity="Route"/>
     </entity>
@@ -14,10 +23,12 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <relationship name="end" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Marker" inverseName="routeEnd" inverseEntity="Marker"/>
+        <relationship name="itinerary" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Itinerary" inverseName="routes" inverseEntity="Itinerary"/>
         <relationship name="start" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Marker" inverseName="routeStart" inverseEntity="Marker"/>
     </entity>
     <elements>
-        <element name="Marker" positionX="-63" positionY="-18" width="128" height="134"/>
-        <element name="Route" positionX="-54" positionY="27" width="128" height="104"/>
+        <element name="Marker" positionX="-63" positionY="-18" width="128" height="149"/>
+        <element name="Route" positionX="-54" positionY="27" width="128" height="119"/>
+        <element name="Itinerary" positionX="-36" positionY="72" width="128" height="119"/>
     </elements>
 </model>

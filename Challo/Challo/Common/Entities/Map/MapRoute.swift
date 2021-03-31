@@ -25,3 +25,10 @@ struct MapRoute {
     // Comments for the route
     var comments: String?
 }
+
+// MARK: - Extension from equtable
+extension MapRoute: Equatable {
+    static func == (lhs: MapRoute, rhs: MapRoute) -> Bool {
+        lhs.id == rhs.id
+    }
+}
