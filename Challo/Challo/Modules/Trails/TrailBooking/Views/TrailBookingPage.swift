@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TrailBookingPage: View {
 
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var presenter: TrailBookingPresenter
     @EnvironmentObject var trailProfilePresenter: TrailProfilePresenter
 
@@ -41,7 +42,9 @@ struct TrailBookingPage: View {
         .alert(isPresented: $presenter.isShowingBookingSuccessAlert) {
             Alert(title: Text("Booking made successfully!"),
                   message: Text("Your booking has been made successfully."),
-                  dismissButton: .default(Text("Close")))
+                  dismissButton: Alert.Button.default(
+                    Text("Okay"), action: { self.presentationMode.wrappedValue.dismiss() }
+                  ))
         }
         .onAppear {
             guard let trail = trailProfilePresenter.currentTrail else {
