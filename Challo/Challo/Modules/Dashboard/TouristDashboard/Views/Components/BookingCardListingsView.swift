@@ -13,14 +13,17 @@ struct BookingCardListingsView: View {
     @Binding var bookings: [Booking]
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        ScrollView(showsIndicators: true) {
             if bookings.isEmpty {
                 Text("You don't have any upcoming trips")
                     .foregroundColor(.themeForeground)
                     .padding()
-            }
-            ForEach(bookings.indices) { index in
-                BookingCard(booking: bookings[index], width: width)
+            } else {
+                VStack {
+                    ForEach(bookings.indices) { index in
+                        BookingCard(booking: bookings[index], width: width)
+                    }
+                }
             }
         }
     }
