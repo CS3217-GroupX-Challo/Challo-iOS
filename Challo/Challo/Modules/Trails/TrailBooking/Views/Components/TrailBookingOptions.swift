@@ -10,10 +10,6 @@ import SwiftUI
 struct TrailBookingOptions: View {
 
     @ObservedObject var presenter: TrailBookingPresenter
-    @State private var pricePerPax = 25.5
-    @State private var selectedPax = 0
-    @State private var paxRange = [1, 2, 3, 4, 5]
-    @State private var selectedDate = Date()
 
     var body: some View {
         VStack(alignment: .leading) {

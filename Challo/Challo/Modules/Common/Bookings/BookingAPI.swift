@@ -137,7 +137,7 @@ extension BookingAPI {
         let json = bookingDetails.convertToJSON()
         networkManager.post(url: url,
                             headers: [String: String](),
-                            body: json) { response, err in
+                            body: json) { _, err in
             if let error = err {
                 callback(false, error)
                 return
