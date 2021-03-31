@@ -21,7 +21,7 @@ struct BookingDetails {
         json[Key.touristId] = touristId.uuidString
         json[Key.guideId] = guideId.uuidString
         json[Key.trailId] = trailId.uuidString
-        json[Key.fee] = String(totalFee)
+        json[Key.fee] = totalFee
         json[Key.date] = date.destruct()
         return json
     }
