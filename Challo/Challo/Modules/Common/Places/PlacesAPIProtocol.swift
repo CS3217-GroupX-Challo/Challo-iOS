@@ -6,5 +6,5 @@
 //
 
 protocol PlacesAPIProtocol: APIProtocol {
-    func getPlace(with name: String) -> Place
+    func getPlaces(with name: String, callback: @escaping ([Place]) -> Void)
 }

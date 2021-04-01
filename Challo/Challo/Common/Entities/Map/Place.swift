@@ -24,4 +24,7 @@ struct Place: Equatable {
     
     /// Indication whether the place is open
     var isOpen: Bool
+    
+    /// Address
+    var address: String
 }
