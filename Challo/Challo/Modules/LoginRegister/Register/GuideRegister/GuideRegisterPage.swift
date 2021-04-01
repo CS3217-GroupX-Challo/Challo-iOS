@@ -35,10 +35,5 @@ struct GuideRegisterPage: View {
                   message: Text(registerPresenter.registerAlertMessage),
                   dismissButton: .default(Text("Close")))
         }
-        .alert(isPresented: $registerPresenter.isShowingRegisterSuccessAlert) {
-            Alert(title: Text("Successfully signed up!"),
-                  message: Text("You may now sign in with your account"),
-                  dismissButton: .default(Text("Close")))
-        }
     }
 }

@@ -16,12 +16,7 @@ class GuideRegisterPresenter: RegisterPresenter, PresenterProtocol, ObservableOb
     @Published var phone = ""
     @Published var email = ""
     @Published var password = ""
-<<<<<<< HEAD
     @Published var isShowingRegisterAlert = false
     @Published var registerAlertTitle = ""
     @Published var registerAlertMessage = ""
-=======
-    @Published var isShowingRegisterFailureAlert = false
-    @Published var isShowingRegisterSuccessAlert = false
->>>>>>> master
 }
