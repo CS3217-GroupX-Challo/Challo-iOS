@@ -18,9 +18,15 @@ class MapPresenter: NSObject, PresenterProtocol {
     
     @Published var foundPlaces: [Place] = []
     
+    @Published var searchQuery: String = ""
+    
     override init() {
         self.locationManager = LocationManager()
         super.init()
+    }
+    
+    func findPlaces() {
+        interactor.getPlaces(with: searchQuery)
     }
 }
 
