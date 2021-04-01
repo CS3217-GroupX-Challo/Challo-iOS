@@ -15,17 +15,16 @@ struct GoogleMapsView: UIViewRepresentable {
     private static let defaultCamera = GMSCameraPosition.camera(withLatitude: -37.813_6,
                                                                 longitude: 144.963_1,
                                                                 zoom: 10.0)
-    @ObservedObject private var locationManager = LocationManager()
+    @ObservedObject private var locationManager: LocationManager
     private let mapView: GMSMapView
-    private weak var mapDelegate: GMSMapViewDelegateWrapper?
+    private weak var mapDelegate: GMSMapViewDelegate?
         
-    init() {
+    init(locationManager: LocationManager, mapDelegate: GMSMapViewDelegate) {
+        self.locationManager = locationManager
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: GoogleMapsView.defaultCamera)
         mapView.isMyLocationEnabled = true
         self.mapView = mapView
-        let mapDelegateWrapper = GMSMapViewDelegateWrapper(locationManager: locationManager)
-        self.mapDelegate = mapDelegateWrapper
-        self.mapView.delegate = mapDelegateWrapper
+        self.mapDelegate = mapDelegate
     }
         
     /// Creates a `UIView` instance to be presented.
@@ -40,9 +39,9 @@ struct GoogleMapsView: UIViewRepresentable {
     /// Updates the presented `UIView` (and coordinator) to the latest
     /// configuration.
     func updateUIView(_ mapView: UIViewType, context: Self.Context) {
-        print("UI is updated")
     }
        
+    @discardableResult
     func update(cameraPosition: GMSCameraPosition) -> some View {
         mapView.animate(to: cameraPosition)
         return self

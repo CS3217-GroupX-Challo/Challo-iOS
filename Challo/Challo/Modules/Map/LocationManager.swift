@@ -9,6 +9,11 @@ import Combine
 import CoreLocation
 
 class LocationManager: NSObject, ObservableObject {
+    let minimumLongitude: CLLocationDegrees = 70
+    let maximumLongitude: CLLocationDegrees = 100
+    
+    let minimumLatitude: CLLocationDegrees = 25
+    let maximumLatitude: CLLocationDegrees = 40
     
     @Published var location = CLLocation(latitude: 28.598_3,
                                          longitude: 83.931_1)
