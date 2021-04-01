@@ -12,7 +12,7 @@ struct MockUserAPIResponses {
     typealias JSON = NetworkManager.JSON
 
     static let email = "test@email.com"
-    static let userId = "test12345"
+    static let userId = "458c466e-182f-491c-b05d-6f7f186c40b2"
     static let name = "test"
     static let phone = "12345678"
     static let sex = "male"

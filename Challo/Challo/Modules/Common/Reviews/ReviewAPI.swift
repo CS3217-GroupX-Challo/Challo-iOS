@@ -7,8 +7,6 @@
 
 import Foundation
 
-/// It conforms to trail API and UserAPI as data from reviewAPI is dependent on
-/// the two APIs aforementioned
 class ReviewAPI: ReviewAPIProtocol {
 
     private let reviewParser: ReviewAPIParser
@@ -72,5 +70,32 @@ class ReviewAPI: ReviewAPIProtocol {
     
     func getReviewsForGuide(guideId: UUID, callback: @escaping ([Review]) -> Void) {
         getReviews(callback: callback, guideId: guideId)
+    }
+
+    func getReviewForBooking(bookingId: UUID,
+                             guide: Guide,
+                             trail: Trail,
+                             tourist: Tourist,
+                             callback: @escaping (Review?) -> Void) {
+        let url = "/url/?bookingId=\(bookingId.uuid)"
+        networkManager.get(url: url, headers: [String: String]()) { response, error in
+            if error != nil {
+                callback(nil)
+                return
+            }
+            let reviewStates: [ReviewState] = self.reviewParser.parseReviews(response: response)
+            
+            guard let bookingReviewState = reviewStates.first else {
+                callback(nil)
+                return
+            }
+            
+            let review = Review(reviewId: bookingReviewState.reviewId, rating: bookingReviewState.rating,
+                                comment: bookingReviewState.comment ?? "No comment", guide: guide,
+                                trail: trail, createdAt: bookingReviewState.createdAt ?? Date(),
+                                tourist: tourist)
+            
+            callback(review)
+        }
     }
 }

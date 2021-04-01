@@ -18,6 +18,7 @@ class MainContainerRouter: RouterProtocol {
     var guidesPage: AnyView
     var mapsPage: AnyView
     var settingsPage: AnyView
+    var loginPage: AnyView
     
     init(userState: UserStateProtocol) {
         self.userState = userState
@@ -29,16 +30,21 @@ class MainContainerRouter: RouterProtocol {
         guard let guideRepository = repositoryContainer.container.resolve(GuideRepositoryProtocol.self) else {
             fatalError("Failed to resolve guideRepository in MainContainer")
         }
+        guard let bookingRepository = repositoryContainer.container.resolve(BookingRepositoryProtocol.self) else {
+            fatalError("Failed to resolve bookingAPI in MainContainer")
+        }
         guard let reviewAPI = apiContainer.container.resolve(ReviewAPIProtocol.self) else {
             fatalError("Failed to resolve reviewAPI in MainContainer")
         }
-        
-        profilePage = TouristLoginModule(userState: userState).assemble().view
+
+        loginPage = TouristLoginModule(userState: userState).assemble().view
         trailsPage = TrailListingModule(trailRepository: trailRepository, reviewAPI: reviewAPI,
                                         userState: userState).assemble().view
         guidesPage = GuidesListingModule(guideRepository: guideRepository, reviewAPI: reviewAPI).assemble().view
         mapsPage = MapModule().assemble().view
         settingsPage = SettingsModule(userState: userState).assemble().view
+        profilePage = TouristDashboardModule(userState: userState, bookingsRepository: bookingRepository)
+            .assemble().view
     }
 
 }

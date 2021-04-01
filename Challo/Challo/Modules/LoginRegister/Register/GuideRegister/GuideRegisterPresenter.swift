@@ -17,4 +17,5 @@ class GuideRegisterPresenter: RegisterPresenter, PresenterProtocol, ObservableOb
     @Published var email = ""
     @Published var password = ""
     @Published var isShowingRegisterFailureAlert = false
+    @Published var isShowingRegisterSuccessAlert = false
 }

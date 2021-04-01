@@ -19,5 +19,6 @@ extension RegisterInteractor {
             return
         }
         certificateManager.storeCertificate(certificate: certificate)
+        presenter.showRegisterSuccessAlert()
     }
 }

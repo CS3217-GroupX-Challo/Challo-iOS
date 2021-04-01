@@ -6,18 +6,50 @@
 //
 
 import SwiftUI
+import Combine
 
 class MainContainerPresenter: PresenterProtocol, ObservableObject {
 
+    @Published var profileTab: AnyView?
+    @Published var tabSelection = 0
+
     var interactor: MainContainerInteractor!
     var router: MainContainerRouter?
+    unowned let userState: UserStateProtocol!
+    
+    private var cancellables: Set<AnyCancellable> = []
+
+    init(userState: UserStateProtocol) {
+        self.userState = userState
+        initializeProfileTab()
+    }
+    
+    func initializeProfileTab() {
+        guard let state = userState as? UserState else {
+            return
+        }
+
+        state.$loggedIn.sink { [weak self] value in
+            guard let self = self else {
+                return
+            }
+            
+            self.toggleLoggedIn(loggedInState: value)
+        }.store(in: &cancellables)
+
+        toggleLoggedIn(loggedInState: state.loggedIn)
+    }
+
+    private func toggleLoggedIn(loggedInState loggedIn: Bool) {
+        self.profileTab = loggedIn ? router?.profilePage : router?.loginPage
+    }
 
     func checkShouldDisplayUserDetails() -> Bool {
         interactor.checkIfUserLoggedIn()
     }
     
     func getProfilePage() -> AnyView? {
-        router?.profilePage
+        profileTab
     }
     
     func getTrailPage() -> AnyView? {

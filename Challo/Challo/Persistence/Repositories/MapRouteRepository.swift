@@ -37,6 +37,33 @@ class MapRouteRepository: MapRouteRepositoryInterface {
     }
     
     func saveMapRoutes(mapRoutes: [MapRoute]) {
+        let routes = getAllRoutes()
+        
+        let existingMapRoutes = mapRoutes.filter { mapRoute in
+            routes.contains(mapRoute)
+        }
+        
+        let toSaveMapRoutes = mapRoutes.filter { mapRoute in
+            !existingMapRoutes.contains(mapRoute)
+        }
+        
+        updateMapRoutes(mapRoutes: existingMapRoutes)
+        saveNewMapRoutes(mapRoutes: toSaveMapRoutes)
+        repository.commit()
+    }
+    
+    private func updateMapRoutes(mapRoutes: [MapRoute]) {
+        for mapRoute in mapRoutes {
+            if let objectId = data.first(where: { $0.value == mapRoute })?.key,
+               let managedObject = repository.getByKey(objectId) {
+                managedObject.comments = mapRoute.comments
+                managedObject.date = mapRoute.date
+                managedObject.id = mapRoute.id.uuidString
+            }
+        }
+    }
+    
+    private func saveNewMapRoutes(mapRoutes: [MapRoute]) {
         let markers = mapMarkerRepository.getAll()
         
         for mapRoute in mapRoutes {
@@ -54,8 +81,6 @@ class MapRouteRepository: MapRouteRepositoryInterface {
                     marker.routeEnd = route
                 }
             }
-            
-            repository.insert(route, key: route.objectID)
         }
     }
     

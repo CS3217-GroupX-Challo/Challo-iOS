@@ -6,5 +6,5 @@
 //
 
 enum ContainerNames: String {
-    case area, guide, trail, review, tourist
+    case area, guide, trail, review, tourist, booking
 }
