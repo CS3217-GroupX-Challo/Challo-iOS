@@ -26,21 +26,21 @@ class PlacesAPIParser: APIParser {
         return places
     }
     
-    
     func convertPlaceJSONToPlace(json: JSON) -> Place? {
-        guard let location = json["location"] as? JSON,
-              let latitude = location["lat"] as? String,
-              let longitude = location["lng"] as? String,
-              let name = json["name"] as? String,
-              let rating = json["rating"] as? String,
-              let isOpenJSON = json["opening_hours"] as? JSON,
-              let isOpen = isOpenJSON["open_now"] as? Bool,
-              let address = json["formatted_address"] as? String else {
+        guard let geometry = json[Key.googleGeometry] as? JSON,
+              let location = geometry[Key.googleLocation] as? JSON,
+              let latitude = location[Key.googleLatitude] as? Double,
+              let longitude = location[Key.googleLongitude] as? Double,
+              let name = json[Key.googleName] as? String,
+              let rating = json[Key.googleRating] as? Double,
+              let isOpenJSON = json[Key.googleOpeningHours] as? JSON,
+              let isOpen = isOpenJSON[Key.googleOpenNow] as? Int,
+              let address = json[Key.googleAddress] as? String else {
             return nil
         }
         
-        return Place(longitude: Double(latitude) ?? 0, latitude: Double(longitude) ?? 0,
-                     name: name, rating: Double(rating) ?? 0,
-                     isOpen: isOpen, address: address)
+        return Place(longitude: longitude, latitude: latitude,
+                     name: name, rating: rating,
+                     isOpen: isOpen != 0, address: address)
     }
 }

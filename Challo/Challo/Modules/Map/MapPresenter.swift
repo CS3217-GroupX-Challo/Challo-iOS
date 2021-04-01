@@ -16,6 +16,8 @@ class MapPresenter: NSObject, PresenterProtocol {
     
     var locationManager: LocationManager
     
+    @Published var foundPlaces: [Place] = []
+    
     override init() {
         self.locationManager = LocationManager()
         super.init()

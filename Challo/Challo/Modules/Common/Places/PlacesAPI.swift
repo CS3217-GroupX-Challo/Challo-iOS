@@ -51,7 +51,7 @@ class PlacesAPI: PlacesAPIProtocol {
             }
         }
         
-        let googleApiKey =  ProcessInfo.processInfo.environment["google_maps_api_key"] ?? ""
+        let googleApiKey = ProcessInfo.processInfo.environment["google_maps_api_key"] ?? ""
         return url + urlEnd + googleApiKey
     }
 }
