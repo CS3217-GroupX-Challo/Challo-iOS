@@ -36,20 +36,12 @@ class RegisterPresenterTests: XCTestCase {
 
     func testShowFailureAlert_showAlertVariableToggled() {
         presenter.showRegisterFailureAlert()
-<<<<<<< HEAD
         XCTAssertTrue(presenter.isShowingRegisterAlert, "Register alert variable not toggled")
-=======
-        XCTAssertTrue(presenter.isShowingRegisterFailureAlert, "Register failure alert variable not toggled")
->>>>>>> master
     }
 
     func testShowSuccessAlert_showAlertVariableToggled() {
         presenter.showRegisterSuccessAlert()
-<<<<<<< HEAD
         XCTAssertTrue(presenter.isShowingRegisterAlert, "Register alert variable not toggled")
-=======
-        XCTAssertTrue(presenter.isShowingRegisterSuccessAlert, "Register success alert variable not toggled")
->>>>>>> master
     }
 }
 
