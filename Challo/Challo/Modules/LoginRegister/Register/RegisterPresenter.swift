@@ -38,4 +38,8 @@ extension RegisterPresenter {
         self.registerAlertTitle = "Registration successful!"
         self.registerAlertMessage = "You may now sign in with your account"
     }
+
+    func showRegisterSuccessAlert() {
+        self.isShowingRegisterSuccessAlert = true
+    }
 }

@@ -32,6 +32,8 @@ schemes:
       - ChalloTests
       - ChalloUITests
 settings:
+  base:
+    EXCLUDED_ARCHS[sdk=iphonesimulator*]: arm64
   configs:
     Debug:
       CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: YES

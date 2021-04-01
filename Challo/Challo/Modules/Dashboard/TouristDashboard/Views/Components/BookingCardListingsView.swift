@@ -13,7 +13,7 @@ struct BookingCardListingsView: View {
     @Binding var bookings: [Booking]
 
     var body: some View {
-        ScrollView(showsIndicators: true) {
+        ScrollView(showsIndicators: false) {
             if bookings.isEmpty {
                 Text("You don't have any upcoming trips")
                     .foregroundColor(.themeForeground)
