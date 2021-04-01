@@ -12,7 +12,7 @@ class AlamofireManager: NetworkManager {
     typealias HEADER = NetworkManager.HEADER
     
     static let alamofireManager = AlamofireManager()
-    private var apiPath = ProcessInfo.processInfo.environment["api_path"]
+    var apiPath = ProcessInfo.processInfo.environment["api_path"]
     
     private init() {}
     
