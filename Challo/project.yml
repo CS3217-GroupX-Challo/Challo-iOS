@@ -91,6 +91,10 @@ targets:
         api_path: "http://challo-api-staging.herokuapp.com/api"
         google_maps_api_key: "AIzaSyBf4UUNjUwdWq79hcObEcsidHbWOYWy0Ao"
         google_places_path: "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input="
+        quickblox_app_id: 89860
+        quickblox_auth_key: "KeZaVbQMfpbKb2y"
+        quickblox_auth_secret: "urPrkVPnjNfRgnA"
+        quickblox_acct_cred: "o19gT7Qc6HQy4yP9fW6y"
   ChalloTests:
     dependencies:
     - target: Challo
@@ -122,6 +126,10 @@ targets:
         api_path: "http://challo-api-staging.herokuapp.com/api"
         google_maps_api_key: "AIzaSyBf4UUNjUwdWq79hcObEcsidHbWOYWy0Ao"
         google_places_path: "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input="
+        quickblox_app_id: 89860
+        quickblox_auth_key: "KeZaVbQMfpbKb2y"
+        quickblox_auth_secret: "urPrkVPnjNfRgnA"
+        quickblox_acct_cred: "o19gT7Qc6HQy4yP9fW6y"
   ChalloUITests:
     dependencies:
     - target: Challo
@@ -148,3 +156,7 @@ targets:
       environmentVariables:
         api_path: "http://challo-api-staging.herokuapp.com/api"
         google_maps_api_key: "AIzaSyBf4UUNjUwdWq79hcObEcsidHbWOYWy0Ao"
+        quickblox_app_id: 89860
+        quickblox_auth_key: "KeZaVbQMfpbKb2y"
+        quickblox_auth_secret: "urPrkVPnjNfRgnA"
+        quickblox_acct_cred: "o19gT7Qc6HQy4yP9fW6y"
