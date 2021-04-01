@@ -16,7 +16,7 @@ struct GoogleMapsView: UIViewRepresentable {
                                                                 longitude: 144.963_1,
                                                                 zoom: 10.0)
     @ObservedObject private var locationManager: LocationManager
-    private let mapView: GMSMapView
+    let mapView: GMSMapView
     private weak var mapDelegate: GMSMapViewDelegate?
         
     init(locationManager: LocationManager, mapDelegate: GMSMapViewDelegate) {

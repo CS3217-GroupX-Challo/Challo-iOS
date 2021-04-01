@@ -33,14 +33,21 @@ class PlacesAPIParser: APIParser {
               let longitude = location[Key.googleLongitude] as? Double,
               let name = json[Key.googleName] as? String,
               let rating = json[Key.googleRating] as? Double,
-              let isOpenJSON = json[Key.googleOpeningHours] as? JSON,
-              let isOpen = isOpenJSON[Key.googleOpenNow] as? Int,
               let address = json[Key.googleAddress] as? String else {
             return nil
+        }
+
+        let isOpen: Bool
+        
+        if let isOpenJSON = json[Key.googleOpeningHours] as? JSON {
+            let openNowInt = isOpenJSON[Key.googleOpenNow] as? Int ?? 1
+            isOpen = openNowInt == 1
+        } else {
+            isOpen = true
         }
         
         return Place(longitude: longitude, latitude: latitude,
                      name: name, rating: rating,
-                     isOpen: isOpen != 0, address: address)
+                     isOpen: isOpen, address: address)
     }
 }

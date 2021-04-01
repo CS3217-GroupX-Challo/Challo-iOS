@@ -9,7 +9,9 @@ import MapKit
 
 /// Represents the model for a place on google maps.
 struct Place: Equatable {
-   
+    /// unique presentation
+    var id = UUID()
+    
     /// Longitude of the place
     var longitude: CLLocationDegrees
     
@@ -23,7 +25,7 @@ struct Place: Equatable {
     var rating: Double
     
     /// Indication whether the place is open
-    var isOpen: Bool
+    var isOpen: Bool = true
     
     /// Address
     var address: String

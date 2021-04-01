@@ -10,7 +10,7 @@ import GoogleMaps
 
 struct InteractiveMapPage: View {
     @ObservedObject var presenter: MapPresenter
-    
+        
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -27,8 +27,7 @@ struct InteractiveMapPage: View {
                            alignment: .center)
                     .offset(x: 0, y: -1 * geometry.size.height * 7 / 16)
                     .zIndex(1)
-                GoogleMapsView(locationManager: presenter.locationManager,
-                               mapDelegate: presenter)
+                presenter.googleMapsView
                     .zIndex(0)
             }
         }

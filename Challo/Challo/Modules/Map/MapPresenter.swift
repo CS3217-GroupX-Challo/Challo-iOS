@@ -16,17 +16,53 @@ class MapPresenter: NSObject, PresenterProtocol {
     
     var locationManager: LocationManager
     
-    @Published var foundPlaces: [Place] = []
+    var googleMapsView: GoogleMapsView?
+    
+    private var markers: [GMSMarker] = []
+    
+    @Published var foundPlaces: [Place] = [] {
+        didSet {
+            // TODO add markers
+            updateMapWithMarkers()
+        }
+    }
     
     @Published var searchQuery: String = ""
     
     override init() {
-        self.locationManager = LocationManager()
+        let locationManager = LocationManager()
+        self.locationManager = locationManager
         super.init()
+        let googleMapsView = GoogleMapsView(locationManager: self.locationManager,
+                                            mapDelegate: self)
+        self.googleMapsView = googleMapsView
     }
     
     func findPlaces() {
         interactor.getPlaces(with: searchQuery)
+    }
+    
+    private func updateMapWithMarkers() {
+        guard let gmsView = googleMapsView?.mapView else {
+            return
+        }
+        
+        gmsView.clear()
+        markers = []
+        
+        for place in self.foundPlaces {
+            let marker = GMSMarker()
+            marker.position = CLLocationCoordinate2D(latitude: place.latitude,
+                                                     longitude: place.longitude)
+            marker.title = place.name
+            marker.appearAnimation = .pop
+            marker.icon = GMSMarker.markerImage(with: .black)
+            self.markers.append(marker) // so that they are not cleared up by ARC
+        }
+        
+        for marker in markers {
+            marker.map = gmsView
+        }
     }
 }
 
