@@ -15,8 +15,5 @@ struct InteractiveMapPage: View {
         GoogleMapsView(locationManager: presenter.locationManager,
                        mapDelegate: presenter)
             .edgesIgnoringSafeArea(.all)
-            .onAppear {
-                presenter.interactor.getPlaces(with: "Museum of Contemporary Art Australia")
-            }
     }
 }
