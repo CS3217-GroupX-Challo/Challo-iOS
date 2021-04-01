@@ -12,7 +12,8 @@ struct InteractiveMapPage: View {
     @ObservedObject var presenter: MapPresenter
     
     var body: some View {
-        GoogleMapsView()
+        GoogleMapsView(locationManager: presenter.locationManager,
+                       mapDelegate: presenter)
             .edgesIgnoringSafeArea(.all)
     }
 }
