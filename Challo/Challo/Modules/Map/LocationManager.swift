@@ -9,19 +9,15 @@ import Combine
 import CoreLocation
 
 class LocationManager: NSObject, ObservableObject {
-     @Published var location: CLLocation? {
-       willSet { objectWillChange.send() }
-     }
+    
+    @Published var location = CLLocation(latitude: 28.598_3,
+                                         longitude: 83.931_1)
     
     var latitude: CLLocationDegrees {
-        location?.coordinate.latitude ?? 0
+        location.coordinate.latitude
     }
     
     var longitude: CLLocationDegrees {
-        location?.coordinate.longitude ?? 0
-    }
-    
-    override init() {
-      super.init()
+        location.coordinate.longitude
     }
 }

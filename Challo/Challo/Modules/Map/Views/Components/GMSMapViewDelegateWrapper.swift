@@ -11,6 +11,12 @@ import GoogleMaps
 class GMSMapViewDelegateWrapper: NSObject, GMSMapViewDelegate {
     var shouldHandleTap: Bool = true
     
+    var locationManager: LocationManager
+    
+    init(locationManager: LocationManager) {
+        self.locationManager = locationManager
+    }
+    
     deinit {
         
     }
@@ -21,5 +27,10 @@ class GMSMapViewDelegateWrapper: NSObject, GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTapMyLocation location: CLLocationCoordinate2D) {
         
+    }
+    
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        locationManager.location = CLLocation(latitude: position.target.latitude,
+                                              longitude: position.target.longitude)
     }
 }
