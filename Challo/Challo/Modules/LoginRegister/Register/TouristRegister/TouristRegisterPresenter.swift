@@ -16,7 +16,8 @@ class TouristRegisterPresenter: RegisterPresenter, PresenterProtocol, Observable
     @Published var phone = ""
     @Published var email = ""
     @Published var password = ""
-    @Published var isShowingRegisterFailureAlert = false
-    @Published var isShowingRegisterSuccessAlert = false
+    @Published var isShowingRegisterAlert = false
+    @Published var registerAlertTitle = ""
+    @Published var registerAlertMessage = ""
 
 }

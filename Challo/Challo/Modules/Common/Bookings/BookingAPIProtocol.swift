@@ -10,4 +10,5 @@ import Foundation
 protocol BookingAPIProtocol {
     func getBookingsForTourist(id: UUID, callback: @escaping ([Booking]) -> Void)
     func getBookingsForGuide(id: UUID, callback: @escaping ([Booking]) -> Void)
+    func makeBooking(bookingDetails: BookingDetails, callback: @escaping ((Bool, Error?) -> Void))
 }

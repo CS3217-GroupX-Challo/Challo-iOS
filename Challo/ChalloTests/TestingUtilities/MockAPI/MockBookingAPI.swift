@@ -23,4 +23,8 @@ class MockBookingAPI: BookingAPI {
         let mockBookings = MockBookingAPIResponses.bookings
         callback(mockBookings)
     }
+
+    override func makeBooking(bookingDetails: BookingDetails, callback: @escaping ((Bool, Error?) -> Void)) {
+        callback(true, nil)
+    }
 }
