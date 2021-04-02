@@ -8,10 +8,10 @@
 import SwiftUI
 
 final class MapItineraryModule: ViperModuleProtocol {
-    let placesAPI: PlacesAPI
+    let placesAPI: PlacesAPIProtocol
     let mapStore: MapStore
     
-    init(placesAPI: PlacesAPI, mapStore: MapStore) {
+    init(placesAPI: PlacesAPIProtocol, mapStore: MapStore) {
         self.placesAPI = placesAPI
         self.mapStore = mapStore
     }

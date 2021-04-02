@@ -12,6 +12,17 @@ struct MapItineraryView: View {
     @ObservedObject var presenter: MapItineraryPresenter
     
     var body: some View {
-        presenter.googleMapsView
+        GeometryReader { geometry in
+            ZStack {
+                presenter.googleMapsView
+                VStack {
+                    ItineraryEditorBar(presenter: presenter, paddingTop: geometry.size.height / 30)
+                    Spacer()
+                }
+            }
+        }
+        .edgesIgnoringSafeArea(.all)
+        .navigationBarHidden(true)
+        .statusBar(hidden: true)
     }
 }
