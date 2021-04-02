@@ -28,7 +28,7 @@ class TrailBookingPresenter: PresenterProtocol {
     }
     @Published var paxRange = [1, 2, 3, 4, 5]
 
-    @Published var selectedDate = Date() {
+    @Published var selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date() {
         didSet {
             filterAvailableGuides()
             selectedGuideId = nil
@@ -135,7 +135,7 @@ extension TrailBookingPresenter {
         if selectedPax == 0 {
             return (success: false, message: "Booking must be for at least one guest!")
         }
-        
+
         if selectedGuideId == nil {
             return (success: false, message: "Please select a guide!")
         }
