@@ -5,6 +5,7 @@
 //  Created by Kester Ng on 2/4/21.
 //
 
+import Combine
 import GoogleMaps
 import MapKit
 
@@ -15,12 +16,61 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
     var locationManager: LocationManager
     var googleMapsView: GoogleMapsView?
     
+    var isMarkerSelected: Bool = false
+    var isRouteSelected: Bool = false
+    
+    private var cancellables: Set<AnyCancellable> = []
+    
+    @Published var markers: [GMSMarker] = []
+    
     override init() {
         let locationManager = LocationManager()
         self.locationManager = locationManager
         super.init()
         self.googleMapsView = GoogleMapsView(locationManager: self.locationManager,
                                              mapDelegate: self)
+    }
+    
+    // Reset all buttons' selection state
+    func resetButtonSelection(selectionStatus: Bool) {
+        guard !selectionStatus else {
+            return
+        }
+        
+        isMarkerSelected = false
+        isRouteSelected = false
+    }
+    
+    func initializeBindings() {
+        self.interactor.$mapMarkers.sink { [weak self] mapMarkers in
+            guard let self = self else {
+                return
+            }
+            self.markers = []
+            for mapMarker in mapMarkers {
+                let gmsMarker = self.initializeMarker(mapMarker: mapMarker)
+                self.markers.append(gmsMarker)
+            }
+        }.store(in: &cancellables)
+    }
+}
+
+// MARK: - Marker handling
+extension MapItineraryPresenter {
+    private func initializeMarker(mapMarker: MapMarker) -> GMSMarker {
+        let gmsMarker = GMSMarker(position: mapMarker.position)
+        gmsMarker.appearAnimation = .pop
+        gmsMarker.icon = GMSMarker.markerImage(with: .systemPink)
+        gmsMarker.isDraggable = true
+        
+        let title = mapMarker.comments ?? "Untitled"
+        gmsMarker.title = title // Default title
+        gmsMarker.map = googleMapsView?.mapView
+        return gmsMarker
+    }
+    
+    private func createAndStoreDefaultMapMarker(position: CLLocationCoordinate2D) {
+        interactor.createAndStoreDefaultMapMarker(position: position)
     }
 }
 
@@ -54,6 +104,12 @@ extension MapItineraryPresenter: GMSMapViewDelegate {
         if snapBack {
             mapView.animate(toLocation: CLLocationCoordinate2D(latitude: locationManager.latitude,
                                                                longitude: locationManager.longitude))
+        }
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        if isMarkerSelected {
+            self.createAndStoreDefaultMapMarker(position: coordinate)
         }
     }
 }

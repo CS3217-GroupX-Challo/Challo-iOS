@@ -11,10 +11,19 @@ struct ItineraryEditorBar: View {
     var presenter: MapItineraryPresenter
     var paddingTop: CGFloat
     
+    var isMarkerSelected: Bool {
+        presenter.isMarkerSelected
+    }
+    
+    var isRouteSelected: Bool {
+        presenter.isRouteSelected
+    }
+    
     var body: some View {
         HStack(spacing: 30) {
             Button(action: ({
-                print("Add marker button pressed")
+                presenter.resetButtonSelection(selectionStatus: isMarkerSelected)
+                presenter.isMarkerSelected.toggle()
             }
             )) {
                 ItineraryButtonView(paddingTop: paddingTop,
@@ -24,7 +33,8 @@ struct ItineraryEditorBar: View {
                                     imageName: "mappin")
             }
             Button(action: ({
-                print("Add route button pressed")
+                presenter.resetButtonSelection(selectionStatus: isRouteSelected)
+                presenter.isRouteSelected.toggle()
             }
             )) {
                 ItineraryButtonView(paddingTop: paddingTop,
@@ -35,7 +45,7 @@ struct ItineraryEditorBar: View {
             }
             Spacer()
             Button(action: ({
-                print("Save button pressed")
+                // TODO add save status
             }
             )) {
                 ItineraryButtonView(paddingTop: paddingTop,
