@@ -21,7 +21,6 @@ class MainContainerPresenter: PresenterProtocol, ObservableObject {
 
     init(userState: UserStateProtocol) {
         self.userState = userState
-        initializeProfileTab()
     }
     
     func initializeProfileTab() {
