@@ -5,7 +5,9 @@
 //  Created by Shao Yi on 29/3/21.
 //
 
-protocol AreaRepositoryProtocol: Repository<Area> {
+import Foundation
+
+protocol AreaRepositoryProtocol: Repository<UUID, Area> {
     func fetchAreasAndRefresh(didRefresh: (([Area]) -> Void)?)
 }
 

@@ -12,6 +12,9 @@ class MainContainerInteractor: InteractorProtocol {
 
     init(userState: UserStateProtocol) {
         self.userState = userState
+        
+        let chatService = QuickBloxChatService()
+        chatService.login(email: "random@random.sg", password: "asfsdfsff")
     }
     
     func checkIfUserLoggedIn() -> Bool {
