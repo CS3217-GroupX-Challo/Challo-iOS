@@ -15,11 +15,11 @@ struct QuickBloxConfiguration: ThirdPartyAPIConfiguration {
         ChalloLogger.logger.info("Quickblox has been initialised!")
     }
     
-    static func setAutoReconnect() {
+    private static func setAutoReconnect() {
         QBSettings.autoReconnectEnabled = true
     }
     
-    static func setCredentials() {
+    private static func setCredentials() {
         guard let applicationID = UInt(ProcessInfo.processInfo.environment["quickblox_app_id"] ?? "") else {
             fatalError("Failed to parse Quickblox applicationID from environment vars")
         }
@@ -30,7 +30,7 @@ struct QuickBloxConfiguration: ThirdPartyAPIConfiguration {
         QBSettings.accountKey = ProcessInfo.processInfo.environment["quickblox_acct_cred"]
     }
     
-    static func setLogging() {
+    private static func setLogging() {
         #if DEBUG
             QBSettings.enableXMPPLogging()
         #else
