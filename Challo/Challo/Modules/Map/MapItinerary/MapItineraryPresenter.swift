@@ -16,8 +16,8 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
     var locationManager: LocationManager
     var googleMapsView: GoogleMapsView?
     
-    var isMarkerSelected: Bool = false
-    var isRouteSelected: Bool = false
+    @Published var isMarkerSelected: Bool = false
+    @Published var isRouteSelected: Bool = false
     
     private var cancellables: Set<AnyCancellable> = []
     

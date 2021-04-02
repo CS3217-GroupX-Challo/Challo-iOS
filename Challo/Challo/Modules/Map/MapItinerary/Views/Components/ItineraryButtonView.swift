@@ -14,18 +14,24 @@ struct ItineraryButtonView: View {
     let title: String
     let imageName: String
     
+    @Binding var isSelected: Bool
+    
     var body: some View {
         VStack {
-            Image(systemName: imageName)
-                .padding(EdgeInsets(top: paddingTop,
-                                    leading: paddingLeading,
-                                    bottom: 0,
-                                    trailing: paddingTrailing))
-            Text(title)
-                .padding(EdgeInsets(top: 0,
-                                    leading: paddingLeading,
-                                    bottom: 0,
-                                    trailing: paddingTrailing))
+            Group {
+                Image(systemName: imageName)
+                    .padding(EdgeInsets(top: paddingTop,
+                                        leading: paddingLeading,
+                                        bottom: 0,
+                                        trailing: paddingTrailing))
+                    .foregroundColor(isSelected ? Color.themeAccent : Color.themeTertiary)
+                Text(title)
+                    .padding(EdgeInsets(top: 0,
+                                        leading: paddingLeading,
+                                        bottom: 0,
+                                        trailing: paddingTrailing))
+                    .foregroundColor(isSelected ? Color.themeAccent : Color.themeTertiary)
+            }
         }
     }
 }

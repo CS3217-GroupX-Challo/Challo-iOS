@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ItineraryEditorBar: View {
-    var presenter: MapItineraryPresenter
+    @ObservedObject var presenter: MapItineraryPresenter
     var paddingTop: CGFloat
+    
+    @State var isSaveSelected: Bool = false
     
     var isMarkerSelected: Bool {
         presenter.isMarkerSelected
@@ -30,7 +32,8 @@ struct ItineraryEditorBar: View {
                                     paddingTrailing: 0,
                                     paddingLeading: 10,
                                     title: "Marker",
-                                    imageName: "mappin")
+                                    imageName: "mappin",
+                                    isSelected: $presenter.isMarkerSelected)
             }
             Button(action: ({
                 presenter.resetButtonSelection(selectionStatus: isRouteSelected)
@@ -41,7 +44,8 @@ struct ItineraryEditorBar: View {
                                     paddingTrailing: 0,
                                     paddingLeading: 0,
                                     title: "Route",
-                                    imageName: "airplane.circle.fill")
+                                    imageName: "airplane.circle.fill",
+                                    isSelected: $presenter.isRouteSelected)
             }
             Spacer()
             Button(action: ({
@@ -52,7 +56,8 @@ struct ItineraryEditorBar: View {
                                     paddingTrailing: 10,
                                     paddingLeading: 0,
                                     title: "Save",
-                                    imageName: "arrow.up.doc.on.clipboard")
+                                    imageName: "arrow.up.doc.on.clipboard",
+                                    isSelected: $isSaveSelected)
             }
         }
         .background(Color.gray)
