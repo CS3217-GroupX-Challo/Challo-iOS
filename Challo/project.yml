@@ -121,6 +121,7 @@ targets:
       environmentVariables:
         api_path: "http://challo-api-staging.herokuapp.com/api"
         google_maps_api_key: "AIzaSyBf4UUNjUwdWq79hcObEcsidHbWOYWy0Ao"
+        google_places_path: "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input="
   ChalloUITests:
     dependencies:
     - target: Challo
