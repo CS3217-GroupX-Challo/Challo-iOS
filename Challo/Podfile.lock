@@ -10,6 +10,22 @@ PODS:
     - FBSDKLoginKit/Login (= 9.1.0)
   - FBSDKLoginKit/Login (9.1.0):
     - FBSDKCoreKit (~> 9.1.0)
+  - Google-Maps-iOS-Utils (3.8.0):
+    - Google-Maps-iOS-Utils/Clustering (= 3.8.0)
+    - Google-Maps-iOS-Utils/Geometry (= 3.8.0)
+    - Google-Maps-iOS-Utils/Heatmap (= 3.8.0)
+    - Google-Maps-iOS-Utils/QuadTree (= 3.8.0)
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Clustering (3.8.0):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Geometry (3.8.0):
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Heatmap (3.8.0):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/QuadTree (3.8.0):
+    - GoogleMaps
   - GoogleMaps (4.2.0):
     - GoogleMaps/Maps (= 4.2.0)
   - GoogleMaps/Base (4.2.0)
@@ -22,6 +38,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - FBSDKLoginKit
+  - Google-Maps-iOS-Utils (~> 3.8.0)
   - GoogleMaps
   - GooglePlaces
   - Swinject
@@ -31,6 +48,7 @@ SPEC REPOS:
     - Alamofire
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - Google-Maps-iOS-Utils
     - GoogleMaps
     - GooglePlaces
     - Swinject
@@ -39,10 +57,11 @@ SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   FBSDKCoreKit: a00fe2efd780c195a5e09201bf51c56106245b40
   FBSDKLoginKit: d98498c598ec09de657385a9349a1f21119b7f86
+  Google-Maps-iOS-Utils: 71c1a52fb5a3622e81a03a67dc3be9fd180cb9c3
   GoogleMaps: eb03e327edfd70b06de1e6e321653f73712df7ad
   GooglePlaces: 196a9dd88580dcb3f3df46f415057703d0d2a310
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: 379790adff280e19e1ece85ca0508846c6e47077
+PODFILE CHECKSUM: 0a999c174be8475075d666b1c4840cd7aefc13e1
 
 COCOAPODS: 1.10.1

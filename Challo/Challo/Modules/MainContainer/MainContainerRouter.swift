@@ -39,6 +39,9 @@ class MainContainerRouter: RouterProtocol {
         guard let bookingAPI = apiContainer.container.resolve(BookingAPIProtocol.self) else {
             fatalError("Failed to resolve bookingAPI in MainContainer")
         }
+        guard let placesAPI = apiContainer.container.resolve(PlacesAPIProtocol.self) else {
+            fatalError("Failed to resolve placesAPI in MainContainer")
+        }
 
         loginPage = TouristLoginModule(userState: userState).assemble().view
         trailsPage = TrailListingModule(trailRepository: trailRepository,
@@ -47,7 +50,7 @@ class MainContainerRouter: RouterProtocol {
                                         reviewAPI: reviewAPI,
                                         userState: userState).assemble().view
         guidesPage = GuidesListingModule(guideRepository: guideRepository, reviewAPI: reviewAPI).assemble().view
-        mapsPage = MapModule().assemble().view
+        mapsPage = MapModule(placesAPI: placesAPI).assemble().view
         settingsPage = SettingsModule(userState: userState).assemble().view
         profilePage = TouristDashboardModule(userState: userState, bookingsRepository: bookingRepository)
             .assemble().view
