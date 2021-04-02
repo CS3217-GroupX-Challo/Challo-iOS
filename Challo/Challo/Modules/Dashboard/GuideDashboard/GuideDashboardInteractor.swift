@@ -9,12 +9,10 @@ import Foundation
 
 class GuideDashboardInteractor: InteractorProtocol {
 
-    var presenter: GuideDashboardPresenter!
+    weak var presenter: GuideDashboardPresenter!
 
     let bookingRepository: BookingRepositoryProtocol
     let userState: UserStateProtocol!
-
-    private(set) var completedBookings = [Booking]()
 
     init(userState: UserStateProtocol, bookingRepository: BookingRepositoryProtocol) {
         self.bookingRepository = bookingRepository

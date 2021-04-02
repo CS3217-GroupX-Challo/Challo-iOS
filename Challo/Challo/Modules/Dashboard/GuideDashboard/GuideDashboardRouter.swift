@@ -9,6 +9,6 @@ import Foundation
 
 class GuideDashboardRouter: RouterProtocol {
 
-    var presenter: GuideDashboardPresenter!
+    weak var presenter: GuideDashboardPresenter!
 
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct GuideDashboardPage: View {
 
+    @ObservedObject var presenter: GuideDashboardPresenter
+
     var body: some View {
         Text("Placeholder")
     }

@@ -14,10 +14,19 @@ class GuideDashboardPresenter: PresenterProtocol {
 
     unowned let userState: UserStateProtocol!
 
-    var earningsHistory = [Double]()
+    @Published var totalEarnings = 0.0
 
     init(userState: UserStateProtocol) {
         self.userState = userState
+    }
+
+    func refresh() {
+        interactor.populateBookings(callback: updateTotalEarnings(bookings:))
+    }
+
+    func updateTotalEarnings(bookings: [Booking]) {
+        totalEarnings = bookings.filter { $0.status == .Completed }
+            .reduce(0.0, { $0 + $1.fee })
     }
 
 }

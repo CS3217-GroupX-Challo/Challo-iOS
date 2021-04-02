@@ -28,7 +28,7 @@ final class GuideDashboardModule: ViperModuleProtocol {
         presenter.interactor = interactor
         interactor.presenter = presenter
         router.presenter = presenter
-        let view = AnyView(GuideDashboardPage())
+        let view = AnyView(GuideDashboardPage(presenter: presenter))
         return (view, presenter)
     }
 
