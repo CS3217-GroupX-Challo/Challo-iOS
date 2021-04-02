@@ -26,6 +26,7 @@ class APIContainer {
         let reviewParser = ReviewAPIParser()
         let touristParser = TouristAPIParser()
         let bookingParser = BookingAPIParser()
+        let placesParser = PlacesAPIParser()
         container.register(APIParser.self, name: ContainerNames.guide.rawValue) { _ in
             guideParser
         }
@@ -62,6 +63,15 @@ class APIContainer {
                                     touristAPI: touristAPI,
                                     trailAPI: trailAPI,
                                     reviewAPI: reviewAPI)
+        
+        let alamofireManager = AlamofireManager.alamofireManager
+        alamofireManager.apiPath = ProcessInfo.processInfo.environment["google_places_path"]
+        
+        let placesAPI = PlacesAPI(parser: placesParser,
+                                  networkManager: alamofireManager)
+        container.register(PlacesAPIProtocol.self) { _ in
+            placesAPI
+        }
         container.register(GuideAPIProtocol.self) { _ in
             guideAPI
         }
