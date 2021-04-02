@@ -38,7 +38,7 @@ extension Date {
         case 6:
             return .Friday
         case 7:
-            return .Sunday
+            return .Saturday
         default:
             return nil
         }
