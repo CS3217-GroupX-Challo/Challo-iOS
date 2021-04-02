@@ -26,6 +26,6 @@ final class MapItineraryModule: ViperModuleProtocol {
         presenter.router = router
         router.presenter = presenter
         
-        return (AnyView(EmptyView()), presenter)
+        return (AnyView(MapItineraryView(presenter: presenter)), presenter)
     }
 }
