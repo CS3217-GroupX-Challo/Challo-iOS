@@ -36,8 +36,8 @@ class TrailBookingPresenter: PresenterProtocol {
     }
     var validDateRange: ClosedRange<Date> {
         let today = Date()
-        let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? today
-        let sixMonthsLater = Calendar.current.date(byAdding: .month, value: 6, to: Date()) ?? today
+        let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: today) ?? today
+        let sixMonthsLater = Calendar.current.date(byAdding: .month, value: 6, to: nextDay) ?? today
         return nextDay...sixMonthsLater
     }
 
