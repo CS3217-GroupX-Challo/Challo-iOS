@@ -35,7 +35,7 @@ extension MapItineraryPresenter: GMSMapViewDelegate {
             currentLatitude = locationManager.minimumLatitude
             snapBack = true
         } else if currentLatitude > locationManager.maximumLatitude {
-            currentLatitude = locationManager.maximumLongitude
+            currentLatitude = locationManager.maximumLatitude
             snapBack = true
         }
         
