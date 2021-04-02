@@ -14,16 +14,18 @@ class GuideDashboardInteractor: InteractorProtocol {
     let bookingRepository: BookingRepositoryProtocol
     let userState: UserStateProtocol!
 
+    private(set) var completedBookings = [Booking]()
+
     init(userState: UserStateProtocol, bookingRepository: BookingRepositoryProtocol) {
         self.bookingRepository = bookingRepository
         self.userState = userState
     }
 
-    func populateBookings() {
+    func populateBookings(callback: @escaping ([Booking]) -> Void) {
         guard let uuid = UUID(uuidString: userState.userId) else {
             return
         }
-        bookingRepository.fetchBookingForGuideAndRefresh(id: uuid, didRefresh: nil)
+        bookingRepository.fetchBookingForGuideAndRefresh(id: uuid, didRefresh: callback)
     }
 
 }

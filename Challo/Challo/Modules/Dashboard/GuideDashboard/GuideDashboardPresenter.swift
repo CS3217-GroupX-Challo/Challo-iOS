@@ -14,12 +14,10 @@ class GuideDashboardPresenter: PresenterProtocol {
 
     unowned let userState: UserStateProtocol!
 
+    var earningsHistory = [Double]()
+
     init(userState: UserStateProtocol) {
         self.userState = userState
-    }
-
-    func refresh() {
-        
     }
 
 }

@@ -1,0 +1,29 @@
+//
+//  MonthlyEarningsPresenter.swift
+//  Challo
+//
+//  Created by Ying Gao on 3/4/21.
+//
+
+import Foundation
+
+class MonthlyEarningsPresenter: EarningSubPresenter {
+
+    weak var interactor: GuideDashboardInteractor!
+
+    @Published var earningsOfYear = 0.0
+    @Published var history = [Double]()
+    @Published var dateRange = Calendar.current.monthsInCurrentYear
+
+    func didPopulateBookings(bookings: [Booking]) {
+        let completedBookings = bookings.filter { $0.status == .Completed }
+        dateRange.forEach { month in
+            let earningsInMonth = completedBookings
+                .filter { Calendar.current.isDate($0.date, equalTo: month, toGranularity: .month) }
+                .reduce(0.0, { $0 + $1.fee })
+            history.append(earningsInMonth)
+        }
+        earningsOfYear = history.reduce(0.0, { $0 + $1 })
+    }
+
+}
