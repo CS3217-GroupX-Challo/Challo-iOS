@@ -47,7 +47,8 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
                 return
             }
             self.markers = []
-            for mapMarker in mapMarkers {
+            self.googleMapsView?.mapView.clear() // clear all google maps markers
+            for mapMarker in mapMarkers.values {
                 let gmsMarker = self.initializeMarker(mapMarker: mapMarker)
                 self.markers.append(gmsMarker)
             }
