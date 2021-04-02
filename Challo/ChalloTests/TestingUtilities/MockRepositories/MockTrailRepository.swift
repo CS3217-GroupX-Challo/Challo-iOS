@@ -6,8 +6,9 @@
 //
 
 @testable import Challo
+import Foundation
 
-class MockTrailRepository: Repository<Trail>, TrailRepositoryProtocol {
+class MockTrailRepository: Repository<UUID, Trail>, TrailRepositoryProtocol {
     let trailAPI = MockTrailAPI()
     
     init() {

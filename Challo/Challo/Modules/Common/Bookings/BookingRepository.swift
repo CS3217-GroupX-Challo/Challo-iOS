@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BookingRepository: Repository<Booking>, BookingRepositoryProtocol {
+class BookingRepository: Repository<UUID, Booking>, BookingRepositoryProtocol {
 
     let bookingAPI: BookingAPIProtocol
 

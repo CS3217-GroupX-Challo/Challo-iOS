@@ -5,7 +5,9 @@
 //  Created by Shao Yi on 29/3/21.
 //
 
-class GuideRepository: Repository<Guide>, GuideRepositoryProtocol {
+import Foundation
+
+class GuideRepository: Repository<UUID, Guide>, GuideRepositoryProtocol {
     let guideAPI: GuideAPIProtocol
     
     init(guideAPI: GuideAPIProtocol) {

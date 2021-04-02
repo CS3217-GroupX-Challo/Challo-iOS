@@ -15,14 +15,14 @@ class RepositoryTests: XCTestCase {
         let sampleUUID = UUID()
         let sampleStr = "Hello World"
         initialRepo[sampleUUID] = sampleStr
-        let repository = Repository<String>(initialRepo)
+        let repository = Repository<UUID, String>(initialRepo)
         let retrievedEntities = repository.getAll()
         XCTAssertTrue(retrievedEntities.count == 1)
         XCTAssertEqual(retrievedEntities, [sampleStr])
     }
     
     func testGetAll_emptyRepo_emptyEntities() {
-        let repository = Repository<String>()
+        let repository = Repository<UUID, String>()
         XCTAssertTrue(repository.getAll().isEmpty)
     }
     
@@ -34,7 +34,7 @@ class RepositoryTests: XCTestCase {
         let sampleStrB = "Bye World"
         initialRepo[sampleUUIDA] = sampleStrA
         initialRepo[sampleUUIDB] = sampleStrB
-        let repository = Repository<String>(initialRepo)
+        let repository = Repository<UUID, String>(initialRepo)
         
         let retrievedEntityA = repository.getByKey(sampleUUIDA)
         XCTAssertEqual(retrievedEntityA, sampleStrA)
@@ -47,7 +47,7 @@ class RepositoryTests: XCTestCase {
         let sampleUUIDA = UUID()
         let sampleStrA = "Hello World"
         initialRepo[sampleUUIDA] = sampleStrA
-        let repository = Repository<String>(initialRepo)
+        let repository = Repository<UUID, String>(initialRepo)
         
         let retrievedEntityA = repository.getByKey(UUID())
         XCTAssertNil(retrievedEntityA)
@@ -56,7 +56,7 @@ class RepositoryTests: XCTestCase {
     func testInsert_nonExistingKey_entityStored() {
         let sampleUUIDA = UUID()
         let sampleStrA = "Hello World"
-        let repository = Repository<String>()
+        let repository = Repository<UUID, String>()
         
         let storedEntityKey = repository.insert(sampleStrA, key: sampleUUIDA)
         XCTAssertEqual(storedEntityKey, sampleUUIDA)
@@ -67,7 +67,7 @@ class RepositoryTests: XCTestCase {
         let sampleUUIDA = UUID()
         let sampleStrA = "Hello World"
         let sampleStrB = "Bye World"
-        let repository = Repository<String>()
+        let repository = Repository<UUID, String>()
         
         repository.insert(sampleStrA, key: sampleUUIDA)
         let returnedEntityForExisitngKey = repository.insert(sampleStrB, key: sampleUUIDA)
@@ -85,7 +85,7 @@ class RepositoryTests: XCTestCase {
         let sampleStrB = "Bye World"
         initialRepo[sampleUUIDA] = sampleStrA
         initialRepo[sampleUUIDB] = sampleStrB
-        let repository = Repository<String>(initialRepo)
+        let repository = Repository<UUID, String>(initialRepo)
         
         let deletedEntityA = repository.deleteByKey(sampleUUIDA)
         XCTAssertEqual(deletedEntityA, sampleStrA)
@@ -101,7 +101,7 @@ class RepositoryTests: XCTestCase {
         let sampleStrB = "Bye World"
         initialRepo[sampleUUIDA] = sampleStrA
         initialRepo[sampleUUIDB] = sampleStrB
-        let repository = Repository<String>(initialRepo)
+        let repository = Repository<UUID, String>(initialRepo)
         
         let returnedEntityForNonExistingKey = repository.deleteByKey(UUID())
         XCTAssertNil(returnedEntityForNonExistingKey)
@@ -116,7 +116,7 @@ class RepositoryTests: XCTestCase {
         let sampleStrA = "Hello World"
         let updatedStr = "Bye World"
         initialRepo[sampleUUIDA] = sampleStrA
-        let repository = Repository<String>(initialRepo)
+        let repository = Repository<UUID, String>(initialRepo)
         
         let returnedEntity = repository.updateByKey(entity: updatedStr, key: sampleUUIDA)
         XCTAssertEqual(returnedEntity, updatedStr)
@@ -131,7 +131,7 @@ class RepositoryTests: XCTestCase {
         let sampleStrB = "Bye World"
         initialRepo[sampleUUIDA] = sampleStrA
         initialRepo[sampleUUIDB] = sampleStrB
-        let repository = Repository<String>(initialRepo)
+        let repository = Repository<UUID, String>(initialRepo)
         
         let returnedEntityForNonExistingKey = repository.updateByKey(entity: "Invalid", key: UUID())
         XCTAssertNil(returnedEntityForNonExistingKey)
@@ -143,7 +143,7 @@ class RepositoryTests: XCTestCase {
     func testUpsert_nonExistingKey_entityStored() {
         let sampleUUIDA = UUID()
         let sampleStrA = "Hello World"
-        let repository = Repository<String>()
+        let repository = Repository<UUID, String>()
         
         let storedEntity = repository.upsert(entity: sampleStrA, key: sampleUUIDA)
         XCTAssertEqual(storedEntity, sampleStrA)
@@ -156,7 +156,7 @@ class RepositoryTests: XCTestCase {
         let sampleStrA = "Hello World"
         let updatedStr = "Bye World"
         initialRepo[sampleUUIDA] = sampleStrA
-        let repository = Repository<String>(initialRepo)
+        let repository = Repository<UUID, String>(initialRepo)
         
         let returnedEntity = repository.upsert(entity: updatedStr, key: sampleUUIDA)
         XCTAssertEqual(returnedEntity, updatedStr)
