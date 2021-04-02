@@ -36,12 +36,12 @@ class RegisterPresenterTests: XCTestCase {
 
     func testShowFailureAlert_showAlertVariableToggled() {
         presenter.showRegisterFailureAlert()
-        XCTAssertTrue(presenter.isShowingRegisterFailureAlert, "Register failure alert variable not toggled")
+        XCTAssertTrue(presenter.isShowingRegisterAlert, "Register alert variable not toggled")
     }
 
     func testShowSuccessAlert_showAlertVariableToggled() {
         presenter.showRegisterSuccessAlert()
-        XCTAssertTrue(presenter.isShowingRegisterSuccessAlert, "Register success alert variable not toggled")
+        XCTAssertTrue(presenter.isShowingRegisterAlert, "Register alert variable not toggled")
     }
 }
 
@@ -59,9 +59,11 @@ class RegisterPresenterImplementation: RegisterPresenter {
     
     var password = ""
     
-    var isShowingRegisterFailureAlert = false
-
-    var isShowingRegisterSuccessAlert = false
+    var isShowingRegisterAlert = false
+    
+    var registerAlertTitle = ""
+    
+    var registerAlertMessage = ""
 }
 
 private class RegisterInteractorMock: RegisterInteractor {

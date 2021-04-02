@@ -44,7 +44,8 @@ struct TouristDashboardPage: View {
                 }
             }
         }
-        .ignoresSafeArea()
+        .padding(.bottom, 80)
+        .edgesIgnoringSafeArea(.all)
         .onAppear {
             presenter.refresh()
         }

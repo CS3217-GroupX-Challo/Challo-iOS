@@ -184,4 +184,10 @@ struct MockGuideAPIResponses: MockAPIResponse {
               languages: languagesTwo, accreditations: accrediationsTwo, biography: biographyTwo,
               hobbies: hobbiesTwo, memorableExperiences: memorableExperiencesTwo)
     }
+
+    static var guidesForTrailOne: [Guide] {
+        var guide = guideOne
+        guide.trails = [MockTrailAPIResponse.trailOne].compactMap { $0 }
+        return [guide]
+    }
 }
