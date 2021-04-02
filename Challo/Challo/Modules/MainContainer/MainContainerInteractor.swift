@@ -13,7 +13,10 @@ class MainContainerInteractor: InteractorProtocol {
     init(userState: UserStateProtocol) {
         self.userState = userState
         
-        let chatService = QuickBloxChatService()
+        let chatDialogRepository = ChatDialogRepository()
+        let chatService = QuickBloxChatService(chatAuthService: QuickBloxChatAuthService(),
+                                               chatDialogService:
+                                                QuickBloxChatDialogService(chatDialogRepository: chatDialogRepository))
         chatService.login(email: "random@random.sg", password: "asfsdfsff")
     }
     
