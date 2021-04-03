@@ -26,5 +26,8 @@ struct InteractiveMapSidebar: View {
             ItineraryListingView(presenter: presenter)
                 .navigationBarTitle(Text("Menu"), displayMode: .inline)
         }
+        .onAppear {
+            presenter.refreshItineraries()
+        }
     }
 }

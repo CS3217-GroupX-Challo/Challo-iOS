@@ -36,9 +36,10 @@ class MapStore {
     
     func saveMapItineraries(mapItineraries: [MapItinerary]) {
         mapItineraryRepository.saveMapItineraries(mapItineraries: mapItineraries)
+        print(mapItineraryRepository.getAllMapItineraries().count)
     }
     
     func getAllMapItineraries() -> [MapItinerary] {
-        mapItineraryRepository.getAllMapItineraries()
+        return mapItineraryRepository.getAllMapItineraries()
     }
 }
