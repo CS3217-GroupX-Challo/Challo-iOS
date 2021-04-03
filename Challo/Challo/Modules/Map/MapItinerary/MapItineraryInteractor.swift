@@ -49,6 +49,7 @@ class MapItineraryInteractor: InteractorProtocol, ObservableObject {
     }
 
     func editMarker(at position: CLLocationCoordinate2D, edited: MapMarker) {
-        mapMarkers[position] = edited
+        individualItineraryRepository.deleteMapMarker(at: position)
+        individualItineraryRepository.addMapMarker(mapMarker: edited)
     }
 }
