@@ -30,4 +30,12 @@ class MapItineraryInteractor: InteractorProtocol, ObservableObject {
                                   comments: nil)
         mapMarkers[position] = mapMarker
     }
+    
+    func getMarkerPresent(at position: CLLocationCoordinate2D) -> MapMarker? {
+        mapMarkers[position]
+    }
+    
+    func deleteMarker(at position: CLLocationCoordinate2D) {
+        mapMarkers.removeValue(forKey: position)
+    }
 }

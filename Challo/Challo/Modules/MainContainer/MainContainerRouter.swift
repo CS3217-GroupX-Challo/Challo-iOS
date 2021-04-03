@@ -56,7 +56,6 @@ class MainContainerRouter: RouterProtocol {
                                                          mapRouteRepository: MapRouteRepository(),
                                                          mapItineraryRepository: MapItineraryRepository()))
             .assemble().view
-        mapsPage = MapModule(placesAPI: placesAPI).assemble().view
         settingsPage = SettingsModule(userState: userState).assemble().view
         profilePage = TouristDashboardModule(userState: userState, bookingsRepository: bookingRepository)
             .assemble().view

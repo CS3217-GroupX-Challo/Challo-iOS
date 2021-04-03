@@ -113,4 +113,9 @@ extension MapItineraryPresenter: GMSMapViewDelegate {
             self.createAndStoreDefaultMapMarker(position: coordinate)
         }
     }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        // Add modal for Marker
+        return true
+    }
 }
