@@ -11,13 +11,16 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     var router: ChatRouter?
     var interactor: ChatInteractor!
     
-    @Published var messageText: String = ""
-    @Published var dialogSearchBarText: String = ""
+    @Published var isChatAvailable: Bool = false
+    @Published var isLoadingMessages: Bool = false
+    @Published var isLoadingDialogs: Bool = true
+    
     @Published var messages: [ChatMessage] = []
     @Published var currentOpenDialogId: String?
     @Published var dialogs: [ChatDialog] = []
-    @Published var isLoadingMessages: Bool = false
-    @Published var isLoadingDialogs: Bool = false
+    
+    @Published var messageText: String = ""
+    @Published var dialogSearchBarText: String = ""
     
     var filteredDialogs: [ChatDialog] {
         dialogs.filter({ dialogSearchBarText.isEmpty

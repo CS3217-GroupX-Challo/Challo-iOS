@@ -30,7 +30,9 @@ struct PageLayout<ChildContent: View>: View {
                 .frame(width: geometry.size.width,
                        height: geometry.size.height / (headerContent == nil ? 6 : 5),
                        alignment: .center)
-                makeChildContent(geometry)
+                GeometryReader { innerGeometry in
+                    makeChildContent(innerGeometry)
+                }
             }
         }
         .edgesIgnoringSafeArea(.all)
