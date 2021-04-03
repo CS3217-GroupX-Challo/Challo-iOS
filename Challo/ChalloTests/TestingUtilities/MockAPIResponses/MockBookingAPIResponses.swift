@@ -26,6 +26,19 @@ struct MockBookingAPIResponses {
     static let createdAtStringOne = "2021-03-30T10:13:01.220Z"
     static let createAtOne = Date.construct(with: createdAtStringOne) ?? Date(timeIntervalSince1970: 100)
 
+    static let bookingIdTwo = UUID(uuidString: "1b4050ed-3c36-41e2-abd4-90b0e348b747") ?? UUID()
+    static let statusTwo = "Completed"
+    static let statusEnumTwo = BookingStatus(rawValue: statusTwo)!
+    static let feeTwo: Double = 1_000
+    static let dateStringTwo = "2021-03-02T00:00:00.000Z"
+    static let dateTwo = Date.construct(with: dateStringOne) ?? Date(timeIntervalSince1970: 100)
+    static let guideIdTwo = MockGuideAPIResponses.userIdTwo
+    static let bookingGuideTwo = MockGuideAPIResponses.guideTwo
+    static let trailIdTwo = MockTrailAPIResponse.trailIdTwo
+    static let bookingTrailTwo = MockTrailAPIResponse.trailTwo
+    static let createdAtStringTwo = "2021-03-01T10:13:01.220Z"
+    static let createAtTwo = Date.construct(with: createdAtStringTwo) ?? Date(timeIntervalSince1970: 100)
+
     static var bookingJSONOne: JSON {
         var json = JSON()
         json[Key.bookingId] = bookingIdOne.uuidString
@@ -59,14 +72,49 @@ struct MockBookingAPIResponses {
                        review: nil)
     }
 
-    static var validResponse: JSON {
+    static var bookingJSONTwo: JSON {
+        var json = JSON()
+        json[Key.bookingId] = bookingIdTwo.uuidString
+        json[Key.status] = statusTwo
+        json[Key.fee] = String(feeTwo)
+        json[Key.date] = dateStringTwo
+        json[Key.guideId] = guideIdTwo.uuidString
+        json[Key.trailId] = trailIdTwo.uuidString
+        json[Key.touristId] = touristIdOne.uuidString
+        json[Key.createdAt] = createdAtStringTwo
+        return json
+    }
+
+    static var bookingTwo: Booking? {
+        guard let trail = bookingTrailTwo else {
+            return nil
+        }
+
+        return Booking(bookingId: bookingIdTwo,
+                       fee: feeTwo,
+                       date: dateTwo,
+                       createdAt: createAtTwo,
+                       status: statusEnumTwo,
+                       guide: bookingGuideTwo,
+                       trail: trail,
+                       tourist: bookingTouristOne,
+                       review: nil)
+    }
+
+    static var validResponseOne: JSON {
         var json = JSON()
         json["data"] = [bookingJSONOne]
         return json
     }
 
+    static var validResponseTwo: JSON {
+        var json = JSON()
+        json["data"] = [bookingJSONTwo]
+        return json
+    }
+
     static var bookings: [Booking] {
-        [bookingOne]
+        [bookingOne, bookingTwo]
             .compactMap { $0 }
     }
 }

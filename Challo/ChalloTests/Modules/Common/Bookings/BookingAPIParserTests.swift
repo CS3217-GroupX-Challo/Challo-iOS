@@ -15,7 +15,7 @@ class BookingAPIParserTests: XCTestCase {
     let parser = BookingAPIParser()
 
     func testExtractBookingJSON_validResponse_correctNumberOfJSON() {
-        let response = Response.validResponse
+        let response = Response.validResponseOne
         let extractedJSON = parser.extractBookingsJSON(response: response)
         XCTAssertEqual(Response.bookingJSONList.count, extractedJSON.count)
     }

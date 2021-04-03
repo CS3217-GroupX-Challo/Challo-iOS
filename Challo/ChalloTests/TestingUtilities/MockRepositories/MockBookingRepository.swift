@@ -26,4 +26,11 @@ class MockBookingRepository: BookingRepository {
             didRefresh?(bookings)
         }
     }
+
+    override func fetchBookingForGuideAndRefresh(id: UUID, didRefresh: (([Booking]) -> Void)?) {
+        bookingAPI.getBookingsForGuide(id: id) { [weak self] bookings in
+            self?.refreshBookings(bookings)
+            didRefresh?(bookings)
+        }
+    }
 }
