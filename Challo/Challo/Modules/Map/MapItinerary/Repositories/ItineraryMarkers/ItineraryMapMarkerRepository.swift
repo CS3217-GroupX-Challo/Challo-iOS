@@ -19,11 +19,11 @@ class ItineraryMapMarkerRepository: RepositoryProtocol {
     }
     
     func getAll() -> [MapMarker] {
-        return repository.values.compactMap({ $0 })
+        repository.values.compactMap({ $0 })
     }
     
     func getByKey(_ key: CLLocationCoordinate2D) -> MapMarker? {
-        return repository[key]
+        repository[key]
     }
     
     @discardableResult
@@ -39,7 +39,7 @@ class ItineraryMapMarkerRepository: RepositoryProtocol {
     
     @discardableResult
     func deleteByKey(_ key: CLLocationCoordinate2D) -> MapMarker? {
-        return repository.removeValue(forKey: key)
+        repository.removeValue(forKey: key)
     }
     
     @discardableResult

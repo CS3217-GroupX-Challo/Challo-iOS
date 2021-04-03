@@ -6,44 +6,53 @@
 //
 
 import Combine
+import Foundation
 import MapKit
 
 class MapItineraryInteractor: InteractorProtocol, ObservableObject {
     var presenter: MapItineraryPresenter!
+    
     private var mapStore: MapStore
+    private var individualItineraryRepository: IndividualItineraryRepository
+    private var mapItinerary: MapItinerary
     
-    @Published var mapMarkers: [CLLocationCoordinate2D: MapMarker]
-    @Published var mapRoutes: [MapRoute]
+    @Published var mapMarkers: [MapMarker] = []
+    @Published var mapRoutes: [MapRoute] = []
     
-    init(mapMarkers: [CLLocationCoordinate2D: MapMarker], mapRoutes: [MapRoute], mapStore: MapStore) {
-        self.mapMarkers = mapMarkers
-        self.mapRoutes = mapRoutes
+    init(mapItinerary: MapItinerary, mapStore: MapStore) {
+        self.mapMarkers = mapItinerary.markers
+        self.mapRoutes = mapItinerary.routes
         self.mapStore = mapStore
+        self.mapItinerary = mapItinerary
+        self.individualItineraryRepository
+            = IndividualItineraryRepository(mapMarkers: mapItinerary.markers,
+                                            mapRoutes: mapItinerary.routes)
     }
     
     convenience init(mapStore: MapStore) {
-        self.init(mapMarkers: [CLLocationCoordinate2D: MapMarker](),
-                  mapRoutes: [],
+        let mapItinerary = MapItinerary(id: UUID(),
+                                        routes: [],
+                                        markers: [],
+                                        title: "",
+                                        createdAt: Date(),
+                                        lastModified: Date())
+        self.init(mapItinerary: mapItinerary,
                   mapStore: mapStore)
     }
     
     func createAndStoreDefaultMapMarker(position: CLLocationCoordinate2D) {
-        let mapMarker = MapMarker(id: UUID(),
-                                  position: position,
-                                  date: nil,
-                                  comments: nil)
-        mapMarkers[position] = mapMarker
+        individualItineraryRepository.createAndStoreDefaultMapMarker(at: position)
     }
     
     func getMarkerPresent(at position: CLLocationCoordinate2D) -> MapMarker? {
-        mapMarkers[position]
+        individualItineraryRepository.getMapMarker(at: position)
     }
     
     func deleteMarker(at position: CLLocationCoordinate2D) {
-        mapMarkers.removeValue(forKey: position)
+        individualItineraryRepository.deleteMapMarker(at: position)
     }
     
-    func addMarker(at position: CLLocationCoordinate2D, mapMarker: MapMarker) {
-        mapMarkers[position] = mapMarker
+    func addMarker(mapMarker: MapMarker) {
+        individualItineraryRepository.addMapMarker(mapMarker: mapMarker)
     }
 }

@@ -51,7 +51,7 @@ extension IndividualItineraryRepository {
     }
     
     func deleteMapMarker(at position: CLLocationCoordinate2D) {
-        mapMarkerRepository.deleteMapMarker(at: <#T##CLLocationCoordinate2D#>)
+        mapMarkerRepository.deleteMapMarker(at: position)
     }
 }
 

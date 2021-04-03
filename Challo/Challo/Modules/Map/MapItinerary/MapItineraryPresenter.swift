@@ -53,7 +53,7 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
             }
             self.markers = []
             self.googleMapsView?.mapView.clear() // clear all google maps markers
-            for mapMarker in mapMarkers.values {
+            for mapMarker in mapMarkers {
                 let gmsMarker = self.initializeMarker(mapMarker: mapMarker)
                 self.markers.append(gmsMarker)
             }
@@ -142,6 +142,6 @@ extension MapItineraryPresenter: GMSMapViewDelegate {
         
         mapMarker.position = marker.position // update new position
         interactor.deleteMarker(at: initialPosition)
-        interactor.addMarker(at: marker.position, mapMarker: mapMarker)
+        interactor.addMarker(mapMarker: mapMarker)
     }
 }
