@@ -10,14 +10,25 @@ import Foundation
 class GuideDashboardPresenter: PresenterProtocol {
 
     var router: GuideDashboardRouter?
-    var interactor: GuideDashboardInteractor!
+    var interactor: GuideDashboardInteractor! {
+        didSet {
+            weekSubPresenter.interactor = interactor
+            yearSubPresenter.interactor = interactor
+        }
+    }
 
     unowned let userState: UserStateProtocol!
 
+    @Published var name: String
     @Published var totalEarnings = 0.0
+    @Published var loading: Bool = true
+
+    var weekSubPresenter = WeekEarningsPresenter()
+    var yearSubPresenter = YearEarningsPresenter()
 
     init(userState: UserStateProtocol) {
         self.userState = userState
+        self.name = userState.name
     }
 
     func refresh() {
@@ -27,6 +38,7 @@ class GuideDashboardPresenter: PresenterProtocol {
     func updateTotalEarnings(bookings: [Booking]) {
         totalEarnings = bookings.filter { $0.status == .Completed }
             .reduce(0.0, { $0 + $1.fee })
+        loading = false
     }
 
 }

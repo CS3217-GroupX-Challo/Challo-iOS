@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MonthlyEarningsPresenter: EarningSubPresenter {
+class YearEarningsPresenter: EarningSubPresenter {
 
     weak var interactor: GuideDashboardInteractor!
 

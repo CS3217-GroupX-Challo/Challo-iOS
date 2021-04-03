@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class WeeklyEarningsPresenter: EarningSubPresenter {
+class WeekEarningsPresenter: EarningSubPresenter {
 
     weak var interactor: GuideDashboardInteractor!
 
