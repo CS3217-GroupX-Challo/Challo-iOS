@@ -11,12 +11,12 @@ class QuickBloxChatAuthService: ChatAuthService {
     
     private var isConnected = false
     
-    private func connectToChatServer(chatUserId: UInt, password: String, didLogin: ((UInt, Bool) -> Void)?) {
+    func connectToChatServer(chatUserId: UInt, password: String, didConnect: ((UInt, Bool) -> Void)?) {
         QBChat.instance.connect(withUserID: chatUserId, password: password, completion: { [weak self] error in
             defer {
                 let isSuccessfullyConnected = error == nil
                 self?.isConnected = isSuccessfullyConnected
-                didLogin?(chatUserId, isSuccessfullyConnected)
+                didConnect?(chatUserId, isSuccessfullyConnected)
             }
             guard error == nil else {
                 return
@@ -38,7 +38,7 @@ class QuickBloxChatAuthService: ChatAuthService {
             return
         }
         QBRequest.logIn(withUserEmail: email, password: password, successBlock: { [weak self] _, user in
-            self?.connectToChatServer(chatUserId: user.id, password: password, didLogin: didLogin)
+            self?.connectToChatServer(chatUserId: user.id, password: password, didConnect: didLogin)
         })
     }
     
@@ -50,9 +50,11 @@ class QuickBloxChatAuthService: ChatAuthService {
         return user
     }
     
-    func registerUser(email: String, password: String, fullName: String) {
+    func registerUser(email: String, password: String, fullName: String, didRegister: (() -> Void)? = nil) {
         let user = createUser(email: email, password: password, fullName: fullName)
-        QBRequest.signUp(user, successBlock: nil)
+        QBRequest.signUp(user, successBlock: { _, _ in
+            didRegister?()
+        })
     }
     
     func logout() {

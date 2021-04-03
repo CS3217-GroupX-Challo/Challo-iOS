@@ -86,8 +86,6 @@ class QuickBloxChatDialogService: ChatDialogService {
         QBRequest.dialogs(for: responsePage, extendedRequest: extendedRequest,
                           successBlock: { [weak self] _, dialogs, dialogsUsersIds, _ in
                             self?.didGetAllDialogs(dialogs, dialogsUsersIds, callback)
-        }, errorBlock: { error in
-            print(error)
         })
     }
     

@@ -13,21 +13,14 @@ struct ChatView: View {
     @ViewBuilder
     func makeBody(_ geometry: GeometryProxy) -> some View {
         ZStack(alignment: .center) {
-            if presenter.isLoadingDialogs {
+            if !presenter.canDisplayChat {
+                ChatUnavailableView()
+            } else if presenter.isLoadingDialogs {
                 Loading(isAnimating: .constant(true), style: .large)
             } else if presenter.isChatAvailable {
-                ChatDialogListingView()
-                    .padding(.top, 30)
+                ChatDialogListingView().padding(.top, 30)
             } else {
-                VStack(spacing: 30) {
-                    Image(systemName: "multiply.square")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundColor(.red)
-                        .frame(minWidth: 75, maxWidth: 75)
-                    Text("An unexpected error occured while bringing up your chats :(")
-                        .font(.system(size: 22))
-                }
+                ChatErrorView()
             }
         }.frame(width: geometry.size.width, height: geometry.size.height)
     }

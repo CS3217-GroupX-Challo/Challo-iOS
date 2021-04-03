@@ -70,4 +70,8 @@ class MainContainerPresenter: PresenterProtocol, ObservableObject {
     func getSettingsPage() -> AnyView? {
         router?.settingsPage
     }
+    
+    func getChatPage() -> AnyView? {
+        router?.chatPage
+    }
 }
