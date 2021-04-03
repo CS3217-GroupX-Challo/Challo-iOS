@@ -9,8 +9,17 @@ import SwiftUI
 
 struct MarkerEditModal: View {
 
-    @State private var comments: String = "Test comment"
-    @State private var selectedDate = Date()
+    @ObservedObject var presenter: MapItineraryPresenter
+    @State private var comments: String
+    @State private var selectedDate: Date
+    
+    init(presenter: MapItineraryPresenter) {
+        self.presenter = presenter
+        let initialComments = presenter.markerToEdit?.comments ?? "Enter your comments here!"
+        let initialDate = presenter.markerToEdit?.date ?? Date()
+        _comments = State(initialValue: initialComments)
+        _selectedDate = State(initialValue: initialDate)
+    }
 
     var body: some View {
         Card {
@@ -28,17 +37,18 @@ struct MarkerEditModal: View {
                            maxWidth: 700,
                            minHeight: 0,
                            maxHeight: 500)
+                Button(action: {
+                    presenter.endEdit(newDate: selectedDate, newComments: comments)
+                }, label: {
+                    Text("Save")
+                })
             }
             .padding()
         }
-        .frame(width: .infinity,
-               height: .infinity,
+        .frame(minWidth: 0,
+               maxWidth: .infinity,
+               minHeight: 0,
+               maxHeight: .infinity,
                alignment: .center)
-    }
-}
-
-struct MarkerEditModal_Previews: PreviewProvider {
-    static var previews: some View {
-        MarkerEditModal()
     }
 }
