@@ -85,9 +85,7 @@ class CoreDataRepository<T: NSManagedObject>: RepositoryProtocol {
     func upsert(entity: T, key: NSManagedObjectID) -> T {
         entity
     }
-}
-
-extension CoreDataRepository {
+    
     func commit() {
         do {
             try managedObjectContext.save()

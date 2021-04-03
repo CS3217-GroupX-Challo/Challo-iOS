@@ -53,6 +53,9 @@ class ItineraryMapMarkerRepository: RepositoryProtocol {
         repository[key] = entity
         return entity
     }
+    
+    func commit() {
+    }
 }
 
 extension ItineraryMapMarkerRepository: ItineraryMapMarkerRepositoryProtocol {
