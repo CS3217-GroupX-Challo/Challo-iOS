@@ -28,7 +28,7 @@ struct PageLayout<ChildContent: View>: View {
                     }
                 }
                 .frame(width: geometry.size.width,
-                       height: geometry.size.height / 5,
+                       height: geometry.size.height / (headerContent == nil ? 6 : 5),
                        alignment: .center)
                 makeChildContent(geometry)
             }

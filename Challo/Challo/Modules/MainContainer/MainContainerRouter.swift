@@ -19,6 +19,7 @@ class MainContainerRouter: RouterProtocol {
     var mapsPage: AnyView
     var settingsPage: AnyView
     var loginPage: AnyView
+    var homePage: AnyView
     
     init(userState: UserStateProtocol) {
         self.userState = userState
@@ -59,6 +60,7 @@ class MainContainerRouter: RouterProtocol {
         settingsPage = SettingsModule(userState: userState).assemble().view
         profilePage = TouristDashboardModule(userState: userState, bookingsRepository: bookingRepository)
             .assemble().view
+        homePage = ChatModule().assemble().view
     }
 
 }

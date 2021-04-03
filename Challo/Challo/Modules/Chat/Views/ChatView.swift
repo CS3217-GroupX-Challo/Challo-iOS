@@ -8,7 +8,18 @@
 import SwiftUI
 
 struct ChatView: View {
+    @EnvironmentObject var presenter: ChatPresenter
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        PageLayout(titleLabel: "Inbox", headerContent: nil) { geometry in
+            VStack(alignment: .leading) {
+                if presenter.isLoadingDialogs {
+                    Loading(isAnimating: .constant(true), style: .large)
+                } else {
+                    ChatDialogListingView()
+                }
+            }.frame(width: geometry.size.width, height: geometry.size.height)
+            .padding(.top, 30)
+        }
     }
 }

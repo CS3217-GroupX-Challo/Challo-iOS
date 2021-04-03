@@ -47,6 +47,10 @@ class MainContainerPresenter: PresenterProtocol, ObservableObject {
         interactor.checkIfUserLoggedIn()
     }
     
+    func getHomePage() -> AnyView? {
+        router?.homePage
+    }
+    
     func getProfilePage() -> AnyView? {
         profileTab
     }

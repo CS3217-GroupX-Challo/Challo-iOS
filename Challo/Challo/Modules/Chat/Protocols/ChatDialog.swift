@@ -10,10 +10,17 @@ import Foundation
 /// Representation of a conversation between 2 parties
 ///
 /// Primarily used as a wrapper over a chat SDK's dialog object
-protocol ChatDialog {
+/// Chater: current user
+/// Chatee: the user whom the chater is messenging to
+protocol ChatDialog: AnyObject {
+    var dialogId: String { get }
     var unreadMessagesCount: UInt { get }
+    var chateeName: String { get }
+    var chateeId: UInt { get }
+    var lastMessageDate: Date { get }
     
-    func sendMessage(_ messageBody: String, didSendMessage: ((Error?) -> Void)?)
+    func sendMessage(_ messageBody: String, willSendMessage: ((ChatMessage) -> Void)?,
+                     didSendMessage: ((ChatMessage, Error?) -> Void)?)
     
-    func getOnlineUsers(didGetOnlineUsers: @escaping ((NSMutableArray?, Error?) -> Void))
+    func resetUnreadMessagesCount()
 }
