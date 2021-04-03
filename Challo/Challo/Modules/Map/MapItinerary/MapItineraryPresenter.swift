@@ -18,6 +18,7 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
     
     @Published var isMarkerSelected: Bool = false
     @Published var isRouteSelected: Bool = false
+    @Published var isDeleteSelected: Bool = false
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -39,6 +40,7 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
         
         isMarkerSelected = false
         isRouteSelected = false
+        isDeleteSelected = false
     }
     
     func initializeBindings() {
@@ -60,7 +62,6 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
 extension MapItineraryPresenter {
     private func initializeMarker(mapMarker: MapMarker) -> GMSMarker {
         let gmsMarker = GMSMarker(position: mapMarker.position)
-        gmsMarker.appearAnimation = .pop
         gmsMarker.icon = GMSMarker.markerImage(with: .systemPink)
         gmsMarker.isDraggable = true
         
@@ -115,7 +116,9 @@ extension MapItineraryPresenter: GMSMapViewDelegate {
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        // Add modal for Marker
+        if isDeleteSelected {
+            interactor.deleteMarker(at: marker.position)
+        }
         return true
     }
 }
