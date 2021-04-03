@@ -40,7 +40,7 @@ class ItineraryMapMarkerRepositoryTests: XCTestCase {
         XCTAssertTrue(repo.getAllMapMarkers().isEmpty)
     }
 
-    func testAddMarkersThenGetAllMapMarkers_allMarkersAddedAndRetrieved() {
+    func testAddMarkersThenGetAllMapMarkers_multipleMarkers_allMarkersAddedAndRetrieved() {
         let markersToAdd = [MapTestConstants.markerOne,
                             MapTestConstants.markerTwo,
                             MapTestConstants.markerThree]
@@ -50,8 +50,8 @@ class ItineraryMapMarkerRepositoryTests: XCTestCase {
         }
         let retrievedMarkers = repo.getAllMapMarkers()
         XCTAssertEqual(markersToAdd.count, retrievedMarkers.count)
-        retrievedMarkers.forEach {
-            XCTAssertTrue(markersToAdd.contains($0))
+        markersToAdd.forEach {
+            XCTAssertTrue(retrievedMarkers.contains($0))
         }
     }
 
