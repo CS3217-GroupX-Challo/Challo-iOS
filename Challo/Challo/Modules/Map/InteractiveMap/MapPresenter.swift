@@ -8,6 +8,7 @@
 import Combine
 import GoogleMaps
 import MapKit
+import SwiftUI
 
 @objc
 class MapPresenter: NSObject, PresenterProtocol {
@@ -98,5 +99,17 @@ extension MapPresenter: GMSMapViewDelegate {
             mapView.animate(toLocation: CLLocationCoordinate2D(latitude: locationManager.latitude,
                                                                longitude: locationManager.longitude))
         }
+    }
+}
+
+// MARK: Routing to itinerary creation/edit
+extension MapPresenter {
+
+    func getNewItineraryPage() -> AnyView? {
+        router?.getNewItineraryPage()
+    }
+
+    func getItineraryPage(for itinerary: MapItinerary) -> AnyView? {
+        router?.getItineraryPage(for: itinerary)
     }
 }
