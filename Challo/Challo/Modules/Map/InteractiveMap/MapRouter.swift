@@ -12,6 +12,7 @@ class MapRouter: RouterProtocol {
     weak var presenter: MapPresenter!
     var placesAPI: PlacesAPIProtocol
     var mapStore: MapStore
+    var mapView: AnyView?
     
     init(placesAPI: PlacesAPIProtocol, mapStore: MapStore) {
         self.placesAPI = placesAPI

@@ -32,6 +32,13 @@ class MapPresenter: NSObject, PresenterProtocol {
     
     @Published var itineraries: [MapItinerary] = []
     
+    static var test = MapItinerary(id: UUID(),
+                                   routes: [],
+                                   markers: [],
+                                   title: "Dream grad trip!!",
+                                   createdAt: Date(),
+                                   lastModified: Date())
+    
     override init() {
         let locationManager = LocationManager()
         self.locationManager = locationManager
@@ -43,6 +50,10 @@ class MapPresenter: NSObject, PresenterProtocol {
     
     func findPlaces() {
         interactor.getPlaces(with: searchQuery)
+    }
+
+    func refreshItineraries() {
+        self.itineraries = interactor.getMapItineraries()
     }
     
     private func updateMapWithMarkers() {
@@ -102,7 +113,7 @@ extension MapPresenter: GMSMapViewDelegate {
     }
 }
 
-// MARK: Routing to itinerary creation/edit
+// MARK: Routing to and fro itinerary creation/edit
 extension MapPresenter {
 
     func getNewItineraryPage() -> AnyView? {
@@ -111,5 +122,9 @@ extension MapPresenter {
 
     func getItineraryPage(for itinerary: MapItinerary) -> AnyView? {
         router?.getItineraryPage(for: itinerary)
+    }
+
+    func getMapPage() -> AnyView? {
+        router?.mapView
     }
 }

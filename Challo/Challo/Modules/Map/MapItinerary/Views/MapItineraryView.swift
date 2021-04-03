@@ -30,7 +30,7 @@ struct MapItineraryView: View {
         }
         .environmentObject(presenter)
         .edgesIgnoringSafeArea(.all)
-        .navigationBarHidden(true)
         .statusBar(hidden: true)
+        .navigationBarTitle("Editing Itinerary", displayMode: .inline)
     }
 }

@@ -36,6 +36,6 @@ class MapInteractor: InteractorProtocol {
     }
     
     func getMapItineraries() -> [MapItinerary] {
-        itineraryRepository.getAllItineraries()
+        mapStore.getAllMapItineraries()
     }
 }
