@@ -43,8 +43,8 @@ struct ChatDialogView: View {
                 Text(lastMessageDateString)
                     .foregroundColor(Color.gray)
                     .font(.system(size: 18))
-                Spacer()
                 if unreadMessagesCount != 0 {
+                    Spacer()
                     Text(unreadMessagesCount.description)
                         .bold()
                         .padding()

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ChatDialogListingView: View {
     @EnvironmentObject var presenter: ChatPresenter
-        
     var body: some View {
         VStack {
             ChatDialogSearchBar()
@@ -17,12 +16,15 @@ struct ChatDialogListingView: View {
                 ForEach(presenter.filteredDialogs, id: \.chateeId) { dialog in
                     NavigationLink(destination: ChatMessageList(chateeName: dialog.chateeName)
                                     .environmentObject(presenter)) {
-                        ChatDialogView(dialogId: dialog.dialogId,
-                                       chateeName: dialog.chateeName,
-                                       lastMessageDate: dialog.lastMessageDate,
-                                       lastMessageText: dialog.lastMessageText,
-                                       unreadMessagesCount: dialog.unreadMessagesCount)
-                            .accentColor(.black)
+                        VStack {
+                            ChatDialogView(dialogId: dialog.dialogId,
+                                           chateeName: dialog.chateeName,
+                                           lastMessageDate: dialog.lastMessageDate,
+                                           lastMessageText: dialog.lastMessageText,
+                                           unreadMessagesCount: dialog.unreadMessagesCount)
+                                .accentColor(.black)
+                            Divider()
+                        }
                     }.simultaneousGesture(TapGesture().onEnded {
                         presenter.onTapDialog(dialogId: dialog.dialogId)
                     })
