@@ -38,4 +38,8 @@ class MapItineraryInteractor: InteractorProtocol, ObservableObject {
     func deleteMarker(at position: CLLocationCoordinate2D) {
         mapMarkers.removeValue(forKey: position)
     }
+    
+    func addMarker(at position: CLLocationCoordinate2D, mapMarker: MapMarker) {
+        mapMarkers[position] = mapMarker
+    }
 }

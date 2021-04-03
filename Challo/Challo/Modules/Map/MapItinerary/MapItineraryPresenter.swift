@@ -21,6 +21,7 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
     @Published var isDeleteSelected: Bool = false
     
     private var cancellables: Set<AnyCancellable> = []
+    private var movedMarkerInitialPosition: CLLocationCoordinate2D?
     
     @Published var markers: [GMSMarker] = []
     
@@ -120,5 +121,20 @@ extension MapItineraryPresenter: GMSMapViewDelegate {
             interactor.deleteMarker(at: marker.position)
         }
         return true
+    }
+    
+    func mapView(_ mapView: GMSMapView, didBeginDragging marker: GMSMarker) {
+        self.movedMarkerInitialPosition = marker.position
+    }
+    
+    func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
+        guard let initialPosition = movedMarkerInitialPosition,
+              var mapMarker = interactor.getMarkerPresent(at: initialPosition) else {
+            return
+        }
+        
+        mapMarker.position = marker.position // update new position
+        interactor.deleteMarker(at: initialPosition)
+        interactor.addMarker(at: marker.position, mapMarker: mapMarker)
     }
 }
