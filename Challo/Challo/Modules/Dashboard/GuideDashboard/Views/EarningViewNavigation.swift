@@ -12,29 +12,23 @@ struct EarningViewNavigation: View {
     var presenter: GuideDashboardPresenter
 
     var body: some View {
+
         NavigationView {
             VStack {
                 NavigationLink(
                     destination: WeekEarningsView(superPresenter: presenter),
                     label: {
-                        Card {
-                            Text("Week")
-                                .rotationEffect(Angle(radians: -Double.pi / 2))
-                        }
+                        Text("Week view")
                     })
-
+                Spacer()
                 NavigationLink(
                     destination: YearEarningView(superPresenter: presenter),
                     label: {
-                        Card {
-                            Text("Month")
-                                .rotationEffect(Angle(radians: -Double.pi / 2))
-
-                        }
+                        Text("Year view")
                     })
             }
-
+            .listStyle(SidebarListStyle())
         }
-        .padding()
+
     }
 }

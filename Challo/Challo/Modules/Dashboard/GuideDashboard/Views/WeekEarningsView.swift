@@ -20,9 +20,13 @@ struct WeekEarningsView: View {
             Card {
                 Text("Total earnings of the week")
 
-                Card {
-                    Text("\(presenter.earningsOfWeek)")
-                }
+                Text("\(presenter.earningsOfWeek, specifier: "%.2f")")
+                    .frame(maxWidth: .infinity)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16).stroke(Color.themeSecondary)
+                    )
+                    .padding()
+
             }
 
         }

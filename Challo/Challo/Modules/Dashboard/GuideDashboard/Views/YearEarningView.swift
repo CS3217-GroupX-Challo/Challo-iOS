@@ -18,11 +18,16 @@ struct YearEarningView: View {
     var body: some View {
         HStack {
             Card {
+
                 Text("Total earnings of the year")
 
-                Card {
-                    Text("\(presenter.earningsOfYear)")
-                }
+                Text("\(presenter.earningsOfYear, specifier: "%.2f")")
+                    .frame(maxWidth: .infinity)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16).stroke(Color.themeSecondary)
+                    )
+                    .padding()
+
             }
 
         }
