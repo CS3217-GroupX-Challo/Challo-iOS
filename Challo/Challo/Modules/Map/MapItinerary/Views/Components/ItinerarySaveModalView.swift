@@ -12,7 +12,7 @@ struct ItinerarySaveModalView: View {
     var presenter: MapItineraryPresenter
     var width: CGFloat
     
-    @State var text: String = ""
+    @Binding var text: String
     @Binding var isShowing: Bool
     
     var body: some View {
@@ -22,6 +22,7 @@ struct ItinerarySaveModalView: View {
                              isPasswordField: false)
                 .frame(width: width)
             Button(action: ({
+                presenter.saveItinerary(title: text)
                 isShowing.toggle()
             }), label: {
                 Text("Save")

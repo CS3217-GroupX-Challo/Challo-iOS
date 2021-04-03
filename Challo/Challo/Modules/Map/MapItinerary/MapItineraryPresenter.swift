@@ -21,6 +21,7 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
     @Published var isDeleteSelected: Bool = false
     @Published var isEditSelected: Bool = false
     @Published var isSaveSelected: Bool = false
+    @Published var title: String = ""
     
     private var cancellables: Set<AnyCancellable> = []
     private var movedMarkerInitialPosition: CLLocationCoordinate2D?
@@ -82,6 +83,10 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
                                   date: newDate,
                                   comments: newComments)
         interactor.editMarker(at: oldMarker.position, edited: newMarker)
+    }
+    
+    func saveItinerary(title: String) {
+        interactor.saveItinerary(title: title)
     }
 }
 
