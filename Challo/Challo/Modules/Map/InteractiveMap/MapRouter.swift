@@ -18,6 +18,11 @@ class MapRouter: RouterProtocol {
         self.mapStore = mapStore
     }
 
+    func getMapPage() -> AnyView {
+        let mapPage = MapModule(placesAPI: placesAPI)
+        return mapPage.assemble().view
+    }
+
     func getNewItineraryPage() -> AnyView {
         let emptyItineraryPage = MapItineraryModule(placesAPI: placesAPI, mapStore: mapStore)
         return emptyItineraryPage.assemble().view

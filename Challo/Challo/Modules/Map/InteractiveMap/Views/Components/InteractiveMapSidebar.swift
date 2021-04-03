@@ -13,13 +13,18 @@ struct InteractiveMapSidebar: View {
 
     var body: some View {
         VStack {
-            NavigationLink(destination: presenter.getNewItineraryPage()) {
-                Text("Add new itinerary")
-            }
-            .padding()
-            ItineraryListingView(presenter: presenter)
-                .navigationBarTitle(Text("Itineraries"), displayMode: .inline)
-        }
+            VStack {
+                NavigationLink(destination: presenter.getMapPage()) {
+                    Text("Back to map")
+                }
 
+                NavigationLink(destination: presenter.getNewItineraryPage()) {
+                    Text("Create new itinerary")
+                }
+            }.padding(20)
+
+            ItineraryListingView(presenter: presenter)
+                .navigationBarTitle(Text("Menu"), displayMode: .inline)
+        }
     }
 }
