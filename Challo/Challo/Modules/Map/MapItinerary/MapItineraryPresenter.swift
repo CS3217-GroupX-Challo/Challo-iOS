@@ -19,7 +19,7 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
     @Published var isMarkerSelected: Bool = false
     @Published var isRouteSelected: Bool = false
     @Published var isDeleteSelected: Bool = false
-    @Published var isEditSelected: Bool = true
+    @Published var isEditSelected: Bool = false
     @Published var isSaveSelected: Bool = false
     
     private var cancellables: Set<AnyCancellable> = []
@@ -49,6 +49,7 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
         isRouteSelected = false
         isDeleteSelected = false
         isSaveSelected = false
+        isEditSelected = false
     }
     
     func initializeBindings() {
