@@ -25,9 +25,3 @@ struct InteractiveMapTopBar: View {
         }
     }
 }
-
-struct InteractiveMapTopBar_Previews: PreviewProvider {
-    static var previews: some View {
-        InteractiveMapTopBar()
-    }
-}

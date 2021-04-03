@@ -33,17 +33,3 @@ struct ItineraryListingCard: View {
         .foregroundColor(Color.themeSecondary)
     }
 }
-
-struct ItineraryCard_Previews: PreviewProvider {
-    static var test = MapItinerary(id: UUID(),
-                                   routes: [],
-                                   markers: [],
-                                   title: "Dream graduation trip <3",
-                                   createdAt: Date(),
-                                   lastModified: Date())
-    static var previews: some View {
-        ItineraryListingCard(itinerary: test)
-            .background(Color.themeBackground)
-            .previewLayout(.fixed(width: 400, height: 60))
-    }
-}

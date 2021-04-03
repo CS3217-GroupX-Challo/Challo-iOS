@@ -12,14 +12,7 @@ struct InteractiveMapSidebar: View {
     @EnvironmentObject var presenter: MapPresenter
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            .edgesIgnoringSafeArea(.all)
+        ItineraryListingView(itineraries: $presenter.itineraries)
             .navigationBarTitle(Text("Itineraries"), displayMode: .inline)
-    }
-}
-
-struct InteractiveMapSidebar_Previews: PreviewProvider {
-    static var previews: some View {
-        InteractiveMapSidebar()
     }
 }
