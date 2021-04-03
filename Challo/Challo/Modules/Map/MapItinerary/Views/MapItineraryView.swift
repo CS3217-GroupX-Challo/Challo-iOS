@@ -16,14 +16,10 @@ struct MapItineraryView: View {
             ZStack {
                 presenter.googleMapsView
                 VStack {
-                    ItineraryEditorBar(presenter: presenter,
-                                       paddingTop: geometry.size.height / 30)
+                    ItineraryEditorBar(paddingTop: geometry.size.height / 30)
                     Spacer()
                     if presenter.isSaveSelected {
-                        ItinerarySaveModalView(presenter: presenter,
-                                               width: geometry.size.width / 2,
-                                               text: $presenter.title,
-                                               isShowing: $presenter.isSaveSelected)
+                        ItinerarySaveModalView(width: geometry.size.width / 2)
                     }
                     Spacer()
                 }
@@ -32,6 +28,7 @@ struct MapItineraryView: View {
                 MarkerEditModal(presenter: presenter)
             }
         }
+        .environmentObject(presenter)
         .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
         .statusBar(hidden: true)

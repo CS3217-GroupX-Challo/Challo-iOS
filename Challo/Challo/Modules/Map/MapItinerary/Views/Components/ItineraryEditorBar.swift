@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ItineraryEditorBar: View {
-    @ObservedObject var presenter: MapItineraryPresenter
+    @EnvironmentObject var presenter: MapItineraryPresenter
     var paddingTop: CGFloat
         
     var isMarkerSelected: Bool {

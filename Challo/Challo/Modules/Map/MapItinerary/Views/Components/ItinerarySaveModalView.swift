@@ -9,21 +9,18 @@ import SwiftUI
 
 struct ItinerarySaveModalView: View {
     var title = "Save title"
-    var presenter: MapItineraryPresenter
+    @EnvironmentObject var presenter: MapItineraryPresenter
     var width: CGFloat
-    
-    @Binding var text: String
-    @Binding var isShowing: Bool
     
     var body: some View {
         VStack(alignment: .center) {
             RoundedTextField(placeholder: title,
-                             text: $text,
+                             text: $presenter.title,
                              isPasswordField: false)
                 .frame(width: width)
             Button(action: ({
-                presenter.saveItinerary(title: text)
-                isShowing.toggle()
+                presenter.saveItinerary(title: presenter.title)
+                presenter.isSaveSelected.toggle()
             }), label: {
                 Text("Save")
                     .padding(EdgeInsets(top: 10,
