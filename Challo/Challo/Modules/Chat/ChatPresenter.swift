@@ -11,7 +11,16 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     var router: ChatRouter?
     var interactor: ChatInteractor!
     
-    @Published var isChatAvailable: Bool = false
+    @Published var isChatAvailable: Bool = false {
+        didSet {
+            print("SETTTT")
+            print("SETTTT")
+            print("SETTTT")
+            print("SETTTT")
+            print("SETTTT")
+            print("SETTTT")
+        }
+    }
     @Published var isLoadingMessages: Bool = false
     @Published var isLoadingDialogs: Bool = true
     
@@ -21,6 +30,10 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     
     @Published var messageText: String = ""
     @Published var dialogSearchBarText: String = ""
+    
+    init() {
+        print("presenter init")
+    }
     
     var filteredDialogs: [ChatDialog] {
         dialogs.filter({ dialogSearchBarText.isEmpty
@@ -65,16 +78,29 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     func makeMessagesView() -> some View {
         var messagesView = [ChatMessageView]()
         var prevSenderId: UInt = 0
-        for message in messages {
+        for index in messages.indices {
+            let message = messages[index]
             let currentSenderId = message.senderId
+            if currentSenderId != prevSenderId, var lastMessageView = messagesView.last {
+                lastMessageView.shouldDisplayAvatar = true
+                messagesView.append(lastMessageView)
+            }
             messagesView.append(ChatMessageView(message: message.message,
                                                 isSentByCurrentUser: message.isSentByCurrentUser,
                                                 isSuccessfullySent: message.isSuccessfullySent,
-                                                shouldDisplayAvatar: prevSenderId != currentSenderId))
+                                                shouldDisplayAvatar: index == messages.count - 1))
             prevSenderId = currentSenderId
         }
         return ForEach(messagesView, id: \.self) { message in
             message
         }
+    }
+    
+    func onChatAppear() {
+        interactor.chatService.login(email: "abc@abc.sg", password: "abcabcabc") { [weak self] _, isSuccessful in
+            self?.isChatAvailable = isSuccessful
+            self?.interactor.getDialogs()
+        }
+//        chatService.login(email: "test@test.sg", password: "testtesttest")
     }
 }

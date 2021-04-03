@@ -17,7 +17,8 @@ protocol ChatDialog: AnyObject {
     var unreadMessagesCount: UInt { get }
     var chateeName: String { get }
     var chateeId: UInt { get }
-    var lastMessageDate: Date { get }
+    var lastMessageDate: Date? { get }
+    var lastMessageText: String { get }
     
     func sendMessage(_ messageBody: String, willSendMessage: ((ChatMessage) -> Void)?,
                      didSendMessage: ((ChatMessage, Error?) -> Void)?)

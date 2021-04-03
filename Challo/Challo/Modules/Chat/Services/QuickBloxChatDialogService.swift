@@ -17,6 +17,16 @@ class QuickBloxChatDialogService: ChatDialogService {
         self.chatDialogRepository = chatDialogRepository
     }
     
+    var dialogsSortedByLastMessageDates: [ChatDialog] {
+        chatDialogRepository.getAll().sorted(by: { dialogA, dialogB in
+            guard let lastMessageDateA = dialogA.lastMessageDate, let lastMessageDateB = dialogB.lastMessageDate else {
+                ChalloLogger.logger.error("Retrieved a dialog with no last message date")
+                return false
+            }
+            return lastMessageDateA > lastMessageDateB
+        })
+    }
+    
     private func getDialogFromId(_ dialogId: String) -> ChatDialog {
         guard let dialog = chatDialogRepository.getByKey(dialogId) else {
             fatalError("dialogId is not found in repository")
@@ -44,7 +54,7 @@ class QuickBloxChatDialogService: ChatDialogService {
             }
             chatDialogRepository.insert(QuickBloxChatDialog(chatDialog: dialog, occupant: occupant), key: dialogId)
         }
-        callback?(chatDialogRepository.getAll())
+        callback?(dialogsSortedByLastMessageDates)
     }
     
     private func didGetAllDialogs(_ dialogs: [QBChatDialog], _ dialogsUsersIds: Set<NSNumber>?,
@@ -68,13 +78,12 @@ class QuickBloxChatDialogService: ChatDialogService {
     
     func getAllDialogs(limit: Int, skip: Int, callback: (([ChatDialog]) -> Void)? = nil) {
         guard chatDialogRepository.getAll().isEmpty else {
-            callback?(chatDialogRepository.getAll())
+            callback?(dialogsSortedByLastMessageDates)
             return
         }
-        
-        #warning("find default limit")
+        let extendedRequest = ["sort_asc": "last_message_date_sent"]
         let responsePage = QBResponsePage(limit: limit, skip: skip)
-        QBRequest.dialogs(for: responsePage, extendedRequest: nil,
+        QBRequest.dialogs(for: responsePage, extendedRequest: extendedRequest,
                           successBlock: { [weak self] _, dialogs, dialogsUsersIds, _ in
                             self?.didGetAllDialogs(dialogs, dialogsUsersIds, callback)
         }, errorBlock: { error in

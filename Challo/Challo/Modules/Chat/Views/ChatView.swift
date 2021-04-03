@@ -35,6 +35,6 @@ struct ChatView: View {
     var body: some View {
         PageLayout(titleLabel: "Inbox", headerContent: nil) { geometry in
             makeBody(geometry)
-        }
+        }.onAppear(perform: presenter.onChatAppear)
     }
 }

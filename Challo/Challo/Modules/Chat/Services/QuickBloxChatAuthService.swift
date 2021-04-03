@@ -14,10 +14,11 @@ class QuickBloxChatAuthService: ChatAuthService {
     private func connectToChatServer(chatUserId: UInt, password: String, didLogin: ((UInt, Bool) -> Void)?) {
         QBChat.instance.connect(withUserID: chatUserId, password: password, completion: { [weak self] error in
             defer {
-                didLogin?(chatUserId, error == nil)
+                let isSuccessfullyConnected = error == nil
+                self?.isConnected = isSuccessfullyConnected
+                didLogin?(chatUserId, isSuccessfullyConnected)
             }
             guard error == nil else {
-                self?.isConnected = true
                 return
             }
             ChalloLogger.logger.error("Error while attempting to connect to Quickblox server: ")
@@ -32,6 +33,10 @@ class QuickBloxChatAuthService: ChatAuthService {
     }
     
     func login(email: String, password: String, didLogin: ((UInt, Bool) -> Void)?) {
+        guard !isConnected else {
+            ChalloLogger.logger.fault("A user is already logged in")
+            return
+        }
         QBRequest.logIn(withUserEmail: email, password: password, successBlock: { [weak self] _, user in
             self?.connectToChatServer(chatUserId: user.id, password: password, didLogin: didLogin)
         }, errorBlock: { response in

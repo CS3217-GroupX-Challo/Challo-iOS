@@ -18,13 +18,6 @@ class ChatInteractor: NSObject, InteractorProtocol {
                                            chatDialogService: QuickBloxChatDialogService(chatDialogRepository:
                                                                                             chatDialogRepository))
         super.init()
-        chatService.login(email: "abc@abc.sg", password: "abcabcabc") { [weak self] _, isSuccessful in
-            self?.presenter?.isChatAvailable = isSuccessful
-            if isSuccessful {
-                self?.getDialogs()
-            }
-        }
-//        chatService.login(email: "test@test.sg", password: "testtesttest")
         QBChat.instance.addDelegate(self)
     }
     
