@@ -18,8 +18,10 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
     
     @Published var isMarkerSelected: Bool = false
     @Published var isRouteSelected: Bool = false
+    @Published var isDeleteSelected: Bool = false
     
     private var cancellables: Set<AnyCancellable> = []
+    private var movedMarkerInitialPosition: CLLocationCoordinate2D?
     
     @Published var markers: [GMSMarker] = []
     
@@ -39,6 +41,7 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
         
         isMarkerSelected = false
         isRouteSelected = false
+        isDeleteSelected = false
     }
     
     func initializeBindings() {
@@ -60,7 +63,6 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
 extension MapItineraryPresenter {
     private func initializeMarker(mapMarker: MapMarker) -> GMSMarker {
         let gmsMarker = GMSMarker(position: mapMarker.position)
-        gmsMarker.appearAnimation = .pop
         gmsMarker.icon = GMSMarker.markerImage(with: .systemPink)
         gmsMarker.isDraggable = true
         
@@ -112,5 +114,27 @@ extension MapItineraryPresenter: GMSMapViewDelegate {
         if isMarkerSelected {
             self.createAndStoreDefaultMapMarker(position: coordinate)
         }
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        if isDeleteSelected {
+            interactor.deleteMarker(at: marker.position)
+        }
+        return true
+    }
+    
+    func mapView(_ mapView: GMSMapView, didBeginDragging marker: GMSMarker) {
+        self.movedMarkerInitialPosition = marker.position
+    }
+    
+    func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
+        guard let initialPosition = movedMarkerInitialPosition,
+              var mapMarker = interactor.getMarkerPresent(at: initialPosition) else {
+            return
+        }
+        
+        mapMarker.position = marker.position // update new position
+        interactor.deleteMarker(at: initialPosition)
+        interactor.addMarker(at: marker.position, mapMarker: mapMarker)
     }
 }

@@ -21,6 +21,10 @@ struct ItineraryEditorBar: View {
         presenter.isRouteSelected
     }
     
+    var isDeletedSelected: Bool {
+        presenter.isDeleteSelected
+    }
+    
     var body: some View {
         HStack(spacing: 30) {
             Button(action: ({
@@ -46,6 +50,18 @@ struct ItineraryEditorBar: View {
                                     title: "Route",
                                     imageName: "airplane.circle.fill",
                                     isSelected: $presenter.isRouteSelected)
+            }
+            Button(action: ({
+                presenter.resetButtonSelection(selectionStatus: isDeletedSelected)
+                presenter.isDeleteSelected.toggle()
+            }
+            )) {
+                ItineraryButtonView(paddingTop: paddingTop,
+                                    paddingTrailing: 0,
+                                    paddingLeading: 0,
+                                    title: "Delete",
+                                    imageName: "trash.fill",
+                                    isSelected: $presenter.isDeleteSelected)
             }
             Spacer()
             Button(action: ({
