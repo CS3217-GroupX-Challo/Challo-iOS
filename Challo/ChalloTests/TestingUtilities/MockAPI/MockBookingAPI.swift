@@ -30,8 +30,10 @@ class MockBookingAPI: BookingAPI {
 
     override func getBookingsForGuide(id: UUID, callback: @escaping ([Booking]) -> Void) {
         applyToBookings(callback: callback)
+    }
  
     override func makeBooking(bookingDetails: BookingDetails, callback: @escaping ((Bool, Error?) -> Void)) {
         callback(true, nil)
     }
+
 }
