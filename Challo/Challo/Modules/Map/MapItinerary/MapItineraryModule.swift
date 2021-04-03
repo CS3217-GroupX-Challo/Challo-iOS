@@ -29,7 +29,7 @@ final class MapItineraryModule: ViperModuleProtocol {
     }
     
     func assemble() -> (view: AnyView, presenter: MapItineraryPresenter) {
-        let interactor = MapItineraryInteractor(mapStore: mapStore)
+        let interactor = MapItineraryInteractor(mapItinerary: mapItinerary, mapStore: mapStore)
         let router = MapItineraryRouter()
         let presenter = MapItineraryPresenter()
         

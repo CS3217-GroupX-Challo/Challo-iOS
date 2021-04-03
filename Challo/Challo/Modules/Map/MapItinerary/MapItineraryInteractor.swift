@@ -28,18 +28,7 @@ class MapItineraryInteractor: InteractorProtocol, ObservableObject {
             = IndividualItineraryRepository(mapMarkers: mapItinerary.markers,
                                             mapRoutes: mapItinerary.routes)
     }
-    
-    convenience init(mapStore: MapStore) {
-        let mapItinerary = MapItinerary(id: UUID(),
-                                        routes: [],
-                                        markers: [],
-                                        title: "",
-                                        createdAt: Date(),
-                                        lastModified: Date())
-        self.init(mapItinerary: mapItinerary,
-                  mapStore: mapStore)
-    }
-    
+
     func createAndStoreDefaultMapMarker(position: CLLocationCoordinate2D) {
         individualItineraryRepository.createAndStoreDefaultMapMarker(at: position)
     }
