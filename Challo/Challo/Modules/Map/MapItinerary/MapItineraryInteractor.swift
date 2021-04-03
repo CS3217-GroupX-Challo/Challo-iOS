@@ -52,4 +52,18 @@ class MapItineraryInteractor: InteractorProtocol, ObservableObject {
         individualItineraryRepository.deleteMapMarker(at: position)
         individualItineraryRepository.addMapMarker(mapMarker: edited)
     }
+    
+    func saveItinerary(title: String) {
+        updateItineraryBeforeSaving(title: title)
+        mapStore.saveMapMarkers(mapMarkers: mapItinerary.markers)
+        mapStore.saveMapRoutes(mapRoutes: mapItinerary.routes)
+        mapStore.saveMapItineraries(mapItineraries: [mapItinerary])
+    }
+    
+    private func updateItineraryBeforeSaving(title: String) {
+        mapItinerary.title = title
+        mapItinerary.markers = mapMarkers
+        mapItinerary.routes = mapRoutes
+        mapItinerary.lastModified = Date()
+    }
 }

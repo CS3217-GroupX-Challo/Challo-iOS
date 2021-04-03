@@ -25,6 +25,7 @@ struct MapItineraryView: View {
                     if presenter.isSaveSelected {
                         ItinerarySaveModalView(presenter: presenter,
                                                width: geometry.size.width / 2,
+                                               text: $presenter.title,
                                                isShowing: $presenter.isSaveSelected)
                     }
                     Spacer()

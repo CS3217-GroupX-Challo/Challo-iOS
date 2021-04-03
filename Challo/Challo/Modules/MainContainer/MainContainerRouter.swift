@@ -51,11 +51,11 @@ class MainContainerRouter: RouterProtocol {
                                         userState: userState).assemble().view
         guidesPage = GuidesListingModule(guideRepository: guideRepository, reviewAPI: reviewAPI).assemble().view
         mapsPage = MapModule(placesAPI: placesAPI).assemble().view
-//        mapsPage = MapItineraryModule(placesAPI: placesAPI,
-//                                      mapStore: MapStore(mapMarkerRepository: MapMarkerRepository(),
-//                                                         mapRouteRepository: MapRouteRepository(),
-//                                                         mapItineraryRepository: MapItineraryRepository()))
-//            .assemble().view
+        // mapsPage = MapItineraryModule(placesAPI: placesAPI,
+        //                              mapStore: MapStore(mapMarkerRepository: MapMarkerRepository(),
+        //                                                 mapRouteRepository: MapRouteRepository(),
+        //                                                 mapItineraryRepository: MapItineraryRepository()))
+        //    .assemble().view
         settingsPage = SettingsModule(userState: userState).assemble().view
         profilePage = TouristDashboardModule(userState: userState, bookingsRepository: bookingRepository)
             .assemble().view
