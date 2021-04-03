@@ -10,9 +10,7 @@ import SwiftUI
 struct ItineraryEditorBar: View {
     @ObservedObject var presenter: MapItineraryPresenter
     var paddingTop: CGFloat
-    
-    @State var isSaveSelected: Bool = false
-    
+        
     var isMarkerSelected: Bool {
         presenter.isMarkerSelected
     }
@@ -23,6 +21,10 @@ struct ItineraryEditorBar: View {
     
     var isDeletedSelected: Bool {
         presenter.isDeleteSelected
+    }
+    
+    var isSaveSelected: Bool {
+        presenter.isSaveSelected
     }
     
     var body: some View {
@@ -66,6 +68,7 @@ struct ItineraryEditorBar: View {
             Spacer()
             Button(action: ({
                 // TODO add save status
+                presenter.isSaveSelected.toggle()
             }
             )) {
                 ItineraryButtonView(paddingTop: paddingTop,
@@ -73,7 +76,7 @@ struct ItineraryEditorBar: View {
                                     paddingLeading: 0,
                                     title: "Save",
                                     imageName: "arrow.up.doc.on.clipboard",
-                                    isSelected: $isSaveSelected)
+                                    isSelected: $presenter.isSaveSelected)
             }
         }
         .background(Color.gray)

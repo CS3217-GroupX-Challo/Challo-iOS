@@ -19,6 +19,7 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
     @Published var isMarkerSelected: Bool = false
     @Published var isRouteSelected: Bool = false
     @Published var isDeleteSelected: Bool = false
+    @Published var isSaveSelected: Bool = false
     
     private var cancellables: Set<AnyCancellable> = []
     private var movedMarkerInitialPosition: CLLocationCoordinate2D?
@@ -42,6 +43,7 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
         isMarkerSelected = false
         isRouteSelected = false
         isDeleteSelected = false
+        isSaveSelected = false
     }
     
     func initializeBindings() {
@@ -111,6 +113,11 @@ extension MapItineraryPresenter: GMSMapViewDelegate {
     }
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        if isSaveSelected {
+            isSaveSelected.toggle()
+            return
+        }
+        
         if isMarkerSelected {
             self.createAndStoreDefaultMapMarker(position: coordinate)
         }
