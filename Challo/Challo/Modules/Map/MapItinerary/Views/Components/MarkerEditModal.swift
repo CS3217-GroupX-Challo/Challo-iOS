@@ -37,11 +37,10 @@ struct MarkerEditModal: View {
                            maxWidth: 700,
                            minHeight: 0,
                            maxHeight: 500)
-                Button(action: {
-                    presenter.endEdit(newDate: selectedDate, newComments: comments)
-                }, label: {
+                Button(action: { presenter.endEdit(newDate: selectedDate, newComments: comments) }) {
                     Text("Save")
-                })
+                }
+                .buttonStyle(BorderedButtonStyle(borderColor: .themeSecondary, foregroundColor: .themeForeground))
             }
             .padding()
         }
