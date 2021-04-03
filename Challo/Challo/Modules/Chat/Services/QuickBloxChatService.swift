@@ -10,6 +10,7 @@ import Quickblox
 class QuickBloxChatService: ChatService {
     private var chatAuthService: ChatAuthService
     private var chatDialogService: ChatDialogService
+    
     var chatUserId: UInt? {
         didSet {
             chatDialogService.chatUserId = chatUserId
@@ -22,10 +23,10 @@ class QuickBloxChatService: ChatService {
         self.chatDialogService = chatDialogService
     }
     
-    func login(email: String, password: String, didLogin: ((UInt) -> Void)?) {
-        let didLoginUser: ((UInt) -> Void) = { [weak self] userId in
+    func login(email: String, password: String, didLogin: ((UInt, Bool) -> Void)?) {
+        let didLoginUser: ((UInt, Bool) -> Void) = { [weak self] userId, isSuccessful in
             self?.chatUserId = userId
-            didLogin?(userId)
+            didLogin?(userId, isSuccessful)
         }
         chatAuthService.login(email: email, password: password, didLogin: didLoginUser)
     }
