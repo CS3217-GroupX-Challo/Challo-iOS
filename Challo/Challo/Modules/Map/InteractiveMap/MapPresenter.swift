@@ -81,35 +81,10 @@ class MapPresenter: NSObject, PresenterProtocol {
 }
 
 extension MapPresenter: GMSMapViewDelegate {
-    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {        
-        var currentLatitude = position.target.latitude
-        var currentLongitude = position.target.longitude
-        var snapBack: Bool = false
-        
-        if currentLatitude < locationManager.minimumLatitude {
-            currentLatitude = locationManager.minimumLatitude
-            snapBack = true
-        } else if currentLatitude > locationManager.maximumLatitude {
-            currentLatitude = locationManager.maximumLongitude
-            snapBack = true
-        }
-        
-        if currentLongitude < locationManager.minimumLongitude {
-            currentLongitude = locationManager.minimumLongitude
-            snapBack = true
-        } else if currentLongitude > locationManager.maximumLongitude {
-            currentLongitude = locationManager.maximumLongitude
-            snapBack = true
-        }
-        
-        self.locationManager.location = CLLocation(latitude: currentLatitude,
-                                                   longitude: currentLongitude)
-        
-        // if the current view out of bounds (ie over the himalayan regions, snap back to the bounds)
-        if snapBack {
-            mapView.animate(toLocation: CLLocationCoordinate2D(latitude: locationManager.latitude,
-                                                               longitude: locationManager.longitude))
-        }
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        locationManager.updateCurrentCoordinates(newLongitude: position.target.longitude,
+                                                 newLatitude: position.target.latitude,
+                                                 mapView: mapView)
     }
 }
 
