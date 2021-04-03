@@ -12,7 +12,7 @@ import MapKit
 class MapItineraryPresenter: NSObject, PresenterProtocol {
     var router: MapItineraryRouter?
     var interactor: MapItineraryInteractor!
-    
+
     var locationManager: LocationManager
     var googleMapsView: GoogleMapsView?
     
@@ -21,7 +21,9 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
     @Published var isDeleteSelected: Bool = false
     @Published var isEditSelected: Bool = false
     @Published var isSaveSelected: Bool = false
+    @Published var isViewSelected: Bool = false
     @Published var title: String = ""
+    @Published var currentSelectedMarker: MapMarker?
     
     private var cancellables: Set<AnyCancellable> = []
     private var movedMarkerInitialPosition: CLLocationCoordinate2D?
@@ -51,6 +53,8 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
         isDeleteSelected = false
         isSaveSelected = false
         isEditSelected = false
+        isViewSelected = false
+        currentSelectedMarker = nil
     }
     
     func initializeBindings() {
@@ -147,6 +151,12 @@ extension MapItineraryPresenter: GMSMapViewDelegate {
             return
         }
         
+        if isViewSelected {
+            isViewSelected.toggle()
+            currentSelectedMarker = nil
+            return
+        }
+        
         if isMarkerSelected {
             self.createAndStoreDefaultMapMarker(position: coordinate)
         }
@@ -155,6 +165,14 @@ extension MapItineraryPresenter: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         if isDeleteSelected {
             interactor.deleteMarker(at: marker.position)
+            return true
+        }
+        
+        if isViewSelected {
+            if let mapMarker = interactor.getMarkerPresent(at: marker.position) {
+                currentSelectedMarker = mapMarker
+            }
+            return true
         }
         
         if isEditSelected {

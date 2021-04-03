@@ -13,4 +13,5 @@ extension Color {
     static let themePrimary = Color("PrimaryColor")
     static let themeSecondary = Color("SecondaryColor")
     static let themeTertiary = Color("TertiaryColor")
+    static let themeQuatenary = Color("QuatenaryColor")
 }

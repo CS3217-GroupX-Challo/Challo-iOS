@@ -16,11 +16,18 @@ struct MapItineraryView: View {
             ZStack {
                 presenter.googleMapsView
                 VStack {
-                    ItineraryEditorBar(paddingTop: geometry.size.height / 30)
+                    ItineraryEditorBar(paddingTop: geometry.size.height / 15)
                     Spacer()
+                    
                     if presenter.isSaveSelected {
                         ItinerarySaveModalView(width: geometry.size.width / 2)
                     }
+                    
+                    if presenter.isViewSelected {
+                        if let mapMarker = presenter.currentSelectedMarker {
+                            MarkerDetailsModalView(mapMarker: mapMarker)
+                        }
+                     }
                     Spacer()
                 }
             }

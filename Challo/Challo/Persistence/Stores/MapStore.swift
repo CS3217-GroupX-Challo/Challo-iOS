@@ -39,6 +39,6 @@ class MapStore {
     }
     
     func getAllMapItineraries() -> [MapItinerary] {
-        return mapItineraryRepository.getAllMapItineraries()
+        mapItineraryRepository.getAllMapItineraries()
     }
 }
