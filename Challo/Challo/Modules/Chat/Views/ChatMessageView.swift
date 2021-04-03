@@ -11,7 +11,7 @@ struct ChatMessageView: View, Hashable {
     let message: String
     let isSentByCurrentUser: Bool
     let isSuccessfullySent: Bool
-    var shouldDisplayAvatar: Bool = true
+    var shouldDisplayAvatar: Bool = false
     let avatarWidth: CGFloat = 20
     
     var backgroundColor: Color {

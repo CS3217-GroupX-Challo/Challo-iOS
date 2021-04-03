@@ -19,7 +19,8 @@ struct ChatDialogListingView: View {
                                     .environmentObject(presenter)) {
                         ChatDialogView(dialogId: dialog.dialogId,
                                        chateeName: dialog.chateeName,
-                                       lastMessageDay: presenter.formatDialogDatetime(dialog.lastMessageDate),
+                                       lastMessageDate: dialog.lastMessageDate,
+                                       lastMessageText: dialog.lastMessageText,
                                        unreadMessagesCount: dialog.unreadMessagesCount)
                             .accentColor(.black)
                     }.simultaneousGesture(TapGesture().onEnded {

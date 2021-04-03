@@ -35,8 +35,12 @@ class QuickBloxChatDialog: ChatDialog {
         occupant.id
     }
     
-    var lastMessageDate: Date {
-        chatDialog.lastMessageDate ?? Date()
+    var lastMessageDate: Date? {
+        chatDialog.lastMessageDate
+    }
+    
+    var lastMessageText: String {
+        chatDialog.lastMessageText ?? ""
     }
     
     func sendMessage(_ messageBody: String, willSendMessage: ((ChatMessage) -> Void)?,
