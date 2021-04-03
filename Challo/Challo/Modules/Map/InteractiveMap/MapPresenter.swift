@@ -29,6 +29,8 @@ class MapPresenter: NSObject, PresenterProtocol {
     
     @Published var searchQuery: String = ""
     
+    @Published var itineraries: [MapItinerary] = []
+    
     override init() {
         let locationManager = LocationManager()
         self.locationManager = locationManager
