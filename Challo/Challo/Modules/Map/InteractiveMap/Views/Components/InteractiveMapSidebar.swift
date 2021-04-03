@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InteractiveMapSidebar: View {
     
-    @EnvironmentObject presenter: MapPresenter
+    @EnvironmentObject var presenter: MapPresenter
 
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
