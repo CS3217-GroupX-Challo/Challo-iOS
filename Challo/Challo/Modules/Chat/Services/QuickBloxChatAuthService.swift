@@ -39,9 +39,6 @@ class QuickBloxChatAuthService: ChatAuthService {
         }
         QBRequest.logIn(withUserEmail: email, password: password, successBlock: { [weak self] _, user in
             self?.connectToChatServer(chatUserId: user.id, password: password, didLogin: didLogin)
-        }, errorBlock: { response in
-            print("Error")
-            print(response)
         })
     }
     
@@ -55,23 +52,10 @@ class QuickBloxChatAuthService: ChatAuthService {
     
     func registerUser(email: String, password: String, fullName: String) {
         let user = createUser(email: email, password: password, fullName: fullName)
-        QBRequest.signUp(user, successBlock: { response, user in
-            print("Success")
-            print(response)
-            print(user)
-        }, errorBlock: { response in
-            print("Error")
-            print(response)
-        })
+        QBRequest.signUp(user, successBlock: nil)
     }
     
     func logout() {
-        QBRequest.logOut(successBlock: { response in
-            print("Success")
-            print(response)
-        }, errorBlock: { response in
-            print("Error")
-            print(response)
-        })
+        QBRequest.logOut(successBlock: nil, errorBlock: nil)
     }
 }
