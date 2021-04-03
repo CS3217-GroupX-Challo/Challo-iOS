@@ -9,16 +9,18 @@ import SwiftUI
 
 struct ItineraryListingView: View {
 
-    @Binding var itineraries: [MapItinerary]
+    @ObservedObject var presenter: MapPresenter
 
     var body: some View {
-        if itineraries.isEmpty {
+        if presenter.itineraries.isEmpty {
             Text("You have not created any itineraries yet.")
                 .padding()
                 .foregroundColor(.themeSecondary)
         } else {
-            List(itineraries, id: \.id) { itinerary in
-                ItineraryListingCard(itinerary: itinerary)
+            List(presenter.itineraries, id: \.id) { itinerary in
+                NavigationLink(destination: presenter.getItineraryPage(for: itinerary)) {
+                    ItineraryListingCard(itinerary: itinerary)
+                }
             }
         }
     }

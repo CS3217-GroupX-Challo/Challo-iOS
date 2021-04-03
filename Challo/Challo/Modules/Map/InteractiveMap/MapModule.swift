@@ -13,13 +13,13 @@ final class MapModule: ViperModuleProtocol {
     init(placesAPI: PlacesAPIProtocol) {
         self.placesAPI = placesAPI
     }
-    
+        
     func assemble() -> (view: AnyView, presenter: MapPresenter) {
         let mapStore = MapStore(mapMarkerRepository: MapMarkerRepository(),
                                 mapRouteRepository: MapRouteRepository(),
                                 mapItineraryRepository: MapItineraryRepository())
         let interactor = MapInteractor(mapStore: mapStore, placesAPI: placesAPI)
-        let router = MapRouter()
+        let router = MapRouter(placesAPI: placesAPI, mapStore: mapStore)
         let presenter = MapPresenter()
         
         interactor.presenter = presenter

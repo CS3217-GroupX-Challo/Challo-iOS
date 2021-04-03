@@ -12,7 +12,14 @@ struct InteractiveMapSidebar: View {
     @EnvironmentObject var presenter: MapPresenter
 
     var body: some View {
-        ItineraryListingView(itineraries: $presenter.itineraries)
-            .navigationBarTitle(Text("Itineraries"), displayMode: .inline)
+        VStack {
+            NavigationLink(destination: presenter.getNewItineraryPage()) {
+                Text("Add new itinerary")
+            }
+            .padding()
+            ItineraryListingView(presenter: presenter)
+                .navigationBarTitle(Text("Itineraries"), displayMode: .inline)
+        }
+
     }
 }
