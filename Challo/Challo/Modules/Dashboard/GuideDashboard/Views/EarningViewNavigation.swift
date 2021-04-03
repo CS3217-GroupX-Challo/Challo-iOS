@@ -14,13 +14,12 @@ struct EarningViewNavigation: View {
     var body: some View {
 
         NavigationView {
-            VStack {
+            List {
                 NavigationLink(
                     destination: WeekEarningsView(superPresenter: presenter),
                     label: {
                         Text("Week view")
                     })
-                Spacer()
                 NavigationLink(
                     destination: YearEarningView(superPresenter: presenter),
                     label: {

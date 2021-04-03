@@ -9,27 +9,36 @@ import SwiftUI
 
 struct WeekEarningsView: View {
 
+    typealias Formatter = CustomDateFormatter
+
     private var presenter: WeekEarningsPresenter
 
     init(superPresenter: GuideDashboardPresenter) {
         presenter = superPresenter.weekSubPresenter
+        presenter.refresh()
     }
 
     var body: some View {
-        HStack {
+        VStack {
             Card {
-                Text("Total earnings of the week")
+                Text("Total earnings of the week:")
 
-                Text("\(presenter.earningsOfWeek, specifier: "%.2f")")
-                    .frame(maxWidth: .infinity)
+                Text("$\(presenter.earningsOfWeek, specifier: "%.2f")")
+                    .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 16).stroke(Color.themeSecondary)
                     )
-                    .padding()
 
             }
 
+            Divider()
+
+            BarChart(axisLabels: presenter.dateRange
+                        .map { Formatter.displayDateWithCustomFormat($0, template: "EEE") },
+                     data: presenter.history)
+
         }
+        .padding()
         .onAppear { presenter.refresh() }
     }
 }

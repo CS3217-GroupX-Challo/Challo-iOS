@@ -9,28 +9,36 @@ import SwiftUI
 
 struct YearEarningView: View {
 
+    typealias Formatter = CustomDateFormatter
+
     private var presenter: YearEarningsPresenter
 
     init(superPresenter: GuideDashboardPresenter) {
         presenter = superPresenter.yearSubPresenter
+        presenter.refresh()
     }
 
     var body: some View {
-        HStack {
+        VStack {
             Card {
+                Text("Total earnings of the year:")
 
-                Text("Total earnings of the year")
-
-                Text("\(presenter.earningsOfYear, specifier: "%.2f")")
-                    .frame(maxWidth: .infinity)
+                Text("$\(presenter.earningsOfYear, specifier: "%.2f")")
+                    .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 16).stroke(Color.themeSecondary)
                     )
-                    .padding()
 
             }
 
+            Divider()
+
+            BarChart(axisLabels: presenter.dateRange
+                        .map { Formatter.displayDateWithCustomFormat($0, template: "MMM") },
+                     data: presenter.history)
+
         }
+        .padding()
         .onAppear { presenter.refresh() }
     }
 }

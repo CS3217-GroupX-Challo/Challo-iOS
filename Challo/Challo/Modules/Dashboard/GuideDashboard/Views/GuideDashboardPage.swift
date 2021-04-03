@@ -39,8 +39,7 @@ struct GuideDashboardPage: View {
                     } else {
                         EarningViewNavigation(presenter: presenter)
                             .frame(width: geometry.size.width,
-                                   height: geometry.size.height * 0.5,
-                                   alignment: .center/*@END_MENU_TOKEN@*/)
+                                   height: geometry.size.height * 0.5)
                     }
                 }
             }
