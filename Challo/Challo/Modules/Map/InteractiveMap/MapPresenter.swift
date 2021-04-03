@@ -30,7 +30,7 @@ class MapPresenter: NSObject, PresenterProtocol {
     
     @Published var searchQuery: String = ""
     
-    @Published var itineraries: [MapItinerary] = (0..<10).map { _ in test }
+    @Published var itineraries: [MapItinerary] = []
     
     static var test = MapItinerary(id: UUID(),
                                    routes: [],
@@ -50,6 +50,10 @@ class MapPresenter: NSObject, PresenterProtocol {
     
     func findPlaces() {
         interactor.getPlaces(with: searchQuery)
+    }
+
+    func refreshItineraries() {
+        self.itineraries = interactor.getMapItineraries()
     }
     
     private func updateMapWithMarkers() {
@@ -121,6 +125,6 @@ extension MapPresenter {
     }
 
     func getMapPage() -> AnyView? {
-        router?.getMapPage()
+        router?.mapView
     }
 }

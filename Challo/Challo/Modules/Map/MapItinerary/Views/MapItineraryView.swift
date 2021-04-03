@@ -18,9 +18,6 @@ struct MapItineraryView: View {
                 VStack {
                     ItineraryEditorBar(presenter: presenter,
                                        paddingTop: geometry.size.height / 19)
-                    Button(action: { print("fuck") }, label: {
-                        /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
-                    })
                     Spacer()
                     if presenter.isSaveSelected {
                         ItinerarySaveModalView(presenter: presenter,

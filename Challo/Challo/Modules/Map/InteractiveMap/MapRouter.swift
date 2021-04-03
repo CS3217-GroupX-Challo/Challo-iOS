@@ -12,15 +12,11 @@ class MapRouter: RouterProtocol {
     weak var presenter: MapPresenter!
     var placesAPI: PlacesAPIProtocol
     var mapStore: MapStore
+    var mapView: AnyView?
     
     init(placesAPI: PlacesAPIProtocol, mapStore: MapStore) {
         self.placesAPI = placesAPI
         self.mapStore = mapStore
-    }
-
-    func getMapPage() -> AnyView {
-        let mapPage = MapModule(placesAPI: placesAPI)
-        return mapPage.assemble().view
     }
 
     func getNewItineraryPage() -> AnyView {

@@ -27,7 +27,9 @@ final class MapModule: ViperModuleProtocol {
         presenter.router = router
         router.presenter = presenter
         presenter.itineraries = interactor.getMapItineraries()
-        return (AnyView(InteractiveMapPage(presenter: presenter)),
+        let view = AnyView(InteractiveMapPage(presenter: presenter))
+        router.mapView = view
+        return (view: view,
                 presenter: presenter)
     }
 }
