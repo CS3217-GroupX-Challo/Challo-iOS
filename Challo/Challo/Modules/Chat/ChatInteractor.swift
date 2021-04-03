@@ -12,11 +12,8 @@ class ChatInteractor: NSObject, InteractorProtocol {
     
     let chatService: ChatService
     
-    override init() {
-        let chatDialogRepository = ChatDialogRepository()
-        chatService = QuickBloxChatService(chatAuthService: QuickBloxChatAuthService(),
-                                           chatDialogService: QuickBloxChatDialogService(chatDialogRepository:
-                                                                                            chatDialogRepository))
+    init(chatService: ChatService) {
+        self.chatService = chatService
         super.init()
         QBChat.instance.addDelegate(self)
     }

@@ -8,8 +8,15 @@
 import SwiftUI
 
 class ChatModule: ViperModuleProtocol {
+    
+    let chatService: ChatService
+    
+    init(chatService: ChatService) {
+        self.chatService = chatService
+    }
+    
     func assemble() -> (view: AnyView, presenter: ChatPresenter) {
-        let interactor = ChatInteractor()
+        let interactor = ChatInteractor(chatService: chatService)
         let router = ChatRouter()
         let presenter = ChatPresenter()
         interactor.presenter = presenter

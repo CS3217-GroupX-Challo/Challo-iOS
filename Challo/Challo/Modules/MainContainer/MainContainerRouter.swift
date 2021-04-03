@@ -60,7 +60,12 @@ class MainContainerRouter: RouterProtocol {
         settingsPage = SettingsModule(userState: userState).assemble().view
         profilePage = TouristDashboardModule(userState: userState, bookingsRepository: bookingRepository)
             .assemble().view
-        homePage = ChatModule().assemble().view
+        
+        let chatDialogRepository = ChatDialogRepository()
+        let chatService = QuickBloxChatService(chatAuthService: QuickBloxChatAuthService(),
+                                               chatDialogService: QuickBloxChatDialogService(chatDialogRepository:
+                                                                                                chatDialogRepository))
+        homePage = ChatModule(chatService: chatService).assemble().view
     }
 
 }
