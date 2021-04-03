@@ -26,6 +26,10 @@ struct ItineraryEditorBar: View {
     var isSaveSelected: Bool {
         presenter.isSaveSelected
     }
+
+    var isEditSelected: Bool {
+        presenter.isEditSelected
+    }
     
     var body: some View {
         HStack(spacing: 30) {
@@ -64,6 +68,18 @@ struct ItineraryEditorBar: View {
                                     title: "Delete",
                                     imageName: "trash.fill",
                                     isSelected: $presenter.isDeleteSelected)
+            }
+            Button(action: ({
+                presenter.resetButtonSelection(selectionStatus: isEditSelected)
+                presenter.isEditSelected.toggle()
+            }
+            )) {
+                ItineraryButtonView(paddingTop: paddingTop,
+                                    paddingTrailing: 0,
+                                    paddingLeading: 0,
+                                    title: "Edit",
+                                    imageName: "pencil",
+                                    isSelected: $presenter.isEditSelected)
             }
             Spacer()
             Button(action: ({

@@ -19,12 +19,17 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
     @Published var isMarkerSelected: Bool = false
     @Published var isRouteSelected: Bool = false
     @Published var isDeleteSelected: Bool = false
+    @Published var isEditSelected: Bool = false
     @Published var isSaveSelected: Bool = false
     
     private var cancellables: Set<AnyCancellable> = []
     private var movedMarkerInitialPosition: CLLocationCoordinate2D?
     
     @Published var markers: [GMSMarker] = []
+    
+    // MARK: Editing marks
+    var markerToEdit: MapMarker?
+    @Published var isEditing: Bool = false
     
     override init() {
         let locationManager = LocationManager()
@@ -44,6 +49,7 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
         isRouteSelected = false
         isDeleteSelected = false
         isSaveSelected = false
+        isEditSelected = false
     }
     
     func initializeBindings() {
@@ -58,6 +64,24 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
                 self.markers.append(gmsMarker)
             }
         }.store(in: &cancellables)
+    }
+
+    func startEdit(markerToEdit: MapMarker) {
+        self.isEditing = true
+        self.markerToEdit = markerToEdit
+    }
+
+    func endEdit(newDate: Date, newComments: String) {
+        self.isEditing = false
+        guard let oldMarker = self.markerToEdit else {
+            return
+        }
+        self.markerToEdit = nil
+        let newMarker = MapMarker(id: oldMarker.id,
+                                  position: oldMarker.position,
+                                  date: newDate,
+                                  comments: newComments)
+        interactor.editMarker(at: oldMarker.position, edited: newMarker)
     }
 }
 
@@ -127,6 +151,14 @@ extension MapItineraryPresenter: GMSMapViewDelegate {
         if isDeleteSelected {
             interactor.deleteMarker(at: marker.position)
         }
+        
+        if isEditSelected {
+            guard let markerToEdit = interactor.getMarkerPresent(at: marker.position) else {
+                return true
+            }
+            self.startEdit(markerToEdit: markerToEdit)
+        }
+
         return true
     }
     
