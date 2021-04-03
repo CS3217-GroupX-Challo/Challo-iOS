@@ -26,6 +26,7 @@ class ItineraryMapMarkerRepository: RepositoryProtocol {
         return repository[key]
     }
     
+    @discardableResult
     func insert(_ entity: MapMarker, key: CLLocationCoordinate2D?) -> CLLocationCoordinate2D? {
         guard let coordinates = key,
               !(repository.index(forKey: coordinates) != nil) else {
@@ -36,6 +37,7 @@ class ItineraryMapMarkerRepository: RepositoryProtocol {
         return coordinates
     }
     
+    @discardableResult
     func deleteByKey(_ key: CLLocationCoordinate2D) -> MapMarker? {
         return repository.removeValue(forKey: key)
     }
@@ -50,5 +52,27 @@ class ItineraryMapMarkerRepository: RepositoryProtocol {
     func upsert(entity: MapMarker, key: CLLocationCoordinate2D) -> MapMarker {
         repository[key] = entity
         return entity
+    }
+}
+
+extension ItineraryMapMarkerRepository: ItineraryMapMarkerRepositoryProtocol {
+    func createAndStoreDefaultMapMarker(at position: CLLocationCoordinate2D) {
+        let mapMarker = MapMarker(id: UUID(),
+                                  position: position,
+                                  date: nil,
+                                  comments: nil)
+        insert(mapMarker, key: mapMarker.position)
+    }
+    
+    func addMapMarker(mapMarker: MapMarker) {
+        insert(mapMarker, key: mapMarker.position)
+    }
+    
+    func getMapMarker(at position: CLLocationCoordinate2D) -> MapMarker? {
+        getByKey(position)
+    }
+    
+    func deleteMapMarker(at position: CLLocationCoordinate2D) {
+        deleteByKey(position)
     }
 }
