@@ -27,6 +27,9 @@ struct MapItineraryView: View {
                     Spacer()
                 }
             }
+            .sheet(isPresented: $presenter.isEditing) {
+                MarkerEditModal(presenter: presenter)
+            }
         }
         .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
