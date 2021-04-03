@@ -10,17 +10,21 @@ import MapKit
 
 class MapItineraryInteractor: InteractorProtocol, ObservableObject {
     var presenter: MapItineraryPresenter!
+    private var mapStore: MapStore
     
     @Published var mapMarkers: [CLLocationCoordinate2D: MapMarker]
     @Published var mapRoutes: [MapRoute]
     
-    init(mapMarkers: [CLLocationCoordinate2D: MapMarker], mapRoutes: [MapRoute]) {
+    init(mapMarkers: [CLLocationCoordinate2D: MapMarker], mapRoutes: [MapRoute], mapStore: MapStore) {
         self.mapMarkers = mapMarkers
         self.mapRoutes = mapRoutes
+        self.mapStore = mapStore
     }
     
-    convenience init() {
-        self.init(mapMarkers: [CLLocationCoordinate2D: MapMarker](), mapRoutes: [])
+    convenience init(mapStore: MapStore) {
+        self.init(mapMarkers: [CLLocationCoordinate2D: MapMarker](),
+                  mapRoutes: [],
+                  mapStore: mapStore)
     }
     
     func createAndStoreDefaultMapMarker(position: CLLocationCoordinate2D) {
