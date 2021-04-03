@@ -23,6 +23,10 @@ class QuickBloxChatService: ChatService {
         self.chatDialogService = chatDialogService
     }
     
+    func connectToChatServer(chatUserId: UInt, password: String, didConnect: ((UInt, Bool) -> Void)?) {
+        chatAuthService.connectToChatServer(chatUserId: chatUserId, password: password, didConnect: didConnect)
+    }
+    
     func login(email: String, password: String, didLogin: ((UInt, Bool) -> Void)?) {
         let didLoginUser: ((UInt, Bool) -> Void) = { [weak self] userId, isSuccessful in
             self?.chatUserId = userId
@@ -31,8 +35,8 @@ class QuickBloxChatService: ChatService {
         chatAuthService.login(email: email, password: password, didLogin: didLoginUser)
     }
     
-    func registerUser(email: String, password: String, fullName: String) {
-        chatAuthService.registerUser(email: email, password: password, fullName: fullName)
+    func registerUser(email: String, password: String, fullName: String, didRegister: (() -> Void)? = nil) {
+        chatAuthService.registerUser(email: email, password: password, fullName: fullName, didRegister: didRegister)
     }
     
     func logout() {

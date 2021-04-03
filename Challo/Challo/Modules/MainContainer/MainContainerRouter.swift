@@ -20,6 +20,7 @@ class MainContainerRouter: RouterProtocol {
     var settingsPage: AnyView
     var loginPage: AnyView
     var homePage: AnyView
+    var chatPage: AnyView
     
     init(userState: UserStateProtocol) {
         self.userState = userState
@@ -65,7 +66,9 @@ class MainContainerRouter: RouterProtocol {
         let chatService = QuickBloxChatService(chatAuthService: QuickBloxChatAuthService(),
                                                chatDialogService: QuickBloxChatDialogService(chatDialogRepository:
                                                                                                 chatDialogRepository))
-        homePage = ChatModule(chatService: chatService).assemble().view
+        chatPage = ChatModule(chatService: chatService, userState: userState).assemble().view
+        
+        homePage = AnyView(Text("Homepage"))
     }
 
 }

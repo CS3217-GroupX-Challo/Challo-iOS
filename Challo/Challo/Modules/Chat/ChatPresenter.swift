@@ -28,6 +28,10 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
                         : $0.chateeName.lowercased().contains(dialogSearchBarText.lowercased()) })
     }
     
+    var canDisplayChat: Bool {
+        interactor.canDisplayChat
+    }
+    
     private func resetUnreadMessagesCountForCurrentDialog() {
         guard let dialogId = currentOpenDialogId else {
             fatalError("Attempting to reset unread message count without a current dialog open")
@@ -84,10 +88,10 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     }
     
     func onChatAppear() {
-        interactor.chatService.login(email: "abc@abc.sg", password: "abcabcabc") { [weak self] _, isSuccessful in
-            self?.isChatAvailable = isSuccessful
-            self?.interactor.getDialogs()
+        guard isChatAvailable else {
+            interactor.connectToChatServer()
+            return
         }
-//        chatService.login(email: "test@test.sg", password: "testtesttest")
+        interactor.getDialogs()
     }
 }

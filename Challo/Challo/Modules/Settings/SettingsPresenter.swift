@@ -39,8 +39,7 @@ class SettingsPresenter: PresenterProtocol, ObservableObject {
             // fatalError("userState variable should be of type UserState")
             return
         }
-        let loggedInSubscriber = state.$loggedIn.sink(receiveValue: toggleOptionsFrom)
-        cancellables.insert(loggedInSubscriber)
+        state.$loggedIn.sink(receiveValue: toggleOptionsFrom).store(in: &cancellables)
         toggleOptionsFrom(loggedInState: userState.loggedIn)
     }
     

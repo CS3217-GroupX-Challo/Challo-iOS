@@ -10,13 +10,15 @@ import SwiftUI
 class ChatModule: ViperModuleProtocol {
     
     let chatService: ChatService
+    let userState: UserStateProtocol
     
-    init(chatService: ChatService) {
+    init(chatService: ChatService, userState: UserStateProtocol) {
         self.chatService = chatService
+        self.userState = userState
     }
     
     func assemble() -> (view: AnyView, presenter: ChatPresenter) {
-        let interactor = ChatInteractor(chatService: chatService)
+        let interactor = ChatInteractor(chatService: chatService, userState: userState)
         let router = ChatRouter()
         let presenter = ChatPresenter()
         interactor.presenter = presenter

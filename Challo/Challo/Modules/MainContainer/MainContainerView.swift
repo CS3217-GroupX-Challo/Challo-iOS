@@ -49,12 +49,19 @@ struct MainContainerView: View {
                     }
                     .tag(3)
 
+                presenter.getChatPage()
+                    .tabItem {
+                        Image(systemName: "envelope")
+                        Text("Inbox").bold()
+                    }
+                    .tag(4)
+                
                 presenter.getProfilePage()
                     .tabItem {
                         Image(systemName: "person.crop.circle")
                         Text("Profile").bold()
                     }
-                    .tag(4)
+                    .tag(5)
 
             }.accentColor(.themeTertiary)
         }.accentColor(.themeTertiary)

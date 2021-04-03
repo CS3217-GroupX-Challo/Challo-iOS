@@ -9,6 +9,7 @@ import Combine
 
 protocol UserStateProtocol: AnyObject {
 
+    var isNewUser: Bool { get set }
     var loggedIn: Bool { get set }
     var email: String { get set }
     var name: String { get set }
@@ -17,7 +18,7 @@ protocol UserStateProtocol: AnyObject {
     var certificate: UserCertificate? { get }
     var user: User? { get set }
     
-    func storeCertificate(certificate: UserCertificate)
+    func storeCertificate(certificate: UserCertificate, isNewUser: Bool)
 
     func logIn()
 
@@ -26,7 +27,8 @@ protocol UserStateProtocol: AnyObject {
 
 extension UserStateProtocol {
 
-    func storeCertificate(certificate: UserCertificate) {
+    func storeCertificate(certificate: UserCertificate, isNewUser: Bool = false) {
+        self.isNewUser = isNewUser
         loggedIn = true
         name = certificate.name
         email = certificate.email
