@@ -69,3 +69,16 @@ extension Key {
     static let fbEmail = "email"
     static let fbId = "id"
 }
+
+// MARK: Google Places response keys
+extension Key {
+    static let googleLatitude = "lat"
+    static let googleLongitude = "lng"
+    static let googleName = "name"
+    static let googleAddress = "formatted_address"
+    static let googleOpeningHours = "opening_hours"
+    static let googleOpenNow = "open_now"
+    static let googleRating = "rating"
+    static let googleGeometry = "geometry"
+    static let googleLocation = "location"
+}

@@ -18,9 +18,12 @@ struct BookingCardListingsView: View {
                 Text("You don't have any upcoming trips")
                     .foregroundColor(.themeForeground)
                     .padding()
-            }
-            ForEach(bookings.indices) { index in
-                BookingCard(booking: bookings[index], width: width)
+            } else {
+                VStack {
+                    ForEach(bookings.indices) { index in
+                        BookingCard(booking: bookings[index], width: width)
+                    }
+                }
             }
         }
     }

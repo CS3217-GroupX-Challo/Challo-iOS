@@ -8,9 +8,16 @@
 @testable import Challo
 
 class MockGuideRepository: Repository<Guide>, GuideRepositoryProtocol {
-    let guideAPI = MockGuideAPI()
+    let guideAPI: GuideAPIProtocol
     
     init() {
+        self.guideAPI = MockGuideAPI()
+        super.init()
+        fetchGuidesAndRefresh()
+    }
+
+    init(guideAPI: GuideAPIProtocol) {
+        self.guideAPI = guideAPI
         super.init()
         fetchGuidesAndRefresh()
     }

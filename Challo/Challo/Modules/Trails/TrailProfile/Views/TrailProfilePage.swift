@@ -30,6 +30,12 @@ struct TrailProfilePage: View {
             TrailProfileStickyBar()
                 .innerShadow(color: .gray, radius: 0.03, exclude: [.bottom, .leading, .trailing])
                 .frame(maxHeight: 100)
-        }.edgesIgnoringSafeArea(.all)
+        }
+        .edgesIgnoringSafeArea(.all)
+        .alert(isPresented: $presenter.isShowingNotLoggedInAlert) {
+            Alert(title: Text("You are not currently logged in"),
+                  message: Text("Please log in to continue"),
+                  dismissButton: .default(Text("Close")))
+        }
     }
 }

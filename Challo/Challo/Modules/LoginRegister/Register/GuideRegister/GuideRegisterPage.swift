@@ -30,14 +30,9 @@ struct GuideRegisterPage: View {
                 RegisterButton(presenter: registerPresenter)
             }
         }
-        .alert(isPresented: $registerPresenter.isShowingRegisterFailureAlert) {
-            Alert(title: Text("Unable to sign up"),
-                  message: Text("Please check that you've filled in all your details"),
-                  dismissButton: .default(Text("Close")))
-        }
-        .alert(isPresented: $registerPresenter.isShowingRegisterSuccessAlert) {
-            Alert(title: Text("Successfully signed up!"),
-                  message: Text("You may now sign in with your account"),
+        .alert(isPresented: $registerPresenter.isShowingRegisterAlert) {
+            Alert(title: Text(registerPresenter.registerAlertTitle),
+                  message: Text(registerPresenter.registerAlertMessage),
                   dismissButton: .default(Text("Close")))
         }
     }
