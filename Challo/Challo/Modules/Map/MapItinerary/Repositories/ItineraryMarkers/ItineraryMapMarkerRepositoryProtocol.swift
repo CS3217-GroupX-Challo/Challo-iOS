@@ -12,4 +12,5 @@ protocol ItineraryMapMarkerRepositoryProtocol {
     func addMapMarker(mapMarker: MapMarker)
     func getMapMarker(at position: CLLocationCoordinate2D) -> MapMarker?
     func deleteMapMarker(at position: CLLocationCoordinate2D)
+    func getAllMapMarkers() -> [MapMarker]
 }

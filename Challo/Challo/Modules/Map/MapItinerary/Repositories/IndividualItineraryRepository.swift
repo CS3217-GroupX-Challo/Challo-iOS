@@ -53,6 +53,10 @@ extension IndividualItineraryRepository {
     func deleteMapMarker(at position: CLLocationCoordinate2D) {
         mapMarkerRepository.deleteMapMarker(at: position)
     }
+    
+    func getAllMapMarkers() -> [MapMarker] {
+        mapMarkerRepository.getAllMapMarkers()
+    }
 }
 
 // MARK: - MapRoute repository

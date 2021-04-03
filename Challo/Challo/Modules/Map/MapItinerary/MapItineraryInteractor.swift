@@ -31,6 +31,7 @@ class MapItineraryInteractor: InteractorProtocol, ObservableObject {
 
     func createAndStoreDefaultMapMarker(position: CLLocationCoordinate2D) {
         individualItineraryRepository.createAndStoreDefaultMapMarker(at: position)
+        self.mapMarkers = individualItineraryRepository.getAllMapMarkers()
     }
     
     func getMarkerPresent(at position: CLLocationCoordinate2D) -> MapMarker? {
@@ -39,9 +40,11 @@ class MapItineraryInteractor: InteractorProtocol, ObservableObject {
     
     func deleteMarker(at position: CLLocationCoordinate2D) {
         individualItineraryRepository.deleteMapMarker(at: position)
+        self.mapMarkers = individualItineraryRepository.getAllMapMarkers()
     }
     
     func addMarker(mapMarker: MapMarker) {
         individualItineraryRepository.addMapMarker(mapMarker: mapMarker)
+        self.mapMarkers = individualItineraryRepository.getAllMapMarkers()
     }
 }

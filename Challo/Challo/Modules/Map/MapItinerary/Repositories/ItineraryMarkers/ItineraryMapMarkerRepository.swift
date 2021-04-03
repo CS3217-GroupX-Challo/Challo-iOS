@@ -75,4 +75,8 @@ extension ItineraryMapMarkerRepository: ItineraryMapMarkerRepositoryProtocol {
     func deleteMapMarker(at position: CLLocationCoordinate2D) {
         deleteByKey(position)
     }
+    
+    func getAllMapMarkers() -> [MapMarker] {
+        getAll()
+    }
 }
