@@ -11,16 +11,7 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     var router: ChatRouter?
     var interactor: ChatInteractor!
     
-    @Published var isChatAvailable: Bool = false {
-        didSet {
-            print("SETTTT")
-            print("SETTTT")
-            print("SETTTT")
-            print("SETTTT")
-            print("SETTTT")
-            print("SETTTT")
-        }
-    }
+    @Published var isChatAvailable: Bool = false
     @Published var isLoadingMessages: Bool = false
     @Published var isLoadingDialogs: Bool = true
     
@@ -30,10 +21,6 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     
     @Published var messageText: String = ""
     @Published var dialogSearchBarText: String = ""
-    
-    init() {
-        print("presenter init")
-    }
     
     var filteredDialogs: [ChatDialog] {
         dialogs.filter({ dialogSearchBarText.isEmpty

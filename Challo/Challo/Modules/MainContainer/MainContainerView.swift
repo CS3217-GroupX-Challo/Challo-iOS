@@ -28,41 +28,33 @@ struct MainContainerView: View {
                     }
                     .tag(0)
 
-                Text("Explore Tab")
-                    .font(.system(size: 30, weight: .bold, design: .rounded))
-                    .tabItem {
-                        Image(systemName: "car.fill")
-                        Text("Explore").bold()
-                    }
-                    .tag(1)
-
                 presenter.getGuidePage()
                     .tabItem {
                         Image(systemName: "figure.wave.circle.fill")
                         Text("Guides").bold()
                     }
-                    .tag(2)
+                    .tag(1)
 
                 presenter.getTrailPage()
                     .tabItem {
                         Image(systemName: "leaf.fill")
                         Text("Trails").bold()
                     }
-                    .tag(3)
+                    .tag(2)
 
                 presenter.getMapsPage()
                     .tabItem {
                         Image(systemName: "mappin.and.ellipse")
                         Text("Map").bold()
                     }
-                    .tag(4)
+                    .tag(3)
 
                 presenter.getProfilePage()
                     .tabItem {
                         Image(systemName: "person.crop.circle")
                         Text("Profile").bold()
                     }
-                    .tag(5)
+                    .tag(4)
 
             }.accentColor(.themeTertiary)
         }.accentColor(.themeTertiary)
