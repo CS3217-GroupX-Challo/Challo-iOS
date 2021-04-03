@@ -9,22 +9,14 @@
 import Foundation
 
 class MockItineraryRepository: MapItineraryRepositoryInterface {
-
-    static let itineraryOne = MapItinerary(id: UUID(),
-                                           routes: [],
-                                           markers: [MockMarkerRepository.markerOne, MockMarkerRepository.markerTwo],
-                                           title: "Test itinerary One",
-                                           createdAt: Date.construct(with: "2021-05-15T15:10:45.178Z") ?? Date(),
-                                           lastModified: Date.construct(with: "2021-05-15T15:10:45.178Z") ?? Date())
     
-    static let itineraryTwo = MapItinerary(id: UUID(),
-                                           routes: [MockRouteRepository.routeTwo],
-                                           markers: [MockMarkerRepository.markerTwo, MockMarkerRepository.markerThree],
-                                           title: "Test itinerary Two",
-                                           createdAt: Date.construct(with: "2021-05-16T15:10:45.178Z") ?? Date(),
-                                           lastModified: Date.construct(with: "2021-05-16T15:10:45.178Z") ?? Date())
+    static func createEmptyRepo() -> MapItineraryRepositoryInterface {
+        let repo = MockItineraryRepository()
+        repo.allItineraries = []
+        return repo
+    }
 
-    var allItineraries = [itineraryOne, itineraryTwo]
+    var allItineraries = [MapTestConstants.itineraryOne, MapTestConstants.itineraryTwo]
     
     func getAllMapItineraries() -> [MapItinerary] {
         allItineraries

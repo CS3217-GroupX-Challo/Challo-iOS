@@ -11,19 +11,13 @@ import Foundation
 
 class MockRouteRepository: MapRouteRepositoryInterface {
     
-    static let routeOne = MapRoute(id: UUID(),
-                                   start: MockMarkerRepository.markerOne,
-                                   end: MockMarkerRepository.markerTwo,
-                                   date: Date.construct(with: "2021-03-12T15:17:14.178Z"),
-                                   comments: "This is route one!")
+    static func createEmptyRepo() -> MapRouteRepositoryInterface {
+        let repo = MockRouteRepository()
+        repo.allRoutes = []
+        return repo
+    }
     
-    static let routeTwo = MapRoute(id: UUID(),
-                                   start: MockMarkerRepository.markerTwo,
-                                   end: MockMarkerRepository.markerThree,
-                                   date: Date.construct(with: "2021-03-13T15:10:45.178Z"),
-                                   comments: "This is route two!")
-    
-    var allRoutes = [routeOne, routeTwo]
+    var allRoutes = [MapTestConstants.routeOne, MapTestConstants.routeTwo]
 
     func getAllRoutes() -> [MapRoute] {
         allRoutes
