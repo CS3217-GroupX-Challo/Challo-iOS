@@ -53,5 +53,6 @@ class TouristDashboardPresenter: PresenterProtocol {
     
     func onTapSendMessage(guide: Guide) {
         sendMessageToGuide(guide.email, guide.userId, messageText)
+        messageText = ""
     }
 }
