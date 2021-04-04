@@ -5,9 +5,7 @@
 //  Created by Kester Ng on 4/4/21.
 //
 
-import CoreData
 import Foundation
-import MapKit
 
 @testable import Challo
 

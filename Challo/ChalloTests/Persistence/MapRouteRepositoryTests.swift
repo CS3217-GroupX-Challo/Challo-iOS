@@ -62,4 +62,9 @@ class MapRouteRepositoryTests: XCTestCase {
         filledRepository.saveMapRoutes(mapRoutes: [mockRepo.mapRoute1])
         XCTAssertEqual(filledRepository.getAllRoutes().count, 1, "Should be empty")
     }
+    
+    func testConvertRouteObjectToMapRoute_returnsCorrectMapRoute() {
+        let mapRoute = MapRouteRepository.convertRouteObjectToMapRoute(route: mockRepo.route1)
+        XCTAssertEqual(mapRoute, mockRepo.mapRoute1, "Should be equal")
+    }
 }
