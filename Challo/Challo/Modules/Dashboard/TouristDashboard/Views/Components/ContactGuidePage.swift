@@ -40,6 +40,7 @@ struct ContactGuidePage: View {
                 .font(.headline)
                 .padding(.vertical, 30)
             TextEditor(text: $presenter.messageText)
+                .padding()
                 .foregroundColor(.black)
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
