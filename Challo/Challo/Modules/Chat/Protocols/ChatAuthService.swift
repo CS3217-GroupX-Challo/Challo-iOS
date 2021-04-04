@@ -6,10 +6,12 @@
 //
 
 /// Service for user authentication in the chat servers
-protocol ChatAuthService: AnyObject {    
+protocol ChatAuthService: AnyObject {
+    var isConnecting: Bool { get }
+    
     func registerUser(email: String, password: String, fullName: String, didRegister: (() -> Void)?)
     
-    func login(email: String, password: String, didLogin: ((UInt, Bool) -> Void)?)
+    func loginAndConnect(email: String, password: String, didLogin: ((UInt, Bool) -> Void)?)
     
     func logout(didLogOut: (() -> Void)?)
     
@@ -25,8 +27,8 @@ extension ChatAuthService {
         registerUser(email: email, password: password, fullName: fullName, didRegister: didRegister)
     }
 
-    func login(email: String, password: String, didLogin: ((UInt, Bool) -> Void)? = nil) {
-        login(email: email, password: password, didLogin: didLogin)
+    func loginAndConnect(email: String, password: String, didLogin: ((UInt, Bool) -> Void)? = nil) {
+        loginAndConnect(email: email, password: password, didLogin: didLogin)
     }
     
     func logout(didLogOut: (() -> Void)? = nil) {

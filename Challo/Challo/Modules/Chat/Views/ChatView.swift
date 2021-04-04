@@ -16,7 +16,7 @@ struct ChatView: View {
             if !presenter.canDisplayChat {
                 ChatUnavailableView(imageSystemName: "lock.rectangle.on.rectangle",
                                     label: "You have not logged in yet. Log in to chat with our guides!")
-            } else if presenter.isLoadingDialogs {
+            } else if presenter.isLoadingChat {
                 Loading(isAnimating: .constant(true), style: .large)
             } else if presenter.isChatAvailable {
                 ChatDialogListingView().padding(.top, 30)
