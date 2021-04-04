@@ -34,16 +34,11 @@ struct GuideDashboardPage: View {
                         .bold()
                         .padding(.leading, 40)
 
-                    if presenter.loading {
-                        Loading(isAnimating: .constant(true), style: .large)
-                    } else {
-                        EarningViewNavigation(presenter: presenter)
-                    }
+                    EarningViewNavigation(presenter: presenter)
                 }
             }
         }
         .ignoresSafeArea()
-        .onAppear(perform: presenter.refresh)
     }
 
 }

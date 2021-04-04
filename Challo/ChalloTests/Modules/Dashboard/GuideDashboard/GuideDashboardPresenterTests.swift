@@ -17,30 +17,4 @@ class GuideDashboardPresenterTests: XCTestCase {
         XCTAssertEqual(userState.name, presenter.name)
     }
 
-    func testRefresh_loadingComplete_earningsUpdated() {
-        let userState = MockUserState.createMockLoggedInUserState()
-        let repository = MockBookingRepository()
-        let interactor = GuideDashboardInteractor(userState: userState, bookingRepository: repository)
-        let presenter = GuideDashboardPresenter(userState: userState)
-        presenter.interactor = interactor
-        presenter.refresh()
-        XCTAssertFalse(presenter.loading)
-
-        let expectedEarnings = MockBookingAPIResponses.bookings
-            .filter { $0.status == .Completed }
-            .reduce(0.0, { $0 + $1.fee })
-        XCTAssertEqual(expectedEarnings, presenter.totalEarnings)
-    }
-
-    func testUpdateTotalEarnings() {
-        let bookings = MockBookingAPIResponses.bookings
-        var totalEarnings = 0.0
-        for booking in bookings where booking.status == .Completed {
-            totalEarnings += booking.fee
-        }
-        let userState = MockUserState.createMockLoggedInUserState()
-        let presenter = GuideDashboardPresenter(userState: userState)
-        presenter.updateTotalEarnings(bookings: bookings)
-        XCTAssertEqual(totalEarnings, presenter.totalEarnings)
-    }
 }

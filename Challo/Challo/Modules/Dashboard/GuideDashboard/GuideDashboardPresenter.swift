@@ -21,7 +21,6 @@ class GuideDashboardPresenter: PresenterProtocol {
     unowned let userState: UserStateProtocol!
 
     @Published var name: String
-    @Published var totalEarnings = 0.0
     @Published var loading: Bool = true
 
     var weekSubPresenter = WeekEarningsPresenter()
@@ -31,16 +30,6 @@ class GuideDashboardPresenter: PresenterProtocol {
     init(userState: UserStateProtocol) {
         self.userState = userState
         self.name = userState.name
-    }
-
-    func refresh() {
-        interactor.populateBookings(callback: updateTotalEarnings(bookings:))
-    }
-
-    func updateTotalEarnings(bookings: [Booking]) {
-        totalEarnings = bookings.filter { $0.status == .Completed }
-            .reduce(0.0, { $0 + $1.fee })
-        loading = false
     }
 
 }
