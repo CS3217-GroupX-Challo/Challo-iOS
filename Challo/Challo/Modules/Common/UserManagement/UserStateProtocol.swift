@@ -28,13 +28,15 @@ protocol UserStateProtocol: AnyObject {
 extension UserStateProtocol {
 
     func storeCertificate(certificate: UserCertificate, isNewUser: Bool = false) {
-        self.isNewUser = isNewUser
-        loggedIn = true
         name = certificate.name
         email = certificate.email
         token = certificate.token
         userId = certificate.userId
         user = certificate.user
+        self.isNewUser = isNewUser
+        // assignment of loggedIn is placed last as subscribers to the loggedIn state
+        // may read other attributes of userState
+        loggedIn = true
     }
 
     func logIn() {
@@ -48,5 +50,6 @@ extension UserStateProtocol {
         token = ""
         userId = ""
         user = nil
+        isNewUser = false
     }
 }

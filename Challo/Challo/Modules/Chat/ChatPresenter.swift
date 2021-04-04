@@ -88,7 +88,7 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     }
     
     func onChatAppear() {
-        guard isChatAvailable else {
+        guard canDisplayChat, isChatAvailable else {
             interactor.connectToChatServer()
             return
         }
