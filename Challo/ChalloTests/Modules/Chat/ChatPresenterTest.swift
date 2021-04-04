@@ -74,13 +74,22 @@ class ChatPresenterTest: XCTestCase {
         XCTAssertEqual(result, dateFormatter.string(from: date))
     }
     
-    func testFormatDialogDatetime_outsideToday() {
+    func testFormatDialogDatetime_oneWeekAgo() {
         guard let date = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date()) else {
             XCTFail("Failed to subtract one week from current date")
             return
         }
         let result = presenter.formatDialogDatetime(date)
         XCTAssertEqual(result, "1 week ago")
+    }
+    
+    func testFormatDialogDatetime_oneMonthAgo() {
+        guard let date = Calendar.current.date(byAdding: .month, value: -1, to: Date()) else {
+            XCTFail("Failed to subtract one month from current date")
+            return
+        }
+        let result = presenter.formatDialogDatetime(date)
+        XCTAssertEqual(result, "1 month ago")
     }
 
 }
