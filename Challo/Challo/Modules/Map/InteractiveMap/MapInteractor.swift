@@ -8,7 +8,7 @@
 import Foundation
 
 class MapInteractor: InteractorProtocol {
-    var presenter: MapPresenter!
+    weak var presenter: MapPresenter!
     var mapStore: MapStore
     var placesAPI: PlacesAPIProtocol
     var itineraryRepository: InteractiveMapItineraryRepositoryProtocol
