@@ -5,6 +5,8 @@
 //  Created by Shao Yi on 2/4/21.
 //
 
+import Foundation
+
 protocol ChatMessage: AnyObject {
     var messageId: String { get }
     var message: String { get }
@@ -12,4 +14,5 @@ protocol ChatMessage: AnyObject {
     var isSentByCurrentUser: Bool { get }
     var senderId: UInt { get }
     var recipientId: UInt { get }
+    var dateSent: Date? { get }
 }
