@@ -39,6 +39,7 @@ struct TouristDashboardPage: View {
                     } else {
                         BookingCardListingsView(
                             width: geometry.size.width * 0.6,
+                            emptyListMessage: "You don't have any upcoming trips",
                             bookings: $presenter.upcomingBookings)
                     }
                 }

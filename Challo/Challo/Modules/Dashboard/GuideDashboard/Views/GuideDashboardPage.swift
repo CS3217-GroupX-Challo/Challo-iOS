@@ -38,8 +38,6 @@ struct GuideDashboardPage: View {
                         Loading(isAnimating: .constant(true), style: .large)
                     } else {
                         EarningViewNavigation(presenter: presenter)
-                            .frame(width: geometry.size.width,
-                                   height: geometry.size.height * 0.5)
                     }
                 }
             }

@@ -14,6 +14,7 @@ class GuideDashboardPresenter: PresenterProtocol {
         didSet {
             weekSubPresenter.interactor = interactor
             yearSubPresenter.interactor = interactor
+            bookingHistorySubPresenter.interactor = interactor
         }
     }
 
@@ -25,6 +26,7 @@ class GuideDashboardPresenter: PresenterProtocol {
 
     var weekSubPresenter = WeekEarningsPresenter()
     var yearSubPresenter = YearEarningsPresenter()
+    var bookingHistorySubPresenter = GuideBookingHistorySubPresenter()
 
     init(userState: UserStateProtocol) {
         self.userState = userState

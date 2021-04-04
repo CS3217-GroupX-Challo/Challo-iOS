@@ -9,7 +9,7 @@ import SwiftUI
 
 class WeekEarningsPresenter: EarningSubPresenter {
 
-    weak var interactor: GuideDashboardInteractor!
+    var interactor: GuideDashboardInteractor!
 
     @Published private(set) var loading = true
     @Published var totalEarnings = 0.0

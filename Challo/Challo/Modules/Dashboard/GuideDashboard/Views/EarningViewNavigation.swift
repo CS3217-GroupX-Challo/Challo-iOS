@@ -25,6 +25,11 @@ struct EarningViewNavigation: View {
                     label: {
                         Text("Year view")
                     })
+                NavigationLink(
+                    destination: BookingHistoryView(superPresenter: presenter),
+                    label: {
+                        Text("View booking history")
+                    })
             }
             .listStyle(SidebarListStyle())
         }

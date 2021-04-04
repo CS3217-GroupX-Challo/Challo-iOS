@@ -7,11 +7,7 @@
 
 import Foundation
 
-protocol EarningSubPresenter: ObservableObject {
-
-    var interactor: GuideDashboardInteractor! { get set }
-
-    var loading: Bool { get }
+protocol EarningSubPresenter: GuideDashboardSubPresenter {
 
     var dateRange: [Date] { get }
 
@@ -19,16 +15,4 @@ protocol EarningSubPresenter: ObservableObject {
 
     var totalEarnings: Double { get }
 
-    func refresh()
-
-    func didPopulateBookings(bookings: [Booking])
-
-}
-
-extension EarningSubPresenter {
-
-    func refresh() {
-        interactor.populateBookings(callback: didPopulateBookings(bookings:))
-    }
-    
 }
