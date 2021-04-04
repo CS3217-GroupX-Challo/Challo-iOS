@@ -29,6 +29,7 @@ class ChatInteractor: NSObject, InteractorProtocol {
     
     func connectToChatServer() {
         guard let chatUserId = chatService.chatUserId else {
+            login()
             return
         }
         chatService.connectToChatServer(chatUserId: chatUserId, password: userState.userId) { [weak self] _, _ in
