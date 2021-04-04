@@ -23,11 +23,13 @@ struct InteractiveMapPage: View {
                                alignment: .center)
                         .offset(x: 0, y: -1 * geometry.size.height * 7 / 16)
                         .zIndex(1)
+                        .padding(.top, 10)
                     presenter.googleMapsView
                         .zIndex(0)
                 }
             }
             .edgesIgnoringSafeArea(.all)
+            .navigationBarTitle("", displayMode: .inline)
         }
         .navigationBarHidden(true)
         .environmentObject(presenter)
