@@ -48,7 +48,13 @@ class ChatInteractor: NSObject, InteractorProtocol {
     }
     
     private func didIsLoggedInChange(isLoggedIn: Bool) {
+        defer {
+            if presenter != nil {
+                presenter.objectWillChange.send()
+            }
+        }
         guard isLoggedIn else {
+            chatService.logout()
             return
         }
         if userState.isNewUser {
@@ -59,7 +65,6 @@ class ChatInteractor: NSObject, InteractorProtocol {
         } else {
             login()
         }
-        
     }
     
     private func login() {
