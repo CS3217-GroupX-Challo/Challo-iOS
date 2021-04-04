@@ -9,6 +9,7 @@
 
 class MockChatDialogRepository: Repository<String, ChatDialog>, ChatDialogRepositoryProtocol {
     init() {
+        super.init()
         insert(MockDialogsMessages.dialogA, key: MockDialogsMessages.dialogA.dialogId)
         insert(MockDialogsMessages.dialogB, key: MockDialogsMessages.dialogB.dialogId)
     }

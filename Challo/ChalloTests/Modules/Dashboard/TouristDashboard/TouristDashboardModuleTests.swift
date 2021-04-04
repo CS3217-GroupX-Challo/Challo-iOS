@@ -15,7 +15,8 @@ class TouristDashboardModuleTests: XCTestCase {
         let userState = MockUserState()
         let bookingsRepository = MockBookingRepository()
         let (view, presenter) = TouristDashboardModule(userState: userState,
-                                                       bookingsRepository: bookingsRepository).assemble()
+                                                       bookingsRepository: bookingsRepository,
+                                                       sendMessageToGuide: { _, _, _ in }).assemble()
         XCTAssertNotNil(view, "Wrong view returned")
         XCTAssertNotNil(presenter, "Wrong presenter returned")
         XCTAssertNotNil(presenter.router, "Presenter properties not assigned")

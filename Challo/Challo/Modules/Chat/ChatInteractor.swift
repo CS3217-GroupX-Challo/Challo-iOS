@@ -33,7 +33,7 @@ class ChatInteractor: NSObject, InteractorProtocol {
     
     private func setupUserStateHooks() {
         guard let state = userState as? UserState else {
-            fatalError("userState should be of type UserState")
+            return
         }
         
         state.$loggedIn.sink(receiveValue: { [weak self] isLoggedIn in
@@ -95,7 +95,7 @@ class ChatInteractor: NSObject, InteractorProtocol {
         }
     }
     
-    func didGetDialogMessages(_ messages: [ChatMessage]) {
+    private func didGetDialogMessages(_ messages: [ChatMessage]) {
         presenter.messages = messages
         presenter.isLoadingMessages = false
     }    

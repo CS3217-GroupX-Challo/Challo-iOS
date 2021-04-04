@@ -40,4 +40,21 @@ class MockChatDialogService: ChatDialogService {
     func getDialogWithChateeEmail(_ chateeEmail: String) -> ChatDialog? {
         dialogRepository.getAll().first(where: { $0.chateeEmail == chateeEmail })
     }
+    
+    func getAllDialogs(callback: @escaping (([ChatDialog]) -> Void)) {
+        callback(dialogRepository.getAll())
+    }
+    
+    func sendMessage(messageBody: String, dialogId: String, willSendMessage: ((ChatMessage) -> Void)? = nil,
+                     didSendMessage: ((ChatMessage, Error?) -> Void)? = nil) {
+        guard let dialog = dialogRepository.getByKey(dialogId) else {
+            return
+        }
+        let message = MockChatMessage(messageId: messageBody, message: messageBody,
+                                      isSuccessfullySent: true, isSentByCurrentUser: true,
+                                      senderId: MockDialogsMessages.currentUserId,
+                                      recipientId: dialog.chateeId, dateSent: Date())
+        willSendMessage?(message)
+        didSendMessage?(message, nil)
+    }
 }
