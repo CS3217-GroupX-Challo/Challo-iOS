@@ -11,6 +11,7 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     var router: ChatRouter?
     var interactor: ChatInteractor!
     
+    // Chat is available when user has connected to the chat server
     @Published var isChatAvailable: Bool = false
     @Published var isLoadingMessages: Bool = false
     @Published var isLoadingDialogs: Bool = true
@@ -28,6 +29,7 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
                         : $0.chateeName.lowercased().contains(dialogSearchBarText.lowercased()) })
     }
     
+    // Chat can only be displayed when user is logged in
     var canDisplayChat: Bool {
         interactor.canDisplayChat
     }
@@ -88,7 +90,10 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     }
     
     func onChatAppear() {
-        guard canDisplayChat, isChatAvailable else {
+        guard canDisplayChat else {
+            return
+        }
+        guard isChatAvailable else {
             interactor.connectToChatServer()
             return
         }
