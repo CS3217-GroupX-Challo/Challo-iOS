@@ -15,6 +15,7 @@ class QuickBloxChatDialogService: ChatDialogService {
     
     init(chatDialogRepository: ChatDialogRepositoryProtocol) {
         self.chatDialogRepository = chatDialogRepository
+        
     }
     
     var dialogsSortedByLastMessageDates: [ChatDialog] {
@@ -52,7 +53,8 @@ class QuickBloxChatDialogService: ChatDialogService {
                 ChalloLogger.logger.error("Retrieved a user with no matching id")
                 continue
             }
-            chatDialogRepository.insert(QuickBloxChatDialog(chatDialog: dialog, occupant: occupant), key: dialogId)
+            chatDialogRepository.upsert(entity: QuickBloxChatDialog(chatDialog: dialog, occupant: occupant),
+                                        key: dialogId)
         }
         callback?(dialogsSortedByLastMessageDates)
     }
@@ -77,10 +79,6 @@ class QuickBloxChatDialogService: ChatDialogService {
     }
     
     func getAllDialogs(limit: Int, skip: Int, callback: (([ChatDialog]) -> Void)? = nil) {
-        guard chatDialogRepository.getAll().isEmpty else {
-            callback?(dialogsSortedByLastMessageDates)
-            return
-        }
         let extendedRequest = ["sort_asc": "last_message_date_sent"]
         let responsePage = QBResponsePage(limit: limit, skip: skip)
         QBRequest.dialogs(for: responsePage, extendedRequest: extendedRequest,
@@ -89,14 +87,36 @@ class QuickBloxChatDialogService: ChatDialogService {
         })
     }
     
-    func createPrivateDialog(with otherUserId: NSNumber) {
+    private func getUserByEmail(_ email: String, didGetUserByEmail: @escaping ((QBUUser) -> Void)) {
+        QBRequest.user(withEmail: email, successBlock: { _, user in
+            didGetUserByEmail(user)
+        }, errorBlock: { _ in
+            ChalloLogger.logger.error("Failed to get user")
+        })
+    }
+    
+    func createPrivateDialog(with otherUserId: NSNumber, didCreateDialog: @escaping ((ChatDialog) -> Void)) {
         let dialog = QBChatDialog(dialogID: nil, type: .private)
         dialog.occupantIDs = [otherUserId]
-        QBRequest.createDialog(dialog, successBlock: { _, _ in
-            
-        }, errorBlock: { _ in
-            
+        QBRequest.createDialog(dialog, successBlock: { [weak self] _, dialog in
+            let userIdSet: Set<NSNumber> = [otherUserId]
+            self?.didGetAllDialogs([dialog], userIdSet) { dialogs in
+                guard let dialog = dialogs.first else {
+                    ChalloLogger.logger.error("Failed to extract chat dialog after creation")
+                    return
+                }
+                didCreateDialog(dialog)
+            }
+        }, errorBlock: { error in
+            ChalloLogger.logger.error("Failed to create dialog")
+            ChalloLogger.logger.error("\(error.description)")
         })
+    }
+    
+    func createPrivateDialog(with email: String, didCreateDialog: @escaping ((ChatDialog) -> Void)) {
+        getUserByEmail(email) { [weak self] user in
+            self?.createPrivateDialog(with: NSNumber(value: user.id), didCreateDialog: didCreateDialog)
+        }
     }
     
     func sendMessage(messageBody: String, dialogId: String, willSendMessage: ((ChatMessage) -> Void)?,
@@ -124,4 +144,9 @@ class QuickBloxChatDialogService: ChatDialogService {
             
         })
     }
+    
+    func getDialogWithChateeEmail(_ chateeEmail: String) -> ChatDialog? {
+        chatDialogRepository.getAll().first(where: { $0.chateeEmail == chateeEmail })
+    }
+
 }
