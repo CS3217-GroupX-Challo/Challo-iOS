@@ -32,9 +32,7 @@ class ChatInteractor: NSObject, InteractorProtocol {
             login()
             return
         }
-        chatService.connectToChatServer(chatUserId: chatUserId, password: userState.userId) { [weak self] _, _ in
-            self?.getDialogs()
-        }
+        chatService.connectToChatServer(chatUserId: chatUserId, password: userState.userId)
     }
     
     private func setupUserStateHooks() {
@@ -71,7 +69,6 @@ class ChatInteractor: NSObject, InteractorProtocol {
         chatService.login(email: userState.email, password: userState.userId,
                           didLogin: { [weak self] _, isSuccessful in
                             self?.presenter.isChatAvailable = isSuccessful
-                            self?.getDialogs()
         })
     }
     
