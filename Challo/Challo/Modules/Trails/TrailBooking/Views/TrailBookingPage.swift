@@ -27,8 +27,6 @@ struct TrailBookingPage: View {
                         TrailBookingOptions(presenter: presenter,
                                             width: geometry.size.width,
                                             height: geometry.size.height * (2 / 3.0))
-                        TrailProfileDetails()
-                            .padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 50))
                     }
                     Spacer().frame(height: 100)
                 }

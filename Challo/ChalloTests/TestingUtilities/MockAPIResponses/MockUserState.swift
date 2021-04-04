@@ -9,6 +9,7 @@
 
 class MockUserState: UserStateProtocol {
 
+    var isNewUser: Bool = false
     var loggedIn = false 
     var email = ""
     var name = ""

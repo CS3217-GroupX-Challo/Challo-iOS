@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ItineraryMapRoutesRepository: Repository<MapRoute>, ItineraryMapRoutesRepositoryProtocol {
+class ItineraryMapRoutesRepository: Repository<UUID, MapRoute>, ItineraryMapRoutesRepositoryProtocol {
     func addRoute(route: MapRoute) {
         insert(route, key: route.id)
     }

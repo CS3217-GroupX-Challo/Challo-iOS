@@ -5,7 +5,9 @@
 //  Created by Shao Yi on 29/3/21.
 //
 
-protocol GuideRepositoryProtocol: Repository<Guide> {
+import Foundation
+
+protocol GuideRepositoryProtocol: Repository<UUID, Guide> {
     func fetchGuidesAndRefresh(didRefresh: (([Guide]) -> Void)?)
 }
 

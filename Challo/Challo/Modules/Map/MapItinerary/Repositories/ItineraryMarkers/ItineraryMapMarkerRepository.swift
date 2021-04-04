@@ -27,14 +27,13 @@ class ItineraryMapMarkerRepository: RepositoryProtocol {
     }
     
     @discardableResult
-    func insert(_ entity: MapMarker, key: CLLocationCoordinate2D?) -> CLLocationCoordinate2D? {
-        guard let coordinates = key,
-              !(repository.index(forKey: coordinates) != nil) else {
+    func insert(_ entity: MapMarker, key: CLLocationCoordinate2D) -> CLLocationCoordinate2D? {
+        guard !(repository.index(forKey: key) != nil) else {
             return nil
         }
         
-        repository[coordinates] = entity
-        return coordinates
+        repository[key] = entity
+        return key
     }
     
     @discardableResult

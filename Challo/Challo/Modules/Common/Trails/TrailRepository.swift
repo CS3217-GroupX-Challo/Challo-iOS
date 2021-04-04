@@ -5,7 +5,9 @@
 //  Created by Shao Yi on 29/3/21.
 //
 
-class TrailRepository: Repository<Trail>, TrailRepositoryProtocol {
+import Foundation
+
+class TrailRepository: Repository<UUID, Trail>, TrailRepositoryProtocol {
     let trailAPI: TrailAPIProtocol
     
     init(trailAPI: TrailAPIProtocol) {

@@ -18,7 +18,7 @@ struct TrailListingPage: View {
             } else {
                 ScrollView {
                     VStack(spacing: 30) {
-                        ForEach(presenter.trailListingCards.indices) { index in
+                        ForEach(presenter.trailListingCards.indices, id: \.self) { index in
                             NavigationLink(destination: presenter.trailProfilePage) {
                                 presenter.trailListingCards[index]
                             }.buttonStyle(PlainButtonStyle())

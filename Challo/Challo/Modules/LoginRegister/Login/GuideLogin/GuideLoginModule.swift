@@ -13,7 +13,6 @@ final class GuideLoginModule: ViperModuleProtocol {
     
     init(userState: UserStateProtocol) {
         self.userState = userState
-        print("here")
     }
     
     func assemble() -> (view: AnyView, presenter: GuideLoginPresenter) {

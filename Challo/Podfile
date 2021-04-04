@@ -12,7 +12,8 @@ target 'Challo' do
   pod 'GooglePlaces'
   pod 'Swinject'
   pod 'Google-Maps-iOS-Utils', '~> 3.8.0'
-  
+  pod 'QuickBlox'
+
   target 'ChalloTests' do
     inherit! :search_paths
     # Pods for testing

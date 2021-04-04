@@ -12,7 +12,7 @@ class TouristDashboardPresenterTests: XCTestCase {
 
     func testConstruct_nameObservablePropertyInitializedProperly() {
         let userState = MockUserState.createMockLoggedInUserState()
-        let presenter = TouristDashboardPresenter(userState: userState)
+        let presenter = TouristDashboardPresenter(userState: userState, sendMessageToGuide: { _, _, _ in })
         XCTAssertEqual(userState.name, presenter.name)
     }
 }
