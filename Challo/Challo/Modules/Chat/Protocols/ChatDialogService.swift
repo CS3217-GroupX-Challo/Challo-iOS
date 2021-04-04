@@ -13,7 +13,7 @@ protocol ChatDialogService: AnyObject {
     
     func getUnreadMessagesCount(dialogId: String) -> UInt
     
-    func getAllDialogs(limit: Int, skip: Int, callback: (([ChatDialog]) -> Void)?)
+    func getAllDialogs(callback: @escaping (([ChatDialog]) -> Void))
         
     func createPrivateDialog(with email: String, didCreateDialog: @escaping ((ChatDialog) -> Void))
     
@@ -26,10 +26,6 @@ protocol ChatDialogService: AnyObject {
 }
 
 extension ChatDialogService {
-    func getAllDialogs(limit: Int = 100, skip: Int = 0, callback: (([ChatDialog]) -> Void)? = nil) {
-        getAllDialogs(limit: limit, skip: skip, callback: callback)
-    }
-    
     func sendMessage(messageBody: String, dialogId: String, willSendMessage: ((ChatMessage) -> Void)? = nil,
                      didSendMessage: ((ChatMessage, Error?) -> Void)? = nil) {
         sendMessage(messageBody: messageBody, dialogId: dialogId,

@@ -19,7 +19,8 @@ class QuickBloxChatMessage: ChatMessage {
     
     var messageId: String {
         guard let id = chatMessage.id else {
-            fatalError("Received message without an id")
+            ChalloLogger.logger.error("Received message without an id")
+            return ""
         }
         return id
     }

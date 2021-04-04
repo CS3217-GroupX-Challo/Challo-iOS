@@ -89,9 +89,9 @@ extension QuickBloxChatDialogService {
         })
     }
     
-    func getAllDialogs(limit: Int, skip: Int, callback: (([ChatDialog]) -> Void)? = nil) {
+    func getAllDialogs(callback: @escaping (([ChatDialog]) -> Void)) {
         let extendedRequest = ["sort_asc": "last_message_date_sent"]
-        let responsePage = QBResponsePage(limit: limit, skip: skip)
+        let responsePage = QBResponsePage(limit: 1_000, skip: 0)
         QBRequest.dialogs(for: responsePage, extendedRequest: extendedRequest,
                           successBlock: { [weak self] _, dialogs, dialogsUsersIds, _ in
                             self?.didGetAllDialogs(dialogs, dialogsUsersIds, callback)

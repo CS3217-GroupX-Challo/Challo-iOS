@@ -52,4 +52,15 @@ class MockChatService: ChatService {
     var isConnecting: Bool {
         chatAuthService.isConnecting
     }
+    
+    func getAllDialogs(callback: @escaping (([ChatDialog]) -> Void)) {
+        chatDialogService.getAllDialogs(callback: callback)
+    }
+    
+    func sendMessage(messageBody: String, dialogId: String, willSendMessage: ((ChatMessage) -> Void)? = nil,
+                     didSendMessage: ((ChatMessage, Error?) -> Void)? = nil) {
+        chatDialogService.sendMessage(messageBody: messageBody, dialogId: dialogId,
+                                      willSendMessage: willSendMessage, didSendMessage: didSendMessage)
+    }
+
 }

@@ -55,8 +55,8 @@ class QuickBloxChatService: ChatService {
         chatDialogService.getUnreadMessagesCount(dialogId: dialogId)
     }
     
-    func getAllDialogs(limit: Int, skip: Int, callback: (([ChatDialog]) -> Void)?) {
-        chatDialogService.getAllDialogs(limit: limit, skip: skip, callback: callback)
+    func getAllDialogs(callback: @escaping (([ChatDialog]) -> Void)) {
+        chatDialogService.getAllDialogs(callback: callback)
     }
     
     func createPrivateDialog(with email: String, didCreateDialog: @escaping ((ChatDialog) -> Void)) {
