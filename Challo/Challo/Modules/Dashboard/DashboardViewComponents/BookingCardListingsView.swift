@@ -10,12 +10,13 @@ import SwiftUI
 struct BookingCardListingsView: View {
 
     var width: CGFloat
+    var emptyListMessage: String
     @Binding var bookings: [Booking]
 
     var body: some View {
         ScrollView(showsIndicators: false) {
             if bookings.isEmpty {
-                Text("You don't have any upcoming trips")
+                Text(emptyListMessage)
                     .foregroundColor(.themeForeground)
                     .padding()
             } else {

@@ -19,12 +19,21 @@ class MockBookingAPI: BookingAPI {
                    reviewAPI: MockReviewsAPI())
     }
 
-    override func getBookingsForTourist(id: UUID, callback: @escaping ([Booking]) -> Void) {
+    private func applyToBookings(callback: @escaping ([Booking]) -> Void) {
         let mockBookings = MockBookingAPIResponses.bookings
         callback(mockBookings)
     }
 
+    override func getBookingsForTourist(id: UUID, callback: @escaping ([Booking]) -> Void) {
+        applyToBookings(callback: callback)
+    }
+
+    override func getBookingsForGuide(id: UUID, callback: @escaping ([Booking]) -> Void) {
+        applyToBookings(callback: callback)
+    }
+ 
     override func makeBooking(bookingDetails: BookingDetails, callback: @escaping ((Bool, Error?) -> Void)) {
         callback(true, nil)
     }
+
 }
