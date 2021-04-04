@@ -8,7 +8,14 @@
 import SwiftUI
 
 /// A bar chart that plots `data` against `axisLabels`, and prints the values on top of the bar.
-/// `axisLabels` and `data` should be of the same length
+/// `axisLabels` and `data` should be of the **same length** and **non-empty**.
+/// Adapted from https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts
+/// - Parameters:
+///     - axisLabels: Array of axis values
+///     - data: Array of data arranged according to their axis values
+///     - barWidth: width of each bar
+///     - barUnitHeight: Unit height multiplied to a data value `1.0` to obtain the full bar height.
+///     - dataFormatSpecifier: Specifier to format data values as a string.
 struct BarChart: View {
 
     var axisLabels: [String]
