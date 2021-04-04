@@ -93,4 +93,7 @@ class CoreDataRepository<T: NSManagedObject>: RepositoryProtocol {
             logger.log("\(error.localizedDescription)")
         }
     }
+    
+    func clearAll() {
+    }
 }

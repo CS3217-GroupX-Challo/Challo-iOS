@@ -23,6 +23,8 @@ protocol ChatDialogService: AnyObject {
     func getDialogMessages(dialogId: String, didGetDialogMessages: @escaping (([ChatMessage]) -> Void))
     
     func getDialogWithChateeEmail(_ chateeEmail: String) -> ChatDialog?
+    
+    func clearDialogsFromRepository() 
 }
 
 extension ChatDialogService {

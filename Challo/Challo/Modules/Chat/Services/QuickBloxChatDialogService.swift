@@ -125,6 +125,10 @@ extension QuickBloxChatDialogService {
     func getDialogWithChateeEmail(_ chateeEmail: String) -> ChatDialog? {
         chatDialogRepository.getAll().first(where: { $0.chateeEmail == chateeEmail })
     }
+    
+    func clearDialogsFromRepository() {
+        chatDialogRepository.clearAll()
+    }
 }
 
 // MARK: Messages CRUD

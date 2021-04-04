@@ -54,6 +54,7 @@ class QuickBloxChatService: ChatService {
     func logout(didLogOut: (() -> Void)?) {
         let afterLogOut: (() -> Void) = { [weak self] in
             self?.chatUserId = nil
+            self?.clearDialogsFromRepository()
             didLogOut?()
         }
         chatAuthService.logout(didLogOut: afterLogOut)
@@ -83,6 +84,10 @@ class QuickBloxChatService: ChatService {
     
     func getDialogWithChateeEmail(_ chateeEmail: String) -> ChatDialog? {
         chatDialogService.getDialogWithChateeEmail(chateeEmail)
+    }
+    
+    func clearDialogsFromRepository() {
+        chatDialogService.clearDialogsFromRepository()
     }
 
 }
