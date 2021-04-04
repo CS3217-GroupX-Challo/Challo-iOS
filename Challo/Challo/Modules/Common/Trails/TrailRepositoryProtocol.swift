@@ -5,7 +5,9 @@
 //  Created by Shao Yi on 29/3/21.
 //
 
-protocol TrailRepositoryProtocol: Repository<Trail> {
+import Foundation
+
+protocol TrailRepositoryProtocol: Repository<UUID, Trail> {
     func fetchTrailsAndRefresh(didRefresh: (([Trail]) -> Void)?)
 }
 

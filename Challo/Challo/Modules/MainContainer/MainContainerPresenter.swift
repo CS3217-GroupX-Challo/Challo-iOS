@@ -21,7 +21,6 @@ class MainContainerPresenter: PresenterProtocol, ObservableObject {
 
     init(userState: UserStateProtocol) {
         self.userState = userState
-        initializeProfileTab()
     }
     
     func initializeProfileTab() {
@@ -48,6 +47,10 @@ class MainContainerPresenter: PresenterProtocol, ObservableObject {
         interactor.checkIfUserLoggedIn()
     }
     
+    func getHomePage() -> AnyView? {
+        router?.homePage
+    }
+    
     func getProfilePage() -> AnyView? {
         profileTab
     }
@@ -66,5 +69,13 @@ class MainContainerPresenter: PresenterProtocol, ObservableObject {
     
     func getSettingsPage() -> AnyView? {
         router?.settingsPage
+    }
+    
+    func getChatPage() -> AnyView? {
+        router?.chatPage
+    }
+    
+    func goToChatPage() {
+        tabSelection = 4
     }
 }

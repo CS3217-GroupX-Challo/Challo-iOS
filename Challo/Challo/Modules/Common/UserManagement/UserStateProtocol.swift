@@ -9,6 +9,7 @@ import Combine
 
 protocol UserStateProtocol: AnyObject {
 
+    var isNewUser: Bool { get set }
     var loggedIn: Bool { get set }
     var email: String { get set }
     var name: String { get set }
@@ -17,7 +18,7 @@ protocol UserStateProtocol: AnyObject {
     var certificate: UserCertificate? { get }
     var user: User? { get set }
     
-    func storeCertificate(certificate: UserCertificate)
+    func storeCertificate(certificate: UserCertificate, isNewUser: Bool)
 
     func logIn()
 
@@ -26,13 +27,16 @@ protocol UserStateProtocol: AnyObject {
 
 extension UserStateProtocol {
 
-    func storeCertificate(certificate: UserCertificate) {
-        loggedIn = true
+    func storeCertificate(certificate: UserCertificate, isNewUser: Bool = false) {
         name = certificate.name
         email = certificate.email
         token = certificate.token
         userId = certificate.userId
         user = certificate.user
+        self.isNewUser = isNewUser
+        // assignment of loggedIn is placed last as subscribers to the loggedIn state
+        // may read other attributes of userState
+        loggedIn = true
     }
 
     func logIn() {
@@ -46,5 +50,6 @@ extension UserStateProtocol {
         token = ""
         userId = ""
         user = nil
+        isNewUser = false
     }
 }

@@ -46,7 +46,7 @@ class CoreDataRepository<T: NSManagedObject>: RepositoryProtocol {
     }
     
     @discardableResult
-    func insert(_ entity: T, key: NSManagedObjectID?) -> NSManagedObjectID? {
+    func insert(_ entity: T, key: NSManagedObjectID) -> NSManagedObjectID? {
         do {
             try managedObjectContext.save()
             return key
@@ -85,9 +85,7 @@ class CoreDataRepository<T: NSManagedObject>: RepositoryProtocol {
     func upsert(entity: T, key: NSManagedObjectID) -> T {
         entity
     }
-}
-
-extension CoreDataRepository {
+    
     func commit() {
         do {
             try managedObjectContext.save()

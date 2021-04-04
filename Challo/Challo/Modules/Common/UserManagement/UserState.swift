@@ -12,6 +12,7 @@ import SwiftUI
  */
 class UserState: UserStateProtocol, ObservableObject {
     
+    @Published var isNewUser = false
     @Published var loggedIn = false {
         willSet { objectWillChange.send() }
         didSet { storedLoggedIn = loggedIn }
@@ -47,6 +48,7 @@ class UserState: UserStateProtocol, ObservableObject {
 
 internal class PreviewUserState: UserStateProtocol {
 
+    var isNewUser: Bool = false
     var loggedIn: Bool = false
     var email: String = ""
     var name: String = ""

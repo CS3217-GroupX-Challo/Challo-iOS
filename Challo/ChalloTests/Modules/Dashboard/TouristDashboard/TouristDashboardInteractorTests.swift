@@ -15,7 +15,7 @@ class TouristDashboardInteractorTests: XCTestCase {
         let userState = MockUserState.createMockLoggedInUserState()
         let interactor = TouristDashboardInteractor(bookingsRepository: MockBookingRepository(),
                                                     userState: userState)
-        let presenter = TouristDashboardPresenter(userState: userState)
+        let presenter = TouristDashboardPresenter(userState: userState, sendMessageToGuide: { _, _, _ in })
         interactor.presenter = presenter
         interactor.populateBookings()
         let expected = MockBookingAPIResponses.bookings.filter { $0.status != .Completed }

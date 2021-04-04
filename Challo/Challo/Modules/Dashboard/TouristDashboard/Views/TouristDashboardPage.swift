@@ -9,18 +9,21 @@ import SwiftUI
 
 struct TouristDashboardPage: View {
     
-    @ObservedObject var presenter: TouristDashboardPresenter
+    @EnvironmentObject var presenter: TouristDashboardPresenter
 
     var body: some View {
         VStack {
             GeometryReader { geometry in
-                VStack(alignment: .leading) {
-                    Header(title: presenter.name,
-                           subtitle: "Ready to begin your journey with us?",
-                           image: Image.mountainBackground)
-                        .frame(width: geometry.size.width,
-                               height: geometry.size.height * 0.15,
-                               alignment: .center)
+                VStack {
+                    HStack {
+                        Header(title: presenter.name,
+                               subtitle: "Ready to begin your journey with us?",
+                               image: Image.mountainBackground)
+                            .frame(width: geometry.size.width,
+                                   height: geometry.size.height * 0.15,
+                                   alignment: .center)
+                        Spacer()
+                    }
 
                     Image("avatar-image")
                         .resizable()
@@ -32,13 +35,12 @@ struct TouristDashboardPage: View {
                     Text("Upcoming bookings")
                         .font(.title2)
                         .bold()
-                        .padding(.leading, 40)
                     
                     if presenter.isLoading {
                         Loading(isAnimating: .constant(true), style: .large)
                     } else {
                         BookingCardListingsView(
-                            width: geometry.size.width * 0.6,
+                            width: geometry.size.width,
                             emptyListMessage: "You don't have any upcoming trips",
                             bookings: $presenter.upcomingBookings)
                     }

@@ -9,7 +9,7 @@ import Foundation
 
 class TouristDashboardInteractor: InteractorProtocol {
 
-    var presenter: TouristDashboardPresenter!
+    weak var presenter: TouristDashboardPresenter!
 
     let bookingsRepository: BookingRepositoryProtocol
     let userState: UserStateProtocol!

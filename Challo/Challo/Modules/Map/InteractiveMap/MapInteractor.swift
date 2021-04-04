@@ -5,14 +5,24 @@
 //  Created by Kester Ng on 20/3/21.
 //
 
+import Foundation
+
 class MapInteractor: InteractorProtocol {
-    var presenter: MapPresenter!
+    weak var presenter: MapPresenter!
     var mapStore: MapStore
     var placesAPI: PlacesAPIProtocol
+    var itineraryRepository: InteractiveMapItineraryRepositoryProtocol
     
     init(mapStore: MapStore, placesAPI: PlacesAPIProtocol) {
         self.mapStore = mapStore
         self.placesAPI = placesAPI
+        
+        let mapItineraries = mapStore.getAllMapItineraries()
+        var mapItinerariesDict = [UUID: MapItinerary]()
+        for mapItinerary in mapItineraries {
+            mapItinerariesDict[mapItinerary.id] = mapItinerary
+        }
+        self.itineraryRepository = InteractiveMapItineraryRepository(mapItinerariesDict)
     }
     
     func getPlaces(with name: String) {
@@ -23,5 +33,9 @@ class MapInteractor: InteractorProtocol {
             
             self.presenter.foundPlaces = places
         }
+    }
+    
+    func getMapItineraries() -> [MapItinerary] {
+        mapStore.getAllMapItineraries()
     }
 }

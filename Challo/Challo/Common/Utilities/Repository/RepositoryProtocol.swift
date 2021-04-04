@@ -35,7 +35,7 @@ protocol RepositoryProtocol {
     /// - Returns
     ///     - the key that unique identifies the stored entity,
     ///     - or nil if the given key is already found in the repository and store is not performed
-    func insert(_ entity: Entity, key: Key?) -> Key?
+    func insert(_ entity: Entity, key: Key) -> Key?
     
     /// Delete an entity by its unique key
     /// A delete operation fails when the key does not exist in the repository
@@ -55,4 +55,8 @@ protocol RepositoryProtocol {
     /// Updates an entity with if the key matches an existing entity
     /// Else, the given entity is inserted into the repository
     func upsert(entity: Entity, key: Key) -> Entity
+    
+    /// Commit any transcations in the repository
+    /// Units of works pattern, to reduce number of writes to repo
+    func commit()
 }

@@ -6,8 +6,9 @@
 //
 
 @testable import Challo
+import Foundation
 
-class MockGuideRepository: Repository<Guide>, GuideRepositoryProtocol {
+class MockGuideRepository: Repository<UUID, Guide>, GuideRepositoryProtocol {
     let guideAPI: GuideAPIProtocol
     
     init() {

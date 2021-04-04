@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol BookingRepositoryProtocol: Repository<Booking> {
+protocol BookingRepositoryProtocol: Repository<UUID, Booking> {
     func fetchBookingForTouristAndRefresh(id: UUID, didRefresh: (([Booking]) -> Void)?)
     func fetchBookingForGuideAndRefresh(id: UUID, didRefresh: (([Booking]) -> Void)?)
 }
