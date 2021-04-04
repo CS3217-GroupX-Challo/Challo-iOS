@@ -17,6 +17,10 @@ protocol ChatAuthService: AnyObject {
 }
 
 extension ChatAuthService {
+    func connectToChatServer(chatUserId: UInt, password: String, didConnect: ((UInt, Bool) -> Void)? = nil) {
+        connectToChatServer(chatUserId: chatUserId, password: password, didConnect: didConnect)
+    }
+
     func registerUser(email: String, password: String, fullName: String, didRegister: (() -> Void)? = nil) {
         registerUser(email: email, password: password, fullName: fullName, didRegister: didRegister)
     }
