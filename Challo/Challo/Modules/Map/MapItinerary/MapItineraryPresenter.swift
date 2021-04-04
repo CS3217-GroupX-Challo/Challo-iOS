@@ -127,7 +127,6 @@ extension MapItineraryPresenter: GMSMapViewDelegate {
         }
         
         if isViewSelected {
-            isViewSelected.toggle()
             currentSelectedMarker = nil
             return
         }

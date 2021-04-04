@@ -15,9 +15,8 @@ class QuickBloxChatDialogService: ChatDialogService {
     
     init(chatDialogRepository: ChatDialogRepositoryProtocol) {
         self.chatDialogRepository = chatDialogRepository
-        
     }
-    
+
     var dialogsSortedByLastMessageDates: [ChatDialog] {
         chatDialogRepository.getAll().sorted(by: { dialogA, dialogB in
             guard let lastMessageDateA = dialogA.lastMessageDate, let lastMessageDateB = dialogB.lastMessageDate else {
