@@ -40,7 +40,6 @@ extension Calendar {
         guard let dateInterval = dateInterval(of: .year, for: Date()) else {
             return months
         }
-        print(dateInterval)
         enumerateDates(startingAfter: dateInterval.start,
                        matching: DateComponents(day: 2),
                        matchingPolicy: .nextTime) { date, _, stop in
