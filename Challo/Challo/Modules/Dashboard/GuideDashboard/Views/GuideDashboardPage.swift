@@ -14,7 +14,7 @@ struct GuideDashboardPage: View {
     var body: some View {
         VStack {
             GeometryReader { geometry in
-                VStack(alignment: .leading) {
+                VStack {
                     Header(title: presenter.name,
                            subtitle: "Ready to meet new people?",
                            image: Image.mountainBackground)
