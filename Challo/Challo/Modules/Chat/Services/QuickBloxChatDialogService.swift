@@ -28,16 +28,27 @@ class QuickBloxChatDialogService: ChatDialogService {
         })
     }
     
+    func getUnreadMessagesCount(dialogId: String) -> UInt {
+        let dialog = getDialogFromId(dialogId)
+        return dialog.unreadMessagesCount
+    }
+    
+    private func getUserByEmail(_ email: String, didGetUserByEmail: @escaping ((QBUUser) -> Void)) {
+        QBRequest.user(withEmail: email, successBlock: { _, user in
+            didGetUserByEmail(user)
+        }, errorBlock: { _ in
+            ChalloLogger.logger.error("Failed to get user")
+        })
+    }
+}
+
+// MARK: Dialog CRUD
+extension QuickBloxChatDialogService {
     private func getDialogFromId(_ dialogId: String) -> ChatDialog {
         guard let dialog = chatDialogRepository.getByKey(dialogId) else {
             fatalError("dialogId is not found in repository")
         }
         return dialog
-    }
-    
-    func getUnreadMessagesCount(dialogId: String) -> UInt {
-        let dialog = getDialogFromId(dialogId)
-        return dialog.unreadMessagesCount
     }
     
     private func didGetDialogUsers(_ dialogs: [QBChatDialog], _ users: [QBUUser],
@@ -87,15 +98,7 @@ class QuickBloxChatDialogService: ChatDialogService {
         })
     }
     
-    private func getUserByEmail(_ email: String, didGetUserByEmail: @escaping ((QBUUser) -> Void)) {
-        QBRequest.user(withEmail: email, successBlock: { _, user in
-            didGetUserByEmail(user)
-        }, errorBlock: { _ in
-            ChalloLogger.logger.error("Failed to get user")
-        })
-    }
-    
-    func createPrivateDialog(with otherUserId: NSNumber, didCreateDialog: @escaping ((ChatDialog) -> Void)) {
+    private func createPrivateDialog(with otherUserId: NSNumber, didCreateDialog: @escaping ((ChatDialog) -> Void)) {
         let dialog = QBChatDialog(dialogID: nil, type: .private)
         dialog.occupantIDs = [otherUserId]
         QBRequest.createDialog(dialog, successBlock: { [weak self] _, dialog in
@@ -119,6 +122,13 @@ class QuickBloxChatDialogService: ChatDialogService {
         }
     }
     
+    func getDialogWithChateeEmail(_ chateeEmail: String) -> ChatDialog? {
+        chatDialogRepository.getAll().first(where: { $0.chateeEmail == chateeEmail })
+    }
+}
+
+// MARK: Messages CRUD
+extension QuickBloxChatDialogService {
     func sendMessage(messageBody: String, dialogId: String, willSendMessage: ((ChatMessage) -> Void)?,
                      didSendMessage: ((ChatMessage, Error?) -> Void)?) {
         let dialog = getDialogFromId(dialogId)
@@ -128,7 +138,7 @@ class QuickBloxChatDialogService: ChatDialogService {
     private func onGetDialogMessagesSuccess(messages: [QBChatMessage],
                                             didGetDialogMessages: @escaping (([ChatMessage]) -> Void)) {
         let wrappedMessages = messages.map { QuickBloxChatMessage(chatMessage: $0,
-                                                                  isSentByCurrentUser: $0.senderID == chatUserId) 
+                                                                  isSentByCurrentUser: $0.senderID == chatUserId)
         }
         didGetDialogMessages(wrappedMessages)
     }
@@ -144,9 +154,4 @@ class QuickBloxChatDialogService: ChatDialogService {
             
         })
     }
-    
-    func getDialogWithChateeEmail(_ chateeEmail: String) -> ChatDialog? {
-        chatDialogRepository.getAll().first(where: { $0.chateeEmail == chateeEmail })
-    }
-
 }

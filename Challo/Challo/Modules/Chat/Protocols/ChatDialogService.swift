@@ -14,9 +14,7 @@ protocol ChatDialogService: AnyObject {
     func getUnreadMessagesCount(dialogId: String) -> UInt
     
     func getAllDialogs(limit: Int, skip: Int, callback: (([ChatDialog]) -> Void)?)
-    
-    func createPrivateDialog(with otherUserId: NSNumber, didCreateDialog: @escaping ((ChatDialog) -> Void))
-    
+        
     func createPrivateDialog(with email: String, didCreateDialog: @escaping ((ChatDialog) -> Void))
     
     func sendMessage(messageBody: String, dialogId: String, willSendMessage: ((ChatMessage) -> Void)?,

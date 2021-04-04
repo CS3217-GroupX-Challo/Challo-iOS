@@ -17,6 +17,10 @@ class QuickBloxChatService: ChatService {
         }
     }
     
+    var isConnecting: Bool {
+        chatAuthService.isConnecting
+    }
+    
     init(chatAuthService: ChatAuthService,
          chatDialogService: ChatDialogService) {
         self.chatAuthService = chatAuthService
@@ -27,12 +31,12 @@ class QuickBloxChatService: ChatService {
         chatAuthService.connectToChatServer(chatUserId: chatUserId, password: password, didConnect: didConnect)
     }
     
-    func login(email: String, password: String, didLogin: ((UInt, Bool) -> Void)?) {
+    func loginAndConnect(email: String, password: String, didLogin: ((UInt, Bool) -> Void)?) {
         let didLoginUser: ((UInt, Bool) -> Void) = { [weak self] userId, isSuccessful in
             self?.chatUserId = userId
             didLogin?(userId, isSuccessful)
         }
-        chatAuthService.login(email: email, password: password, didLogin: didLoginUser)
+        chatAuthService.loginAndConnect(email: email, password: password, didLogin: didLoginUser)
     }
     
     func registerUser(email: String, password: String, fullName: String, didRegister: (() -> Void)? = nil) {
@@ -53,10 +57,6 @@ class QuickBloxChatService: ChatService {
     
     func getAllDialogs(limit: Int, skip: Int, callback: (([ChatDialog]) -> Void)?) {
         chatDialogService.getAllDialogs(limit: limit, skip: skip, callback: callback)
-    }
-    
-    func createPrivateDialog(with otherUserId: NSNumber, didCreateDialog: @escaping ((ChatDialog) -> Void)) {
-        chatDialogService.createPrivateDialog(with: otherUserId, didCreateDialog: didCreateDialog)
     }
     
     func createPrivateDialog(with email: String, didCreateDialog: @escaping ((ChatDialog) -> Void)) {

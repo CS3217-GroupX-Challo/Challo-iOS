@@ -14,7 +14,7 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     // Chat is available when user has connected to the chat server
     @Published var isChatAvailable: Bool = false
     @Published var isLoadingMessages: Bool = false
-    @Published var isLoadingDialogs: Bool = true
+    @Published var isLoadingDialogs: Bool = false
     
     @Published var messages: [ChatMessage] = []
     @Published var currentOpenDialogId: String?
@@ -32,6 +32,10 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     // Chat can only be displayed when user is logged in
     var canDisplayChat: Bool {
         interactor.canDisplayChat
+    }
+    
+    var isLoadingChat: Bool {
+        isLoadingDialogs || interactor.isConnectingToChatServer
     }
     
     private func resetUnreadMessagesCountForCurrentDialog() {
@@ -63,7 +67,6 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
             return
         }
         guard isChatAvailable else {
-            interactor.connectToChatServer()
             return
         }
         interactor.getDialogs()
@@ -80,7 +83,7 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     }
 }
 
-// UI Rendering Logic
+// MARK: UI Rendering Logic
 extension ChatPresenter {
     private func makeMessageViewFromMessageIndex(_ index: Int, shouldDisplayAvatar: Bool = false) -> ChatMessageView {
         let message = messages[index]

@@ -27,12 +27,8 @@ class ChatInteractor: NSObject, InteractorProtocol {
         userState.loggedIn
     }
     
-    func connectToChatServer() {
-        guard let chatUserId = chatService.chatUserId else {
-            login()
-            return
-        }
-        chatService.connectToChatServer(chatUserId: chatUserId, password: userState.userId)
+    var isConnectingToChatServer: Bool {
+        chatService.isConnecting
     }
     
     private func setupUserStateHooks() {
@@ -55,20 +51,23 @@ class ChatInteractor: NSObject, InteractorProtocol {
             chatService.logout()
             return
         }
-        if userState.isNewUser {
-            chatService.registerUser(email: userState.email, password: userState.userId,
-                                     fullName: userState.name) { [weak self] in
-                self?.login()
-            }
-        } else {
-            login()
+        guard userState.isNewUser else {
+            loginAndConnect()
+            return
+        }
+        chatService.registerUser(email: userState.email, password: userState.userId,
+                                 fullName: userState.name) { [weak self] in
+            self?.loginAndConnect()
         }
     }
     
-    private func login() {
-        chatService.login(email: userState.email, password: userState.userId,
-                          didLogin: { [weak self] _, isSuccessful in
-                            self?.presenter.isChatAvailable = isSuccessful
+    private func loginAndConnect() {
+        chatService.loginAndConnect(email: userState.email, password: userState.userId,
+                                    didLogin: { [weak self] _, isSuccessful in
+                                        self?.presenter.isChatAvailable = isSuccessful
+                                        if isSuccessful {
+                                            self?.getDialogs()
+                                        }
         })
     }
     
