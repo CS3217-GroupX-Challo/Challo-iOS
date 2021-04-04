@@ -13,15 +13,21 @@ class TouristDashboardPresenter: PresenterProtocol {
     var interactor: TouristDashboardInteractor!
     unowned let userState: UserStateProtocol!
 
+    let sendMessageToGuide: ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)
+    
     @Published var isLoading = false
     
     @Published var upcomingBookings: [Booking] = []
     
     @Published var name: String
     
-    init(userState: UserStateProtocol) {
+    @Published var messageText: String = ""
+    
+    init(userState: UserStateProtocol,
+         sendMessageToGuide: @escaping ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)) {
         self.userState = userState
         self.name = userState.name
+        self.sendMessageToGuide = sendMessageToGuide
     }
 
     func refresh() {
@@ -43,5 +49,9 @@ class TouristDashboardPresenter: PresenterProtocol {
         bookings.filter {
             $0.status == .Paid || $0.status == .Pending
         }
+    }
+    
+    func onTapSendMessage(guide: Guide) {
+        sendMessageToGuide(guide.email, guide.userId, messageText)
     }
 }

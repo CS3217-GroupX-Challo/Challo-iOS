@@ -26,7 +26,7 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     var filteredDialogs: [ChatDialog] {
         dialogs.filter({ dialogSearchBarText.isEmpty
                         ? true
-                        : $0.chateeName.lowercased().contains(dialogSearchBarText.lowercased()) })
+                        : ($0.chateeName ?? "").lowercased().contains(dialogSearchBarText.lowercased()) })
     }
     
     // Chat can only be displayed when user is logged in

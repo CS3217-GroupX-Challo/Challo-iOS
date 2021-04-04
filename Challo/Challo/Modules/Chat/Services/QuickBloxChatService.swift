@@ -55,8 +55,12 @@ class QuickBloxChatService: ChatService {
         chatDialogService.getAllDialogs(limit: limit, skip: skip, callback: callback)
     }
     
-    func createPrivateDialog(with otherUserId: NSNumber) {
-        chatDialogService.createPrivateDialog(with: otherUserId)
+    func createPrivateDialog(with otherUserId: NSNumber, didCreateDialog: @escaping ((ChatDialog) -> Void)) {
+        chatDialogService.createPrivateDialog(with: otherUserId, didCreateDialog: didCreateDialog)
+    }
+    
+    func createPrivateDialog(with email: String, didCreateDialog: @escaping ((ChatDialog) -> Void)) {
+        chatDialogService.createPrivateDialog(with: email, didCreateDialog: didCreateDialog)
     }
     
     func sendMessage(messageBody: String, dialogId: String, willSendMessage: ((ChatMessage) -> Void)?,
@@ -68,4 +72,9 @@ class QuickBloxChatService: ChatService {
     func getDialogMessages(dialogId: String, didGetDialogMessages: @escaping (([ChatMessage]) -> Void)) {
         chatDialogService.getDialogMessages(dialogId: dialogId, didGetDialogMessages: didGetDialogMessages)
     }
+    
+    func getDialogWithChateeEmail(_ chateeEmail: String) -> ChatDialog? {
+        chatDialogService.getDialogWithChateeEmail(chateeEmail)
+    }
+
 }

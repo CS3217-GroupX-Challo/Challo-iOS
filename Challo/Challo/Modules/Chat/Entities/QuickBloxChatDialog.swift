@@ -27,8 +27,12 @@ class QuickBloxChatDialog: ChatDialog {
         chatDialog.unreadMessagesCount
     }
     
-    var chateeName: String {
-        occupant.fullName ?? ""
+    var chateeEmail: String? {
+        occupant.email
+    }
+    
+    var chateeName: String? {
+        occupant.fullName
     }
     
     var chateeId: UInt {

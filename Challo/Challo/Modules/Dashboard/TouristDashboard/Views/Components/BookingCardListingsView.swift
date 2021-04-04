@@ -21,9 +21,9 @@ struct BookingCardListingsView: View {
             } else {
                 VStack {
                     ForEach(bookings.indices) { index in
-                        BookingCard(booking: bookings[index], width: width)
+                        BookingCard(booking: bookings[index], width: width / 2)
                     }
-                }
+                }.padding()
             }
         }
     }

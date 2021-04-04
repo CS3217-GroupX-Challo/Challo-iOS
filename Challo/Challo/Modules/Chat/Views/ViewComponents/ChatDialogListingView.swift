@@ -19,11 +19,11 @@ struct ChatDialogListingView: View {
                 ChatDialogSearchBar()
                 ScrollView {
                     ForEach(presenter.filteredDialogs, id: \.chateeId) { dialog in
-                        NavigationLink(destination: ChatMessageList(chateeName: dialog.chateeName)
+                        NavigationLink(destination: ChatMessageList(chateeName: dialog.chateeName ?? "")
                                         .environmentObject(presenter)) {
                             VStack {
                                 ChatDialogView(dialogId: dialog.dialogId,
-                                               chateeName: dialog.chateeName,
+                                               chateeName: dialog.chateeName ?? "",
                                                lastMessageDate: dialog.lastMessageDate,
                                                lastMessageText: dialog.lastMessageText,
                                                unreadMessagesCount: dialog.unreadMessagesCount)

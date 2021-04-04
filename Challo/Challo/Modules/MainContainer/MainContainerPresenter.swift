@@ -74,4 +74,8 @@ class MainContainerPresenter: PresenterProtocol, ObservableObject {
     func getChatPage() -> AnyView? {
         router?.chatPage
     }
+    
+    func goToChatPage() {
+        tabSelection = 4
+    }
 }

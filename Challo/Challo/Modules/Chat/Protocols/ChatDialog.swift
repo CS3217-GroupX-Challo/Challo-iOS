@@ -15,7 +15,8 @@ import Foundation
 protocol ChatDialog: AnyObject {
     var dialogId: String { get }
     var unreadMessagesCount: UInt { get }
-    var chateeName: String { get }
+    var chateeEmail: String? { get }
+    var chateeName: String? { get }
     var chateeId: UInt { get }
     var lastMessageDate: Date? { get }
     var lastMessageText: String { get }

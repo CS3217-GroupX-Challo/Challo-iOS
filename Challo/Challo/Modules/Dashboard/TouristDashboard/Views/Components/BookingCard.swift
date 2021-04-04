@@ -9,6 +9,8 @@ import SwiftUI
 
 struct BookingCard: View {
 
+    @EnvironmentObject var presenter: TouristDashboardPresenter
+
     var booking: Booking
     var width: CGFloat
 
@@ -22,7 +24,7 @@ struct BookingCard: View {
             Text(label)
                 .font(.subheadline)
                 .foregroundColor(.themeAccent)
-                .frame(maxWidth: width / 4)
+                .frame(maxWidth: width / 4, maxHeight: 50)
         }.frame(width: width / 3)
     }
     
@@ -31,7 +33,7 @@ struct BookingCard: View {
             Image.mountainBackground
                 .resizable()
                 .scaledToFit()
-                .frame(width: width * 7 / 8)
+                .frame(width: 300)
                 .cornerRadius(10)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 20)
@@ -43,7 +45,7 @@ struct BookingCard: View {
                 makeDetail(image: "person.crop.circle",
                            label: booking.guide.name ?? "")
             }
-            Button(action: { print("hello") }) {
+            NavigationLink(destination: ContactGuidePage(guide: booking.guide).environmentObject(presenter)) {
                 Text("Contact Guide").bold()
             }.buttonStyle(BorderedButtonStyle(borderColor: .themeTertiary, foregroundColor: .themeTertiary))
             .padding()
@@ -57,6 +59,7 @@ struct BookingCard: View {
         )
         .frame(width: width,
                alignment: .center)
+        .padding()
         
     }
 }

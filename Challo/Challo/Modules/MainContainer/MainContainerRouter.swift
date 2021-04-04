@@ -13,14 +13,14 @@ class MainContainerRouter: RouterProtocol {
     let userState: UserStateProtocol
     var apiContainer = APIContainer()
     var repositoryContainer: RepositoryContainer
-    var profilePage: AnyView
+    var profilePage: AnyView!
     var trailsPage: AnyView
     var guidesPage: AnyView
     var mapsPage: AnyView
     var settingsPage: AnyView
     var loginPage: AnyView
     var homePage: AnyView
-    var chatPage: AnyView
+    var chatPage: AnyView!
     
     init(userState: UserStateProtocol) {
         self.userState = userState
@@ -45,6 +45,7 @@ class MainContainerRouter: RouterProtocol {
             fatalError("Failed to resolve placesAPI in MainContainer")
         }
 
+        homePage = AnyView(Text("Homepage"))
         loginPage = TouristLoginModule(userState: userState).assemble().view
         trailsPage = TrailListingModule(trailRepository: trailRepository,
                                         guideRepository: guideRepository,
@@ -54,16 +55,38 @@ class MainContainerRouter: RouterProtocol {
         guidesPage = GuidesListingModule(guideRepository: guideRepository, reviewAPI: reviewAPI).assemble().view
         mapsPage = MapModule(placesAPI: placesAPI).assemble().view
         settingsPage = SettingsModule(userState: userState).assemble().view
-        profilePage = TouristDashboardModule(userState: userState, bookingsRepository: bookingRepository)
-            .assemble().view
-        
+        setupChatAndProfilePage(bookingRepository)
+    }
+    
+    private func setupChatAndProfilePage(_ bookingRepository: BookingRepositoryProtocol) {
         let chatDialogRepository = ChatDialogRepository()
         let chatService = QuickBloxChatService(chatAuthService: QuickBloxChatAuthService(),
                                                chatDialogService: QuickBloxChatDialogService(chatDialogRepository:
                                                                                                 chatDialogRepository))
         chatPage = ChatModule(chatService: chatService, userState: userState).assemble().view
         
-        homePage = AnyView(Text("Homepage"))
+        profilePage = TouristDashboardModule(userState: userState, bookingsRepository: bookingRepository,
+                                             sendMessageToGuide: { [weak self] guideEmail, _, messageText in
+                                                self?.sendMessageToGuide(guideEmail: guideEmail,
+                                                                         messageText: messageText,
+                                                                         chatService: chatService)
+                                             }).assemble().view
+    }
+    
+    private func sendMessageToGuide(guideEmail: String, messageText: String, chatService: ChatService) {
+        defer {
+            presenter.goToChatPage()
+        }
+        guard let dialog = chatService.getDialogWithChateeEmail(guideEmail) else {
+            chatService.createPrivateDialog(with: guideEmail) { dialog in
+                chatService.sendMessage(messageBody: messageText,
+                                        dialogId: dialog.dialogId)
+            }
+            return
+        }
+        chatService.sendMessage(messageBody: messageText,
+                                dialogId: dialog.dialogId)
+        
     }
 
 }
