@@ -7,9 +7,17 @@
 
 import Foundation
 
-protocol EarningSubPresenter: AnyObject {
+protocol EarningSubPresenter: ObservableObject {
 
     var interactor: GuideDashboardInteractor! { get set }
+
+    var loading: Bool { get }
+
+    var dateRange: [Date] { get }
+
+    var history: [Double] { get }
+
+    var totalEarnings: Double { get }
 
     func refresh()
 

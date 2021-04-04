@@ -11,31 +11,34 @@ struct YearEarningView: View {
 
     typealias Formatter = CustomDateFormatter
 
-    private var presenter: YearEarningsPresenter
+    @ObservedObject private var presenter: YearEarningsPresenter
 
     init(superPresenter: GuideDashboardPresenter) {
         presenter = superPresenter.yearSubPresenter
-        presenter.refresh()
     }
 
     var body: some View {
         VStack {
-            Card {
-                Text("Total earnings of the year:")
+            if presenter.loading {
+                Loading(isAnimating: .constant(true), style: .large)
+            } else {
+                Card {
+                    Text("Total earnings of the year:")
 
-                Text("$\(presenter.earningsOfYear, specifier: "%.2f")")
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16).stroke(Color.themeSecondary)
-                    )
+                    Text("$\(presenter.totalEarnings, specifier: "%.2f")")
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16).stroke(Color.themeSecondary)
+                        )
 
+                }
+
+                Divider()
+
+                BarChart(axisLabels: presenter.dateRange
+                            .map { Formatter.displayDateWithCustomFormat($0, template: "MMM") },
+                         data: presenter.history)
             }
-
-            Divider()
-
-            BarChart(axisLabels: presenter.dateRange
-                        .map { Formatter.displayDateWithCustomFormat($0, template: "MMM") },
-                     data: presenter.history)
 
         }
         .padding()

@@ -11,7 +11,8 @@ class WeekEarningsPresenter: EarningSubPresenter {
 
     weak var interactor: GuideDashboardInteractor!
 
-    @Published var earningsOfWeek = 0.0
+    @Published private(set) var loading = true
+    @Published var totalEarnings = 0.0
     @Published var history = [Double]()
     @Published var dateRange = Calendar.current.daysInCurrentWeek
 
@@ -23,7 +24,8 @@ class WeekEarningsPresenter: EarningSubPresenter {
                 .reduce(0.0, { $0 + $1.fee })
             history.append(earningsOnDate)
         }
-        earningsOfWeek = history.reduce(0, { $0 + $1 })
+        totalEarnings = history.reduce(0, { $0 + $1 })
+        loading = false
     }
 
 }
