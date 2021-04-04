@@ -73,11 +73,15 @@ class MainContainerRouter: RouterProtocol {
                                              }).assemble().view
     }
     
-    private func sendMessageToGuideAfterConnected(guideEmail: String, messageText: String, chatService: ChatService) {
+    private func sendMessageToGuideAfterConnected(guideEmail: String, messageText: String, chatService: ChatService,
+                                                  didSendMessage: @escaping (() -> Void)) {
         guard let dialog = chatService.getDialogWithChateeEmail(guideEmail) else {
             chatService.createPrivateDialog(with: guideEmail) { dialog in
                 chatService.sendMessage(messageBody: messageText,
-                                        dialogId: dialog.dialogId)
+                                        dialogId: dialog.dialogId,
+                                        willSendMessage: nil) { _, _ in
+                    didSendMessage()
+                }
             }
             return
         }
@@ -85,7 +89,8 @@ class MainContainerRouter: RouterProtocol {
                                 dialogId: dialog.dialogId)
     }
     
-    private func connectThenSend(guideEmail: String, messageText: String, chatService: ChatService) {
+    private func connectThenSend(guideEmail: String, messageText: String, chatService: ChatService,
+                                 didSendMessage: @escaping (() -> Void)) {
         guard let chatUserId = chatService.chatUserId else {
             fatalError("Attempting to connect when not logged in")
         }
@@ -95,19 +100,21 @@ class MainContainerRouter: RouterProtocol {
                 return
             }
             self?.sendMessageToGuideAfterConnected(guideEmail: guideEmail, messageText: messageText,
-                                                   chatService: chatService)
+                                                   chatService: chatService, didSendMessage: didSendMessage)
         }
     }
     
     private func sendMessageToGuide(guideEmail: String, messageText: String, chatService: ChatService) {
-        defer {
-            presenter.goToChatPage()
+        let didSendMessage: (() -> Void) = { [weak self] in
+            self?.presenter.goToChatPage()
         }
         guard !chatService.isConnected else {
-            sendMessageToGuideAfterConnected(guideEmail: guideEmail, messageText: messageText, chatService: chatService)
+            sendMessageToGuideAfterConnected(guideEmail: guideEmail, messageText: messageText, chatService: chatService,
+                                             didSendMessage: didSendMessage)
             return
         }
-        connectThenSend(guideEmail: guideEmail, messageText: messageText, chatService: chatService)
+        connectThenSend(guideEmail: guideEmail, messageText: messageText, chatService: chatService,
+                        didSendMessage: didSendMessage)
     }
 
 }
