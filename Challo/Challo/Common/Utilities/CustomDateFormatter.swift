@@ -41,5 +41,13 @@ struct CustomDateFormatter {
         formatter.dateFormat = dateFormatter
         return formatter.string(from: date)
     }
+    
+    private static let datetimeFormatter = DateFormatter.dateFormat(fromTemplate: "dd-MM-yyyy, hh:mm",
+                                                                    options: 0, locale: Locale(identifier: "en-SG"))
+    
+    static func displayFriendlyDateTime(_ date: Date) -> String {
+        formatter.dateFormat = datetimeFormatter
+        return formatter.string(from: date)
+    }
 
 }

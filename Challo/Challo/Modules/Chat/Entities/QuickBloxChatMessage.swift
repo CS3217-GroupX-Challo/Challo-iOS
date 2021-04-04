@@ -35,4 +35,8 @@ class QuickBloxChatMessage: ChatMessage {
     var recipientId: UInt {
         chatMessage.recipientID
     }
+    
+    var dateSent: Date? {
+        chatMessage.dateSent
+    }
 }
