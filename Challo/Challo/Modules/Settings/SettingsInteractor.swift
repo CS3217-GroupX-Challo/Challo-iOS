@@ -6,7 +6,7 @@
 //
 
 class SettingsInteractor: InteractorProtocol {
-    var presenter: SettingsPresenter!
+    weak var presenter: SettingsPresenter!
     private weak var userState: UserStateProtocol!
 
     init(userState: UserStateProtocol) {

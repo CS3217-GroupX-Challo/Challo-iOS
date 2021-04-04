@@ -7,5 +7,5 @@
 
 class TouristDashboardRouter: RouterProtocol {
 
-    var presenter: TouristDashboardPresenter!
+    weak var presenter: TouristDashboardPresenter!
 }
