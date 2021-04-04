@@ -14,6 +14,11 @@ class MapMarkerRepository: MapMarkerRepositoryInterface {
     private var data: [NSManagedObjectID: MapMarker]
     private var repository: CoreDataRepository<Marker>
     
+    init(data: [NSManagedObjectID: MapMarker], repository: CoreDataRepository<Marker>) {
+        self.data = data
+        self.repository = repository
+    }
+    
     init() {
         self.data = [NSManagedObjectID: MapMarker]()
         self.repository = CoreDataRepository<Marker>(managedObjectContext: CoreDataContainer.managedObjectContext)

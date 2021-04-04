@@ -13,8 +13,7 @@ class MapModuleTests: XCTestCase {
     typealias JSON = NetworkManager.JSON
     
     func testAssemble_returnsPresenterWithCorrectPropertiesAndView() {
-        let (view, presenter) = MapModule(placesAPI: MockPlacesAPI(parser: MockPlacesAPIParser(),
-                                                                   networkManager: MockNetworkManager(json: JSON())))
+        let (view, presenter) = MapModule(placesAPI: MockPlacesAPI())
             .assemble()
         XCTAssertNotNil(view, "Wrong view returned")
         XCTAssertNotNil(presenter, "Wrong presenter returned")

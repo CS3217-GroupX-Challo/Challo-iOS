@@ -13,6 +13,12 @@ class MapRouteRepository: MapRouteRepositoryInterface {
     private var repository: CoreDataRepository<Route>
     private var mapMarkerRepository: CoreDataRepository<Marker>
     
+    init(repository: CoreDataRepository<Route>, mapMarkerRepository: CoreDataRepository<Marker>) {
+        self.data = [NSManagedObjectID: MapRoute]()
+        self.repository = repository
+        self.mapMarkerRepository = mapMarkerRepository
+    }
+    
     init() {
         self.data = [NSManagedObjectID: MapRoute]()
         self.repository = CoreDataRepository<Route>(managedObjectContext: CoreDataContainer.managedObjectContext)

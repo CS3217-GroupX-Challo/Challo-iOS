@@ -55,4 +55,7 @@ class Repository<T>: RepositoryProtocol {
         repository[key] = entity
         return entity
     }
+    
+    func commit() {
+    }
 }
