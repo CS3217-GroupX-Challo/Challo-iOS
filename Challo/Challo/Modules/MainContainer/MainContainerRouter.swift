@@ -45,12 +45,8 @@ class MainContainerRouter: RouterProtocol {
             fatalError("Failed to resolve placesAPI in MainContainer")
         }
 
-<<<<<<< HEAD
-        loginPage = GuideLoginModule(userState: userState).assemble().view
-=======
         homePage = AnyView(Text("Homepage"))
         loginPage = TouristLoginModule(userState: userState).assemble().view
->>>>>>> master
         trailsPage = TrailListingModule(trailRepository: trailRepository,
                                         guideRepository: guideRepository,
                                         bookingAPI: bookingAPI,
@@ -59,10 +55,6 @@ class MainContainerRouter: RouterProtocol {
         guidesPage = GuidesListingModule(guideRepository: guideRepository, reviewAPI: reviewAPI).assemble().view
         mapsPage = MapModule(placesAPI: placesAPI).assemble().view
         settingsPage = SettingsModule(userState: userState).assemble().view
-<<<<<<< HEAD
-        profilePage = GuideDashboardModule(userState: userState, bookingRepository: bookingRepository)
-            .assemble().view
-=======
         setupChatAndProfilePage(bookingRepository)
     }
     
@@ -116,7 +108,6 @@ class MainContainerRouter: RouterProtocol {
             return
         }
         connectThenSend(guideEmail: guideEmail, messageText: messageText, chatService: chatService)
->>>>>>> master
     }
 
 }
