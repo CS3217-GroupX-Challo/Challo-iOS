@@ -16,7 +16,7 @@ class MapInteractor: InteractorProtocol {
     init(mapStore: MapStore, placesAPI: PlacesAPIProtocol) {
         self.mapStore = mapStore
         self.placesAPI = placesAPI
-                
+        
         let mapItineraries = mapStore.getAllMapItineraries()
         var mapItinerariesDict = [UUID: MapItinerary]()
         for mapItinerary in mapItineraries {

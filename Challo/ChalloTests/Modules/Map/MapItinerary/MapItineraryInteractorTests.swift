@@ -111,26 +111,4 @@ class MapItineraryInteractorTests: XCTestCase {
         XCTAssertEqual(newMarker, interactor.getMarkerPresent(at: oldPosition),
                        "New marker should be added to position")
     }
-
-    func testSaveItinerary_newMarkersAddedSavedInMapStore() {
-        let positionOne = CLLocationCoordinate2D(latitude: 10, longitude: -12)
-        let positionTwo = CLLocationCoordinate2D(latitude: -123, longitude: 12)
-        let markerOne = MapMarker(id: UUID(),
-                                  position: positionOne,
-                                  date: Date(),
-                                  comments: "This is marker one")
-        let markerTwo = MapMarker(id: UUID(),
-                                  position: positionTwo,
-                                  date: Date(),
-                                  comments: "This is marker two")
-        
-        interactor.addMarker(mapMarker: markerOne)
-        interactor.addMarker(mapMarker: markerTwo)
-        
-        interactor.saveItinerary(title: "Test title")
-        
-        let storeMarkers = mapStore.getAllMapMarkers()
-        XCTAssertTrue(storeMarkers.contains(markerOne), "Store should contain markerOne after saving")
-        XCTAssertTrue(storeMarkers.contains(markerTwo), "Store should contain markerTwo after saving")
-    }
 }
