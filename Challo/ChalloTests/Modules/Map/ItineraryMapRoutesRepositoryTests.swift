@@ -14,7 +14,7 @@ class ItineraryMapRoutesRepositoryTests: XCTestCase {
 
     func testGetRoutes_noRoutes_returnsEmptyList() {
         let repo = ItineraryMapRoutesRepository()
-        XCTAssertTrue(repo.getRoutes().isEmpty)
+        XCTAssertTrue(repo.getRoutes().isEmpty, "Repository should be empty")
     }
 
     func testAddRouteThenGetRoutes_addOneRoute_routeAdded() {
@@ -23,7 +23,7 @@ class ItineraryMapRoutesRepositoryTests: XCTestCase {
         repo.addRoute(route: routeToAdd)
         let retrievedRoutes = repo.getRoutes()
         XCTAssertEqual(1, retrievedRoutes.count)
-        XCTAssertEqual(routeToAdd, retrievedRoutes[0])
+        XCTAssertEqual(routeToAdd, retrievedRoutes[0], "Route should be added and retrievable")
     }
 
     func testAddRouteThenGetRoutes_addMultipleRoute_routesAllAdded() {
@@ -35,7 +35,7 @@ class ItineraryMapRoutesRepositoryTests: XCTestCase {
         let retrievedRoutes = repo.getRoutes()
         XCTAssertEqual(routesToAdd.count, retrievedRoutes.count)
         routesToAdd.forEach {
-            XCTAssertTrue(retrievedRoutes.contains($0))
+            XCTAssertTrue(retrievedRoutes.contains($0), "All routes should be added and retrievable")
         }
     }
 }

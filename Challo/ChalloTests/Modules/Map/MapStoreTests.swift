@@ -16,7 +16,9 @@ class MapStoreTests: XCTestCase {
         let store = MapStore(mapMarkerRepository: markerRepository,
                              mapRouteRepository: MockRouteRepository(),
                              mapItineraryRepository: MockItineraryRepository())
-        XCTAssertEqual(markerRepository.allMarkers, store.getAllMapMarkers())
+        XCTAssertTrue(TestUtils.compareTwoArrays(first: store.getAllMapMarkers(),
+                                                 second: markerRepository.allMarkers),
+                      "Store should return same markers as repository")
     }
 
     func testGetAllMapMarkers_emptyRepository_noMarkersReturned() {
@@ -24,7 +26,8 @@ class MapStoreTests: XCTestCase {
         let store = MapStore(mapMarkerRepository: markerRepository,
                              mapRouteRepository: MockRouteRepository(),
                              mapItineraryRepository: MockItineraryRepository())
-        XCTAssertTrue(store.getAllMapMarkers().isEmpty)
+        XCTAssertTrue(store.getAllMapMarkers().isEmpty,
+                      "Store should return same markers as repository")
     }
 
     func testSaveMapMarkers_oneMarker_markerSuccessfullySaved() {
@@ -33,7 +36,8 @@ class MapStoreTests: XCTestCase {
                              mapRouteRepository: MockRouteRepository(),
                              mapItineraryRepository: MockItineraryRepository())
         store.saveMapMarkers(mapMarkers: [markerToSave])
-        XCTAssertTrue(store.getAllMapMarkers().contains(markerToSave))
+        XCTAssertTrue(store.getAllMapMarkers().contains(markerToSave),
+                      "Store should contain saved marker")
     }
     
     func testSaveMapMarkers_multipleMarkers_allSaved() {
@@ -43,7 +47,8 @@ class MapStoreTests: XCTestCase {
                              mapItineraryRepository: MockItineraryRepository())
         store.saveMapMarkers(mapMarkers: markers)
         markers.forEach {
-            XCTAssertTrue(store.getAllMapMarkers().contains($0))
+            XCTAssertTrue(store.getAllMapMarkers().contains($0),
+                          "Store should contain saved marker")
         }
     }
 }
@@ -56,7 +61,9 @@ extension MapStoreTests {
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: mapRouteRepository,
                              mapItineraryRepository: MockItineraryRepository())
-        XCTAssertEqual(mapRouteRepository.allRoutes, store.getAllMapRoutes())
+        XCTAssertTrue(TestUtils.compareTwoArrays(first: store.getAllMapRoutes(),
+                                                 second: mapRouteRepository.allRoutes),
+                      "Store should return same routes as repository")
     }
 
     func testGetAllMapRoutes_emptyRepository_noRoutesReturned() {
@@ -64,7 +71,8 @@ extension MapStoreTests {
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: mapRouteRepository,
                              mapItineraryRepository: MockItineraryRepository())
-        XCTAssertTrue(store.getAllMapRoutes().isEmpty)
+        XCTAssertTrue(store.getAllMapRoutes().isEmpty,
+                      "Store should return same routes as repository")
     }
 
     func testSaveMapRoutes_oneRoute_routeSuccessfullySaved() {
@@ -73,7 +81,8 @@ extension MapStoreTests {
                              mapRouteRepository: MockRouteRepository.createEmptyRepo(),
                              mapItineraryRepository: MockItineraryRepository())
         store.saveMapRoutes(mapRoutes: [routeToAdd])
-        XCTAssertTrue(store.getAllMapRoutes().contains(routeToAdd))
+        XCTAssertTrue(store.getAllMapRoutes().contains(routeToAdd),
+                      "Store should contain saved route")
     }
 
     func testSaveMapRoutes_multipleRoutes_allSaved() {
@@ -83,7 +92,8 @@ extension MapStoreTests {
                              mapItineraryRepository: MockItineraryRepository())
         store.saveMapRoutes(mapRoutes: routes)
         routes.forEach {
-            XCTAssertTrue(store.getAllMapRoutes().contains($0))
+            XCTAssertTrue(store.getAllMapRoutes().contains($0),
+                          "Store should contain saved route")
         }
     }
 }
@@ -96,14 +106,17 @@ extension MapStoreTests {
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: MockRouteRepository(),
                              mapItineraryRepository: itineraryRepository)
-        XCTAssertEqual(itineraryRepository.allItineraries, store.getAllMapItineraries())
+        XCTAssertTrue(TestUtils.compareTwoArrays(first: store.getAllMapItineraries(),
+                                                 second: itineraryRepository.allItineraries),
+                      "Store should return same itineraries as repository")
     }
 
     func testGetAllMapItineraries_emptyRepository_noItinerariesReturned() {
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: MockRouteRepository(),
                              mapItineraryRepository: MockItineraryRepository.createEmptyRepo())
-        XCTAssertTrue(store.getAllMapItineraries().isEmpty)
+        XCTAssertTrue(store.getAllMapItineraries().isEmpty,
+                      "Store should return same itineraries as repository")
     }
 
     func testSaveMapItineraries_oneItinerary_itinerarySuccessfullySaved() {
@@ -112,7 +125,8 @@ extension MapStoreTests {
                              mapRouteRepository: MockRouteRepository(),
                              mapItineraryRepository: MockItineraryRepository.createEmptyRepo())
         store.saveMapItineraries(mapItineraries: [itineraryToAdd])
-        XCTAssertTrue(store.getAllMapItineraries().contains(itineraryToAdd))
+        XCTAssertTrue(store.getAllMapItineraries().contains(itineraryToAdd),
+                      "Store should contain saved itinerary")
     }
 
     func testSaveMapItineraries_multipleItineraries_allSaved() {
@@ -122,7 +136,8 @@ extension MapStoreTests {
                              mapItineraryRepository: MockItineraryRepository.createEmptyRepo())
         store.saveMapItineraries(mapItineraries: itineraries)
         itineraries.forEach {
-            XCTAssertTrue(store.getAllMapItineraries().contains($0))
+            XCTAssertTrue(store.getAllMapItineraries().contains($0),
+                          "Store should contain saved itinerary")
         }
     }
 }
