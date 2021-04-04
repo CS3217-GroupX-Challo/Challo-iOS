@@ -7,7 +7,7 @@
 
 import Foundation
 
-class InteractiveMapItineraryRepository: Repository<MapItinerary>,
+class InteractiveMapItineraryRepository: Repository<UUID, MapItinerary>,
                                          InteractiveMapItineraryRepositoryProtocol {
     func getAllItineraries() -> [MapItinerary] {
         getAll()
