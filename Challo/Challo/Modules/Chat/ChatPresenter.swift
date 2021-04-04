@@ -67,6 +67,9 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
             return
         }
         guard isChatAvailable else {
+            if !interactor.isLoggingIn {
+                interactor.connect()
+            }
             return
         }
         interactor.getDialogs()

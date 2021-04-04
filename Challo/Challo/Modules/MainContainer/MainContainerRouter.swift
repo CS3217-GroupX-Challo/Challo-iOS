@@ -54,11 +54,6 @@ class MainContainerRouter: RouterProtocol {
                                         userState: userState).assemble().view
         guidesPage = GuidesListingModule(guideRepository: guideRepository, reviewAPI: reviewAPI).assemble().view
         mapsPage = MapModule(placesAPI: placesAPI).assemble().view
-        // mapsPage = MapItineraryModule(placesAPI: placesAPI,
-        //                              mapStore: MapStore(mapMarkerRepository: MapMarkerRepository(),
-        //                                                 mapRouteRepository: MapRouteRepository(),
-        //                                                 mapItineraryRepository: MapItineraryRepository()))
-        //    .assemble().view
         settingsPage = SettingsModule(userState: userState).assemble().view
         setupChatAndProfilePage(bookingRepository)
     }
@@ -78,10 +73,7 @@ class MainContainerRouter: RouterProtocol {
                                              }).assemble().view
     }
     
-    private func sendMessageToGuide(guideEmail: String, messageText: String, chatService: ChatService) {
-        defer {
-            presenter.goToChatPage()
-        }
+    private func sendMessageToGuideAfterConnected(guideEmail: String, messageText: String, chatService: ChatService) {
         guard let dialog = chatService.getDialogWithChateeEmail(guideEmail) else {
             chatService.createPrivateDialog(with: guideEmail) { dialog in
                 chatService.sendMessage(messageBody: messageText,
@@ -91,7 +83,31 @@ class MainContainerRouter: RouterProtocol {
         }
         chatService.sendMessage(messageBody: messageText,
                                 dialogId: dialog.dialogId)
-        
+    }
+    
+    private func connectThenSend(guideEmail: String, messageText: String, chatService: ChatService) {
+        guard let chatUserId = chatService.chatUserId else {
+            fatalError("Attempting to connect when not logged in")
+        }
+        chatService.connectToChatServer(chatUserId: chatUserId,
+                                        password: userState.userId) { [weak self] _, isSuccessful in
+            guard isSuccessful else {
+                return
+            }
+            self?.sendMessageToGuideAfterConnected(guideEmail: guideEmail, messageText: messageText,
+                                                   chatService: chatService)
+        }
+    }
+    
+    private func sendMessageToGuide(guideEmail: String, messageText: String, chatService: ChatService) {
+        defer {
+            presenter.goToChatPage()
+        }
+        guard !chatService.isConnected else {
+            sendMessageToGuideAfterConnected(guideEmail: guideEmail, messageText: messageText, chatService: chatService)
+            return
+        }
+        connectThenSend(guideEmail: guideEmail, messageText: messageText, chatService: chatService)
     }
 
 }

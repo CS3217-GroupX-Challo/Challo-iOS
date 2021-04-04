@@ -18,7 +18,15 @@ class QuickBloxChatService: ChatService {
     }
     
     var isConnecting: Bool {
-        chatAuthService.isConnecting
+        QBChat.instance.isConnecting
+    }
+    
+    var isConnected: Bool {
+        QBChat.instance.isConnected
+    }
+    
+    var isLoggingIn: Bool {
+        chatAuthService.isLoggingIn
     }
     
     init(chatAuthService: ChatAuthService,

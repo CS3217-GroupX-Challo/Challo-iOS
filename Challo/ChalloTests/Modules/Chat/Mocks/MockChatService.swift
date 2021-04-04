@@ -12,6 +12,13 @@ class MockChatService: ChatService {
     var chatDialogService: ChatDialogService
     var chatAuthService: ChatAuthService
     
+    let isConnected: Bool = true
+    let isConnecting: Bool = false
+    
+    var isLoggingIn: Bool {
+        chatAuthService.isLoggingIn
+    }
+    
     init() {
         chatDialogService = MockChatDialogService()
         chatAuthService = MockChatAuthService()
@@ -47,10 +54,6 @@ class MockChatService: ChatService {
     
     func connectToChatServer(chatUserId: UInt, password: String, didConnect: ((UInt, Bool) -> Void)?) {
         chatAuthService.connectToChatServer(chatUserId: chatUserId, password: password, didConnect: didConnect)
-    }
-    
-    var isConnecting: Bool {
-        chatAuthService.isConnecting
     }
     
     func getAllDialogs(callback: @escaping (([ChatDialog]) -> Void)) {

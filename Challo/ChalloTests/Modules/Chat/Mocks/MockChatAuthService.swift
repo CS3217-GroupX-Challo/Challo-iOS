@@ -8,7 +8,7 @@
 @testable import Challo
 
 class MockChatAuthService: ChatAuthService {
-    var isConnecting: Bool = false
+    var isLoggingIn: Bool = false
     
     func registerUser(email: String, password: String, fullName: String, didRegister: (() -> Void)?) {
         didRegister?()

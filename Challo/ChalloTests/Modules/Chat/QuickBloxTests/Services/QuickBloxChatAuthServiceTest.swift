@@ -30,13 +30,11 @@ class QuickBloxChatAuthServiceTest: XCTestCase {
         let password = "password"
         let fullName = "fullName"
         authService.registerUser(email: email, password: password, fullName: fullName) { [weak self] in
-            print("here")
-            XCTAssertTrue(self?.authService.isConnecting == true)
+            XCTAssertTrue(self?.authService.isLoggingIn == false)
             self?.authService.loginAndConnect(email: email,
                                               password: password) { [weak self] _, isSuccessfullyConnected in
                 XCTAssertTrue(isSuccessfullyConnected)
-                XCTAssertTrue(self?.authService.isConnecting == false)
-                print("here also")
+                XCTAssertTrue(self?.authService.isLoggingIn == false)
                 QBRequest.deleteCurrentUser(successBlock: nil, errorBlock: nil)
             }
         }

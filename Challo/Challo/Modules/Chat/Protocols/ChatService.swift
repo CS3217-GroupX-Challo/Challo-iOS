@@ -11,4 +11,6 @@ import Foundation
 ///
 /// `ChatService`primarily routes operations to their respective handlers
 protocol ChatService: ChatDialogService, ChatAuthService {
+    var isConnected: Bool { get }
+    var isConnecting: Bool { get }
 }

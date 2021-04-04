@@ -27,8 +27,16 @@ class ChatInteractor: NSObject, InteractorProtocol {
         userState.loggedIn
     }
     
+    var isLoggingIn: Bool {
+        chatService.isLoggingIn
+    }
+    
     var isConnectingToChatServer: Bool {
         chatService.isConnecting
+    }
+    
+    var isConnected: Bool {
+        chatService.isConnected
     }
     
     private func setupUserStateHooks() {
@@ -49,6 +57,9 @@ class ChatInteractor: NSObject, InteractorProtocol {
         }
         guard isLoggedIn else {
             chatService.logout()
+            if presenter != nil {
+                presenter.isChatAvailable = false
+            }
             return
         }
         guard userState.isNewUser else {
@@ -61,14 +72,28 @@ class ChatInteractor: NSObject, InteractorProtocol {
         }
     }
     
+    private func didLoginOrConnect(isSuccessful: Bool) {
+        presenter.isChatAvailable = isSuccessful
+        if isSuccessful {
+            getDialogs()
+        }
+    }
+    
     private func loginAndConnect() {
         chatService.loginAndConnect(email: userState.email, password: userState.userId,
                                     didLogin: { [weak self] _, isSuccessful in
-                                        self?.presenter.isChatAvailable = isSuccessful
-                                        if isSuccessful {
-                                            self?.getDialogs()
-                                        }
-        })
+                                        self?.didLoginOrConnect(isSuccessful: isSuccessful)
+                                    })
+    }
+    
+    func connect() {
+        guard let chatUserId = chatService.chatUserId else {
+            fatalError("Attempting to connect when no user is logged in")
+        }
+        chatService.connectToChatServer(chatUserId: chatUserId, password: userState.userId,
+                                        didConnect: { [weak self] _, isSuccessful in
+                                            self?.didLoginOrConnect(isSuccessful: isSuccessful)
+                                        })
     }
     
     func getDialogs() {
@@ -109,5 +134,17 @@ extension ChatInteractor: QBChatDelegate {
         }
         presenter.messages.append(QuickBloxChatMessage(chatMessage: message,
                                                        isSentByCurrentUser: message.senderID == chatService.chatUserId))
+    }
+    
+    func chatDidAccidentallyDisconnect() {
+        presenter.isChatAvailable = false
+    }
+    
+    func chatDidDisconnectWithError(_ error: Error?) {
+        presenter.isChatAvailable = false
+    }
+    
+    func chatDidConnect() {
+        presenter.isChatAvailable = true
     }
 }

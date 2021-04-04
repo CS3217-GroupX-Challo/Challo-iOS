@@ -7,7 +7,7 @@
 
 /// Service for user authentication in the chat servers
 protocol ChatAuthService: AnyObject {
-    var isConnecting: Bool { get }
+    var isLoggingIn: Bool { get }
     
     func registerUser(email: String, password: String, fullName: String, didRegister: (() -> Void)?)
     

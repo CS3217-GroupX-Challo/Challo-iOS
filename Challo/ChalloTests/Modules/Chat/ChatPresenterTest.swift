@@ -46,14 +46,6 @@ class ChatPresenterTest: XCTestCase {
         XCTAssertTrue(presenter.messages.isEmpty)
     }
     
-    func testOnChatAppear_chatNotAvail_noOp() {
-        userState.loggedIn = true
-        presenter.isChatAvailable = false
-        presenter.onChatAppear()
-        XCTAssertTrue(presenter.dialogs.isEmpty)
-        XCTAssertTrue(presenter.messages.isEmpty)
-    }
-    
     func testOnChatAppear_chatAvailAndCanDisplay_noOp() {
         userState.loggedIn = true
         presenter.isChatAvailable = true
