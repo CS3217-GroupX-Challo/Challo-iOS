@@ -43,6 +43,10 @@ struct BookingCard: View {
                 makeDetail(image: "person.crop.circle",
                            label: booking.guide.name ?? "")
             }
+            Button(action: { print("hello") }) {
+                Text("Contact Guide").bold()
+            }.buttonStyle(BorderedButtonStyle(borderColor: .themeTertiary, foregroundColor: .themeTertiary))
+            .padding()
         }.cornerRadius(10)
         .background(
             RoundedRectangle(cornerRadius: 10)
