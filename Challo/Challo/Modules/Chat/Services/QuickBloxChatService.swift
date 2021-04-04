@@ -39,8 +39,12 @@ class QuickBloxChatService: ChatService {
         chatAuthService.registerUser(email: email, password: password, fullName: fullName, didRegister: didRegister)
     }
     
-    func logout() {
-        chatAuthService.logout()
+    func logout(didLogOut: (() -> Void)?) {
+        let afterLogOut: (() -> Void) = { [weak self] in
+            self?.chatUserId = nil
+            didLogOut?()
+        }
+        chatAuthService.logout(didLogOut: afterLogOut)
     }
     
     func getUnreadMessagesCount(dialogId: String) -> UInt {

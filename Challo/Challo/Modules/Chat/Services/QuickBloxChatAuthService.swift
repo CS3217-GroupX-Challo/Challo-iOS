@@ -18,17 +18,21 @@ class QuickBloxChatAuthService: ChatAuthService {
                 self?.isConnected = isSuccessfullyConnected
                 didConnect?(chatUserId, isSuccessfullyConnected)
             }
-            guard error == nil else {
-                return
+            if error != nil {
+                ChalloLogger.logger.error("Error while attempting to connect to Quickblox server: ")
+                ChalloLogger.logger.error("\(error.debugDescription)")
             }
-            ChalloLogger.logger.error("Error while attempting to connect to Quickblox server: ")
-            ChalloLogger.logger.error("\(error.debugDescription)")
         })
     }
     
     private func disconnect() {
-        QBChat.instance.disconnect { _ in
-            
+        QBChat.instance.disconnect { [weak self] error in
+            guard error == nil else {
+                ChalloLogger.logger.error("Error while attempting to disconnect from Quickblox server: ")
+                ChalloLogger.logger.error("\(error.debugDescription)")
+                return
+            }
+            self?.isConnected = false
         }
     }
     
@@ -57,7 +61,14 @@ class QuickBloxChatAuthService: ChatAuthService {
         })
     }
     
-    func logout() {
-        QBRequest.logOut(successBlock: nil, errorBlock: nil)
+    func logout(didLogOut: (() -> Void)?) {
+        guard isConnected else {
+            return
+        }
+        disconnect()
+        QBRequest.logOut(successBlock: { _ in
+            didLogOut?()
+        })
+
     }
 }
