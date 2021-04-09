@@ -16,7 +16,7 @@ struct TrailBookingOptions: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("Price per guest: \(presenter.pricePerPaxString)")
-                .font(.title3)
+                .font(.title2)
             VStack(alignment: .leading) {
                 TrailPaxSelection(selectedPax: $presenter.selectedPax,
                                   paxRange: $presenter.paxRange)

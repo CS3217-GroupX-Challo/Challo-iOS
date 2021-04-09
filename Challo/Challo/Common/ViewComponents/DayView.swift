@@ -62,21 +62,6 @@ final class DayView: UIView {
     }
 }
 
-// MARK: UIAccessibility
-extension DayView {
-
-  override var isAccessibilityElement: Bool {
-    get { true }
-    set { }
-  }
-
-  override var accessibilityLabel: String? {
-    get { dayAccessibilityText ?? dayText }
-    set { }
-  }
-
-}
-
 // MARK: CalendarItemViewRepresentable
 extension DayView: CalendarItemViewRepresentable {
 
@@ -92,7 +77,6 @@ extension DayView: CalendarItemViewRepresentable {
 
     struct ViewModel: Equatable {
         let dayText: String
-        let dayAccessibilityText: String?
     }
 
     static func makeView(
@@ -103,7 +87,5 @@ extension DayView: CalendarItemViewRepresentable {
 
     static func setViewModel(_ viewModel: ViewModel, on view: DayView) {
         view.dayText = viewModel.dayText
-        view.dayAccessibilityText = viewModel.dayAccessibilityText
     }
-
 }

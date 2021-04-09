@@ -50,7 +50,7 @@ struct HorizonCalendarView: UIViewRepresentable {
                       invariantViewProperties: .init(textColor: textColor,
                                                      isDisabledStyle: shouldBeDisabled(day: day),
                                                      isSelectedStyle: day == selectedDay),
-                      viewModel: .init(dayText: "\(day.day)", dayAccessibilityText: nil))
+                      viewModel: .init(dayText: "\(day.day)"))
         }
     }
 

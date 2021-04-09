@@ -32,5 +32,6 @@ struct TrailDateSelection: View {
                 selectedDate = date
             }
         }
+        .padding()
     }
 }

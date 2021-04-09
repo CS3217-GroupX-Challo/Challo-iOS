@@ -18,6 +18,7 @@ struct TrailGuideSelectionList: View {
         VStack(alignment: .leading) {
             Text("Select your guide")
                 .foregroundColor(.themeTertiary)
+                .font(.title2)
             if guides.isEmpty {
                 Text("No guides are available on your selected date, please choose another date!")
                     .padding()
