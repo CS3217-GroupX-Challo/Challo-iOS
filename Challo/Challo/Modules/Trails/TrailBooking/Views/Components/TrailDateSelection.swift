@@ -13,9 +13,8 @@ struct TrailDateSelection: View {
     var dateRange: ClosedRange<Date>
 
     var body: some View {
-        DatePicker("Date",
-                   selection: $selectedDate,
-                   in: dateRange,
-                   displayedComponents: .date)
+        HorizonCalendarView(dateRange: dateRange) { date in
+            selectedDate = date
+        }
     }
 }
