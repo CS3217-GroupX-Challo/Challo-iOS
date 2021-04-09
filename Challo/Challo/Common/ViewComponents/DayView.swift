@@ -16,7 +16,9 @@ final class DayView: UIView {
         dayLabel = UILabel()
         dayLabel.font = invariantViewProperties.font
         dayLabel.textAlignment = invariantViewProperties.textAlignment
-        dayLabel.textColor = invariantViewProperties.textColor
+        dayLabel.textColor = invariantViewProperties.isDisabledStyle
+            ? invariantViewProperties.disabledColor
+            : invariantViewProperties.textColor
 
         super.init(frame: .zero)
 
@@ -24,9 +26,6 @@ final class DayView: UIView {
 
         layer.borderColor = invariantViewProperties.selectedColor.cgColor
         layer.borderWidth = invariantViewProperties.isSelectedStyle ? 2 : 0
-        if invariantViewProperties.isDisabledStyle {
-            backgroundColor = invariantViewProperties.disabledColor
-        }
     }
 
     @available(*, unavailable)
@@ -71,7 +70,7 @@ extension DayView: CalendarItemViewRepresentable {
         var textColor: UIColor
         var isDisabledStyle: Bool
         var isSelectedStyle: Bool
-        var disabledColor = UIColor.gray.withAlphaComponent(0.8)
+        var disabledColor = UIColor.gray.withAlphaComponent(0.2)
         var selectedColor = UIColor.blue
     }
 
