@@ -17,11 +17,14 @@ struct TrailBookingOptions: View {
         VStack(alignment: .leading) {
             Text("Price per guest: \(presenter.pricePerPaxString)")
                 .font(.title3)
-            Form {
+            VStack(alignment: .leading) {
                 TrailPaxSelection(selectedPax: $presenter.selectedPax,
                                   paxRange: $presenter.paxRange)
                 TrailDateSelection(selectedDate: $presenter.selectedDate,
-                                   dateRange: presenter.validDateRange)
+                                   dateRange: presenter.validDateRange,
+                                   excludedDates: $presenter.excludedDates)
+                    .frame(width: width,
+                           height: 0.75 * height)
                 TrailGuideSelectionList(guides: $presenter.availableGuides,
                                         selectedGuideId: $presenter.selectedGuideId,
                                         cardWidth: width / 3,
@@ -36,11 +39,10 @@ struct TrailBookingOptions: View {
                         .bold()
                 }
                 .buttonStyle(BorderedButtonStyle(borderColor: .themeTertiary, foregroundColor: .themeForeground))
+                .padding(.trailing, 10)
             }
+            .padding()
         }
         .padding()
-        .frame(width: width,
-               height: height,
-               alignment: .center)
     }
 }

@@ -12,6 +12,8 @@ struct TrailBookingPage: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var presenter: TrailBookingPresenter
     @EnvironmentObject var trailProfilePresenter: TrailProfilePresenter
+    let startDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2_020, month: 01, day: 01))!
+    let endDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2_021, month: 12, day: 31))!
 
     var body: some View {
         VStack(spacing: 0) {

@@ -11,26 +11,53 @@ import HorizonCalendar
 struct HorizonCalendarView: UIViewRepresentable {
 
     var dateRange: ClosedRange<Date>
+    @Binding var excludedDates: Set<Date>
     var dateSelectionHandler: (Date) -> Void
+
+    @State private var selectedDay: Day?
     
     func makeUIView(context: Context) -> CalendarView {
         let calendarView = CalendarView(initialContent: makeContent())
         calendarView.daySelectionHandler = { day in
-            guard let date = Calendar.current.date(from: day.components) else {
+            guard let date = Calendar.current.date(from: day.components),
+                  !shouldBeDisabled(day: day) else {
                 return
             }
+            selectedDay = day
             dateSelectionHandler(date)
         }
         return calendarView
     }
 
-    func updateUIView(_ uiView: CalendarView, context: UIViewRepresentableContext<HorizonCalendarView>) {}
+    func updateUIView(_ uiView: CalendarView, context: UIViewRepresentableContext<HorizonCalendarView>) {
+        uiView.setContent(makeContent())
+    }
 
     private func makeContent() -> CalendarViewContent {
-        let calendar = Calendar(identifier: .gregorian)
+        let calendar = Calendar.current
         return CalendarViewContent(
           calendar: calendar,
           visibleDateRange: dateRange,
           monthsLayout: .vertical(options: VerticalMonthsLayoutOptions()))
+
+        .withInterMonthSpacing(24)
+        .withVerticalDayMargin(8)
+        .withHorizontalDayMargin(8)
+            
+        .withDayItemModelProvider { day in
+            let textColor = UIColor(Color.themeSecondary)
+            return CalendarItemModel<DayView>(
+                      invariantViewProperties: .init(textColor: textColor,
+                                                     isDisabledStyle: shouldBeDisabled(day: day),
+                                                     isSelectedStyle: day == selectedDay),
+                      viewModel: .init(dayText: "\(day.day)", dayAccessibilityText: nil))
+        }
+    }
+
+    private func shouldBeDisabled(day: Day) -> Bool {
+        guard let date = Calendar.current.date(from: day.components) else {
+            return true
+        }
+        return !dateRange.contains(date) || excludedDates.contains(date)
     }
 }

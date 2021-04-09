@@ -28,18 +28,19 @@ class TrailBookingPresenter: PresenterProtocol {
     }
     @Published var paxRange = [1, 2, 3, 4, 5]
 
-    @Published var selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date() {
+    @Published var selectedDate: Date? {
         didSet {
-            filterAvailableGuides()
+            availableGuides = filterAvailableGuides(selectedDate: selectedDate)
             selectedGuideId = nil
         }
     }
     var validDateRange: ClosedRange<Date> {
-        let today = Date()
+        let today = Calendar.current.startOfDay(for: Date())
         let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: today) ?? today
         let sixMonthsLater = Calendar.current.date(byAdding: .month, value: 6, to: nextDay) ?? today
         return nextDay...sixMonthsLater
     }
+    @Published var excludedDates: Set<Date> = Set()
 
     private var originalGuides = [Guide]()
     @Published var availableGuides = [Guide]()
@@ -55,7 +56,8 @@ class TrailBookingPresenter: PresenterProtocol {
         resetFields()
         interactor.getGuidesForTrail(trailId: trail.trailId) { [weak self] guides in
             self?.originalGuides = guides
-            self?.filterAvailableGuides()
+            self?.availableGuides = self?.filterAvailableGuides(selectedDate: self?.selectedDate) ?? []
+            self?.excludedDates = self?.getExcludedDates() ?? Set<Date>()
         }
     }
 
@@ -66,7 +68,8 @@ class TrailBookingPresenter: PresenterProtocol {
         }
 
         guard let guideId = selectedGuideId,
-              let trailId = trail?.trailId else {
+              let trailId = trail?.trailId,
+              let selectedDate = selectedDate else {
             return
         }
         let form = TrailBookingForm(guideId: guideId,
@@ -106,7 +109,7 @@ extension TrailBookingPresenter {
 
     private func resetFields() {
         selectedPax = 0
-        selectedDate = Date()
+        selectedDate = nil
         availableGuides = []
     }
 
@@ -115,8 +118,12 @@ extension TrailBookingPresenter {
         totalPriceString = String(format: "%.2f", totalPrice) + " Rp"
     }
 
-    private func filterAvailableGuides() {
-        availableGuides = originalGuides.filter { guide in
+    private func filterAvailableGuides(selectedDate: Date?) -> [Guide] {
+        let availableGuides = originalGuides.filter { guide in
+            guard let selectedDate = selectedDate else {
+                return false
+            }
+    
             if let unavailableDates = guide.unavailableDates {
                 if unavailableDates.contains(selectedDate) {
                     return false
@@ -129,6 +136,25 @@ extension TrailBookingPresenter {
             }
             return guide.daysAvailable.contains(dayOfWeek)
         }
+
+        return availableGuides
+    }
+
+    private func getExcludedDates() -> Set<Date> {
+        var excludedDates = Set<Date>()
+        var startDate = validDateRange.lowerBound
+        let endDate = validDateRange.upperBound
+        while startDate <= endDate {
+            let guidesAvailable = filterAvailableGuides(selectedDate: startDate)
+            if guidesAvailable.isEmpty {
+                excludedDates.insert(startDate)
+            }
+            guard let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: startDate) else {
+                break
+            }
+            startDate = nextDay
+        }
+        return excludedDates
     }
 
     private func checkAllFieldsValid() -> (success: Bool, message: String) {
@@ -136,6 +162,10 @@ extension TrailBookingPresenter {
             return (success: false, message: "Booking must be for at least one guest!")
         }
 
+        if selectedDate == nil {
+            return (success: false, message: "Please select a date!")
+        }
+    
         if selectedGuideId == nil {
             return (success: false, message: "Please select a guide!")
         }
