@@ -9,7 +9,20 @@ import Foundation
 
 /// Represents a route on the map, contains
 /// start and end marker etc.
-struct MapRoute {
+class MapRoute {
+
+    init(id: UUID,
+         start: MapMarker,
+         end: MapMarker,
+         date: Date? = nil,
+         comments: String? = nil) {
+        self.id = id
+        self.start = start
+        self.end = end
+        self.date = date
+        self.comments = comments
+    }
+
     /// unique identification
     var id: UUID
     
