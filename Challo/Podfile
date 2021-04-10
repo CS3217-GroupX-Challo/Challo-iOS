@@ -15,6 +15,7 @@ target 'Challo' do
   pod 'QuickBlox'
   pod 'HorizonCalendar'
   pod 'ImageKitIO'
+  pod 'SDWebImageSwiftUI'
 
   target 'ChalloTests' do
     inherit! :search_paths

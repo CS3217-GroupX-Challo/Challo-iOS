@@ -36,6 +36,11 @@ PODS:
   - HorizonCalendar (1.8.0)
   - ImageKitIO (2.0.1)
   - QuickBlox (2.17.10)
+  - SDWebImage (5.11.0):
+    - SDWebImage/Core (= 5.11.0)
+  - SDWebImage/Core (5.11.0)
+  - SDWebImageSwiftUI (2.0.2):
+    - SDWebImage (~> 5.10)
   - Swinject (2.7.1)
 
 DEPENDENCIES:
@@ -47,6 +52,7 @@ DEPENDENCIES:
   - HorizonCalendar
   - ImageKitIO
   - QuickBlox
+  - SDWebImageSwiftUI
   - Swinject
 
 SPEC REPOS:
@@ -60,6 +66,8 @@ SPEC REPOS:
     - HorizonCalendar
     - ImageKitIO
     - QuickBlox
+    - SDWebImage
+    - SDWebImageSwiftUI
     - Swinject
 
 SPEC CHECKSUMS:
@@ -72,8 +80,10 @@ SPEC CHECKSUMS:
   HorizonCalendar: be5d0b11706b4ec758a5c9607fd33858432cab81
   ImageKitIO: 9a64766164376eada86e3ce3f028292945bfaa7b
   QuickBlox: 49d85c6e1782993fb2383001301b788a8d7dcad3
+  SDWebImage: 7acbb57630ac7db4a495547fb73916ff3e432f6b
+  SDWebImageSwiftUI: 8a3923c95108312b03a599ec1498754af55a6819
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: dc0a6c4e9aaeb9d99e85e8e42cd59392a81003dc
+PODFILE CHECKSUM: 214c94bef3050bd145f8471a7eb3ca3485fb98a2
 
 COCOAPODS: 1.10.1
