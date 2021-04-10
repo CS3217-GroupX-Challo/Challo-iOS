@@ -17,6 +17,15 @@ class TrailBookingInteractor: InteractorProtocol {
     private let bookingRepository: BookingRepositoryProtocol
     private let bookingAPI: BookingAPIProtocol
     private let userState: UserStateProtocol
+    private var originalGuides = [Guide]()
+    private var datesWithExistingBookings = Set<Date>()
+
+    var validDateRange: ClosedRange<Date> {
+        let today = Calendar.current.startOfDay(for: Date())
+        let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: today) ?? today
+        let sixMonthsLater = Calendar.current.date(byAdding: .month, value: 6, to: nextDay) ?? today
+        return nextDay...sixMonthsLater
+    }
 
     init(trailRepository: TrailRepositoryProtocol,
          guideRepository: GuideRepositoryProtocol,
@@ -28,6 +37,15 @@ class TrailBookingInteractor: InteractorProtocol {
         self.bookingRepository = bookingRepository
         self.bookingAPI = bookingAPI
         self.userState = userState
+    }
+
+    func setUp(trailId: UUID, setUpDidComplete: @escaping () -> Void) {
+        getExistingBookings { [weak self] bookings in
+            self?.datesWithExistingBookings = Set(bookings.map { $0.date })
+            self?.getGuidesForTrail(trailId: trailId) { _ in
+                setUpDidComplete()
+            }
+        }
     }
 
     func getGuidesForTrail(trailId: UUID, didRetrieveGuides: @escaping ([Guide]) -> Void) {
@@ -51,8 +69,18 @@ class TrailBookingInteractor: InteractorProtocol {
                 let validGuides = guides.filter {
                     $0.trails.contains(trail)
                 }
+                self?.originalGuides = validGuides
                 didRetrieveGuides(validGuides)
             }
+        }
+    }
+
+    func getExistingBookings(didRetrieveBookings: @escaping ([Booking]) -> Void) {
+        guard let userId = UUID(uuidString: userState.userId) else {
+            return
+        }
+        bookingRepository.fetchBookingForTouristAndRefresh(id: userId) { bookings in
+            didRetrieveBookings(bookings)
         }
     }
 
@@ -75,10 +103,9 @@ class TrailBookingInteractor: InteractorProtocol {
     }
 }
 
-
 extension TrailBookingInteractor {
 
-    private func filterAvailableGuides(selectedDate: Date?) -> [Guide] {
+    func filterAvailableGuides(selectedDate: Date?) -> [Guide] {
         let availableGuides = originalGuides.filter { guide in
             guard let selectedDate = selectedDate else {
                 return false
@@ -100,15 +127,21 @@ extension TrailBookingInteractor {
         return availableGuides
     }
 
-    private func getExcludedDates() -> Set<Date> {
+    func getExcludedDates() -> Set<Date> {
         var excludedDates = Set<Date>()
         var startDate = validDateRange.lowerBound
         let endDate = validDateRange.upperBound
         while startDate <= endDate {
+            if datesWithExistingBookings.contains(startDate) {
+                excludedDates.insert(startDate)
+                continue
+            }
+
             let guidesAvailable = filterAvailableGuides(selectedDate: startDate)
             if guidesAvailable.isEmpty {
                 excludedDates.insert(startDate)
             }
+
             guard let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: startDate) else {
                 break
             }

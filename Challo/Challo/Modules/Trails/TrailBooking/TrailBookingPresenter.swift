@@ -30,19 +30,15 @@ class TrailBookingPresenter: PresenterProtocol {
 
     @Published var selectedDate: Date? {
         didSet {
-            availableGuides = filterAvailableGuides(selectedDate: selectedDate)
+            availableGuides = interactor.filterAvailableGuides(selectedDate: selectedDate)
             selectedGuideId = nil
         }
     }
     var validDateRange: ClosedRange<Date> {
-        let today = Calendar.current.startOfDay(for: Date())
-        let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: today) ?? today
-        let sixMonthsLater = Calendar.current.date(byAdding: .month, value: 6, to: nextDay) ?? today
-        return nextDay...sixMonthsLater
+        interactor.validDateRange
     }
     @Published var excludedDates: Set<Date> = Set()
 
-    private var originalGuides = [Guide]()
     @Published var availableGuides = [Guide]()
     @Published var selectedGuideId: UUID?
 
@@ -54,10 +50,9 @@ class TrailBookingPresenter: PresenterProtocol {
     func populateTrailBookingPage(for trail: Trail) {
         self.trail = trail
         resetFields()
-        interactor.getGuidesForTrail(trailId: trail.trailId) { [weak self] guides in
-            self?.originalGuides = guides
-            self?.availableGuides = self?.filterAvailableGuides(selectedDate: self?.selectedDate) ?? []
-            self?.excludedDates = self?.getExcludedDates() ?? Set<Date>()
+        interactor.setUp(trailId: trail.trailId) { [weak self] in
+            self?.availableGuides = self?.interactor.filterAvailableGuides(selectedDate: self?.selectedDate) ?? []
+            self?.excludedDates = self?.interactor.getExcludedDates() ?? Set<Date>()
         }
     }
 
