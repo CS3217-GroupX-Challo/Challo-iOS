@@ -14,6 +14,7 @@ target 'Challo' do
   pod 'Google-Maps-iOS-Utils', '~> 3.8.0'
   pod 'QuickBlox'
   pod 'HorizonCalendar'
+  pod 'ImageKitIO'
 
   target 'ChalloTests' do
     inherit! :search_paths

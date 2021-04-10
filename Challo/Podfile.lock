@@ -34,6 +34,7 @@ PODS:
   - GooglePlaces (4.2.0):
     - GoogleMaps/Base (= 4.2.0)
   - HorizonCalendar (1.8.0)
+  - ImageKitIO (2.0.1)
   - QuickBlox (2.17.10)
   - Swinject (2.7.1)
 
@@ -44,6 +45,7 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
   - HorizonCalendar
+  - ImageKitIO
   - QuickBlox
   - Swinject
 
@@ -56,6 +58,7 @@ SPEC REPOS:
     - GoogleMaps
     - GooglePlaces
     - HorizonCalendar
+    - ImageKitIO
     - QuickBlox
     - Swinject
 
@@ -67,9 +70,10 @@ SPEC CHECKSUMS:
   GoogleMaps: eb03e327edfd70b06de1e6e321653f73712df7ad
   GooglePlaces: 196a9dd88580dcb3f3df46f415057703d0d2a310
   HorizonCalendar: be5d0b11706b4ec758a5c9607fd33858432cab81
+  ImageKitIO: 9a64766164376eada86e3ce3f028292945bfaa7b
   QuickBlox: 49d85c6e1782993fb2383001301b788a8d7dcad3
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: e14333a138a3bbc36ee5ce2be711a9484a42ae7b
+PODFILE CHECKSUM: dc0a6c4e9aaeb9d99e85e8e42cd59392a81003dc
 
 COCOAPODS: 1.10.1
