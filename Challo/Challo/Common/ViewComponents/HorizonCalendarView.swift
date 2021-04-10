@@ -12,7 +12,7 @@ struct HorizonCalendarView: UIViewRepresentable {
 
     var dateRange: ClosedRange<Date>
     @Binding var excludedDates: Set<Date>
-    var dateSelectionHandler: (Date) -> Void
+    @Binding var selectedDate: Date?
 
     @State private var selectedDay: Day?
     
@@ -24,7 +24,7 @@ struct HorizonCalendarView: UIViewRepresentable {
                 return
             }
             selectedDay = day
-            dateSelectionHandler(date)
+            selectedDate = date
         }
         return calendarView
     }

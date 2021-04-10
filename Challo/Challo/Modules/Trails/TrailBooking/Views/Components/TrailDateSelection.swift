@@ -28,9 +28,8 @@ struct TrailDateSelection: View {
                 Label("Selected Date: \(dateString)", systemImage: "clock")
             }
             HorizonCalendarView(dateRange: dateRange,
-                                excludedDates: $excludedDates) { date in
-                selectedDate = date
-            }
+                                excludedDates: $excludedDates,
+                                selectedDate: $selectedDate)
         }
         .padding()
     }
