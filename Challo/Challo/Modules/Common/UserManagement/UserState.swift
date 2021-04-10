@@ -31,7 +31,7 @@ class UserState: UserStateProtocol, ObservableObject {
             ChalloLogger.logger.fault("Attempted to spawn another UserState")
             fatalError("UserState should not be initiailised more than once")
         }
-        loggedIn = false
+        loggedIn = storedLoggedIn
         UserState.instances += 1
     }
 

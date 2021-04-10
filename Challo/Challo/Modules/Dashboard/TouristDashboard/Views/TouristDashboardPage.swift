@@ -10,6 +10,7 @@ import SwiftUI
 struct TouristDashboardPage: View {
     
     @EnvironmentObject var presenter: TouristDashboardPresenter
+    @State private var selectedIdx = 0
 
     var body: some View {
         VStack {
@@ -32,9 +33,8 @@ struct TouristDashboardPage: View {
                         .frame(height: geometry.size.height * 0.10)
                         .padding()
 
-                    Text("Upcoming bookings")
-                        .font(.title2)
-                        .bold()
+                    TabSelectionView(selectedIndex: $selectedIdx,
+                                     options: ["Upcoming bookings", "Past bookings"])
                     
                     if presenter.isLoading {
                         Loading(isAnimating: .constant(true), style: .large)

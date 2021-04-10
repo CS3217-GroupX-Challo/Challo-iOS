@@ -11,18 +11,29 @@ struct TabSelectionOption: View {
 
     var title: String
     var isSelected: Bool
+    var onSelect: (() -> Void)?
+
+    private let selectedColor = Color.themeTertiary
+    private let unselectedColor = Color.themeForeground
 
     var baseView: some View {
         Text(title)
+            .font(.title2)
+            .bold()
+            .onTapGesture {
+                if let onSelect = onSelect {
+                    onSelect()
+                }
+            }
     }
 
     var body: some View {
         if isSelected {
             baseView
-                .foregroundColor(.themeTertiary)
+                .foregroundColor(selectedColor)
         } else {
             baseView
-                .foregroundColor(.themeForeground)
+                .foregroundColor(unselectedColor)
                 .opacity(0.6)
         }
     }
