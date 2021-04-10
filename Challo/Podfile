@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, "14.0"
 
-target 'Challo' do
+def challo_pods
   inhibit_all_warnings!
   use_frameworks!
 
@@ -13,17 +13,24 @@ target 'Challo' do
   pod 'Swinject'
   pod 'Google-Maps-iOS-Utils', '~> 3.8.0'
   pod 'QuickBlox'
-
-  target 'ChalloTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'ChalloUITests' do
-    # Pods for testing
-  end
-
 end
+
+target 'Challo' do
+  challo_pods
+end
+
+target 'ChalloGuide' do
+  challo_pods
+end
+
+target 'ChalloTests' do
+  inherit! :search_paths
+  # Pods for testing
+end
+
+target 'ChalloUITests' do
+  # Pods for testing
+  end
 
 post_install do |installer|
   installer.pods_project.build_configurations.each do |config|
