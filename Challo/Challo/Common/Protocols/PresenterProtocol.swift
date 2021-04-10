@@ -11,9 +11,9 @@ import Combine
 ///
 /// This component is responsible for all presentation logic of the module
 protocol PresenterProtocol: ObservableObject {
-    associatedtype InteractorProtocol
-    associatedtype RouterProtocol
+    associatedtype Interactor: InteractorProtocol
+    associatedtype Router: RouterProtocol
 
-    var router: RouterProtocol? { get set }
-    var interactor: InteractorProtocol! { get set }
+    var router: Router? { get set }
+    var interactor: Interactor! { get set }
 }

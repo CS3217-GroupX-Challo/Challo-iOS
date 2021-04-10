@@ -1,9 +1,9 @@
 import SwiftUI
 
-protocol LoginInteractor: AnyObject {
+protocol LoginInteractor: InteractorProtocol where Presenter: LoginPresenter {
 
     var certificateManager: CertificateManager { get }
-    var presenter: LoginPresenter! { get set }
+    var presenter: Presenter! { get set }
 
     func defaultLogin(email: String, password: String)
 }
