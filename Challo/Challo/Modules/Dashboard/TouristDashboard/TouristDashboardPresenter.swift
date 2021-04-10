@@ -52,9 +52,25 @@ class TouristDashboardPresenter: PresenterProtocol {
     }
 
     func didPopulateBookings(bookings: [Booking]) {
-        self.upcomingBookings = filterUpcomingBookings(bookings: bookings)
-        self.pastBookings = filterPastBookings(bookings: bookings)
+        let sortedBookings = sortBookings(bookings: bookings)
+        self.upcomingBookings = filterUpcomingBookings(bookings: sortedBookings)
+        self.pastBookings = filterPastBookings(bookings: sortedBookings)
         isLoading = false
+    }
+
+    func onTapSendMessage(guide: Guide) {
+        sendMessageToGuide(guide.email, guide.userId, messageText)
+        messageText = ""
+    }
+}
+
+// MARK: Handle Bookings
+extension TouristDashboardPresenter {
+
+    private func sortBookings(bookings: [Booking]) -> [Booking] {
+        bookings.sorted { bookingOne, bookingTwo in
+            bookingOne.date < bookingTwo.date
+        }
     }
 
     private func filterUpcomingBookings(bookings: [Booking]) -> [Booking] {
@@ -67,11 +83,6 @@ class TouristDashboardPresenter: PresenterProtocol {
         bookings.filter {
             $0.date < Date()
         }
-    }
-    
-    func onTapSendMessage(guide: Guide) {
-        sendMessageToGuide(guide.email, guide.userId, messageText)
-        messageText = ""
     }
 }
 
