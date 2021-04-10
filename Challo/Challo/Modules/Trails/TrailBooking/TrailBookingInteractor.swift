@@ -53,7 +53,7 @@ class TrailBookingInteractor: InteractorProtocol {
         }
     }
 
-    private func getGuidesForTrail(trailId: UUID, didRetrieveGuides: @escaping ([Guide]) -> Void) {
+    func getGuidesForTrail(trailId: UUID, didRetrieveGuides: @escaping ([Guide]) -> Void) {
         let trailsRefreshed = DispatchGroup()
         // refresh the trails repo if necessary
         if trailRepository.getByKey(trailId) == nil {
@@ -79,7 +79,7 @@ class TrailBookingInteractor: InteractorProtocol {
         }
     }
 
-    private func getExistingBookings(didRetrieveBookings: @escaping ([Booking]) -> Void) {
+    func getExistingBookings(didRetrieveBookings: @escaping ([Booking]) -> Void) {
         guard let userId = UUID(uuidString: userState.userId) else {
             return
         }
@@ -88,7 +88,7 @@ class TrailBookingInteractor: InteractorProtocol {
         }
     }
 
-    private func getGuidesBookingDates(guides: [Guide], didComplete: @escaping ([UUID: [Date]]) -> Void) {
+    func getGuidesBookingDates(guides: [Guide], didComplete: @escaping ([UUID: [Date]]) -> Void) {
         var guidesBookingDates = [UUID: [Date]]()
         let group = DispatchGroup()
         for _ in 0..<guides.count {
