@@ -9,7 +9,8 @@ import SwiftUI
 import ImageKitIO
 import SDWebImageSwiftUI
 
-class ImageService: ImageServiceProtocol {    
+class ImageService: ImageServiceProtocol {
+        
     private func generateFullUrl(path: String, height: CGFloat, width: CGFloat) -> String {
         ImageKit.shared.url(path: path, transformationPosition: .QUERY)
             .height(height: Int(height))
@@ -26,17 +27,35 @@ class ImageService: ImageServiceProtocol {
                 onSuccess?(image, data)
             }
             .resizable()
-            .indicator(.activity) // Activity Indicator
-            .transition(.fade(duration: 0.5)) // Fade Transition with duration
+            .indicator(.activity)
+            .transition(.fade(duration: 0.5))
 //            .placeholder {
 //                Rectangle().foregroundColor(.gray)
 //            }
     }
-    
-//    func loadImage
-    
-    func uploadImage(image: NSData) -> String {
-        ""
+        
+    func uploadImage(image: Data, fileName: String, onProgress: ((Progress) -> Void)?,
+                     onSuccess: (() -> Void)?, onFailure: ((Error) -> Void)?) {
+        ImageKit.shared.uploader().upload(
+          file: image,
+          fileName: fileName,
+          useUniqueFilename: true,
+          folder: "/",
+          isPrivateFile: false,
+          customCoordinates: "",
+          responseFields: "",
+          progress: { progress in
+            onProgress?(progress)
+          },
+          completion: { result in
+               switch result {
+               case .success:
+                onSuccess?()
+               case .failure(let error):
+                onFailure?(error)
+              }
+          }
+        )
     }
     
 }
