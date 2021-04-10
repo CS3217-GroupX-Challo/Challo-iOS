@@ -19,6 +19,7 @@ class TrailBookingInteractor: InteractorProtocol {
     private let userState: UserStateProtocol
     private var originalGuides = [Guide]()
     private var datesWithExistingBookings = Set<Date>()
+    private var guidesExistingBookingDates = [UUID: [Date]]()
 
     var validDateRange: ClosedRange<Date> {
         let today = Calendar.current.startOfDay(for: Date())
@@ -41,14 +42,18 @@ class TrailBookingInteractor: InteractorProtocol {
 
     func setUp(trailId: UUID, setUpDidComplete: @escaping () -> Void) {
         getExistingBookings { [weak self] bookings in
-            self?.datesWithExistingBookings = Set(bookings.map { Calendar.current.startOfDay(for: $0.date) })
-            self?.getGuidesForTrail(trailId: trailId) { _ in
-                setUpDidComplete()
+            self?.datesWithExistingBookings = Set(bookings.map { $0.date.convertToStartOfDay() })
+            self?.getGuidesForTrail(trailId: trailId) { guides in
+                self?.originalGuides = guides
+                self?.getGuidesBookingDates(guides: guides) { guidesBookingDates in
+                    self?.guidesExistingBookingDates = guidesBookingDates
+                    setUpDidComplete()
+                }
             }
         }
     }
 
-    func getGuidesForTrail(trailId: UUID, didRetrieveGuides: @escaping ([Guide]) -> Void) {
+    private func getGuidesForTrail(trailId: UUID, didRetrieveGuides: @escaping ([Guide]) -> Void) {
         let trailsRefreshed = DispatchGroup()
         // refresh the trails repo if necessary
         if trailRepository.getByKey(trailId) == nil {
@@ -69,18 +74,36 @@ class TrailBookingInteractor: InteractorProtocol {
                 let validGuides = guides.filter {
                     $0.trails.contains(trail)
                 }
-                self?.originalGuides = validGuides
                 didRetrieveGuides(validGuides)
             }
         }
     }
 
-    func getExistingBookings(didRetrieveBookings: @escaping ([Booking]) -> Void) {
+    private func getExistingBookings(didRetrieveBookings: @escaping ([Booking]) -> Void) {
         guard let userId = UUID(uuidString: userState.userId) else {
             return
         }
         bookingRepository.fetchBookingForTouristAndRefresh(id: userId) { bookings in
             didRetrieveBookings(bookings)
+        }
+    }
+
+    private func getGuidesBookingDates(guides: [Guide], didComplete: @escaping ([UUID: [Date]]) -> Void) {
+        var guidesBookingDates = [UUID: [Date]]()
+        let group = DispatchGroup()
+        for _ in 0..<guides.count {
+            group.enter()
+        }
+
+        for guide in guides {
+            bookingRepository.fetchBookingForGuideAndRefresh(id: guide.userId) { bookings in
+                guidesBookingDates[guide.userId] = bookings.map { $0.date.convertToStartOfDay() }
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main) {
+            didComplete(guidesBookingDates)
         }
     }
 
@@ -106,15 +129,25 @@ class TrailBookingInteractor: InteractorProtocol {
 extension TrailBookingInteractor {
 
     func filterAvailableGuides(selectedDate: Date?) -> [Guide] {
+        guard let selectedDate = selectedDate?.convertToStartOfDay() else {
+            return []
+        }
+
         let availableGuides = originalGuides.filter { guide in
-            guard let selectedDate = selectedDate else {
-                return false
-            }
+
     
             if let unavailableDates = guide.unavailableDates {
                 if unavailableDates.contains(selectedDate) {
                     return false
                 }
+            }
+            
+            guard let daysWithBookings = guidesExistingBookingDates[guide.userId] else {
+                return true
+            }
+            
+            if daysWithBookings.contains(selectedDate) {
+                return false
             }
 
             guard let dayOfWeek = selectedDate.dayOfWeek() else {
