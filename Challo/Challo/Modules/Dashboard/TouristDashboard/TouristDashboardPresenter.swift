@@ -17,8 +17,20 @@ class TouristDashboardPresenter: PresenterProtocol {
     
     @Published var isLoading = false
     @Published var upcomingBookings: [Booking] = []
+
+    @Published var pastBookings: [Booking] = []
+    
     @Published var name: String
     @Published var messageText: String = ""
+
+    private static let tabs = TouristDashboardTabs.allCases
+    let tabTitles = tabs.map { $0.rawValue }
+    @Published var selectedIdx = 0 {
+        didSet {
+            selectedTab = Self.tabs[selectedIdx]
+        }
+    }
+    @Published var selectedTab: TouristDashboardTabs = tabs[0]
     
     @Published var image: Image?
     @Published var inputImage: UIImage?
@@ -56,12 +68,19 @@ class TouristDashboardPresenter: PresenterProtocol {
 
     func didPopulateBookings(bookings: [Booking]) {
         self.upcomingBookings = filterUpcomingBookings(bookings: bookings)
+        self.pastBookings = filterPastBookings(bookings: bookings)
         isLoading = false
     }
 
     private func filterUpcomingBookings(bookings: [Booking]) -> [Booking] {
         bookings.filter {
-            $0.status == .Paid || $0.status == .Pending
+            ($0.status == .Paid || $0.status == .Pending) && $0.date > Date()
+        }
+    }
+
+    private func filterPastBookings(bookings: [Booking]) -> [Booking] {
+        bookings.filter {
+            $0.date < Date()
         }
     }
     
@@ -69,4 +88,9 @@ class TouristDashboardPresenter: PresenterProtocol {
         sendMessageToGuide(guide.email, guide.userId, messageText)
         messageText = ""
     }
+}
+
+enum TouristDashboardTabs: String, CaseIterable {
+    case upcomingBookings = "Upcoming Bookings"
+    case pastBookings = "Past Bookings"
 }

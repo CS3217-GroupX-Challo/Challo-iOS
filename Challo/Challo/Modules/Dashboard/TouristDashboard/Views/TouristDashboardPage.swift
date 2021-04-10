@@ -33,16 +33,25 @@ struct TouristDashboardPage: View {
                         .frame(height: geometry.size.height * 0.10)
                         .padding()
 
-                    TabSelectionView(selectedIndex: $selectedIdx,
-                                     options: ["Upcoming bookings", "Past bookings"])
+                    TabSelectionView(selectedIndex: $presenter.selectedIdx,
+                                     options: presenter.tabTitles)
                     
                     if presenter.isLoading {
                         Loading(isAnimating: .constant(true), style: .large)
                     } else {
-                        BookingCardListingsView(
-                            width: geometry.size.width,
-                            emptyListMessage: "You don't have any upcoming trips",
-                            bookings: $presenter.upcomingBookings)
+                        if presenter.selectedTab == .upcomingBookings {
+                            BookingCardListingsView(
+                                width: geometry.size.width,
+                                emptyListMessage: "You don't have any upcoming trips",
+                                bookings: $presenter.upcomingBookings)
+                        }
+                        
+                        if presenter.selectedTab == .pastBookings {
+                            BookingCardListingsView(
+                                width: geometry.size.width,
+                                emptyListMessage: "You don't have any past trips",
+                                bookings: $presenter.pastBookings)
+                        }
                     }
                 }
             }
