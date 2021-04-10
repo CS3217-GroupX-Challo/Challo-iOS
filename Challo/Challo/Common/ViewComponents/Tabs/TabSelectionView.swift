@@ -13,7 +13,7 @@ struct TabSelectionView: View {
     let options: [String]
 
     var body: some View {
-        HStack {
+        HStack(spacing: 10) {
             ForEach(0..<options.count) { idx in
                 TabSelectionOption(title: options[idx],
                                    isSelected: idx == selectedIndex) {
