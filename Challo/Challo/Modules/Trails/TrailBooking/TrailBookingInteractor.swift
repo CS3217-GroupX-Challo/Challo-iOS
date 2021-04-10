@@ -65,7 +65,6 @@ class TrailBookingInteractor: InteractorProtocol {
         
         trailsRefreshed.notify(queue: .main) { [weak self] in
             guard let trail = self?.trailRepository.getByKey(trailId) else {
-                didRetrieveGuides([])
                 return
             }
             
@@ -89,6 +88,10 @@ class TrailBookingInteractor: InteractorProtocol {
     }
 
     func getGuidesBookingDates(guides: [Guide], didComplete: @escaping ([UUID: [Date]]) -> Void) {
+        if guides.isEmpty {
+            return
+        }
+
         var guidesBookingDates = [UUID: [Date]]()
         let group = DispatchGroup()
         for _ in 0..<guides.count {
@@ -134,7 +137,6 @@ extension TrailBookingInteractor {
         }
 
         let availableGuides = originalGuides.filter { guide in
-
     
             if let unavailableDates = guide.unavailableDates {
                 if unavailableDates.contains(selectedDate) {

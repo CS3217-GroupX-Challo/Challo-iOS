@@ -46,7 +46,7 @@ class TrailBookingPresenter: PresenterProtocol {
     @Published var bookingStatusTitle = ""
     @Published var bookingStatusMessage = ""
     @Published var isSuccessAlert = false
-    @Published var isLoading = false
+    @Published var isLoading = true
 
     func populateTrailBookingPage(for trail: Trail) {
         isLoading = true
