@@ -30,7 +30,7 @@ end
 
 target 'ChalloUITests' do
   # Pods for testing
-  end
+end
 
 post_install do |installer|
   installer.pods_project.build_configurations.each do |config|
