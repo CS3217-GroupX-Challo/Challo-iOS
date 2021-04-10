@@ -46,13 +46,16 @@ class TrailBookingPresenter: PresenterProtocol {
     @Published var bookingStatusTitle = ""
     @Published var bookingStatusMessage = ""
     @Published var isSuccessAlert = false
+    @Published var isLoading = false
 
     func populateTrailBookingPage(for trail: Trail) {
+        isLoading = true
         self.trail = trail
         resetFields()
         interactor.setUp(trailId: trail.trailId) { [weak self] in
             self?.availableGuides = self?.interactor.filterAvailableGuides(selectedDate: self?.selectedDate) ?? []
             self?.excludedDates = self?.interactor.getExcludedDates() ?? Set<Date>()
+            self?.isLoading = false
         }
     }
 

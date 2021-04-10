@@ -41,7 +41,7 @@ class TrailBookingInteractor: InteractorProtocol {
 
     func setUp(trailId: UUID, setUpDidComplete: @escaping () -> Void) {
         getExistingBookings { [weak self] bookings in
-            self?.datesWithExistingBookings = Set(bookings.map { $0.date })
+            self?.datesWithExistingBookings = Set(bookings.map { Calendar.current.startOfDay(for: $0.date) })
             self?.getGuidesForTrail(trailId: trailId) { _ in
                 setUpDidComplete()
             }
@@ -132,8 +132,13 @@ extension TrailBookingInteractor {
         var startDate = validDateRange.lowerBound
         let endDate = validDateRange.upperBound
         while startDate <= endDate {
+            guard let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: startDate) else {
+                break
+            }
+    
             if datesWithExistingBookings.contains(startDate) {
                 excludedDates.insert(startDate)
+                startDate = nextDay
                 continue
             }
 
@@ -142,9 +147,6 @@ extension TrailBookingInteractor {
                 excludedDates.insert(startDate)
             }
 
-            guard let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: startDate) else {
-                break
-            }
             startDate = nextDay
         }
         return excludedDates
