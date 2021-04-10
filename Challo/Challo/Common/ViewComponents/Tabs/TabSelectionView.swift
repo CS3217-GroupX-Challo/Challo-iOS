@@ -16,7 +16,9 @@ struct TabSelectionView: View {
         HStack {
             ForEach(0..<options.count) { idx in
                 TabSelectionOption(title: options[idx],
-                                   isSelected: idx == selectedIndex)
+                                   isSelected: idx == selectedIndex) {
+                    selectedIndex = idx
+                }
             }
         }
     }
