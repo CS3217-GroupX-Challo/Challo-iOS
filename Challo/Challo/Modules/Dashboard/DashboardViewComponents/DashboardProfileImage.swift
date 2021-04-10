@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct DashboardProfileImage: View {
+    
+    @EnvironmentObject var presenter: TouristDashboardPresenter
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct DashboardProfileImage_Previews: PreviewProvider {
-    static var previews: some View {
-        DashboardProfileImage()
+        presenter.displayedProfileImage
+            .onTapGesture {
+                presenter.isImagePickerOpen = true
+            }.sheet(isPresented: $presenter.isImagePickerOpen, onDismiss: presenter.loadImage) {
+                ImagePicker(image: $presenter.inputImage)
+            }
     }
 }
