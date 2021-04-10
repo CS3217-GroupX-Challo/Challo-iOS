@@ -14,15 +14,18 @@ class TrailBookingInteractor: InteractorProtocol {
 
     private let trailRepository: TrailRepositoryProtocol
     private let guideRepository: GuideRepositoryProtocol
+    private let bookingRepository: BookingRepositoryProtocol
     private let bookingAPI: BookingAPIProtocol
     private let userState: UserStateProtocol
 
     init(trailRepository: TrailRepositoryProtocol,
          guideRepository: GuideRepositoryProtocol,
+         bookingRepository: BookingRepositoryProtocol,
          bookingAPI: BookingAPIProtocol,
          userState: UserStateProtocol) {
         self.trailRepository = trailRepository
         self.guideRepository = guideRepository
+        self.bookingRepository = bookingRepository
         self.bookingAPI = bookingAPI
         self.userState = userState
     }
@@ -69,5 +72,48 @@ class TrailBookingInteractor: InteractorProtocol {
                                             numberOfPax: bookingForm.numberOfPax,
                                             totalFee: bookingForm.totalFee)
         self.bookingAPI.makeBooking(bookingDetails: bookingDetails, callback: callback)
+    }
+}
+
+
+extension TrailBookingInteractor {
+
+    private func filterAvailableGuides(selectedDate: Date?) -> [Guide] {
+        let availableGuides = originalGuides.filter { guide in
+            guard let selectedDate = selectedDate else {
+                return false
+            }
+    
+            if let unavailableDates = guide.unavailableDates {
+                if unavailableDates.contains(selectedDate) {
+                    return false
+                }
+            }
+
+            guard let dayOfWeek = selectedDate.dayOfWeek() else {
+                ChalloLogger.logger.fault("Unable to get the day of week of selected booking date")
+                return false
+            }
+            return guide.daysAvailable.contains(dayOfWeek)
+        }
+
+        return availableGuides
+    }
+
+    private func getExcludedDates() -> Set<Date> {
+        var excludedDates = Set<Date>()
+        var startDate = validDateRange.lowerBound
+        let endDate = validDateRange.upperBound
+        while startDate <= endDate {
+            let guidesAvailable = filterAvailableGuides(selectedDate: startDate)
+            if guidesAvailable.isEmpty {
+                excludedDates.insert(startDate)
+            }
+            guard let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: startDate) else {
+                break
+            }
+            startDate = nextDay
+        }
+        return excludedDates
     }
 }

@@ -118,45 +118,6 @@ extension TrailBookingPresenter {
         totalPriceString = String(format: "%.2f", totalPrice) + " Rp"
     }
 
-    private func filterAvailableGuides(selectedDate: Date?) -> [Guide] {
-        let availableGuides = originalGuides.filter { guide in
-            guard let selectedDate = selectedDate else {
-                return false
-            }
-    
-            if let unavailableDates = guide.unavailableDates {
-                if unavailableDates.contains(selectedDate) {
-                    return false
-                }
-            }
-
-            guard let dayOfWeek = selectedDate.dayOfWeek() else {
-                ChalloLogger.logger.fault("Unable to get the day of week of selected booking date")
-                return false
-            }
-            return guide.daysAvailable.contains(dayOfWeek)
-        }
-
-        return availableGuides
-    }
-
-    private func getExcludedDates() -> Set<Date> {
-        var excludedDates = Set<Date>()
-        var startDate = validDateRange.lowerBound
-        let endDate = validDateRange.upperBound
-        while startDate <= endDate {
-            let guidesAvailable = filterAvailableGuides(selectedDate: startDate)
-            if guidesAvailable.isEmpty {
-                excludedDates.insert(startDate)
-            }
-            guard let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: startDate) else {
-                break
-            }
-            startDate = nextDay
-        }
-        return excludedDates
-    }
-
     private func checkAllFieldsValid() -> (success: Bool, message: String) {
         if selectedPax == 0 {
             return (success: false, message: "Booking must be for at least one guest!")

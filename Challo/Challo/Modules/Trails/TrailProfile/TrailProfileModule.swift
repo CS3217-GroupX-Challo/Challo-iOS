@@ -13,16 +13,19 @@ class TrailProfileModule: ViperModuleProtocol {
     var reviewAPI: ReviewAPIProtocol
     var trailRepository: TrailRepositoryProtocol
     var guideRepository: GuideRepositoryProtocol
+    var bookingRepository: BookingRepositoryProtocol
     var bookingAPI: BookingAPIProtocol
     
     init(userState: UserStateProtocol,
          trailRepository: TrailRepositoryProtocol,
          guideRepository: GuideRepositoryProtocol,
+         bookingRepository: BookingRepositoryProtocol,
          bookingAPI: BookingAPIProtocol,
          reviewAPI: ReviewAPIProtocol) {
         self.userState = userState
         self.trailRepository = trailRepository
         self.guideRepository = guideRepository
+        self.bookingRepository = bookingRepository
         self.bookingAPI = bookingAPI
         self.reviewAPI = reviewAPI
     }
@@ -34,6 +37,7 @@ class TrailProfileModule: ViperModuleProtocol {
                                         userState: userState,
                                         trailRepository: trailRepository,
                                         guideRepository: guideRepository,
+                                        bookingRepository: bookingRepository,
                                         bookingAPI: bookingAPI)
         interactor.presenter = presenter
         presenter.interactor = interactor
