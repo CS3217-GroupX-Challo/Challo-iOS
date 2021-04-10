@@ -66,7 +66,7 @@ targets:
           CODE_SIGN_IDENTITY: Apple Development
           CODE_SIGN_STYLE: Automatic
           DEVELOPMENT_ASSET_PATHS: '"Challo/Preview Content"'
-          INFOPLIST_FILE: Challo/Configurations/Challo-Info.plist
+          INFOPLIST_FILE: Challo/Configurations/Challo/Info.plist
           IPHONEOS_DEPLOYMENT_TARGET: 14.0
           PROVISIONING_PROFILE_SPECIFIER: 
           SWIFT_VERSION: 5.0
@@ -75,7 +75,7 @@ targets:
           CODE_SIGN_IDENTITY: Apple Development
           CODE_SIGN_STYLE: Automatic
           DEVELOPMENT_ASSET_PATHS: '"Challo/Preview Content"'
-          INFOPLIST_FILE: Challo/Configurations/Challo-Info.plist
+          INFOPLIST_FILE: Challo/Configurations/Challo/Info.plist
           IPHONEOS_DEPLOYMENT_TARGET: 14.0
           PROVISIONING_PROFILE_SPECIFIER: 
           SWIFT_VERSION: 5.0
@@ -110,7 +110,7 @@ targets:
           CODE_SIGN_IDENTITY: Apple Development
           CODE_SIGN_STYLE: Automatic
           DEVELOPMENT_ASSET_PATHS: '"Challo/Preview Content"'
-          INFOPLIST_FILE: Challo/Configurations/ChalloGuide-Info.plist
+          INFOPLIST_FILE: Challo/Configurations/ChalloGuide/Info.plist
           IPHONEOS_DEPLOYMENT_TARGET: 14.0
           PROVISIONING_PROFILE_SPECIFIER:
           SWIFT_VERSION: 5.0
@@ -120,7 +120,7 @@ targets:
           CODE_SIGN_IDENTITY: Apple Development
           CODE_SIGN_STYLE: Automatic
           DEVELOPMENT_ASSET_PATHS: '"Challo/Preview Content"'
-          INFOPLIST_FILE: Challo/Configurations/ChalloGuide-Info.plist
+          INFOPLIST_FILE: Challo/Configurations/ChalloGuide/Info.plist
           IPHONEOS_DEPLOYMENT_TARGET: 14.0
           PROVISIONING_PROFILE_SPECIFIER: 
           SWIFT_VERSION: 5.0

@@ -46,7 +46,13 @@ class MainContainerRouter: RouterProtocol {
         }
 
         homePage = AnyView(Text("Homepage"))
+
+        #if GUIDE
+        loginPage = GuideLoginModule(userState: userState).assemble().view
+        #else
         loginPage = TouristLoginModule(userState: userState).assemble().view
+        #endif
+
         trailsPage = TrailListingModule(trailRepository: trailRepository,
                                         guideRepository: guideRepository,
                                         bookingAPI: bookingAPI,
@@ -55,7 +61,12 @@ class MainContainerRouter: RouterProtocol {
         guidesPage = GuidesListingModule(guideRepository: guideRepository, reviewAPI: reviewAPI).assemble().view
         mapsPage = MapModule(placesAPI: placesAPI).assemble().view
         settingsPage = SettingsModule(userState: userState).assemble().view
+
+        #if GUIDE
+        profilePage = GuideDashboardModule(userState: userState, bookingRepository: bookingRepository).assemble().view
+        #else
         setupChatAndProfilePage(bookingRepository)
+        #endif
     }
     
     private func setupChatAndProfilePage(_ bookingRepository: BookingRepositoryProtocol) {
