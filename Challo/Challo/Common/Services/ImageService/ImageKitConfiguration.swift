@@ -9,8 +9,16 @@ import ImageKitIO
 
 struct ImageKitConfiguration: ThirdPartyAPIConfiguration {
     static func initConfiguration() {
-        _ = ImageKit(publicKey: "public_SHddXLhWEXk3EMUTHlqpFPy0lvw=",
-                     urlEndpoint: "https://ik.imagekit.io/challocs3217",
+        guard let publicKey = ProcessInfo.processInfo.environment["imagekit_public_key"] else {
+            fatalError("ImageKit publicKey is not in env var")
+        }
+        
+        guard let urlEndpoint = ProcessInfo.processInfo.environment["imagekit_url_endpoint"] else {
+            fatalError("ImageKit urlEndpoint is not in env var")
+        }
+        
+        _ = ImageKit(publicKey: publicKey,
+                     urlEndpoint: urlEndpoint,
                      transformationPosition: .PATH)
         ChalloLogger.logger.info("ImageKit has been initialised!")
     }
