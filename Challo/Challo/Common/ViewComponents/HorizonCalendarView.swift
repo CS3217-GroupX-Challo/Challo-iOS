@@ -17,7 +17,7 @@ struct HorizonCalendarView: UIViewRepresentable {
     @State private var selectedDay: Day?
     
     func makeUIView(context: Context) -> CalendarView {
-        let calendarView = CalendarView(initialContent: makeInitialContent())
+        let calendarView = CalendarView(initialContent: makeContent())
         calendarView.daySelectionHandler = { day in
             guard let date = Calendar.current.date(from: day.components),
                   !shouldBeDisabled(day: day) else {
@@ -31,27 +31,6 @@ struct HorizonCalendarView: UIViewRepresentable {
 
     func updateUIView(_ uiView: CalendarView, context: UIViewRepresentableContext<HorizonCalendarView>) {
         uiView.setContent(makeContent())
-    }
-
-    private func makeInitialContent() -> CalendarViewContent {
-        let calendar = Calendar.current
-        return CalendarViewContent(
-          calendar: calendar,
-          visibleDateRange: dateRange,
-          monthsLayout: .vertical(options: VerticalMonthsLayoutOptions()))
-
-        .withInterMonthSpacing(24)
-        .withVerticalDayMargin(8)
-        .withHorizontalDayMargin(8)
-            
-        .withDayItemModelProvider { day in
-            let textColor = UIColor(Color.themeSecondary)
-            return CalendarItemModel<DayView>(
-                      invariantViewProperties: .init(textColor: textColor,
-                                                     isDisabledStyle: true,
-                                                     isSelectedStyle: false),
-                      viewModel: .init(dayText: "\(day.day)"))
-        }
     }
 
     private func makeContent() -> CalendarViewContent {
