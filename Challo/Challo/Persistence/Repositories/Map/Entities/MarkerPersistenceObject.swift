@@ -40,4 +40,16 @@ extension MarkerPersistenceObject: CoreDataPersistenceObject {
         marker.date = date
         return marker
     }
+    
+    func updatePersistenceObject(persistenceObject: NSManagedObject) {
+        guard let marker = persistenceObject as? Marker else {
+            return
+        }
+        
+        marker.setValue(id.uuidString, forKey: "id")
+        marker.setValue(position.latitude, forKey: "latitude")
+        marker.setValue(position.longitude, forKey: "longitude")
+        marker.setValue(date, forKey: "date")
+        marker.setValue(comments, forKey: "comments")
+    }
 }

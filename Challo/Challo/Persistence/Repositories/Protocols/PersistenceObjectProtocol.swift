@@ -12,5 +12,6 @@ protocol PersistenceObjectProtocol {
     associatedtype PersistenceObject
     
     func convertToPersistenceObject() -> PersistenceObject
+    func updatePersistenceObject(persistenceObject: PersistenceObject)
     init?(persistenceObject: PersistenceObject)
 }
