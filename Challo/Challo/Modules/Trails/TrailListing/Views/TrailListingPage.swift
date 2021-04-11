@@ -33,7 +33,7 @@ struct TrailListingPage: View {
     }
     
     var body: some View {
-        PageLayout(titleLabel: "Find Your Very\nOwn Trail") { _ in
+        PageLayout(titleLabel: "Find Your Very Own Trail") { _ in
             cardList
         }.onAppear(perform: presenter.onPageAppear)
     }

@@ -21,7 +21,7 @@ struct GuidesListingPage: View {
     }
     
     var body: some View {
-        PageLayout(titleLabel: "Let us guide\nyour way", headerContent: AnyView(headerContent)) { geometry in
+        PageLayout(titleLabel: "Let us guide your way", headerContent: AnyView(headerContent)) { geometry in
             Group {
                 if presenter.isLoading {
                     Loading(isAnimating: .constant(true), style: .large)

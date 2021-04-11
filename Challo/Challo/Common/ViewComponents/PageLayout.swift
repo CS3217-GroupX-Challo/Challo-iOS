@@ -19,17 +19,19 @@ struct PageLayout<ChildContent: View>: View {
                 ZStack {
                     Image.guidesBackground
                         .resizable()
+                        .scaledToFill()
                     VStack {
                         HStack {
-                            PageTitle(titleLabel: titleLabel, leading: geometry.size.width / 8)
                             Spacer()
+                            PageTitle(titleLabel: titleLabel)
+                                .padding(.trailing, geometry.size.width / 12)
                         }
                         headerContent
                     }
                 }
                 .frame(width: geometry.size.width,
-                       height: geometry.size.height / (headerContent == nil ? 6 : 5),
-                       alignment: .center)
+                       height: geometry.size.height / (headerContent == nil ? 8 : 7))
+                .clipped()
                 GeometryReader { innerGeometry in
                     makeChildContent(innerGeometry)
                 }
