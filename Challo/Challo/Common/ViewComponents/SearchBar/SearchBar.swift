@@ -10,18 +10,26 @@ import SwiftUI
 struct SearchBar<Presenter: SearchBarPresenter>: View {
     @EnvironmentObject var presenter: Presenter
     @State private var isEditing = false
+    
+    var placeholder: String = "Search..."
  
     var body: some View {
         HStack {
-            TextField("Search ...", text: $presenter.searchBarText)
+            TextField(placeholder, text: $presenter.searchBarText)
                 .padding(7)
                 .padding(.horizontal, 25)
-                .background(Color(.systemGray6))
-                .cornerRadius(8)
+                .border(Color(.systemGray6))
+                .cornerRadius(10)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.white)
+                        .shadow(color: Color.gray.opacity(0.3), radius: 4, x: 0, y: 6)
+                )
                 .overlay(
                     HStack {
                         Image(systemName: "magnifyingglass")
-                            .foregroundColor(.gray)
+                            .font(Font.headline.weight(.semibold))
+                            .foregroundColor(.themeTertiary)
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 8)
                  
@@ -30,7 +38,7 @@ struct SearchBar<Presenter: SearchBarPresenter>: View {
                                 presenter.searchBarText = ""
                             }) {
                                 Image(systemName: "multiply.circle.fill")
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.themeTertiary)
                                     .padding(.trailing, 8)
                             }
                         }
@@ -40,6 +48,8 @@ struct SearchBar<Presenter: SearchBarPresenter>: View {
                 .onTapGesture {
                     self.isEditing = true
                 }
+                .transition(.move(edge: .trailing))
+                .animation(.default)
  
             if isEditing {
                 Button(action: {
@@ -55,5 +65,11 @@ struct SearchBar<Presenter: SearchBarPresenter>: View {
                 .animation(.default)
             }
         }
+    }
+}
+
+struct SearchBar_Previews: PreviewProvider {
+    static var previews: some View {
+        SearchBar<ChatPresenter>().environmentObject(ChatPresenter())
     }
 }
