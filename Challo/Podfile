@@ -26,10 +26,12 @@ end
 target 'ChalloTests' do
   inherit! :search_paths
   # Pods for testing
+  challo_pods
 end
 
 target 'ChalloUITests' do
   # Pods for testing
+  challo_pods
 end
 
 post_install do |installer|
