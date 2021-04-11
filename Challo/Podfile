@@ -24,6 +24,10 @@ target 'ChalloGuide' do
   challo_pods
 end
 
+target 'ChalloHost' do
+  challo_pods
+end
+
 target 'ChalloTests' do
   inherit! :search_paths
   # Pods for testing

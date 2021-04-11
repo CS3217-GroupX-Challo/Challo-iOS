@@ -141,6 +141,52 @@ targets:
         quickblox_auth_key: "KeZaVbQMfpbKb2y"
         quickblox_auth_secret: "urPrkVPnjNfRgnA"
         quickblox_acct_cred: "o19gT7Qc6HQy4yP9fW6y"
+  ChalloHost:
+    platform: iOS
+    postbuildScripts:
+    - runOnlyWhenInstalling: false
+      script: "# Homebrew install location for ARM\nPATH=${PATH}:/opt/homebrew/bin\n\nif
+        which swiftlint >/dev/null; then\n    swiftlint autocorrect && swiftlint\nelse\n
+        \ echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n"
+      shell: /bin/sh
+    settings:
+      configs:
+        Debug:
+          ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+          CODE_SIGN_IDENTITY: Apple Development
+          CODE_SIGN_STYLE: Automatic
+          DEVELOPMENT_ASSET_PATHS: '"Challo/Preview Content"'
+          INFOPLIST_FILE: Challo/Configurations/Challo/Info.plist
+          IPHONEOS_DEPLOYMENT_TARGET: 14.0
+          PROVISIONING_PROFILE_SPECIFIER:
+          SWIFT_VERSION: 5.0
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG HOST
+        Release:
+          ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+          CODE_SIGN_IDENTITY: Apple Development
+          CODE_SIGN_STYLE: Automatic
+          DEVELOPMENT_ASSET_PATHS: '"Challo/Preview Content"'
+          INFOPLIST_FILE: Challo/Configurations/Challo/Info.plist
+          IPHONEOS_DEPLOYMENT_TARGET: 14.0
+          PROVISIONING_PROFILE_SPECIFIER: 
+          SWIFT_VERSION: 5.0
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: HOST
+    sources:
+    - name: Challo
+      path: Challo
+    type: application
+    scheme:
+      testTargets:
+        - ChalloTests
+        - ChalloUITests
+      environmentVariables:
+        api_path: "http://challo-api-staging.herokuapp.com/api"
+        google_maps_api_key: "AIzaSyBf4UUNjUwdWq79hcObEcsidHbWOYWy0Ao"
+        google_places_path: "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input="
+        quickblox_app_id: 89860
+        quickblox_auth_key: "KeZaVbQMfpbKb2y"
+        quickblox_auth_secret: "urPrkVPnjNfRgnA"
+        quickblox_acct_cred: "o19gT7Qc6HQy4yP9fW6y"
   ChalloTests:
     dependencies:
     - target: Challo
