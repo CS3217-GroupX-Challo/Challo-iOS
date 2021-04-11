@@ -21,9 +21,6 @@ final class TouristDashboardModule: ViperModuleProtocol {
     }
 
     func assemble() -> (view: AnyView, presenter: TouristDashboardPresenter) {
-        guard let userState = userState else {
-            fatalError("userState is nil in TouristDashboardModule")
-        }
         let interactor = TouristDashboardInteractor(bookingsRepository: bookingsRepository, userState: userState)
         let router = TouristDashboardRouter()
         let presenter = TouristDashboardPresenter(userState: userState, sendMessageToGuide: sendMessageToGuide)

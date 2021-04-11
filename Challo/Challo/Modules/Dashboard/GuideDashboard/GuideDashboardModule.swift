@@ -18,9 +18,6 @@ final class GuideDashboardModule: ViperModuleProtocol {
     }
 
     func assemble() -> (view: AnyView, presenter: GuideDashboardPresenter) {
-        guard let userState = userState else {
-            fatalError("userState must not be nil")
-        }
         let presenter = GuideDashboardPresenter(userState: userState)
         let interactor = GuideDashboardInteractor(userState: userState, bookingRepository: bookingRepository)
         let router = GuideDashboardRouter()

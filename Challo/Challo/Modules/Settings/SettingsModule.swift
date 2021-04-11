@@ -15,9 +15,6 @@ final class SettingsModule: ViperModuleProtocol {
         self.userState = userState
     }
     func assemble() -> (view: AnyView, presenter: SettingsPresenter) {
-        guard let userState = userState else {
-            fatalError("userState is nil in SettingsModule")
-        }
         let presenter = SettingsPresenter(userState: userState)
         let interactor = SettingsInteractor(userState: userState)
         let router = SettingsRouter(userState: userState)

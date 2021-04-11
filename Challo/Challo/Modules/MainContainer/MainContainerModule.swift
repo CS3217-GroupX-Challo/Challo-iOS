@@ -16,9 +16,6 @@ class MainContainerModule: ViperModuleProtocol {
     }
     
     func assemble() -> (view: AnyView, presenter: MainContainerPresenter) {
-        guard let userState = userState else {
-            fatalError("userState is not initialised")
-        }
         let interactor = MainContainerInteractor(userState: userState)
         let presenter = MainContainerPresenter(userState: userState)
         let router = MainContainerRouter(userState: userState)

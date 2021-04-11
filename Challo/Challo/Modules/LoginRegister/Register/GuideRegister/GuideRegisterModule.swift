@@ -16,10 +16,6 @@ class GuideRegisterModule: ViperModuleProtocol {
     }
     
     func assemble() -> (view: AnyView, presenter: GuideRegisterPresenter) {
-        guard let userState = userState else {
-            fatalError("userState is nil in GuideRegisterModule")
-        }
-        
         let certManager = CertificateManager(userState: userState)
         let interactor = GuideRegisterInteractor(certificateManager: certManager)
         let presenter = GuideRegisterPresenter()
