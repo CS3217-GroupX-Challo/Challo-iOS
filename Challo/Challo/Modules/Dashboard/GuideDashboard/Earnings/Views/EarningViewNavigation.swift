@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EarningViewNavigation: View {
 
-    var presenter: GuideDashboardPresenter
+    var presenter: GuideEarningsPresenter
 
     var body: some View {
 

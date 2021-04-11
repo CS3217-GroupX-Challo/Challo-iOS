@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct BookingCardListingsView: View {
+    let emptyListMessage = "You don't have any upcoming trips"
 
     var width: CGFloat
-    var emptyListMessage: String
     @Binding var bookings: [Booking]
 
     var body: some View {

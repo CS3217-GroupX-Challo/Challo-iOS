@@ -12,38 +12,34 @@ struct TouristDashboardPage: View {
     @EnvironmentObject var presenter: TouristDashboardPresenter
 
     var body: some View {
-        VStack {
-            GeometryReader { geometry in
-                VStack {
-                    HStack {
-                        Header(title: presenter.name,
-                               subtitle: "Ready to begin your journey with us?",
-                               image: Image.mountainBackground)
-                            .frame(width: geometry.size.width,
-                                   height: geometry.size.height * 0.15,
-                                   alignment: .center)
-                        Spacer()
-                    }
+        GeometryReader { geometry in
+            VStack {
+                HStack {
+                    Header(title: presenter.name,
+                           subtitle: "Ready to begin your journey with us?",
+                           image: Image.mountainBackground)
+                        .frame(width: geometry.size.width,
+                               height: geometry.size.height * 0.15,
+                               alignment: .center)
+                    Spacer()
+                }
 
-                    Image("avatar-image")
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(Circle())
-                        .frame(height: geometry.size.height * 0.10)
-                        .padding()
+                Image("avatar-image")
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .frame(height: geometry.size.height * 0.10)
+                    .padding()
 
-                    Text("Upcoming bookings")
-                        .font(.title2)
-                        .bold()
-                    
-                    if presenter.isLoading {
-                        Loading(isAnimating: .constant(true), style: .large)
-                    } else {
-                        BookingCardListingsView(
-                            width: geometry.size.width,
-                            emptyListMessage: "You don't have any upcoming trips",
-                            bookings: $presenter.upcomingBookings)
-                    }
+                Text("Upcoming bookings")
+                    .font(.title2)
+                    .bold()
+
+                if presenter.isLoading {
+                    Loading(isAnimating: .constant(true), style: .large)
+                } else {
+                    BookingCardListingsView(width: geometry.size.width,
+                                            bookings: $presenter.upcomingBookings)
                 }
             }
         }

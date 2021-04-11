@@ -9,7 +9,7 @@ import Foundation
 
 class GuideBookingHistorySubPresenter: GuideDashboardSubPresenter {
 
-    var interactor: GuideDashboardInteractor!
+    var interactor: GuideEarningsInteractor!
 
     @Published var loading = true
     @Published var totalEarnings = 0.0

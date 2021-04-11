@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class GuideDashboardModule: ViperModuleProtocol {
+final class GuideEarningsModule: ViperModuleProtocol {
 
     weak var userState: UserStateProtocol?
     let bookingRepository: BookingRepositoryProtocol
@@ -17,18 +17,18 @@ final class GuideDashboardModule: ViperModuleProtocol {
         self.bookingRepository = bookingRepository
     }
 
-    func assemble() -> (view: AnyView, presenter: GuideDashboardPresenter) {
+    func assemble() -> (view: AnyView, presenter: GuideEarningsPresenter) {
         guard let userState = userState else {
             fatalError("userState must not be nil")
         }
-        let presenter = GuideDashboardPresenter(userState: userState)
-        let interactor = GuideDashboardInteractor(userState: userState, bookingRepository: bookingRepository)
-        let router = GuideDashboardRouter()
+        let presenter = GuideEarningsPresenter(userState: userState)
+        let interactor = GuideEarningsInteractor(userState: userState, bookingRepository: bookingRepository)
+        let router = GuideEarningsRouter()
         presenter.router = router
         presenter.interactor = interactor
         interactor.presenter = presenter
         router.presenter = presenter
-        let view = AnyView(GuideDashboardPage(presenter: presenter))
+        let view = AnyView(GuideEarningsPage(presenter: presenter))
         return (view, presenter)
     }
 

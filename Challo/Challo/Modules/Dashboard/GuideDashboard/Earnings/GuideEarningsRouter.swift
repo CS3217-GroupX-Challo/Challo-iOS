@@ -7,8 +7,8 @@
 
 import Foundation
 
-class GuideDashboardRouter: RouterProtocol {
+class GuideEarningsRouter: RouterProtocol {
 
-    weak var presenter: GuideDashboardPresenter!
+    weak var presenter: GuideEarningsPresenter!
 
 }

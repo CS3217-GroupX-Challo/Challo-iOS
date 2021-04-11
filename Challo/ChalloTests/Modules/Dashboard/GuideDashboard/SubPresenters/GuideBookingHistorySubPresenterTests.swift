@@ -13,7 +13,7 @@ class GuideBookingHistorySubPresenterTests: XCTestCase {
     func testRefresh_allCompletedTrailsLoaded() {
         let userState = MockUserState.createMockLoggedInUserState()
         let repo = MockBookingRepository()
-        let interactor = GuideDashboardInteractor(userState: userState,
+        let interactor = GuideEarningsInteractor(userState: userState,
                                                   bookingRepository: repo)
         let subPresenter = GuideBookingHistorySubPresenter()
         subPresenter.interactor = interactor

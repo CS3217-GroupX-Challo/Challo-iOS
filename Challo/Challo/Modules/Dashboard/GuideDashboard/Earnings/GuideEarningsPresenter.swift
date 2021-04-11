@@ -7,10 +7,10 @@
 
 import Foundation
 
-class GuideDashboardPresenter: PresenterProtocol {
+class GuideEarningsPresenter: PresenterProtocol {
 
-    var router: GuideDashboardRouter?
-    var interactor: GuideDashboardInteractor! {
+    var router: GuideEarningsRouter?
+    var interactor: GuideEarningsInteractor! {
         didSet {
             weekSubPresenter.interactor = interactor
             yearSubPresenter.interactor = interactor

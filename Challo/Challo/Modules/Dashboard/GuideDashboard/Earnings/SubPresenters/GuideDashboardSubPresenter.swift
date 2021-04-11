@@ -9,7 +9,7 @@ import SwiftUI
 
 protocol GuideDashboardSubPresenter: ObservableObject {
 
-    var interactor: GuideDashboardInteractor! { get set }
+    var interactor: GuideEarningsInteractor! { get set }
 
     var loading: Bool { get }
 

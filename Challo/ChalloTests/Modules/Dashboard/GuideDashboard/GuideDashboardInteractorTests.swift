@@ -15,7 +15,7 @@ class GuideDashboardInteractorTests: XCTestCase {
         var success = false
         let userState = MockUserState.createMockLoggedInUserState()
         let repository = MockBookingRepository()
-        let interactor = GuideDashboardInteractor(userState: userState, bookingRepository: repository)
+        let interactor = GuideEarningsInteractor(userState: userState, bookingRepository: repository)
         interactor.populateBookings { bookings in
             success = !bookings.isEmpty
         }

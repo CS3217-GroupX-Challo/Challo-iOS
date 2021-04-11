@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct GuideDashboardPage: View {
+struct GuideEarningsPage: View {
 
-    @ObservedObject var presenter: GuideDashboardPresenter
+    @ObservedObject var presenter: GuideEarningsPresenter
 
     var body: some View {
         VStack {

@@ -9,7 +9,7 @@ import Foundation
 
 class YearEarningsPresenter: EarningSubPresenter {
 
-    var interactor: GuideDashboardInteractor!
+    var interactor: GuideEarningsInteractor!
 
     @Published private(set) var loading = true
     @Published var totalEarnings = 0.0

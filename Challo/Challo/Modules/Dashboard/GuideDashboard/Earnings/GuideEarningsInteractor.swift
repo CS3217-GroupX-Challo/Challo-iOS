@@ -7,9 +7,9 @@
 
 import Foundation
 
-class GuideDashboardInteractor: InteractorProtocol {
+class GuideEarningsInteractor: InteractorProtocol {
 
-    weak var presenter: GuideDashboardPresenter!
+    weak var presenter: GuideEarningsPresenter!
 
     let bookingRepository: BookingRepositoryProtocol
     let userState: UserStateProtocol!

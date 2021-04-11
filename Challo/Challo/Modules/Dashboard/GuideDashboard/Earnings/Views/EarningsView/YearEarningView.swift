@@ -1,5 +1,5 @@
 //
-//  WeeklyEarningsView.swift
+//  MonthlyEarningView.swift
 //  Challo
 //
 //  Created by Ying Gao on 3/4/21.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct WeekEarningsView: View {
+struct YearEarningView: View {
 
     typealias Formatter = CustomDateFormatter
 
-    @ObservedObject private var presenter: WeekEarningsPresenter
+    @ObservedObject private var presenter: YearEarningsPresenter
 
-    init(superPresenter: GuideDashboardPresenter) {
-        presenter = superPresenter.weekSubPresenter
+    init(superPresenter: GuideEarningsPresenter) {
+        presenter = superPresenter.yearSubPresenter
     }
 
     var body: some View {
@@ -23,7 +23,7 @@ struct WeekEarningsView: View {
                 Loading(isAnimating: .constant(true), style: .large)
             } else {
                 Card {
-                    Text("Total earnings of the week:")
+                    Text("Total earnings of the year:")
 
                     Text("$\(presenter.totalEarnings, specifier: "%.2f")")
                         .padding()
@@ -36,7 +36,7 @@ struct WeekEarningsView: View {
                 Divider()
 
                 BarChart(axisLabels: presenter.dateRange
-                            .map { Formatter.displayDateWithCustomFormat($0, template: "EEE") },
+                            .map { Formatter.displayDateWithCustomFormat($0, template: "MMM") },
                          data: presenter.history)
             }
 
