@@ -13,6 +13,7 @@ def challo_pods
   pod 'Swinject'
   pod 'Google-Maps-iOS-Utils', '~> 3.8.0'
   pod 'QuickBlox'
+  pod 'HorizonCalendar'
 end
 
 target 'Challo' do

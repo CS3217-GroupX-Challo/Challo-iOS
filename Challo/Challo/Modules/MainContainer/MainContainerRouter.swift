@@ -55,6 +55,7 @@ class MainContainerRouter: RouterProtocol {
 
         trailsPage = TrailListingModule(trailRepository: trailRepository,
                                         guideRepository: guideRepository,
+                                        bookingRepository: bookingRepository,
                                         bookingAPI: bookingAPI,
                                         reviewAPI: reviewAPI,
                                         userState: userState).assemble().view

@@ -33,6 +33,7 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (4.2.0):
     - GoogleMaps/Base (= 4.2.0)
+  - HorizonCalendar (1.8.0)
   - QuickBlox (2.17.10)
   - Swinject (2.7.1)
 
@@ -42,6 +43,7 @@ DEPENDENCIES:
   - Google-Maps-iOS-Utils (~> 3.8.0)
   - GoogleMaps
   - GooglePlaces
+  - HorizonCalendar
   - QuickBlox
   - Swinject
 
@@ -53,6 +55,7 @@ SPEC REPOS:
     - Google-Maps-iOS-Utils
     - GoogleMaps
     - GooglePlaces
+    - HorizonCalendar
     - QuickBlox
     - Swinject
 
@@ -63,9 +66,10 @@ SPEC CHECKSUMS:
   Google-Maps-iOS-Utils: 71c1a52fb5a3622e81a03a67dc3be9fd180cb9c3
   GoogleMaps: eb03e327edfd70b06de1e6e321653f73712df7ad
   GooglePlaces: 196a9dd88580dcb3f3df46f415057703d0d2a310
+  HorizonCalendar: be5d0b11706b4ec758a5c9607fd33858432cab81
   QuickBlox: 49d85c6e1782993fb2383001301b788a8d7dcad3
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: 5cc9291069b42ccf0d46edac0b32f6b4bf6c367d
+PODFILE CHECKSUM: c6b56b936974c88a28749f6fdb918a7fbe0c66c2
 
 COCOAPODS: 1.10.1
