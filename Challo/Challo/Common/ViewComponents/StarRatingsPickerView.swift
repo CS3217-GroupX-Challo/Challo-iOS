@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StarRatingsPickerView: View {
 
-    @State private var rating: Int = 0
+    @Binding var rating: Int
 
     var maxRating: Int = 5
 
@@ -33,11 +33,5 @@ struct StarRatingsPickerView: View {
 
     func image(for number: Int) -> Image {
         number > rating ? offImage : onImage
-    }
-}
-
-struct StarRatingsPickerView_Previews: PreviewProvider {
-    static var previews: some View {
-        StarRatingsPickerView()
     }
 }

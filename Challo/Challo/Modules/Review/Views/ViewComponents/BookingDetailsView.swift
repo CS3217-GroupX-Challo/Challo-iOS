@@ -24,32 +24,37 @@ struct BookingDetailsView: View {
                 .foregroundColor(.themeAccent)
                 .frame(maxWidth: width / 2, maxHeight: 50)
         }
+        .frame(maxHeight: height * 0.2)
     }
 
     var body: some View {
         VStack(alignment: .leading) {
-            Image("avatar-image")
-                .resizable()
-                .frame(width: width,
-                       height: height * 0.8)
             // TODO: insert TrailGuideSelectionCard here once presenter is hooked up
-            HStack(alignment: .top) {
-                makeDetail(image: "leaf",
-                           label: "Ramgargh River Trail")
-                Spacer()
-                makeDetail(image: "calendar",
-                           label: CustomDateFormatter.displayFriendlyDate(Date()))
+            HStack {
+                Image("avatar-image")
+                    .resizable()
+                    .frame(width: width * 0.5,
+                           height: height)
+                VStack {
+                    makeDetail(image: "leaf",
+                               label: "Ramgargh River Trail")
+                    makeDetail(image: "calendar",
+                               label: CustomDateFormatter.displayFriendlyDate(Date()))
+                    makeDetail(image: "dollarsign.circle",
+                               label: "3000Rp")
+                }
+                .padding()
             }
         }
         .padding()
         .frame(width: width,
                height: height,
-               alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+               alignment: .center)
     }
 }
 
 struct BookingDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        BookingDetailsView(width: 500, height: 500, booking: nil)
+        BookingDetailsView(width: 800, height: 500, booking: nil)
     }
 }

@@ -20,6 +20,10 @@ struct ReviewPage: View {
                                alignment: .center)
                     Spacer()
                 }
+                BookingDetailsView(width: geometry.size.width * 0.80,
+                                   height: geometry.size.height * 0.30,
+                                   booking: nil)
+                GuideRatingView()
             }
         }
         .edgesIgnoringSafeArea(.all)
