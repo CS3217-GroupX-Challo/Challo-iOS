@@ -63,6 +63,7 @@ class TrailBookingPresenter: PresenterProtocol {
         let (fieldsAllValid, message) = checkAllFieldsValid()
         if !fieldsAllValid {
             failureAlert(message: message)
+            return
         }
 
         guard let guideId = selectedGuideId,
