@@ -9,7 +9,14 @@ import SwiftUI
 import ImageKitIO
 import SDWebImageSwiftUI
 
-struct ImageService: ImageServiceProtocol {    
+struct ImageService: ImageServiceProtocol {
+    
+    static var urlEndpoint: String {
+        guard let urlEndpoint = ProcessInfo.processInfo.environment["imagekit_url_endpoint"] else {
+            fatalError("ImageKit urlEndpoint is not in env var")
+        }
+        return urlEndpoint
+    }
         
     private static func generateFullUrl(path: String, height: CGFloat, width: CGFloat) -> String {
         ImageKit.shared.url(path: path, transformationPosition: .QUERY)
@@ -29,14 +36,11 @@ struct ImageService: ImageServiceProtocol {
             .resizable()
             .indicator(.activity)
             .transition(.fade(duration: 0.5))
-//            .placeholder {
-//                Rectangle().foregroundColor(.gray)
-//            }
         return Image(uiImage: image.asUIImage())
     }
         
     static func uploadImage(image: Data, fileName: String, onProgress: ((Progress) -> Void)?,
-                            onSuccess: (() -> Void)?, onFailure: ((Error) -> Void)?) {
+                            onSuccess: ((String) -> Void)?, onFailure: ((Error) -> Void)?) {
         ImageKit.shared.uploader().upload(
           file: image,
           fileName: fileName,
@@ -51,7 +55,7 @@ struct ImageService: ImageServiceProtocol {
           completion: { result in
                switch result {
                case .success:
-                onSuccess?()
+                onSuccess?("\(urlEndpoint)/\(fileName)")
                case .failure(let error):
                 onFailure?(error)
               }
