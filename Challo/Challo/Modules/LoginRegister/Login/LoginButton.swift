@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct LoginButton: View {
+struct LoginButton<Presenter: LoginPresenter>: View {
 
-    var presenter: LoginPresenter
+    var presenter: Presenter
 
     var body: some View {
         Button(action: presenter.login) {

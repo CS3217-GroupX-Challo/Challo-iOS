@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct RegisterButton: View {
+struct RegisterButton<Presenter: RegisterPresenter>: View {
 
-    var presenter: RegisterPresenter
+    var presenter: Presenter
     
     var body: some View {
         Button(action: presenter.submitRegistration) {

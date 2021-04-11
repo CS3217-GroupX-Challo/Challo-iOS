@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-class GuideLoginRouter: LoginRouter, RouterProtocol {
+class GuideLoginRouter: LoginRouter {
 
-    weak var presenter: LoginPresenter!
+    weak var presenter: GuideLoginPresenter!
     let userState: UserStateProtocol
 
     init(userState: UserStateProtocol) {

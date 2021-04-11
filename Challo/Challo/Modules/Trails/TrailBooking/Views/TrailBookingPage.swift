@@ -24,9 +24,13 @@ struct TrailBookingPage: View {
                             .frame(width: geometry.size.width,
                                    height: geometry.size.height * (1 / 4.0),
                                    alignment: .center)
-                        TrailBookingOptions(presenter: presenter,
-                                            width: geometry.size.width,
-                                            height: geometry.size.height * (2 / 3.0))
+                        if presenter.isLoading {
+                            Loading(isAnimating: .constant(true), style: .large)
+                        } else {
+                            TrailBookingOptions(presenter: presenter,
+                                                width: geometry.size.width,
+                                                height: geometry.size.height * (2 / 3.0))
+                        }
                     }
                     Spacer().frame(height: 100)
                 }

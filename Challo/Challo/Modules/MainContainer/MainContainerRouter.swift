@@ -49,6 +49,7 @@ class MainContainerRouter: RouterProtocol {
         loginPage = TouristLoginModule(userState: userState).assemble().view
         trailsPage = TrailListingModule(trailRepository: trailRepository,
                                         guideRepository: guideRepository,
+                                        bookingRepository: bookingRepository,
                                         bookingAPI: bookingAPI,
                                         reviewAPI: reviewAPI,
                                         userState: userState).assemble().view

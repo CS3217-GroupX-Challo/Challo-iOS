@@ -5,9 +5,9 @@
 //  Created by Tan Le Yang on 17/3/21.
 //
 
-class TouristRegisterInteractor: RegisterInteractor, InteractorProtocol {
+class TouristRegisterInteractor: RegisterInteractor {
 
-    weak var presenter: RegisterPresenter!
+    weak var presenter: TouristRegisterPresenter!
     var certificateManager: CertificateManager
 
     private let registerAPI: RegisterAPI
