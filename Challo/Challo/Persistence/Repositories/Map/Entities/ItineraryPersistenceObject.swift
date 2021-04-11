@@ -68,3 +68,10 @@ extension ItineraryPersistenceObject: CoreDataPersistenceObject {
         itinerary.id = id.uuidString
     }
 }
+
+// MARK: - Equtable
+extension ItineraryPersistenceObject: Equatable {
+    static func == (lhs: ItineraryPersistenceObject, rhs: ItineraryPersistenceObject) -> Bool {
+        lhs.id == rhs.id
+    }
+}

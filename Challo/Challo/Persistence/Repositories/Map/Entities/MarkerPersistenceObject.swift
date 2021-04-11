@@ -53,3 +53,10 @@ extension MarkerPersistenceObject: CoreDataPersistenceObject {
         marker.setValue(comments, forKey: "comments")
     }
 }
+
+// MARK: - Equtable
+extension MarkerPersistenceObject: Equatable {
+    static func == (lhs: MarkerPersistenceObject, rhs: MarkerPersistenceObject) -> Bool {
+        lhs.id == rhs.id
+    }
+}

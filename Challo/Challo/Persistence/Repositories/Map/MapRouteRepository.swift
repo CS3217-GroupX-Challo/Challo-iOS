@@ -9,82 +9,79 @@ import CoreData
 import Foundation
 
 class MapRouteRepository: MapRouteRepositoryInterface {
-    private var data: [NSManagedObjectID: MapRoute]
+    private var data: [NSManagedObjectID: RoutePersistenceObject]
     private var repository: CoreDataRepository<Route>
     private var mapMarkerRepository: CoreDataRepository<Marker>
     
     init(repository: CoreDataRepository<Route>, mapMarkerRepository: CoreDataRepository<Marker>) {
-        self.data = [NSManagedObjectID: MapRoute]()
+        self.data = [NSManagedObjectID: RoutePersistenceObject]()
         self.repository = repository
         self.mapMarkerRepository = mapMarkerRepository
     }
     
     init() {
-        self.data = [NSManagedObjectID: MapRoute]()
+        self.data = [NSManagedObjectID: RoutePersistenceObject]()
         self.repository = CoreDataRepository<Route>(managedObjectContext: CoreDataContainer.managedObjectContext)
         self.mapMarkerRepository = CoreDataRepository<Marker>(managedObjectContext:
                                                         CoreDataContainer.managedObjectContext)
     }
     
-    func getAllRoutes() -> [MapRoute] {
-        data = [NSManagedObjectID: MapRoute]()
+    func getAllRoutes() -> [RoutePersistenceObject] {
+        data = [NSManagedObjectID: RoutePersistenceObject]()
         let routes = repository.getAll()
-        var mapRoutes = [MapRoute]()
+        var routeObjects = [RoutePersistenceObject]()
         
         for route in routes {
-            if let mapRoute =
-                MapRouteRepository.convertRouteObjectToMapRoute(route: route) {
-                data[route.objectID] = mapRoute
-                mapRoutes.append(mapRoute)
+            if let routeObject =
+                RoutePersistenceObject(persistenceObject: route) {
+                data[route.objectID] = routeObject
+                routeObjects.append(routeObject)
             }
         }
         
-        return mapRoutes
+        return routeObjects
     }
     
-    func saveMapRoutes(mapRoutes: [MapRoute]) {
+    func saveRoutes(routeObjects: [RoutePersistenceObject]) {
         let routes = getAllRoutes()
         
-        let existingMapRoutes = mapRoutes.filter { mapRoute in
-            routes.contains(mapRoute)
+        let existingRouteObjects = routeObjects.filter { routeObject in
+            routes.contains(routeObject)
         }
         
-        let toSaveMapRoutes = mapRoutes.filter { mapRoute in
-            !existingMapRoutes.contains(mapRoute)
+        let toSaveRouteObjects = routeObjects.filter { routeObject in
+            !existingRouteObjects.contains(routeObject)
         }
         
-        updateMapRoutes(mapRoutes: existingMapRoutes)
-        saveNewMapRoutes(mapRoutes: toSaveMapRoutes)
+        updateRoutes(routeObjects: existingRouteObjects)
+        saveNewRoutes(routeObjects: toSaveRouteObjects)
         repository.commit()
     }
     
-    private func updateMapRoutes(mapRoutes: [MapRoute]) {
-        for mapRoute in mapRoutes {
-            if let objectId = data.first(where: { $0.value == mapRoute })?.key,
+    private func updateRoutes(routeObjects: [RoutePersistenceObject]) {
+        for routeObject in routeObjects {
+            if let objectId = data.first(where: { $0.value == routeObject })?.key,
                let managedObject = repository.getByKey(objectId) {
-                managedObject.comments = mapRoute.comments
-                managedObject.date = mapRoute.date
-                managedObject.id = mapRoute.id.uuidString
+                routeObject.updatePersistenceObject(persistenceObject: managedObject)
             }
         }
     }
     
-    private func saveNewMapRoutes(mapRoutes: [MapRoute]) {
+    private func saveNewRoutes(routeObjects: [RoutePersistenceObject]) {
         let markers = mapMarkerRepository.getAll()
         
-        for mapRoute in mapRoutes {
-            let route = Route(context: CoreDataContainer.managedObjectContext)
-            route.comments = mapRoute.comments
-            route.date = mapRoute.date
-            route.id = mapRoute.id.uuidString
+        for routeObject in routeObjects {
+            let managedObject = routeObject.convertToPersistenceObject()
             
-            for marker in markers {
-                if marker.id == mapRoute.start.id.uuidString {
-                    route.start = marker
-                    marker.routeStart = route
-                } else if marker.id == mapRoute.end.id.uuidString {
-                    route.end = marker
-                    marker.routeEnd = route
+            if let route = managedObject as? Route {
+                for marker in markers {
+                    if marker.id == routeObject.start.id.uuidString {
+                        route.start = marker
+                        marker.routeStart = route
+                    } else if marker.id == routeObject.end.id.uuidString {
+                        route.end = marker
+                        marker.routeEnd = route
+                    }
                 }
             }
         }

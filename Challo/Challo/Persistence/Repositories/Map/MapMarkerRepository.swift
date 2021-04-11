@@ -11,65 +11,61 @@ import Foundation
 // MARK: - Extension from MapMarkerRepositoryInterface
 class MapMarkerRepository: MapMarkerRepositoryInterface {
     
-    private var data: [NSManagedObjectID: MapMarker]
+    private var data: [NSManagedObjectID: MarkerPersistenceObject]
     private var repository: CoreDataRepository<Marker>
     
-    init(data: [NSManagedObjectID: MapMarker], repository: CoreDataRepository<Marker>) {
+    init(data: [NSManagedObjectID: MarkerPersistenceObject], repository: CoreDataRepository<Marker>) {
         self.data = data
         self.repository = repository
     }
     
     init() {
-        self.data = [NSManagedObjectID: MapMarker]()
+        self.data = [NSManagedObjectID: MarkerPersistenceObject]()
         self.repository = CoreDataRepository<Marker>(managedObjectContext: CoreDataContainer.managedObjectContext)
     }
     
-    func getAllMapMarkers() -> [MapMarker] {
-        data = [NSManagedObjectID: MapMarker]() // reset data
+    func getAllMarkers() -> [MarkerPersistenceObject] {
+        data = [NSManagedObjectID: MarkerPersistenceObject]() // reset data
         let result = repository.getAll()
-        return result.map { marker in
-            let mapMarker = MapMarkerRepository.convertMarkerObjectToMapMarker(marker: marker)
-            data[marker.objectID] = mapMarker
-            return mapMarker
+        var markerObjects = [MarkerPersistenceObject]()
+        
+        for marker in result {
+            if let markerObject = MarkerPersistenceObject(persistenceObject: marker) {
+                data[marker.objectID] = markerObject
+                markerObjects.append(markerObject)
+            }
         }
+        
+        return markerObjects
     }
     
-    func saveMapMarkers(mapMarkers: [MapMarker]) {
-        let savedMapMarkers = getAllMapMarkers()
-        let mapMarkersToUpdate = mapMarkers.filter { mapMarker in
-            savedMapMarkers.contains(mapMarker)
+    func saveMarkers(markerObjects: [MarkerPersistenceObject]) {
+        let savedMapMarkers = getAllMarkers()
+        let markerObjectsToUpdate = markerObjects.filter { markerObject in
+            savedMapMarkers.contains(markerObject)
         }
         
-        let toSaveMapMarkers = mapMarkers.filter { mapMarker in
-            !mapMarkersToUpdate.contains(mapMarker)
+        let toSaveMarkerObjects = markerObjects.filter { markerObject in
+            !markerObjectsToUpdate.contains(markerObject)
         }
         
-        updateMapMarkers(mapMarkers: mapMarkersToUpdate)
-        saveNewMapMarkers(mapMarkers: toSaveMapMarkers)
+        updateMarkers(markerObjects: markerObjectsToUpdate)
+        saveNewMarkers(markerObjects: toSaveMarkerObjects)
         repository.commit()
     }
     
-    private func updateMapMarkers(mapMarkers: [MapMarker]) {
-        for mapMaker in mapMarkers {
-            if let objectId = data.first(where: { $0.value == mapMaker })?.key,
+    private func updateMarkers(markerObjects: [MarkerPersistenceObject]) {
+        for markerObject in markerObjects {
+            if let objectId = data.first(where: { $0.value == markerObject })?.key,
                let managedObject = repository.getByKey(objectId) {
-                managedObject.setValue(mapMaker.id.uuidString, forKey: "id")
-                managedObject.setValue(mapMaker.position.latitude, forKey: "latitude")
-                managedObject.setValue(mapMaker.position.longitude, forKey: "longitude")
-                managedObject.setValue(mapMaker.date, forKey: "date")
-                managedObject.setValue(mapMaker.comments, forKey: "comments")
+                markerObject.updatePersistenceObject(persistenceObject: managedObject)
             }
         }
     }
     
-    private func saveNewMapMarkers(mapMarkers: [MapMarker]) {
-        for mapMarker in mapMarkers {
-            let marker = Marker(context: CoreDataContainer.managedObjectContext)
-            marker.id = mapMarker.id.uuidString
-            marker.comments = mapMarker.comments
-            marker.longitude = mapMarker.position.longitude
-            marker.latitude = mapMarker.position.latitude
-            marker.date = mapMarker.date
+    private func saveNewMarkers(markerObjects: [MarkerPersistenceObject]) {
+        for markerObject in markerObjects {
+            _ = markerObject.convertToPersistenceObject()
         }
     }
     

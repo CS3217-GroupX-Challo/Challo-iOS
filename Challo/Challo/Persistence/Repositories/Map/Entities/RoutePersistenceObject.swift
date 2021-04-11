@@ -24,7 +24,7 @@ extension RoutePersistenceObject: CoreDataPersistenceObject {
             return nil
         }
         
-        guard let markerStart =  MarkerPersistenceObject(persistenceObject: start),
+        guard let markerStart = MarkerPersistenceObject(persistenceObject: start),
               let markerEnd = MarkerPersistenceObject(persistenceObject: end) else {
             return nil
         }
@@ -52,5 +52,12 @@ extension RoutePersistenceObject: CoreDataPersistenceObject {
         route.comments = comments
         route.date = date
         route.id = id.uuidString
+    }
+}
+
+// MARK: - Equtable
+extension RoutePersistenceObject: Equatable {
+    static func == (lhs: RoutePersistenceObject, rhs: RoutePersistenceObject) -> Bool {
+        lhs.id == rhs.id
     }
 }
