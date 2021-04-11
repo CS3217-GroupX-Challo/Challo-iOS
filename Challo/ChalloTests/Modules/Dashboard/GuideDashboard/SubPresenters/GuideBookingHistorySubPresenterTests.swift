@@ -14,7 +14,7 @@ class GuideBookingHistorySubPresenterTests: XCTestCase {
         let userState = MockUserState.createMockLoggedInUserState()
         let repo = MockBookingRepository()
         let interactor = GuideEarningsInteractor(userState: userState,
-                                                  bookingRepository: repo)
+                                                 bookingRepository: repo)
         let subPresenter = GuideBookingHistorySubPresenter()
         subPresenter.interactor = interactor
 
