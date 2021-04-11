@@ -24,9 +24,10 @@ class ChatPresenter: SearchBarPresenter, ObservableObject {
     @Published var searchBarText: String = ""
     
     var filteredDialogs: [ChatDialog] {
-        dialogs.filter({ searchBarText.isEmpty
-                        ? true
-                        : ($0.chateeName ?? "").lowercased().contains(searchBarText.lowercased()) })
+        guard !searchBarText.isEmpty else {
+            return dialogs
+        }
+        return dialogs.filter({ ($0.chateeName ?? "").lowercased().contains(searchBarText.lowercased()) })
     }
     
     // Chat can only be displayed when user is logged in

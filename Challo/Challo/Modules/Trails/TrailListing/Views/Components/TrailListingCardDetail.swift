@@ -33,7 +33,7 @@ struct TrailListingCardDetail: View {
             Text(title).bold()
             Divider()
             HStack {
-                ForEach(tags.indices, content: makeTag)
+                ForEach(tags.indices, id: \.self, content: makeTag)
             }
             StarRatingsView(rating: rating, numOfReviews: numOfReviews)
             Group {

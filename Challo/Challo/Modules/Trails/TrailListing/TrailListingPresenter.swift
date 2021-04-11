@@ -7,14 +7,24 @@
 
 import SwiftUI
 
-class TrailListingPresenter: PresenterProtocol, ObservableObject {
+class TrailListingPresenter: SearchBarPresenter, ObservableObject {
 
     var interactor: TrailListingInteractor!
     var router: TrailListingRouter?
     
+    private var trails: [Trail] = []
+    private var trailListingCards: [TrailListingCard] = []
+
     @Published var isLoading = false
-    var trails: [Trail] = []
-    var trailListingCards: [TrailListingCard] = []
+    
+    @Published var searchBarText: String = ""
+    
+    var displayedTrailListingCards: [TrailListingCard] {
+        guard !searchBarText.isEmpty else {
+            return trailListingCards
+        }
+        return trailListingCards.filter { $0.title.contains(searchBarText) }
+    }
     
     var trailProfilePage: AnyView? {
         router?.trailProfilePage
@@ -35,8 +45,10 @@ class TrailListingPresenter: PresenterProtocol, ObservableObject {
                          tourDescription: trail.description, rating: trail.rating, numOfReviews: trail.numOfReviews)
     }
     
-    func populateTrailProfilePage(trailIndex: Int) {
-        let trail = trails[trailIndex]
+    func populateTrailProfilePage(trailTitle: String) {
+        guard let trail = trails.first(where: { $0.title == trailTitle }) else {
+            fatalError("Unsync between trails in view and in presenter")
+        }
         router?.populateTrailProfilePageFor(trail: trail)
     }
     

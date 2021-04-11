@@ -11,23 +11,31 @@ struct TrailListingPage: View {
     
     @EnvironmentObject var presenter: TrailListingPresenter
     
+    var trailCards: some View {
+        ForEach(presenter.displayedTrailListingCards.indices, id: \.self) { index in
+            NavigationLink(destination: presenter.trailProfilePage) {
+                presenter.displayedTrailListingCards[index]
+            }.buttonStyle(PlainButtonStyle())
+            .simultaneousGesture(TapGesture().onEnded {
+                presenter.populateTrailProfilePage(trailTitle: presenter.displayedTrailListingCards[index].title)
+            })
+        }
+    }
+    
     var cardList: some View {
         Group {
             if presenter.isLoading {
                 Loading(isAnimating: .constant(true), style: .large)
             } else {
-                ScrollView {
-                    VStack(spacing: 30) {
-                        ForEach(presenter.trailListingCards.indices, id: \.self) { index in
-                            NavigationLink(destination: presenter.trailProfilePage) {
-                                presenter.trailListingCards[index]
-                            }.buttonStyle(PlainButtonStyle())
-                            .simultaneousGesture(TapGesture().onEnded {
-                                presenter.populateTrailProfilePage(trailIndex: index)
-                            })
+                VStack {
+                    SearchBar<TrailListingPresenter>()
+                        .padding(.bottom, 40)
+                    ScrollView {
+                        VStack(spacing: 30) {
+                            trailCards
                         }
-                    }.padding(EdgeInsets(top: 50, leading: 60, bottom: 30, trailing: 60))
-                }
+                    }
+                }.padding(EdgeInsets(top: 50, leading: 60, bottom: 30, trailing: 60))
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
