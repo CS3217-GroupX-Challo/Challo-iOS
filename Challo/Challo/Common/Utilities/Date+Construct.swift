@@ -43,4 +43,8 @@ extension Date {
             return nil
         }
     }
+
+    func convertToStartOfDay() -> Date {
+        Calendar.current.startOfDay(for: self)
+    }
 }

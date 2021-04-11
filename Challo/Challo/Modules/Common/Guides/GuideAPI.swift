@@ -5,6 +5,7 @@
 //  Created by Kester Ng on 19/3/21.
 //
 import Foundation
+import Dispatch
 
 class GuideAPI: GuideAPIProtocol {
     // TODO: Add in post/put/delete methods
@@ -33,17 +34,28 @@ class GuideAPI: GuideAPIProtocol {
             }
             
             let guides = self.guideParser.parseGuides(response: response)
+            
+            let group = DispatchGroup()
+            for _ in 0..<guides.count {
+                group.enter()
+            }
+            
             var updatedGuidesWithTrail: [Guide] = []
             for var guide in guides {
                 self.networkManager.get(url: "/guide/trail/" + guide.userId.uuidString,
                                         headers: [String: String]()) { response, error in
                     if error != nil {
+                        group.leave()
                         return
                     }
                     guide.trails = self.trailParser.parseTrail(response: response)
                     updatedGuidesWithTrail.append(guide)
-                    callback(updatedGuidesWithTrail)
+                    group.leave()
                 }
+            }
+            
+            group.notify(queue: .main) {
+                callback(updatedGuidesWithTrail)
             }
         }
     }
