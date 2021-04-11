@@ -9,7 +9,7 @@ import SwiftUI
 
 class MainContainerModule: ViperModuleProtocol {
 
-    weak var userState: UserStateProtocol?
+    let userState: UserStateProtocol
     
     init(userState: UserStateProtocol) {
         self.userState = userState

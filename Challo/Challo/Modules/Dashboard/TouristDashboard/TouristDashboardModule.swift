@@ -9,7 +9,7 @@ import SwiftUI
 
 final class TouristDashboardModule: ViperModuleProtocol {
 
-    weak var userState: UserStateProtocol?
+    let userState: UserStateProtocol
     let bookingsRepository: BookingRepositoryProtocol
     let sendMessageToGuide: ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)
     

@@ -11,7 +11,7 @@ import Combine
 class SettingsPresenter: PresenterProtocol, ObservableObject {
     var router: SettingsRouter?
     var interactor: SettingsInteractor!
-    let userState: UserStateProtocol!
+    let userState: UserStateProtocol
     
     @Published var settingOptionViews: [SettingsListElement<AnyView>] = []
     var loggedInSettingOptions: [SettingsListElement<AnyView>] = []

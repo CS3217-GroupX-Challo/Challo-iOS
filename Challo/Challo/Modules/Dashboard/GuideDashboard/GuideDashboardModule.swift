@@ -9,7 +9,7 @@ import SwiftUI
 
 final class GuideDashboardModule: ViperModuleProtocol {
 
-    weak var userState: UserStateProtocol?
+    let userState: UserStateProtocol
     let bookingRepository: BookingRepositoryProtocol
 
     init(userState: UserStateProtocol, bookingRepository: BookingRepositoryProtocol) {

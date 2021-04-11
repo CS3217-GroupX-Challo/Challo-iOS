@@ -11,7 +11,7 @@ class TouristDashboardPresenter: PresenterProtocol {
     
     var router: TouristDashboardRouter?
     var interactor: TouristDashboardInteractor!
-    unowned let userState: UserStateProtocol!
+    let userState: UserStateProtocol
 
     let sendMessageToGuide: ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)
     
