@@ -58,7 +58,7 @@ class AreaDetailsRepository: AreaDetailsRepositoryProtocol {
     private func createNewAreas(areaObjects: [AreaPersistenceObject]) {
         for areaObject in areaObjects {
             // result not needed as entity row alr created, waiting to be committed
-            let _ = areaObject.convertToPersistenceObject()
+            _ = areaObject.convertToPersistenceObject()
         }
     }
     

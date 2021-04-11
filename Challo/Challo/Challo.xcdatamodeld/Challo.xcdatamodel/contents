@@ -34,9 +34,9 @@
         <relationship name="start" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Marker" inverseName="routeStart" inverseEntity="Marker"/>
     </entity>
     <elements>
+        <element name="AreaDetails" positionX="-54" positionY="81" width="128" height="104"/>
         <element name="Itinerary" positionX="-36" positionY="72" width="128" height="119"/>
         <element name="Marker" positionX="-63" positionY="-18" width="128" height="149"/>
         <element name="Route" positionX="-54" positionY="27" width="128" height="119"/>
-        <element name="AreaDetails" positionX="-54" positionY="81" width="128" height="104"/>
     </elements>
 </model>

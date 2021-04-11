@@ -17,10 +17,10 @@ struct AreaModelConvertor {
     }
     
     func convertAreaPersistenceObjectToArea(areaObject: AreaPersistenceObject) -> Area {
-        return Area(areaId: areaObject.areaId,
-                    village: areaObject.village,
-                    division: areaObject.division,
-                    state: areaObject.state,
-                    country: areaObject.country)
+        Area(areaId: areaObject.areaId,
+             village: areaObject.village,
+             division: areaObject.division,
+             state: areaObject.state,
+             country: areaObject.country)
     }
 }
