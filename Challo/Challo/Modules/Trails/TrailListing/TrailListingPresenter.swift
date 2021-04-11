@@ -18,6 +18,7 @@ class TrailListingPresenter: SearchBarPresenter, ObservableObject {
     @Published var isLoading = false
     
     @Published var searchBarText: String = ""
+    @Published var isSearchBarSheetOpen: Bool = false
     
     var displayedTrailListingCards: [TrailListingCard] {
         guard !searchBarText.isEmpty else {

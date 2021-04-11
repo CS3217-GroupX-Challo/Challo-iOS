@@ -9,4 +9,5 @@ import Foundation
 
 protocol SearchBarPresenter: PresenterProtocol {
     var searchBarText: String { get set }
+    var isSearchBarSheetOpen: Bool { get set }
 }

@@ -22,6 +22,7 @@ class ChatPresenter: SearchBarPresenter, ObservableObject {
     
     @Published var messageText: String = ""
     @Published var searchBarText: String = ""
+    @Published var isSearchBarSheetOpen: Bool = false
     
     var filteredDialogs: [ChatDialog] {
         guard !searchBarText.isEmpty else {

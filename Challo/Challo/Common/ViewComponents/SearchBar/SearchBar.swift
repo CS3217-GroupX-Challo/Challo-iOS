@@ -11,8 +11,14 @@ struct SearchBar<Presenter: SearchBarPresenter>: View {
     @EnvironmentObject var presenter: Presenter
     @State private var isEditing = false
     
-    var placeholder: String = "Search..."
- 
+    var placeholder: String
+    let searchBarSheet: AnyView?
+    
+    init(placeholder: String = "Search...", searchBarSheet: AnyView? = nil) {
+        self.placeholder = placeholder
+        self.searchBarSheet = searchBarSheet
+    }
+    
     var body: some View {
         HStack {
             TextField(placeholder, text: $presenter.searchBarText)
@@ -29,19 +35,10 @@ struct SearchBar<Presenter: SearchBarPresenter>: View {
                     HStack {
                         Image(systemName: "magnifyingglass")
                             .font(Font.headline.weight(.semibold))
-                            .foregroundColor(.themeTertiary)
+                            .foregroundColor(.black)
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 8)
-                 
-                        if isEditing {
-                            Button(action: {
-                                presenter.searchBarText = ""
-                            }) {
-                                Image(systemName: "multiply.circle.fill")
-                                    .foregroundColor(.themeTertiary)
-                                    .padding(.trailing, 8)
-                            }
-                        }
+                        SearchBarRightButton<Presenter>(isEditing: $isEditing, isFilterable: searchBarSheet != nil)
                     }
                 )
                 .padding(.horizontal, 10)
@@ -52,24 +49,11 @@ struct SearchBar<Presenter: SearchBarPresenter>: View {
                 .animation(.default)
  
             if isEditing {
-                Button(action: {
-                    self.isEditing = false
-                    presenter.searchBarText = ""
-                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
-                                                    to: nil, from: nil, for: nil)
-                }) {
-                    Text("Cancel")
-                }
-                .padding(.trailing, 10)
-                .transition(.move(edge: .trailing))
-                .animation(.default)
+                SearchBarCancelButton<Presenter>(isEditing: $isEditing)
             }
         }
-    }
-}
-
-struct SearchBar_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchBar<ChatPresenter>().environmentObject(ChatPresenter())
+        .sheet(isPresented: $presenter.isSearchBarSheetOpen) {
+            searchBarSheet
+        }
     }
 }
