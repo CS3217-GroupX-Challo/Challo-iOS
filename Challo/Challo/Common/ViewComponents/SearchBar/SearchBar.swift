@@ -1,19 +1,19 @@
 //
-//  ChatDialogSearchBar.swift
+//  SearchBar.swift
 //  Challo
 //
-//  Created by Shao Yi on 3/4/21.
+//  Created by Shao Yi on 11/4/21.
 //
 
 import SwiftUI
 
-struct ChatDialogSearchBar: View {
-    @EnvironmentObject var presenter: ChatPresenter
+struct SearchBar<Presenter: SearchBarPresenter>: View {
+    @EnvironmentObject var presenter: Presenter
     @State private var isEditing = false
  
     var body: some View {
         HStack {
-            TextField("Search ...", text: $presenter.dialogSearchBarText)
+            TextField("Search ...", text: $presenter.searchBarText)
                 .padding(7)
                 .padding(.horizontal, 25)
                 .background(Color(.systemGray6))
@@ -27,7 +27,7 @@ struct ChatDialogSearchBar: View {
                  
                         if isEditing {
                             Button(action: {
-                                presenter.dialogSearchBarText = ""
+                                presenter.searchBarText = ""
                             }) {
                                 Image(systemName: "multiply.circle.fill")
                                     .foregroundColor(.gray)
@@ -44,7 +44,7 @@ struct ChatDialogSearchBar: View {
             if isEditing {
                 Button(action: {
                     self.isEditing = false
-                    presenter.dialogSearchBarText = ""
+                    presenter.searchBarText = ""
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
                                                     to: nil, from: nil, for: nil)
                 }) {
