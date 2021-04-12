@@ -63,7 +63,7 @@ class TouristDetailsRepository: TouristDetailsRepositoryProtocol {
     
     private func updateTourists(touristObjects: [TouristPersistenceObject]) {
         for touristObject in touristObjects {
-            if let objectId = data.first(where: { $0.value == touristObject})?.key,
+            if let objectId = data.first(where: { $0.value == touristObject })?.key,
                let tourist = repository.getByKey(objectId) {
                 touristObject.updatePersistenceObject(persistenceObject: tourist)
             }
