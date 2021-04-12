@@ -15,12 +15,15 @@ struct ReviewPage: View {
     var body: some View {
         PageLayout(titleLabel: "Leave a Review") { geometry in
             ScrollView {
+                if presenter.reviewAlreadyExists() {
+                    Text("Review already exists!")
+                }
                 VStack {
                     BookingDetailsView(width: geometry.size.width * 0.80,
                                        height: geometry.size.height * 0.30,
                                        booking: presenter.booking)
                     ExperienceRatingView(rating: $presenter.rating,
-                                    comments: $presenter.comments)
+                                         comments: $presenter.comments)
                     Button(action: {
                         presenter.submitReview()
                     }, label: {

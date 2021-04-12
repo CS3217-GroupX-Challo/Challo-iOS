@@ -53,6 +53,10 @@ class ReviewPresenter: PresenterProtocol, AlertPresenter {
                                       message: "You review has been submitted")
         })
     }
+
+    func reviewAlreadyExists() -> Bool {
+        booking.review != nil
+    }
 }
 
 // MARK: Input Validation

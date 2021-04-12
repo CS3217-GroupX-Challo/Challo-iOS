@@ -77,7 +77,7 @@ class ReviewAPI: ReviewAPIProtocol {
                              trail: Trail,
                              tourist: Tourist,
                              callback: @escaping (Review?) -> Void) {
-        let url = "/url/?bookingId=\(bookingId.uuid)"
+        let url = "/review?bookingId=\(bookingId.uuidString)"
         networkManager.get(url: url, headers: [String: String]()) { response, error in
             if error != nil {
                 callback(nil)

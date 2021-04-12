@@ -27,7 +27,7 @@ extension AlertPresenter {
 
     func presentSuccessAlert(title: String, message: String) {
         self.isSuccessAlert = true
-        self.alertTitle = message
+        self.alertTitle = title
         self.alertMessage = message
         self.isShowingAlert = true
     }
