@@ -6,7 +6,28 @@
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="state" optional="YES" attributeType="String"/>
         <attribute name="village" optional="YES" attributeType="String"/>
+        <relationship name="guide" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GuideDetails" inverseName="location" inverseEntity="GuideDetails"/>
         <relationship name="trail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TrailDetails" inverseName="area" inverseEntity="TrailDetails"/>
+    </entity>
+    <entity name="GuideDetails" representedClassName="GuideDetails" syncable="YES" codeGenerationType="class">
+        <attribute name="accreditations" optional="YES" attributeType="String"/>
+        <attribute name="biography" optional="YES" attributeType="String"/>
+        <attribute name="dateJoined" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="daysAvailable" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="experience" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="hobbies" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="langauges" optional="YES" attributeType="String"/>
+        <attribute name="memorableExperiences" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="profileImg" optional="YES" attributeType="String"/>
+        <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="sex" optional="YES" attributeType="String"/>
+        <attribute name="unavailableDates" optional="YES" attributeType="String"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AreaDetails" inverseName="guide" inverseEntity="AreaDetails"/>
+        <relationship name="trails" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrailDetails" inverseName="guide" inverseEntity="TrailDetails"/>
     </entity>
     <entity name="Itinerary" representedClassName="Itinerary" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -59,13 +80,15 @@
         <attribute name="tags" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
         <relationship name="area" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AreaDetails" inverseName="trail" inverseEntity="AreaDetails"/>
+        <relationship name="guide" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GuideDetails" inverseName="trails" inverseEntity="GuideDetails"/>
     </entity>
     <elements>
-        <element name="AreaDetails" positionX="-54" positionY="81" width="128" height="119"/>
+        <element name="AreaDetails" positionX="-54" positionY="81" width="128" height="134"/>
         <element name="Itinerary" positionX="-36" positionY="72" width="128" height="119"/>
         <element name="Marker" positionX="-63" positionY="-18" width="128" height="149"/>
         <element name="Route" positionX="-54" positionY="27" width="128" height="119"/>
         <element name="TouristDetails" positionX="-54" positionY="81" width="128" height="134"/>
-        <element name="TrailDetails" positionX="-54" positionY="81" width="128" height="254"/>
+        <element name="TrailDetails" positionX="-54" positionY="81" width="128" height="269"/>
+        <element name="GuideDetails" positionX="-54" positionY="144" width="128" height="299"/>
     </elements>
 </model>
