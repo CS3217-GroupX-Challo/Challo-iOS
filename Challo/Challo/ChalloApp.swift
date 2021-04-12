@@ -17,6 +17,7 @@ struct ChalloApp: App {
         globalUserState = UserState()
         GoogleMapsConfiguration.initConfiguration()
         QuickBloxConfiguration.initConfiguration()
+        ImageKitConfiguration.initConfiguration()
     }
 
     var body: some Scene {

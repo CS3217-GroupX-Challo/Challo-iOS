@@ -95,6 +95,8 @@ targets:
         quickblox_auth_key: "KeZaVbQMfpbKb2y"
         quickblox_auth_secret: "urPrkVPnjNfRgnA"
         quickblox_acct_cred: "o19gT7Qc6HQy4yP9fW6y"
+        imagekit_public_key: "public_SHddXLhWEXk3EMUTHlqpFPy0lvw="
+        imagekit_url_endpoint: "https://ik.imagekit.io/challocs3217"
   ChalloTests:
     dependencies:
     - target: Challo
@@ -130,6 +132,8 @@ targets:
         quickblox_auth_key: "KeZaVbQMfpbKb2y"
         quickblox_auth_secret: "urPrkVPnjNfRgnA"
         quickblox_acct_cred: "o19gT7Qc6HQy4yP9fW6y"
+        imagekit_public_key: "public_SHddXLhWEXk3EMUTHlqpFPy0lvw="
+        imagekit_url_endpoint: "https://ik.imagekit.io/challocs3217"
   ChalloUITests:
     dependencies:
     - target: Challo
@@ -160,3 +164,5 @@ targets:
         quickblox_auth_key: "KeZaVbQMfpbKb2y"
         quickblox_auth_secret: "urPrkVPnjNfRgnA"
         quickblox_acct_cred: "o19gT7Qc6HQy4yP9fW6y"
+        imagekit_public_key: "public_SHddXLhWEXk3EMUTHlqpFPy0lvw="
+        imagekit_url_endpoint: "https://ik.imagekit.io/challocs3217"
