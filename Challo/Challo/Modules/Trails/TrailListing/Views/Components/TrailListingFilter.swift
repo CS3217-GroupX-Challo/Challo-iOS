@@ -9,7 +9,21 @@ import SwiftUI
 
 struct TrailListingFilter: View {
     
-    @EnvironmentObject var presenter: TrailListingPresenter
+    @ObservedObject var presenter: TrailListingPresenter
+    @ObservedObject var slider: CustomSlider
+    
+    init(presenter: TrailListingPresenter) {
+        self.presenter = presenter
+        slider = presenter.slider
+    }
+    
+    var sliderLowerValue: String {
+        String(format: "%.0f", floor(slider.lowHandle.currentValue))
+    }
+    
+    var sliderUpperValue: String {
+        String(format: "%.0f", round(slider.highHandle.currentValue))
+    }
     
     private func makeSectionTitle(_ title: String) -> some View {
         Text(title)
@@ -42,7 +56,7 @@ struct TrailListingFilter: View {
                 makeSectionTitle("Difficulty")
                 Text("Trails are ranked a difficulty according to their terrain, distance & elevation.")
                     .foregroundColor(Color.gray)
-            }.padding(.vertical, 10)
+            }.padding(.vertical, 20)
             makeDifficultyFilter(difficultyLabel: "Easy", difficultyColor: .green,
                                  isChecked: $presenter.showEasyTrails)
             makeDifficultyFilter(difficultyLabel: "Moderate", difficultyColor: .orange,
@@ -50,6 +64,17 @@ struct TrailListingFilter: View {
             makeDifficultyFilter(difficultyLabel: "Difficult", difficultyColor: .red,
                                  isChecked: $presenter.showDifficultTrails)
         }
+    }
+    
+    private var priceRange: some View {
+        VStack(alignment: .leading) {
+            makeSectionTitle("Price Range")
+                .padding(.vertical, 20)
+            Text("$\(sliderLowerValue) - $\(sliderUpperValue)")
+            CustomSliderView(slider: slider)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 40)
+        }.frame(maxWidth: .infinity)
     }
     
     private var divider: some View {
@@ -64,7 +89,7 @@ struct TrailListingFilter: View {
             VStack(alignment: .leading) {
                 difficultyFilters
                 divider
-                makeSectionTitle("Price Range")
+                priceRange
             }.padding(.horizontal, 50)
         }
     }
@@ -72,6 +97,6 @@ struct TrailListingFilter: View {
 
 struct TrailListingFilter_Previews: PreviewProvider {
     static var previews: some View {
-        TrailListingFilter().environmentObject(TrailListingPresenter())
+        TrailListingFilter(presenter: TrailListingPresenter())
     }
 }

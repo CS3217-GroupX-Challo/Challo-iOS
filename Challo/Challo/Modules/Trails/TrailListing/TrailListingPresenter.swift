@@ -24,6 +24,8 @@ class TrailListingPresenter: SearchBarPresenter, ObservableObject {
     @Published var showModerateTrails = false
     @Published var showDifficultTrails = false
     
+    var slider = CustomSlider(width: 600, start: 10, end: 100)
+    
     var isFiltered: Bool {
         showEasyTrails || showModerateTrails || showDifficultTrails
     }

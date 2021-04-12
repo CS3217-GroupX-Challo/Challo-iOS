@@ -28,7 +28,7 @@ struct TrailListingPage: View {
                 Loading(isAnimating: .constant(true), style: .large)
             } else {
                 VStack {
-                    SearchBar<TrailListingPresenter>()
+                    SearchBar<TrailListingPresenter>(searchBarSheet: AnyView(TrailListingFilter(presenter: presenter)))
                         .padding(.bottom, 40)
                     ScrollView {
                         VStack(spacing: 30) {

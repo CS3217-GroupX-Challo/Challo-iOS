@@ -18,7 +18,7 @@ class SliderHandle: ObservableObject {
     let sliderValueRange: Double
     
     // Slider Handle
-    var diameter: CGFloat = 40
+    var diameter: CGFloat = 25
     var startLocation: CGPoint
     
     // Current Value
@@ -27,9 +27,12 @@ class SliderHandle: ObservableObject {
     // Slider Button Location
     @Published var onDrag: Bool
     @Published var currentLocation: CGPoint
+    
+    let isLowerHandle: Bool
+    var otherHandleLocation: CGPoint! 
         
     init(sliderWidth: CGFloat, sliderHeight: CGFloat, sliderValueStart: Double, sliderValueEnd: Double,
-         startPercentage: SliderValue) {
+         startPercentage: SliderValue, isLowerHandle: Bool) {
         self.sliderWidth = sliderWidth
         self.sliderHeight = sliderHeight
         
@@ -43,9 +46,10 @@ class SliderHandle: ObservableObject {
         self.currentPercentage = startPercentage
         
         self.onDrag = false
+        self.isLowerHandle = isLowerHandle
     }
     
-    lazy var sliderDragGesture: _EndedGesture<_ChangedGesture<DragGesture>>  = DragGesture()
+    lazy var sliderDragGesture: _EndedGesture<_ChangedGesture<DragGesture>> = DragGesture()
         .onChanged { value in
             self.onDrag = true
             
@@ -61,10 +65,19 @@ class SliderHandle: ObservableObject {
             self.onDrag = false
         }
     
+    private func checkHandlersNotReversed(_ dragX: CGFloat) -> Bool {
+        if isLowerHandle {
+            return dragX < otherHandleLocation.x
+        } else {
+            return dragX > otherHandleLocation.x
+        }
+    }
+    
     private func restrictSliderBtnLocation(_ dragLocation: CGPoint) {
-        // On Slider Width
-        if dragLocation.x > CGPoint.zero.x && dragLocation.x < sliderWidth {
-            calcSliderBtnLocation(dragLocation)
+        let dragX = dragLocation.x
+        if dragX > CGPoint.zero.x && dragX < sliderWidth && checkHandlersNotReversed(dragX) {
+            let xOffset = min(max(0, dragLocation.x), sliderWidth)
+            calcSliderBtnLocation(CGPoint(x: xOffset, y: dragLocation.y))
         }
     }
     

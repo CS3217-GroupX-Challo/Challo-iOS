@@ -15,6 +15,6 @@ struct SliderPathView: View {
             path.move(to: slider.lowHandle.currentLocation)
             path.addLine(to: slider.highHandle.currentLocation)
         }
-        .stroke(Color.green, lineWidth: slider.lineWidth)
+        .stroke(Color.themeTertiary, lineWidth: slider.lineWidth)
     }
 }

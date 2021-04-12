@@ -12,8 +12,8 @@ import Combine
 class CustomSlider: ObservableObject {
     
     // Slider Size
-    final let width: CGFloat = 300
     final let lineWidth: CGFloat = 8
+    final let width: CGFloat
     
     // Slider value range from valueStart to valueEnd
     final let valueStart: Double
@@ -30,7 +30,8 @@ class CustomSlider: ObservableObject {
     final var anyCancellableHigh: AnyCancellable?
     final var anyCancellableLow: AnyCancellable?
     
-    init(start: Double, end: Double) {
+    init(width: CGFloat, start: Double, end: Double) {
+        self.width = width
         valueStart = start
         valueEnd = end
         
@@ -38,20 +39,26 @@ class CustomSlider: ObservableObject {
                                   sliderHeight: lineWidth,
                                   sliderValueStart: valueStart,
                                   sliderValueEnd: valueEnd,
-                                  startPercentage: _highHandleStartPercentage
-                                )
+                                  startPercentage: _highHandleStartPercentage,
+                                  isLowerHandle: false)
         
         lowHandle = SliderHandle(sliderWidth: width,
                                  sliderHeight: lineWidth,
                                  sliderValueStart: valueStart,
                                  sliderValueEnd: valueEnd,
-                                 startPercentage: _lowHandleStartPercentage)
+                                 startPercentage: _lowHandleStartPercentage,
+                                 isLowerHandle: true)
+                
+        highHandle.otherHandleLocation = lowHandle.currentLocation
+        lowHandle.otherHandleLocation = highHandle.currentLocation
         
-        anyCancellableHigh = highHandle.objectWillChange.sink { _ in
-            self.objectWillChange.send()
+        anyCancellableHigh = highHandle.objectWillChange.sink { [weak self] _ in
+            self?.lowHandle.otherHandleLocation = self?.highHandle.currentLocation
+            self?.objectWillChange.send()
         }
-        anyCancellableLow = lowHandle.objectWillChange.sink { _ in
-            self.objectWillChange.send()
+        anyCancellableLow = lowHandle.objectWillChange.sink { [weak self] _ in
+            self?.highHandle.otherHandleLocation = self?.lowHandle.currentLocation
+            self?.objectWillChange.send()
         }
     }
     
