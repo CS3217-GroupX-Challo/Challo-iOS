@@ -7,10 +7,11 @@
 
 import Foundation
 
-class UserAPI: APIProtocol {
+class UserAPI: UserAPIProtocol {
     typealias JSON = NetworkManager.JSON
-    private let loginUrl = "/user/login"
-    private let registerUrl = "/user/register"
+    private static let userPath = "/user"
+    private let loginUrl = "\(userPath)/login"
+    private let registerUrl = "\(userPath)/register"
     
     private let networkManager: NetworkManager
     private let userParser: UserAPIParser
@@ -43,6 +44,20 @@ extension UserAPI {
         networkManager.post(url: url,
                             headers: NetworkManager.HEADER(),
                             body: body) { [weak self] res, err in
+            if let err = err {
+                self?.handleErrorResponse(error: err, callback: callback)
+                return
+            }
+            self?.handleSuccessResponse(response: res, callback: callback)
+        }
+    }
+    
+    func updateUserRequest(userId: String,
+                           body: JSON,
+                           callback: @escaping (UserAPIResponse) -> Void) {
+        networkManager.put(url: "\(UserAPI.userPath)/\(userId)",
+                           headers: NetworkManager.HEADER(),
+                           body: body) { [weak self] res, err in
             if let err = err {
                 self?.handleErrorResponse(error: err, callback: callback)
                 return

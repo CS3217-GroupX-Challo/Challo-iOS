@@ -10,7 +10,7 @@ import Foundation
 protocol RegisterAPI: AnyObject {
 
     typealias JSON = NetworkManager.JSON
-    var userAPI: UserAPI { get }
+    var userAPI: UserAPIProtocol { get }
     var userTypeUrl: String { get }
     var networkManager: NetworkManager { get }
 

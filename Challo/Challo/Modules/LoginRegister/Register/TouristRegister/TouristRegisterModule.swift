@@ -10,14 +10,18 @@ import SwiftUI
 final class TouristRegisterModule: ViperModuleProtocol {
 
     let userState: UserStateProtocol
+    let loginAPI: LoginAPI
+    let registerAPI: RegisterAPI
     
-    init(userState: UserStateProtocol) {
+    init(userState: UserStateProtocol, loginAPI: LoginAPI, registerAPI: RegisterAPI) {
         self.userState = userState
+        self.loginAPI = loginAPI
+        self.registerAPI = registerAPI
     }
 
     func assemble() -> (view: AnyView, presenter: TouristRegisterPresenter) {
         let certManager = CertificateManager(userState: userState)
-        let interactor = TouristRegisterInteractor(certificateManager: certManager)
+        let interactor = TouristRegisterInteractor(registerAPI: registerAPI, certificateManager: certManager)
         let presenter = TouristRegisterPresenter()
         let router = TouristRegisterRouter()
         interactor.presenter = presenter
@@ -25,8 +29,6 @@ final class TouristRegisterModule: ViperModuleProtocol {
         presenter.router = router
         router.presenter = presenter
 
-        let loginAPI = TouristLoginAPI()
-        let registerAPI = TouristRegistrationAPI()
         let socialPresenter = SocialLoginPresenter
             .createSocialLoginPresenter(loginAPI: loginAPI, registerAPI: registerAPI, certificateManager: certManager)
 

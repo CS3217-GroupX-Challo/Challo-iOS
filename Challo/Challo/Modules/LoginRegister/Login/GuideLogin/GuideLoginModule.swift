@@ -10,23 +10,25 @@ import SwiftUI
 final class GuideLoginModule: ViperModuleProtocol {
 
     let userState: UserStateProtocol
+    let loginAPI: LoginAPI
+    let registerAPI: RegisterAPI
     
-    init(userState: UserStateProtocol) {
+    init(userState: UserStateProtocol, loginAPI: LoginAPI, registerAPI: RegisterAPI) {
         self.userState = userState
+        self.loginAPI = loginAPI
+        self.registerAPI = registerAPI
     }
     
     func assemble() -> (view: AnyView, presenter: GuideLoginPresenter) {
         let certManager = CertificateManager(userState: userState)
-        let interactor = GuideLoginInteractor(certificateManager: certManager)
+        let interactor = GuideLoginInteractor(loginAPI: loginAPI, certificateManager: certManager)
         let presenter = GuideLoginPresenter()
-        let router = GuideLoginRouter(userState: userState)
+        let router = GuideLoginRouter(userState: userState, loginAPI: loginAPI, registerAPI: registerAPI)
         interactor.presenter = presenter
         presenter.interactor = interactor
         presenter.router = router
         router.presenter = presenter
     
-        let loginAPI = GuideLoginAPI()
-        let registerAPI = GuideRegistrationAPI()
         let socialPresenter = SocialLoginPresenter
             .createSocialLoginPresenter(loginAPI: loginAPI, registerAPI: registerAPI, certificateManager: certManager)
     

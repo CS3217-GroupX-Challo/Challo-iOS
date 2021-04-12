@@ -11,7 +11,7 @@ class MainContainerRouter: RouterProtocol {
     
     weak var presenter: MainContainerPresenter!
     let userState: UserStateProtocol
-    var apiContainer = APIContainer()
+    var apiContainer: APIContainer
     var repositoryContainer: RepositoryContainer
     var profilePage: AnyView!
     var trailsPage: AnyView!
@@ -24,6 +24,7 @@ class MainContainerRouter: RouterProtocol {
     
     init(userState: UserStateProtocol) {
         self.userState = userState
+        apiContainer = APIContainer(userState: userState)
         repositoryContainer = RepositoryContainer(apiContainer: apiContainer)
         
         guard let trailRepository = repositoryContainer.container.resolve(TrailRepositoryProtocol.self) else {
@@ -44,9 +45,23 @@ class MainContainerRouter: RouterProtocol {
         guard let placesAPI = apiContainer.container.resolve(PlacesAPIProtocol.self) else {
             fatalError("Failed to resolve placesAPI in MainContainer")
         }
+        guard let userAPI = apiContainer.container.resolve(UserAPIProtocol.self) else {
+            fatalError("Failed to resolve userAPI in MainContainer")
+        }
+        guard let touristLoginAPI = apiContainer.container.resolve(LoginAPI.self,
+                                                                   name: ContainerNames.tourist.rawValue) else {
+            fatalError("Failed to resolve touristLoginAPI in MainContainer")
+        }
+        guard let touristRegisterAPI = apiContainer.container.resolve(RegisterAPI.self,
+                                                                      name: ContainerNames.tourist.rawValue) else {
+            fatalError("Failed to resolve touristRegisterAPI in MainContainer")
+        }
 
         setUpLoginAndProfile(bookingRepository, reviewAPI)
         homePage = AnyView(Text("Homepage"))
+        loginPage = TouristLoginModule(userState: userState,
+                                       loginAPI: touristLoginAPI,
+                                       registerAPI: touristRegisterAPI).assemble().view
         trailsPage = TrailListingModule(trailRepository: trailRepository,
                                         guideRepository: guideRepository,
                                         bookingRepository: bookingRepository,
@@ -55,7 +70,9 @@ class MainContainerRouter: RouterProtocol {
                                         userState: userState).assemble().view
         guidesPage = GuidesListingModule(guideRepository: guideRepository, reviewAPI: reviewAPI).assemble().view
         mapsPage = MapModule(placesAPI: placesAPI).assemble().view
-        settingsPage = SettingsModule(userState: userState).assemble().view
+        settingsPage = SettingsModule(userState: userState,
+                                      loginAPI: touristLoginAPI,
+                                      registerAPI: touristRegisterAPI).assemble().view
     }
 
     private func setUpLoginAndProfile(_ bookingRepository: BookingRepositoryProtocol,
@@ -70,8 +87,7 @@ class MainContainerRouter: RouterProtocol {
         #endif
     }
     
-    private func setupChatAndProfilePage(_ bookingRepository: BookingRepositoryProtocol,
-                                         _ reviewAPI: ReviewAPIProtocol) {
+    private func setupChatAndProfilePage(_ bookingRepository: BookingRepositoryProtocol, userAPI: UserAPIProtocol) {
         let chatDialogRepository = ChatDialogRepository()
         let chatService = QuickBloxChatService(chatAuthService: QuickBloxChatAuthService(),
                                                chatDialogService: QuickBloxChatDialogService(chatDialogRepository:
@@ -85,7 +101,8 @@ class MainContainerRouter: RouterProtocol {
                                                 self?.sendMessageToGuide(guideEmail: guideEmail,
                                                                          messageText: messageText,
                                                                          chatService: chatService)
-                                             }).assemble().view
+                                             },
+                                             userAPI: userAPI).assemble().view
     }
     
     private func sendMessageToGuideAfterConnected(guideEmail: String, messageText: String, chatService: ChatService,
