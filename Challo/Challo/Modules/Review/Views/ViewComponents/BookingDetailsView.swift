@@ -7,25 +7,11 @@
 
 import SwiftUI
 
-struct BookingDetailsView: View {
+struct BookingDetailsView: View, CustomLabelMaker {
 
     var width: CGFloat
     var height: CGFloat
     var booking: Booking
-
-    func makeDetail(image: String, label: String) -> some View {
-        VStack {
-            Image(systemName: image)
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: width / 10)
-            Text(label)
-                .font(.subheadline)
-                .foregroundColor(.themeAccent)
-                .frame(maxWidth: width / 2, maxHeight: 50)
-        }
-        .frame(maxHeight: height * 0.2)
-    }
 
     var body: some View {
         VStack(alignment: .leading) {
