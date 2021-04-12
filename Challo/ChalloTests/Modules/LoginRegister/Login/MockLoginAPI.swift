@@ -21,6 +21,7 @@ class MockLoginAPI: LoginAPI {
 
     let certificate = UserCertificate(name: "example",
                                       email: "example@mail.com",
+                                      profileImg: "",
                                       token: "token",
                                       userId: "123")
 

@@ -35,7 +35,7 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     }
     
     var isLoadingChat: Bool {
-        isLoadingDialogs || interactor.isConnectingToChatServer
+        isLoadingDialogs || interactor.isConnectingToChatServer || interactor.isLoggingIn
     }
     
     private func resetUnreadMessagesCountForCurrentDialog() {

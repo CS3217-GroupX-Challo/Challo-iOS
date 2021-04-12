@@ -64,6 +64,7 @@ extension TrailBookingInteractorTests {
         let guideRepo = MockGuideRepository(guideAPI: guideAPI)
         return TrailBookingInteractor(trailRepository: MockTrailRepository(),
                                       guideRepository: guideRepo,
+                                      bookingRepository: MockBookingRepository(),
                                       bookingAPI: MockBookingAPI(),
                                       userState: MockUserState.createMockLoggedInUserState())
     }
@@ -73,6 +74,7 @@ extension TrailBookingInteractorTests {
         let guideRepo = MockGuideRepository(guideAPI: guideAPI)
         return TrailBookingInteractor(trailRepository: MockTrailRepository(),
                                       guideRepository: guideRepo,
+                                      bookingRepository: MockBookingRepository(),
                                       bookingAPI: MockBookingAPI(),
                                       userState: MockUserState())
     }

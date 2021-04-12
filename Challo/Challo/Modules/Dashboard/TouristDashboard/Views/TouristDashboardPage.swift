@@ -31,6 +31,13 @@ struct TouristDashboardPage: View {
                     .frame(height: geometry.size.height * 0.10)
                     .padding()
 
+                presenter.displayedProfileImage
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .frame(height: geometry.size.height * 0.10)
+                    .padding()
+
                 Text("Upcoming bookings")
                     .font(.title2)
                     .bold()
@@ -38,8 +45,9 @@ struct TouristDashboardPage: View {
                 if presenter.isLoading {
                     Loading(isAnimating: .constant(true), style: .large)
                 } else {
-                    BookingCardListingsView(width: geometry.size.width,
-                                            bookings: $presenter.upcomingBookings)
+                    BookingCardListingsView(
+                        width: geometry.size.width,
+                        bookings: $presenter.upcomingBookings)
                 }
             }
         }

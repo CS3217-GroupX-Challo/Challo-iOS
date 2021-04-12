@@ -47,9 +47,9 @@ class RegisterPresenterTests: XCTestCase {
 
 class RegisterPresenterImplementation: RegisterPresenter {
 
-    var interactor: RegisterInteractor!
+    var interactor: RegisterInteractorMock!
     
-    var router: RegisterRouter?
+    var router: RegisterRouterMock?
     
     var name = ""
     
@@ -66,15 +66,21 @@ class RegisterPresenterImplementation: RegisterPresenter {
     var registerAlertMessage = ""
 }
 
-private class RegisterInteractorMock: RegisterInteractor {
+class RegisterInteractorMock: RegisterInteractor {
 
     var certificateManager: CertificateManager = MockCertificateManager(state: MockUserState())
 
     var registerWasCalled = false
 
-    var presenter: RegisterPresenter!
+    var presenter: RegisterPresenterImplementation!
     
     func register(details: RegistrationDetails) {
         registerWasCalled = true
     }
+}
+
+class RegisterRouterMock: RegisterRouter {
+    var presenter: RegisterPresenterImplementation!
+    
+    var routerWasCalled = false
 }

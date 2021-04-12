@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct RegisterNavigationButton: View {
+struct RegisterNavigationButton<Presenter: LoginPresenter>: View {
 
-    var presenter: LoginPresenter
+    var presenter: Presenter
 
     var body: some View {
         NavigationLink(destination: presenter.getRegistrationPage()) {

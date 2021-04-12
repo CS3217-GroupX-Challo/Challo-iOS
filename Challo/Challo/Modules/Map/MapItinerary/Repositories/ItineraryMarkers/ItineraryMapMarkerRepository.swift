@@ -55,6 +55,10 @@ class ItineraryMapMarkerRepository: RepositoryProtocol {
     
     func commit() {
     }
+    
+    func clearAll() {
+        repository.removeAll()
+    }
 }
 
 extension ItineraryMapMarkerRepository: ItineraryMapMarkerRepositoryProtocol {

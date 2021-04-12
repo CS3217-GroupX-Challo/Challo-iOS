@@ -15,9 +15,8 @@ class QuickBloxChatDialogService: ChatDialogService {
     
     init(chatDialogRepository: ChatDialogRepositoryProtocol) {
         self.chatDialogRepository = chatDialogRepository
-        
     }
-    
+
     var dialogsSortedByLastMessageDates: [ChatDialog] {
         chatDialogRepository.getAll().sorted(by: { dialogA, dialogB in
             guard let lastMessageDateA = dialogA.lastMessageDate, let lastMessageDateB = dialogB.lastMessageDate else {
@@ -124,6 +123,10 @@ extension QuickBloxChatDialogService {
     
     func getDialogWithChateeEmail(_ chateeEmail: String) -> ChatDialog? {
         chatDialogRepository.getAll().first(where: { $0.chateeEmail == chateeEmail })
+    }
+    
+    func clearDialogsFromRepository() {
+        chatDialogRepository.clearAll()
     }
 }
 

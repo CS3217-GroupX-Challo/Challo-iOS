@@ -1,9 +1,9 @@
 import SwiftUI
 
-protocol RegisterPresenter: AnyObject {
+protocol RegisterPresenter: PresenterProtocol where Interactor: RegisterInteractor, Router: RegisterRouter {
 
-    var interactor: RegisterInteractor! { get set }
-    var router: RegisterRouter? { get set }
+    var interactor: Interactor! { get set }
+    var router: Router? { get set }
     var name: String { get set }
     var phone: String { get set }
     var email: String { get set }

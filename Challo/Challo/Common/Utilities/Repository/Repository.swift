@@ -56,4 +56,8 @@ class Repository<K: Hashable, T>: RepositoryProtocol {
     
     func commit() {
     }
+    
+    func clearAll() {
+        repository.removeAll()
+    }
 }

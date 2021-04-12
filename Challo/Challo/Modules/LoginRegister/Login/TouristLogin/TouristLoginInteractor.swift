@@ -5,9 +5,9 @@
 //  Created by Tan Le Yang on 17/3/21.
 //
 
-class TouristLoginInteractor: LoginInteractor, InteractorProtocol {
+class TouristLoginInteractor: LoginInteractor {
 
-    weak var presenter: LoginPresenter!
+    weak var presenter: TouristLoginPresenter!
     private let loginAPI: LoginAPI
     var certificateManager: CertificateManager
 

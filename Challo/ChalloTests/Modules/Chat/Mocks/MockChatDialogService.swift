@@ -57,4 +57,8 @@ class MockChatDialogService: ChatDialogService {
         willSendMessage?(message)
         didSendMessage?(message, nil)
     }
+    
+    func clearDialogsFromRepository() {
+        dialogRepository.clearAll()
+    }
 }

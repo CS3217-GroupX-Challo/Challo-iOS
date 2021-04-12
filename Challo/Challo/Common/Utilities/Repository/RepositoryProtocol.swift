@@ -59,4 +59,7 @@ protocol RepositoryProtocol {
     /// Commit any transcations in the repository
     /// Units of works pattern, to reduce number of writes to repo
     func commit()
+    
+    /// Removes all entities in the repository
+    func clearAll()
 }

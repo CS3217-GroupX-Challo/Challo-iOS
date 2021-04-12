@@ -5,8 +5,8 @@
 //  Created by Tan Le Yang on 21/3/21.
 //
 
-@testable import Challo
 import XCTest
+@testable import Challo
 
 class AreaAPIParserTests: XCTestCase {
 

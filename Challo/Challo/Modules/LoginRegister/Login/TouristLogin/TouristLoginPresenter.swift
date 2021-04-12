@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-class TouristLoginPresenter: LoginPresenter, PresenterProtocol, ObservableObject {
+class TouristLoginPresenter: LoginPresenter, ObservableObject {
 
-    var interactor: LoginInteractor!
-    var router: LoginRouter?
+    var interactor: TouristLoginInteractor!
+    var router: TouristLoginRouter?
 
     @Published var email = ""
     @Published var password = ""

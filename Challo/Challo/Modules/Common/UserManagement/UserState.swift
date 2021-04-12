@@ -22,6 +22,7 @@ class UserState: UserStateProtocol, ObservableObject {
     @AppStorage("name") var name = ""
     @AppStorage("token") var token = ""
     @AppStorage("userId") var userId = ""
+    @AppStorage("profileImg") var profileImg = ""
     var user: User?
 
     private static var instances = 0
@@ -31,7 +32,7 @@ class UserState: UserStateProtocol, ObservableObject {
             ChalloLogger.logger.fault("Attempted to spawn another UserState")
             fatalError("UserState should not be initiailised more than once")
         }
-        loggedIn = false
+        loggedIn = storedLoggedIn
         UserState.instances += 1
     }
 
@@ -41,6 +42,7 @@ class UserState: UserStateProtocol, ObservableObject {
         }
         return UserCertificate(name: name,
                                email: email,
+                               profileImg: profileImg,
                                token: token,
                                userId: userId)
     }
@@ -54,6 +56,7 @@ internal class PreviewUserState: UserStateProtocol {
     var name: String = ""
     var token: String = ""
     var userId: String = ""
+    var profileImg = ""
 
     var certificate: UserCertificate? {
         guard loggedIn else {
@@ -61,6 +64,7 @@ internal class PreviewUserState: UserStateProtocol {
         }
         return UserCertificate(name: name,
                                email: email,
+                               profileImg: profileImg,
                                token: token,
                                userId: userId)
     }

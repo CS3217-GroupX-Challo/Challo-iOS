@@ -65,5 +65,9 @@ class MockChatService: ChatService {
         chatDialogService.sendMessage(messageBody: messageBody, dialogId: dialogId,
                                       willSendMessage: willSendMessage, didSendMessage: didSendMessage)
     }
+    
+    func clearDialogsFromRepository() {
+        chatDialogService.clearDialogsFromRepository()
+    }
 
 }

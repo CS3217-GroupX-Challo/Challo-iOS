@@ -1,9 +1,9 @@
 import SwiftUI
 
-protocol LoginPresenter: AnyObject {
+protocol LoginPresenter: PresenterProtocol where Interactor: LoginInteractor, Router: LoginRouter {
 
-    var interactor: LoginInteractor! { get set }
-    var router: LoginRouter? { get set }
+    var interactor: Interactor! { get set }
+    var router: Router? { get set }
 
     var email: String { get set }
     var password: String { get set }
