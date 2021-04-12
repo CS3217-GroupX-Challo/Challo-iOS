@@ -63,11 +63,9 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
     private func saveNewTrail(currentAreas: [AreaDetails], trailObjects: [TrailPersistenceObject]) {
         for trailObject in trailObjects {
             if let trailDetails = trailObject.convertToPersistenceObject() as? TrailDetails {
-                for area in currentAreas {
-                    if area.id == trailObject.area.areaId.uuidString {
-                        trailDetails.area = area
-                        break
-                    }
+                for area in currentAreas where area.id == trailObject.area.areaId.uuidString {
+                    trailDetails.area = area
+                    break
                 }
                 
                 // save new area
@@ -85,11 +83,9 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
                let trail = repository.getByKey(objectId) {
                 trailObject.updatePersistenceObject(persistenceObject: trail)
                 
-                for area in currentAreas {
-                    if area.id == trailObject.area.areaId.uuidString {
-                        trail.area = area
-                        break
-                    }
+                for area in currentAreas where area.id == trailObject.area.areaId.uuidString {
+                    trail.area = area
+                    break
                 }
                 
                 // save new area
