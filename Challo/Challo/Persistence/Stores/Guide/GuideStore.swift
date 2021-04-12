@@ -22,7 +22,7 @@ class GuideStore {
         }
     }
     
-    func saveGuides(guides: [Guide]) -> GuidePersistenceObject {
+    func saveGuides(guides: [Guide]) {
         let guideObjects = guides.map { guide in
             guideModelConvertor.convertGuideToGuidePersistenceObject(guide: guide)
         }
