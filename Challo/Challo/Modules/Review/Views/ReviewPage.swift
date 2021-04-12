@@ -13,24 +13,14 @@ struct ReviewPage: View {
     @ObservedObject var presenter: ReviewPresenter
 
     var body: some View {
-        GeometryReader { geometry in
+        PageLayout(titleLabel: "Leave a Review") { geometry in
             ScrollView {
                 VStack {
-                    HStack {
-                        Header(title: "Leave a Review",
-                               subtitle: "",
-                               image: Image.mountainBackground)
-                            .frame(width: geometry.size.width,
-                                   height: geometry.size.height * 0.15,
-                                   alignment: .center)
-                        Spacer()
-                    }
                     BookingDetailsView(width: geometry.size.width * 0.80,
                                        height: geometry.size.height * 0.30,
                                        booking: presenter.booking)
-                    GuideRatingView(rating: $presenter.rating,
-                                    comments: $presenter.comments,
-                                    guideName: presenter.booking.guide.name ?? "your guide")
+                    ExperienceRatingView(rating: $presenter.rating,
+                                    comments: $presenter.comments)
                     Button(action: {
                         presenter.submitReview()
                     }, label: {

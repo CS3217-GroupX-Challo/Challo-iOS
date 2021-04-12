@@ -39,7 +39,7 @@ struct PastBookingCard: View {
                     .scaledToFill()
                     .frame(width: width)
                     .cornerRadius(10)
-                VStack {
+                VStack(spacing: 0) {
                     NavigationLink(destination: ContactGuidePage(guide: booking.guide).environmentObject(presenter)) {
                         Image(systemName: "ellipsis.bubble.fill")
                             .foregroundColor(Color.black.opacity(0.8))

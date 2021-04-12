@@ -11,13 +11,12 @@ struct ExperienceRatingView: View {
 
     @Binding var rating: Int
     @Binding var comments: String
-    var guideName: String
 
     var body: some View {
         VStack {
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
-                    Text("Your Experience with \(guideName)")
+                    Text("How was your experience?")
                         .font(.title3)
                         .foregroundColor(.themeSecondary)
                     TextEditor(text: $comments)
