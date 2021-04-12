@@ -28,6 +28,10 @@ class ReviewPresenter: PresenterProtocol, AlertPresenter {
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
 
+    var existingReview: Review? {
+        booking.review
+    }
+
     func submitReview() {
         let (success, message) = validateInputs()
         
@@ -52,10 +56,6 @@ class ReviewPresenter: PresenterProtocol, AlertPresenter {
             self?.presentSuccessAlert(title: "Thank you for sharing your experience!",
                                       message: "You review has been submitted")
         })
-    }
-
-    func reviewAlreadyExists() -> Bool {
-        booking.review != nil
     }
 }
 
