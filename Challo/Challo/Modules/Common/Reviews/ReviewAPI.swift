@@ -99,3 +99,23 @@ class ReviewAPI: ReviewAPIProtocol {
         }
     }
 }
+
+// MARK: Submit Reviews
+extension ReviewAPI {
+
+    func submitReview(review: ReviewState, callback: @escaping ((Bool, Error?) -> Void)) {
+        let url = "/review"
+        let json = reviewParser.serializeReviewIntoJSON(review: review)
+        networkManager.post(url: url,
+                            headers: [String: String](),
+                            body: json) { response, error in
+            if error != nil {
+                ChalloLogger.logger.fault(error)
+                callback(false, error)
+                return
+            }
+            
+            callback(true, nil)
+        }
+    }
+}

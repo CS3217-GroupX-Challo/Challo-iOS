@@ -21,4 +21,6 @@ struct ReviewState: Equatable {
     let trailId: UUID
     
     let createdAt: Date?
+
+    let bookingId: UUID?
 }

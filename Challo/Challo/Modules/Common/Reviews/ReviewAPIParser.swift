@@ -46,4 +46,17 @@ class ReviewAPIParser: APIParser {
                            trailId: trailId,
                            createdAt: Date.construct(with: createdAtString ?? ""))
     }
+
+    func serializeReviewIntoJSON(review: ReviewState) -> JSON {
+        var json = JSON()
+        json[Key.bookingId] = review.bookingId.uuidString
+        json[Key.trailId] = review.bookingId.uuidString
+        json[Key.guideId] = review.guideId.uuidString
+        json[Key.touristId] = review.touristId.uuidString
+        if let comments = review.comment {
+            json[Key.comment] = comments
+        }
+        
+        return json
+    }
 }

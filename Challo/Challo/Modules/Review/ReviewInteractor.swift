@@ -8,4 +8,13 @@
 class ReviewInteractor: InteractorProtocol {
 
     weak var presenter: ReviewPresenter!
+
+    private let reviewAPI: ReviewAPIProtocol
+    
+    init(reviewAPI: ReviewAPIProtocol) {
+        self.reviewAPI = reviewAPI
+    }
+
+    
+    
 }
