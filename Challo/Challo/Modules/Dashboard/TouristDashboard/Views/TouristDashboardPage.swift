@@ -15,13 +15,7 @@ struct TouristDashboardPage: View {
     @ViewBuilder
     func makeContent(_ geometry: GeometryProxy) -> some View {
         VStack {
-            presenter.displayedProfileImage
-                .resizable()
-                .scaledToFit()
-                .clipShape(Circle())
-                .frame(height: geometry.size.height * 0.10)
-                .padding()
-
+            
             TabSelectionView(selectedIndex: $presenter.selectedIdx,
                              options: presenter.tabTitles)
             
@@ -47,10 +41,33 @@ struct TouristDashboardPage: View {
         }
     }
     
+    var header: some View {
+        HStack {
+            Spacer()
+            VStack {
+                Text(presenter.name)
+                    .font(.largeTitle)
+                    .foregroundColor(.white)
+                NavigationLink(destination: Text("hello")) {
+                    Text("Edit Profile")
+                        .font(.headline)
+                }
+            }
+            presenter.displayedProfileImage
+                .resizable()
+                .scaledToFit()
+                .clipShape(Circle())
+                .frame(height: 130)
+                .padding()
+                .shadow(color: .black, radius: 4, x: 3, y: 4)
+        }.padding(.horizontal, 30)
+    }
+    
     var body: some View {
-        PageLayout(titleLabel: "Ready to begin your journey with us?", headerContent: nil) { geometry in
+        PageLayout(headerContent: AnyView(header)) { geometry in
             makeContent(geometry)
                 .frame(maxWidth: .infinity)
+                .padding(.top, 50)
         }.onAppear {
             presenter.refresh()
         }
