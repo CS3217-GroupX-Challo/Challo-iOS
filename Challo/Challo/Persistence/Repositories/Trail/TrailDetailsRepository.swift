@@ -68,7 +68,6 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
                     break
                 }
                 
-                // save new area
                 if trailDetails.area == nil {
                     let area = trailObject.area.convertToPersistenceObject() as? AreaDetails
                     trailDetails.area = area
@@ -88,7 +87,6 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
                     break
                 }
                 
-                // save new area
                 if trail.area == nil {
                     let area = trailObject.area.convertToPersistenceObject() as? AreaDetails
                     trail.area = area
