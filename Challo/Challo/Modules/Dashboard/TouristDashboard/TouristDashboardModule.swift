@@ -10,7 +10,7 @@ import SwiftUI
 final class TouristDashboardModule: ViperModuleProtocol {
   
     let userState: UserStateProtocol
-    let bookingsRepository: BookingRepositoryProtocol
+    let bookingRepository: BookingRepositoryProtocol
     let sendMessageToGuide: ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)
     
     init(userState: UserStateProtocol, bookingRepository: BookingRepositoryProtocol,
@@ -21,7 +21,7 @@ final class TouristDashboardModule: ViperModuleProtocol {
     }
 
     func assemble() -> (view: AnyView, presenter: TouristDashboardPresenter) {
-        let interactor = TouristDashboardInteractor(bookingsRepository: bookingsRepository, userState: userState)
+        let interactor = TouristDashboardInteractor(bookingsRepository: bookingRepository, userState: userState)
         let router = TouristDashboardRouter()
         let presenter = TouristDashboardPresenter(userState: userState, sendMessageToGuide: sendMessageToGuide)
         interactor.presenter = presenter
