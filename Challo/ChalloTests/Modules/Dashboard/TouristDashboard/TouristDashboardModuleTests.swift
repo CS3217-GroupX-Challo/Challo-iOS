@@ -15,7 +15,7 @@ class TouristDashboardModuleTests: XCTestCase {
         let userState = MockUserState()
         let bookingsRepository = MockBookingRepository()
         let (view, presenter) = TouristDashboardModule(userState: userState,
-                                                       bookingsRepository: bookingsRepository,
+                                                       bookingRepository: bookingsRepository,
                                                        reviewAPI: MockReviewsAPI(),
                                                        sendMessageToGuide: { _, _, _ in }).assemble()
         XCTAssertNotNil(view, "Wrong view returned")

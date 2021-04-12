@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, "14.0"
 
-target 'Challo' do
+def challo_pods
   inhibit_all_warnings!
   use_frameworks!
 
@@ -16,16 +16,29 @@ target 'Challo' do
   pod 'HorizonCalendar'
   pod 'ImageKitIO'
   pod 'SDWebImageSwiftUI'
+end
 
-  target 'ChalloTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+target 'Challo' do
+  challo_pods
+end
 
-  target 'ChalloUITests' do
-    # Pods for testing
-  end
+target 'ChalloGuide' do
+  challo_pods
+end
 
+target 'ChalloHost' do
+  challo_pods
+end
+
+target 'ChalloTests' do
+  inherit! :search_paths
+  # Pods for testing
+  challo_pods
+end
+
+target 'ChalloUITests' do
+  # Pods for testing
+  challo_pods
 end
 
 post_install do |installer|

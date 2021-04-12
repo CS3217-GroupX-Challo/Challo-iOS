@@ -14,12 +14,12 @@ class MainContainerRouter: RouterProtocol {
     var apiContainer = APIContainer()
     var repositoryContainer: RepositoryContainer
     var profilePage: AnyView!
-    var trailsPage: AnyView
-    var guidesPage: AnyView
-    var mapsPage: AnyView
-    var settingsPage: AnyView
-    var loginPage: AnyView
-    var homePage: AnyView
+    var trailsPage: AnyView!
+    var guidesPage: AnyView!
+    var mapsPage: AnyView!
+    var settingsPage: AnyView!
+    var loginPage: AnyView!
+    var homePage: AnyView!
     var chatPage: AnyView!
     
     init(userState: UserStateProtocol) {
@@ -45,8 +45,8 @@ class MainContainerRouter: RouterProtocol {
             fatalError("Failed to resolve placesAPI in MainContainer")
         }
 
+        setUpLoginAndProfile(bookingRepository, reviewAPI)
         homePage = AnyView(Text("Homepage"))
-        loginPage = TouristLoginModule(userState: userState).assemble().view
         trailsPage = TrailListingModule(trailRepository: trailRepository,
                                         guideRepository: guideRepository,
                                         bookingRepository: bookingRepository,
@@ -56,7 +56,18 @@ class MainContainerRouter: RouterProtocol {
         guidesPage = GuidesListingModule(guideRepository: guideRepository, reviewAPI: reviewAPI).assemble().view
         mapsPage = MapModule(placesAPI: placesAPI).assemble().view
         settingsPage = SettingsModule(userState: userState).assemble().view
+    }
+
+    private func setUpLoginAndProfile(_ bookingRepository: BookingRepositoryProtocol,
+                                      _ reviewAPI: ReviewAPIProtocol) {
+        #if GUIDE
+        loginPage = GuideLoginModule(userState: userState).assemble().view
+        profilePage = GuideDashboardModule(userState: userState, bookingRepository: bookingRepository).assemble().view
+
+        #else
+        loginPage = TouristLoginModule(userState: userState).assemble().view
         setupChatAndProfilePage(bookingRepository, reviewAPI)
+        #endif
     }
     
     private func setupChatAndProfilePage(_ bookingRepository: BookingRepositoryProtocol,
@@ -68,9 +79,9 @@ class MainContainerRouter: RouterProtocol {
         chatPage = ChatModule(chatService: chatService, userState: userState).assemble().view
         
         profilePage = TouristDashboardModule(userState: userState,
-                                             bookingsRepository: bookingRepository,
-                                             reviewAPI: reviewAPI,
-                                             sendMessageToGuide: { [weak self] guideEmail, _, messageText in
+                                            bookingRepository: bookingRepository,
+                                            reviewAPI: reviewAPI,
+                                            sendMessageToGuide: { [weak self] guideEmail, _, messageText in
                                                 self?.sendMessageToGuide(guideEmail: guideEmail,
                                                                          messageText: messageText,
                                                                          chatService: chatService)
