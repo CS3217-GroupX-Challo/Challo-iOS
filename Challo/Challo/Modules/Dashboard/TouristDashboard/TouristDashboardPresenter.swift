@@ -94,7 +94,7 @@ extension TouristDashboardPresenter {
 
     private func filterPastBookings(bookings: [Booking]) -> [Booking] {
         bookings.filter {
-            $0.date < Date()
+            $0 == $0
         }
     }
 }

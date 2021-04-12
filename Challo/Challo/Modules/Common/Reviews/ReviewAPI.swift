@@ -108,7 +108,7 @@ extension ReviewAPI {
         let json = reviewParser.createNewReviewJSON(review: review)
         networkManager.post(url: url,
                             headers: [String: String](),
-                            body: json) { response, error in
+                            body: json) { _, error in
             if error != nil {
                 callback(false, error)
                 return

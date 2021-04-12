@@ -1,13 +1,13 @@
 //
-//  TripCard.swift
+//  PastBookingCard.swift
 //  Challo
 //
-//  Created by Tan Le Yang on 18/3/21.
+//  Created by Tan Le Yang on 12/4/21.
 //
 
 import SwiftUI
 
-struct BookingCard: View, CustomLabelMaker {
+struct PastBookingCard: View, CustomLabelMaker {
 
     @EnvironmentObject var presenter: TouristDashboardPresenter
 
@@ -31,9 +31,15 @@ struct BookingCard: View, CustomLabelMaker {
                 makeDetail(image: "person.crop.circle",
                            label: booking.guide.name ?? "")
             }
-            NavigationLink(destination: ContactGuidePage(guide: booking.guide).environmentObject(presenter)) {
-                Text("Contact Guide").bold()
-            }.buttonStyle(BorderedButtonStyle(borderColor: .themeTertiary, foregroundColor: .themeTertiary))
+            HStack {
+                NavigationLink(destination: ContactGuidePage(guide: booking.guide).environmentObject(presenter)) {
+                    Text("Contact Guide").bold()
+                }.buttonStyle(BorderedButtonStyle(borderColor: .themeTertiary, foregroundColor: .themeTertiary))
+                
+                NavigationLink(destination: Text("test")) {
+                    Text("Leave a Review").bold()
+                }.buttonStyle(BorderedButtonStyle(borderColor: .themePrimary, foregroundColor: .themeSecondary))
+            }
             .padding()
         }.cornerRadius(10)
         .background(

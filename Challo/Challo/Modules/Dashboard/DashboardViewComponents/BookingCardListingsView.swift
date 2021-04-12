@@ -12,6 +12,7 @@ struct BookingCardListingsView: View {
     var width: CGFloat
     var emptyListMessage: String
     @Binding var bookings: [Booking]
+    var createBookingCard: (Booking, CGFloat) -> AnyView
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -22,7 +23,7 @@ struct BookingCardListingsView: View {
             } else {
                 VStack {
                     ForEach(bookings.indices) { index in
-                        BookingCard(booking: bookings[index], width: width / 2)
+                        createBookingCard(bookings[index], width / 2)
                     }
                 }.padding()
             }
