@@ -30,7 +30,17 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
     }
     
     func getAllTrails() -> [TrailPersistenceObject] {
-        return []
+        let trails = repository.getAll()
+        var trailObjects = [TrailPersistenceObject]()
+        self.data = [NSManagedObjectID: TrailPersistenceObject]()
+        
+        for trail in trails {
+            if let trailObject = TrailPersistenceObject(persistenceObject: trail) {
+                trailObjects.append(trailObject)
+                data[trail.objectID] = trailObject
+            }
+        }
+        return trailObjects
     }
     
     func saveTrails(trailObjects: [TrailPersistenceObject]) {
