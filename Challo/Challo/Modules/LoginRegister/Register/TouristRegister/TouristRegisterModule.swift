@@ -9,17 +9,13 @@ import SwiftUI
 
 final class TouristRegisterModule: ViperModuleProtocol {
 
-    weak var userState: UserStateProtocol?
+    let userState: UserStateProtocol
     
     init(userState: UserStateProtocol) {
         self.userState = userState
     }
 
     func assemble() -> (view: AnyView, presenter: TouristRegisterPresenter) {
-        guard let userState = userState else {
-            fatalError("userState is nil in TouristRegisterModule")
-        }
-        
         let certManager = CertificateManager(userState: userState)
         let interactor = TouristRegisterInteractor(certificateManager: certManager)
         let presenter = TouristRegisterPresenter()
