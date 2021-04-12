@@ -11,12 +11,13 @@ struct GuideRatingView: View {
 
     @Binding var rating: Int
     @Binding var comments: String
+    var guideName: String
 
     var body: some View {
         VStack {
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
-                    Text("Your Experience")
+                    Text("Your Experience with \(guideName)")
                         .font(.title3)
                         .foregroundColor(.themeSecondary)
                     TextEditor(text: $comments)
@@ -24,9 +25,9 @@ struct GuideRatingView: View {
                         .foregroundColor(.themeSecondary)
                         .background(Color.themeBackground)
                         .border(Color.themeSecondary)
-                        .frame(minWidth: 0,
+                        .frame(minWidth: 400,
                                maxWidth: 700,
-                               minHeight: 0,
+                               minHeight: 400,
                                maxHeight: 500)
                 }
                 

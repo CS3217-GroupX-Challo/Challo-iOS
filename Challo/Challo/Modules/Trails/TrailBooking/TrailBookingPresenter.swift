@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class TrailBookingPresenter: PresenterProtocol {
+class TrailBookingPresenter: PresenterProtocol, AlertPresenter {
 
     var interactor: TrailBookingInteractor!
     var router: TrailBookingRouter?
@@ -42,10 +42,12 @@ class TrailBookingPresenter: PresenterProtocol {
     @Published var availableGuides = [Guide]()
     @Published var selectedGuideId: UUID?
 
-    @Published var isShowingBookingStatusAlert = false
-    @Published var bookingStatusTitle = ""
-    @Published var bookingStatusMessage = ""
-    @Published var isSuccessAlert = false
+    // MARK: Alert Presenter
+    @Published var isSuccessAlert: Bool = false
+    @Published var isShowingAlert: Bool = false
+    @Published var alertTitle: String = ""
+    @Published var alertMessage: String = ""
+
     @Published var isLoading = true
 
     func populateTrailBookingPage(for trail: Trail) {
@@ -62,7 +64,8 @@ class TrailBookingPresenter: PresenterProtocol {
     func makeBooking() {
         let (fieldsAllValid, message) = checkAllFieldsValid()
         if !fieldsAllValid {
-            failureAlert(message: message)
+            presentFailureAlert(title: "Failed to make booking",
+                                message: message)
             return
         }
 
@@ -81,26 +84,14 @@ class TrailBookingPresenter: PresenterProtocol {
             if let error = err,
                !success {
                 ChalloLogger.logger.log("Failed to make booking: \(error.localizedDescription)")
-                self?.failureAlert(message: "Oops! Something went wrong, please try again.")
+                self?.presentFailureAlert(title: "Failed to make booking",
+                                          message: "Oops! Something went wrong, please try again.")
                 return
             }
             
-            self?.successAlert(message: "Your booking has been made successfully!")
+            self?.presentSuccessAlert(title: "Success!",
+                               message: "Your booking has been made successfully!")
         }
-    }
-
-    private func failureAlert(message: String) {
-        self.isSuccessAlert = false
-        self.bookingStatusMessage = message
-        self.bookingStatusTitle = "Failed to make booking"
-        self.isShowingBookingStatusAlert = true
-    }
-
-    private func successAlert(message: String) {
-        self.isSuccessAlert = true
-        self.bookingStatusMessage = message
-        self.bookingStatusTitle = "Booking Submitted"
-        self.isShowingBookingStatusAlert = true
     }
 }
 
