@@ -8,15 +8,15 @@
 import SwiftUI
 
 final class TouristDashboardModule: ViperModuleProtocol {
-
+  
     let userState: UserStateProtocol
     let bookingsRepository: BookingRepositoryProtocol
     let sendMessageToGuide: ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)
     
-    init(userState: UserStateProtocol, bookingsRepository: BookingRepositoryProtocol,
+    init(userState: UserStateProtocol, bookingRepository: BookingRepositoryProtocol,
          sendMessageToGuide: @escaping ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)) {
         self.userState = userState
-        self.bookingsRepository = bookingsRepository
+        self.bookingRepository = bookingRepository
         self.sendMessageToGuide = sendMessageToGuide
     }
 
