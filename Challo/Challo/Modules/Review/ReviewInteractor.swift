@@ -15,7 +15,7 @@ class ReviewInteractor: InteractorProtocol {
         self.reviewAPI = reviewAPI
     }
 
-    func submitReview(review: ReviewState, onSubmission: @escaping (Bool, Error?) -> Void) {
-        reviewAPI.submitReview(review: review, callback: onSubmission)
+    func submitReview(review: NewReview, onSubmission: @escaping (Bool, Error?) -> Void) {
+        reviewAPI.submitNewReview(review: review, callback: onSubmission)
     }
 }

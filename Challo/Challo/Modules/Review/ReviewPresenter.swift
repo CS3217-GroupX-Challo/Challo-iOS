@@ -15,6 +15,10 @@ class ReviewPresenter: PresenterProtocol {
     /// The booking to give a review for
     var booking: Booking
 
+    init(booking: Booking) {
+        self.booking = booking
+    }
+
     @Published var comments: String = ""
     @Published var rating: Int = 0
 }
