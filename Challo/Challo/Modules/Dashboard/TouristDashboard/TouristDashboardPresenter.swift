@@ -18,10 +18,21 @@ class TouristDashboardPresenter: PresenterProtocol {
     @Published var isLoading = false
     
     @Published var upcomingBookings: [Booking] = []
+
+    @Published var pastBookings: [Booking] = []
     
     @Published var name: String
     
     @Published var messageText: String = ""
+
+    private static let tabs = TouristDashboardTabs.allCases
+    let tabTitles = tabs.map { $0.rawValue }
+    @Published var selectedIdx = 0 {
+        didSet {
+            selectedTab = Self.tabs[selectedIdx]
+        }
+    }
+    @Published var selectedTab: TouristDashboardTabs = tabs[0]
     
     init(userState: UserStateProtocol,
          sendMessageToGuide: @escaping ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)) {
@@ -41,18 +52,41 @@ class TouristDashboardPresenter: PresenterProtocol {
     }
 
     func didPopulateBookings(bookings: [Booking]) {
-        self.upcomingBookings = filterUpcomingBookings(bookings: bookings)
+        let sortedBookings = sortBookings(bookings: bookings)
+        self.upcomingBookings = filterUpcomingBookings(bookings: sortedBookings)
+        self.pastBookings = filterPastBookings(bookings: sortedBookings)
         isLoading = false
     }
 
-    private func filterUpcomingBookings(bookings: [Booking]) -> [Booking] {
-        bookings.filter {
-            $0.status == .Paid || $0.status == .Pending
-        }
-    }
-    
     func onTapSendMessage(guide: Guide) {
         sendMessageToGuide(guide.email, guide.userId, messageText)
         messageText = ""
     }
+}
+
+// MARK: Handle Bookings
+extension TouristDashboardPresenter {
+
+    private func sortBookings(bookings: [Booking]) -> [Booking] {
+        bookings.sorted { bookingOne, bookingTwo in
+            bookingOne.date < bookingTwo.date
+        }
+    }
+
+    private func filterUpcomingBookings(bookings: [Booking]) -> [Booking] {
+        bookings.filter {
+            ($0.status == .Paid || $0.status == .Pending) && $0.date > Date()
+        }
+    }
+
+    private func filterPastBookings(bookings: [Booking]) -> [Booking] {
+        bookings.filter {
+            $0.date < Date()
+        }
+    }
+}
+
+enum TouristDashboardTabs: String, CaseIterable {
+    case upcomingBookings = "Upcoming Bookings"
+    case pastBookings = "Past Bookings"
 }

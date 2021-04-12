@@ -10,6 +10,7 @@ import SwiftUI
 struct TouristDashboardPage: View {
     
     @EnvironmentObject var presenter: TouristDashboardPresenter
+    @State private var selectedIdx = 0
 
     var body: some View {
         VStack {
@@ -32,17 +33,25 @@ struct TouristDashboardPage: View {
                         .frame(height: geometry.size.height * 0.10)
                         .padding()
 
-                    Text("Upcoming bookings")
-                        .font(.title2)
-                        .bold()
+                    TabSelectionView(selectedIndex: $presenter.selectedIdx,
+                                     options: presenter.tabTitles)
                     
                     if presenter.isLoading {
                         Loading(isAnimating: .constant(true), style: .large)
                     } else {
-                        BookingCardListingsView(
-                            width: geometry.size.width,
-                            emptyListMessage: "You don't have any upcoming trips",
-                            bookings: $presenter.upcomingBookings)
+                        if presenter.selectedTab == .upcomingBookings {
+                            BookingCardListingsView(
+                                width: geometry.size.width,
+                                emptyListMessage: "You don't have any upcoming trips",
+                                bookings: $presenter.upcomingBookings)
+                        }
+                        
+                        if presenter.selectedTab == .pastBookings {
+                            BookingCardListingsView(
+                                width: geometry.size.width,
+                                emptyListMessage: "You don't have any past trips",
+                                bookings: $presenter.pastBookings)
+                        }
                     }
                 }
             }
