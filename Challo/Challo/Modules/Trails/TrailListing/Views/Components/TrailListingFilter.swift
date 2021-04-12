@@ -22,7 +22,7 @@ struct TrailListingFilter: View {
     }
     
     var sliderUpperValue: String {
-        String(format: "%.0f", round(slider.highHandle.currentValue))
+        String(format: "%.0f", ceil(slider.highHandle.currentValue))
     }
     
     private func makeSectionTitle(_ title: String) -> some View {
@@ -77,20 +77,19 @@ struct TrailListingFilter: View {
         }.frame(maxWidth: .infinity)
     }
     
-    private var divider: some View {
-        Divider().padding(.vertical, 10)
-    }
-    
     var body: some View {
         VStack {
             Text("Filters")
                 .font(.headline)
-            divider
+                .padding(.vertical, 20)
+            Divider()
             VStack(alignment: .leading) {
                 difficultyFilters
-                divider
+                Divider()
+                    .padding(.vertical, 10)
                 priceRange
             }.padding(.horizontal, 50)
+            Spacer()
         }
     }
 }
