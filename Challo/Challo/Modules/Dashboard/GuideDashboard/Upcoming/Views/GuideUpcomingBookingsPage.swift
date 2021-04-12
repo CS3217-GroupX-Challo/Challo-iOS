@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GuideUpcomingBookingsPage: View {
 
-    var presenter: GuideUpcomingBookingsPresenter
+    @State var presenter: GuideUpcomingBookingsPresenter
 
     var body: some View {
         GeometryReader { geometry in
@@ -22,7 +22,31 @@ struct GuideUpcomingBookingsPage: View {
                            alignment: .center)
                 Spacer()
             }
+
+            presenter.displayedProfileImage
+                .resizable()
+                .scaledToFit()
+                .clipShape(Circle())
+                .frame(height: geometry.size.height * 0.10)
+                .padding()
+
+            Text("Upcoming bookings")
+                .font(.title2)
+                .bold()
+
+            if presenter.loading {
+                Loading(isAnimating: .constant(true), style: .large)
+            } else {
+                BookingCardListingsView(
+                    width: geometry.size.width,
+                    bookings: $presenter.upcomingBookings)
+            }
             
+        }
+        .padding(.bottom, 80)
+        .edgesIgnoringSafeArea(.all)
+        .onAppear {
+            presenter.refresh()
         }
     }
 }

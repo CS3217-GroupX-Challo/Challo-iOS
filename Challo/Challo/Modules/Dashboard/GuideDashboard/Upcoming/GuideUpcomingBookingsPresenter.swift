@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class GuideUpcomingBookingsPresenter: PresenterProtocol {
 
@@ -23,6 +24,14 @@ class GuideUpcomingBookingsPresenter: PresenterProtocol {
     init(userState: UserStateProtocol) {
         self.userState = userState
         self.name = userState.name
+    }
+
+    @Published var image: Image?
+
+    var displayedProfileImage: Image {
+        image ?? (userState.profileImg.isEmpty
+                    ? Image("avatar-image")
+                    : ImageService.loadImage(path: userState.profileImg))
     }
 
     func didPopulateBookings(bookings: [Booking]) {
