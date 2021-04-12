@@ -90,7 +90,7 @@ class TrailBookingPresenter: PresenterProtocol, AlertPresenter {
             }
             
             self?.presentSuccessAlert(title: "Success!",
-                               message: "Your booking has been made successfully!")
+                                      message: "Your booking has been made successfully!")
         }
     }
 }
