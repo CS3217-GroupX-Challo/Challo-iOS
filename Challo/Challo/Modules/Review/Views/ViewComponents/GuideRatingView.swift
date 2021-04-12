@@ -9,8 +9,8 @@ import SwiftUI
 
 struct GuideRatingView: View {
 
-    @State private var rating: Int = 0
-    @State private var comments: String = ""
+    @Binding var rating: Int
+    @Binding var comments: String
 
     var body: some View {
         VStack {
@@ -42,11 +42,5 @@ struct GuideRatingView: View {
             }
         }
         .padding()
-    }
-}
-
-struct GuideRatingView_Previews: PreviewProvider {
-    static var previews: some View {
-        GuideRatingView()
     }
 }

@@ -11,7 +11,7 @@ struct BookingDetailsView: View {
 
     var width: CGFloat
     var height: CGFloat
-    var booking: Booking?
+    var booking: Booking
 
     func makeDetail(image: String, label: String) -> some View {
         VStack {
@@ -29,19 +29,18 @@ struct BookingDetailsView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            // TODO: insert TrailGuideSelectionCard here once presenter is hooked up
             HStack {
-                Image("avatar-image")
-                    .resizable()
-                    .frame(width: width * 0.5,
-                           height: height)
+                TrailGuideSelectionCard(guide: booking.guide,
+                                        width: width * 0.5,
+                                        height: height,
+                                        selected: false)
                 VStack {
                     makeDetail(image: "leaf",
-                               label: "Ramgargh River Trail")
+                               label: booking.trail.title)
                     makeDetail(image: "calendar",
-                               label: CustomDateFormatter.displayFriendlyDate(Date()))
+                               label: CustomDateFormatter.displayFriendlyDate(booking.date))
                     makeDetail(image: "dollarsign.circle",
-                               label: "3000Rp")
+                               label: "\(String(format: "%.2f", booking.fee))Rp")
                 }
                 .padding()
             }
@@ -50,11 +49,5 @@ struct BookingDetailsView: View {
         .frame(width: width,
                height: height,
                alignment: .center)
-    }
-}
-
-struct BookingDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        BookingDetailsView(width: 800, height: 500, booking: nil)
     }
 }

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ReviewPage: View {
+
+    @ObservedObject var presenter: ReviewPresenter
+
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -22,16 +25,11 @@ struct ReviewPage: View {
                 }
                 BookingDetailsView(width: geometry.size.width * 0.80,
                                    height: geometry.size.height * 0.30,
-                                   booking: nil)
-                GuideRatingView()
+                                   booking: presenter.booking)
+                GuideRatingView(rating: $presenter.rating,
+                                comments: $presenter.comments)
             }
         }
         .edgesIgnoringSafeArea(.all)
-    }
-}
-
-struct ReviewPage_Previews: PreviewProvider {
-    static var previews: some View {
-        ReviewPage()
     }
 }
