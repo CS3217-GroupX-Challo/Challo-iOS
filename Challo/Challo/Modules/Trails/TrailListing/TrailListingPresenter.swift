@@ -20,6 +20,14 @@ class TrailListingPresenter: SearchBarPresenter, ObservableObject {
     @Published var searchBarText: String = ""
     @Published var isSearchBarSheetOpen: Bool = false
     
+    @Published var showEasyTrails = false
+    @Published var showModerateTrails = false
+    @Published var showDifficultTrails = false
+    
+    var isFiltered: Bool {
+        showEasyTrails || showModerateTrails || showDifficultTrails
+    }
+    
     var displayedTrailListingCards: [TrailListingCard] {
         guard !searchBarText.isEmpty else {
             return trailListingCards
@@ -43,7 +51,8 @@ class TrailListingPresenter: SearchBarPresenter, ObservableObject {
     
     func transformTrailToTrailListingCard(_ trail: Trail) -> TrailListingCard {
         TrailListingCard(title: trail.title, tags: trail.tags, lowestFeePerPax: trail.lowestFee,
-                         tourDescription: trail.description, rating: trail.rating, numOfReviews: trail.numOfReviews)
+                         tourDescription: trail.description, rating: trail.rating, numOfReviews: trail.numOfReviews,
+                         difficulty: trail.difficulty)
     }
     
     func populateTrailProfilePage(trailTitle: String) {

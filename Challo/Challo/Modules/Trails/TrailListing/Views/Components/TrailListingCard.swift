@@ -15,6 +15,7 @@ struct TrailListingCard: View, Hashable {
     let tourDescription: String
     let rating: Double
     let numOfReviews: Int
+    let difficulty: TrailDifficulty
     
     var body: some View {
         HStack(spacing: 30) {
@@ -22,7 +23,8 @@ struct TrailListingCard: View, Hashable {
                 .frame(maxWidth: 300)
                 .cornerRadius(10)
             TrailListingCardDetail(title: title, tags: tags, lowestFeePerPax: lowestFeePerPax,
-                                   tourDescription: tourDescription, rating: rating, numOfReviews: numOfReviews)
+                                   tourDescription: tourDescription, rating: rating, numOfReviews: numOfReviews,
+                                   difficulty: difficulty)
         }.frame(maxHeight: 200)
     }
 }

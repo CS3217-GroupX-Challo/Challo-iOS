@@ -49,8 +49,9 @@ struct RectangleCheckBox: View {
 }
 
 struct RectangleCheckBox_Previews: PreviewProvider {
+    @State static var isChecked = false
+
     static var previews: some View {
-        @State var isChecked = false
         RectangleCheckBox(length: 50, isChecked: $isChecked)
     }
 }

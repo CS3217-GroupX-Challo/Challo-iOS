@@ -5,4 +5,6 @@
 //  Created by Shao Yi on 12/4/21.
 //
 
-import Foundation
+enum TrailDifficulty: String, CaseIterable {
+    case Easy, Moderate, Difficult
+}

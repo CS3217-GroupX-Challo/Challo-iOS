@@ -63,8 +63,9 @@ struct CapsuleCheckBox: View {
 }
 
 struct CapsuleCheckBox_Previews: PreviewProvider {
+    @State static var isChecked = false
+
     static var previews: some View {
-        @State var isChecked = false
         CapsuleCheckBox(label: "Check me", width: 200, isChecked: $isChecked)
     }
 }

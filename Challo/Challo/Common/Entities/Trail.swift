@@ -30,6 +30,8 @@ struct Trail {
     
     let rating: Double
     
+    let difficulty: TrailDifficulty
+    
     /// Array of coordinates mapping the route of the trail
     let positions: [CLLocationCoordinate2D]
     

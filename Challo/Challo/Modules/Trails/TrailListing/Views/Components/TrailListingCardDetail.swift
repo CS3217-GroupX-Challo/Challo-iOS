@@ -17,6 +17,7 @@ struct TrailListingCardDetail: View {
     let tourDescription: String
     let rating: Double
     let numOfReviews: Int
+    let difficulty: TrailDifficulty
     
     @ViewBuilder
     func makeTag(_ index: Int) -> some View {
@@ -30,7 +31,12 @@ struct TrailListingCardDetail: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(title).bold()
+            HStack {
+                Text(title).bold()
+                Spacer()
+                Text(difficulty.rawValue)
+                    .foregroundColor(difficulty.getColor())
+            }
             Divider()
             HStack {
                 ForEach(tags.indices, id: \.self, content: makeTag)
