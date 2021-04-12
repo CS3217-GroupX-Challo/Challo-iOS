@@ -48,7 +48,7 @@ struct TouristDashboardPage: View {
                 Text(presenter.name)
                     .font(.largeTitle)
                     .foregroundColor(.white)
-                NavigationLink(destination: Text("hello")) {
+                NavigationLink(destination: UpdateProfilePage().environmentObject(presenter)) {
                     Text("Edit Profile")
                         .font(.headline)
                 }

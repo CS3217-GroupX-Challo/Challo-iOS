@@ -35,10 +35,16 @@ class TouristDashboardPresenter: PresenterProtocol {
     @Published var inputImage: UIImage?
     @Published var isImagePickerOpen = false
     
+    @Published var editName = ""
+    @Published var editEmail = ""
+    @Published var isSaving = false
+    
     init(userState: UserStateProtocol,
          sendMessageToGuide: @escaping ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)) {
         self.userState = userState
         self.name = userState.name
+        self.editName = userState.name
+        self.editEmail = userState.email
         self.sendMessageToGuide = sendMessageToGuide
     }
     
@@ -74,6 +80,37 @@ class TouristDashboardPresenter: PresenterProtocol {
 
     func getReviewPage(for booking: Booking) -> AnyView? {
         router?.getReviewPage(for: booking)
+    }
+    
+    func onTapSendMessage(guide: Guide) {
+        sendMessageToGuide(guide.email, guide.userId, messageText)
+        messageText = ""
+    }
+    
+    func onTapSave() {
+        isSaving = true
+    }
+}
+
+// MARK: Handle Bookings
+extension TouristDashboardPresenter {
+
+    private func sortBookings(bookings: [Booking]) -> [Booking] {
+        bookings.sorted { bookingOne, bookingTwo in
+            bookingOne.date < bookingTwo.date
+        }
+    }
+
+    private func filterUpcomingBookings(bookings: [Booking]) -> [Booking] {
+        bookings.filter {
+            ($0.status == .Paid || $0.status == .Pending) && $0.date > Date()
+        }
+    }
+
+    private func filterPastBookings(bookings: [Booking]) -> [Booking] {
+        bookings.filter {
+            $0.date < Date()
+        }
     }
 }
 

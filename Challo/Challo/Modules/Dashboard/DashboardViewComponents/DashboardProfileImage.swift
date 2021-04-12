@@ -13,6 +13,7 @@ struct DashboardProfileImage: View {
     
     var body: some View {
         presenter.displayedProfileImage
+            .resizable()
             .onTapGesture {
                 presenter.isImagePickerOpen = true
             }.sheet(isPresented: $presenter.isImagePickerOpen, onDismiss: presenter.loadImage) {
