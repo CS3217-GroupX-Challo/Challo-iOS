@@ -65,9 +65,9 @@ class TouristDashboardPresenter: PresenterProtocol {
     }
 
     func didPopulateBookings(bookings: [Booking]) {
-        let sortedBookings = sortBookings(bookings: bookings)
-        self.upcomingBookings = filterUpcomingBookings(bookings: sortedBookings)
-        self.pastBookings = filterPastBookings(bookings: sortedBookings)
+        let sortedBookings = interactor.sortBookings(bookings: bookings)
+        self.upcomingBookings = interactor.filterUpcomingBookings(bookings: sortedBookings)
+        self.pastBookings = interactor.filterPastBookings(bookings: sortedBookings)
         isLoading = false
     }
 
@@ -78,28 +78,6 @@ class TouristDashboardPresenter: PresenterProtocol {
 
     func getReviewPage(for booking: Booking) -> AnyView? {
         router?.getReviewPage(for: booking)
-    }
-}
-
-// MARK: Handle Bookings
-extension TouristDashboardPresenter {
-
-    private func sortBookings(bookings: [Booking]) -> [Booking] {
-        bookings.sorted { bookingOne, bookingTwo in
-            bookingOne.date < bookingTwo.date
-        }
-    }
-
-    private func filterUpcomingBookings(bookings: [Booking]) -> [Booking] {
-        bookings.filter {
-            ($0.status == .Paid || $0.status == .Pending) && $0.date > Date()
-        }
-    }
-
-    private func filterPastBookings(bookings: [Booking]) -> [Booking] {
-        bookings.filter {
-            $0 == $0
-        }
     }
 }
 
