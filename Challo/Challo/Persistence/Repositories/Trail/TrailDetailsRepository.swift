@@ -44,5 +44,60 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
     }
     
     func saveTrails(trailObjects: [TrailPersistenceObject]) {
+        let currentTrails = getAllTrails()
+        let currentAreas = areaRepository.getAll()
+        
+        let existingTrailObjects = trailObjects.filter { trailObject in
+            currentTrails.contains(trailObject)
+        }
+        
+        let newTrailObjects = trailObjects.filter { trailObject in
+            !existingTrailObjects.contains(trailObject)
+        }
+        
+        saveNewTrail(currentAreas: currentAreas, trailObjects: newTrailObjects)
+        updateTrails(currentAreas: currentAreas, trailObjects: existingTrailObjects)
+        repository.commit()
+    }
+    
+    private func saveNewTrail(currentAreas: [AreaDetails], trailObjects: [TrailPersistenceObject]) {
+        for trailObject in trailObjects {
+            if let trailDetails = trailObject.convertToPersistenceObject() as? TrailDetails {
+                for area in currentAreas {
+                    if area.id == trailObject.area.areaId.uuidString {
+                        trailDetails.area = area
+                        break
+                    }
+                }
+                
+                // save new area
+                if trailDetails.area == nil {
+                    let area = trailObject.area.convertToPersistenceObject() as? AreaDetails
+                    trailDetails.area = area
+                }
+            }
+        }
+    }
+    
+    private func updateTrails(currentAreas: [AreaDetails], trailObjects: [TrailPersistenceObject]) {
+        for trailObject in trailObjects {
+            if let objectId = data.first(where: { $0.value == trailObject })?.key,
+               let trail = repository.getByKey(objectId) {
+                trailObject.updatePersistenceObject(persistenceObject: trail)
+                
+                for area in currentAreas {
+                    if area.id == trailObject.area.areaId.uuidString {
+                        trail.area = area
+                        break
+                    }
+                }
+                
+                // save new area
+                if trail.area == nil {
+                    let area = trailObject.area.convertToPersistenceObject() as? AreaDetails
+                    trail.area = area
+                }
+            }
+        }
     }
 }

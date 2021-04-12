@@ -108,3 +108,9 @@ extension TrailPersistenceObject: CoreDataPersistenceObject {
         trailDetails.tags = String(array: tags)
     }
 }
+
+extension TrailPersistenceObject: Equatable {
+    static func == (lhs: TrailPersistenceObject, rhs: TrailPersistenceObject) -> Bool {
+        return lhs.trailId == rhs.trailId
+    }
+}
