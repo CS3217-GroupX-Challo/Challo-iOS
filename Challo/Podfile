@@ -14,6 +14,8 @@ def challo_pods
   pod 'Google-Maps-iOS-Utils', '~> 3.8.0'
   pod 'QuickBlox'
   pod 'HorizonCalendar'
+  pod 'ImageKitIO'
+  pod 'SDWebImageSwiftUI'
 end
 
 target 'Challo' do
