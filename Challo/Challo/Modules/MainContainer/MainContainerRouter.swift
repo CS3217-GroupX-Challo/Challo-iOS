@@ -56,17 +56,20 @@ class MainContainerRouter: RouterProtocol {
         guidesPage = GuidesListingModule(guideRepository: guideRepository, reviewAPI: reviewAPI).assemble().view
         mapsPage = MapModule(placesAPI: placesAPI).assemble().view
         settingsPage = SettingsModule(userState: userState).assemble().view
-        setupChatAndProfilePage(bookingRepository)
+        setupChatAndProfilePage(bookingRepository, reviewAPI)
     }
     
-    private func setupChatAndProfilePage(_ bookingRepository: BookingRepositoryProtocol) {
+    private func setupChatAndProfilePage(_ bookingRepository: BookingRepositoryProtocol,
+                                         _ reviewAPI: ReviewAPIProtocol) {
         let chatDialogRepository = ChatDialogRepository()
         let chatService = QuickBloxChatService(chatAuthService: QuickBloxChatAuthService(),
                                                chatDialogService: QuickBloxChatDialogService(chatDialogRepository:
                                                                                                 chatDialogRepository))
         chatPage = ChatModule(chatService: chatService, userState: userState).assemble().view
         
-        profilePage = TouristDashboardModule(userState: userState, bookingsRepository: bookingRepository,
+        profilePage = TouristDashboardModule(userState: userState,
+                                             bookingsRepository: bookingRepository,
+                                             reviewAPI: reviewAPI,
                                              sendMessageToGuide: { [weak self] guideEmail, _, messageText in
                                                 self?.sendMessageToGuide(guideEmail: guideEmail,
                                                                          messageText: messageText,

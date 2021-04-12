@@ -36,7 +36,7 @@ struct PastBookingCard: View, CustomLabelMaker {
                     Text("Contact Guide").bold()
                 }.buttonStyle(BorderedButtonStyle(borderColor: .themeTertiary, foregroundColor: .themeTertiary))
                 
-                NavigationLink(destination: Text("test")) {
+                NavigationLink(destination: presenter.getReviewPage(for: booking)) {
                     Text("Leave a Review").bold()
                 }.buttonStyle(BorderedButtonStyle(borderColor: .themePrimary, foregroundColor: .themeSecondary))
             }

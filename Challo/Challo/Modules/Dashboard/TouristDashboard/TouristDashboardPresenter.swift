@@ -75,6 +75,10 @@ class TouristDashboardPresenter: PresenterProtocol {
         sendMessageToGuide(guide.email, guide.userId, messageText)
         messageText = ""
     }
+
+    func getReviewPage(for booking: Booking) -> AnyView? {
+        router?.getReviewPage(for: booking)
+    }
 }
 
 // MARK: Handle Bookings
