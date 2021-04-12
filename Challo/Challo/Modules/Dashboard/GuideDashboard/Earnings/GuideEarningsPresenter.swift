@@ -18,7 +18,7 @@ class GuideEarningsPresenter: PresenterProtocol {
         }
     }
 
-    unowned let userState: UserStateProtocol!
+    let userState: UserStateProtocol
 
     @Published var name: String
     @Published var loading: Bool = true

@@ -15,7 +15,7 @@ class MainContainerPresenter: PresenterProtocol, ObservableObject {
 
     var interactor: MainContainerInteractor!
     var router: MainContainerRouter?
-    unowned let userState: UserStateProtocol!
+    let userState: UserStateProtocol
     
     private var cancellables: Set<AnyCancellable> = []
 
