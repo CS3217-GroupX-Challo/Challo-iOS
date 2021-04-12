@@ -18,6 +18,7 @@ class TouristDashboardPresenter: PresenterProtocol {
     @Published var isLoading = false
     @Published var upcomingBookings: [Booking] = []
     @Published var pastBookings: [Booking] = []
+    
     @Published var name: String
     @Published var messageText: String = ""
 
@@ -46,7 +47,7 @@ class TouristDashboardPresenter: PresenterProtocol {
                     ? Image("avatar-image")
                     : ImageService.loadImage(path: userState.profileImg))
     }
-    
+
     func loadImage() {
         guard let inputImage = inputImage else {
             return
@@ -69,11 +70,6 @@ class TouristDashboardPresenter: PresenterProtocol {
         self.upcomingBookings = interactor.filterUpcomingBookings(bookings: sortedBookings)
         self.pastBookings = interactor.filterPastBookings(bookings: sortedBookings)
         isLoading = false
-    }
-
-    func onTapSendMessage(guide: Guide) {
-        sendMessageToGuide(guide.email, guide.userId, messageText)
-        messageText = ""
     }
 
     func getReviewPage(for booking: Booking) -> AnyView? {
