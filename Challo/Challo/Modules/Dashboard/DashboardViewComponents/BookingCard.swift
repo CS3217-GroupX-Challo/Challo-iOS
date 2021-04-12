@@ -14,52 +14,53 @@ struct BookingCard: View {
     var booking: Booking
     var width: CGFloat
 
-    func makeDetail(image: String, label: String) -> some View {
-        VStack {
+    func makeDetail(image: String, label: String? = nil, customLabel: AnyView? = nil) -> some View {
+        HStack {
             Image(systemName: image)
                 .resizable()
                 .scaledToFit()
-                .frame(maxWidth: width / 12)
-                .padding(.bottom, 5)
-            Text(label)
-                .font(.subheadline)
-                .foregroundColor(.themeAccent)
-                .frame(maxWidth: width / 4, maxHeight: 50)
-        }.frame(width: width / 3)
+                .frame(maxWidth: 20)
+            if let unwrappedLabel = label {
+                Text(unwrappedLabel)
+                    .font(.subheadline)
+                    .foregroundColor(.themeAccent)
+                    .lineLimit(1)
+            }
+            customLabel
+            Spacer()
+        }
     }
     
     var body: some View {
-        Card {
-            Image.mountainBackground
-                .resizable()
-                .scaledToFit()
-                .frame(width: 300)
-                .cornerRadius(10)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 20)
-            HStack(alignment: .top) {
-                makeDetail(image: "leaf",
-                           label: booking.trail.title)
-                makeDetail(image: "calendar",
-                           label: CustomDateFormatter.displayFriendlyDate(booking.date))
-                makeDetail(image: "person.crop.circle",
-                           label: booking.guide.name ?? "")
+        VStack {
+            ZStack(alignment: .topTrailing) {
+                Image.mountainBackground
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: width)
+                    .cornerRadius(10)
+                NavigationLink(destination: ContactGuidePage(guide: booking.guide).environmentObject(presenter)) {
+                    Image(systemName: "ellipsis.bubble.fill")
+                        .foregroundColor(Color.black.opacity(0.8))
+                        .padding(10)
+                }
             }
-            NavigationLink(destination: ContactGuidePage(guide: booking.guide).environmentObject(presenter)) {
-                Text("Contact Guide").bold()
-            }.buttonStyle(BorderedButtonStyle(borderColor: .themeTertiary, foregroundColor: .themeTertiary))
-            .padding()
-        }.cornerRadius(10)
-        .background(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.gray, lineWidth: 1)
-                .background(Color.clear)
-                .shadow(color: Color.gray, radius: 1, x: 1, y: 1)
-                .shadow(color: Color.gray, radius: 3, x: 3, y: 4)
-        )
-        .frame(width: width,
-               alignment: .center)
-        .padding()
+            VStack(alignment: .leading) {
+                HStack {
+                    StarRatingsView(rating: booking.trail.rating, numOfReviews: booking.trail.numOfReviews)
+                    Spacer()
+                }
+                makeDetail(image: "leaf", label: booking.trail.title)
+                makeDetail(image: "calendar", label: CustomDateFormatter.displayFriendlyDate(booking.date))
+                makeDetail(image: "person.crop.circle", label: booking.guide.name ?? "")
+                makeDetail(image: "dollarsign.square", customLabel: AnyView(
+                    HStack(spacing: 0) {
+                        Text("\(Int(booking.fee))").bold()
+                        Text(" / pax")
+                    }
+                ))
+            }.padding()
+        }.padding()
         
     }
 }
