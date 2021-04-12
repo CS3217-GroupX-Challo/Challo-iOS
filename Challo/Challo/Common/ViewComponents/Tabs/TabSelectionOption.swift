@@ -22,7 +22,9 @@ struct TabSelectionOption: View {
             .bold()
             .onTapGesture {
                 if let onSelect = onSelect {
-                    onSelect()
+                    withAnimation {
+                        onSelect()
+                    }
                 }
             }
     }
@@ -31,6 +33,15 @@ struct TabSelectionOption: View {
         if isSelected {
             baseView
                 .foregroundColor(selectedColor)
+                .overlay(
+                    Rectangle()
+                        .fill(selectedColor)
+                        .frame(height: 1)
+                        .offset(y: 4)
+                        .transition(.move(edge: .trailing))
+                        .animation(.easeIn),
+                    alignment: .bottom
+                )
         } else {
             baseView
                 .foregroundColor(unselectedColor)
