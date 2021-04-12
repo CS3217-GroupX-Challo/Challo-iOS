@@ -38,12 +38,11 @@ struct CompactBookingCard: View {
                            label: CustomDateFormatter.displayFriendlyDate(booking.date))
                 makeDetail(image: "person.crop.circle",
                            label: booking.tourist.name ?? "")
+                makeDetail(image: "dollarsign.circle",
+                           label: "\(booking.fee)")
             }
-            NavigationLink(destination: ContactGuidePage(guide: booking.guide).environmentObject(presenter)) {
-                Text("Contact Guide").bold()
-            }.buttonStyle(BorderedButtonStyle(borderColor: .themeTertiary, foregroundColor: .themeTertiary))
-            .padding()
-        }.cornerRadius(10)
+        }
+        .cornerRadius(10)
         .background(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color.gray, lineWidth: 1)
