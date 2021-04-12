@@ -6,6 +6,7 @@
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="state" optional="YES" attributeType="String"/>
         <attribute name="village" optional="YES" attributeType="String"/>
+        <relationship name="trail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TrailDetails" inverseName="area" inverseEntity="TrailDetails"/>
     </entity>
     <entity name="Itinerary" representedClassName="Itinerary" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -42,11 +43,29 @@
         <attribute name="profileImg" optional="YES" attributeType="String"/>
         <attribute name="sex" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="TrailDetails" representedClassName="TrailDetails" syncable="YES" codeGenerationType="class">
+        <attribute name="descriptions" attributeType="String"/>
+        <attribute name="distance" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="duration" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="elevation" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="guideIds" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="images" attributeType="String"/>
+        <attribute name="landmarks" attributeType="String"/>
+        <attribute name="lowestFee" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="numOfReviews" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="positions" attributeType="String"/>
+        <attribute name="rating" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="tags" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="area" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AreaDetails" inverseName="trail" inverseEntity="AreaDetails"/>
+    </entity>
     <elements>
-        <element name="AreaDetails" positionX="-54" positionY="81" width="128" height="104"/>
+        <element name="AreaDetails" positionX="-54" positionY="81" width="128" height="119"/>
         <element name="Itinerary" positionX="-36" positionY="72" width="128" height="119"/>
         <element name="Marker" positionX="-63" positionY="-18" width="128" height="149"/>
         <element name="Route" positionX="-54" positionY="27" width="128" height="119"/>
         <element name="TouristDetails" positionX="-54" positionY="81" width="128" height="134"/>
+        <element name="TrailDetails" positionX="-54" positionY="81" width="128" height="254"/>
     </elements>
 </model>

@@ -9,11 +9,11 @@ import MapKit
 
 extension CLLocationCoordinate2D {
     func toString() -> String {
-        "\(self.latitude), \(self.longitude)"
+        "\(self.latitude)+\(self.longitude)"
     }
     
     init?(str: String) {
-        let array = str.components(separatedBy: ", ")
+        let array = str.components(separatedBy: "+")
         guard array.count == 2 else {
             return nil
         }
