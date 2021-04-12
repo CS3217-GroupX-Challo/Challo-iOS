@@ -26,7 +26,7 @@ struct TouristDashboardPage: View {
                         Spacer()
                     }
 
-                    Image("avatar-image")
+                    presenter.displayedProfileImage
                         .resizable()
                         .scaledToFit()
                         .clipShape(Circle())

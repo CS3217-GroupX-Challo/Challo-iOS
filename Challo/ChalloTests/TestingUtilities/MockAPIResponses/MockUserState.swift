@@ -13,6 +13,7 @@ class MockUserState: UserStateProtocol {
     var loggedIn = false 
     var email = ""
     var name = ""
+    var profileImg = ""
     var token = ""
     var userId = ""
     var user: User?
@@ -27,6 +28,7 @@ class MockUserState: UserStateProtocol {
         userState.userId = "b582bda7-7004-4ce0-92ee-8876c6851436"
         userState.certificate = UserCertificate(name: userState.name,
                                                 email: userState.email,
+                                                profileImg: userState.profileImg,
                                                 token: userState.token,
                                                 userId: userState.userId)
         return userState

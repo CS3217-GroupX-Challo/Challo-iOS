@@ -13,6 +13,7 @@ protocol UserStateProtocol: AnyObject {
     var loggedIn: Bool { get set }
     var email: String { get set }
     var name: String { get set }
+    var profileImg: String { get set }
     var token: String { get set }
     var userId: String { get set }
     var certificate: UserCertificate? { get }
@@ -30,6 +31,7 @@ extension UserStateProtocol {
     func storeCertificate(certificate: UserCertificate, isNewUser: Bool = false) {
         name = certificate.name
         email = certificate.email
+        profileImg = certificate.profileImg
         token = certificate.token
         userId = certificate.userId
         user = certificate.user
@@ -47,6 +49,7 @@ extension UserStateProtocol {
         loggedIn = false
         name = ""
         email = ""
+        profileImg = ""
         token = ""
         userId = ""
         user = nil

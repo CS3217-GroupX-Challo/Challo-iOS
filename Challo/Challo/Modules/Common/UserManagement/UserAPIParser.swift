@@ -19,8 +19,10 @@ class UserAPIParser {
             ChalloLogger.logger.log("API response wrong shape: \(apiResponse)")
             return nil
         }
+        let profileImg = data[Key.profileImage] as? String ?? ""
         return UserCertificate(name: name,
                                email: email,
+                               profileImg: profileImg,
                                token: token,
                                userId: userId)
     }

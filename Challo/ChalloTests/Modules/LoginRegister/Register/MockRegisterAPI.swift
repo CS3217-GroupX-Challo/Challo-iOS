@@ -21,6 +21,7 @@ class MockRegisterAPI: RegisterAPI {
                                       password: "password")
     let certificate = UserCertificate(name: "name",
                                       email: "name@example.com",
+                                      profileImg: "",
                                       token: "token",
                                       userId: "123")
 
