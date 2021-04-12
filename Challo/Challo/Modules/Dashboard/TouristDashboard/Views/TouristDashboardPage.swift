@@ -39,7 +39,9 @@ struct TouristDashboardPage: View {
                     BookingCardListingsView(
                         width: geometry.size.width,
                         emptyListMessage: "You don't have any past trips",
-                        bookings: $presenter.pastBookings)
+                        bookings: $presenter.pastBookings) { booking, width in
+                        AnyView(PastBookingCard(booking: booking, width: width))
+                    }
                 }
             }
         }

@@ -44,7 +44,8 @@ extension TouristDashboardInteractor {
 
     func filterPastBookings(bookings: [Booking]) -> [Booking] {
         bookings.filter {
-            $0.date < Date()
+            $0 == $0
         }
     }
 }
+

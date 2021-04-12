@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GuideRatingView: View {
+struct ExperienceRatingView: View {
 
     @Binding var rating: Int
     @Binding var comments: String
