@@ -12,7 +12,7 @@ struct GuideUpcomingBookingsPage: View {
     var presenter: GuideUpcomingBookingsPresenter
 
     var body: some View {
-        GeometryReader {
+        GeometryReader { geometry in
             HStack {
                 Header(title: presenter.name,
                        subtitle: "Your upcoming bookings",
