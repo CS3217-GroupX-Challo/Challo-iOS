@@ -19,7 +19,7 @@ struct TrailPersistenceObject {
     let duration: Double
     let elevation: Double
     let images: [String]
-    let area: Area
+    let area: AreaPersistenceObject
     let guideIds: [UUID]
     let numOfReviews: Int
     let lowestFee: Int
@@ -74,9 +74,7 @@ extension TrailPersistenceObject: CoreDataPersistenceObject {
             }
         }
         self.positions = positions
-        
-        let convertor = AreaModelConvertor()
-        self.area = convertor.convertAreaPersistenceObjectToArea(areaObject: area)
+        self.area = area
     }
     
     func convertToPersistenceObject() -> NSManagedObject {
