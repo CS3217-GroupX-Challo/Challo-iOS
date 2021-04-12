@@ -12,7 +12,7 @@ class TouristDashboardInteractor: InteractorProtocol {
     weak var presenter: TouristDashboardPresenter!
 
     let bookingsRepository: BookingRepositoryProtocol
-    let userState: UserStateProtocol!
+    let userState: UserStateProtocol
 
     init(bookingsRepository: BookingRepositoryProtocol, userState: UserStateProtocol) {
         self.bookingsRepository = bookingsRepository
