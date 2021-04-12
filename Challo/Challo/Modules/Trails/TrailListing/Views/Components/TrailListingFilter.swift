@@ -25,23 +25,9 @@ struct TrailListingFilter: View {
         String(format: "%.0f", ceil(slider.highHandle.currentValue))
     }
     
-    private func makeSectionTitle(_ title: String) -> some View {
-        Text(title)
-            .font(.headline).bold()
-    }
-    
-    private func makeFilter<Content: View>(isChecked: Binding<Bool>,
-                                           @ViewBuilder textLabel: () -> Content) -> some View {
-        HStack {
-            textLabel()
-            Spacer()
-            RectangleCheckBox(length: 40, isChecked: isChecked)
-        }
-    }
-    
     private func makeDifficultyFilter(difficultyLabel: String, difficultyColor: Color,
                                       isChecked: Binding<Bool>) -> some View {
-        makeFilter(isChecked: isChecked) {
+        FilterViewUtility.makeCheckBoxFilter(isChecked: isChecked) {
             HStack {
                 Text(difficultyLabel)
                     .foregroundColor(difficultyColor)
@@ -53,7 +39,7 @@ struct TrailListingFilter: View {
     private var difficultyFilters: some View {
         VStack(alignment: .leading, spacing: 5) {
             VStack(alignment: .leading) {
-                makeSectionTitle("Difficulty")
+                FilterViewUtility.makeFilterSectionTitle("Difficulty")
                 Text("Trails are ranked a difficulty according to their terrain, distance & elevation.")
                     .foregroundColor(Color.gray)
             }.padding(.vertical, 20)
@@ -68,7 +54,7 @@ struct TrailListingFilter: View {
     
     private var priceRange: some View {
         VStack(alignment: .leading) {
-            makeSectionTitle("Price Range")
+            FilterViewUtility.makeFilterSectionTitle("Price Range")
                 .padding(.vertical, 20)
             Text("$\(sliderLowerValue) - $\(sliderUpperValue)")
             CustomSliderView(slider: slider)
@@ -78,18 +64,13 @@ struct TrailListingFilter: View {
     }
     
     var body: some View {
-        VStack {
-            Text("Filters")
-                .font(.headline)
-                .padding(.vertical, 20)
-            Divider()
+        FilterViewUtility.makeFilterSheet {
             VStack(alignment: .leading) {
                 difficultyFilters
                 Divider()
                     .padding(.vertical, 10)
                 priceRange
             }.padding(.horizontal, 50)
-            Spacer()
         }
     }
 }
