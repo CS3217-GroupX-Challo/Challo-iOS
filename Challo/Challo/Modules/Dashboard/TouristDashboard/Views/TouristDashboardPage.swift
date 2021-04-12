@@ -24,13 +24,6 @@ struct TouristDashboardPage: View {
                     Spacer()
                 }
 
-                Image("avatar-image")
-                    .resizable()
-                    .scaledToFit()
-                    .clipShape(Circle())
-                    .frame(height: geometry.size.height * 0.10)
-                    .padding()
-
                 presenter.displayedProfileImage
                     .resizable()
                     .scaledToFit()

@@ -26,6 +26,7 @@ class GuideUpcomingBookingsModule: ViperModuleProtocol {
         presenter.interactor = interactor
         interactor.presenter = presenter
         router.presenter = presenter
-        return (AnyView(Text("Placeholder")), presenter)
+        let view = GuideUpcomingBookingsPage(presenter: presenter)
+        return (AnyView(view), presenter)
     }
 }
