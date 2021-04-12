@@ -30,7 +30,6 @@ struct GuidePersistenceObject {
 }
 
 extension GuidePersistenceObject: CoreDataPersistenceObject {
-    
     // swiftlint:disable function_body_length
     init?(persistenceObject: NSManagedObject) {
         guard let guide = persistenceObject as? GuideDetails,
@@ -131,4 +130,7 @@ extension GuidePersistenceObject: CoreDataPersistenceObject {
             day.rawValue
         })
     }
+}
+
+extension GuidePersistenceObject: Equatable {
 }

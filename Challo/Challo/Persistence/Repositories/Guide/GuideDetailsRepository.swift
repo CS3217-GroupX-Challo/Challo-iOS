@@ -25,9 +25,106 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
     }
     
     func getAllGuides() -> [GuidePersistenceObject] {
-        return []
+        let guides = repository.getAll()
+        var guideObjects = [GuidePersistenceObject]()
+        self.data = [NSManagedObjectID: GuidePersistenceObject]()
+        
+        for guide in guides {
+            if let guideObject = GuidePersistenceObject(persistenceObject: guide) {
+                self.data[guide.objectID] = guideObject
+                guideObjects.append(guideObject)
+            }
+        }
+        
+        return guideObjects
     }
     
     func saveGuides(guideObjects: [GuidePersistenceObject]) {
+        let currentGuides = getAllGuides()
+        let currentTrails = trailRepository.getAll()
+        let currentAreas = areaRepository.getAll()
+        
+        let existingGuideObjects = guideObjects.filter { guideObject in
+            currentGuides.contains(guideObject)
+        }
+        
+        let newGuideObjects = guideObjects.filter { guideObject in
+            !existingGuideObjects.contains(guideObject)
+        }
+        
+        saveNewGuides(guideObjects: newGuideObjects,
+                      currentAreas: currentAreas,
+                      currentTrails: currentTrails)
+        updateGuides(guideObjects: existingGuideObjects,
+                     currentAreas: currentAreas,
+                     currentTrails: currentTrails)
+        repository.commit()
+    }
+    
+    private func saveNewGuides(guideObjects: [GuidePersistenceObject],
+                               currentAreas: [AreaDetails],
+                               currentTrails: [TrailDetails]) {
+        for guideObject in guideObjects {
+            if let guideDetails = guideObject.convertToPersistenceObject() as? GuideDetails {
+                setArea(guideDetails: guideDetails,
+                        guideObject: guideObject,
+                        currentAreas: currentAreas)
+                setTrails(guideDetails: guideDetails,
+                          guideObject: guideObject,
+                          currentTrails: currentTrails)
+            }
+        }
+    }
+    
+    private func updateGuides(guideObjects: [GuidePersistenceObject],
+                              currentAreas: [AreaDetails],
+                              currentTrails: [TrailDetails]) {
+        for guideObject in guideObjects {
+            if let objectId = data.first(where: { $0.value == guideObject })?.key,
+               let guide = repository.getByKey(objectId) {
+                guideObject.updatePersistenceObject(persistenceObject: guide)
+                setArea(guideDetails: guide,
+                        guideObject: guideObject,
+                        currentAreas: currentAreas)
+                setTrails(guideDetails: guide,
+                          guideObject: guideObject,
+                          currentTrails: currentTrails)
+            }
+        }
+    }
+    
+    private func setArea(guideDetails: GuideDetails,
+                         guideObject: GuidePersistenceObject,
+                         currentAreas: [AreaDetails]) {
+        for area in currentAreas where area.id == guideObject.location?.areaId.uuidString {
+            guideDetails.location = area
+            break
+        }
+        
+        if guideDetails.location == nil && guideObject.location != nil {
+            let area = guideObject.location?.convertToPersistenceObject() as? AreaDetails
+            guideDetails.location = area
+        }
+    }
+    
+    private func setTrails(guideDetails: GuideDetails,
+                           guideObject: GuidePersistenceObject,
+                           currentTrails: [TrailDetails]) {
+        var trailsDetails = [TrailDetails]()
+        for trail in guideObject.trails {
+            var isSaved = false
+            for trailDetail in currentTrails where trailDetail.id == trail.trailId.uuidString {
+                trailsDetails.append(trailDetail)
+                isSaved = true
+                break
+            }
+            
+            if !isSaved,
+               let trailDetail = trail.convertToPersistenceObject() as? TrailDetails {
+                trailsDetails.append(trailDetail)
+            }
+        }
+        
+        guideDetails.trails = NSSet(array: trailsDetails)
     }
 }

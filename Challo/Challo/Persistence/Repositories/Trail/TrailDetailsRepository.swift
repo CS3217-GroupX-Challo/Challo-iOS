@@ -55,12 +55,12 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
             !existingTrailObjects.contains(trailObject)
         }
         
-        saveNewTrail(currentAreas: currentAreas, trailObjects: newTrailObjects)
+        saveNewTrails(currentAreas: currentAreas, trailObjects: newTrailObjects)
         updateTrails(currentAreas: currentAreas, trailObjects: existingTrailObjects)
         repository.commit()
     }
     
-    private func saveNewTrail(currentAreas: [AreaDetails], trailObjects: [TrailPersistenceObject]) {
+    private func saveNewTrails(currentAreas: [AreaDetails], trailObjects: [TrailPersistenceObject]) {
         for trailObject in trailObjects {
             if let trailDetails = trailObject.convertToPersistenceObject() as? TrailDetails {
                 for area in currentAreas where area.id == trailObject.area.areaId.uuidString {
