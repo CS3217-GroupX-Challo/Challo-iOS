@@ -8,7 +8,7 @@
 class MainContainerInteractor: InteractorProtocol {
 
     weak var presenter: MainContainerPresenter!
-    let userState: UserStateProtocol!
+    let userState: UserStateProtocol
 
     init(userState: UserStateProtocol) {
         self.userState = userState

@@ -8,9 +8,9 @@
 import SwiftUI
 
 final class TouristDashboardModule: ViperModuleProtocol {
-
-    weak var userState: UserStateProtocol?
-    let bookingRepository: BookingRepositoryProtocol
+  
+    let userState: UserStateProtocol
+    let bookingsRepository: BookingRepositoryProtocol
     let sendMessageToGuide: ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)
     
     init(userState: UserStateProtocol, bookingRepository: BookingRepositoryProtocol,
@@ -21,10 +21,7 @@ final class TouristDashboardModule: ViperModuleProtocol {
     }
 
     func assemble() -> (view: AnyView, presenter: TouristDashboardPresenter) {
-        guard let userState = userState else {
-            fatalError("userState is nil in TouristDashboardModule")
-        }
-        let interactor = TouristDashboardInteractor(bookingsRepository: bookingRepository, userState: userState)
+        let interactor = TouristDashboardInteractor(bookingsRepository: bookingsRepository, userState: userState)
         let router = TouristDashboardRouter()
         let presenter = TouristDashboardPresenter(userState: userState, sendMessageToGuide: sendMessageToGuide)
         interactor.presenter = presenter
