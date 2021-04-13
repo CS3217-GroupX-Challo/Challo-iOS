@@ -17,10 +17,12 @@ class TrailProfileRouter: RouterProtocol {
          userState: UserStateProtocol,
          trailRepository: TrailRepositoryProtocol,
          guideRepository: GuideRepositoryProtocol,
+         bookingRepository: BookingRepositoryProtocol,
          bookingAPI: BookingAPIProtocol) {
         let (view, presenter) = TrailBookingModule(trailProfilePresenter: trailProfilePresenter,
                                                    trailRepository: trailRepository,
                                                    guideRepository: guideRepository,
+                                                   bookingRepository: bookingRepository,
                                                    bookingAPI: bookingAPI,
                                                    userState: userState).assemble()
         self.trailBookingPage = view

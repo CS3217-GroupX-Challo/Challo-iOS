@@ -48,9 +48,9 @@ class LoginPresenterTests: XCTestCase {
 
 class LoginPresenterImplementation: LoginPresenter {
 
-    var interactor: LoginInteractor!
+    var interactor: LoginInteractorMock!
     
-    var router: LoginRouter?
+    var router: LoginRouterMock?
     
     var email = "email"
     
@@ -59,19 +59,20 @@ class LoginPresenterImplementation: LoginPresenter {
     var isShowingLoginFailureAlert = false
 }
 
-private class LoginInteractorMock: LoginInteractor {
+class LoginInteractorMock: LoginInteractor {
 
     var certificateManager: CertificateManager = MockCertificateManager(state: MockUserState())
     var loginWasCalled = false
-    weak var presenter: LoginPresenter!
+    weak var presenter: LoginPresenterImplementation!
     
     func defaultLogin(email: String, password: String) {
         loginWasCalled = true
     }
 }
 
-private class LoginRouterMock: LoginRouter {
-
+class LoginRouterMock: LoginRouter {
+    var presenter: LoginPresenterImplementation!
+    
     var routerWasCalled = false
 
     func getRegistrationPage() -> AnyView {

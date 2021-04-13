@@ -5,19 +5,15 @@
 //  Created by Tan Le Yang on 17/3/21.
 //
 
-class GuideLoginInteractor: LoginInteractor, InteractorProtocol {
+class GuideLoginInteractor: LoginInteractor {    
 
-    weak var presenter: LoginPresenter!
+    weak var presenter: GuideLoginPresenter!
     private let loginAPI: LoginAPI
     var certificateManager: CertificateManager
 
     init(loginAPI: LoginAPI, certificateManager: CertificateManager) {
         self.loginAPI = loginAPI
         self.certificateManager = certificateManager
-    }
-
-    convenience init(certificateManager: CertificateManager) {
-        self.init(loginAPI: GuideLoginAPI(), certificateManager: certificateManager)
     }
 
     func defaultLogin(email: String, password: String) {

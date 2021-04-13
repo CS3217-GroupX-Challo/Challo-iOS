@@ -9,18 +9,20 @@ import SwiftUI
 
 final class SettingsModule: ViperModuleProtocol {
     
-    weak var userState: UserStateProtocol?
+    let userState: UserStateProtocol
+    let loginAPI: LoginAPI
+    let registerAPI: RegisterAPI
     
-    init(userState: UserStateProtocol) {
+    init(userState: UserStateProtocol, loginAPI: LoginAPI, registerAPI: RegisterAPI) {
         self.userState = userState
+        self.loginAPI = loginAPI
+        self.registerAPI = registerAPI
     }
+    
     func assemble() -> (view: AnyView, presenter: SettingsPresenter) {
-        guard let userState = userState else {
-            fatalError("userState is nil in SettingsModule")
-        }
         let presenter = SettingsPresenter(userState: userState)
         let interactor = SettingsInteractor(userState: userState)
-        let router = SettingsRouter(userState: userState)
+        let router = SettingsRouter(userState: userState, loginAPI: loginAPI, registerAPI: registerAPI)
         interactor.presenter = presenter
         presenter.interactor = interactor
         presenter.router = router

@@ -9,7 +9,7 @@
 ///
 /// This component is responsible for all domain logic of the module
 protocol InteractorProtocol: AnyObject {
-    associatedtype PresenterProtocol
+    associatedtype Presenter: PresenterProtocol
 
-    var presenter: PresenterProtocol! { get set }
+    var presenter: Presenter! { get set }
 }

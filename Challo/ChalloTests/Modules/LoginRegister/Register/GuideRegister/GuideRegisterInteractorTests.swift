@@ -11,7 +11,7 @@ import XCTest
 class GuideRegisterInteractorTests: XCTestCase {
 
     private var interactor: GuideRegisterInteractor!
-    private var presenter: RegisterPresenter!
+    private var presenter: GuideRegisterPresenter!
     private var registerAPI: MockRegisterAPI!
     private var mockCertificateManager: MockCertificateManager!
     private var userState: MockUserState!
@@ -23,7 +23,7 @@ class GuideRegisterInteractorTests: XCTestCase {
         self.registerAPI = MockRegisterAPI()
         self.interactor = GuideRegisterInteractor(registerAPI: self.registerAPI,
                                                   certificateManager: mockCertificateManager)
-        self.presenter = RegisterPresenterImplementation()
+        self.presenter = GuideRegisterPresenter()
         self.interactor.presenter = self.presenter
         self.interactor.certificateManager = mockCertificateManager
     }
