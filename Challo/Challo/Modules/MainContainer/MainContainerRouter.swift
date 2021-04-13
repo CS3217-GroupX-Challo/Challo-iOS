@@ -27,75 +27,37 @@ class MainContainerRouter: RouterProtocol {
         apiContainer = APIContainer(userState: userState)
         repositoryContainer = RepositoryContainer(apiContainer: apiContainer)
         
-        guard let trailRepository = repositoryContainer.container.resolve(TrailRepositoryProtocol.self) else {
-            fatalError("Failed to resolve trailRepository in MainContainer")
-        }
-        guard let guideRepository = repositoryContainer.container.resolve(GuideRepositoryProtocol.self) else {
-            fatalError("Failed to resolve guideRepository in MainContainer")
-        }
-        guard let bookingRepository = repositoryContainer.container.resolve(BookingRepositoryProtocol.self) else {
-            fatalError("Failed to resolve bookingAPI in MainContainer")
-        }
-        guard let reviewAPI = apiContainer.container.resolve(ReviewAPIProtocol.self) else {
-            fatalError("Failed to resolve reviewAPI in MainContainer")
-        }
-        guard let bookingAPI = apiContainer.container.resolve(BookingAPIProtocol.self) else {
-            fatalError("Failed to resolve bookingAPI in MainContainer")
-        }
-        guard let placesAPI = apiContainer.container.resolve(PlacesAPIProtocol.self) else {
-            fatalError("Failed to resolve placesAPI in MainContainer")
-        }
-        guard let userAPI = apiContainer.container.resolve(UserAPIProtocol.self) else {
-            fatalError("Failed to resolve userAPI in MainContainer")
-        }
-        guard let touristLoginAPI = apiContainer.container.resolve(LoginAPI.self,
-                                                                   name: ContainerNames.tourist.rawValue) else {
-            fatalError("Failed to resolve touristLoginAPI in MainContainer")
-        }
-        guard let touristRegisterAPI = apiContainer.container.resolve(RegisterAPI.self,
-                                                                      name: ContainerNames.tourist.rawValue) else {
-            fatalError("Failed to resolve touristRegisterAPI in MainContainer")
-        }
-
-        setUpLoginAndProfile(bookingRepository, reviewAPI)
         homePage = AnyView(Text("Homepage"))
         loginPage = TouristLoginModule(userState: userState,
-                                       loginAPI: touristLoginAPI,
-                                       registerAPI: touristRegisterAPI).assemble().view
-        trailsPage = TrailListingModule(trailRepository: trailRepository,
-                                        guideRepository: guideRepository,
-                                        bookingRepository: bookingRepository,
-                                        bookingAPI: bookingAPI,
-                                        reviewAPI: reviewAPI,
+                                       loginAPI: resolveTouristLoginAPI(),
+                                       registerAPI: resolveTouristRegisterAPI()).assemble().view
+        trailsPage = TrailListingModule(trailRepository: resolveTrailRepository(),
+                                        guideRepository: resolveGuideRepository(),
+                                        bookingRepository: resolveBookingRepository(),
+                                        bookingAPI: resolveBookingAPI(),
+                                        reviewAPI: resolveReviewAPI(),
                                         userState: userState).assemble().view
-        guidesPage = GuidesListingModule(guideRepository: guideRepository, reviewAPI: reviewAPI).assemble().view
-        mapsPage = MapModule(placesAPI: placesAPI).assemble().view
+        guidesPage = GuidesListingModule(guideRepository: resolveGuideRepository(),
+                                         reviewAPI: resolveReviewAPI()).assemble().view
+        mapsPage = MapModule(placesAPI: resolvePlacesAPI()).assemble().view
         settingsPage = SettingsModule(userState: userState,
-                                      loginAPI: touristLoginAPI,
-                                      registerAPI: touristRegisterAPI).assemble().view
-    }
-
-    private func setUpLoginAndProfile(_ bookingRepository: BookingRepositoryProtocol,
-                                      _ reviewAPI: ReviewAPIProtocol) {
-        #if GUIDE
-        loginPage = GuideLoginModule(userState: userState).assemble().view
-        profilePage = GuideDashboardModule(userState: userState, bookingRepository: bookingRepository).assemble().view
-
-        #else
-        loginPage = TouristLoginModule(userState: userState).assemble().view
-        setupChatAndProfilePage(bookingRepository, reviewAPI)
-        #endif
+                                      loginAPI: resolveTouristLoginAPI(),
+                                      registerAPI: resolveTouristRegisterAPI()).assemble().view
+        setUpLoginAndProfile(bookingRepository: resolveBookingRepository(),
+                             reviewAPI: resolveReviewAPI(),
+                             userState: userState)
     }
     
-    private func setupChatAndProfilePage(_ bookingRepository: BookingRepositoryProtocol, userAPI: UserAPIProtocol) {
+    private func setupChatAndProfilePage(bookingRepository: BookingRepositoryProtocol,
+                                         reviewAPI: ReviewAPIProtocol,
+                                         userAPI: UserAPIProtocol) {
         let chatDialogRepository = ChatDialogRepository()
         let chatService = QuickBloxChatService(chatAuthService: QuickBloxChatAuthService(),
                                                chatDialogService: QuickBloxChatDialogService(chatDialogRepository:
                                                                                                 chatDialogRepository))
         chatPage = ChatModule(chatService: chatService, userState: userState).assemble().view
         
-        profilePage = TouristDashboardModule(userState: userState,
-                                             bookingRepository: bookingRepository,
+        profilePage = TouristDashboardModule(userState: userState, bookingsRepository: bookingRepository,
                                              reviewAPI: reviewAPI,
                                              sendMessageToGuide: { [weak self] guideEmail, _, messageText in
                                                 self?.sendMessageToGuide(guideEmail: guideEmail,
@@ -105,6 +67,94 @@ class MainContainerRouter: RouterProtocol {
                                              userAPI: userAPI).assemble().view
     }
     
+    private func setUpLoginAndProfile(bookingRepository: BookingRepositoryProtocol,
+                                      reviewAPI: ReviewAPIProtocol,
+                                      userState: UserStateProtocol) {
+        #if GUIDE
+        loginPage = GuideLoginModule(userState: userState).assemble().view
+        profilePage = GuideDashboardModule(userState: userState, bookingRepository: bookingRepository).assemble().view
+
+        #else
+        loginPage = TouristLoginModule(userState: userState,
+                                       loginAPI: resolveTouristLoginAPI(),
+                                       registerAPI: resolveTouristRegisterAPI()).assemble().view
+        setupChatAndProfilePage(bookingRepository: bookingRepository,
+                                reviewAPI: reviewAPI,
+                                userAPI: resolveUserAPI())
+        #endif
+    }
+}
+
+// MARK: Dependency Resolve
+extension MainContainerRouter {
+    private func resolveTrailRepository() -> TrailRepositoryProtocol {
+        guard let trailRepository = repositoryContainer.container.resolve(TrailRepositoryProtocol.self) else {
+            fatalError("Failed to resolve trailRepository in MainContainer")
+        }
+        return trailRepository
+    }
+    
+    private func resolveGuideRepository() -> GuideRepositoryProtocol {
+        guard let guideRepository = repositoryContainer.container.resolve(GuideRepositoryProtocol.self) else {
+            fatalError("Failed to resolve guideRepository in MainContainer")
+        }
+        return guideRepository
+    }
+    
+    private func resolveBookingRepository() -> BookingRepositoryProtocol {
+        guard let bookingRepository = repositoryContainer.container.resolve(BookingRepositoryProtocol.self) else {
+            fatalError("Failed to resolve bookingAPI in MainContainer")
+        }
+        return bookingRepository
+    }
+    
+    private func resolveReviewAPI() -> ReviewAPIProtocol {
+        guard let reviewAPI = apiContainer.container.resolve(ReviewAPIProtocol.self) else {
+            fatalError("Failed to resolve reviewAPI in MainContainer")
+        }
+        return reviewAPI
+    }
+    
+    private func resolveBookingAPI() -> BookingAPIProtocol {
+        guard let bookingAPI = apiContainer.container.resolve(BookingAPIProtocol.self) else {
+            fatalError("Failed to resolve bookingAPI in MainContainer")
+        }
+        return bookingAPI
+    }
+    
+    private func resolvePlacesAPI() -> PlacesAPIProtocol {
+        guard let placesAPI = apiContainer.container.resolve(PlacesAPIProtocol.self) else {
+            fatalError("Failed to resolve placesAPI in MainContainer")
+        }
+        return placesAPI
+    }
+    
+    private func resolveUserAPI() -> UserAPIProtocol {
+        guard let userAPI = apiContainer.container.resolve(UserAPIProtocol.self) else {
+            fatalError("Failed to resolve userAPI in MainContainer")
+        }
+        return userAPI
+    }
+    
+    private func resolveTouristLoginAPI() -> LoginAPI {
+        guard let touristLoginAPI = apiContainer.container.resolve(LoginAPI.self,
+                                                                   name: ContainerNames.tourist.rawValue) else {
+            fatalError("Failed to resolve touristLoginAPI in MainContainer")
+        }
+        return touristLoginAPI
+    }
+    
+    private func resolveTouristRegisterAPI() -> RegisterAPI {
+        guard let touristRegisterAPI = apiContainer.container.resolve(RegisterAPI.self,
+                                                                      name: ContainerNames.tourist.rawValue) else {
+            fatalError("Failed to resolve touristRegisterAPI in MainContainer")
+        }
+        return touristRegisterAPI
+    }
+}
+
+// MARK: Cross Module Chat Logic
+extension MainContainerRouter {
     private func sendMessageToGuideAfterConnected(guideEmail: String, messageText: String, chatService: ChatService,
                                                   didSendMessage: @escaping (() -> Void)) {
         guard let dialog = chatService.getDialogWithChateeEmail(guideEmail) else {
@@ -148,5 +198,4 @@ class MainContainerRouter: RouterProtocol {
         connectThenSend(guideEmail: guideEmail, messageText: messageText, chatService: chatService,
                         didSendMessage: didSendMessage)
     }
-
 }
