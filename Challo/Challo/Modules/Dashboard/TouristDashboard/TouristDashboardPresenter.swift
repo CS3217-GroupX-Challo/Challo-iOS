@@ -57,8 +57,8 @@ class TouristDashboardPresenter: PresenterProtocol {
         setupUserStateSubscriber(userState: userState)
     }
     
-    var isUpdateSaveButtonEnabled: Bool {
-        editName == userState.name && editEmail == userState.email
+    var isUpdateSaveButtonDisabled: Bool {
+        editName == userState.name && editEmail == userState.email && inputImage == nil
     }
     
     var profileImgPath: String {

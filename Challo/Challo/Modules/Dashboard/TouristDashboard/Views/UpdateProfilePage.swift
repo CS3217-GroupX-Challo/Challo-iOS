@@ -54,10 +54,10 @@ struct UpdateProfilePage: View {
                                         Spinner(diameter: 30)
                                     } else {
                                         Text("Save")
-                                            .foregroundColor(presenter.isUpdateSaveButtonEnabled
+                                            .foregroundColor(presenter.isUpdateSaveButtonDisabled
                                                                 ? .gray
                                                                 : .themeTertiary)
-                                            .disabled(presenter.isUpdateSaveButtonEnabled)
+                                            .disabled(presenter.isUpdateSaveButtonDisabled)
                                     }
                                 }
         )
