@@ -133,6 +133,7 @@ class TouristDashboardPresenter: PresenterProtocol {
         image = nil
         editName = userState.name
         editEmail = userState.email
+        errorMessage = nil
     }
 }
 

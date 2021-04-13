@@ -13,15 +13,19 @@ struct UpdateProfilePage: View {
     
     let maxProfileImageDiameter: CGFloat = 200
     
-    func makeField(label: String, textBinding: Binding<String>, errorMessage: String) -> some View {
+    var errorMessage: String {
+        presenter.errorMessage ?? ""
+    }
+    
+    func makeField(label: String, textBinding: Binding<String>, errorMessages: [String]) -> some View {
         VStack(alignment: .leading) {
             Text(label)
                 .font(.subheadline)
                 .bold()
             TextField(presenter.name, text: textBinding)
             Divider()
-                .background(presenter.errorMessage == errorMessage ? Color.red : Color.black)
-            if presenter.errorMessage == errorMessage {
+                .background(errorMessages.contains(errorMessage) ? Color.red : Color.black)
+            if errorMessages.contains(errorMessage) {
                 Text(errorMessage)
                     .font(.caption)
                     .foregroundColor(.red)
@@ -43,9 +47,12 @@ struct UpdateProfilePage: View {
                     .foregroundColor(.gray)
             }.padding(.bottom, 30)
             makeField(label: "Name", textBinding: $presenter.editName,
-                      errorMessage: UpdateProfileErrorMessages.invalidNameErrorMessage)
+                      errorMessages: [UpdateProfileErrorMessages.invalidNameErrorMessage])
             makeField(label: "Email", textBinding: $presenter.editEmail,
-                      errorMessage: UpdateProfileErrorMessages.invalidEmailErrorMessage)
+                      errorMessages: [
+                        UpdateProfileErrorMessages.invalidEmailErrorMessage,
+                        UpdateProfileErrorMessages.emailAlreadyTakenErrorMessage
+                      ])
             Spacer()
         }.padding(.horizontal, 50)
         .onAppear(perform: presenter.onOpenUpdateProfilePage)

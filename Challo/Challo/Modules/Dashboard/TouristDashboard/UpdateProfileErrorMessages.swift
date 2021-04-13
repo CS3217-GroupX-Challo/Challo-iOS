@@ -8,4 +8,5 @@
 struct UpdateProfileErrorMessages {
     static let invalidEmailErrorMessage = "Email is invalid"
     static let invalidNameErrorMessage = "Name cannot be empty"
+    static let emailAlreadyTakenErrorMessage = "Email is already taken"
 }

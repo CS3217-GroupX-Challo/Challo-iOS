@@ -122,8 +122,11 @@ extension TouristDashboardInteractor {
     }
     
     private func onUpdateUser(response: UserAPIResponse, didUpdateUser: () -> Void) {
+        defer {
+            didUpdateUser()
+        }
         guard response.success else {
-            setFailToUpdateAlert()
+            presenter.errorMessage = UpdateProfileErrorMessages.emailAlreadyTakenErrorMessage
             return
         }
         let certificateManager = CertificateManager(userState: self.userState)
@@ -132,14 +135,13 @@ extension TouristDashboardInteractor {
             return
         }
         certificateManager.storeCertificate(certificate: certificate)
-        didUpdateUser()
         self.setUpdateSuccessAlert()
     }
     
-    private func setFailToUpdateAlert() {
+    private func setFailToUpdateAlert(_ message: String? = nil) {
         presenter.isShowingUpdateAlert = true
         presenter.alertMessageTitle = "Failed to update"
-        presenter.alertMessageDescription = "An unexpected error occured"
+        presenter.alertMessageDescription = message ?? "An unexpected error occured"
     }
 
     private func setUpdateSuccessAlert() {
