@@ -17,8 +17,19 @@ class TouristDashboardPresenter: PresenterProtocol {
     
     @Published var isLoading = false
     @Published var upcomingBookings: [Booking] = []
+    @Published var pastBookings: [Booking] = []
+    
     @Published var name: String
     @Published var messageText: String = ""
+
+    private static let tabs = TouristDashboardTabs.allCases
+    let tabTitles = tabs.map { $0.rawValue }
+    @Published var selectedIdx = 0 {
+        didSet {
+            selectedTab = Self.tabs[selectedIdx]
+        }
+    }
+    @Published var selectedTab: TouristDashboardTabs = tabs[0]
     
     @Published var image: Image?
     @Published var inputImage: UIImage?
@@ -36,7 +47,7 @@ class TouristDashboardPresenter: PresenterProtocol {
                     ? Image("avatar-image")
                     : ImageService.loadImage(path: userState.profileImg))
     }
-    
+
     func loadImage() {
         guard let inputImage = inputImage else {
             return
@@ -55,18 +66,18 @@ class TouristDashboardPresenter: PresenterProtocol {
     }
 
     func didPopulateBookings(bookings: [Booking]) {
-        self.upcomingBookings = filterUpcomingBookings(bookings: bookings)
+        let sortedBookings = interactor.sortBookings(bookings: bookings)
+        self.upcomingBookings = interactor.filterUpcomingBookings(bookings: sortedBookings)
+        self.pastBookings = interactor.filterPastBookings(bookings: sortedBookings)
         isLoading = false
     }
 
-    private func filterUpcomingBookings(bookings: [Booking]) -> [Booking] {
-        bookings.filter {
-            $0.status == .Paid || $0.status == .Pending
-        }
+    func getReviewPage(for booking: Booking) -> AnyView? {
+        router?.getReviewPage(for: booking)
     }
-    
-    func onTapSendMessage(guide: Guide) {
-        sendMessageToGuide(guide.email, guide.userId, messageText)
-        messageText = ""
-    }
+}
+
+enum TouristDashboardTabs: String, CaseIterable {
+    case upcomingBookings = "Upcoming Bookings"
+    case pastBookings = "Past Bookings"
 }

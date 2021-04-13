@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class ChatPresenter: PresenterProtocol, ObservableObject {
+class ChatPresenter: SearchBarPresenter, ObservableObject {
     var router: ChatRouter?
     var interactor: ChatInteractor!
     
@@ -21,12 +21,14 @@ class ChatPresenter: PresenterProtocol, ObservableObject {
     @Published var dialogs: [ChatDialog] = []
     
     @Published var messageText: String = ""
-    @Published var dialogSearchBarText: String = ""
+    @Published var searchBarText: String = ""
+    @Published var isSearchBarSheetOpen: Bool = false
     
     var filteredDialogs: [ChatDialog] {
-        dialogs.filter({ dialogSearchBarText.isEmpty
-                        ? true
-                        : ($0.chateeName ?? "").lowercased().contains(dialogSearchBarText.lowercased()) })
+        guard !searchBarText.isEmpty else {
+            return dialogs
+        }
+        return dialogs.filter({ ($0.chateeName ?? "").lowercased().contains(searchBarText.lowercased()) })
     }
     
     // Chat can only be displayed when user is logged in

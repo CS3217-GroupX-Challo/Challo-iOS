@@ -15,7 +15,7 @@ struct MockBookingAPIResponses {
     static let statusOne = "Pending"
     static let statusEnumOne = BookingStatus(rawValue: statusOne)!
     static let feeOne: Double = 10
-    static let dateStringOne = "2021-04-02T00:00:00.000Z"
+    static let dateStringOne = "2025-04-02T00:00:00.000Z"
     static let dateOne = Date.construct(with: dateStringOne) ?? Date(timeIntervalSince1970: 100)
     static let guideIdOne = MockGuideAPIResponses.userId
     static let bookingGuideOne = MockGuideAPIResponses.guideOne
@@ -30,7 +30,7 @@ struct MockBookingAPIResponses {
     static let statusTwo = "Completed"
     static let statusEnumTwo = BookingStatus(rawValue: statusTwo)!
     static let feeTwo: Double = 1_000
-    static let dateStringTwo = "2021-03-02T00:00:00.000Z"
+    static let dateStringTwo = "2026-03-02T00:00:00.000Z"
     static let dateTwo = Date.construct(with: dateStringOne) ?? Date(timeIntervalSince1970: 100)
     static let guideIdTwo = MockGuideAPIResponses.userIdTwo
     static let bookingGuideTwo = MockGuideAPIResponses.guideTwo

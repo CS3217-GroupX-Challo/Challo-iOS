@@ -7,7 +7,8 @@
 import Combine
 import Foundation
 
-class GuidesListingPresenter: PresenterProtocol {
+class GuidesListingPresenter: SearchBarPresenter {
+    
     var router: GuidesListingRouter?
     var interactor: GuidesListingInteractor!
     var filterTypes = FilterTypes()
@@ -21,7 +22,10 @@ class GuidesListingPresenter: PresenterProtocol {
         }
     }
     
-    @Published var searchKeyword: String = "" {
+    @Published var slider = CustomSlider(width: 600, start: 1, end: 5)
+    
+    @Published var isSearchBarSheetOpen: Bool = false
+    @Published var searchBarText: String = "" {
         didSet {
             applyFiltering()
         }
@@ -77,12 +81,12 @@ extension GuidesListingPresenter {
     }
     
     private func filterBySearchKeyword() {
-        if searchKeyword.isEmpty {
+        if searchBarText.isEmpty {
             return
         }
         
         guides = guides.filter { guide in
-            guide.name?.lowercased().contains(searchKeyword.lowercased())
+            guide.name?.lowercased().contains(searchBarText.lowercased())
                 ?? false
         }
     }

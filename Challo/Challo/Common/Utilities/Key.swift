@@ -61,6 +61,7 @@ struct Key {
     static let guide = "guide"
     static let tourist = "tourist"
     static let trail = "trail"
+    static let difficulty = "difficulty"
 }
 
 // MARK: Facebook API-Response keys

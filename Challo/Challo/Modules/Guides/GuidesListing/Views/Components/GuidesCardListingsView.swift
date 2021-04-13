@@ -31,8 +31,7 @@ struct GuidesCardListingsView: View {
                         }
                     }
                 }
-            }.padding(.top, 20)
-            .padding(.horizontal, 30)
+            }
         }
     }
 }

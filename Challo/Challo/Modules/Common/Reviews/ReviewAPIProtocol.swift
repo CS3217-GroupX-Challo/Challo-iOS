@@ -11,4 +11,6 @@ protocol ReviewAPIProtocol: APIProtocol {
     func getReviewsForTrail(trailId: UUID, callback: @escaping ([Review]) -> Void)
     
     func getReviewsForGuide(guideId: UUID, callback: @escaping ([Review]) -> Void)
+
+    func submitNewReview(review: NewReview, callback: @escaping ((Bool, Error?) -> Void))
 }

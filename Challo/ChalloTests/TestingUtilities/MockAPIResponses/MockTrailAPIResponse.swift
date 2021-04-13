@@ -24,6 +24,8 @@ struct MockTrailAPIResponse: MockAPIResponse {
     static let lowestFeeOne: Int = 100
     static let ratingOne: Double = 1
     static let numOfReviewsOne: Int = 1
+    static let easy = "Easy"
+    static let moderate = "Moderate"
     
     static var areaOne: JSON {
         var json = JSON()
@@ -56,6 +58,7 @@ struct MockTrailAPIResponse: MockAPIResponse {
         json[Key.lowestFee] = lowestFeeOne
         json[Key.rating] = ratingOne
         json[Key.numOfReviews] = numOfReviewsOne
+        json[Key.difficulty] = easy
         return json
     }
     
@@ -64,8 +67,8 @@ struct MockTrailAPIResponse: MockAPIResponse {
             return nil
         }
         
-        return Trail(trailId: trailIdOne, title: titleOne, description: descriptionOne,
-                     rating: ratingOne, positions: convertJSONToCLLCoordinatesArray(json: positionsOne),
+        return Trail(trailId: trailIdOne, title: titleOne, description: descriptionOne, rating: ratingOne,
+                     difficulty: .Easy, positions: convertJSONToCLLCoordinatesArray(json: positionsOne),
                      distance: distanceOne, duration: durationOne, elevation: elevationOne,
                      images: imagesOne, area: area, numOfReviews: numOfReviewsOne,
                      lowestFee: lowestFeeOne)
@@ -110,6 +113,7 @@ struct MockTrailAPIResponse: MockAPIResponse {
         json[Key.images] = imagesTwo
         json[Key.area] = areaTwo
         json[Key.title] = titleTwo
+        json[Key.difficulty] = moderate
         return json
     }
     
@@ -118,8 +122,8 @@ struct MockTrailAPIResponse: MockAPIResponse {
             return nil
         }
         
-        return Trail(trailId: trailIdTwo, title: titleTwo, description: descriptionTwo,
-                     rating: ratingTwo, positions: convertJSONToCLLCoordinatesArray(json: positionsTwo),
+        return Trail(trailId: trailIdTwo, title: titleTwo, description: descriptionTwo, rating: ratingTwo,
+                     difficulty: .Moderate, positions: convertJSONToCLLCoordinatesArray(json: positionsTwo),
                      distance: distanceTwo, duration: durationTwo, elevation: elevationTwo,
                      images: imagesTwo, area: area, numOfReviews: numOfReviewsTwo,
                      lowestFee: lowestFeeTwo)

@@ -11,12 +11,6 @@ struct ItineraryListingCard: View {
     
     var itinerary: MapItinerary
 
-    private var itineraryDateString: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/YY HH:mm"
-        return dateFormatter.string(from: itinerary.lastModified)
-    }
-
     var body: some View {
         VStack(alignment: .leading) {
             Text(itinerary.title)
@@ -25,7 +19,7 @@ struct ItineraryListingCard: View {
             HStack {
                 Label("\(itinerary.markers.count)", systemImage: "mappin")
                 Spacer()
-                Label("\(itineraryDateString)", systemImage: "clock")
+                Label("\(CustomDateFormatter.displayFriendlyDate(itinerary.lastModified))", systemImage: "clock")
                     .padding(.trailing, 20)
             }
         }

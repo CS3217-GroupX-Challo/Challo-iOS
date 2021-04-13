@@ -12,7 +12,13 @@ struct BookingCardListingsView: View {
     var width: CGFloat
     var emptyListMessage: String
     @Binding var bookings: [Booking]
-
+    var createBookingCard: ((Booking, CGFloat) -> AnyView)?
+    
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+   ]
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             if bookings.isEmpty {
@@ -20,12 +26,22 @@ struct BookingCardListingsView: View {
                     .foregroundColor(.themeForeground)
                     .padding()
             } else {
-                VStack {
+                LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(bookings.indices) { index in
-                        BookingCard(booking: bookings[index], width: width / 2)
+                        GeometryReader { geometry in
+                            constructBookingCard(booking: bookings[index], width: geometry.size.width * 0.9)
+                        }
                     }
                 }.padding()
             }
         }
+    }
+
+    private func constructBookingCard(booking: Booking, width: CGFloat) -> AnyView {
+        if let constructor = createBookingCard {
+            return constructor(booking, width)
+        }
+        
+        return AnyView(BookingCard(booking: booking, width: width) { })
     }
 }

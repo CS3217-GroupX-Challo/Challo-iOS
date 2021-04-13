@@ -16,7 +16,7 @@ struct ChatDialogListingView: View {
                                 label: "You have no open conversations")
         } else {
             VStack {
-                ChatDialogSearchBar()
+                SearchBar<ChatPresenter>()
                 ScrollView {
                     ForEach(presenter.filteredDialogs, id: \.chateeId) { dialog in
                         NavigationLink(destination: ChatMessageList(chateeName: dialog.chateeName ?? "")
