@@ -41,7 +41,6 @@ struct SearchBar<Presenter: SearchBarPresenter>: View {
                         SearchBarRightButton<Presenter>(isEditing: $isEditing, isFilterable: searchBarSheet != nil)
                     }
                 )
-                .padding(.horizontal, 10)
                 .onTapGesture {
                     self.isEditing = true
                 }
@@ -51,7 +50,7 @@ struct SearchBar<Presenter: SearchBarPresenter>: View {
             if isEditing {
                 SearchBarCancelButton<Presenter>(isEditing: $isEditing)
             }
-        }
+        }.padding(.bottom, 40)
         .sheet(isPresented: $presenter.isSearchBarSheetOpen) {
             searchBarSheet
         }

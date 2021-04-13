@@ -35,7 +35,7 @@ struct ChatDialogListingView: View {
                         })
                     }
                 }
-            }.padding(.horizontal, 15)
+            }
         }
     }
 }

@@ -73,7 +73,6 @@ struct GuideDetailsCard: View {
                 .background(Color.white)
                 .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 3, y: 3)
         )
-        .frame(height: 650)
     }
     
     private func convertTrailsToString(trails: [Trail]) -> String {

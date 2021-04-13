@@ -36,7 +36,8 @@ struct PageLayout<ChildContent: View>: View {
                 .clipped()
                 GeometryReader { innerGeometry in
                     makeChildContent(innerGeometry)
-                }
+                }.padding(.top, 30)
+                .padding(.horizontal, 50)
             }
         }
         .edgesIgnoringSafeArea(.all)

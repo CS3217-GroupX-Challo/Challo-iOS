@@ -23,20 +23,18 @@ struct TrailListingPage: View {
     }
     
     var cardList: some View {
-        Group {
-            VStack {
-                SearchBar<TrailListingPresenter>(searchBarSheet: AnyView(TrailListingFilter(presenter: presenter)))
-                    .padding(.bottom, 40)
-                if presenter.isLoading {
-                    Loading(isAnimating: .constant(true), style: .large)
+        VStack {
+            SearchBar<TrailListingPresenter>(searchBarSheet: AnyView(TrailListingFilter(presenter: presenter)))
+            if presenter.isLoading {
+                Loading(isAnimating: .constant(true), style: .large)
+            }
+            RefreshableScrollView(refreshing: $presenter.isRefreshing) {
+                VStack(spacing: 30) {
+                    trailCards
                 }
-                RefreshableScrollView(refreshing: $presenter.isRefreshing) {
-                    VStack(spacing: 30) {
-                        trailCards
-                    }
-                }
-            }.padding(EdgeInsets(top: 50, leading: 60, bottom: 30, trailing: 60))
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+        }.padding(.bottom, 50)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     var body: some View {

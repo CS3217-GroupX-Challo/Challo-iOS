@@ -64,7 +64,6 @@ struct TouristDashboardPage: View {
         PageLayout(headerContent: AnyView(header)) { geometry in
             makeContent(geometry)
                 .frame(maxWidth: .infinity)
-                .padding(.top, 50)
         }.onAppear {
             presenter.refresh()
         }

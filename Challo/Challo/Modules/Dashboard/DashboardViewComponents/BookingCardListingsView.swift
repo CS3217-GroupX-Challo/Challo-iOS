@@ -17,7 +17,7 @@ struct BookingCardListingsView: View {
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
-   ]
+    ]
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -34,7 +34,7 @@ struct BookingCardListingsView: View {
                     }
                 }.padding()
             }
-        }.padding(.bottom, 100)
+        }.padding(.bottom, 80)
     }
 
     private func constructBookingCard(booking: Booking, width: CGFloat) -> AnyView {

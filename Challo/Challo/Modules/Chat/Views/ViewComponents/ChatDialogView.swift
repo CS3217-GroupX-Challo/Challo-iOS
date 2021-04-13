@@ -57,7 +57,7 @@ struct ChatDialogView: View {
                         .clipped()
                 }
             }
-        }.padding(.vertical, 30)
+        }.padding(.bottom, 30)
         .padding(.horizontal, 40)
         .frame(maxWidth: .infinity)
     }
