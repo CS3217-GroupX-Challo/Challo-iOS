@@ -7,10 +7,12 @@
 
 class TouristStore {
     private var touristRepository: TouristDetailsRepositoryProtocol
-    private var convertor = TouristModelConvertor()
+    private var convertor: TouristModelConvertor
     
-    init(touristRepository: TouristDetailsRepositoryProtocol) {
+    init(touristRepository: TouristDetailsRepositoryProtocol,
+         convertor: TouristModelConvertor) {
         self.touristRepository = touristRepository
+        self.convertor = convertor
     }
     
     func getAllTourists() -> [Tourist] {

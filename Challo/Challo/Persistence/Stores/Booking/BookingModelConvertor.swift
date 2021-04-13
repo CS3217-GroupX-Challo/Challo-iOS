@@ -19,7 +19,7 @@ struct BookingModelConvertor {
         let touristObject
             = touristModelConvertor.convertTouristToTouristPersistenceObject(tourist: booking.tourist)
         
-        var reviewObject: ReviewPersistenceObject? = nil
+        var reviewObject: ReviewPersistenceObject?
         if let review = booking.review {
             reviewObject
                 = reviewModelConvertor.convertReviewToReviewPersistenceObject(review: review)
@@ -40,7 +40,7 @@ struct BookingModelConvertor {
         let tourist
             = touristModelConvertor.convertTouristPersistenceObjectToTourist(touristObject:
                                                                                 bookingObject.tourist)
-        var review: Review? = nil
+        var review: Review?
         if let reviewObject = bookingObject.review {
             review = reviewModelConvertor.convertReviewPersistenceObjectToReview(reviewObject: reviewObject)
         }

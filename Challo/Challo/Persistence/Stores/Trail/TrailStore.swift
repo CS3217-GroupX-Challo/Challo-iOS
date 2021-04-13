@@ -7,10 +7,12 @@
 
 class TrailStore {
     private var repository: TrailDetailsRepositoryProtocol
-    private var convertor = TrailModelConvertor(convertor: AreaModelConvertor())
+    private var convertor: TrailModelConvertor
     
-    init(repository: TrailDetailsRepositoryProtocol) {
+    init(repository: TrailDetailsRepositoryProtocol,
+         convertor: TrailModelConvertor) {
         self.repository = repository
+        self.convertor = convertor
     }
     
     func getAllTrails() -> [Trail] {

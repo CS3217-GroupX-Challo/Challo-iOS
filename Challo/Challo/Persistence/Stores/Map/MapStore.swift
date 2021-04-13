@@ -9,14 +9,16 @@ class MapStore {
     private var mapMarkerRepository: MapMarkerRepositoryInterface
     private var mapRouteRepository: MapRouteRepositoryInterface
     private var mapItineraryRepository: MapItineraryRepositoryInterface
-    private let convertor = MapModelConvertor()
+    private let convertor: MapModelConvertor
     
     init(mapMarkerRepository: MapMarkerRepositoryInterface,
          mapRouteRepository: MapRouteRepositoryInterface,
-         mapItineraryRepository: MapItineraryRepositoryInterface) {
+         mapItineraryRepository: MapItineraryRepositoryInterface,
+         convertor: MapModelConvertor) {
         self.mapMarkerRepository = mapMarkerRepository
         self.mapRouteRepository = mapRouteRepository
         self.mapItineraryRepository = mapItineraryRepository
+        self.convertor = convertor
     }
 
     func getAllMapMarkers() -> [MapMarker] {

@@ -122,6 +122,7 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
         }
     }
     
+    // swiftlint:disable function_parameter_count
     private func setGuideTrailTouristReview(bookingInfo: BookingInfo,
                                             bookingObject: BookingPersistenceObject,
                                             currentGuides: [GuideDetails],

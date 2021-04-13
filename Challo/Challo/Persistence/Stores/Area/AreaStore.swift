@@ -6,11 +6,13 @@
 //
 
 class AreaStore {
-    private var areaRepository: AreaDetailsRepositoryProtocol
-    private var convertor = AreaModelConvertor()
+    private let areaRepository: AreaDetailsRepositoryProtocol
+    private let convertor: AreaModelConvertor
     
-    init(areaRepository: AreaDetailsRepositoryProtocol) {
+    init(areaRepository: AreaDetailsRepositoryProtocol,
+         convertor: AreaModelConvertor) {
         self.areaRepository = areaRepository
+        self.convertor = convertor
     }
     
     func getAllAreas() -> [Area] {
