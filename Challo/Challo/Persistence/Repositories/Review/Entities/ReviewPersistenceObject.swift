@@ -63,3 +63,7 @@ extension ReviewPersistenceObject: CoreDataPersistenceObject {
         reviewDetails.createdAt = createdAt
     }
 }
+
+extension ReviewPersistenceObject: Equatable {
+    
+}
