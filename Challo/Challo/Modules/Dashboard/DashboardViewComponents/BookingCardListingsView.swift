@@ -42,6 +42,6 @@ struct BookingCardListingsView: View {
             return constructor(booking, width)
         }
         
-        return AnyView(BookingCard(booking: booking, width: width))
+        return AnyView(BookingCard(booking: booking, width: width) { })
     }
 }

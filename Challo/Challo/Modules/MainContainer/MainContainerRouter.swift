@@ -79,9 +79,9 @@ class MainContainerRouter: RouterProtocol {
         chatPage = ChatModule(chatService: chatService, userState: userState).assemble().view
         
         profilePage = TouristDashboardModule(userState: userState,
-                                            bookingRepository: bookingRepository,
-                                            reviewAPI: reviewAPI,
-                                            sendMessageToGuide: { [weak self] guideEmail, _, messageText in
+                                             bookingRepository: bookingRepository,
+                                             reviewAPI: reviewAPI,
+                                             sendMessageToGuide: { [weak self] guideEmail, _, messageText in
                                                 self?.sendMessageToGuide(guideEmail: guideEmail,
                                                                          messageText: messageText,
                                                                          chatService: chatService)

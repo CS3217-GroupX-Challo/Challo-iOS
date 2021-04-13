@@ -7,12 +7,21 @@
 
 import SwiftUI
 
-struct BookingCard: View {
+struct BookingCard<Content: View>: View {
 
     @EnvironmentObject var presenter: TouristDashboardPresenter
 
     var booking: Booking
     var width: CGFloat
+    var actionIcons: Content
+
+    init(booking: Booking,
+         width: CGFloat,
+         @ViewBuilder actionIcons: () -> Content) {
+        self.booking = booking
+        self.width = width
+        self.actionIcons = actionIcons()
+    }
 
     func makeDetail(image: String, label: String? = nil, customLabel: AnyView? = nil) -> some View {
         HStack {
@@ -39,11 +48,15 @@ struct BookingCard: View {
                     .scaledToFill()
                     .frame(width: width)
                     .cornerRadius(10)
-                NavigationLink(destination: ContactGuidePage(guide: booking.guide).environmentObject(presenter)) {
-                    Image(systemName: "ellipsis.bubble.fill")
-                        .foregroundColor(Color.black.opacity(0.8))
-                        .padding(10)
+                VStack {
+                    NavigationLink(destination: ContactGuidePage(guide: booking.guide).environmentObject(presenter)) {
+                        Image(systemName: "ellipsis.bubble.fill")
+                            .foregroundColor(Color.black.opacity(0.8))
+                            .padding(10)
+                    }
+                    actionIcons
                 }
+
             }
             VStack(alignment: .leading) {
                 HStack {

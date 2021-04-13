@@ -13,12 +13,6 @@ struct ExistingReviewView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("You have already written a review for this booking")
-                .font(.title)
-                .foregroundColor(.themeSecondary)
-
-            Spacer()
-        
             Text("Your Review")
                 .font(.title2)
                 .foregroundColor(.themeTertiary)
@@ -31,6 +25,7 @@ struct ExistingReviewView: View {
                 .lineLimit(nil)
                 .font(.body)
                 .foregroundColor(.themeForeground)
+                .padding(.vertical, 10)
 
             Label("Posted on \(CustomDateFormatter.displayFriendlyDate(review.createdAt))",
                   systemImage: "clock")

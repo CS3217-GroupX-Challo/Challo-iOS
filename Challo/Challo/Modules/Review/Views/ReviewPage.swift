@@ -13,7 +13,7 @@ struct ReviewPage: View {
     @ObservedObject var presenter: ReviewPresenter
 
     var reviewWritingComponent: some View {
-        VStack {
+        VStack(alignment: .center) {
             ExperienceRatingView(rating: $presenter.rating,
                                  comments: $presenter.comments)
             Button(action: {
