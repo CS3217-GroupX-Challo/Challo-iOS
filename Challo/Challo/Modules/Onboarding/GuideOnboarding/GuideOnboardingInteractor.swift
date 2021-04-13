@@ -11,18 +11,60 @@ class GuideOnboardingInteractor: InteractorProtocol {
 
     weak var presenter: GuideOnboardingPresenter!
 
-    var areaRepository: AreaRepositoryProtocol
-    var guideRepository: GuideRepositoryProtocol
-    var trailRepository: TrailRepositoryProtocol
+    let userState: UserStateProtocol
+    let areaRepository: AreaRepositoryProtocol
+    let trailRepository: TrailRepositoryProtocol
+    let onboardingAPI: GuideOnboardingAPI
 
-    init(areaRepository: AreaRepositoryProtocol,
-         guideRepository: GuideRepositoryProtocol,
-         trailRepository: TrailRepositoryProtocol) {
+    internal init(userState: UserStateProtocol,
+                  areaRepository: AreaRepositoryProtocol,
+                  trailRepository: TrailRepositoryProtocol,
+                  onboardingAPI: GuideOnboardingAPI) {
+        self.userState = userState
         self.areaRepository = areaRepository
-        self.guideRepository = guideRepository
         self.trailRepository = trailRepository
+        self.onboardingAPI = onboardingAPI
     }
 
-    var trails = [Trail]()
+    init(userState: UserStateProtocol,
+         areaRepository: AreaRepositoryProtocol,
+         trailRepository: TrailRepositoryProtocol) {
+        self.userState = userState
+        self.areaRepository = areaRepository
+        self.trailRepository = trailRepository
+        self.onboardingAPI = GuideOnboardingAPI(userState: userState)
+    }
+
+    private(set) var trails = [Trail]()
+
+    private(set) var areas = [Area]()
+
+    func submitGuideDetails(details: GuideOnboardingDetails) {
+        onboardingAPI.updateGuideParticulars(details: details)
+    }
+
+    private func updateTrails(details: GuideOnboardingDetails) {
+        guard let guideUUID = UUID(uuidString: userState.userId) else {
+            fatalError("Onboarding should only be done for a logged in guide")
+        }
+        trailRepository.fetchTrailsAndRefresh { fetchedTrails in
+            var trailsToUpdate = fetchedTrails.filter {
+                details.trails.contains($0) && !$0.guideIds.contains(guideUUID)
+            }
+            for index in 0..<trailsToUpdate.count {
+                trailsToUpdate[index].guideIds.append(guideUUID)
+            }
+        }
+
+    }
+
+    func fetchTrailsAndAreas() {
+        areaRepository.fetchAreasAndRefresh { [weak self] areas in
+            self?.areas = areas
+        }
+        trailRepository.fetchTrailsAndRefresh { [weak self] trails in
+            self?.trails = trails
+        }
+    }
     
 }

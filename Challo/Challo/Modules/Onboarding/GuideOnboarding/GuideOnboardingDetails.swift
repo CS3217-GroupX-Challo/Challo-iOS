@@ -8,6 +8,7 @@
 import Foundation
 
 struct GuideOnboardingDetails {
+    var userId: UUID
     var nickname: String
     var dateOfBirth: Date
     var languages: [String]
@@ -16,7 +17,7 @@ struct GuideOnboardingDetails {
     var accreditations: [String]
     var area: Area
     var biography: String
-    var trails: String
+    var trails: [Trail]
     var daysAvailable: [Days]
 }
 
@@ -24,7 +25,7 @@ extension GuideOnboardingDetails {
 
     typealias JSON = NetworkManager.JSON
 
-    func convertToJSON(areaParser: AreaAPIParser) -> JSON {
+    func convertToGuideDetailsJSON(areaParser: AreaAPIParser) -> JSON {
         var json = JSON()
         json[Key.nickname] = nickname
         json[Key.dateOfBirth] = dateOfBirth.destruct()

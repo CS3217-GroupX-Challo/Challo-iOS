@@ -19,7 +19,7 @@ class GuideOnboardingAPI: OnboardingAPI {
     }
 
     func updateGuideParticulars(details: GuideOnboardingDetails) {
-        let body = details.convertToJSON(areaParser: areaParser)
+        let body = details.convertToGuideDetailsJSON(areaParser: areaParser)
         updateParticulars(uuid: userId, body: body)
     }
 
