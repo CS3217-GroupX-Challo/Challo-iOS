@@ -16,7 +16,7 @@ final class TouristDashboardModule: ViperModuleProtocol {
     let updateUserChat: ((_ name: String, _ email: String) -> Void)
     let userAPI: UserAPIProtocol
     
-    init(userState: UserStateProtocol, bookingsRepository: BookingRepositoryProtocol, reviewAPI: ReviewAPIProtocol,
+    init(userState: UserStateProtocol, bookingRepository: BookingRepositoryProtocol, reviewAPI: ReviewAPIProtocol,
          sendMessageToGuide: @escaping ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void),
          updateUserChat: @escaping ((_ name: String, _ email: String) -> Void),
          userAPI: UserAPIProtocol) {
@@ -29,7 +29,7 @@ final class TouristDashboardModule: ViperModuleProtocol {
     }
 
     func assemble() -> (view: AnyView, presenter: TouristDashboardPresenter) {
-        let interactor = TouristDashboardInteractor(bookingsRepository: bookingsRepository,
+        let interactor = TouristDashboardInteractor(bookingRepository: bookingRepository,
                                                     userState: userState, userAPI: userAPI,
                                                     updateUserChat: updateUserChat)
         let router = TouristDashboardRouter(reviewAPI: reviewAPI)

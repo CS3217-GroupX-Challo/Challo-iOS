@@ -28,9 +28,6 @@ class MainContainerRouter: RouterProtocol {
         repositoryContainer = RepositoryContainer(apiContainer: apiContainer)
         
         homePage = AnyView(Text("Homepage"))
-        loginPage = TouristLoginModule(userState: userState,
-                                       loginAPI: resolveTouristLoginAPI(),
-                                       registerAPI: resolveTouristRegisterAPI()).assemble().view
         trailsPage = TrailListingModule(trailRepository: resolveTrailRepository(),
                                         guideRepository: resolveGuideRepository(),
                                         bookingRepository: resolveBookingRepository(),
@@ -57,7 +54,7 @@ class MainContainerRouter: RouterProtocol {
                                                                                                 chatDialogRepository))
         chatPage = ChatModule(chatService: chatService, userState: userState).assemble().view
         
-        profilePage = TouristDashboardModule(userState: userState, bookingsRepository: bookingRepository,
+        profilePage = TouristDashboardModule(userState: userState, bookingRepository: bookingRepository,
                                              reviewAPI: reviewAPI,
                                              sendMessageToGuide: { [weak self] guideEmail, _, messageText in
                                                 self?.sendMessageToGuide(guideEmail: guideEmail,

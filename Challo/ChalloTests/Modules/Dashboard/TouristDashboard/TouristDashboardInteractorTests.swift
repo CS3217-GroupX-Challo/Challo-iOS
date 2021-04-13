@@ -14,7 +14,7 @@ class TouristDashboardInteractorTests: XCTestCase {
     func testPopulateBookings_withMockAPI_presenterBookingsPopulatedWithSameBookingsRetrievedFromAPI() {
         let userState = MockUserState.createMockLoggedInUserState()
         let userAPI = MockUserAPI()
-        let interactor = TouristDashboardInteractor(bookingsRepository: MockBookingRepository(),
+        let interactor = TouristDashboardInteractor(bookingRepository: MockBookingRepository(),
                                                     userState: userState,
                                                     userAPI: userAPI,
                                                     updateUserChat: { _, _ in })

@@ -11,14 +11,14 @@ class TouristDashboardInteractor: InteractorProtocol {
 
     weak var presenter: TouristDashboardPresenter!
 
-    let bookingsRepository: BookingRepositoryProtocol
+    let bookingRepository: BookingRepositoryProtocol
     let userState: UserStateProtocol
     let userAPI: UserAPIProtocol
     let updateUserChat: ((_ name: String, _ email: String) -> Void)
 
-    init(bookingsRepository: BookingRepositoryProtocol, userState: UserStateProtocol, userAPI: UserAPIProtocol,
+    init(bookingRepository: BookingRepositoryProtocol, userState: UserStateProtocol, userAPI: UserAPIProtocol,
          updateUserChat: @escaping ((_ name: String, _ email: String) -> Void)) {
-        self.bookingsRepository = bookingsRepository
+        self.bookingRepository = bookingRepository
         self.userState = userState
         self.userAPI = userAPI
         self.updateUserChat = updateUserChat
@@ -28,7 +28,7 @@ class TouristDashboardInteractor: InteractorProtocol {
         guard let id = UUID(uuidString: userState.userId) else {
             return
         }
-        bookingsRepository.fetchBookingForTouristAndRefresh(id: id, didRefresh: presenter.didPopulateBookings)
+        bookingRepository.fetchBookingForTouristAndRefresh(id: id, didRefresh: presenter.didPopulateBookings)
     }
 }
 
@@ -52,9 +52,11 @@ extension TouristDashboardInteractor {
             $0.date < Date()
         }
     }
+}
     
 // MARK: Update User Logic
 extension TouristDashboardInteractor {
+    
     func validateUserUpdateValues() -> String? {
         guard ValidationUtility.isValidEmail(presenter.editEmail) else {
             return UpdateProfileErrorMessages.invalidEmailErrorMessage

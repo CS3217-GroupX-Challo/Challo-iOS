@@ -23,15 +23,16 @@ struct PageLayout<ChildContent: View>: View {
                     VStack {
                         if let titleLabel = titleLabel {
                             HStack {
-                                PageTitle(titleLabel: titleLabel, leading: geometry.size.width / 8)
+                                PageTitle(titleLabel: titleLabel)
+                                    .padding(.leading, geometry.size.width / 8)
                                 Spacer()
                             }
-                        }                        
+                        }
                         headerContent
                     }
                 }
                 .frame(width: geometry.size.width,
-                       height: geometry.size.height / (headerContent == nil ? 8 : 7))
+                       height: geometry.size.height / (headerContent == nil ? 6.5 : 5.5))
                 .clipped()
                 GeometryReader { innerGeometry in
                     makeChildContent(innerGeometry)

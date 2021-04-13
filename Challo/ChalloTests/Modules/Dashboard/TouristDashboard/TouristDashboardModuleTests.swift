@@ -16,7 +16,7 @@ class TouristDashboardModuleTests: XCTestCase {
         let bookingsRepository = MockBookingRepository()
         let userAPI = MockUserAPI()
         let (view, presenter) = TouristDashboardModule(userState: userState,
-                                                       bookingsRepository: bookingsRepository,
+                                                       bookingRepository: bookingsRepository,
                                                        reviewAPI: MockReviewsAPI(),
                                                        sendMessageToGuide: { _, _, _ in },
                                                        updateUserChat: { _, _ in },
