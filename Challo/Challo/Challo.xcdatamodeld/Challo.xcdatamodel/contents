@@ -91,6 +91,7 @@
     </entity>
     <entity name="TrailDetails" representedClassName="TrailDetails" syncable="YES" codeGenerationType="class">
         <attribute name="descriptions" attributeType="String"/>
+        <attribute name="difficulty" optional="YES" attributeType="String"/>
         <attribute name="distance" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="duration" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="elevation" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -111,13 +112,13 @@
     </entity>
     <elements>
         <element name="AreaDetails" positionX="-54" positionY="81" width="128" height="134"/>
+        <element name="BookingInfo" positionX="-54" positionY="144" width="128" height="164"/>
         <element name="GuideDetails" positionX="-54" positionY="144" width="128" height="329"/>
         <element name="Itinerary" positionX="-36" positionY="72" width="128" height="119"/>
         <element name="Marker" positionX="-63" positionY="-18" width="128" height="149"/>
         <element name="ReviewDetails" positionX="-54" positionY="144" width="128" height="149"/>
         <element name="Route" positionX="-54" positionY="27" width="128" height="119"/>
         <element name="TouristDetails" positionX="-54" positionY="81" width="128" height="164"/>
-        <element name="TrailDetails" positionX="-54" positionY="81" width="128" height="299"/>
-        <element name="BookingInfo" positionX="-54" positionY="144" width="128" height="164"/>
+        <element name="TrailDetails" positionX="-54" positionY="81" width="128" height="314"/>
     </elements>
 </model>

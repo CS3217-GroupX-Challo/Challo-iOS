@@ -17,13 +17,15 @@ struct TrailModelConvertor {
                                       images: trail.images, area: areaObject,
                                       guideIds: trail.guideIds, numOfReviews: trail.numOfReviews,
                                       lowestFee: trail.lowestFee, tags: trail.tags,
-                                      landmarks: trail.landmarks)
+                                      landmarks: trail.landmarks,
+                                      difficulty: trail.difficulty)
     }
     
     func convertTrailPersistenceObjectToTrail(trailObject: TrailPersistenceObject) -> Trail {
         let area = convertor.convertAreaPersistenceObjectToArea(areaObject: trailObject.area)
         return Trail(trailId: trailObject.trailId, title: trailObject.title,
                      description: trailObject.description, rating: trailObject.rating,
+                     difficulty: trailObject.difficulty,
                      positions: trailObject.positions, distance: trailObject.distance,
                      duration: trailObject.duration, elevation: trailObject.elevation,
                      images: trailObject.images, area: area,

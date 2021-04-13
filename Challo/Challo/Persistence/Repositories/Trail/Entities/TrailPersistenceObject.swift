@@ -25,6 +25,7 @@ struct TrailPersistenceObject {
     let lowestFee: Int
     let tags: [String]
     let landmarks: [String]
+    let difficulty: TrailDifficulty
 }
 
 extension TrailPersistenceObject: CoreDataPersistenceObject {
@@ -40,7 +41,9 @@ extension TrailPersistenceObject: CoreDataPersistenceObject {
               let tagsString = trail.tags,
               let landmarksString = trail.landmarks,
               let areaObject = trail.area,
-              let area = AreaPersistenceObject(persistenceObject: areaObject) else {
+              let area = AreaPersistenceObject(persistenceObject: areaObject),
+              let difficultyString = trail.difficulty,
+              let difficulty = TrailDifficulty(rawValue: difficultyString) else {
             return nil
         }
         
@@ -56,6 +59,7 @@ extension TrailPersistenceObject: CoreDataPersistenceObject {
         self.images = imagesString.constructArray()
         self.landmarks = landmarksString.constructArray()
         self.tags = tagsString.constructArray()
+        self.difficulty = difficulty
         
         let ids = guideIdsString.constructArray()
         var guideIdsArray = [UUID]()
@@ -106,6 +110,7 @@ extension TrailPersistenceObject: CoreDataPersistenceObject {
         trailDetails.positions = String(array: positions.map { $0.toString() })
         trailDetails.rating = rating
         trailDetails.tags = String(array: tags)
+        trailDetails.difficulty = difficulty.rawValue
     }
 }
 
