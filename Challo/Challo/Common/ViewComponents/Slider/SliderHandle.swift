@@ -75,7 +75,7 @@ class SliderHandle: ObservableObject {
     
     private func restrictSliderBtnLocation(_ dragLocation: CGPoint) {
         let dragX = dragLocation.x
-        if dragX > CGPoint.zero.x && dragX < sliderWidth && checkHandlersNotReversed(dragX) {
+        if dragX >= CGPoint.zero.x && dragX <= sliderWidth && checkHandlersNotReversed(dragX) {
             let xOffset = min(max(0, dragLocation.x), sliderWidth)
             calcSliderBtnLocation(CGPoint(x: xOffset, y: dragLocation.y))
         }
