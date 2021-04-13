@@ -14,10 +14,13 @@ class TouristDashboardModuleTests: XCTestCase {
     func testAssemble_returnsPresenterWithCorrectPropertiesAndView() {
         let userState = MockUserState()
         let bookingsRepository = MockBookingRepository()
+        let userAPI = MockUserAPI()
         let (view, presenter) = TouristDashboardModule(userState: userState,
-                                                       bookingRepository: bookingsRepository,
+                                                       bookingsRepository: bookingsRepository,
                                                        reviewAPI: MockReviewsAPI(),
-                                                       sendMessageToGuide: { _, _, _ in }).assemble()
+                                                       sendMessageToGuide: { _, _, _ in },
+                                                       updateUserChat: { _, _ in },
+                                                       userAPI: userAPI).assemble()
         XCTAssertNotNil(view, "Wrong view returned")
         XCTAssertNotNil(presenter, "Wrong presenter returned")
         XCTAssertNotNil(presenter.router, "Presenter properties not assigned")
