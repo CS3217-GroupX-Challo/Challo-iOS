@@ -89,5 +89,9 @@ class QuickBloxChatService: ChatService {
     func clearDialogsFromRepository() {
         chatDialogService.clearDialogsFromRepository()
     }
+    
+    func updateUser(name: String, email: String, didUpdateUser: ((Bool) -> Void)?) {
+        chatAuthService.updateUser(name: name, email: email, didUpdateUser: didUpdateUser)
+    }
 
 }

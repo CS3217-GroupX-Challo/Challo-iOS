@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Foundation
 
 protocol UserStateProtocol: AnyObject {
 
@@ -29,16 +30,22 @@ protocol UserStateProtocol: AnyObject {
 extension UserStateProtocol {
 
     func storeCertificate(certificate: UserCertificate, isNewUser: Bool = false) {
+        defer {
+            // assignment of loggedIn is placed last as subscribers to the loggedIn state
+            // may read other attributes of userState
+            loggedIn = true
+        }
         name = certificate.name
         email = certificate.email
         profileImg = certificate.profileImg
         token = certificate.token
         userId = certificate.userId
-        user = certificate.user
         self.isNewUser = isNewUser
-        // assignment of loggedIn is placed last as subscribers to the loggedIn state
-        // may read other attributes of userState
-        loggedIn = true
+        guard let uuid = UUID(uuidString: userId) else {
+            ChalloLogger.logger.fault("userId is not a uuid")
+            return
+        }
+        user = Tourist(userId: uuid, email: email, profileImg: profileImg, name: name)
     }
 
     func logIn() {

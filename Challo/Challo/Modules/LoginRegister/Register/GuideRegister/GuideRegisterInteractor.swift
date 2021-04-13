@@ -16,10 +16,6 @@ class GuideRegisterInteractor: RegisterInteractor {
         self.registerAPI = registerAPI
         self.certificateManager = certificateManager
     }
-
-    convenience init(certificateManager: CertificateManager) {
-        self.init(registerAPI: GuideRegistrationAPI(), certificateManager: certificateManager)
-    }
     
     func register(details: RegistrationDetails) {
         registerAPI.register(details: details) { [weak self] response in

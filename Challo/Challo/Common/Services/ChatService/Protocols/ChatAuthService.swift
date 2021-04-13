@@ -16,6 +16,8 @@ protocol ChatAuthService: AnyObject {
     func logout(didLogOut: (() -> Void)?)
     
     func connectToChatServer(chatUserId: UInt, password: String, didConnect: ((UInt, Bool) -> Void)?)
+    
+    func updateUser(name: String, email: String, didUpdateUser: ((Bool) -> Void)?)
 }
 
 extension ChatAuthService {
@@ -34,5 +36,8 @@ extension ChatAuthService {
     func logout(didLogOut: (() -> Void)? = nil) {
         logout(didLogOut: didLogOut)
     }
-
+    
+    func updateUser(name: String, email: String) {
+        updateUser(name: name, email: email, didUpdateUser: nil)
+    }
 }
