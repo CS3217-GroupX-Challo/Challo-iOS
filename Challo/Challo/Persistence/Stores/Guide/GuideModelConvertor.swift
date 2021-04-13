@@ -16,7 +16,7 @@ struct GuideModelConvertor {
             trailModelConvertor.convertTrailToTrailPersistenceObject(trail: trail)
         }
         
-        var areaObject: AreaPersistenceObject? = nil
+        var areaObject: AreaPersistenceObject?
         if let location = guide.location {
             areaObject = areaModelConvertor.convertAreaToAreaPersistenceObject(area: location)
         }
@@ -39,7 +39,7 @@ struct GuideModelConvertor {
             trailModelConvertor.convertTrailPersistenceObjectToTrail(trailObject: trailObject)
         }
         
-        var location: Area? = nil
+        var location: Area?
         if let area = guideObject.location {
             location = areaModelConvertor.convertAreaPersistenceObjectToArea(areaObject: area)
         }

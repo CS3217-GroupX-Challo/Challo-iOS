@@ -9,6 +9,17 @@
         <relationship name="guide" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GuideDetails" inverseName="location" inverseEntity="GuideDetails"/>
         <relationship name="trail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TrailDetails" inverseName="area" inverseEntity="TrailDetails"/>
     </entity>
+    <entity name="BookingInfo" representedClassName="BookingInfo" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fee" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <relationship name="guide" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GuideDetails" inverseName="bookings" inverseEntity="GuideDetails"/>
+        <relationship name="review" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ReviewDetails" inverseName="booking" inverseEntity="ReviewDetails"/>
+        <relationship name="tourist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TouristDetails" inverseName="bookings" inverseEntity="TouristDetails"/>
+        <relationship name="trail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TrailDetails" inverseName="bookings" inverseEntity="TrailDetails"/>
+    </entity>
     <entity name="GuideDetails" representedClassName="GuideDetails" syncable="YES" codeGenerationType="class">
         <attribute name="accreditations" optional="YES" attributeType="String"/>
         <attribute name="biography" optional="YES" attributeType="String"/>
@@ -26,6 +37,7 @@
         <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="sex" optional="YES" attributeType="String"/>
         <attribute name="unavailableDates" optional="YES" attributeType="String"/>
+        <relationship name="bookings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BookingInfo" inverseName="guide" inverseEntity="BookingInfo"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AreaDetails" inverseName="guide" inverseEntity="AreaDetails"/>
         <relationship name="review" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ReviewDetails" inverseName="guide" inverseEntity="ReviewDetails"/>
         <relationship name="trails" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrailDetails" inverseName="guide" inverseEntity="TrailDetails"/>
@@ -53,9 +65,10 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="rating" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="booking" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BookingInfo" inverseName="review" inverseEntity="BookingInfo"/>
         <relationship name="guide" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GuideDetails" inverseName="review" inverseEntity="GuideDetails"/>
         <relationship name="tourist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TouristDetails" inverseName="review" inverseEntity="TouristDetails"/>
-        <relationship name="trail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TrailDetails" inverseName="review" inverseEntity="TrailDetails"/>
+        <relationship name="trail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TrailDetails" inverseName="reviews" inverseEntity="TrailDetails"/>
     </entity>
     <entity name="Route" representedClassName="Route" syncable="YES" codeGenerationType="class">
         <attribute name="comments" optional="YES" attributeType="String"/>
@@ -73,6 +86,7 @@
         <attribute name="phone" optional="YES" attributeType="String"/>
         <attribute name="profileImg" optional="YES" attributeType="String"/>
         <attribute name="sex" optional="YES" attributeType="String"/>
+        <relationship name="bookings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BookingInfo" inverseName="tourist" inverseEntity="BookingInfo"/>
         <relationship name="review" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ReviewDetails" inverseName="tourist" inverseEntity="ReviewDetails"/>
     </entity>
     <entity name="TrailDetails" representedClassName="TrailDetails" syncable="YES" codeGenerationType="class">
@@ -91,17 +105,19 @@
         <attribute name="tags" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
         <relationship name="area" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AreaDetails" inverseName="trail" inverseEntity="AreaDetails"/>
+        <relationship name="bookings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BookingInfo" inverseName="trail" inverseEntity="BookingInfo"/>
         <relationship name="guide" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GuideDetails" inverseName="trails" inverseEntity="GuideDetails"/>
-        <relationship name="review" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ReviewDetails" inverseName="trail" inverseEntity="ReviewDetails"/>
+        <relationship name="reviews" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ReviewDetails" inverseName="trail" inverseEntity="ReviewDetails"/>
     </entity>
     <elements>
         <element name="AreaDetails" positionX="-54" positionY="81" width="128" height="134"/>
-        <element name="GuideDetails" positionX="-54" positionY="144" width="128" height="314"/>
+        <element name="GuideDetails" positionX="-54" positionY="144" width="128" height="329"/>
         <element name="Itinerary" positionX="-36" positionY="72" width="128" height="119"/>
         <element name="Marker" positionX="-63" positionY="-18" width="128" height="149"/>
+        <element name="ReviewDetails" positionX="-54" positionY="144" width="128" height="149"/>
         <element name="Route" positionX="-54" positionY="27" width="128" height="119"/>
-        <element name="TouristDetails" positionX="-54" positionY="81" width="128" height="149"/>
-        <element name="TrailDetails" positionX="-54" positionY="81" width="128" height="284"/>
-        <element name="ReviewDetails" positionX="-54" positionY="144" width="128" height="134"/>
+        <element name="TouristDetails" positionX="-54" positionY="81" width="128" height="164"/>
+        <element name="TrailDetails" positionX="-54" positionY="81" width="128" height="299"/>
+        <element name="BookingInfo" positionX="-54" positionY="144" width="128" height="164"/>
     </elements>
 </model>

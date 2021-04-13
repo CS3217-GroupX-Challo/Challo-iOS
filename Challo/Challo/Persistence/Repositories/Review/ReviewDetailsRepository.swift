@@ -28,7 +28,7 @@ class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
     }
     
     init() {
-        self.data =  [NSManagedObjectID: ReviewPersistenceObject]()
+        self.data = [NSManagedObjectID: ReviewPersistenceObject]()
         self.repository = CoreDataRepository<ReviewDetails>(managedObjectContext:
                                                                 CoreDataContainer.managedObjectContext)
         self.guideRepository = CoreDataRepository<GuideDetails>(managedObjectContext:
