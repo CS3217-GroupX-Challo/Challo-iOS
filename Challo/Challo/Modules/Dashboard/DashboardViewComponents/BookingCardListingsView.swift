@@ -30,11 +30,11 @@ struct BookingCardListingsView: View {
                     ForEach(bookings.indices) { index in
                         GeometryReader { geometry in
                             constructBookingCard(booking: bookings[index], width: geometry.size.width * 0.9)
-                        }
+                        }.frame(minHeight: 450)
                     }
                 }.padding()
             }
-        }
+        }.padding(.bottom, 100)
     }
 
     private func constructBookingCard(booking: Booking, width: CGFloat) -> AnyView {
