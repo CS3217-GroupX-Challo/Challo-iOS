@@ -41,4 +41,14 @@ class AreaAPIParser: APIParser {
                     state: state,
                     country: country)
     }
+
+    func convertAreaToJSON(area: Area) -> JSON {
+        var json = JSON()
+        json[Key.areaId] = area.areaId.uuidString
+        json[Key.village] = area.village
+        json[Key.division] = area.division
+        json[Key.state] = area.state
+        json[Key.country] = area.country
+        return json
+    }
 }
