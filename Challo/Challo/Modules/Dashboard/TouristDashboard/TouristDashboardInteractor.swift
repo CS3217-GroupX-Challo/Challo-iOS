@@ -13,15 +13,15 @@ class TouristDashboardInteractor: InteractorProtocol {
 
     let bookingsRepository: BookingRepositoryProtocol
     let userState: UserStateProtocol
-<<<<<<< HEAD
-=======
     let userAPI: UserAPIProtocol
->>>>>>> Integrate update profile logic
+    let updateUserChat: ((_ name: String, _ email: String) -> Void)
 
-    init(bookingsRepository: BookingRepositoryProtocol, userState: UserStateProtocol, userAPI: UserAPIProtocol) {
+    init(bookingsRepository: BookingRepositoryProtocol, userState: UserStateProtocol, userAPI: UserAPIProtocol,
+         updateUserChat: @escaping ((_ name: String, _ email: String) -> Void)) {
         self.bookingsRepository = bookingsRepository
         self.userState = userState
         self.userAPI = userAPI
+        self.updateUserChat = updateUserChat
     }
 
     func populateBookings() {
@@ -65,7 +65,6 @@ extension TouristDashboardInteractor {
         return nil
     }
     
-    #warning("implement chat update")
     func updateUser(didUpdateUser: @escaping () -> Void) {
         var body = [String: String]()
         if presenter.editName != userState.name {
@@ -78,6 +77,7 @@ extension TouristDashboardInteractor {
             didUpdateUser()
             return
         }
+        updateUserChat(presenter.editName, presenter.editEmail)
         userAPI.updateUserRequest(userId: userState.userId,
                                   body: body) { [weak self] response in
             self?.onUpdateUser(response: response, didUpdateUser: didUpdateUser)

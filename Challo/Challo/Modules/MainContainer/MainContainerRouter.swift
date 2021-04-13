@@ -64,6 +64,9 @@ class MainContainerRouter: RouterProtocol {
                                                                          messageText: messageText,
                                                                          chatService: chatService)
                                              },
+                                             updateUserChat: { [weak self] name, email in
+                                                self?.updateUser(name: name, email: email, chatService: chatService)
+                                             },
                                              userAPI: userAPI).assemble().view
     }
     
@@ -155,8 +158,21 @@ extension MainContainerRouter {
 
 // MARK: Cross Module Chat Logic
 extension MainContainerRouter {
-    private func sendMessageToGuideAfterConnected(guideEmail: String, messageText: String, chatService: ChatService,
-                                                  didSendMessage: @escaping (() -> Void)) {
+    private func connectThenOp(chatService: ChatService, didConnect: @escaping (() -> Void)) {
+        guard let chatUserId = chatService.chatUserId else {
+            fatalError("Attempting to connect when not logged in")
+        }
+        chatService.connectToChatServer(chatUserId: chatUserId,
+                                        password: userState.userId) { _, isSuccessful in
+            guard isSuccessful else {
+                return
+            }
+            didConnect()
+        }
+    }
+    
+    private func sendMessageToGuide(guideEmail: String, messageText: String, chatService: ChatService,
+                                    didSendMessage: @escaping (() -> Void)) {
         guard let dialog = chatService.getDialogWithChateeEmail(guideEmail) else {
             chatService.createPrivateDialog(with: guideEmail) { dialog in
                 chatService.sendMessage(messageBody: messageText,
@@ -171,31 +187,33 @@ extension MainContainerRouter {
                                 dialogId: dialog.dialogId)
     }
     
-    private func connectThenSend(guideEmail: String, messageText: String, chatService: ChatService,
-                                 didSendMessage: @escaping (() -> Void)) {
-        guard let chatUserId = chatService.chatUserId else {
-            fatalError("Attempting to connect when not logged in")
-        }
-        chatService.connectToChatServer(chatUserId: chatUserId,
-                                        password: userState.userId) { [weak self] _, isSuccessful in
-            guard isSuccessful else {
-                return
-            }
-            self?.sendMessageToGuideAfterConnected(guideEmail: guideEmail, messageText: messageText,
-                                                   chatService: chatService, didSendMessage: didSendMessage)
-        }
-    }
-    
     private func sendMessageToGuide(guideEmail: String, messageText: String, chatService: ChatService) {
         let didSendMessage: (() -> Void) = { [weak self] in
             self?.presenter.goToChatPage()
         }
         guard !chatService.isConnected else {
-            sendMessageToGuideAfterConnected(guideEmail: guideEmail, messageText: messageText, chatService: chatService,
-                                             didSendMessage: didSendMessage)
+            sendMessageToGuide(guideEmail: guideEmail, messageText: messageText, chatService: chatService,
+                               didSendMessage: didSendMessage)
             return
         }
-        connectThenSend(guideEmail: guideEmail, messageText: messageText, chatService: chatService,
-                        didSendMessage: didSendMessage)
+        connectThenOp(chatService: chatService) { [weak self] in
+            self?.sendMessageToGuide(guideEmail: guideEmail, messageText: messageText, chatService: chatService,
+                                     didSendMessage: didSendMessage)
+        }
     }
+    
+    private func updateUser(name: String, email: String, chatService: ChatService) {
+        chatService.updateUser(name: name, email: email)
+    }
+
+    private func checkConnectAndUpdateUser(name: String, email: String, chatService: ChatService) {
+        guard !chatService.isConnected else {
+            updateUser(name: name, email: email, chatService: chatService)
+            return
+        }
+        connectThenOp(chatService: chatService) { [weak self] in
+            self?.updateUser(name: name, email: email, chatService: chatService)
+        }
+    }
+
 }
