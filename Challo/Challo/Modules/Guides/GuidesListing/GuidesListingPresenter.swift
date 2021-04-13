@@ -14,6 +14,13 @@ class GuidesListingPresenter: SearchBarPresenter {
     var filterTypes = FilterTypes()
     
     @Published var isLoading = false
+    @Published var isRefreshing = false {
+        didSet {
+            if isRefreshing {
+                populateGuides()
+            }
+        }
+    }
     
     @Published var slider = CustomSlider(width: 600, start: 1, end: 5)
     
@@ -49,10 +56,16 @@ class GuidesListingPresenter: SearchBarPresenter {
         self.guides = guides
         originalGuides = guides
         isLoading = false
+        isRefreshing = false
     }
     
     func populateGuides() {
+        interactor.populateGuides()
+    }
+
+    func onAppear() {
         isLoading = true
+        self.guides = interactor.getCachedEntities()
         interactor.populateGuides()
     }
 }

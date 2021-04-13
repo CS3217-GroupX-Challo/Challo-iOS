@@ -17,25 +17,25 @@ struct GuidesListingPage: View {
     var body: some View {
         PageLayout(titleLabel: "Let us guide your way") { geometry in
             Group {
-                if presenter.isLoading {
-                    Loading(isAnimating: .constant(true), style: .large)
-                } else {
-                    VStack {
-                        SearchBar<GuidesListingPresenter>(searchBarSheet:
-                                                            AnyView(GuidesFiltersView(width: geometry.size.width / 5,
-                                                                                      presenter: presenter)))
-                            .environmentObject(presenter)
-                            .padding(.top, 30)
-                        GuidesCardListingsView(guides: guides,
-                                               width: geometry.size.width,
-                                               presenter: presenter)
-                            .padding(.top, 20)
-                    }.padding(.bottom, 80)
-                    .padding(.horizontal, 30)
-                }
-            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                VStack {
+                    SearchBar<GuidesListingPresenter>(searchBarSheet:
+                                                        AnyView(GuidesFiltersView(width: geometry.size.width / 5,
+                                                                                  presenter: presenter)))
+                        .environmentObject(presenter)
+                        .padding(.top, 30)
+                    if presenter.isLoading {
+                        Loading(isAnimating: .constant(true), style: .large)
+                    }
+                    GuidesCardListingsView(guides: guides,
+                                           width: geometry.size.width,
+                                           presenter: presenter)
+                        .padding(.top, 20)
+                }.padding(.bottom, 80)
+                .padding(.horizontal, 30)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }.onAppear {
-            presenter.populateGuides()
+            presenter.onAppear()
         }
     }
 }

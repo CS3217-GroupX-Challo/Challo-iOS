@@ -10,10 +10,10 @@ import SwiftUI
 struct GuidesCardListingsView: View {
     var guides: [Guide]
     var width: CGFloat
-    var presenter: GuidesListingPresenter
+    @ObservedObject var presenter: GuidesListingPresenter
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        RefreshableScrollView(refreshing: $presenter.isRefreshing) {
             VStack(spacing: 40) {
                 ForEach(0...guides.count / 2, id: \.self) { index in
                     HStack(spacing: 30) {

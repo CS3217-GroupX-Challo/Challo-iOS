@@ -12,10 +12,17 @@ class TrailListingPresenter: SearchBarPresenter, ObservableObject {
     var interactor: TrailListingInteractor!
     var router: TrailListingRouter?
     
+    @Published var isLoading = false
+    @Published var isRefreshing = false {
+        didSet {
+            if isRefreshing == true {
+                getAllTrails()
+            }
+        }
+    }
+
     var trails: [Trail] = []
     private var trailListingCards: [TrailListingCard] = []
-
-    @Published var isLoading = false
     
     @Published var searchBarText: String = ""
     @Published var isSearchBarSheetOpen: Bool = false
@@ -73,6 +80,7 @@ class TrailListingPresenter: SearchBarPresenter, ObservableObject {
         trailListingCards = trails.map(transformTrailToTrailListingCard)
         setSlider()
         isLoading = false
+        isRefreshing = false
     }
     
     func getAllTrails() {
@@ -94,7 +102,7 @@ class TrailListingPresenter: SearchBarPresenter, ObservableObject {
     
     func onPageAppear() {
         isLoading = true
+        self.trails = interactor.getCachedEntities()
         getAllTrails()
     }
-    
 }

@@ -24,25 +24,27 @@ struct TrailListingPage: View {
     
     var cardList: some View {
         Group {
-            if presenter.isLoading {
-                Loading(isAnimating: .constant(true), style: .large)
-            } else {
-                VStack {
-                    SearchBar<TrailListingPresenter>(searchBarSheet: AnyView(TrailListingFilter(presenter: presenter)))
-                        .padding(.bottom, 40)
-                    ScrollView {
-                        VStack(spacing: 30) {
-                            trailCards
-                        }
+            VStack {
+                SearchBar<TrailListingPresenter>(searchBarSheet: AnyView(TrailListingFilter(presenter: presenter)))
+                    .padding(.bottom, 40)
+                if presenter.isLoading {
+                    Loading(isAnimating: .constant(true), style: .large)
+                }
+                RefreshableScrollView(refreshing: $presenter.isRefreshing) {
+                    VStack(spacing: 30) {
+                        trailCards
                     }
-                }.padding(EdgeInsets(top: 50, leading: 60, bottom: 30, trailing: 60))
-            }
+                }
+            }.padding(EdgeInsets(top: 50, leading: 60, bottom: 30, trailing: 60))
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     var body: some View {
         PageLayout(titleLabel: "Find Your Very Own Trail") { _ in
             cardList
-        }.onAppear(perform: presenter.onPageAppear)
+        }.onAppear {
+            presenter.onPageAppear()
+            #warning("TODO: Don't make API requests on every page appear")
+        }
     }
 }
