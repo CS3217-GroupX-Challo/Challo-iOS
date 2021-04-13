@@ -29,6 +29,7 @@ struct TrailPersistenceObject {
 }
 
 extension TrailPersistenceObject: CoreDataPersistenceObject {
+    // swiftlint:disable function_body_length
     init?(persistenceObject: NSManagedObject) {
         guard let trail = persistenceObject as? TrailDetails,
               let id = trail.id,
