@@ -13,13 +13,19 @@ struct UpdateProfilePage: View {
     
     let maxProfileImageDiameter: CGFloat = 200
     
-    func makeField(label: String, textBinding: Binding<String>) -> some View {
+    func makeField(label: String, textBinding: Binding<String>, errorMessage: String) -> some View {
         VStack(alignment: .leading) {
             Text(label)
                 .font(.subheadline)
                 .bold()
             TextField(presenter.name, text: textBinding)
             Divider()
+                .background(presenter.errorMessage == errorMessage ? Color.red : Color.black)
+            if presenter.errorMessage == errorMessage {
+                Text(errorMessage)
+                    .font(.caption)
+                    .foregroundColor(.red)
+            }
         }.frame(maxWidth: .infinity)
         .padding(.top, 30)
     }
@@ -37,19 +43,29 @@ struct UpdateProfilePage: View {
                     .offset(x: -20, y: -10)
                     .foregroundColor(.gray)
             }.padding(.bottom, 30)
-            makeField(label: "Name", textBinding: $presenter.editName)
-            makeField(label: "Email", textBinding: $presenter.editEmail)
+            makeField(label: "Name", textBinding: $presenter.editName,
+                      errorMessage: UpdateProfileErrorMessages.invalidNameErrorMessage)
+            makeField(label: "Email", textBinding: $presenter.editEmail,
+                      errorMessage: UpdateProfileErrorMessages.invalidEmailErrorMessage)
             Spacer()
         }.padding(.horizontal, 50)
         .navigationBarItems(trailing:
                                 Button(action: presenter.onTapSave) {
                                     if presenter.isSaving {
-                                        Spinner(diameter: 20)
+                                        Spinner(diameter: 30)
                                     } else {
                                         Text("Save")
-                                            .foregroundColor(.themeTertiary)
+                                            .foregroundColor(presenter.isUpdateSaveButtonEnabled
+                                                                ? .gray
+                                                                : .themeTertiary)
+                                            .disabled(presenter.isUpdateSaveButtonEnabled)
                                     }
                                 }
         )
+        .alert(isPresented: $presenter.isShowingUpdateAlert) {
+            Alert(title: Text(presenter.alertMessageTitle),
+                  message: Text(presenter.alertMessageDescription),
+                  dismissButton: .default(Text("Close"), action: presenter.onCloseAlert))
+        }
     }
 }

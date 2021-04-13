@@ -13,10 +13,15 @@ class TouristDashboardInteractor: InteractorProtocol {
 
     let bookingsRepository: BookingRepositoryProtocol
     let userState: UserStateProtocol
+<<<<<<< HEAD
+=======
+    let userAPI: UserAPIProtocol
+>>>>>>> Integrate update profile logic
 
-    init(bookingsRepository: BookingRepositoryProtocol, userState: UserStateProtocol) {
+    init(bookingsRepository: BookingRepositoryProtocol, userState: UserStateProtocol, userAPI: UserAPIProtocol) {
         self.bookingsRepository = bookingsRepository
         self.userState = userState
+        self.userAPI = userAPI
     }
 
     func populateBookings() {
@@ -46,5 +51,62 @@ extension TouristDashboardInteractor {
         bookings.filter {
             $0.date < Date()
         }
+    }
+    
+// MARK: Update User Logic
+extension TouristDashboardInteractor {
+    func validateUserUpdateValues() -> String? {
+        guard ValidationUtility.isValidEmail(presenter.editEmail) else {
+            return UpdateProfileErrorMessages.invalidEmailErrorMessage
+        }
+        guard !presenter.editName.isEmpty else {
+            return UpdateProfileErrorMessages.invalidNameErrorMessage
+        }
+        return nil
+    }
+    
+    #warning("implement chat update")
+    func updateUser(didUpdateUser: @escaping () -> Void) {
+        var body = [String: String]()
+        if presenter.editName != userState.name {
+            body[Key.name] = presenter.editName
+        }
+        if presenter.editEmail != userState.email {
+            body[Key.email] = presenter.editEmail
+        }
+        guard !body.isEmpty else {
+            didUpdateUser()
+            return
+        }
+        userAPI.updateUserRequest(userId: userState.userId,
+                                  body: body) { [weak self] response in
+            self?.onUpdateUser(response: response, didUpdateUser: didUpdateUser)
+        }
+    }
+    
+    private func onUpdateUser(response: UserAPIResponse, didUpdateUser: () -> Void) {
+        guard response.success else {
+            setFailToUpdateAlert()
+            return
+        }
+        let certificateManager = CertificateManager(userState: self.userState)
+        guard let certificate = response.certificate else {
+            self.setFailToUpdateAlert()
+            return
+        }
+        certificateManager.storeCertificate(certificate: certificate)
+        didUpdateUser()
+        self.setUpdateSuccessAlert()
+    }
+    
+    private func setFailToUpdateAlert() {
+        presenter.isShowingUpdateAlert = true
+        presenter.alertMessageTitle = "Failed to update"
+        presenter.alertMessageDescription = "An unexpected error occured"
+    }
+
+    private func setUpdateSuccessAlert() {
+        presenter.isShowingUpdateAlert = true
+        presenter.alertMessageTitle = "Your profile has been updated"
     }
 }

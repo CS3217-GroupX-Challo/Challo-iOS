@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 class TouristDashboardPresenter: PresenterProtocol {
     
@@ -38,6 +39,13 @@ class TouristDashboardPresenter: PresenterProtocol {
     @Published var editName = ""
     @Published var editEmail = ""
     @Published var isSaving = false
+    @Published var errorMessage: String?
+    
+    @Published var isShowingUpdateAlert = false
+    @Published var alertMessageTitle = ""
+    @Published var alertMessageDescription = ""
+    
+    private var cancellables: Set<AnyCancellable> = []
     
     init(userState: UserStateProtocol,
          sendMessageToGuide: @escaping ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)) {
@@ -46,6 +54,11 @@ class TouristDashboardPresenter: PresenterProtocol {
         self.editName = userState.name
         self.editEmail = userState.email
         self.sendMessageToGuide = sendMessageToGuide
+        setupUserStateSubscriber(userState: userState)
+    }
+    
+    var isUpdateSaveButtonEnabled: Bool {
+        editName == userState.name && editEmail == userState.email
     }
     
     var displayedProfileImage: Image {
@@ -53,7 +66,20 @@ class TouristDashboardPresenter: PresenterProtocol {
                     ? Image("avatar-image")
                     : ImageService.loadImage(path: userState.profileImg))
     }
-
+    
+    private func setupUserStateSubscriber(userState: UserStateProtocol) {
+        guard let userState = userState as? UserState else {
+            return
+        }
+        userState.$user.sink { user in
+            guard let user = user, let userName = user.name else {
+                return
+            }
+            self.name = userName
+            self.objectWillChange.send()
+        }.store(in: &cancellables)
+    }
+    
     func loadImage() {
         guard let inputImage = inputImage else {
             return
@@ -89,6 +115,19 @@ class TouristDashboardPresenter: PresenterProtocol {
     
     func onTapSave() {
         isSaving = true
+        errorMessage = interactor.validateUserUpdateValues()
+        guard errorMessage == nil else {
+            isSaving = false
+            return
+        }
+        interactor.updateUser { [weak self] in
+            self?.isSaving = false
+        }
+    }
+    
+    func onCloseAlert() {
+        alertMessageTitle = ""
+        alertMessageDescription = ""
     }
 }
 
