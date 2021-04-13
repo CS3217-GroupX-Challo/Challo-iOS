@@ -5,20 +5,13 @@
 //  Created by Tan Le Yang on 13/4/21.
 //
 
-/// An `Interactor` that can retrieve a list of entities from a `Repository`
+import Foundation
+
+/// An `Interactor` that can retrieve a list of entities.
 protocol EntityListingInteractor: InteractorProtocol {
 
-    associatedtype Repo: RepositoryProtocol
+    associatedtype Entity
 
-    var repository: Repo { get }
-
-    /// Retrieve the entities currently cached in the repository
-    func getCachedEntities() -> [Repo.Entity]
-}
-
-extension EntityListingInteractor {
-
-    func getCachedEntities() -> [Repo.Entity] {
-        repository.getAll()
-    }
+    /// Returns a list of entities cached in memory
+    func getCachedEntities() -> [Entity]
 }

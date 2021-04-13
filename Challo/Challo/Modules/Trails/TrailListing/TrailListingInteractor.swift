@@ -5,20 +5,22 @@
 //  Created by Shao Yi on 20/3/21.
 //
 
-class TrailListingInteractor: InteractorProtocol {
+import Foundation
 
-    private var trailRepository: TrailRepositoryProtocol
+class TrailListingInteractor: EntityListingInteractor {
+
+    var repository: TrailRepositoryProtocol
     weak var presenter: TrailListingPresenter!
 
     init(trailRepository: TrailRepositoryProtocol) {
-        self.trailRepository = trailRepository
+        self.repository = trailRepository
     }
 
     func getAllTrails() {
-        trailRepository.fetchTrailsAndRefresh(didRefresh: presenter.didGetAllTrails)
+        repository.fetchTrailsAndRefresh(didRefresh: presenter.didGetAllTrails)
     }
 
-    func getCachedTrails() -> [Trail] {
-        trailRepository.getAll()
+    func getCachedEntities() -> [Trail] {
+        repository.getAll()
     }
 }

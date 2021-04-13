@@ -61,6 +61,7 @@ class GuidesListingPresenter: PresenterProtocol {
 
     func onAppear() {
         isLoading = true
+        self.guides = interactor.getCachedEntities()
         interactor.populateGuides()
     }
 }

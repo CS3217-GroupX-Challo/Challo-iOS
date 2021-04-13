@@ -23,18 +23,19 @@ struct GuidesListingPage: View {
     var body: some View {
         PageLayout(titleLabel: "Let us guide\nyour way", headerContent: AnyView(headerContent)) { geometry in
             Group {
-                if presenter.isLoading {
-                    Loading(isAnimating: .constant(true), style: .large)
-                } else {
-                    VStack {
-                        GuidesFiltersView(width: geometry.size.width / 5,
-                                          presenter: presenter)
-                            .padding(.top, 20)
-                        GuidesCardListingsView(guides: guides,
-                                               width: geometry.size.width,
-                                               presenter: presenter)
-                    }.padding(.bottom, 80)
-                }
+                VStack {
+                    GuidesFiltersView(width: geometry.size.width / 5,
+                                      presenter: presenter)
+                        .padding(.top, 20)
+                    if presenter.isLoading {
+                        VStack(alignment: .trailing) {
+                            Loading(isAnimating: .constant(true), style: .large)
+                        }
+                    }
+                    GuidesCardListingsView(guides: guides,
+                                           width: geometry.size.width,
+                                           presenter: presenter)
+                }.padding(.bottom, 80)
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
         }.onAppear {
             presenter.onAppear()

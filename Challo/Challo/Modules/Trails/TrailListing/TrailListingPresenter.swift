@@ -50,7 +50,7 @@ class TrailListingPresenter: PresenterProtocol, ObservableObject {
     
     func onPageAppear() {
         isLoading = true
-        self.trails = interactor.getCachedTrails()
+        self.trails = interactor.getCachedEntities()
         getAllTrails()
     }
 }
