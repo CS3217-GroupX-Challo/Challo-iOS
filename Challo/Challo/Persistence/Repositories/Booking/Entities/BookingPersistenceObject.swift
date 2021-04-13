@@ -77,3 +77,6 @@ extension BookingPersistenceObject: CoreDataPersistenceObject {
         bookingInfo.status = status.rawValue
     }
 }
+
+extension BookingPersistenceObject: Equatable {
+}
