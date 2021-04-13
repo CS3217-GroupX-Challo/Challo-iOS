@@ -48,6 +48,7 @@ struct UpdateProfilePage: View {
                       errorMessage: UpdateProfileErrorMessages.invalidEmailErrorMessage)
             Spacer()
         }.padding(.horizontal, 50)
+        .onAppear(perform: presenter.onOpenUpdateProfilePage)
         .navigationBarItems(trailing:
                                 Button(action: presenter.onTapSave) {
                                     if presenter.isSaving {

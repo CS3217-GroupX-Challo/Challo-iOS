@@ -127,6 +127,13 @@ class TouristDashboardPresenter: PresenterProtocol {
         alertMessageTitle = ""
         alertMessageDescription = ""
     }
+    
+    func onOpenUpdateProfilePage() {
+        inputImage = nil
+        image = nil
+        editName = userState.name
+        editEmail = userState.email
+    }
 }
 
 // MARK: Handle Bookings
