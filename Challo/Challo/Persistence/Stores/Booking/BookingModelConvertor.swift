@@ -5,11 +5,21 @@
 //  Created by Kester Ng on 13/4/21.
 //
 
-struct BookingModelConvertor {
+class BookingModelConvertor {
     private let trailModelConvertor: TrailModelConvertor
     private let guideModelConvertor: GuideModelConvertor
     private let touristModelConvertor: TouristModelConvertor
     private let reviewModelConvertor: ReviewModelConvertor
+    
+    init(trailModelConvertor: TrailModelConvertor,
+         guideModelConvertor: GuideModelConvertor,
+         touristModelConvertor: TouristModelConvertor,
+         reviewModelConvertor: ReviewModelConvertor) {
+        self.trailModelConvertor = trailModelConvertor
+        self.guideModelConvertor = guideModelConvertor
+        self.reviewModelConvertor = reviewModelConvertor
+        self.touristModelConvertor = touristModelConvertor
+    }
     
     func convertBookingToBookingPersistenceObject(booking: Booking) -> BookingPersistenceObject {
         let trailObject

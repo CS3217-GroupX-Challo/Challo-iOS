@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - MapMarker conversion
-struct MapModelConvertor {
+class MapModelConvertor {
     func convertMapMarkerToMarkerPersistenceObject(mapMarker: MapMarker) -> MarkerPersistenceObject {
         MarkerPersistenceObject(id: mapMarker.id,
                                 position: mapMarker.position,

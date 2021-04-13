@@ -5,7 +5,7 @@
 //  Created by Kester Ng on 12/4/21.
 //
 
-struct TouristModelConvertor {
+class TouristModelConvertor {
     func convertTouristToTouristPersistenceObject(tourist: Tourist) -> TouristPersistenceObject {
         TouristPersistenceObject(userId: tourist.userId,
                                  email: tourist.email,

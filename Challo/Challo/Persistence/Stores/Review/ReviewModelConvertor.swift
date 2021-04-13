@@ -5,7 +5,7 @@
 //  Created by Kester Ng on 13/4/21.
 //
 
-struct ReviewModelConvertor {
+class ReviewModelConvertor {
     private let guideModelConvertor: GuideModelConvertor
     private let touristModelConvertor: TouristModelConvertor
     private let trailModelConvertor: TrailModelConvertor

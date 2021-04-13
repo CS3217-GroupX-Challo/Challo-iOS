@@ -7,9 +7,15 @@
 
 import Foundation
 
-struct GuideModelConvertor {
+class GuideModelConvertor {
     private let areaModelConvertor: AreaModelConvertor
     private let trailModelConvertor: TrailModelConvertor
+    
+    init(areaModelConvertor: AreaModelConvertor,
+         trailModelConvertor: TrailModelConvertor) {
+        self.areaModelConvertor = areaModelConvertor
+        self.trailModelConvertor = trailModelConvertor
+    }
     
     func convertGuideToGuidePersistenceObject(guide: Guide) -> GuidePersistenceObject {
         let trailObjects = guide.trails.map { trail in

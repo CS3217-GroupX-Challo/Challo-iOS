@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AreaModelConvertor {
+class AreaModelConvertor {
     func convertAreaToAreaPersistenceObject(area: Area) -> AreaPersistenceObject {
         AreaPersistenceObject(areaId: area.areaId,
                               village: area.village,

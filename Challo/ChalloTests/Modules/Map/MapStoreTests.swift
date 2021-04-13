@@ -15,7 +15,8 @@ class MapStoreTests: XCTestCase {
         let markerRepository = MockMarkerRepository()
         let store = MapStore(mapMarkerRepository: markerRepository,
                              mapRouteRepository: MockRouteRepository(),
-                             mapItineraryRepository: MockItineraryRepository())
+                             mapItineraryRepository: MockItineraryRepository(),
+                             convertor: MapModelConvertor())
         XCTAssertTrue(TestUtils.compareTwoArrays(first: store.getAllMapMarkers(),
                                                  second: markerRepository.allMarkers),
                       "Store should return same markers as repository")
@@ -25,7 +26,8 @@ class MapStoreTests: XCTestCase {
         let markerRepository = MockMarkerRepository.createEmptyRepo()
         let store = MapStore(mapMarkerRepository: markerRepository,
                              mapRouteRepository: MockRouteRepository(),
-                             mapItineraryRepository: MockItineraryRepository())
+                             mapItineraryRepository: MockItineraryRepository(),
+                             convertor: MapModelConvertor())
         XCTAssertTrue(store.getAllMapMarkers().isEmpty,
                       "Store should return same markers as repository")
     }
@@ -34,7 +36,8 @@ class MapStoreTests: XCTestCase {
         let markerToSave = MapTestConstants.markerOne
         let store = MapStore(mapMarkerRepository: MockMarkerRepository.createEmptyRepo(),
                              mapRouteRepository: MockRouteRepository(),
-                             mapItineraryRepository: MockItineraryRepository())
+                             mapItineraryRepository: MockItineraryRepository(),
+                             convertor: MapModelConvertor())
         store.saveMapMarkers(mapMarkers: [markerToSave])
         XCTAssertEqual(store.getAllMapMarkers().count, 0, "Should be empty")
     }
@@ -43,7 +46,8 @@ class MapStoreTests: XCTestCase {
         let markers = [MapTestConstants.markerOne, MapTestConstants.markerTwo]
         let store = MapStore(mapMarkerRepository: MockMarkerRepository.createEmptyRepo(),
                              mapRouteRepository: MockRouteRepository(),
-                             mapItineraryRepository: MockItineraryRepository())
+                             mapItineraryRepository: MockItineraryRepository(),
+                             convertor: MapModelConvertor())
         store.saveMapMarkers(mapMarkers: markers)
         XCTAssertEqual(store.getAllMapMarkers().count, 0, "Should be empty")
     }
@@ -56,7 +60,8 @@ extension MapStoreTests {
         let mapRouteRepository = MockRouteRepository()
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: mapRouteRepository,
-                             mapItineraryRepository: MockItineraryRepository())
+                             mapItineraryRepository: MockItineraryRepository(),
+                             convertor: MapModelConvertor())
         XCTAssertTrue(TestUtils.compareTwoArrays(first: store.getAllMapRoutes(),
                                                  second: mapRouteRepository.allRoutes),
                       "Store should return same routes as repository")
@@ -66,7 +71,8 @@ extension MapStoreTests {
         let mapRouteRepository = MockRouteRepository.createEmptyRepo()
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: mapRouteRepository,
-                             mapItineraryRepository: MockItineraryRepository())
+                             mapItineraryRepository: MockItineraryRepository(),
+                             convertor: MapModelConvertor())
         XCTAssertTrue(store.getAllMapRoutes().isEmpty,
                       "Store should return same routes as repository")
     }
@@ -75,7 +81,8 @@ extension MapStoreTests {
         let routeToAdd = MapTestConstants.routeOne
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: MockRouteRepository.createEmptyRepo(),
-                             mapItineraryRepository: MockItineraryRepository())
+                             mapItineraryRepository: MockItineraryRepository(),
+                             convertor: MapModelConvertor())
         store.saveMapRoutes(mapRoutes: [routeToAdd])
     }
 
@@ -83,7 +90,8 @@ extension MapStoreTests {
         let routes = [MapTestConstants.routeOne, MapTestConstants.routeTwo]
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: MockRouteRepository.createEmptyRepo(),
-                             mapItineraryRepository: MockItineraryRepository())
+                             mapItineraryRepository: MockItineraryRepository(),
+                             convertor: MapModelConvertor())
         store.saveMapRoutes(mapRoutes: routes)
         XCTAssertEqual(store.getAllMapRoutes().count, 0, "Should be empty")
     }
@@ -96,7 +104,8 @@ extension MapStoreTests {
         let itineraryRepository = MockItineraryRepository()
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: MockRouteRepository(),
-                             mapItineraryRepository: itineraryRepository)
+                             mapItineraryRepository: itineraryRepository,
+                             convertor: MapModelConvertor())
         XCTAssertTrue(TestUtils.compareTwoArrays(first: store.getAllMapItineraries(),
                                                  second: itineraryRepository.allItineraries),
                       "Store should return same itineraries as repository")
@@ -105,7 +114,8 @@ extension MapStoreTests {
     func testGetAllMapItineraries_emptyRepository_noItinerariesReturned() {
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: MockRouteRepository(),
-                             mapItineraryRepository: MockItineraryRepository.createEmptyRepo())
+                             mapItineraryRepository: MockItineraryRepository.createEmptyRepo(),
+                             convertor: MapModelConvertor())
         XCTAssertTrue(store.getAllMapItineraries().isEmpty,
                       "Store should return same itineraries as repository")
     }
@@ -114,7 +124,8 @@ extension MapStoreTests {
         let itineraryToAdd = MapTestConstants.itineraryOne
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: MockRouteRepository(),
-                             mapItineraryRepository: MockItineraryRepository.createEmptyRepo())
+                             mapItineraryRepository: MockItineraryRepository.createEmptyRepo(),
+                             convertor: MapModelConvertor())
         store.saveMapItineraries(mapItineraries: [itineraryToAdd])
     }
 
@@ -122,7 +133,8 @@ extension MapStoreTests {
         let itineraries = [MapTestConstants.itineraryOne, MapTestConstants.itineraryTwo]
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: MockRouteRepository(),
-                             mapItineraryRepository: MockItineraryRepository.createEmptyRepo())
+                             mapItineraryRepository: MockItineraryRepository.createEmptyRepo(),
+                             convertor: MapModelConvertor())
         store.saveMapItineraries(mapItineraries: itineraries)
         XCTAssertEqual(store.getAllMapItineraries().count, 0, "Should be empty")
     }

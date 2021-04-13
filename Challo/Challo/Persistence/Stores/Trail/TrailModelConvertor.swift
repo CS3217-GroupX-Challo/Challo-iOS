@@ -5,8 +5,12 @@
 //  Created by Kester Ng on 12/4/21.
 //
 
-struct TrailModelConvertor {
+class TrailModelConvertor {
     let convertor: AreaModelConvertor
+    
+    init(convertor: AreaModelConvertor) {
+        self.convertor = convertor
+    }
     
     func convertTrailToTrailPersistenceObject(trail: Trail) -> TrailPersistenceObject {
         let areaObject = convertor.convertAreaToAreaPersistenceObject(area: trail.area)
