@@ -13,21 +13,22 @@ struct TrailListingPage: View {
     
     var cardList: some View {
         Group {
-            if presenter.isLoading {
-                Loading(isAnimating: .constant(true), style: .large)
-            } else {
-                ScrollView {
-                    VStack(spacing: 30) {
-                        ForEach(presenter.trailListingCards.indices, id: \.self) { index in
-                            NavigationLink(destination: presenter.trailProfilePage) {
-                                presenter.trailListingCards[index]
-                            }.buttonStyle(PlainButtonStyle())
-                            .simultaneousGesture(TapGesture().onEnded {
-                                presenter.populateTrailProfilePage(trailIndex: index)
-                            })
-                        }
-                    }.padding(EdgeInsets(top: 50, leading: 60, bottom: 30, trailing: 60))
+            RefreshableScrollView(refreshing: $presenter.isRefreshing) {
+                if presenter.isLoading {
+                    VStack(alignment: .trailing) {
+                        Loading(isAnimating: .constant(true), style: .large)
+                    }
                 }
+                VStack(spacing: 30) {
+                    ForEach(presenter.trailListingCards.indices, id: \.self) { index in
+                        NavigationLink(destination: presenter.trailProfilePage) {
+                            presenter.trailListingCards[index]
+                        }.buttonStyle(PlainButtonStyle())
+                        .simultaneousGesture(TapGesture().onEnded {
+                            presenter.populateTrailProfilePage(trailIndex: index)
+                        })
+                    }
+                }.padding(EdgeInsets(top: 50, leading: 60, bottom: 30, trailing: 60))
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
@@ -35,6 +36,8 @@ struct TrailListingPage: View {
     var body: some View {
         PageLayout(titleLabel: "Find Your Very\nOwn Trail") { _ in
             cardList
-        }.onAppear(perform: presenter.onPageAppear)
+        }.onAppear {
+            presenter.onPageAppear()
+        }
     }
 }

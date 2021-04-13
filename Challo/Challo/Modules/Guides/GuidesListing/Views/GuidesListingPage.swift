@@ -37,7 +37,7 @@ struct GuidesListingPage: View {
                 }
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
         }.onAppear {
-            presenter.populateGuides()
+            presenter.onAppear()
         }
     }
 }

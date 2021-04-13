@@ -17,4 +17,8 @@ class TrailListingInteractor: InteractorProtocol {
     func getAllTrails() {
         trailRepository.fetchTrailsAndRefresh(didRefresh: presenter.didGetAllTrails)
     }
+
+    func getCachedTrails() -> [Trail] {
+        trailRepository.getAll()
+    }
 }

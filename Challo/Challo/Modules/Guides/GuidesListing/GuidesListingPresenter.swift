@@ -13,6 +13,13 @@ class GuidesListingPresenter: PresenterProtocol {
     var filterTypes = FilterTypes()
     
     @Published var isLoading = false
+    @Published var isRefreshing = false {
+        didSet {
+            if isRefreshing {
+                populateGuides()
+            }
+        }
+    }
     
     @Published var searchKeyword: String = "" {
         didSet {
@@ -45,9 +52,14 @@ class GuidesListingPresenter: PresenterProtocol {
         self.guides = guides
         originalGuides = guides
         isLoading = false
+        isRefreshing = false
     }
     
     func populateGuides() {
+        interactor.populateGuides()
+    }
+
+    func onAppear() {
         isLoading = true
         interactor.populateGuides()
     }
