@@ -45,18 +45,6 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
     }
     
     func getAllBookings() -> [BookingPersistenceObject] {
-        /*  let reviews = repository.getAll()
-         var reviewObjects = [ReviewPersistenceObject]()
-         self.data = [NSManagedObjectID: ReviewPersistenceObject]()
-         
-         for review in reviews {
-             if let reviewObject = ReviewPersistenceObject(persistenceObject: review) {
-                 self.data[review.objectID] = reviewObject
-                 reviewObjects.append(reviewObject)
-             }
-         }
-         
-         return reviewObjects*/
         let bookings = repository.getAll()
         var bookingObjects = [BookingPersistenceObject]()
         self.data = [NSManagedObjectID: BookingPersistenceObject]()
