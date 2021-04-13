@@ -26,3 +26,25 @@ class TouristDashboardInteractor: InteractorProtocol {
         bookingsRepository.fetchBookingForTouristAndRefresh(id: id, didRefresh: presenter.didPopulateBookings)
     }
 }
+
+// MARK: Filter and sort bookings
+extension TouristDashboardInteractor {
+
+    func sortBookings(bookings: [Booking]) -> [Booking] {
+        bookings.sorted { bookingOne, bookingTwo in
+            bookingOne.date < bookingTwo.date
+        }
+    }
+
+    func filterUpcomingBookings(bookings: [Booking]) -> [Booking] {
+        bookings.filter {
+            ($0.status == .Paid || $0.status == .Pending) && $0.date > Date()
+        }
+    }
+
+    func filterPastBookings(bookings: [Booking]) -> [Booking] {
+        bookings.filter {
+            $0.date < Date()
+        }
+    }
+}

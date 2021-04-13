@@ -45,7 +45,7 @@ class MainContainerRouter: RouterProtocol {
             fatalError("Failed to resolve placesAPI in MainContainer")
         }
 
-        setUpLoginAndProfile(bookingRepository)
+        setUpLoginAndProfile(bookingRepository, reviewAPI)
         homePage = AnyView(Text("Homepage"))
         trailsPage = TrailListingModule(trailRepository: trailRepository,
                                         guideRepository: guideRepository,
@@ -58,25 +58,29 @@ class MainContainerRouter: RouterProtocol {
         settingsPage = SettingsModule(userState: userState).assemble().view
     }
 
-    private func setUpLoginAndProfile(_ bookingRepository: BookingRepositoryProtocol) {
+    private func setUpLoginAndProfile(_ bookingRepository: BookingRepositoryProtocol,
+                                      _ reviewAPI: ReviewAPIProtocol) {
         #if GUIDE
         loginPage = GuideLoginModule(userState: userState).assemble().view
         profilePage = GuideDashboardModule(userState: userState, bookingRepository: bookingRepository).assemble().view
 
         #else
         loginPage = TouristLoginModule(userState: userState).assemble().view
-        setupChatAndProfilePage(bookingRepository)
+        setupChatAndProfilePage(bookingRepository, reviewAPI)
         #endif
     }
     
-    private func setupChatAndProfilePage(_ bookingRepository: BookingRepositoryProtocol) {
+    private func setupChatAndProfilePage(_ bookingRepository: BookingRepositoryProtocol,
+                                         _ reviewAPI: ReviewAPIProtocol) {
         let chatDialogRepository = ChatDialogRepository()
         let chatService = QuickBloxChatService(chatAuthService: QuickBloxChatAuthService(),
                                                chatDialogService: QuickBloxChatDialogService(chatDialogRepository:
                                                                                                 chatDialogRepository))
         chatPage = ChatModule(chatService: chatService, userState: userState).assemble().view
         
-        profilePage = TouristDashboardModule(userState: userState, bookingRepository: bookingRepository,
+        profilePage = TouristDashboardModule(userState: userState,
+                                             bookingRepository: bookingRepository,
+                                             reviewAPI: reviewAPI,
                                              sendMessageToGuide: { [weak self] guideEmail, _, messageText in
                                                 self?.sendMessageToGuide(guideEmail: guideEmail,
                                                                          messageText: messageText,

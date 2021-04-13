@@ -17,8 +17,10 @@ class TouristDashboardInteractorTests: XCTestCase {
                                                     userState: userState)
         let presenter = TouristDashboardPresenter(userState: userState, sendMessageToGuide: { _, _, _ in })
         interactor.presenter = presenter
+        presenter.interactor = interactor
         interactor.populateBookings()
-        let expected = MockBookingAPIResponses.bookings.filter { $0.status != .Completed }
+        let expected = MockBookingAPIResponses
+                    .bookings.filter { $0.status != .Completed }
         
         XCTAssertEqual(expected, presenter.upcomingBookings)
     }
