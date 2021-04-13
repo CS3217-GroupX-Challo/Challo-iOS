@@ -53,10 +53,7 @@ struct TouristDashboardPage: View {
                         .font(.headline)
                 }
             }
-            presenter.displayedProfileImage
-                .resizable()
-                .scaledToFit()
-                .clipShape(Circle())
+            DashboardProfileImage()
                 .frame(height: 130)
                 .padding()
                 .shadow(color: .black, radius: 4, x: 3, y: 4)

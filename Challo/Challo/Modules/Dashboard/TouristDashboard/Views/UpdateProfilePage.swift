@@ -33,8 +33,7 @@ struct UpdateProfilePage: View {
     var body: some View {
         VStack {
             ZStack(alignment: .bottomTrailing) {
-                DashboardProfileImage()
-                    .clipShape(Circle())
+                UpdatableProfileImage()
                     .frame(maxWidth: maxProfileImageDiameter, maxHeight: maxProfileImageDiameter)
                 Image(systemName: "camera.on.rectangle")
                     .resizable()

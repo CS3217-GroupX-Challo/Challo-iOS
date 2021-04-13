@@ -61,10 +61,8 @@ class TouristDashboardPresenter: PresenterProtocol {
         editName == userState.name && editEmail == userState.email
     }
     
-    var displayedProfileImage: Image {
-        image ?? (userState.profileImg.isEmpty
-                    ? Image("avatar-image")
-                    : ImageService.loadImage(path: userState.profileImg))
+    var profileImgPath: String {
+        userState.profileImg
     }
     
     private func setupUserStateSubscriber(userState: UserStateProtocol) {

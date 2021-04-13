@@ -65,7 +65,7 @@ extension TouristDashboardInteractor {
         return nil
     }
     
-    func updateUser(didUpdateUser: @escaping () -> Void) {
+    private func extractUpdateUserBody() -> [String: String] {
         var body = [String: String]()
         if presenter.editName != userState.name {
             body[Key.name] = presenter.editName
@@ -73,15 +73,50 @@ extension TouristDashboardInteractor {
         if presenter.editEmail != userState.email {
             body[Key.email] = presenter.editEmail
         }
+        return body
+    }
+    
+    private func updateUserDetails(body: [String: String], didUpdateUser: @escaping () -> Void) {
+        guard let image = presenter.inputImage, let imageData = image.jpegData(compressionQuality: 0.5) else {
+            updateUserBasicDetails(body: body, didUpdateUser: didUpdateUser)
+            return
+        }
+        let fileName = "\(userState.userId)_profileImg.jpg"
+        ImageService.uploadImage(image: imageData,
+                                 fileName: fileName,
+                                 onProgress: nil,
+                                 onSuccess: { [weak self] actualFileName in
+                                    var newBody = body
+                                    newBody[Key.profileImage] = actualFileName
+                                    self?.updateUserBasicDetails(body: newBody, didUpdateUser: didUpdateUser)
+                                 },
+                                 onFailure: { [weak self] error in
+                                    ChalloLogger.logger.error("\(error.localizedDescription)")
+                                    self?.setFailToUpdateAlert()
+                                    didUpdateUser()
+                                 })
+    }
+    
+    private func updateUserBasicDetails(body: [String: String], didUpdateUser: @escaping () -> Void) {
+        userAPI.updateUserRequest(userId: userState.userId,
+                                  body: body) { [weak self] response in
+            self?.onUpdateUser(response: response, didUpdateUser: {
+                guard let self = self else {
+                    return
+                }
+                self.updateUserChat(self.presenter.editName, self.presenter.editEmail)
+                didUpdateUser()
+            })
+        }
+    }
+    
+    func updateUser(didUpdateUser: @escaping () -> Void) {
+        let body = extractUpdateUserBody()
         guard !body.isEmpty else {
             didUpdateUser()
             return
         }
-        updateUserChat(presenter.editName, presenter.editEmail)
-        userAPI.updateUserRequest(userId: userState.userId,
-                                  body: body) { [weak self] response in
-            self?.onUpdateUser(response: response, didUpdateUser: didUpdateUser)
-        }
+        updateUserDetails(body: body, didUpdateUser: didUpdateUser)
     }
     
     private func onUpdateUser(response: UserAPIResponse, didUpdateUser: () -> Void) {
