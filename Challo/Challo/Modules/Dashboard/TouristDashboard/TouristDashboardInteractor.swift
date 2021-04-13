@@ -114,7 +114,7 @@ extension TouristDashboardInteractor {
     
     func updateUser(didUpdateUser: @escaping () -> Void) {
         let body = extractUpdateUserBody()
-        guard !body.isEmpty else {
+        guard !body.isEmpty || presenter.inputImage != nil else {
             didUpdateUser()
             return
         }
