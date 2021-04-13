@@ -27,6 +27,9 @@ struct TrailListingPage: View {
             VStack {
                 SearchBar<TrailListingPresenter>(searchBarSheet: AnyView(TrailListingFilter(presenter: presenter)))
                     .padding(.bottom, 40)
+                if presenter.isLoading {
+                    Loading(isAnimating: .constant(true), style: .large)
+                }
                 RefreshableScrollView(refreshing: $presenter.isRefreshing) {
                     VStack(spacing: 30) {
                         trailCards
@@ -41,6 +44,7 @@ struct TrailListingPage: View {
             cardList
         }.onAppear {
             presenter.onPageAppear()
+            #warning("TODO: Don't make API requests on every page appear")
         }
     }
 }

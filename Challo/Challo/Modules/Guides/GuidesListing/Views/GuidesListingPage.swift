@@ -23,6 +23,9 @@ struct GuidesListingPage: View {
                                                                                   presenter: presenter)))
                         .environmentObject(presenter)
                         .padding(.top, 30)
+                    if presenter.isLoading {
+                        Loading(isAnimating: .constant(true), style: .large)
+                    }
                     GuidesCardListingsView(guides: guides,
                                            width: geometry.size.width,
                                            presenter: presenter)
