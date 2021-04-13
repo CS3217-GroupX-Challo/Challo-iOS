@@ -19,3 +19,23 @@ struct GuideOnboardingDetails {
     var trails: String
     var daysAvailable: [Days]
 }
+
+extension GuideOnboardingDetails {
+
+    typealias JSON = NetworkManager.JSON
+
+    func convertToJSON(areaParser: AreaAPIParser) -> JSON {
+        var json = JSON()
+        json[Key.nickname] = nickname
+        json[Key.dateOfBirth] = dateOfBirth.destruct()
+        json[Key.languages] = languages
+        json[Key.yearsOfExperience] = yearsOfExperience
+        json[Key.hobbies] = hobbies
+        json[Key.accreditations] = accreditations
+        json[Key.area] = areaParser.convertAreaToJSON(area: area)
+        json[Key.biography] = biography
+        json[Key.daysAvailable] = daysAvailable
+        return json
+    }
+
+}
