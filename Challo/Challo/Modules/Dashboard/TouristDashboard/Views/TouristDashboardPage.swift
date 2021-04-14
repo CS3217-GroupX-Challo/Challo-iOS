@@ -20,7 +20,11 @@ struct TouristDashboardPage: View {
                              options: presenter.tabTitles)
             
             if presenter.isLoading {
-                Loading(isAnimating: .constant(true), style: .large)
+                VStack {
+                    Spacer()
+                    Loading(isAnimating: .constant(true), style: .large)
+                    Spacer()
+                }
             } else {
                 if presenter.selectedTab == .upcomingBookings {
                     BookingCardListingsView(
@@ -44,15 +48,22 @@ struct TouristDashboardPage: View {
     var header: some View {
         HStack {
             Spacer()
-            VStack(alignment: .trailing) {
+            VStack(alignment: .trailing, spacing: 15) {
                 Text(presenter.name)
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                 NavigationLink(destination: UpdateProfilePage().environmentObject(presenter)) {
-                    Text("Edit Profile")
-                        .font(.headline)
-                        .foregroundColor(Color(.systemGray2))
+                    HStack(spacing: 5) {
+                        Text("Edit Profile")
+                            .font(.headline)
+                            .foregroundColor(Color(.systemGray))
+                        Image(systemName: "pencil")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 15)
+                            .foregroundColor(Color(.systemGray))
+                    }
                 }
             }
             DashboardProfileImage()

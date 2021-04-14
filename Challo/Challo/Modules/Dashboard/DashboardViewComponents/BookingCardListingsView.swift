@@ -20,12 +20,16 @@ struct BookingCardListingsView: View {
     ]
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            if bookings.isEmpty {
+        if bookings.isEmpty {
+            VStack {
+                Spacer()
                 Text(emptyListMessage)
                     .foregroundColor(.themeForeground)
                     .padding()
-            } else {
+                Spacer()
+            }.frame(maxHeight: .infinity)
+        } else {
+            ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columns, spacing: 0) {
                     ForEach(bookings.indices) { index in
                         GeometryReader { geometry in
@@ -33,8 +37,8 @@ struct BookingCardListingsView: View {
                         }.frame(minHeight: 400)
                     }
                 }.padding()
-            }
-        }.padding(.bottom, 80)
+            }.padding(.bottom, 80)
+        }
     }
 
     private func constructBookingCard(booking: Booking, width: CGFloat) -> AnyView {
