@@ -44,13 +44,15 @@ struct TouristDashboardPage: View {
     var header: some View {
         HStack {
             Spacer()
-            VStack {
+            VStack(alignment: .trailing) {
                 Text(presenter.name)
                     .font(.largeTitle)
-                    .foregroundColor(.white)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
                 NavigationLink(destination: UpdateProfilePage().environmentObject(presenter)) {
                     Text("Edit Profile")
                         .font(.headline)
+                        .foregroundColor(Color(.systemGray2))
                 }
             }
             DashboardProfileImage()
@@ -61,7 +63,7 @@ struct TouristDashboardPage: View {
     }
     
     var body: some View {
-        PageLayout(headerContent: AnyView(header)) { geometry in
+        PageLayout(background: .mountainBackground, headerContent: AnyView(header)) { geometry in
             makeContent(geometry)
                 .frame(maxWidth: .infinity)
         }.onAppear {

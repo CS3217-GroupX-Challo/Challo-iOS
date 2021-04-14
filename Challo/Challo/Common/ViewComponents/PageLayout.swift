@@ -10,6 +10,7 @@ import SwiftUI
 struct PageLayout<ChildContent: View>: View {
     
     var titleLabel: String?
+    var background: Image = .guidesBackground
     var headerContent: AnyView?
     let makeChildContent: (_: GeometryProxy) -> ChildContent
 
@@ -17,8 +18,9 @@ struct PageLayout<ChildContent: View>: View {
         GeometryReader { geometry in
             VStack {
                 ZStack {
-                    Image.guidesBackground
+                    background
                         .resizable()
+                        .scaledToFill()
                         .brightness(-0.05)
                     VStack {
                         if let titleLabel = titleLabel {
