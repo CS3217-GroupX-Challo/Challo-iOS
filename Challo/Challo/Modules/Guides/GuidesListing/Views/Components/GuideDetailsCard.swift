@@ -31,8 +31,7 @@ struct GuideDetailsCard: View {
     
     var body: some View {
         Card {
-            Image(guide.profileImg ?? "avatar-image")
-                .resizable()
+            ImageLoader(profileImg: guide.profileImg, defaultImage: "avatar-image")
                 .scaledToFit()
                 .cornerRadius(10)
                 .frame(width: width, height: 200)

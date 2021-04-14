@@ -90,7 +90,7 @@ class TrailListingPresenter: SearchBarPresenter, ObservableObject {
     func transformTrailToTrailListingCard(_ trail: Trail) -> TrailListingCard {
         TrailListingCard(title: trail.title, tags: trail.tags, lowestFeePerPax: trail.lowestFee,
                          tourDescription: trail.description, rating: trail.rating, numOfReviews: trail.numOfReviews,
-                         difficulty: trail.difficulty)
+                         difficulty: trail.difficulty, images: trail.images)
     }
     
     func populateTrailProfilePage(trailTitle: String) {
