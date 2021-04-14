@@ -25,7 +25,7 @@ struct GuidesCardListingsView: View {
                                      width: width / 3,
                                      presenter: presenter)
                 }
-            }
+            }.padding(.top, 5)
         }
     }
 }

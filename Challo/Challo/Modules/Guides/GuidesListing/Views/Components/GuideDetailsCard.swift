@@ -17,72 +17,88 @@ struct GuideDetailsCard: View {
         guide.name
     }
     
-    var trailsDescription: String {
-        convertTrailsToString(trails: guide.trails)
-    }
-    
     var languagesDescription: String? {
         convertStringArrayToString(strings: guide.languages)
     }
     
-    var creditationsDescription: String? {
-        convertStringArrayToString(strings: guide.accreditations)
+    var imageWidth: CGFloat {
+        width * 0.6
+    }
+    
+    var guideLanguages: [String] {
+        guard let guideLanguages = guide.languages else {
+            return []
+        }
+        let splitLanguages = guideLanguages.map { $0.components(separatedBy: "/") }
+        return splitLanguages.flatMap { $0 }
+    }
+    
+    func makeLanguageTag(_ language: String) -> some View {
+        Text(language)
+            .font(.caption2)
+            .padding(8)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.themeTertiary)
+            )
+    }
+    
+    var languages: AnyView {
+        AnyView(
+            VStack {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 5) {
+                    ForEach(guideLanguages.dropLast(guideLanguages.count % 3), id: \.self) { language in
+                        makeLanguageTag(language)
+                    }
+                }
+                LazyHStack {
+                    ForEach(guideLanguages.suffix(guideLanguages.count % 3), id: \.self) { language in
+                        makeLanguageTag(language)
+                    }
+                }
+            }.frame(maxWidth: width * 0.9)
+        )
     }
     
     var body: some View {
         Card {
-            ImageLoader(profileImg: guide.profileImg, defaultImage: "avatar-image")
+            ImageLoader(profileImg: guide.profileImg, width: imageWidth,
+                        height: imageWidth, defaultImage: "avatar-image")
                 .scaledToFit()
                 .cornerRadius(10)
-                .frame(width: width, height: 200)
+                .frame(width: imageWidth, height: imageWidth)
                 .padding(10)
             if let name = nameDescription {
                 Text(name)
                     .bold()
-                    .font(.caption2)
+                    .font(.subheadline)
                     .padding(5)
-                    .frame(height: 5)
             }
-            StarRatingsView(rating: guide.rating)
+            StarRatingsView(rating: guide.rating, maxHeight: 10)
                 .padding(5)
                 .frame(maxWidth: width)
             GuidesCardDescriptionView(title: "About",
                                       description: guide.biography,
                                       width: width)
                 .frame(height: 80)
-            GuidesCardDescriptionView(title: "Trails",
-                                      description: trailsDescription,
-                                      width: width)
-                .frame(height: 35)
             GuidesCardDescriptionView(title: "Languages",
-                                      description: languagesDescription,
-                                      width: width)
-                .frame(height: 35)
-            GuidesCardDescriptionView(title: "Certifications",
-                                      description: creditationsDescription,
-                                      width: width)
-                .frame(height: 80)
-            if let router = presenter.router {
-                router.getGuideProfileDetailsPage(guide: guide)
-                    .frame(maxHeight: 50)
-            }
+                                      width: width,
+                                      content: languages)
+
+            Image(systemName: "ellipsis")
+                .padding()
+                .frame(width: 100, height: 30)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    presenter.isSelectedGuideSheetOpen = true
+                    presenter.selectedGuide = guide
+                }
         }.background(
             RoundedRectangle(cornerRadius: 5)
                 .strokeBorder(Color.gray, lineWidth: 0.5)
                 .background(Color.white)
                 .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 3, y: 3)
         )
-    }
-    
-    private func convertTrailsToString(trails: [Trail]) -> String {
-        var trailsDescription = ""
-        for i in 0..<trails.count {
-            trailsDescription += trails[i].title
-            if i != trails.count - 1 {
-                trailsDescription += ", "
-            }
-        }
-        return trailsDescription
     }
     
     private func convertStringArrayToString(strings: [String]?) -> String? {

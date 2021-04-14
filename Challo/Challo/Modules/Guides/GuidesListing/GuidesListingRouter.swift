@@ -16,12 +16,15 @@ class GuidesListingRouter: RouterProtocol {
     }
     
     func getGuideProfileDetailsPage(guide: Guide) -> some View {
-        NavigationLink(destination: GuideProfilePage(presenter: GuideProfilePresenter(guide: guide,
-                                                                                      reviewAPI: reviewAPI))) {
-            Text("More info")
-                .foregroundColor(Color.white)
+//        NavigationLink(destination: GuideProfilePage(presenter: GuideProfilePresenter(guide: guide,
+//                                                                                      reviewAPI: reviewAPI))) {
+            Image(systemName: "ellipsis")
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 5).fill(Color.themeTertiary))
-        }
+                .frame(width: 100)
+                .onTapGesture { [weak self] in
+                    self?.presenter.isSelectedGuideSheetOpen = true
+                    self?.presenter.selectedGuide = guide
+                }
+//        }
     }
 }

@@ -29,6 +29,12 @@ struct GuidesListingPage: View {
                                            width: geometry.size.width,
                                            presenter: presenter)
                 }.padding(.bottom, 80)
+                .sheet(isPresented: $presenter.isSelectedGuideSheetOpen) {
+                    if let guide = presenter.selectedGuide, let reviewAPI = presenter.router?.reviewAPI {
+                        GuideProfilePage(presenter: GuideProfilePresenter(guide: guide,
+                                                                          reviewAPI: reviewAPI))
+                    }
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }.onAppear {

@@ -13,6 +13,9 @@ class GuidesListingPresenter: SearchBarPresenter {
     var interactor: GuidesListingInteractor!
     var filterTypes = FilterTypes()
     
+    @Published var isSelectedGuideSheetOpen = false
+    @Published var selectedGuide: Guide?
+    
     @Published var isLoading = false
     @Published var isRefreshing = false {
         didSet {
