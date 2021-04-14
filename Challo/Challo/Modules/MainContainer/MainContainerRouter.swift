@@ -61,7 +61,7 @@ class MainContainerRouter: RouterProtocol {
     private func setUpLoginAndProfile(_ bookingRepository: BookingRepositoryProtocol) {
         #if GUIDE
         loginPage = GuideLoginModule(userState: userState).assemble().view
-        profilePage = GuideUpcomingBookingsModule(userState: userState, repository: bookingRepository).assemble().view
+        profilePage = GuideEarningsModule(userState: userState, bookingRepository: bookingRepository).assemble().view
 
         #else
         loginPage = TouristLoginModule(userState: userState).assemble().view
