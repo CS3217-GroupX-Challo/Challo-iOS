@@ -32,9 +32,9 @@ struct ChatDialogListingView: View {
                                 Divider()
                             }
                         }.simultaneousGesture(TapGesture().onEnded {
-                            presenter.onTapDialog(dialogId: dialog.dialogId,
-                                                  chateeProfileImg: dialog.chateeProfileImage)
+                            presenter.onTapDialog(dialog: dialog)
                         })
+                        .padding(.bottom, 50)
                     }
                 }
             }

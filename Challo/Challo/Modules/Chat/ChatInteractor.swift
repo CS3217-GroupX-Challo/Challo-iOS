@@ -142,10 +142,12 @@ extension ChatInteractor: QBChatDelegate {
     
     func chatDidAccidentallyDisconnect() {
         presenter.isChatAvailable = false
+        chatService.isLoggingIn = false
     }
     
     func chatDidDisconnectWithError(_ error: Error?) {
         presenter.isChatAvailable = false
+        chatService.isLoggingIn = false
     }
     
     func chatDidConnect() {

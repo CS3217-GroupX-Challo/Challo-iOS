@@ -17,6 +17,8 @@ struct ChatDialogView: View {
     let unreadMessagesCount: UInt
     let chateeProfileImg: String?
     
+    let profileImgDiameter: CGFloat = 90
+    
     var lastMessageDateString: String {
         guard let lastMessageDate = lastMessageDate else {
             return ""
@@ -26,28 +28,33 @@ struct ChatDialogView: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            ImageLoader(profileImg: chateeProfileImg, width: 80, height: 80, defaultImage: "avatar-image")
-                .frame(width: 80, height: 80, alignment: .center)
+            ImageLoader(profileImg: chateeProfileImg,
+                        width: profileImgDiameter,
+                        height: profileImgDiameter,
+                        defaultImage: "avatar-image")
+                .scaledToFill()
+                .frame(width: profileImgDiameter, height: profileImgDiameter, alignment: .center)
                 .clipShape(Circle())
             VStack(alignment: .leading) {
                 Text(chateeName).bold()
-                    .font(.system(size: 24))
-                Spacer()
+                    .font(.title3)
+                    .padding(.bottom, 10)
                 Text(lastMessageText)
                     .lineLimit(2)
                     .foregroundColor(Color.gray)
-                    .font(.system(size: 18))
+                    .font(.subheadline)
+                Spacer()
             }
             Spacer()
-            VStack {
+            VStack(alignment: .trailing) {
                 Text(lastMessageDateString)
                     .foregroundColor(Color.gray)
-                    .font(.system(size: 18))
+                    .font(.subheadline)
                 if unreadMessagesCount != 0 {
                     Spacer()
                     Text(unreadMessagesCount.description)
-                        .bold()
                         .padding()
+                        .font(.subheadline)
                         .foregroundColor(.white)
                         .background(
                             Circle()

@@ -26,7 +26,10 @@ class QuickBloxChatService: ChatService {
     }
     
     var isLoggingIn: Bool {
-        chatAuthService.isLoggingIn
+        get { chatAuthService.isLoggingIn }
+        set {
+            chatAuthService.isLoggingIn = newValue
+        }
     }
     
     init(chatAuthService: ChatAuthService,
