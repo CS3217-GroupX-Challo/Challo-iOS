@@ -14,44 +14,39 @@ struct TrailBookingPage: View {
     @EnvironmentObject var trailProfilePresenter: TrailProfilePresenter
 
     var body: some View {
-        VStack(spacing: 0) {
-            GeometryReader { geometry in
-                ScrollView(.vertical) {
-                    VStack {
-                        Image.guidesBackground
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: geometry.size.width,
-                                   height: geometry.size.height * (1 / 4.0),
-                                   alignment: .center)
-                        if presenter.isLoading {
+        PageLayout { geometry in
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack {
+                    if presenter.isLoading {
+                        HStack {
+                            Spacer()
                             Loading(isAnimating: .constant(true), style: .large)
-                        } else {
-                            TrailBookingOptions(presenter: presenter,
-                                                width: geometry.size.width,
-                                                height: geometry.size.height * (2 / 3.0))
+                            Spacer()
                         }
+                    } else {
+                        TrailBookingOptions(presenter: presenter,
+                                            width: geometry.size.width,
+                                            height: geometry.size.height * (2 / 3.0))
                     }
-                    Spacer().frame(height: 100)
                 }
-            }
-        }
-        .alert(isPresented: $presenter.isShowingAlert) {
-            Alert(title: Text(presenter.alertTitle),
-                  message: Text(presenter.alertMessage),
-                  dismissButton: Alert.Button.default(
-                    Text("Okay"), action: {
-                        if self.presenter.isSuccessAlert {
-                            self.presentationMode.wrappedValue.dismiss()
+                Spacer().frame(height: 100)
+            }.alert(isPresented: $presenter.isShowingAlert) {
+                Alert(title: Text(presenter.alertTitle),
+                      message: Text(presenter.alertMessage),
+                      dismissButton: Alert.Button.default(
+                        Text("Okay"), action: {
+                            if self.presenter.isSuccessAlert {
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
                         }
-                    }
-                  ))
-        }
-        .onAppear {
-            guard let trail = trailProfilePresenter.currentTrail else {
-                return
+                      ))
             }
-            presenter.populateTrailBookingPage(for: trail)
+            .onAppear {
+                guard let trail = trailProfilePresenter.currentTrail else {
+                    return
+                }
+                presenter.populateTrailBookingPage(for: trail)
+            }
         }
     }
 }
