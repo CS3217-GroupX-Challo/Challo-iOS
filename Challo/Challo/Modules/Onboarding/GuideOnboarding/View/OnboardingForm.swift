@@ -21,6 +21,8 @@ struct OnboardingForm: View {
     var trails: [HashableTrailOption]
     @Binding var chosenTrails: Set<HashableTrailOption>
 
+    @State var chosen = Set<Days>()
+
     var body: some View {
         ScrollView {
             form
@@ -34,7 +36,7 @@ struct OnboardingForm: View {
                              isPasswordField: false)
             dobField.padding()
             languageField.padding()
-            yearsOfExperienceField
+//            yearsOfExperienceField
             RoundedTextField(placeholder: "Hobbies",
                              text: $hobbies,
                              isPasswordField: false)
