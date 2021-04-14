@@ -45,7 +45,7 @@ class MainContainerRouter: RouterProtocol {
             fatalError("Failed to resolve placesAPI in MainContainer")
         }
 
-        setUpLoginAndProfile(bookingRepository)
+        setUpLoginAndProfile(bookingRepository, trailRepository: trailRepository)
         homePage = AnyView(Text("Homepage"))
         trailsPage = TrailListingModule(trailRepository: trailRepository,
                                         guideRepository: guideRepository,
@@ -58,10 +58,11 @@ class MainContainerRouter: RouterProtocol {
         settingsPage = SettingsModule(userState: userState).assemble().view
     }
 
-    private func setUpLoginAndProfile(_ bookingRepository: BookingRepositoryProtocol) {
+    private func setUpLoginAndProfile(_ bookingRepository: BookingRepositoryProtocol,
+                                      trailRepository: TrailRepositoryProtocol) {
         #if GUIDE
         loginPage = GuideLoginModule(userState: userState).assemble().view
-        profilePage = GuideDashboardModule(userState: userState, bookingRepository: bookingRepository).assemble().view
+        profilePage = GuideOnboardingModule(userState: userState, trailRepository: trailRepository).assemble().view
 
         #else
         loginPage = TouristLoginModule(userState: userState).assemble().view

@@ -11,28 +11,28 @@ import SwiftUI
 final class GuideOnboardingModule: ViperModuleProtocol {
 
     let userState: UserStateProtocol
-    let areaRepository: AreaRepositoryProtocol
+    // let areaRepository: AreaRepositoryProtocol
     let trailRepository: TrailRepositoryProtocol
 
     init(userState: UserStateProtocol,
-         areaRepository: AreaRepositoryProtocol,
+         // areaRepository: AreaRepositoryProtocol,
          trailRepository: TrailRepositoryProtocol) {
         self.userState = userState
-        self.areaRepository = areaRepository
+        // self.areaRepository = areaRepository
         self.trailRepository = trailRepository
     }
 
     func assemble() -> (view: AnyView, presenter: GuideOnboardingPresenter) {
         let presenter = GuideOnboardingPresenter(userState: userState)
         let interactor = GuideOnboardingInteractor(userState: userState,
-                                                   areaRepository: areaRepository,
+                                                   // areaRepository: areaRepository,
                                                    trailRepository: trailRepository)
         let router = GuideOnboardingRouter()
         presenter.interactor = interactor
         presenter.router = router
         interactor.presenter = presenter
         router.presenter = presenter
-        let view = AnyView(Text("Placeholder"))
+        let view = AnyView(GuideOnboardingPage(presenter: presenter))
         return (view, presenter)
     }
 

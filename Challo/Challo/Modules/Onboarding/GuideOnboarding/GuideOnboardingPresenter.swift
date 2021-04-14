@@ -19,6 +19,8 @@ class GuideOnboardingPresenter: PresenterProtocol {
         self.userState = userState
     }
 
+    @Published var loaded = false
+
     @Published var nickname = ""
     @Published var dateOfBirth = Date()
     @Published var languages = Set<Languages>()
@@ -79,6 +81,7 @@ class GuideOnboardingPresenter: PresenterProtocol {
     }
 
     func didFetchTrailsAndAreaData(trails: [Trail], area: [Area] = []) {
+        loaded = true
         self.trails = trails
     }
 
