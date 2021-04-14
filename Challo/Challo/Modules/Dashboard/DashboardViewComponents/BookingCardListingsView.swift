@@ -26,11 +26,11 @@ struct BookingCardListingsView: View {
                     .foregroundColor(.themeForeground)
                     .padding()
             } else {
-                LazyVGrid(columns: columns, spacing: 20) {
+                LazyVGrid(columns: columns, spacing: 0) {
                     ForEach(bookings.indices) { index in
                         GeometryReader { geometry in
                             constructBookingCard(booking: bookings[index], width: geometry.size.width * 0.9)
-                        }.frame(minHeight: 450)
+                        }.frame(minHeight: 400)
                     }
                 }.padding()
             }

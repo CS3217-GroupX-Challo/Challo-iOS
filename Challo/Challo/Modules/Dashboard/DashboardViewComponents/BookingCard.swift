@@ -22,6 +22,10 @@ struct BookingCard<Content: View>: View {
         self.width = width
         self.actionIcons = actionIcons()
     }
+    
+    var trailImage: String? {
+        booking.trail.images.isEmpty ? nil : booking.trail.images[0]
+    }
 
     func makeDetail(image: String, label: String? = nil, customLabel: AnyView? = nil) -> some View {
         HStack {
@@ -43,10 +47,8 @@ struct BookingCard<Content: View>: View {
     var body: some View {
         VStack {
             ZStack(alignment: .topTrailing) {
-                Image.mountainBackground
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: width)
+                ImageLoader(profileImg: trailImage, width: width, height: 200, defaultImage: "mountain-background")
+                    .frame(width: width, height: 200)
                     .cornerRadius(10)
                 VStack {
                     NavigationLink(destination: ContactGuidePage(guide: booking.guide).environmentObject(presenter)) {
