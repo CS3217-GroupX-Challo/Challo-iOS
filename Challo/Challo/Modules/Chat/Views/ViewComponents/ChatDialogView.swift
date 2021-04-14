@@ -15,6 +15,7 @@ struct ChatDialogView: View {
     let lastMessageDate: Date?
     let lastMessageText: String
     let unreadMessagesCount: UInt
+    let chateeProfileImg: String?
     
     var lastMessageDateString: String {
         guard let lastMessageDate = lastMessageDate else {
@@ -25,9 +26,8 @@ struct ChatDialogView: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            Image("avatar-image")
-                .resizable()
-                .frame(width: 70, height: 70, alignment: .center)
+            ImageLoader(profileImg: chateeProfileImg, width: 80, height: 80, defaultImage: "avatar-image")
+                .frame(width: 80, height: 80, alignment: .center)
                 .clipShape(Circle())
             VStack(alignment: .leading) {
                 Text(chateeName).bold()

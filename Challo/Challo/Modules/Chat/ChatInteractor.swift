@@ -39,6 +39,10 @@ class ChatInteractor: NSObject, InteractorProtocol {
         chatService.isConnected
     }
     
+    var userProfileImg: String? {
+        userState.profileImg.isEmpty ? nil : userState.profileImg
+    }
+    
     private func setupUserStateHooks() {
         guard let state = userState as? UserState else {
             return

@@ -11,8 +11,9 @@ struct ChatMessageView: View, Hashable {
     let message: String
     let isSentByCurrentUser: Bool
     let isSuccessfullySent: Bool
-    var shouldDisplayAvatar: Bool = false
+    var shouldDisplayProfileImg: Bool = false
     let avatarWidth: CGFloat = 20
+    let profileImg: String?
     
     var backgroundColor: Color {
         isSentByCurrentUser ? Color.themeTertiary : Color(.systemGray2)
@@ -22,9 +23,8 @@ struct ChatMessageView: View, Hashable {
         isSuccessfullySent ? backgroundColor : Color.red
     }
     
-    var avatar: some View {
-        Image("avatar-image")
-            .resizable()
+    var profileImage: some View {
+        ImageLoader(profileImg: profileImg, width: avatarWidth, height: avatarWidth, defaultImage: "avatar-image")
             .frame(width: avatarWidth, height: avatarWidth)
             .clipShape(Circle())
     }
@@ -33,8 +33,8 @@ struct ChatMessageView: View, Hashable {
     func makeMessageSideView(_ condition: Bool) -> some View {
         if condition {
             Spacer()
-        } else if shouldDisplayAvatar {
-            avatar
+        } else if shouldDisplayProfileImg {
+            profileImage
         } else {
             Spacer().frame(maxWidth: avatarWidth)
         }

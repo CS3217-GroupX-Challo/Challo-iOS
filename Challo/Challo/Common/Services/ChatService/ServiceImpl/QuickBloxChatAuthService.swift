@@ -78,7 +78,7 @@ class QuickBloxChatAuthService: ChatAuthService {
 
     }
     
-    private func setUpdateUserParameters(name: String?, email: String?) -> QBUpdateUserParameters {
+    private func setUpdateUserParameters(name: String?, email: String?, profileImg: String?) -> QBUpdateUserParameters {
         let updateUserParameter = QBUpdateUserParameters()
         if name != nil {
             updateUserParameter.fullName = name
@@ -86,15 +86,18 @@ class QuickBloxChatAuthService: ChatAuthService {
         if email != nil {
             updateUserParameter.email = email
         }
+        if profileImg != nil {
+            updateUserParameter.customData = profileImg
+        }
         return updateUserParameter
     }
     
-    func updateUser(name: String, email: String, didUpdateUser: ((Bool) -> Void)?) {
-        guard name != user?.fullName || email != user?.email else {
+    func updateUser(name: String, email: String, profileImg: String?, didUpdateUser: ((Bool) -> Void)?) {
+        guard name != user?.fullName || email != user?.email || profileImg != user?.customData else {
             return
         }
         
-        let updateUserParameter = setUpdateUserParameters(name: name, email: email)
+        let updateUserParameter = setUpdateUserParameters(name: name, email: email, profileImg: profileImg)
 
         QBRequest.updateCurrentUser(updateUserParameter, successBlock: {_, _ in
             didUpdateUser?(true)

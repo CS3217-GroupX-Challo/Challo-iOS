@@ -18,6 +18,7 @@ class ChatPresenter: SearchBarPresenter, ObservableObject {
     
     @Published var messages: [ChatMessage] = []
     @Published var currentOpenDialogId: String?
+    @Published var currentOpenChateeProfileImg: String?
     @Published var dialogs: [ChatDialog] = []
     
     @Published var messageText: String = ""
@@ -51,9 +52,10 @@ class ChatPresenter: SearchBarPresenter, ObservableObject {
         dialog.resetUnreadMessagesCount()
     }
     
-    func onTapDialog(dialogId: String) {
+    func onTapDialog(dialogId: String, chateeProfileImg: String?) {
         interactor.getDialogMessages(dialogId: dialogId)
         currentOpenDialogId = dialogId
+        currentOpenChateeProfileImg = chateeProfileImg
     }
     
     func onTapMessageSend() {
@@ -95,7 +97,10 @@ extension ChatPresenter {
         return ChatMessageView(message: message.message,
                                isSentByCurrentUser: message.isSentByCurrentUser,
                                isSuccessfullySent: message.isSuccessfullySent,
-                               shouldDisplayAvatar: shouldDisplayAvatar || index == messages.count - 1)
+                               shouldDisplayProfileImg: shouldDisplayAvatar || index == messages.count - 1,
+                               profileImg: message.isSentByCurrentUser
+                                ? interactor.userProfileImg
+                                : currentOpenChateeProfileImg)
     }
     
     private func transformPrevMessageViewToDisplayAvatar(messagesView: inout [AnyView], currentIndex: Int) {
