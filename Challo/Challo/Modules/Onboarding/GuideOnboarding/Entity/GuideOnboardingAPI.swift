@@ -18,9 +18,12 @@ class GuideOnboardingAPI: OnboardingAPI {
         self.userId = userState.userId
     }
 
-    func updateGuideParticulars(details: GuideOnboardingDetails) {
+    func updateGuideParticulars(details: GuideOnboardingDetails, responseHandler: @escaping (Error?) -> Void) {
+        guard UUID(uuidString: userId) != nil else {
+            fatalError("User should have been logged in with valid UUID already")
+        }
         let body = details.convertToGuideDetailsJSON(areaParser: areaParser)
-        updateParticulars(uuid: userId, body: body)
+        updateParticulars(uuid: userId, body: body, responseHandler: responseHandler)
     }
 
 }

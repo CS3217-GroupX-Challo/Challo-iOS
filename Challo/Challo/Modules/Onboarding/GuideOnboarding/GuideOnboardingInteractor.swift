@@ -35,12 +35,14 @@ class GuideOnboardingInteractor: InteractorProtocol {
         self.onboardingAPI = GuideOnboardingAPI(userState: userState)
     }
 
-    private(set) var trails = [Trail]()
-
-    private(set) var areas = [Area]()
-
     func submitGuideDetails(details: GuideOnboardingDetails) {
-        onboardingAPI.updateGuideParticulars(details: details)
+        onboardingAPI.updateGuideParticulars(details: details) { [weak self] error in
+            if error == nil {
+                self?.presenter.showSubmissionResult(success: true)
+            } else {
+                self?.presenter.showSubmissionResult(success: false)
+            }
+        }
     }
 
     private func updateTrails(details: GuideOnboardingDetails) {
@@ -59,11 +61,13 @@ class GuideOnboardingInteractor: InteractorProtocol {
     }
 
     func fetchTrailsAndAreas() {
+        /*
         areaRepository.fetchAreasAndRefresh { [weak self] areas in
             self?.areas = areas
         }
+         */
         trailRepository.fetchTrailsAndRefresh { [weak self] trails in
-            self?.trails = trails
+            self?.presenter.didFetchTrailsAndAreaData(trails: trails, area: [])
         }
     }
     

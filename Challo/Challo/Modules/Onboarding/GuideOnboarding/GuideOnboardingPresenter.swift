@@ -21,39 +21,76 @@ class GuideOnboardingPresenter: PresenterProtocol {
 
     @Published var nickname = ""
     @Published var dateOfBirth = Date()
-    @Published var languages = [String]()
-    @Published var yearsOfExperience = 0
+    @Published var languages = Set<Languages>()
+    @Published var yearsOfExperience = "0"
     @Published var hobbies = ""
     @Published var accreditations = [String]()
-    @Published var area: Area?
     @Published var biography = ""
+    @Published var daysAvailable = Set<Days>()
+
     @Published var trails = [Trail]()
-    @Published var days = [Days]()
+    @Published var chosenTrails = Set<HashableTrailOption>()
+
+    @Published var isShowingAlert = false
+    @Published var alertTitle = ""
+    @Published var alertMessage = ""
+
+    var allNecessaryFieldsFilled: Bool {
+        !nickname.isEmpty
+            && !languages.isEmpty
+            && !yearsOfExperience.isEmpty
+            && !hobbies.isEmpty
+            && !biography.isEmpty
+            && !daysAvailable.isEmpty
+            && !chosenTrails.isEmpty
+    }
 
     func submitDetails() {
-        guard let area = area else {
-            fatalError("Area should not be nil as of submission")
+        guard allNecessaryFieldsFilled else {
+            showSubmissionResult(success: false)
+            return
         }
+
         guard let userId = UUID(uuidString: userState.userId) else {
             fatalError("User should have been logged in by now")
+        }
+        guard let yearsOfExperience = Int(yearsOfExperience) else {
+            fatalError("Only numerical answers should have been accepted")
+        }
+        let chosenTrails = self.chosenTrails.compactMap { choice in
+            trails.first(where: { $0.trailId == choice.id })
         }
 
         let details = GuideOnboardingDetails(userId: userId,
                                              nickname: nickname,
                                              dateOfBirth: dateOfBirth,
-                                             languages: languages,
+                                             languages: Array(languages),
                                              yearsOfExperience: yearsOfExperience,
                                              hobbies: hobbies,
                                              accreditations: accreditations,
-                                             area: area,
                                              biography: biography,
-                                             trails: trails,
-                                             daysAvailable: days)
+                                             trails: chosenTrails,
+                                             daysAvailable: Array(daysAvailable))
         interactor.submitGuideDetails(details: details)
     }
 
+    func loadTrailAndAreaData() {
+        interactor.fetchTrailsAndAreas()
+    }
+
+    func didFetchTrailsAndAreaData(trails: [Trail], area: [Area] = []) {
+        self.trails = trails
+    }
+
     func showSubmissionResult(success: Bool) {
-        
+        isShowingAlert = true
+        if success {
+            alertTitle = "Success!"
+            alertMessage = "Details successfully saved, welcome aboard!"
+        } else {
+            alertTitle = "Uh oh!"
+            alertMessage = "Something went wrong, have you filled all of the details?"
+        }
     }
 
 }

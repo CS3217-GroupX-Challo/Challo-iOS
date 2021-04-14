@@ -14,20 +14,18 @@ protocol OnboardingAPI: AnyObject {
     var url: String { get }
     var userId: String { get }
 
-    func updateParticulars(uuid: String, body: JSON)
+    func updateParticulars(uuid: String, body: JSON, responseHandler: @escaping (Error?) -> Void)
 
 }
 
 extension OnboardingAPI {
 
-    func updateParticulars(uuid: String, body: JSON) {
+    func updateParticulars(uuid: String, body: JSON, responseHandler: @escaping (Error?) -> Void) {
         let guideUrl = url + userId
         networkManager.post(url: guideUrl,
                             headers: NetworkManager.HEADER(),
                             body: body) { _, error in
-            if let error = error {
-                ChalloLogger.logger.log("Error updating user particulars: \(error as NSObject)")
-            }
+            responseHandler(error)
         }
     }
 

@@ -16,6 +16,10 @@ struct OnboardingForm: View {
     @Binding var yearsOfExperience: String
     @Binding var hobbies: String
     @Binding var daysAvailable: Set<Days>
+    @Binding var biography: String
+
+    var trails: [HashableTrailOption]
+    @Binding var chosenTrails: Set<HashableTrailOption>
 
     var body: some View {
         ScrollView {
@@ -24,7 +28,7 @@ struct OnboardingForm: View {
     }
 
     var form: some View {
-        VStack {
+        VStack(spacing: 0) {
             RoundedTextField(placeholder: "Nickname",
                              text: $nickname,
                              isPasswordField: false)
@@ -35,6 +39,9 @@ struct OnboardingForm: View {
                              text: $hobbies,
                              isPasswordField: false)
             daysAvailableField.padding()
+            biographyField.padding()
+                .frame(height: 200)
+            trailsField.padding()
         }
     }
 
@@ -78,17 +85,24 @@ struct OnboardingForm: View {
                             optionToString: { $0.rawValue },
                             selected: $daysAvailable)
     }
-}
 
-struct OnboardingForm_Previews: PreviewProvider {
-    static var previews: some View {
-        OnboardingForm(
-            nickname: .constant("Nickname"),
-            date: .constant(Date()),
-            languages: .constant(Set()),
-            yearsOfExperience: .constant("0"),
-            hobbies: .constant("Hobbies"),
-            daysAvailable: .constant(Set())
-        )
+    var biographyField: some View {
+        VStack(alignment: .leading) {
+            Text("Biography:")
+                .padding(.leading)
+            TextEditor(text: $biography)
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15.0)
+                        .stroke(Color.themeTertiary, lineWidth: 2.0)
+            )
+        }
+    }
+
+    var trailsField: some View {
+        MultiSelectorPicker(label: Text("Choose your trails"),
+                            options: trails,
+                            optionToString: { $0.name },
+                            selected: $chosenTrails)
     }
 }
