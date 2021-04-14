@@ -12,6 +12,12 @@ struct TrailProfileStickyBar: View {
 
     var body: some View {
         HStack {
+            VStack(alignment: .leading, spacing: 3) {
+                UnwrapView(presenter.currentTrail) { trail in
+                    Text("\(trail.lowestFee)").bold() + Text(" Rp / pax")
+                    StarRatingsView(rating: trail.rating, numOfReviews: trail.numOfReviews, maxHeight: 12)
+                }
+            }
             Spacer()
             NavigationLink(destination: presenter.trailBookingPage) {
                 Text("Book This Trail")
@@ -30,5 +36,10 @@ struct TrailProfileStickyBar: View {
                 presenter.onTapBookTrailButton()
             }
         }.padding(EdgeInsets(top: 15, leading: 50, bottom: 15, trailing: 50))
+        .background(
+            Rectangle()
+                .fill(Color.white)
+                .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: -5)
+        )
     }
 }

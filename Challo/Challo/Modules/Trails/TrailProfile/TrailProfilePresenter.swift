@@ -29,6 +29,13 @@ class TrailProfilePresenter: PresenterProtocol, ObservableObject {
     var reviews: [Review] = []
     var currentTrail: Trail?
     
+    var currentTrailImage: String? {
+        guard let trail = currentTrail, !trail.images.isEmpty else {
+            return nil
+        }
+        return trail.images[0]
+    }
+    
     func didGetReviewsForTrail(reviews: [Review]) {
         self.reviews = reviews
         isLoadingReviews = false

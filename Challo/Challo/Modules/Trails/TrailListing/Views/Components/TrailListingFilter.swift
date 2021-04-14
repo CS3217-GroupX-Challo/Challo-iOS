@@ -28,11 +28,8 @@ struct TrailListingFilter: View {
     private func makeDifficultyFilter(difficultyLabel: String, difficultyColor: Color,
                                       isChecked: Binding<Bool>) -> some View {
         FilterViewUtility.makeCheckBoxFilter(isChecked: isChecked) {
-            HStack {
-                Text(difficultyLabel)
-                    .foregroundColor(difficultyColor)
-                Text("Trails")
-            }
+            Text(difficultyLabel)
+                .foregroundColor(difficultyColor)
         }
     }
     

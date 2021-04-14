@@ -15,8 +15,10 @@ struct TrailProfilePage: View {
             GeometryReader { geometry in
                 ScrollView(.vertical) {
                     VStack {
-                        Image.guidesBackground
-                            .resizable()
+                        ImageLoader(profileImg: presenter.currentTrailImage,
+                                    width: geometry.size.width,
+                                    height: geometry.size.height / 3.0,
+                                    defaultImage: "guides-background")
                             .scaledToFill()
                             .frame(width: geometry.size.width,
                                    height: geometry.size.height / 3.0,
@@ -28,7 +30,7 @@ struct TrailProfilePage: View {
                 }
             }
             TrailProfileStickyBar()
-                .innerShadow(color: .gray, radius: 0.03, exclude: [.bottom, .leading, .trailing])
+//                .innerShadow(color: .gray, radius: 0.5, exclude: [.bottom, .leading, .trailing])
                 .frame(maxHeight: 100)
         }
         .edgesIgnoringSafeArea(.all)

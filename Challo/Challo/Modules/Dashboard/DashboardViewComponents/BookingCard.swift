@@ -53,7 +53,8 @@ struct BookingCard<Content: View>: View {
                 VStack {
                     NavigationLink(destination: ContactGuidePage(guide: booking.guide).environmentObject(presenter)) {
                         Image(systemName: "ellipsis.bubble.fill")
-                            .foregroundColor(Color.black.opacity(0.8))
+                            .foregroundColor(Color.pink)
+                            .brightness(-0.05)
                             .padding(10)
                     }
                     actionIcons
@@ -69,10 +70,7 @@ struct BookingCard<Content: View>: View {
                 makeDetail(image: "calendar", label: CustomDateFormatter.displayFriendlyDate(booking.date))
                 makeDetail(image: "person.crop.circle", label: booking.guide.name ?? "")
                 makeDetail(image: "dollarsign.square", customLabel: AnyView(
-                    HStack(spacing: 0) {
-                        Text("\(Int(booking.fee))").bold()
-                        Text(" / pax")
-                    }
+                    Text("\(Int(booking.fee))").bold() + Text(" Rp / pax")
                 ))
             }.padding()
         }.padding()

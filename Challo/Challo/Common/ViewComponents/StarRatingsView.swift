@@ -30,7 +30,9 @@ struct StarRatingsView: View {
                 }
             }
             if let unwrappedNumOfReviews = numOfReviews {
-                Text("(\(unwrappedNumOfReviews) Reviews)").foregroundColor(.gray)
+                Text("(\(unwrappedNumOfReviews) Reviews)")
+                    .foregroundColor(.gray)
+                    .font(.system(size: maxHeight))
             }
         }
     }
