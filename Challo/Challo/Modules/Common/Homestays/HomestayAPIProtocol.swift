@@ -8,10 +8,8 @@
 import Foundation
 
 protocol HomestayAPIProtocol {
-    func getHomestays(callback: @escaping ([Homestay]) -> Void,
-                      url: String)
+    func getHomestays(callback: @escaping ([Homestay]) -> Void)
 
     func getHomestay(homestayId: UUID,
-                     callback: @escaping (Homestay?) -> Void,
-                     url: String)
+                     callback: @escaping (Homestay?) -> Void)
 }

@@ -14,14 +14,15 @@ class HomestayAPI: HomestayAPIProtocol {
     private let homestayParser: HomestayAPIParser
     private let networkManager: NetworkManager
 
+    private let baseUrl = "/homestay"
+
     init(homestayParser: HomestayAPIParser, networkManager: NetworkManager) {
         self.homestayParser = homestayParser
         self.networkManager = networkManager
     }
 
-    func getHomestays(callback: @escaping ([Homestay]) -> Void,
-                      url: String = "/homestay") {
-        networkManager.get(url: url,
+    func getHomestays(callback: @escaping ([Homestay]) -> Void) {
+        networkManager.get(url: baseUrl,
                            headers: [String: String]()) { [weak self] response, error in
             guard let self = self else {
                 return
@@ -38,9 +39,8 @@ class HomestayAPI: HomestayAPIProtocol {
     }
 
     func getHomestay(homestayId: UUID,
-                     callback: @escaping (Homestay?) -> Void,
-                     url: String = "/homestay") {
-        networkManager.get(url: "\(url)/\(homestayId.uuidString)",
+                     callback: @escaping (Homestay?) -> Void) {
+        networkManager.get(url: "\(baseUrl)/\(homestayId.uuidString)",
                            headers: [String: String]()) { [weak self] response, error in
             guard let self = self else {
                 return
