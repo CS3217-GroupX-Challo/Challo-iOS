@@ -6,7 +6,7 @@
 //
 
 /// Represents the capacity of a homestay
-struct HomestayCapacity {
+struct HomestayCapacity: Equatable {
     /// number of toilets in the homestay
     let toilets: Int
 

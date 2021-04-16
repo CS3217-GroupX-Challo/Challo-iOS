@@ -6,7 +6,7 @@
 //
 
 /// Represents a bedroom in a homestay
-struct Bedroom {
+struct Bedroom: Equatable {
     let bed: Bed
 
     /// Number of beds in the bedroom

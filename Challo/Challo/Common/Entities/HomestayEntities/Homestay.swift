@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 
 /// Representation of a Booking
-struct Homestay {
+struct Homestay: Equatable {
     let homestayId: UUID
     
     let title: String

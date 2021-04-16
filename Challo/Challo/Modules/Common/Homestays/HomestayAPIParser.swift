@@ -30,7 +30,7 @@ class HomestayAPIParser: APIParser {
             return nil
         }
         
-        let images = json[Key.images] as? [String] ?? []
+        let images = json[Key.imagesPath] as? [String] ?? []
         let description = json[Key.description] as? String
         let fee = Double(convertJSONIntValueToInt(json[Key.fee]))
         let rating = convertJSONDoubleValueToDouble(json[Key.rating])
