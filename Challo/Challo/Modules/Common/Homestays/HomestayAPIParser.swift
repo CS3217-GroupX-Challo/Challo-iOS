@@ -12,6 +12,15 @@ class HomestayAPIParser: APIParser {
 
     typealias JSON = NetworkManager.JSON
 
+    func parseHomestays(response: JSON) -> [Homestay] {
+        guard let data = response["data"],
+              let homestayInfo = data as? [JSON] else {
+            return []
+        }
+        
+        return homestayInfo.compactMap { convertJSONToHomestay(json: $0) }
+    }
+
     func convertJSONToHomestay(json: JSON) -> Homestay? {
         guard let idString = json[Key.homestayId] as? String,
               let homestayId = UUID(uuidString: idString),
