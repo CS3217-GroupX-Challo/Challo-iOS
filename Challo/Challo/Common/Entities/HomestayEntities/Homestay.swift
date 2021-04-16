@@ -27,7 +27,7 @@ struct Homestay {
 
     let capacity: HomestayCapacity
 
-    let amenities: [Amenities]
+    let amenities: [Amenity]
 
     let guests: Int
 }
