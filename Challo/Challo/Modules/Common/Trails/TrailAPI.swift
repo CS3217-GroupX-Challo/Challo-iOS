@@ -37,9 +37,11 @@ class TrailAPI: TrailAPIProtocol {
         networkManager.get(url: "/trail",
                            headers: [String: String]()) { [weak self] response, error in
             if error != nil {
+                callback([])
                 return
             }
             guard let trails = self?.parser.parseTrail(response: response) else {
+                callback([])
                 return
             }
             
