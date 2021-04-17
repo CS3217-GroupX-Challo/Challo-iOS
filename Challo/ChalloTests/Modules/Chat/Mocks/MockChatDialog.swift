@@ -8,7 +8,7 @@
 @testable import Challo
 import Foundation
 
-class MockChatDialog: ChatDialog {
+class MockChatDialog: ChatDialog {    
     let dialogId: String
     
     var unreadMessagesCount: UInt = 1
@@ -18,6 +18,8 @@ class MockChatDialog: ChatDialog {
     let chateeName: String?
     
     let chateeId: UInt
+    
+    let chateeProfileImage: String? = nil
     
     let lastMessageDate: Date?
     

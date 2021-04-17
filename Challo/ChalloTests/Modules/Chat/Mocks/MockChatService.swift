@@ -16,7 +16,10 @@ class MockChatService: ChatService {
     let isConnecting: Bool = false
     
     var isLoggingIn: Bool {
-        chatAuthService.isLoggingIn
+        get { chatAuthService.isLoggingIn }
+        set {
+            chatAuthService.isLoggingIn = newValue
+        }
     }
     
     init() {
