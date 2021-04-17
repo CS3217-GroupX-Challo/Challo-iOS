@@ -19,13 +19,13 @@ class MockMarkerRepository: MapMarkerRepositoryInterface {
 
     var allMarkers = [MapTestConstants.markerOne, MapTestConstants.markerTwo, MapTestConstants.markerThree]
 
-    func getAllMapMarkers() -> [MapMarker] {
-        allMarkers
+    func getAllMarkers() -> [MarkerPersistenceObject] {
+        allMarkers.map { marker in
+            let convertor = MapModelConvertor()
+            return convertor.convertMapMarkerToMarkerPersistenceObject(mapMarker: marker)
+        }
     }
 
-    func saveMapMarkers(mapMarkers: [MapMarker]) {
-        mapMarkers.forEach {
-            allMarkers.append($0)
-        }
+    func saveMarkers(markerObjects: [MarkerPersistenceObject]) {
     }
 }

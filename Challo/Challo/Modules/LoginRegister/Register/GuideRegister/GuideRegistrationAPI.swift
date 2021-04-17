@@ -8,10 +8,13 @@
 class GuideRegistrationAPI: RegisterAPI {
     let networkManager = APINetwork.getNetworkManager()
     let guideParser = GuideAPIParser()
-    let userAPI = UserAPI(userParser: UserAPIParser(),
-                          networkManager: APINetwork.getNetworkManager())
+    let userAPI: UserAPIProtocol
     let userTypeUrl = "/guide"
 
+    init(userAPI: UserAPIProtocol) {
+        self.userAPI = userAPI
+    }
+    
     func createUserTypeJSON(details: RegistrationDetails, certificate: UserCertificate?) -> JSON? {
         guard let userId = certificate?.userId else {
             return nil

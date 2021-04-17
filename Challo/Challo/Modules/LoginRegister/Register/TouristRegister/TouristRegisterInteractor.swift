@@ -5,9 +5,9 @@
 //  Created by Tan Le Yang on 17/3/21.
 //
 
-class TouristRegisterInteractor: RegisterInteractor, InteractorProtocol {
+class TouristRegisterInteractor: RegisterInteractor {
 
-    weak var presenter: RegisterPresenter!
+    weak var presenter: TouristRegisterPresenter!
     var certificateManager: CertificateManager
 
     private let registerAPI: RegisterAPI
@@ -15,10 +15,6 @@ class TouristRegisterInteractor: RegisterInteractor, InteractorProtocol {
     init(registerAPI: RegisterAPI, certificateManager: CertificateManager) {
         self.registerAPI = registerAPI
         self.certificateManager = certificateManager
-    }
-
-    convenience init(certificateManager: CertificateManager) {
-        self.init(registerAPI: TouristRegistrationAPI(), certificateManager: certificateManager)
     }
 
     func register(details: RegistrationDetails) {

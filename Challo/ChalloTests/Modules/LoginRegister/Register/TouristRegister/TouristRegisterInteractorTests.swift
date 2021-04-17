@@ -11,7 +11,7 @@ import XCTest
 class TouristRegisterInteractorTests: XCTestCase {
 
     private var interactor: TouristRegisterInteractor!
-    private var presenter: RegisterPresenter!
+    private var presenter: TouristRegisterPresenter!
     private var registerAPI: MockRegisterAPI!
     private var mockCertificateManager: MockCertificateManager!
     private var userState: MockUserState!
@@ -23,7 +23,7 @@ class TouristRegisterInteractorTests: XCTestCase {
         self.registerAPI = MockRegisterAPI()
         self.interactor = TouristRegisterInteractor(registerAPI: self.registerAPI,
                                                     certificateManager: mockCertificateManager)
-        self.presenter = RegisterPresenterImplementation()
+        self.presenter = TouristRegisterPresenter()
         self.interactor.presenter = self.presenter
         self.interactor.certificateManager = mockCertificateManager
     }

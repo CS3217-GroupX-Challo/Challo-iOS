@@ -23,7 +23,8 @@ class MapItineraryInteractorTests: XCTestCase {
     private func setUpHelper() {
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: MockRouteRepository(),
-                             mapItineraryRepository: MapItineraryRepository())
+                             mapItineraryRepository: MapItineraryRepository(),
+                             convertor: MapModelConvertor())
         let interactor = MapItineraryInteractor(mapItinerary: Self.itinerary, mapStore: store)
         self.interactor = interactor
         self.mapStore = store

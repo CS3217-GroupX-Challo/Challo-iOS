@@ -12,7 +12,9 @@ import SwiftUI
 class GuideRegisterModuleTests: XCTestCase {
     func testAssemble_returnsPresenterWithCorrectPropertiesAndView() {
         let userState = MockUserState()
-        let (_, presenter) = GuideRegisterModule(userState: userState).assemble()
+        let (_, presenter) = GuideRegisterModule(userState: userState,
+                                                 loginAPI: MockLoginAPI(),
+                                                 registerAPI: MockRegisterAPI()).assemble()
         XCTAssertNotNil(presenter.router, "Presenter properties not assigned")
         XCTAssertNotNil(presenter.interactor, "Presenter properties not assigned")
     }

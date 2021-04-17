@@ -77,7 +77,7 @@ class ReviewAPI: ReviewAPIProtocol {
                              trail: Trail,
                              tourist: Tourist,
                              callback: @escaping (Review?) -> Void) {
-        let url = "/url/?bookingId=\(bookingId.uuid)"
+        let url = "/review?bookingId=\(bookingId.uuidString)"
         networkManager.get(url: url, headers: [String: String]()) { response, error in
             if error != nil {
                 callback(nil)
@@ -96,6 +96,25 @@ class ReviewAPI: ReviewAPIProtocol {
                                 tourist: tourist)
             
             callback(review)
+        }
+    }
+}
+
+// MARK: Submit Reviews
+extension ReviewAPI {
+
+    func submitNewReview(review: NewReview, callback: @escaping ((Bool, Error?) -> Void)) {
+        let url = "/review"
+        let json = reviewParser.createNewReviewJSON(review: review)
+        networkManager.post(url: url,
+                            headers: [String: String](),
+                            body: json) { _, error in
+            if error != nil {
+                callback(false, error)
+                return
+            }
+            
+            callback(true, nil)
         }
     }
 }

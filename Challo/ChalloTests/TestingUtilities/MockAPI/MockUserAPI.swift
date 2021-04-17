@@ -12,7 +12,7 @@ class MockUserAPI: UserAPI {
     var shouldSucceed = true
 
     init() {
-        super.init(userParser: MockUserAPIParser(),
+        super.init(userParser: MockUserAPIParser(userState: MockUserState()),
                    networkManager: MockNetworkManager(json: JSON()))
     }
 

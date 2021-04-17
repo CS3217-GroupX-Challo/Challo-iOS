@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-protocol LoginRouter {
+protocol LoginRouter: RouterProtocol {
 
     func getRegistrationPage() -> AnyView
 }

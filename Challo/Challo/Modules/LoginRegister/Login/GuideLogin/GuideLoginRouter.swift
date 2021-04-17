@@ -7,16 +7,20 @@
 
 import SwiftUI
 
-class GuideLoginRouter: LoginRouter, RouterProtocol {
+class GuideLoginRouter: LoginRouter {
 
-    weak var presenter: LoginPresenter!
+    weak var presenter: GuideLoginPresenter!
     let userState: UserStateProtocol
-
-    init(userState: UserStateProtocol) {
+    let loginAPI: LoginAPI
+    let registerAPI: RegisterAPI
+    
+    init(userState: UserStateProtocol, loginAPI: LoginAPI, registerAPI: RegisterAPI) {
         self.userState = userState
+        self.loginAPI = loginAPI
+        self.registerAPI = registerAPI
     }
 
     func getRegistrationPage() -> AnyView {
-        GuideRegisterModule(userState: userState).assemble().view
+        GuideRegisterModule(userState: userState, loginAPI: loginAPI, registerAPI: registerAPI).assemble().view
     }
 }

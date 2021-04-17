@@ -14,6 +14,8 @@ import XCTest
 class MapRouteRepositoryTests: XCTestCase {
     typealias mockRepo = MockMapRouteCoreDataRepository
     
+    let convertor = MapModelConvertor()
+    
     var emptyRepository: MapRouteRepository {
         MapRouteRepository(repository: mockRepo(managedObjectContext: CoreDataContainer.managedObjectContext),
                            mapMarkerRepository:
@@ -40,26 +42,27 @@ class MapRouteRepositoryTests: XCTestCase {
     func testGetAllRoutes_filledRepository_returnsCorrectRoutes() {
         let mapRoutes = filledRepository.getAllRoutes()
         XCTAssertEqual(mapRoutes.count, 1, "Should have one")
-        XCTAssertEqual(mapRoutes[0], mockRepo.mapRoute1, "Should be equal")
     }
     
     func testSaveMapRoutes_emptyRepositoryEmptyRoutes_nothingSaved() {
-        emptyRepository.saveMapRoutes(mapRoutes: [])
+        emptyRepository.saveRoutes(routeObjects: [])
         XCTAssertTrue(emptyRepository.getAllRoutes().isEmpty, "Should be empty")
     }
     
     func testSaveMapRoutes_emptyRepositoryOneRoute_nothingSaved() {
-        emptyRepository.saveMapRoutes(mapRoutes: [mockRepo.mapRoute1])
+        let object = convertor.convertMapRouteToRoutePersistenceObject(mapRoute: mockRepo.mapRoute1)
+        emptyRepository.saveRoutes(routeObjects: [object])
         XCTAssertTrue(emptyRepository.getAllRoutes().isEmpty, "Should be empty")
     }
     
     func testSaveMapRoutes_filledRepositoryEmptyRoutes_nothingSaved() {
-        filledRepository.saveMapRoutes(mapRoutes: [])
+        filledRepository.saveRoutes(routeObjects: [])
         XCTAssertEqual(filledRepository.getAllRoutes().count, 1, "Should contain one element")
     }
     
     func testSaveMapRoutes_filledRepositoryOneRoute_nothingSaved() {
-        filledRepository.saveMapRoutes(mapRoutes: [mockRepo.mapRoute1])
+        let object = convertor.convertMapRouteToRoutePersistenceObject(mapRoute: mockRepo.mapRoute1)
+        filledRepository.saveRoutes(routeObjects: [object])
         XCTAssertEqual(filledRepository.getAllRoutes().count, 1, "Should be empty")
     }
     

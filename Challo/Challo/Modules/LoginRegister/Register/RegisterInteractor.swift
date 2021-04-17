@@ -1,10 +1,10 @@
 import Combine
 import Foundation
 
-protocol RegisterInteractor: AnyObject {
+protocol RegisterInteractor: InteractorProtocol where Presenter: RegisterPresenter {
 
     var certificateManager: CertificateManager { get }
-    var presenter: RegisterPresenter! { get set }
+    var presenter: Presenter! { get set }
 
     func register(details: RegistrationDetails)
 }

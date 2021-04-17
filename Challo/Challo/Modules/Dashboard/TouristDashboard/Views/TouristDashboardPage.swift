@@ -10,46 +10,62 @@ import SwiftUI
 struct TouristDashboardPage: View {
     
     @EnvironmentObject var presenter: TouristDashboardPresenter
+    @State private var selectedIdx = 0
 
-    var body: some View {
+    @ViewBuilder
+    func makeContent(_ geometry: GeometryProxy) -> some View {
         VStack {
-            GeometryReader { geometry in
-                VStack {
-                    HStack {
-                        Header(title: presenter.name,
-                               subtitle: "Ready to begin your journey with us?",
-                               image: Image.mountainBackground)
-                            .frame(width: geometry.size.width,
-                                   height: geometry.size.height * 0.15,
-                                   alignment: .center)
-                        Spacer()
-                    }
-
-                    Image("avatar-image")
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(Circle())
-                        .frame(height: geometry.size.height * 0.10)
-                        .padding()
-
-                    Text("Upcoming bookings")
-                        .font(.title2)
-                        .bold()
-                    
-                    if presenter.isLoading {
-                        Loading(isAnimating: .constant(true), style: .large)
-                    } else {
-                        BookingCardListingsView(
-                            width: geometry.size.width,
-                            emptyListMessage: "You don't have any upcoming trips",
-                            bookings: $presenter.upcomingBookings)
+            
+            TabSelectionView(selectedIndex: $presenter.selectedIdx,
+                             options: presenter.tabTitles)
+            
+            if presenter.isLoading {
+                Loading(isAnimating: .constant(true), style: .large)
+            } else {
+                if presenter.selectedTab == .upcomingBookings {
+                    BookingCardListingsView(
+                        width: geometry.size.width,
+                        emptyListMessage: "You don't have any upcoming trips",
+                        bookings: $presenter.upcomingBookings)
+                }
+                
+                if presenter.selectedTab == .pastBookings {
+                    BookingCardListingsView(
+                        width: geometry.size.width,
+                        emptyListMessage: "You don't have any past trips",
+                        bookings: $presenter.pastBookings) { booking, width in
+                        AnyView(PastBookingCard(booking: booking, width: width))
                     }
                 }
             }
         }
-        .padding(.bottom, 80)
-        .edgesIgnoringSafeArea(.all)
-        .onAppear {
+    }
+    
+    var header: some View {
+        HStack {
+            Spacer()
+            VStack {
+                Text(presenter.name)
+                    .font(.largeTitle)
+                    .foregroundColor(.white)
+                NavigationLink(destination: UpdateProfilePage().environmentObject(presenter)) {
+                    Text("Edit Profile")
+                        .font(.headline)
+                }
+            }
+            DashboardProfileImage()
+                .frame(height: 130)
+                .padding()
+                .shadow(color: .black, radius: 4, x: 3, y: 4)
+        }.padding(.horizontal, 30)
+    }
+    
+    var body: some View {
+        PageLayout(headerContent: AnyView(header)) { geometry in
+            makeContent(geometry)
+                .frame(maxWidth: .infinity)
+                .padding(.top, 50)
+        }.onAppear {
             presenter.refresh()
         }
     }

@@ -19,13 +19,13 @@ class MockRouteRepository: MapRouteRepositoryInterface {
     
     var allRoutes = [MapTestConstants.routeOne, MapTestConstants.routeTwo]
 
-    func getAllRoutes() -> [MapRoute] {
-        allRoutes
+    func getAllRoutes() -> [RoutePersistenceObject] {
+        allRoutes.map { route in
+            let convertor = MapModelConvertor()
+            return convertor.convertMapRouteToRoutePersistenceObject(mapRoute: route)
+        }
     }
     
-    func saveMapRoutes(mapRoutes: [MapRoute]) {
-        mapRoutes.forEach {
-            allRoutes.append($0)
-        }
+    func saveRoutes(routeObjects: [RoutePersistenceObject]) {
     }
 }

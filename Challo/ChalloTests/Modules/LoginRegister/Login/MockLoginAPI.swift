@@ -11,7 +11,7 @@ class MockLoginAPI: LoginAPI {
 
     typealias JSON = NetworkManager.JSON
     var networkManager: NetworkManager = MockNetworkManager(json: JSON())
-    var userAPI: UserAPI = MockUserAPI()
+    var userAPI: UserAPIProtocol = MockUserAPI()
     var userTypeUrl = "/"
 
     let testEmail = "example@mail.com"
@@ -21,6 +21,7 @@ class MockLoginAPI: LoginAPI {
 
     let certificate = UserCertificate(name: "example",
                                       email: "example@mail.com",
+                                      profileImg: "",
                                       token: "token",
                                       userId: "123")
 

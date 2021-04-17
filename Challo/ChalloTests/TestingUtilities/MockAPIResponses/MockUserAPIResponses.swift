@@ -16,7 +16,7 @@ struct MockUserAPIResponses {
     static let name = "test"
     static let phone = "12345678"
     static let sex = "male"
-    static let profileImage = "image"
+    static let profileImg = "image"
     static let activeSince = "2021-03-19T17:25:36.743Z"
     static let dateJoined = "2021-03-19T17:25:36.743Z"
     static let tokenString = "test token"
@@ -36,7 +36,7 @@ struct MockUserAPIResponses {
         json["name"] = name
         json["phone"] = phone
         json["sex"] = sex
-        json["profileImg"] = profileImage
+        json["profileImg"] = profileImg
         json["activeSince"] = activeSince
         json["dateJoined"] = dateJoined
         return json
@@ -58,6 +58,7 @@ struct MockUserAPIResponses {
     static var certificate: UserCertificate {
         UserCertificate(name: name,
                         email: email,
+                        profileImg: profileImg,
                         token: tokenString,
                         userId: userId,
                         user: nil)

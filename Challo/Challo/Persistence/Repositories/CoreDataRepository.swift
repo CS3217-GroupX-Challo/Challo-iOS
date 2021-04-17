@@ -95,5 +95,13 @@ class CoreDataRepository<T: NSManagedObject>: RepositoryProtocol {
     }
     
     func clearAll() {
+        let fetchRequest = T.fetchRequest()
+        let deleteBatchRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try managedObjectContext.execute(deleteBatchRequest)
+        } catch {
+            logger.log("\(error.localizedDescription)")
+        }
     }
 }

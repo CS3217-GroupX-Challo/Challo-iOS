@@ -35,13 +35,13 @@ class LoginAPITests: XCTestCase {
 
 private class LoginAPIImplementation: LoginAPI {
 
-    var userAPI: UserAPI
+    var userAPI: UserAPIProtocol
     
     var userTypeUrl: String = "/mock"
     
     var networkManager: NetworkManager = MockNetworkManager(json: NetworkManager.JSON())
     
-    init(userAPI: UserAPI) {
+    init(userAPI: UserAPIProtocol) {
         self.userAPI = userAPI
     }
 

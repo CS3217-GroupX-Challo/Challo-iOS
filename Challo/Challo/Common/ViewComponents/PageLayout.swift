@@ -9,27 +9,31 @@ import SwiftUI
 
 struct PageLayout<ChildContent: View>: View {
     
-    let titleLabel: String
+    var titleLabel: String?
     var headerContent: AnyView?
     let makeChildContent: (_: GeometryProxy) -> ChildContent
-    
+
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 ZStack {
                     Image.guidesBackground
                         .resizable()
+                        .brightness(-0.05)
                     VStack {
-                        HStack {
-                            PageTitle(titleLabel: titleLabel, leading: geometry.size.width / 8)
-                            Spacer()
+                        if let titleLabel = titleLabel {
+                            HStack {
+                                PageTitle(titleLabel: titleLabel)
+                                    .padding(.leading, geometry.size.width / 8)
+                                Spacer()
+                            }
                         }
                         headerContent
                     }
                 }
                 .frame(width: geometry.size.width,
-                       height: geometry.size.height / (headerContent == nil ? 6 : 5),
-                       alignment: .center)
+                       height: geometry.size.height / (headerContent == nil ? 6.5 : 5.5))
+                .clipped()
                 GeometryReader { innerGeometry in
                     makeChildContent(innerGeometry)
                 }
