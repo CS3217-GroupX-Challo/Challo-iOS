@@ -7,11 +7,15 @@
 
 class TouristLoginAPI: LoginAPI {
     let networkManager = APINetwork.getNetworkManager()
-    let userAPI = UserAPI(userParser: UserAPIParser(),
-                          networkManager: APINetwork.getNetworkManager())
     let touristParser = TouristAPIParser()
     let userTypeUrl = "/tourist"
 
+    let userAPI: UserAPIProtocol
+    
+    init(userAPI: UserAPIProtocol) {
+        self.userAPI = userAPI
+    }
+    
     func parseUserTypeJson(json: JSON) -> User? {
         touristParser.convertJSONToTourist(json: json)
     }

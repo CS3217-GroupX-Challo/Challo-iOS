@@ -14,8 +14,8 @@ struct MockBookingAPIResponses {
     static let bookingIdOne = UUID(uuidString: "3d5efac2-1421-4171-997b-be5607312b5a") ?? UUID()
     static let statusOne = "Pending"
     static let statusEnumOne = BookingStatus(rawValue: statusOne)!
-    static let feeOne: Double = 10
-    static let dateStringOne = "2021-04-02T00:00:00.000Z"
+    static let feeOne: Int = 10
+    static let dateStringOne = "2025-04-02T00:00:00.000Z"
     static let dateOne = Date.construct(with: dateStringOne) ?? Date(timeIntervalSince1970: 100)
     static let guideIdOne = MockGuideAPIResponses.userId
     static let bookingGuideOne = MockGuideAPIResponses.guideOne
@@ -29,8 +29,8 @@ struct MockBookingAPIResponses {
     static let bookingIdTwo = UUID(uuidString: "1b4050ed-3c36-41e2-abd4-90b0e348b747") ?? UUID()
     static let statusTwo = "Completed"
     static let statusEnumTwo = BookingStatus(rawValue: statusTwo)!
-    static let feeTwo: Double = 1_000
-    static let dateStringTwo = "2021-03-02T00:00:00.000Z"
+    static let feeTwo: Int = 1_000
+    static let dateStringTwo = "2026-03-02T00:00:00.000Z"
     static let dateTwo = Date.construct(with: dateStringOne) ?? Date(timeIntervalSince1970: 100)
     static let guideIdTwo = MockGuideAPIResponses.userIdTwo
     static let bookingGuideTwo = MockGuideAPIResponses.guideTwo
@@ -43,7 +43,7 @@ struct MockBookingAPIResponses {
         var json = JSON()
         json[Key.bookingId] = bookingIdOne.uuidString
         json[Key.status] = statusOne
-        json[Key.fee] = String(feeOne)
+        json[Key.fee] = feeOne
         json[Key.date] = dateStringOne
         json[Key.guideId] = guideIdOne.uuidString
         json[Key.trailId] = trailIdOne.uuidString
@@ -62,7 +62,7 @@ struct MockBookingAPIResponses {
         }
 
         return Booking(bookingId: bookingIdOne,
-                       fee: feeOne,
+                       fee: Double(feeOne),
                        date: dateOne,
                        createdAt: createAtOne,
                        status: statusEnumOne,
@@ -76,7 +76,7 @@ struct MockBookingAPIResponses {
         var json = JSON()
         json[Key.bookingId] = bookingIdTwo.uuidString
         json[Key.status] = statusTwo
-        json[Key.fee] = String(feeTwo)
+        json[Key.fee] = Double(feeTwo)
         json[Key.date] = dateStringTwo
         json[Key.guideId] = guideIdTwo.uuidString
         json[Key.trailId] = trailIdTwo.uuidString
@@ -91,7 +91,7 @@ struct MockBookingAPIResponses {
         }
 
         return Booking(bookingId: bookingIdTwo,
-                       fee: feeTwo,
+                       fee: Double(feeTwo),
                        date: dateTwo,
                        createdAt: createAtTwo,
                        status: statusEnumTwo,

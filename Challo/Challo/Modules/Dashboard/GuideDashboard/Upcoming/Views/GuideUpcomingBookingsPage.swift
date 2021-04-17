@@ -11,44 +11,45 @@ struct GuideUpcomingBookingsPage: View {
 
     @State var presenter: GuideUpcomingBookingsPresenter
 
-    var body: some View {
-        GeometryReader { geometry in
+    var header: some View {
+        HStack {
+            Spacer()
             VStack {
-                HStack {
-                    Header(title: presenter.name,
-                           subtitle: "Your upcoming bookings",
-                           image: Image.mountainBackground)
-                        .frame(width: geometry.size.width,
-                               height: geometry.size.height * 0.15,
-                               alignment: .center)
-                    Spacer()
+                Text(presenter.name)
+                    .font(.largeTitle)
+                    .foregroundColor(.white)
+                NavigationLink(destination: UpdateProfilePage().environmentObject(presenter)) {
+                    Text("Edit Profile")
+                        .font(.headline)
                 }
+            }
+            DashboardProfileImage<GuideEarningsPresenter>()
+                .frame(height: 130)
+                .padding()
+                .shadow(color: .black, radius: 4, x: 3, y: 4)
+        }.padding(.horizontal, 30)
+    }
 
-                presenter.displayedProfileImage
-                    .resizable()
-                    .scaledToFit()
-                    .clipShape(Circle())
-                    .frame(height: geometry.size.height * 0.10)
-                    .padding()
-
-                Text("Upcoming bookings")
-                    .font(.title2)
-                    .bold()
-
-                if presenter.loading {
-                    Loading(isAnimating: .constant(true), style: .large)
-                } else {
-                    BookingCardListingsView(
+    @ViewBuilder
+    func makeContent(_ geometry: GeometryProxy) -> some View {
+        VStack {
+            if presenter.loading {
+                Loading(isAnimating: .constant(true), style: .large)
+            } else {
+                BookingCardListingsView(
                         width: geometry.size.width,
                         pov: .guide,
                         bookings: $presenter.upcomingBookings)
-                }
             }
-
         }
-        .padding(.bottom, 80)
-        .edgesIgnoringSafeArea(.all)
-        .onAppear {
+    }
+
+    var body: some View {
+        PageLayout(headerContent: AnyView(header)) { geometry in
+            makeContent(geometry)
+                .frame(maxWidth: .infinity)
+                .padding(.top, 50)
+        }.onAppear {
             presenter.refresh()
         }
     }

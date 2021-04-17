@@ -16,10 +16,6 @@ class GuideLoginInteractor: LoginInteractor {
         self.certificateManager = certificateManager
     }
 
-    convenience init(certificateManager: CertificateManager) {
-        self.init(loginAPI: GuideLoginAPI(), certificateManager: certificateManager)
-    }
-
     func defaultLogin(email: String, password: String) {
         loginAPI.login(email: email, password: password) { [weak self] response in
             if response.error != nil {

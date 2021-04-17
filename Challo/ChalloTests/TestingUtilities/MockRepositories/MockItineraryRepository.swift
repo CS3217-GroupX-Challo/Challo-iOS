@@ -18,13 +18,14 @@ class MockItineraryRepository: MapItineraryRepositoryInterface {
 
     var allItineraries = [MapTestConstants.itineraryOne, MapTestConstants.itineraryTwo]
     
-    func getAllMapItineraries() -> [MapItinerary] {
-        allItineraries
+    func getAllItineraries() -> [ItineraryPersistenceObject] {
+        allItineraries.map { itinerary in
+            let convertor = MapModelConvertor()
+            return convertor
+                .convertMapItineraryToItineraryPersistenceObject(mapIitnerary: itinerary)
+        }
     }
     
-    func saveMapItineraries(mapItineraries: [MapItinerary]) {
-        mapItineraries.forEach {
-            allItineraries.append($0)
-        }
+    func saveItineraries(itineraryObjects: [ItineraryPersistenceObject]) {
     }
 }

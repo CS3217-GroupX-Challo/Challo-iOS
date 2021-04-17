@@ -25,18 +25,16 @@ struct ImageService: ImageServiceProtocol {
             .create()
     }
     
-    static func loadImage(path: String, height: CGFloat = 400, width: CGFloat = 400,
-                          onSuccess: ((UIImage, Data?) -> Void)? = nil) -> Image {
+    static func loadImage(path: String, width: CGFloat = 400, height: CGFloat = 400,
+                          onSuccess: ((UIImage, Data?) -> Void)? = nil) -> some View {
         let fullUrl = generateFullUrl(path: path, height: height, width: width)
-        
-        let image = WebImage(url: URL(string: fullUrl))
+        return WebImage(url: URL(string: fullUrl))
             .onSuccess { image, data, _ in
                 onSuccess?(image, data)
             }
             .resizable()
             .indicator(.activity)
             .transition(.fade(duration: 0.5))
-        return Image(uiImage: image.asUIImage())
     }
         
     static func uploadImage(image: Data, fileName: String, onProgress: ((Progress) -> Void)?,
@@ -54,13 +52,21 @@ struct ImageService: ImageServiceProtocol {
           },
           completion: { result in
                switch result {
-               case .success:
-                onSuccess?("\(urlEndpoint)/\(fileName)")
+               case .success(let response):
+                guard let filePath = response.1?.filePath else {
+                    onFailure?(ImageServiceError.noFilePathReturned)
+                    return
+                }
+                let secondIdx = filePath.index(filePath.startIndex, offsetBy: 1)
+                onSuccess?("\(filePath[secondIdx...])")
                case .failure(let error):
                 onFailure?(error)
               }
           }
         )
     }
-    
+}
+
+enum ImageServiceError: Error {
+    case noFilePathReturned
 }

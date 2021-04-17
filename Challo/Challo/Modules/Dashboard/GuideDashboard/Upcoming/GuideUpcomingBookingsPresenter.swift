@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class GuideUpcomingBookingsPresenter: PresenterProtocol, MessagingSupporter {
+class GuideUpcomingBookingsPresenter: PresenterProtocol, MessagingSupporter, ProfileImageProvider {
 
     var interactor: GuideUpcomingBookingsInteractor!
     var router: GuideUpcomingBookingsRouter?
@@ -21,19 +21,15 @@ class GuideUpcomingBookingsPresenter: PresenterProtocol, MessagingSupporter {
     @Published var name: String
     @Published var messageText = ""
 
+    var profileImgPath: String {
+        userState.profileImg
+    }
+
     init(userState: UserStateProtocol,
          sendMessageToTourist: @escaping ((_ touristEmail: String, _ touristId: UUID, _ messageText: String) -> Void)) {
         self.userState = userState
         self.name = userState.name
         self.sendMessageToUser = sendMessageToTourist
-    }
-
-    @Published var image: Image?
-
-    var displayedProfileImage: Image {
-        image ?? (userState.profileImg.isEmpty
-                    ? Image("avatar-image")
-                    : ImageService.loadImage(path: userState.profileImg))
     }
 
     func didPopulateBookings(bookings: [Booking]) {

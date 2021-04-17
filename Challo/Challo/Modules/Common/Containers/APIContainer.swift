@@ -11,15 +11,15 @@ class APIContainer {
     
     let container = Container()
     
-    init() {
+    init(userState: UserStateProtocol) {
         container.register(NetworkManager.self) { _ in
             APINetwork.getNetworkManager()
         }
-        registerAPIs()
+        registerAPIs(userState)
     }
     
     // swiftlint:disable function_body_length
-    private func registerAPIs() {
+    private func registerAPIs(_ userState: UserStateProtocol) {
         let guideParser = GuideAPIParser()
         let areaParser = AreaAPIParser()
         let trailParser = TrailAPIParser()
@@ -27,6 +27,7 @@ class APIContainer {
         let touristParser = TouristAPIParser()
         let bookingParser = BookingAPIParser()
         let placesParser = PlacesAPIParser()
+        let userParser = UserAPIParser(userState: userState)
         container.register(APIParser.self, name: ContainerNames.guide.rawValue) { _ in
             guideParser
         }
@@ -49,6 +50,7 @@ class APIContainer {
         guard let networkManager = container.resolve(NetworkManager.self) else {
             fatalError("Failed to resolve NetworkManager in APIContainer")
         }
+        let userAPI = UserAPI(userParser: userParser, networkManager: networkManager)
         let trailAPI = TrailAPI(parser: trailParser, networkManager: networkManager)
         let guideAPI = GuideAPI(guideParser: guideParser, trailParser: trailParser, networkManager: networkManager)
         let touristAPI = TouristAPI(touristParser: touristParser, networkManager: networkManager)
@@ -72,6 +74,9 @@ class APIContainer {
         container.register(PlacesAPIProtocol.self) { _ in
             placesAPI
         }
+        container.register(UserAPIProtocol.self) { _ in
+            userAPI
+        }
         container.register(GuideAPIProtocol.self) { _ in
             guideAPI
         }
@@ -84,11 +89,23 @@ class APIContainer {
         container.register(ReviewAPIProtocol.self) { _ in
             reviewAPI
         }
-        container.register(AreaAPIProtocol.self, name: ContainerNames.area.rawValue) { _ in
+        container.register(AreaAPIProtocol.self) { _ in
             AreaAPI(areaParser: areaParser, networkManager: networkManager)
         }
         container.register(BookingAPIProtocol.self) { _ in
             bookingAPI
+        }
+        container.register(LoginAPI.self, name: ContainerNames.tourist.rawValue) { _ in
+            TouristLoginAPI(userAPI: userAPI)
+        }
+        container.register(LoginAPI.self, name: ContainerNames.guide.rawValue) { _ in
+            GuideLoginAPI(userAPI: userAPI)
+        }
+        container.register(RegisterAPI.self, name: ContainerNames.tourist.rawValue) { _ in
+            TouristRegistrationAPI(userAPI: userAPI)
+        }
+        container.register(RegisterAPI.self, name: ContainerNames.guide.rawValue) { _ in
+            GuideRegistrationAPI(userAPI: userAPI)
         }
     }
 }

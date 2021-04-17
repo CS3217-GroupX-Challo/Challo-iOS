@@ -17,7 +17,8 @@ class MapInteractorTests: XCTestCase {
         super.setUp()
         let mapStore = MapStore(mapMarkerRepository: MockMarkerRepository(),
                                 mapRouteRepository: MockRouteRepository(),
-                                mapItineraryRepository: MockItineraryRepository())
+                                mapItineraryRepository: MockItineraryRepository(),
+                                convertor: MapModelConvertor())
         let interactor = MapInteractor(mapStore: mapStore, placesAPI: MockPlacesAPI())
         let presenter = MapPresenter()
         interactor.presenter = presenter

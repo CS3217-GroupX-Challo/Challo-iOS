@@ -11,34 +11,44 @@ struct GuideEarningsPage: View {
 
     @ObservedObject var presenter: GuideEarningsPresenter
 
-    var body: some View {
-        VStack {
-            GeometryReader { geometry in
-                VStack {
-                    Header(title: presenter.name,
-                           subtitle: "Ready to meet new people?",
-                           image: Image.mountainBackground)
-                        .frame(width: geometry.size.width,
-                               height: geometry.size.height * 0.15,
-                               alignment: .center)
-
-                    Image("avatar-image")
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(Circle())
-                        .frame(height: geometry.size.height * 0.10)
-                        .padding()
-
-                    Text("Earnings")
-                        .font(.title2)
-                        .bold()
-                        .padding(.leading, 40)
-
-                    EarningViewNavigation(presenter: presenter)
+    var header: some View {
+        HStack {
+            Spacer()
+            VStack {
+                Text(presenter.name)
+                    .font(.largeTitle)
+                    .foregroundColor(.white)
+                NavigationLink(destination: UpdateProfilePage().environmentObject(presenter)) {
+                    Text("Edit Profile")
+                        .font(.headline)
                 }
             }
+            DashboardProfileImage<GuideEarningsPresenter>().environmentObject(presenter)
+                .frame(height: 130)
+                .padding()
+                .shadow(color: .black, radius: 4, x: 3, y: 4)
+        }.padding(.horizontal, 30)
+    }
+
+    var content: some View {
+        GeometryReader { _ in
+            VStack {
+                Text("Earnings")
+                    .font(.title2)
+                    .bold()
+                    .padding(.leading, 40)
+
+                EarningViewNavigation(presenter: presenter)
+            }
         }
-        .ignoresSafeArea()
+    }
+
+    var body: some View {
+        PageLayout(headerContent: AnyView(header)) { _ in
+            content
+                .frame(maxWidth: .infinity)
+                .padding(.top, 50)
+        }
     }
 
 }

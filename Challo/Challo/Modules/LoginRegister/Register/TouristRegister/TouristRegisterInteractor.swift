@@ -17,10 +17,6 @@ class TouristRegisterInteractor: RegisterInteractor {
         self.certificateManager = certificateManager
     }
 
-    convenience init(certificateManager: CertificateManager) {
-        self.init(registerAPI: TouristRegistrationAPI(), certificateManager: certificateManager)
-    }
-
     func register(details: RegistrationDetails) {
         registerAPI.register(details: details) { [weak self] response in
             if response.error != nil,

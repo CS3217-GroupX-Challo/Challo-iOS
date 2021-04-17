@@ -13,7 +13,8 @@ class UserAPIParserTests: XCTestCase {
     typealias JSON = NetworkManager.JSON
     typealias Responses = MockUserAPIResponses
 
-    let parser = UserAPIParser()
+    static let userState = MockUserState()
+    let parser = UserAPIParser(userState: UserAPIParserTests.userState)
 
     func testParseResponse_validResponse_successfullyParsed() throws {
         let response = Responses.validResponse
@@ -39,9 +40,12 @@ class UserAPIParserTests: XCTestCase {
         XCTAssertNil(parser.parseUser(apiResponse: response), "Parsed incorrectly")
     }
 
-    func testParseResponse_missingToken_failToParse() {
+    func testParseResponse_missingToken_failToParse() throws {
         let response = removeDataProperty(key: "token", json: Responses.validResponse)
-        XCTAssertNil(parser.parseUser(apiResponse: response), "Parsed incorrectly")
+        let certificate = try XCTUnwrap(parser.parseUser(apiResponse: response))
+        XCTAssertEqual(Responses.name, certificate.name, "Parsed incorrectly")
+        XCTAssertEqual(Responses.email, certificate.email, "Parsed incorrectly")
+        XCTAssertEqual(Responses.userId, certificate.userId, "Parsed incorrectly")
     }
 }
 

@@ -61,6 +61,7 @@ struct Key {
     static let guide = "guide"
     static let tourist = "tourist"
     static let trail = "trail"
+    static let difficulty = "difficulty"
 }
 
 // MARK: Facebook API-Response keys
@@ -81,4 +82,23 @@ extension Key {
     static let googleRating = "rating"
     static let googleGeometry = "geometry"
     static let googleLocation = "location"
+}
+
+// MARK: Homestays
+extension Key {
+    static let homestayId = "homestayId"
+    static let imagesPath = "imagesPath"
+    static let location = "location"
+    static let capacity = "capacity"
+    static let bedrooms = "bedrooms"
+    static let bed = "bed"
+    static let quantity = "quantity"
+    static let toilets = "toilets"
+    static let amenities = "amenities"
+    static let guests = "guests"
+}
+
+// MARK: Hosts
+extension Key {
+    static let hostId = "hostId"
 }
