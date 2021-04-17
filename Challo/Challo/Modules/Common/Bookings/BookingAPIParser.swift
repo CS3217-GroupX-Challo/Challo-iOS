@@ -54,7 +54,7 @@ class BookingAPIParser: APIParser {
             return nil
         }
     
-        let fee = convertJSONDoubleValueToDouble(json[Key.fee])
+        let fee = Double(convertJSONIntValueToInt(json[Key.fee]))
     
         return Booking(bookingId: bookingID,
                        fee: fee,

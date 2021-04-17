@@ -48,7 +48,6 @@ struct ContactGuidePage: View {
                 )
             Divider().padding(.vertical)
             Button(action: {
-                presenter.onTapSendMessage(guide: guide)
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Send Message").bold()

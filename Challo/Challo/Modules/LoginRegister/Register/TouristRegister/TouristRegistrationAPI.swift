@@ -7,10 +7,13 @@
 
 class TouristRegistrationAPI: RegisterAPI {
     let networkManager = APINetwork.getNetworkManager()
-    let userAPI = UserAPI(userParser: UserAPIParser(),
-                          networkManager: APINetwork.getNetworkManager())
+    let userAPI: UserAPIProtocol
     let userTypeUrl = "/tourist"
     private let parser = TouristAPIParser()
+    
+    init(userAPI: UserAPIProtocol) {
+        self.userAPI = userAPI
+    }
 
     func createUserTypeJSON(details: RegistrationDetails, certificate: UserCertificate?) -> JSON? {
         guard let userId = certificate?.userId else {

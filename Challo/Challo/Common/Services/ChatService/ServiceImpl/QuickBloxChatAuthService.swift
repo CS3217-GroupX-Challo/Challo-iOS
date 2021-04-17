@@ -14,6 +14,7 @@ class QuickBloxChatAuthService: ChatAuthService {
     }
     
     var isLoggingIn = false
+    private var user: QBUUser?
     
     func connectToChatServer(chatUserId: UInt, password: String, didConnect: ((UInt, Bool) -> Void)?) {
         QBChat.instance.connect(withUserID: chatUserId, password: password, completion: { [weak self] error in
@@ -46,6 +47,7 @@ class QuickBloxChatAuthService: ChatAuthService {
         }
         isLoggingIn = true
         QBRequest.logIn(withUserEmail: email, password: password, successBlock: { [weak self] _, user in
+            self?.user = user
             self?.connectToChatServer(chatUserId: user.id, password: password, didConnect: didLogin)
         })
     }
@@ -74,5 +76,30 @@ class QuickBloxChatAuthService: ChatAuthService {
             didLogOut?()
         })
 
+    }
+    
+    private func setUpdateUserParameters(name: String?, email: String?) -> QBUpdateUserParameters {
+        let updateUserParameter = QBUpdateUserParameters()
+        if name != nil {
+            updateUserParameter.fullName = name
+        }
+        if email != nil {
+            updateUserParameter.email = email
+        }
+        return updateUserParameter
+    }
+    
+    func updateUser(name: String, email: String, didUpdateUser: ((Bool) -> Void)?) {
+        guard name != user?.fullName || email != user?.email else {
+            return
+        }
+        
+        let updateUserParameter = setUpdateUserParameters(name: name, email: email)
+
+        QBRequest.updateCurrentUser(updateUserParameter, successBlock: {_, _ in
+            didUpdateUser?(true)
+        }, errorBlock: { _ in
+            didUpdateUser?(false)
+        })
     }
 }

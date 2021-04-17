@@ -12,7 +12,7 @@ class UserAPITests: XCTestCase {
     typealias JSON = NetworkManager.JSON
 
     func testCommonLogin_successResponse_successfulLogin() {
-        let parser = MockUserAPIParser()
+        let parser = MockUserAPIParser(userState: MockUserState())
         var successJSON = JSON()
         successJSON["success"] = true
         let userAPI = UserAPI(userParser: parser, networkManager: MockNetworkManager(json: successJSON))
@@ -23,7 +23,7 @@ class UserAPITests: XCTestCase {
     }
 
     func testCommonLogin_failureResponse_loginFailure() {
-        let parser = MockUserAPIParser()
+        let parser = MockUserAPIParser(userState: MockUserState())
         var failureJSON = JSON()
         failureJSON["success"] = false
         let userAPI = UserAPI(userParser: parser, networkManager: MockNetworkManager(json: failureJSON))
@@ -34,7 +34,7 @@ class UserAPITests: XCTestCase {
     }
 
     func testCommonRegister_successResponse_successfulRegister() {
-        let parser = MockUserAPIParser()
+        let parser = MockUserAPIParser(userState: MockUserState())
         var successJSON = JSON()
         successJSON["success"] = true
         let userAPI = UserAPI(userParser: parser, networkManager: MockNetworkManager(json: successJSON))
@@ -45,7 +45,7 @@ class UserAPITests: XCTestCase {
     }
 
     func testCommonRegister_failureResponse_registerFailure() {
-        let parser = MockUserAPIParser()
+        let parser = MockUserAPIParser(userState: MockUserState())
         var failureJSON = JSON()
         failureJSON["success"] = false
         let userAPI = UserAPI(userParser: parser, networkManager: MockNetworkManager(json: failureJSON))

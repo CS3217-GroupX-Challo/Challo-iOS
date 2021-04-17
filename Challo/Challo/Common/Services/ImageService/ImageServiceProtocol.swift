@@ -10,16 +10,16 @@ import SwiftUI
 protocol ImageServiceProtocol {
     associatedtype SomeImage: View
     
-    static func loadImage(path: String, height: CGFloat, width: CGFloat,
+    static func loadImage(path: String, width: CGFloat, height: CGFloat,
                           onSuccess: ((UIImage, Data?) -> Void)?) -> SomeImage
     static func uploadImage(image: Data, fileName: String, onProgress: ((Progress) -> Void)?,
                             onSuccess: ((String) -> Void)?, onFailure: ((Error) -> Void)?)
 }
 
 extension ImageServiceProtocol {
-    static func loadImage(path: String, height: CGFloat = 400, width: CGFloat = 400,
+    static func loadImage(path: String, width: CGFloat = 400, height: CGFloat = 400,
                           onSuccess: ((UIImage, Data?) -> Void)? = nil) -> SomeImage {
-        loadImage(path: path, height: height, width: width, onSuccess: onSuccess)
+        loadImage(path: path, width: width, height: height, onSuccess: onSuccess)
     }
     
     static func uploadImage(image: Data, fileName: String, onProgress: ((Progress) -> Void)? = nil,

@@ -23,7 +23,7 @@ class UserState: UserStateProtocol, ObservableObject {
     @AppStorage("token") var token = ""
     @AppStorage("userId") var userId = ""
     @AppStorage("profileImg") var profileImg = ""
-    var user: User?
+    @Published var user: User?
 
     private static var instances = 0
 

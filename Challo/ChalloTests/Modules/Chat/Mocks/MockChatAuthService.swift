@@ -25,4 +25,8 @@ class MockChatAuthService: ChatAuthService {
     func connectToChatServer(chatUserId: UInt, password: String, didConnect: ((UInt, Bool) -> Void)?) {
         didConnect?(chatUserId, true)
     }
+    
+    func updateUser(name: String, email: String, didUpdateUser: ((Bool) -> Void)?) {
+        didUpdateUser?(true)
+    }
 }

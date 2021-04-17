@@ -36,9 +36,9 @@ struct TrailBookingPage: View {
                 }
             }
         }
-        .alert(isPresented: $presenter.isShowingBookingStatusAlert) {
-            Alert(title: Text(presenter.bookingStatusTitle),
-                  message: Text(presenter.bookingStatusMessage),
+        .alert(isPresented: $presenter.isShowingAlert) {
+            Alert(title: Text(presenter.alertTitle),
+                  message: Text(presenter.alertMessage),
                   dismissButton: Alert.Button.default(
                     Text("Okay"), action: {
                         if self.presenter.isSuccessAlert {
