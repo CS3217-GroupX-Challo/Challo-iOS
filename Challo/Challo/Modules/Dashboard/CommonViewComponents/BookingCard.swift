@@ -13,6 +13,7 @@ struct BookingCard: View {
 
     var booking: Booking
     var width: CGFloat
+    var chatPartner: User
 
     func makeDetail(image: String, label: String) -> some View {
         VStack {
@@ -43,7 +44,7 @@ struct BookingCard: View {
                 makeDetail(image: "calendar",
                            label: CustomDateFormatter.displayFriendlyDate(booking.date))
                 makeDetail(image: "person.crop.circle",
-                           label: booking.guide.name ?? "")
+                           label: chatPartner.name ?? "")
             }
             NavigationLink(destination: ContactGuidePage(guide: booking.guide).environmentObject(presenter)) {
                 Text("Contact Guide").bold()

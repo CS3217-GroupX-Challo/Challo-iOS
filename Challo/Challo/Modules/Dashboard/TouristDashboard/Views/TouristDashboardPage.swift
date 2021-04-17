@@ -40,6 +40,7 @@ struct TouristDashboardPage: View {
                 } else {
                     BookingCardListingsView(
                         width: geometry.size.width,
+                        pov: .tourist,
                         bookings: $presenter.upcomingBookings)
                 }
             }

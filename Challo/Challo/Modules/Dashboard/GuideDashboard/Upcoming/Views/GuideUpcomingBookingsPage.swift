@@ -40,6 +40,7 @@ struct GuideUpcomingBookingsPage: View {
                 } else {
                     BookingCardListingsView(
                         width: geometry.size.width,
+                        pov: .guide,
                         bookings: $presenter.upcomingBookings)
                 }
             }
