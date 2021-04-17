@@ -5,5 +5,6 @@
 //  Created by Kester Ng on 13/4/21.
 //
 
-protocol GuideDetailsRepositoryProtocol: RepoProtocol where PersistenceObject == GuidePersistenceObject {
+protocol GuideDetailsRepositoryProtocol: PersistenceRepoProtocol where
+    PersistenceObject == GuidePersistenceObject {
 }

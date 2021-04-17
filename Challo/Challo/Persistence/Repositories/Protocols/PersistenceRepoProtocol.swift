@@ -5,7 +5,7 @@
 //  Created by Kester Ng on 17/4/21.
 //
 
-protocol RepoProtocol {
+protocol PersistenceRepoProtocol {
     associatedtype PersistenceObject
     
     func getAll() -> [PersistenceObject]
