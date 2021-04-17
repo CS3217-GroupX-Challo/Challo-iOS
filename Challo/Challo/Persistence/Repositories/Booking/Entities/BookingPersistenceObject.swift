@@ -21,8 +21,8 @@ struct BookingPersistenceObject {
 }
 
 extension BookingPersistenceObject: CoreDataPersistenceObject {
-    init?(persistenceObject: NSManagedObject) {
-        guard let booking = persistenceObject as? BookingInfo,
+    init?(entity: NSManagedObject) {
+        guard let booking = entity as? BookingInfo,
               let id = booking.id,
               let bookingId = UUID(uuidString: id),
               let date = booking.date,
@@ -30,11 +30,11 @@ extension BookingPersistenceObject: CoreDataPersistenceObject {
               let statusString = booking.status,
               let status = BookingStatus(rawValue: statusString),
               let guideDetails = booking.guide,
-              let guide = GuidePersistenceObject(persistenceObject: guideDetails),
+              let guide = GuidePersistenceObject(entity: guideDetails),
               let trailDetails = booking.trail,
-              let trail = TrailPersistenceObject(persistenceObject: trailDetails),
+              let trail = TrailPersistenceObject(entity: trailDetails),
               let touristDetails = booking.tourist,
-              let tourist = TouristPersistenceObject(persistenceObject: touristDetails) else {
+              let tourist = TouristPersistenceObject(entity: touristDetails) else {
             return nil
         }
         
@@ -48,21 +48,21 @@ extension BookingPersistenceObject: CoreDataPersistenceObject {
         self.tourist = tourist
         
         if let reviewDetails = booking.review,
-           let review = ReviewPersistenceObject(persistenceObject: reviewDetails) {
+           let review = ReviewPersistenceObject(entity: reviewDetails) {
             self.review = review
         } else {
             self.review = nil
         }
     }
     
-    func convertToPersistenceObject() -> NSManagedObject {
+    func convertToEntity() -> NSManagedObject {
         let bookingInfo = BookingInfo(context: CoreDataContainer.managedObjectContext)
         setBookingInfo(bookingInfo: bookingInfo)
         return bookingInfo
     }
     
-    func updatePersistenceObject(persistenceObject: NSManagedObject) {
-        guard let bookingInfo = persistenceObject as? BookingInfo else {
+    func updateEntity(entity: NSManagedObject) {
+        guard let bookingInfo = entity as? BookingInfo else {
             return
         }
         

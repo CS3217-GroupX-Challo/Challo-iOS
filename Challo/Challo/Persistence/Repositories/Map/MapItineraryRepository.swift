@@ -40,7 +40,7 @@ class MapItineraryRepository: MapItineraryRepositoryInterface {
         var itineraryObjects: [ItineraryPersistenceObject] = []
         
         for itinerary in itineraries {
-            if let itineraryObject = ItineraryPersistenceObject(persistenceObject: itinerary) {
+            if let itineraryObject = ItineraryPersistenceObject(entity: itinerary) {
                 data[itinerary.objectID] = itineraryObject
                 itineraryObjects.append(itineraryObject)
             }
@@ -66,7 +66,7 @@ class MapItineraryRepository: MapItineraryRepositoryInterface {
     
     private func saveNewItineraries(itineraryObjects: [ItineraryPersistenceObject]) {
         for itineraryObject in itineraryObjects {
-            if let itinerary = itineraryObject.convertToPersistenceObject() as? Itinerary {
+            if let itinerary = itineraryObject.convertToEntity() as? Itinerary {
                 itinerary.markers = NSSet(array: getRelatedMarkers(markerObjects: itineraryObject.markers))
                 itinerary.routes = NSSet(array: getRelatedRoutes(routeObjects: itineraryObject.routes))
             }
@@ -77,7 +77,7 @@ class MapItineraryRepository: MapItineraryRepositoryInterface {
         for itineraryObject in itineraryObjects {
             if let objectId = data.first(where: { $0.value == itineraryObject })?.key,
                let itinerary = repository.getByKey(objectId) {
-                itineraryObject.updatePersistenceObject(persistenceObject: itinerary)
+                itineraryObject.updateEntity(entity: itinerary)
                 itinerary.markers = NSSet(array: getRelatedMarkers(markerObjects: itineraryObject.markers))
                 itinerary.routes = NSSet(array: getRelatedRoutes(routeObjects: itineraryObject.routes))
             }

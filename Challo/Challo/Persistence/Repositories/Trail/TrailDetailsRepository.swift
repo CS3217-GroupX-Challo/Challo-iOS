@@ -35,7 +35,7 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
         self.data = [NSManagedObjectID: TrailPersistenceObject]()
         
         for trail in trails {
-            if let trailObject = TrailPersistenceObject(persistenceObject: trail) {
+            if let trailObject = TrailPersistenceObject(entity: trail) {
                 trailObjects.append(trailObject)
                 data[trail.objectID] = trailObject
             }
@@ -62,14 +62,14 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
     
     private func saveNewTrails(currentAreas: [AreaDetails], trailObjects: [TrailPersistenceObject]) {
         for trailObject in trailObjects {
-            if let trailDetails = trailObject.convertToPersistenceObject() as? TrailDetails {
+            if let trailDetails = trailObject.convertToEntity() as? TrailDetails {
                 for area in currentAreas where area.id == trailObject.area.areaId.uuidString {
                     trailDetails.area = area
                     break
                 }
                 
                 if trailDetails.area == nil {
-                    let area = trailObject.area.convertToPersistenceObject() as? AreaDetails
+                    let area = trailObject.area.convertToEntity() as? AreaDetails
                     trailDetails.area = area
                 }
             }
@@ -80,7 +80,7 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
         for trailObject in trailObjects {
             if let objectId = data.first(where: { $0.value == trailObject })?.key,
                let trail = repository.getByKey(objectId) {
-                trailObject.updatePersistenceObject(persistenceObject: trail)
+                trailObject.updateEntity(entity: trail)
                 
                 for area in currentAreas where area.id == trailObject.area.areaId.uuidString {
                     trail.area = area
@@ -88,7 +88,7 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
                 }
                 
                 if trail.area == nil {
-                    let area = trailObject.area.convertToPersistenceObject() as? AreaDetails
+                    let area = trailObject.area.convertToEntity() as? AreaDetails
                     trail.area = area
                 }
             }

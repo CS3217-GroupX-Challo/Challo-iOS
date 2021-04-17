@@ -30,7 +30,7 @@ class MapMarkerRepository: MapMarkerRepositoryInterface {
         var markerObjects = [MarkerPersistenceObject]()
         
         for marker in result {
-            if let markerObject = MarkerPersistenceObject(persistenceObject: marker) {
+            if let markerObject = MarkerPersistenceObject(entity: marker) {
                 data[marker.objectID] = markerObject
                 markerObjects.append(markerObject)
             }
@@ -58,14 +58,14 @@ class MapMarkerRepository: MapMarkerRepositoryInterface {
         for markerObject in markerObjects {
             if let objectId = data.first(where: { $0.value == markerObject })?.key,
                let managedObject = repository.getByKey(objectId) {
-                markerObject.updatePersistenceObject(persistenceObject: managedObject)
+                markerObject.updateEntity(entity: managedObject)
             }
         }
     }
     
     private func saveNewMarkers(markerObjects: [MarkerPersistenceObject]) {
         for markerObject in markerObjects {
-            _ = markerObject.convertToPersistenceObject()
+            _ = markerObject.convertToEntity()
         }
     }
     

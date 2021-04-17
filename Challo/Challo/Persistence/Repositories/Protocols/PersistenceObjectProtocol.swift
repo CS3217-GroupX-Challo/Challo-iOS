@@ -6,12 +6,12 @@
 //
 
 /// Structures in persistence must inherit to this protocol
-/// Converts to Persistence object based on choice of persistence
+/// Converts to the entityt based on choice of persistence
 /// eg NSManagedObject for core data, RealmObject for Realm
 protocol PersistenceObjectProtocol {
-    associatedtype PersistenceObject
+    associatedtype Entity // entity in persistence
     
-    func convertToPersistenceObject() -> PersistenceObject
-    func updatePersistenceObject(persistenceObject: PersistenceObject)
-    init?(persistenceObject: PersistenceObject)
+    func convertToEntity() -> Entity
+    func updateEntity(entity: Entity)
+    init?(entity: Entity)
 }

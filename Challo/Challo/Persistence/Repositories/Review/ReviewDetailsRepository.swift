@@ -45,7 +45,7 @@ class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
         self.data = [NSManagedObjectID: ReviewPersistenceObject]()
         
         for review in reviews {
-            if let reviewObject = ReviewPersistenceObject(persistenceObject: review) {
+            if let reviewObject = ReviewPersistenceObject(entity: review) {
                 self.data[review.objectID] = reviewObject
                 reviewObjects.append(reviewObject)
             }
@@ -89,7 +89,7 @@ class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
         
         // trail has not been saved in core data repository, time to save
         if reviewDetails.trail == nil {
-            let trail = reviewObject.trail.convertToPersistenceObject() as? TrailDetails
+            let trail = reviewObject.trail.convertToEntity() as? TrailDetails
             reviewDetails.trail = trail
         }
     }
@@ -99,7 +99,7 @@ class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
                                 currentGuides: [GuideDetails],
                                 currentTourists: [TouristDetails]) {
         for reviewObject in reviewObjects {
-            if let reviewDetails = reviewObject.convertToPersistenceObject() as? ReviewDetails {
+            if let reviewDetails = reviewObject.convertToEntity() as? ReviewDetails {
                 setReviewDetailsGuideTouristTrail(reviewObject: reviewObject,
                                                   reviewDetails: reviewDetails,
                                                   currentTrails: currentTrails,
@@ -116,6 +116,7 @@ class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
         for reviewObject in reviewObjects {
             if let objectId = data.first(where: { $0.value == reviewObject })?.key,
                let reviewDetails = repository.getByKey(objectId) {
+                reviewObject.updateEntity(entity: reviewDetails)
                 setReviewDetailsGuideTouristTrail(reviewObject: reviewObject,
                                                   reviewDetails: reviewDetails,
                                                   currentTrails: currentTrails,
@@ -150,7 +151,7 @@ class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
         }
         
         if reviewDetails.guide == nil {
-            let guide = reviewObject.guide.convertToPersistenceObject() as? GuideDetails
+            let guide = reviewObject.guide.convertToEntity() as? GuideDetails
             reviewDetails.guide = guide
         }
     }
@@ -164,7 +165,7 @@ class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
         }
         
         if reviewDetails.tourist == nil {
-            let tourist = reviewObject.tourist.convertToPersistenceObject() as? TouristDetails
+            let tourist = reviewObject.tourist.convertToEntity() as? TouristDetails
             reviewDetails.tourist = tourist
         }
     }

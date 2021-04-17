@@ -30,8 +30,8 @@ struct TrailPersistenceObject {
 
 extension TrailPersistenceObject: CoreDataPersistenceObject {
     // swiftlint:disable function_body_length
-    init?(persistenceObject: NSManagedObject) {
-        guard let trail = persistenceObject as? TrailDetails,
+    init?(entity: NSManagedObject) {
+        guard let trail = entity as? TrailDetails,
               let id = trail.id,
               let trailId = UUID(uuidString: id),
               let title = trail.title,
@@ -42,7 +42,7 @@ extension TrailPersistenceObject: CoreDataPersistenceObject {
               let tagsString = trail.tags,
               let landmarksString = trail.landmarks,
               let areaObject = trail.area,
-              let area = AreaPersistenceObject(persistenceObject: areaObject),
+              let area = AreaPersistenceObject(entity: areaObject),
               let difficultyString = trail.difficulty,
               let difficulty = TrailDifficulty(rawValue: difficultyString) else {
             return nil
@@ -82,14 +82,14 @@ extension TrailPersistenceObject: CoreDataPersistenceObject {
         self.area = area
     }
     
-    func convertToPersistenceObject() -> NSManagedObject {
+    func convertToEntity() -> NSManagedObject {
         let trailDetails = TrailDetails(context: CoreDataContainer.managedObjectContext)
         setTrailDetails(trailDetails: trailDetails)
         return trailDetails
     }
     
-    func updatePersistenceObject(persistenceObject: NSManagedObject) {
-        guard let trailDetails = persistenceObject as? TrailDetails else {
+    func updateEntity(entity: NSManagedObject) {
+        guard let trailDetails = entity as? TrailDetails else {
             return
         }
         

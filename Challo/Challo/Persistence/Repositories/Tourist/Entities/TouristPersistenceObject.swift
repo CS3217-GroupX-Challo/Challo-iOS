@@ -19,8 +19,8 @@ struct TouristPersistenceObject {
 }
 
 extension TouristPersistenceObject: CoreDataPersistenceObject {
-    init?(persistenceObject: NSManagedObject) {
-        guard let touristDetails = persistenceObject as? TouristDetails,
+    init?(entity: NSManagedObject) {
+        guard let touristDetails = entity as? TouristDetails,
               let id = touristDetails.id,
               let userId = UUID(uuidString: id),
               let email = touristDetails.email else {
@@ -36,14 +36,14 @@ extension TouristPersistenceObject: CoreDataPersistenceObject {
         self.userId = userId
     }
     
-    func convertToPersistenceObject() -> NSManagedObject {
+    func convertToEntity() -> NSManagedObject {
         let touristDetails = TouristDetails(context: CoreDataContainer.managedObjectContext)
         setTouristDetails(touristDetails: touristDetails)
         return touristDetails
     }
     
-    func updatePersistenceObject(persistenceObject: NSManagedObject) {
-        guard let touristDetails = persistenceObject as? TouristDetails else {
+    func updateEntity(entity: NSManagedObject) {
+        guard let touristDetails = entity as? TouristDetails else {
             return
         }
         setTouristDetails(touristDetails: touristDetails)

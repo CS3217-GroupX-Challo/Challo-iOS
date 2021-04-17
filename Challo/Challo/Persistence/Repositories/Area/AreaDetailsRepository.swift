@@ -30,7 +30,7 @@ class AreaDetailsRepository: AreaDetailsRepositoryProtocol {
         self.data = [NSManagedObjectID: AreaPersistenceObject]() // reset
         
         for area in areas {
-            if let areaObject = AreaPersistenceObject(persistenceObject: area) {
+            if let areaObject = AreaPersistenceObject(entity: area) {
                 data[area.objectID] = areaObject
                 areaObjects.append(areaObject)
             }
@@ -58,7 +58,7 @@ class AreaDetailsRepository: AreaDetailsRepositoryProtocol {
     private func createNewAreas(areaObjects: [AreaPersistenceObject]) {
         for areaObject in areaObjects {
             // result not needed as entity row alr created, waiting to be committed
-            _ = areaObject.convertToPersistenceObject()
+            _ = areaObject.convertToEntity()
         }
     }
     
@@ -66,7 +66,7 @@ class AreaDetailsRepository: AreaDetailsRepositoryProtocol {
         for areaObject in areaObjects {
             if let objectId = data.first(where: { $0.value == areaObject })?.key,
                let area = repository.getByKey(objectId) {
-                areaObject.updatePersistenceObject(persistenceObject: area)
+                areaObject.updateEntity(entity: area)
             }
         }
     }

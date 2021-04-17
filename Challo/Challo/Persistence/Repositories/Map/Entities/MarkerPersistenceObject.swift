@@ -19,8 +19,8 @@ struct MarkerPersistenceObject {
 
 // MARK: - CoreDataPersistenceObject
 extension MarkerPersistenceObject: CoreDataPersistenceObject {
-    init?(persistenceObject: NSManagedObject) {
-        guard let marker = persistenceObject as? Marker else {
+    init?(entity: NSManagedObject) {
+        guard let marker = entity as? Marker else {
             return nil
         }
         
@@ -31,7 +31,7 @@ extension MarkerPersistenceObject: CoreDataPersistenceObject {
         self.date = marker.date
     }
     
-    func convertToPersistenceObject() -> NSManagedObject {
+    func convertToEntity() -> NSManagedObject {
         let marker = Marker(context: CoreDataContainer.managedObjectContext)
         marker.id = id.uuidString
         marker.comments = comments
@@ -41,8 +41,8 @@ extension MarkerPersistenceObject: CoreDataPersistenceObject {
         return marker
     }
     
-    func updatePersistenceObject(persistenceObject: NSManagedObject) {
-        guard let marker = persistenceObject as? Marker else {
+    func updateEntity(entity: NSManagedObject) {
+        guard let marker = entity as? Marker else {
             return
         }
         

@@ -17,8 +17,8 @@ struct AreaPersistenceObject {
 }
 
 extension AreaPersistenceObject: CoreDataPersistenceObject {
-    init?(persistenceObject: NSManagedObject) {
-        guard let area = persistenceObject as? AreaDetails,
+    init?(entity: NSManagedObject) {
+        guard let area = entity as? AreaDetails,
               let village = area.village,
               let division = area.division,
               let state = area.state,
@@ -35,14 +35,14 @@ extension AreaPersistenceObject: CoreDataPersistenceObject {
         self.division = division
     }
     
-    func convertToPersistenceObject() -> NSManagedObject {
+    func convertToEntity() -> NSManagedObject {
         let areaDetails = AreaDetails(context: CoreDataContainer.managedObjectContext)
         setAreaDetails(areaDetails: areaDetails)
         return areaDetails
     }
     
-    func updatePersistenceObject(persistenceObject: NSManagedObject) {
-        guard let areaDetails = persistenceObject as? AreaDetails else {
+    func updateEntity(entity: NSManagedObject) {
+        guard let areaDetails = entity as? AreaDetails else {
             return
         }
         

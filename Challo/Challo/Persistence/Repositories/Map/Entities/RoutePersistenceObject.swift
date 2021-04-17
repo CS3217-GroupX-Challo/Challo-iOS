@@ -17,15 +17,15 @@ struct RoutePersistenceObject {
 }
 
 extension RoutePersistenceObject: CoreDataPersistenceObject {
-    init?(persistenceObject: NSManagedObject) {
-        guard let route = persistenceObject as? Route,
+    init?(entity: NSManagedObject) {
+        guard let route = entity as? Route,
               let start = route.start,
               let end = route.end else {
             return nil
         }
         
-        guard let markerStart = MarkerPersistenceObject(persistenceObject: start),
-              let markerEnd = MarkerPersistenceObject(persistenceObject: end) else {
+        guard let markerStart = MarkerPersistenceObject(entity: start),
+              let markerEnd = MarkerPersistenceObject(entity: end) else {
             return nil
         }
         
@@ -36,7 +36,7 @@ extension RoutePersistenceObject: CoreDataPersistenceObject {
         self.end = markerEnd
     }
     
-    func convertToPersistenceObject() -> NSManagedObject {
+    func convertToEntity() -> NSManagedObject {
         let route = Route(context: CoreDataContainer.managedObjectContext)
         route.comments = comments
         route.date = date
@@ -44,8 +44,8 @@ extension RoutePersistenceObject: CoreDataPersistenceObject {
         return route
     }
     
-    func updatePersistenceObject(persistenceObject: NSManagedObject) {
-        guard let route = persistenceObject as? Route else {
+    func updateEntity(entity: NSManagedObject) {
+        guard let route = entity as? Route else {
             return
         }
         

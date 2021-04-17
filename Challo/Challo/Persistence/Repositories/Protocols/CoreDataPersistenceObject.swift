@@ -7,5 +7,5 @@
 
 import CoreData
 
-protocol CoreDataPersistenceObject: PersistenceObjectProtocol where PersistenceObject: NSManagedObject {
+protocol CoreDataPersistenceObject: PersistenceObjectProtocol where Entity: NSManagedObject {
 }

@@ -30,7 +30,7 @@ class TouristDetailsRepository: TouristDetailsRepositoryProtocol {
         self.data = [NSManagedObjectID: TouristPersistenceObject]()
         
         for tourist in tourists {
-            if let touristObject = TouristPersistenceObject(persistenceObject: tourist) {
+            if let touristObject = TouristPersistenceObject(entity: tourist) {
                 data[tourist.objectID] = touristObject
                 touristObjects.append(touristObject)
             }
@@ -57,7 +57,7 @@ class TouristDetailsRepository: TouristDetailsRepositoryProtocol {
         
     private func createNewTourists(touristObjects: [TouristPersistenceObject]) {
         for touristObject in touristObjects {
-            _ = touristObject.convertToPersistenceObject()
+            _ = touristObject.convertToEntity()
         }
     }
     
@@ -65,7 +65,7 @@ class TouristDetailsRepository: TouristDetailsRepositoryProtocol {
         for touristObject in touristObjects {
             if let objectId = data.first(where: { $0.value == touristObject })?.key,
                let tourist = repository.getByKey(objectId) {
-                touristObject.updatePersistenceObject(persistenceObject: tourist)
+                touristObject.updateEntity(entity: tourist)
             }
         }
     }

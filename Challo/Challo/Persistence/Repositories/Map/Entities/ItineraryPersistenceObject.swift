@@ -18,8 +18,8 @@ struct ItineraryPersistenceObject {
 }
 
 extension ItineraryPersistenceObject: CoreDataPersistenceObject {
-    init?(persistenceObject: NSManagedObject) {
-        guard let itinerary = persistenceObject as? Itinerary,
+    init?(entity: NSManagedObject) {
+        guard let itinerary = entity as? Itinerary,
               let routes = itinerary.routes,
               let markers = itinerary.markers else {
             return nil
@@ -33,7 +33,7 @@ extension ItineraryPersistenceObject: CoreDataPersistenceObject {
         var routePersistenceObjects: [RoutePersistenceObject] = []
         for route in routes {
             if let routeObject = route as? Route,
-               let routePersistenceObject = RoutePersistenceObject(persistenceObject: routeObject) {
+               let routePersistenceObject = RoutePersistenceObject(entity: routeObject) {
                 routePersistenceObjects.append(routePersistenceObject)
             }
         }
@@ -42,14 +42,14 @@ extension ItineraryPersistenceObject: CoreDataPersistenceObject {
         var markerPersistenceObjects: [MarkerPersistenceObject] = []
         for marker in markers {
             if let markerObject = marker as? Marker,
-               let markerPersistenceObject = MarkerPersistenceObject(persistenceObject: markerObject) {
+               let markerPersistenceObject = MarkerPersistenceObject(entity: markerObject) {
                 markerPersistenceObjects.append(markerPersistenceObject)
             }
         }
         self.markers = markerPersistenceObjects
     }
     
-    func convertToPersistenceObject() -> NSManagedObject {
+    func convertToEntity() -> NSManagedObject {
         let itinerary = Itinerary(context: CoreDataContainer.managedObjectContext)
         itinerary.createdAt = createdAt
         itinerary.title = title
@@ -58,8 +58,8 @@ extension ItineraryPersistenceObject: CoreDataPersistenceObject {
         return itinerary
     }
     
-    func updatePersistenceObject(persistenceObject: NSManagedObject) {
-        guard let itinerary = persistenceObject as? Itinerary else {
+    func updateEntity(entity: NSManagedObject) {
+        guard let itinerary = entity as? Itinerary else {
             return
         }
         itinerary.createdAt = createdAt

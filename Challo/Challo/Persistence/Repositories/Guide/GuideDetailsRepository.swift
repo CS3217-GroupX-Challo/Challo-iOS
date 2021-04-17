@@ -30,7 +30,7 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
         self.data = [NSManagedObjectID: GuidePersistenceObject]()
         
         for guide in guides {
-            if let guideObject = GuidePersistenceObject(persistenceObject: guide) {
+            if let guideObject = GuidePersistenceObject(entity: guide) {
                 self.data[guide.objectID] = guideObject
                 guideObjects.append(guideObject)
             }
@@ -65,7 +65,7 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
                                currentAreas: [AreaDetails],
                                currentTrails: [TrailDetails]) {
         for guideObject in guideObjects {
-            if let guideDetails = guideObject.convertToPersistenceObject() as? GuideDetails {
+            if let guideDetails = guideObject.convertToEntity() as? GuideDetails {
                 setArea(guideDetails: guideDetails,
                         guideObject: guideObject,
                         currentAreas: currentAreas)
@@ -82,7 +82,7 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
         for guideObject in guideObjects {
             if let objectId = data.first(where: { $0.value == guideObject })?.key,
                let guide = repository.getByKey(objectId) {
-                guideObject.updatePersistenceObject(persistenceObject: guide)
+                guideObject.updateEntity(entity: guide)
                 setArea(guideDetails: guide,
                         guideObject: guideObject,
                         currentAreas: currentAreas)
@@ -102,7 +102,7 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
         }
         
         if guideDetails.location == nil && guideObject.location != nil {
-            let area = guideObject.location?.convertToPersistenceObject() as? AreaDetails
+            let area = guideObject.location?.convertToEntity() as? AreaDetails
             guideDetails.location = area
         }
     }
@@ -120,7 +120,7 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
             }
             
             if !isSaved,
-               let trailDetail = trail.convertToPersistenceObject() as? TrailDetails {
+               let trailDetail = trail.convertToEntity() as? TrailDetails {
                 trailsDetails.append(trailDetail)
             }
         }

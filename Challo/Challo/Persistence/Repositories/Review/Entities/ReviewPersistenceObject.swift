@@ -19,18 +19,18 @@ struct ReviewPersistenceObject {
 }
 
 extension ReviewPersistenceObject: CoreDataPersistenceObject {
-    init?(persistenceObject: NSManagedObject) {
-        guard let review = persistenceObject as? ReviewDetails,
+    init?(entity: NSManagedObject) {
+        guard let review = entity as? ReviewDetails,
               let id = review.id,
               let reviewId = UUID(uuidString: id),
               let comment = review.comments,
               let createdAt = review.createdAt,
               let guideDetails = review.guide,
-              let guideObject = GuidePersistenceObject(persistenceObject: guideDetails),
+              let guideObject = GuidePersistenceObject(entity: guideDetails),
               let trailDetails = review.trail,
-              let trailObject = TrailPersistenceObject(persistenceObject: trailDetails),
+              let trailObject = TrailPersistenceObject(entity: trailDetails),
               let touristDetails = review.tourist,
-              let touristObject = TouristPersistenceObject(persistenceObject: touristDetails) else {
+              let touristObject = TouristPersistenceObject(entity: touristDetails) else {
             return nil
         }
         
@@ -43,14 +43,14 @@ extension ReviewPersistenceObject: CoreDataPersistenceObject {
         self.trail = trailObject
     }
     
-    func convertToPersistenceObject() -> NSManagedObject {
+    func convertToEntity() -> NSManagedObject {
         let reviewDetails = ReviewDetails(context: CoreDataContainer.managedObjectContext)
         setReviewDetails(reviewDetails: reviewDetails)
         return reviewDetails
     }
     
-    func updatePersistenceObject(persistenceObject: NSManagedObject) {
-        guard let reviewDetails = persistenceObject as? ReviewDetails else {
+    func updateEntity(entity: NSManagedObject) {
+        guard let reviewDetails = entity as? ReviewDetails else {
             return
         }
         setReviewDetails(reviewDetails: reviewDetails)

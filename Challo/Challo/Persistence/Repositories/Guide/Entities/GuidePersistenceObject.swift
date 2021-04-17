@@ -31,8 +31,8 @@ struct GuidePersistenceObject {
 
 extension GuidePersistenceObject: CoreDataPersistenceObject {
     // swiftlint:disable function_body_length
-    init?(persistenceObject: NSManagedObject) {
-        guard let guide = persistenceObject as? GuideDetails,
+    init?(entity: NSManagedObject) {
+        guard let guide = entity as? GuideDetails,
               let id = guide.id,
               let userId = UUID(uuidString: id),
               let email = guide.email,
@@ -48,7 +48,7 @@ extension GuidePersistenceObject: CoreDataPersistenceObject {
         self.dateJoined = guide.dateJoined
         
         if let area = guide.location {
-            self.location = AreaPersistenceObject(persistenceObject: area)
+            self.location = AreaPersistenceObject(entity: area)
         }
         
         self.sex = Sex(rawValue: guide.sex ?? "")
@@ -62,7 +62,7 @@ extension GuidePersistenceObject: CoreDataPersistenceObject {
         if let trailsPersisted = guide.trails {
             for trail in trailsPersisted {
                 if let trailDetails = trail as? TrailDetails,
-                   let trailObject = TrailPersistenceObject(persistenceObject: trailDetails) {
+                   let trailObject = TrailPersistenceObject(entity: trailDetails) {
                     trailObjects.append(trailObject)
                 }
             }
@@ -92,14 +92,14 @@ extension GuidePersistenceObject: CoreDataPersistenceObject {
         }
     }
     
-    func convertToPersistenceObject() -> NSManagedObject {
+    func convertToEntity() -> NSManagedObject {
         let guideDetails = GuideDetails(context: CoreDataContainer.managedObjectContext)
         setGuideDetails(guideDetails: guideDetails)
         return guideDetails
     }
     
-    func updatePersistenceObject(persistenceObject: NSManagedObject) {
-        guard let guideDetails = persistenceObject as? GuideDetails else {
+    func updateEntity(entity: NSManagedObject) {
+        guard let guideDetails = entity as? GuideDetails else {
             return
         }
         

@@ -50,7 +50,7 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
         self.data = [NSManagedObjectID: BookingPersistenceObject]()
         
         for booking in bookings {
-            if let bookingObject = BookingPersistenceObject(persistenceObject: booking) {
+            if let bookingObject = BookingPersistenceObject(entity: booking) {
                 self.data[booking.objectID] = bookingObject
                 bookingObjects.append(bookingObject)
             }
@@ -92,7 +92,7 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
                                  currentTourists: [TouristDetails],
                                  currentReviews: [ReviewDetails]) {
         for bookingObject in bookingObjects {
-            if let bookingInfo = bookingObject.convertToPersistenceObject() as? BookingInfo {
+            if let bookingInfo = bookingObject.convertToEntity() as? BookingInfo {
                 setGuideTrailTouristReview(bookingInfo: bookingInfo,
                                            bookingObject: bookingObject,
                                            currentGuides: currentGuides,
@@ -111,7 +111,7 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
         for bookingObject in bookingObjects {
             if let objectId = data.first(where: { $0.value == bookingObject })?.key,
                let bookingInfo = repository.getByKey(objectId) {
-                bookingObject.updatePersistenceObject(persistenceObject: bookingInfo)
+                bookingObject.updateEntity(entity: bookingInfo)
                 setGuideTrailTouristReview(bookingInfo: bookingInfo,
                                            bookingObject: bookingObject,
                                            currentGuides: currentGuides,
@@ -152,7 +152,7 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
         }
         
         if bookingInfo.guide == nil {
-            let guide = bookingObject.guide.convertToPersistenceObject() as? GuideDetails
+            let guide = bookingObject.guide.convertToEntity() as? GuideDetails
             bookingInfo.guide = guide
         }
     }
@@ -166,7 +166,7 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
         }
         
         if bookingInfo.trail == nil {
-            let trail = bookingObject.trail.convertToPersistenceObject() as? TrailDetails
+            let trail = bookingObject.trail.convertToEntity() as? TrailDetails
             bookingInfo.trail = trail
         }
     }
@@ -180,7 +180,7 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
         }
         
         if bookingInfo.tourist == nil {
-            let tourist = bookingObject.tourist.convertToPersistenceObject() as? TouristDetails
+            let tourist = bookingObject.tourist.convertToEntity() as? TouristDetails
             bookingInfo.tourist = tourist
         }
     }
@@ -194,7 +194,7 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
         }
         
         if bookingInfo.review == nil {
-            let review = bookingObject.review?.convertToPersistenceObject() as? ReviewDetails
+            let review = bookingObject.review?.convertToEntity() as? ReviewDetails
             bookingInfo.review = review
         }
     }

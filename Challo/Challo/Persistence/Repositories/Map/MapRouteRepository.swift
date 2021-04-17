@@ -33,7 +33,7 @@ class MapRouteRepository: MapRouteRepositoryInterface {
         
         for route in routes {
             if let routeObject =
-                RoutePersistenceObject(persistenceObject: route) {
+                RoutePersistenceObject(entity: route) {
                 data[route.objectID] = routeObject
                 routeObjects.append(routeObject)
             }
@@ -62,7 +62,7 @@ class MapRouteRepository: MapRouteRepositoryInterface {
         for routeObject in routeObjects {
             if let objectId = data.first(where: { $0.value == routeObject })?.key,
                let managedObject = repository.getByKey(objectId) {
-                routeObject.updatePersistenceObject(persistenceObject: managedObject)
+                routeObject.updateEntity(entity: managedObject)
             }
         }
     }
@@ -71,7 +71,7 @@ class MapRouteRepository: MapRouteRepositoryInterface {
         let markers = mapMarkerRepository.getAll()
         
         for routeObject in routeObjects {
-            let managedObject = routeObject.convertToPersistenceObject()
+            let managedObject = routeObject.convertToEntity()
             
             if let route = managedObject as? Route {
                 for marker in markers {
