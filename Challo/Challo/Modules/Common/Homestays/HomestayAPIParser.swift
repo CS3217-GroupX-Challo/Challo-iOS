@@ -12,16 +12,25 @@ class HomestayAPIParser: APIParser {
 
     typealias JSON = NetworkManager.JSON
 
-    func parseHomestays(response: JSON) -> [Homestay] {
+    func extractHostId(json: JSON) -> UUID? {
+        guard let idString = json[Key.hostId] as? String,
+              let hostId = UUID(uuidString: idString) else {
+            return nil
+        }
+        
+        return hostId
+    }
+
+    func extractHomestayJSON(response: JSON) -> [JSON] {
         guard let data = response["data"],
               let homestayInfo = data as? [JSON] else {
             return []
         }
         
-        return homestayInfo.compactMap { convertJSONToHomestay(json: $0) }
+        return homestayInfo
     }
 
-    func convertJSONToHomestay(json: JSON) -> Homestay? {
+    func convertJSONToHomestay(json: JSON, host: Host) -> Homestay? {
         guard let idString = json[Key.homestayId] as? String,
               let homestayId = UUID(uuidString: idString),
               let title = json[Key.title] as? String,
@@ -46,7 +55,8 @@ class HomestayAPIParser: APIParser {
                         fee: fee,
                         capacity: capacity,
                         amenities: amenities,
-                        guests: guests)
+                        guests: guests,
+                        host: host)
     }
 }
 

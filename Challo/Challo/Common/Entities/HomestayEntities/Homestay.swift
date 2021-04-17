@@ -30,4 +30,6 @@ struct Homestay: Equatable {
     let amenities: [Amenity]
 
     let guests: Int
+
+    let host: Host
 }

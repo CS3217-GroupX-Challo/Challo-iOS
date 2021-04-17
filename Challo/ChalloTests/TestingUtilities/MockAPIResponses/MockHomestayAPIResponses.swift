@@ -13,6 +13,8 @@ struct MockHomestayAPIResponses {
     typealias JSON = NetworkManager.JSON
 
     static let homestayIdOne = UUID(uuidString: "3fa85f64-5717-4562-b3fc-2c963f66afa6")!
+    static let hostIdOne = MockHostAPIResponses.userId
+    static let hostOne = MockHostAPIResponses.host
     static let titleOne = "4 Room Delxue homestay with great view!"
     static let descriptionOne = "Super luxurious with a great view of the mountain ranges! :)"
     static let imagesPathOne = ["imgOne.png", "imgTwo.png"]
@@ -68,13 +70,14 @@ struct MockHomestayAPIResponses {
         json[Key.capacity] = capacityJSONOne
         json[Key.amenities] = amenitiesJSONOne
         json[Key.guests] = guestsOne
+        json[Key.hostId] = hostIdOne.uuidString
         return json
     }
 
     static var homestayOne: Homestay {
         Homestay(homestayId: homestayIdOne, title: titleOne, description: descriptionOne, images: imagesPathOne,
                  location: locationOne, rating: ratingOne, fee: Double(feeOne), capacity: capacityOne,
-                 amenities: amenitiesOne, guests: guestsOne)
+                 amenities: amenitiesOne, guests: guestsOne, host: MockHostAPIResponses.host)
     }
 
     static let homestayJSONArray = [homestayJSONOne, homestayJSONOne]

@@ -97,3 +97,8 @@ extension Key {
     static let amenities = "amenities"
     static let guests = "guests"
 }
+
+// MARK: Hosts
+extension Key {
+    static let hostId = "hostId"
+}
