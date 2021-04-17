@@ -17,7 +17,8 @@ final class MapModule: ViperModuleProtocol {
     func assemble() -> (view: AnyView, presenter: MapPresenter) {
         let mapStore = MapStore(mapMarkerRepository: MapMarkerRepository(),
                                 mapRouteRepository: MapRouteRepository(),
-                                mapItineraryRepository: MapItineraryRepository())
+                                mapItineraryRepository: MapItineraryRepository(),
+                                convertor: MapModelConvertor())
         let interactor = MapInteractor(mapStore: mapStore, placesAPI: placesAPI)
         let router = MapRouter(placesAPI: placesAPI, mapStore: mapStore)
         let presenter = MapPresenter()

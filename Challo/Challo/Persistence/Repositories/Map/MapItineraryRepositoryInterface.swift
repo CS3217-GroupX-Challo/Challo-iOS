@@ -6,6 +6,6 @@
 //
 
 protocol MapItineraryRepositoryInterface {
-    func getAllMapItineraries() -> [MapItinerary]
-    func saveMapItineraries(mapItineraries: [MapItinerary])
+    func getAllItineraries() -> [ItineraryPersistenceObject]
+    func saveItineraries(itineraryObjects: [ItineraryPersistenceObject])
 }

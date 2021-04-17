@@ -17,6 +17,7 @@ class MapItineraryRepositoryTests: XCTestCase {
     typealias mockRouteRepo = MockMapRouteCoreDataRepository
     
     var managedContext = CoreDataContainer.managedObjectContext
+    let convertor = MapModelConvertor()
     
     var emptyRepository: MapItineraryRepository {
         MapItineraryRepository(repository: mockItineraryRepo(managedObjectContext: managedContext),
@@ -33,38 +34,39 @@ class MapItineraryRepositoryTests: XCTestCase {
     }
     
     func testGetAllMapItineraries_emptyRepository_returnsEmptyArray() {
-        let mapItineraries = emptyRepository.getAllMapItineraries()
+        let mapItineraries = emptyRepository.getAllItineraries()
         XCTAssertTrue(mapItineraries.isEmpty, "Should be empty")
     }
     
     func testGetAllMapItineraries_filledRepository_returnsArrayOfOne() {
-        let mapItineraries = filledRepository.getAllMapItineraries()
+        let mapItineraries = filledRepository.getAllItineraries()
         XCTAssertEqual(mapItineraries.count, 1, "Should have one element")
-        XCTAssertEqual(mapItineraries[0], mockItineraryRepo.mapItinerary, "Should be equal")
     }
     
     func testSaveMapItineraries_emptyRepoEmptyItineraries_nothingSaved() {
-        emptyRepository.saveMapItineraries(mapItineraries: [])
-        XCTAssertTrue(emptyRepository.getAllMapItineraries().isEmpty, "should be empty")
+        emptyRepository.saveItineraries(itineraryObjects: [])
+        XCTAssertTrue(emptyRepository.getAllItineraries().isEmpty, "should be empty")
     }
     
     func testSaveMapItineraries_emptyRepoOneItineraries_nothingSaved() {
-        emptyRepository.saveMapItineraries(mapItineraries: [mockItineraryRepo.mapItinerary])
-        XCTAssertTrue(emptyRepository.getAllMapItineraries().isEmpty, "should be empty")
+        let object = convertor.convertMapItineraryToItineraryPersistenceObject(mapIitnerary:
+                                                                                mockItineraryRepo.mapItinerary)
+        emptyRepository.saveItineraries(itineraryObjects: [object])
+        XCTAssertTrue(emptyRepository.getAllItineraries().isEmpty, "should be empty")
     }
     
     func testSaveMapItineraries_filledRepoEmptyItineraries_nothingSaved() {
-        filledRepository.saveMapItineraries(mapItineraries: [])
-        let mapItineraries = filledRepository.getAllMapItineraries()
+        filledRepository.saveItineraries(itineraryObjects: [])
+        let mapItineraries = filledRepository.getAllItineraries()
         XCTAssertEqual(mapItineraries.count, 1, "Should have one element")
-        XCTAssertEqual(mapItineraries[0], mockItineraryRepo.mapItinerary, "Should be equal")
     }
     
     func testSaveMapItineraries_filledRepoOneItineraries_nothingSaved() {
-        emptyRepository.saveMapItineraries(mapItineraries: [mockItineraryRepo.mapItinerary])
-        let mapItineraries = filledRepository.getAllMapItineraries()
+        let object = convertor.convertMapItineraryToItineraryPersistenceObject(mapIitnerary:
+                                                                                mockItineraryRepo.mapItinerary)
+        emptyRepository.saveItineraries(itineraryObjects: [object])
+        let mapItineraries = filledRepository.getAllItineraries()
         XCTAssertEqual(mapItineraries.count, 1, "Should have one element")
-        XCTAssertEqual(mapItineraries[0], mockItineraryRepo.mapItinerary, "Should be equal")
     }
     
     func testConvertItineraryObjectToMapItinerary_returnsCorrectMapItinerary() {

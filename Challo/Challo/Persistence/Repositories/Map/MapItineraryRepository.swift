@@ -9,7 +9,7 @@ import CoreData
 import Foundation
 
 class MapItineraryRepository: MapItineraryRepositoryInterface {
-    private var data: [NSManagedObjectID: MapItinerary]
+    private var data: [NSManagedObjectID: ItineraryPersistenceObject]
     private var repository: CoreDataRepository<Itinerary>
     private var mapMarkerRepository: CoreDataRepository<Marker>
     private var mapRouteRepository: CoreDataRepository<Route>
@@ -17,14 +17,14 @@ class MapItineraryRepository: MapItineraryRepositoryInterface {
     init(repository: CoreDataRepository<Itinerary>,
          mapMarkerRepository: CoreDataRepository<Marker>,
          mapRouteRepository: CoreDataRepository<Route>) {
-        self.data = [NSManagedObjectID: MapItinerary]()
+        self.data = [NSManagedObjectID: ItineraryPersistenceObject]()
         self.repository = repository
         self.mapRouteRepository = mapRouteRepository
         self.mapMarkerRepository = mapMarkerRepository
     }
     
     init() {
-        self.data = [NSManagedObjectID: MapItinerary]()
+        self.data = [NSManagedObjectID: ItineraryPersistenceObject]()
         self.repository = CoreDataRepository<Itinerary>(managedObjectContext:
                                                             CoreDataContainer.managedObjectContext)
         self.mapRouteRepository = CoreDataRepository<Route>(managedObjectContext:
@@ -33,71 +33,64 @@ class MapItineraryRepository: MapItineraryRepositoryInterface {
                                                         CoreDataContainer.managedObjectContext)
     }
     
-    func getAllMapItineraries() -> [MapItinerary] {
-        self.data = [NSManagedObjectID: MapItinerary]()
+    func getAllItineraries() -> [ItineraryPersistenceObject] {
+        self.data = [NSManagedObjectID: ItineraryPersistenceObject]()
         let itineraries = repository.getAll()
         
-        var mapItineraries: [MapItinerary] = []
+        var itineraryObjects: [ItineraryPersistenceObject] = []
         
         for itinerary in itineraries {
-            if let mapItinerary = MapItineraryRepository
-                .convertItineraryObjectToMapItinerary(itinerary: itinerary) {
-                data[itinerary.objectID] = mapItinerary
-                mapItineraries.append(mapItinerary)
+            if let itineraryObject = ItineraryPersistenceObject(entity: itinerary) {
+                data[itinerary.objectID] = itineraryObject
+                itineraryObjects.append(itineraryObject)
             }
         }
-        return mapItineraries
+        return itineraryObjects
     }
     
-    func saveMapItineraries(mapItineraries: [MapItinerary]) {
-        let currentMapItineraries = getAllMapItineraries()
+    func saveItineraries(itineraryObjects: [ItineraryPersistenceObject]) {
+        let currentItineraryObjects = getAllItineraries()
         
-        let existingMapItineraries = mapItineraries.filter { mapItinerary in
-            currentMapItineraries.contains(mapItinerary)
+        let existingItineraryObjects = itineraryObjects.filter { itineraryObject in
+            currentItineraryObjects.contains(itineraryObject)
         }
         
-        let newMapItineraries = mapItineraries.filter { mapItinerary in
-            !existingMapItineraries.contains(mapItinerary)
+        let newItineraryObjects = itineraryObjects.filter { itineraryObject in
+            !existingItineraryObjects.contains(itineraryObject)
         }
         
-        saveNewMapItineraries(mapItineraries: newMapItineraries)
-        updateMapItineraries(mapItineraries: existingMapItineraries)
+        saveNewItineraries(itineraryObjects: newItineraryObjects)
+        updateItineraries(itineraryObjects: existingItineraryObjects)
         repository.commit()
     }
     
-    private func saveNewMapItineraries(mapItineraries: [MapItinerary]) {
-        for mapItinerary in mapItineraries {
-            let itinerary = Itinerary(context: CoreDataContainer.managedObjectContext)
-            itinerary.createdAt = mapItinerary.createdAt
-            itinerary.title = mapItinerary.title
-            itinerary.lastModified = mapItinerary.lastModified
-            itinerary.id = mapItinerary.id.uuidString
-            itinerary.markers = NSSet(array: getRelatedMapMarkers(mapMarkers: mapItinerary.markers))
-            itinerary.routes = NSSet(array: getRelatedMapRoutes(mapRoutes: mapItinerary.routes))
-        }
-    }
-    
-    private func updateMapItineraries(mapItineraries: [MapItinerary]) {
-        for mapItinerary in mapItineraries {
-            if let objectId = data.first(where: { $0.value == mapItinerary })?.key,
-               let itinerary = repository.getByKey(objectId) {
-                itinerary.createdAt = mapItinerary.createdAt
-                itinerary.title = mapItinerary.title
-                itinerary.lastModified = mapItinerary.lastModified
-                itinerary.id = mapItinerary.id.uuidString
-                itinerary.markers = NSSet(array: getRelatedMapMarkers(mapMarkers: mapItinerary.markers))
-                itinerary.routes = NSSet(array: getRelatedMapRoutes(mapRoutes: mapItinerary.routes))
+    private func saveNewItineraries(itineraryObjects: [ItineraryPersistenceObject]) {
+        for itineraryObject in itineraryObjects {
+            if let itinerary = itineraryObject.convertToEntity() as? Itinerary {
+                itinerary.markers = NSSet(array: getRelatedMarkers(markerObjects: itineraryObject.markers))
+                itinerary.routes = NSSet(array: getRelatedRoutes(routeObjects: itineraryObject.routes))
             }
         }
     }
     
-    private func getRelatedMapMarkers(mapMarkers: [MapMarker]) -> [Marker] {
+    private func updateItineraries(itineraryObjects: [ItineraryPersistenceObject]) {
+        for itineraryObject in itineraryObjects {
+            if let objectId = data.first(where: { $0.value == itineraryObject })?.key,
+               let itinerary = repository.getByKey(objectId) {
+                itineraryObject.updateEntity(entity: itinerary)
+                itinerary.markers = NSSet(array: getRelatedMarkers(markerObjects: itineraryObject.markers))
+                itinerary.routes = NSSet(array: getRelatedRoutes(routeObjects: itineraryObject.routes))
+            }
+        }
+    }
+    
+    private func getRelatedMarkers(markerObjects: [MarkerPersistenceObject]) -> [Marker] {
         let markers = mapMarkerRepository.getAll()
         var filteredMarkers = [Marker]()
         
         for marker in markers {
-            if mapMarkers.contains(where: { mapMarker in
-                mapMarker.id.uuidString == marker.id
+            if markerObjects.contains(where: { markerObject in
+                markerObject.id.uuidString == marker.id
             }) {
                 filteredMarkers.append(marker)
             }
@@ -106,13 +99,13 @@ class MapItineraryRepository: MapItineraryRepositoryInterface {
         return filteredMarkers
     }
     
-    private func getRelatedMapRoutes(mapRoutes: [MapRoute]) -> [Route] {
+    private func getRelatedRoutes(routeObjects: [RoutePersistenceObject]) -> [Route] {
         let routes = mapRouteRepository.getAll()
         var filteredRoutes = [Route]()
         
         for route in routes {
-            if mapRoutes.contains(where: { mapRoute in
-                mapRoute.id.uuidString == route.id
+            if routeObjects.contains(where: { routeObject in
+                routeObject.id.uuidString == route.id
             }) {
                 filteredRoutes.append(route)
             }

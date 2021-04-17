@@ -8,8 +8,22 @@
 import Foundation
 
 /// Models an itinerary for a tourist.
-struct MapItinerary {
-    
+class MapItinerary {
+
+    init(id: UUID,
+         routes: [MapRoute],
+         markers: [MapMarker],
+         title: String,
+         createdAt: Date,
+         lastModified: Date) {
+        self.id = id
+        self.routes = routes
+        self.markers = markers
+        self.title = title
+        self.createdAt = createdAt
+        self.lastModified = lastModified
+    }
+
     /// Unique identification
     var id: UUID
     
