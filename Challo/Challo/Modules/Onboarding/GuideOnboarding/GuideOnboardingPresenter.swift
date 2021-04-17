@@ -24,7 +24,15 @@ class GuideOnboardingPresenter: PresenterProtocol {
     @Published var nickname = ""
     @Published var dateOfBirth = Date()
     @Published var languages = Set<Languages>()
-    @Published var yearsOfExperience = "0"
+    @Published var yearsOfExperience = "0" {
+        didSet {
+            let filtered = yearsOfExperience.filter { $0.isNumber }
+            
+            if yearsOfExperience != filtered {
+                yearsOfExperience = filtered
+            }
+        }
+    }
     @Published var hobbies = ""
     @Published var accreditations = [String]()
     @Published var biography = ""

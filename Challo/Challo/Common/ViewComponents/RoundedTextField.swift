@@ -11,13 +11,11 @@ struct RoundedTextField: View {
             SecureField(placeholder ?? "",
                         text: text)
                 .textFieldStyle(RoundedTextFieldStyle())
-                .padding()
                 .autocapitalization(.none)
         } else {
             TextField(placeholder ?? "",
                       text: text)
                 .textFieldStyle(RoundedTextFieldStyle())
-                .padding()
                 .autocapitalization(.none)
         }
     }

@@ -22,14 +22,19 @@ struct OnboardingForm: View {
     @Binding var chosenTrails: Set<HashableTrailOption>
 
     @State var chosen = Set<Days>()
+    var onSubmit: () -> Void
 
     var body: some View {
+        Group {
+            
+        }
         Form {
             Section {
                 RoundedTextField(placeholder: "Nickname",
                                  text: $nickname)
                 dobField
                 languageField
+                yearsOfExperienceField
                 daysAvailableField
             }
             
@@ -39,6 +44,17 @@ struct OnboardingForm: View {
             
             Section {
                 trailsField
+            }
+            
+            HStack {
+                Spacer()
+                
+                Button(action: onSubmit, label: {
+                    Text("Submit details")
+                })
+                .buttonStyle(BorderedButtonStyle(borderColor: .themeTertiary, foregroundColor: .themeSecondary))
+                
+                Spacer()
             }
         }
     }
@@ -65,10 +81,6 @@ struct OnboardingForm: View {
             RoundedTextField(placeholder: "",
                              text: $yearsOfExperience,
                              isPasswordField: false)
-                .keyboardType(.numberPad)
-                .onReceive(Just(yearsOfExperience)) { input in
-                    yearsOfExperience = input.filter { "0123456789".contains($0) }
-                }
         }
     }
 
