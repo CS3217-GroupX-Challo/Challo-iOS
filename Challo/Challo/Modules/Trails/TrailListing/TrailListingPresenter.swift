@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class TrailListingPresenter: SearchBarPresenter, ObservableObject {
+class TrailListingPresenter: EntityPresenter, ObservableObject {
 
     var interactor: TrailListingInteractor!
     var router: TrailListingRouter?
@@ -21,8 +21,7 @@ class TrailListingPresenter: SearchBarPresenter, ObservableObject {
         }
     }
 
-    var trails: [Trail] = []
-    private var trailListingCards: [TrailListingCard] = []
+    private var trails: [Trail] = []
     
     @Published var searchBarText: String = ""
     @Published var isSearchBarSheetOpen: Bool = false
@@ -52,23 +51,23 @@ class TrailListingPresenter: SearchBarPresenter, ObservableObject {
         Int(ceil(slider.highHandle.currentValue))
     }
     
-    var displayedTrailListingCards: [TrailListingCard] {
-        var displayedCards = trailListingCards
-        displayedCards = displayedCards.filter { $0.lowestFeePerPax >= priceFilterLowerBound &&
-                                                    $0.lowestFeePerPax <= priceFilterUpperBound  
+    var displayedCards: [ListingCard] {
+        var trails = self.trails
+        trails = trails.filter { $0.lowestFee >= priceFilterLowerBound &&
+                                    $0.lowestFee <= priceFilterUpperBound  
         }
-        displayedCards = displayedCards.filter { difficultiesToDisplay.contains($0.difficulty) }
+        trails = trails.filter { difficultiesToDisplay.contains($0.difficulty) }
         guard !searchBarText.isEmpty else {
-            return displayedCards
+            return trails.map(transformTrailToTrailListingCard)
         }
-        displayedCards = displayedCards.filter { $0.title.contains(searchBarText) }
-        displayedCards.sort {
+        trails = trails.filter { $0.title.contains(searchBarText) }
+        trails.sort {
             $0.title < $1.title
         }
-        return displayedCards
+        return trails.map(transformTrailToTrailListingCard)
     }
     
-    var trailProfilePage: AnyView? {
+    var profilePage: AnyView? {
         router?.trailProfilePage
     }
     
@@ -80,7 +79,6 @@ class TrailListingPresenter: SearchBarPresenter, ObservableObject {
     
     func didGetAllTrails(_ trails: [Trail]) {
         self.trails = trails
-        trailListingCards = trails.map(transformTrailToTrailListingCard)
         setSlider()
         isLoading = false
         isRefreshing = false
@@ -90,22 +88,30 @@ class TrailListingPresenter: SearchBarPresenter, ObservableObject {
         interactor.getAllTrails()
     }
     
-    func transformTrailToTrailListingCard(_ trail: Trail) -> TrailListingCard {
-        TrailListingCard(title: trail.title, tags: trail.tags, lowestFeePerPax: trail.lowestFee,
-                         tourDescription: trail.description, rating: trail.rating, numOfReviews: trail.numOfReviews,
-                         difficulty: trail.difficulty, images: trail.images)
-    }
-    
-    func populateTrailProfilePage(trailTitle: String) {
-        guard let trail = trails.first(where: { $0.title == trailTitle }) else {
-            fatalError("Unsync between trails in view and in presenter")
+    func transformTrailToTrailListingCard(_ trail: Trail) -> ListingCard {
+        ListingCard(id: trail.trailId.uuidString,
+                    entityImage: trail.images.isEmpty ? nil : trail.images[0],
+                    defaultImage: "mountains-background") {
+           AnyView(TrailListingCardDetail(title: trail.title,
+                                          tags: trail.tags,
+                                          lowestFeePerPax: trail.lowestFee,
+                                          tourDescription: trail.description,
+                                          rating: trail.rating,
+                                          numOfReviews: trail.numOfReviews,
+                                          difficulty: trail.difficulty))
         }
-        router?.populateTrailProfilePageFor(trail: trail)
     }
     
     func onPageAppear() {
         isLoading = true
         self.trails = interactor.getCachedEntities()
         getAllTrails()
+    }
+    
+    func onTapListingCard(_ cardId: String) {
+        guard let trail = trails.first(where: { $0.trailId == UUID(uuidString: cardId) }) else {
+            return
+        }
+        router?.populateTrailProfilePageFor(trail: trail)
     }
 }
