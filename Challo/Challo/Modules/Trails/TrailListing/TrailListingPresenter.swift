@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-class TrailListingPresenter: EntityListingPresenter, ObservableObject {
-
+class TrailListingPresenter: EntityListingPresenter, SearchBarPresenter, ObservableObject {    
+    typealias Entity = Trail
+    
     var interactor: TrailListingInteractor!
     var router: TrailListingRouter?
     
@@ -67,25 +68,10 @@ class TrailListingPresenter: EntityListingPresenter, ObservableObject {
         return trails.map(transformTrailToTrailListingCard)
     }
     
-    var profilePage: AnyView? {
-        router?.trailProfilePage
-    }
-    
     private func setSlider() {
         lowestTrailPrice = trails.map { $0.lowestFee }.min() ?? .min
         highestTrailPrice = trails.map { $0.lowestFee }.max() ?? .max
         slider = CustomSlider(width: 600, start: Double(lowestTrailPrice), end: Double(highestTrailPrice))
-    }
-    
-    func didGetAllTrails(_ trails: [Trail]) {
-        self.trails = trails
-        setSlider()
-        isLoading = false
-        isRefreshing = false
-    }
-    
-    func getAllTrails() {
-        interactor.getAllTrails()
     }
     
     func transformTrailToTrailListingCard(_ trail: Trail) -> ListingCard {
@@ -108,10 +94,21 @@ class TrailListingPresenter: EntityListingPresenter, ObservableObject {
         getAllTrails()
     }
     
-    func onTapListingCard(_ cardId: String) {
+    func getEntityByCardId(_ cardId: String) -> Trail {
         guard let trail = trails.first(where: { $0.trailId == UUID(uuidString: cardId) }) else {
-            return
+            fatalError("trails is not synced with cards")
         }
-        router?.populateTrailProfilePageFor(trail: trail)
+        return trail
+    }
+    
+    func didGetAllTrails(_ trails: [Trail]) {
+        self.trails = trails
+        setSlider()
+        isLoading = false
+        isRefreshing = false
+    }
+    
+    func getAllTrails() {
+        interactor.getAllTrails()
     }
 }
