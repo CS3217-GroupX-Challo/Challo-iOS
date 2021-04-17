@@ -21,7 +21,6 @@ class TrailRepository: Repository<UUID, Trail>, TrailRepositoryProtocol, LocalSt
         self.trailAPI = trailAPI
         self.localStore = trailStore
         super.init()
-        fetchTrailsAndRefresh()
     }
     
     private func refreshTrails(_ trails: [Trail]) {
