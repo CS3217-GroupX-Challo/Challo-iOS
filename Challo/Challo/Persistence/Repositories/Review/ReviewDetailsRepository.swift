@@ -11,15 +11,15 @@ import Foundation
 class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: ReviewPersistenceObject]
     var repository: CoreDataRepository<ReviewDetails>
-    private var guideRepository: CoreDataRepository<GuideDetails>
-    private var trailRepository: CoreDataRepository<TrailDetails>
-    private var touristRepository: CoreDataRepository<TouristDetails>
+    private var guideRepository: GuideDetailsRepository
+    private var trailRepository: TrailDetailsRepository
+    private var touristRepository: TouristDetailsRepository
     
     init(data: [NSManagedObjectID: ReviewPersistenceObject],
          repository: CoreDataRepository<ReviewDetails>,
-         guideRepository: CoreDataRepository<GuideDetails>,
-         trailRepository: CoreDataRepository<TrailDetails>,
-         touristRepository: CoreDataRepository<TouristDetails>) {
+         guideRepository: GuideDetailsRepository,
+         trailRepository: TrailDetailsRepository,
+         touristRepository: TouristDetailsRepository) {
         self.data = data
         self.repository = repository
         self.guideRepository = guideRepository
@@ -31,12 +31,9 @@ class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
         self.data = [NSManagedObjectID: ReviewPersistenceObject]()
         self.repository = CoreDataRepository<ReviewDetails>(managedObjectContext:
                                                                 CoreDataContainer.managedObjectContext)
-        self.guideRepository = CoreDataRepository<GuideDetails>(managedObjectContext:
-                                                                    CoreDataContainer.managedObjectContext)
-        self.trailRepository = CoreDataRepository<TrailDetails>(managedObjectContext:
-                                                                    CoreDataContainer.managedObjectContext)
-        self.touristRepository = CoreDataRepository<TouristDetails>(managedObjectContext:
-                                                                        CoreDataContainer.managedObjectContext)
+        self.guideRepository = GuideDetailsRepository()
+        self.trailRepository = TrailDetailsRepository()
+        self.touristRepository = TouristDetailsRepository()
     }
     
     func getAll() -> [ReviewPersistenceObject] {
@@ -55,16 +52,19 @@ class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
     }
     
     func save(objects: [ReviewPersistenceObject]) {
-        let currentReviews = getAll()
-        let currentGuides = guideRepository.getAll()
-        let currentTrails = trailRepository.getAll()
-        let currentTourists = touristRepository.getAll()
+        let uniqueObjects = getUniqueReviews(objects: objects)
+        saveCurrentDependencies(objects: uniqueObjects)
         
-        let existingReviewObjects = objects.filter { reviewObject in
+        let currentReviews = getAll()
+        let currentGuides = guideRepository.repository.getAll()
+        let currentTrails = trailRepository.repository.getAll()
+        let currentTourists = touristRepository.repository.getAll()
+        
+        let existingReviewObjects = uniqueObjects.filter { reviewObject in
             currentReviews.contains(reviewObject)
         }
         
-        let newReviewObjects = objects.filter { reviewObject in
+        let newReviewObjects = uniqueObjects.filter { reviewObject in
             !existingReviewObjects.contains(reviewObject)
         }
         
@@ -79,18 +79,44 @@ class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
         repository.commit()
     }
     
+    private func getUniqueReviews(objects: [ReviewPersistenceObject]) -> [ReviewPersistenceObject] {
+        var reviewsObjects = [ReviewPersistenceObject]()
+        for object in objects {
+            if !reviewsObjects.contains(object) {
+                reviewsObjects.append(object)
+            }
+        }
+        
+        return reviewsObjects
+    }
+    
+    private func saveCurrentDependencies(objects: [ReviewPersistenceObject]) {
+        saveGuidesInvolved(objects: objects)
+        saveTrailsInvolved(objects: objects)
+        saveTouristsInvolved(objects: objects)
+    }
+    
+    private func saveGuidesInvolved(objects: [ReviewPersistenceObject]) {
+        let guideObjects = objects.compactMap { $0.guide }
+        guideRepository.save(objects: guideObjects)
+    }
+    
+    private func saveTrailsInvolved(objects: [ReviewPersistenceObject]) {
+        let trailObjects = objects.compactMap { $0.trail }
+        trailRepository.save(objects: trailObjects)
+    }
+    
+    private func saveTouristsInvolved(objects: [ReviewPersistenceObject]) {
+        let touristObjects = objects.compactMap { $0.tourist }
+        touristRepository.save(objects: touristObjects)
+    }
+    
     private func setTrail(reviewDetails: ReviewDetails,
                           reviewObject: ReviewPersistenceObject,
                           currentTrails: [TrailDetails]) {
         for trail in currentTrails where trail.id == reviewObject.trail.trailId.uuidString {
             reviewDetails.trail = trail
             break
-        }
-        
-        // trail has not been saved in core data repository, time to save
-        if reviewDetails.trail == nil {
-            let trail = reviewObject.trail.convertToEntity() as? TrailDetails
-            reviewDetails.trail = trail
         }
     }
     
@@ -149,11 +175,6 @@ class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
             reviewDetails.guide = guide
             break
         }
-        
-        if reviewDetails.guide == nil {
-            let guide = reviewObject.guide.convertToEntity() as? GuideDetails
-            reviewDetails.guide = guide
-        }
     }
     
     private func setTourist(reviewDetails: ReviewDetails,
@@ -162,11 +183,6 @@ class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
         for tourist in currentTourists where tourist.id == reviewObject.tourist.userId.uuidString {
             reviewDetails.tourist = tourist
             break
-        }
-        
-        if reviewDetails.tourist == nil {
-            let tourist = reviewObject.tourist.convertToEntity() as? TouristDetails
-            reviewDetails.tourist = tourist
         }
     }
 }

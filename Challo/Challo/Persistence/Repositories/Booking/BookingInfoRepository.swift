@@ -60,17 +60,20 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
     }
     
     func save(objects: [BookingPersistenceObject]) {
+        let uniqueObjects = getUniqueBookings(objects: objects)
+        updateDependencies(objects: uniqueObjects)
+        
         let currentBookings = getAll()
         let currentGuides = guideRepository.repository.getAll()
         let currentTourists = touristRepository.repository.getAll()
         let currentTrails = trailRepository.repository.getAll()
         let currentReviews = reviewRepository.repository.getAll()
         
-        let existingBookingObjects = objects.filter { bookingObject in
+        let existingBookingObjects = uniqueObjects.filter { bookingObject in
             currentBookings.contains(bookingObject)
         }
         
-        let newBookingObjects = objects.filter { bookingObject in
+        let newBookingObjects = uniqueObjects.filter { bookingObject in
             !existingBookingObjects.contains(bookingObject)
         }
         
@@ -84,6 +87,24 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
                        currentTrails: currentTrails,
                        currentTourists: currentTourists,
                        currentReviews: currentReviews)
+    }
+    
+    private func getUniqueBookings(objects: [BookingPersistenceObject]) -> [BookingPersistenceObject] {
+        var bookings = [BookingPersistenceObject]()
+        for object in objects {
+            if !bookings.contains(object) {
+                bookings.append(object)
+            }
+        }
+        
+        return bookings
+    }
+    
+    private func updateDependencies(objects: [BookingPersistenceObject]) {
+        saveTouristsInvolved(objects: objects)
+        saveTrailsInvolved(objects: objects)
+        saveGuidesInvolved(objects: objects)
+        saveReviewsInvolved(objects: objects)
     }
     
     private func saveGuidesInvolved(objects: [BookingPersistenceObject]) {
