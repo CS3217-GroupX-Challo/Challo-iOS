@@ -11,13 +11,13 @@ import Foundation
 class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: GuidePersistenceObject]
     private var repository: CoreDataRepository<GuideDetails>
-    private var areaRepository: CoreDataRepository<AreaDetails>
-    private var trailRepository: CoreDataRepository<TrailDetails>
+    private var areaRepository: AreaDetailsRepository
+    private var trailRepository: TrailDetailsRepository
     
     init(data: [NSManagedObjectID: GuidePersistenceObject],
          repository: CoreDataRepository<GuideDetails>,
-         areaRepository: CoreDataRepository<AreaDetails>,
-         trailRepository: CoreDataRepository<TrailDetails>) {
+         areaRepository: AreaDetailsRepository,
+         trailRepository: TrailDetailsRepository) {
         self.data = data
         self.repository = repository
         self.areaRepository = areaRepository
@@ -28,10 +28,9 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
         self.data = [NSManagedObjectID: GuidePersistenceObject]()
         self.repository = CoreDataRepository<GuideDetails>(managedObjectContext:
                                                             CoreDataContainer.managedObjectContext)
-        self.areaRepository = CoreDataRepository<AreaDetails>(managedObjectContext:
-                                                                CoreDataContainer.managedObjectContext)
-        self.trailRepository = CoreDataRepository<TrailDetails>(managedObjectContext:
-                                                                CoreDataContainer.managedObjectContext)
+        self.areaRepository = AreaDetailsRepository()
+        self.trailRepository = TrailDetailsRepository()
+//        repository.clearAll()
     }
     
     func getAll() -> [GuidePersistenceObject] {
@@ -50,15 +49,33 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
     }
     
     func save(objects: [GuidePersistenceObject]) {
-        let currentGuides = getAll()
-        let currentTrails = trailRepository.getAll()
-        let currentAreas = areaRepository.getAll()
+        var uniqueId = Set<UUID>()
+        var uniqueObjects = [GuidePersistenceObject]()
+
+        objects.forEach {
+            if uniqueId.contains($0.userId) {
+                return
+            }
+            uniqueId.insert($0.userId)
+            uniqueObjects.append($0)
+        }
+
+        let allTrails = objects
+            .flatMap { $0.trails }
         
-        let existingGuideObjects = objects.filter { guideObject in
+        let allAreas = objects.compactMap { $0.location }
+        trailRepository.save(objects: allTrails)
+        areaRepository.save(objects: allAreas)
+
+        let currentGuides = getAll()
+        let currentTrails = trailRepository.repository.getAll()
+        let currentAreas = areaRepository.repository.getAll()
+        
+        let existingGuideObjects = uniqueObjects.filter { guideObject in
             currentGuides.contains(guideObject)
         }
         
-        let newGuideObjects = objects.filter { guideObject in
+        let newGuideObjects = uniqueObjects.filter { guideObject in
             !existingGuideObjects.contains(guideObject)
         }
         
@@ -110,11 +127,6 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
             guideDetails.location = area
             break
         }
-        
-        if guideDetails.location == nil && guideObject.location != nil {
-            let area = guideObject.location?.convertToEntity() as? AreaDetails
-            guideDetails.location = area
-        }
     }
     
     private func setTrails(guideDetails: GuideDetails,
@@ -122,16 +134,9 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
                            currentTrails: [TrailDetails]) {
         var trailsDetails = [TrailDetails]()
         for trail in guideObject.trails {
-            var isSaved = false
             for trailDetail in currentTrails where trailDetail.id == trail.trailId.uuidString {
                 trailsDetails.append(trailDetail)
-                isSaved = true
                 break
-            }
-            
-            if !isSaved,
-               let trailDetail = trail.convertToEntity() as? TrailDetails {
-                trailsDetails.append(trailDetail)
             }
         }
         

@@ -12,6 +12,9 @@ extension String {
     }
     
     func constructArray() -> [String] {
-        self.components(separatedBy: ", ")
+        if !self.isEmpty {
+            return self.components(separatedBy: ", ")
+        }
+        return []
     }
 }

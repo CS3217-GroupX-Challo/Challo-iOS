@@ -10,7 +10,7 @@ import Foundation
 
 class AreaDetailsRepository: AreaDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: AreaPersistenceObject]
-    private var repository: CoreDataRepository<AreaDetails>
+    var repository: CoreDataRepository<AreaDetails>
     
     init(data: [NSManagedObjectID: AreaPersistenceObject],
          repository: CoreDataRepository<AreaDetails>) {
@@ -40,13 +40,24 @@ class AreaDetailsRepository: AreaDetailsRepositoryProtocol {
     }
     
     func save(objects: [AreaPersistenceObject]) {
+        var uniqueId = Set<UUID>()
+        var uniqueObjects = [AreaPersistenceObject]()
+
+        objects.forEach {
+            if uniqueId.contains($0.areaId) {
+                return
+            }
+            uniqueId.insert($0.areaId)
+            uniqueObjects.append($0)
+        }
+
         let currentAreaObjects = getAll()
         
-        let existingAreaObjects = objects.filter { areaObject in
+        let existingAreaObjects = uniqueObjects.filter { areaObject in
             currentAreaObjects.contains(areaObject)
         }
         
-        let newAreaObjects = objects.filter { areaObject in
+        let newAreaObjects = uniqueObjects.filter { areaObject in
             !existingAreaObjects.contains(areaObject)
         }
         

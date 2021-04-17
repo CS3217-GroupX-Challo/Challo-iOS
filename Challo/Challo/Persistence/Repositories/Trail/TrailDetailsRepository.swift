@@ -10,12 +10,12 @@ import Foundation
 
 class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: TrailPersistenceObject]
-    private var repository: CoreDataRepository<TrailDetails>
-    private var areaRepository: CoreDataRepository<AreaDetails>
+    var repository: CoreDataRepository<TrailDetails>
+    private var areaRepository: AreaDetailsRepository
     
     init(data: [NSManagedObjectID: TrailPersistenceObject],
          repository: CoreDataRepository<TrailDetails>,
-         areaRepository: CoreDataRepository<AreaDetails>) {
+         areaRepository: AreaDetailsRepository) {
         self.data = data
         self.repository = repository
         self.areaRepository = areaRepository
@@ -25,8 +25,7 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
         self.data = [NSManagedObjectID: TrailPersistenceObject]()
         self.repository = CoreDataRepository<TrailDetails>(managedObjectContext:
                                                             CoreDataContainer.managedObjectContext)
-        self.areaRepository = CoreDataRepository<AreaDetails>(managedObjectContext:
-                                                                CoreDataContainer.managedObjectContext)
+        self.areaRepository = AreaDetailsRepository()
     }
     
     func getAll() -> [TrailPersistenceObject] {
@@ -44,14 +43,28 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
     }
     
     func save(objects: [TrailPersistenceObject]) {
+        var uniqueId = Set<UUID>()
+        var uniqueObjects = [TrailPersistenceObject]()
+
+        objects.forEach {
+            if uniqueId.contains($0.trailId) {
+                return
+            }
+            uniqueId.insert($0.trailId)
+            uniqueObjects.append($0)
+        }
+
+        let allAreas = objects.map { $0.area }
+        areaRepository.save(objects: allAreas)
+    
         let currentTrails = getAll()
-        let currentAreas = areaRepository.getAll()
+        let currentAreas = areaRepository.repository.getAll()
         
-        let existingTrailObjects = objects.filter { trailObject in
+        let existingTrailObjects = uniqueObjects.filter { trailObject in
             currentTrails.contains(trailObject)
         }
         
-        let newTrailObjects = objects.filter { trailObject in
+        let newTrailObjects = uniqueObjects.filter { trailObject in
             !existingTrailObjects.contains(trailObject)
         }
         
@@ -67,11 +80,6 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
                     trailDetails.area = area
                     break
                 }
-                
-                if trailDetails.area == nil {
-                    let area = trailObject.area.convertToEntity() as? AreaDetails
-                    trailDetails.area = area
-                }
             }
         }
     }
@@ -85,11 +93,6 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
                 for area in currentAreas where area.id == trailObject.area.areaId.uuidString {
                     trail.area = area
                     break
-                }
-                
-                if trail.area == nil {
-                    let area = trailObject.area.convertToEntity() as? AreaDetails
-                    trail.area = area
                 }
             }
         }
