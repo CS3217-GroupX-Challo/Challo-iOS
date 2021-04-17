@@ -53,10 +53,11 @@ struct MultiSelectorPicker<Label: View, Selectable: Identifiable & Hashable>: Vi
     var optionsList: some View {
         List {
             ForEach(options) { selectable in
-                Button(action: { toggleSelection(option: selectable) }) {
-                    selectableButtonContents(option: selectable)
-                }
-                .tag(selectable.id)
+                selectableButtonContents(option: selectable)
+                    .tag(selectable.id)
+                    .onTapGesture {
+                        toggleSelection(option: selectable)
+                    }
             }
             .listStyle(GroupedListStyle())
         }

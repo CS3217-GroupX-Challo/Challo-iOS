@@ -16,7 +16,7 @@ struct GuideOnboardingPage: View {
             if !presenter.loaded {
                 Loading(isAnimating: .constant(true), style: .large)
             } else {
-                Card {
+                VStack {
                     OnboardingForm(nickname: $presenter.nickname,
                                    date: $presenter.dateOfBirth,
                                    languages: $presenter.languages,

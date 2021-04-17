@@ -24,26 +24,22 @@ struct OnboardingForm: View {
     @State var chosen = Set<Days>()
 
     var body: some View {
-        ScrollView {
-            form
-        }
-    }
-
-    var form: some View {
-        VStack(spacing: 0) {
-            RoundedTextField(placeholder: "Nickname",
-                             text: $nickname,
-                             isPasswordField: false)
-            dobField.padding()
-            languageField.padding()
-//            yearsOfExperienceField
-            RoundedTextField(placeholder: "Hobbies",
-                             text: $hobbies,
-                             isPasswordField: false)
-            daysAvailableField.padding()
-            biographyField.padding()
-                .frame(height: 200)
-            trailsField.padding()
+        Form {
+            Section {
+                RoundedTextField(placeholder: "Nickname",
+                                 text: $nickname)
+                dobField
+                languageField
+                daysAvailableField
+            }
+            
+            Section {
+                biographyField
+            }
+            
+            Section {
+                trailsField
+            }
         }
     }
 
@@ -53,11 +49,6 @@ struct OnboardingForm: View {
                    in: ...Date(),
                    displayedComponents: .date)
             .datePickerStyle(CompactDatePickerStyle())
-            .padding(.horizontal)
-            .overlay(
-                RoundedRectangle(cornerRadius: 15)
-                    .stroke(Color.themeTertiary, lineWidth: 2)
-            )
     }
 
     var languageField: some View {
