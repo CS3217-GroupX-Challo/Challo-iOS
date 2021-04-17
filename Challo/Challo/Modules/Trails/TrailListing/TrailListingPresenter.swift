@@ -102,7 +102,6 @@ class TrailListingPresenter: SearchBarPresenter, ObservableObject {
     
     func onPageAppear() {
         isLoading = true
-        self.trails = interactor.getCachedEntities()
-        getAllTrails()
+        interactor.initialFetch()
     }
 }

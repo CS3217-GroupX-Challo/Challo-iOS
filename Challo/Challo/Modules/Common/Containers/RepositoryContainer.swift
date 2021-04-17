@@ -21,7 +21,10 @@ class RepositoryContainer {
             guard let trailAPI = self?.apiContainer?.container.resolve(TrailAPIProtocol.self) else {
                 fatalError("Failed to resolve TrailAPIProtocol in RepositoryContainer")
             }
-            return TrailRepository(trailAPI: trailAPI)
+            guard let trailStore = self?.getTrailStore() else {
+                fatalError("Fail to construct trailStore")
+            }
+            return TrailRepository(trailAPI: trailAPI, trailStore: trailStore)
         }
         container.register(AreaRepositoryProtocol.self) { [weak self] _ in
             guard let areaAPI = self?.apiContainer?.container.resolve(AreaAPIProtocol.self) else {
@@ -49,9 +52,17 @@ class RepositoryContainer {
     private func getGuideStore() -> GuideStore {
         let areaModelConvertor = AreaModelConvertor()
         let guideModelConvertor = GuideModelConvertor(areaModelConvertor: areaModelConvertor,
-                                                      trailModelConvertor: TrailModelConvertor(convertor: areaModelConvertor))
+                                                      trailModelConvertor: TrailModelConvertor(convertor:
+                                                                                                areaModelConvertor))
         
         let guideDetailsRepo = AnyRepoProtocol(GuideDetailsRepository())
         return GuideStore(repository: guideDetailsRepo, convertor: guideModelConvertor)
+    }
+
+    private func getTrailStore() -> TrailStore {
+        let trailModelConvertor = TrailModelConvertor(convertor: AreaModelConvertor())
+        
+        let trailDetailsRepo = AnyRepoProtocol(TrailDetailsRepository())
+        return TrailStore(repository: trailDetailsRepo, convertor: trailModelConvertor)
     }
 }

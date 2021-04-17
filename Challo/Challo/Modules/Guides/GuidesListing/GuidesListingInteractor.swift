@@ -6,7 +6,7 @@
 //
 import Foundation
 
-class GuidesListingInteractor: EntityListingInteractor {
+class GuidesListingInteractor: InteractorProtocol {
 
     weak var presenter: GuidesListingPresenter!
     
@@ -22,9 +22,5 @@ class GuidesListingInteractor: EntityListingInteractor {
 
     func initialFetch() {
         guideRepository.initialFetch(didFetch: presenter.didPopulateGuides)
-    }
-
-    func getCachedEntities() -> [Guide] {
-        guideRepository.getAll()
     }
 }
