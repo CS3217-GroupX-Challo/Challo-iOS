@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class TrailListingPresenter: EntityPresenter, ObservableObject {
+class TrailListingPresenter: EntityListingPresenter, ObservableObject {
 
     var interactor: TrailListingInteractor!
     var router: TrailListingRouter?
