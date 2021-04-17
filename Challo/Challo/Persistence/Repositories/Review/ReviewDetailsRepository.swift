@@ -10,7 +10,7 @@ import Foundation
 
 class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: ReviewPersistenceObject]
-    private var repository: CoreDataRepository<ReviewDetails>
+    var repository: CoreDataRepository<ReviewDetails>
     private var guideRepository: CoreDataRepository<GuideDetails>
     private var trailRepository: CoreDataRepository<TrailDetails>
     private var touristRepository: CoreDataRepository<TouristDetails>

@@ -10,7 +10,7 @@ import Foundation
 
 class TouristDetailsRepository: TouristDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: TouristPersistenceObject]
-    private var repository: CoreDataRepository<TouristDetails>
+    var repository: CoreDataRepository<TouristDetails>
     
     init(data: [NSManagedObjectID: TouristPersistenceObject],
          repository: CoreDataRepository<TouristDetails>) {

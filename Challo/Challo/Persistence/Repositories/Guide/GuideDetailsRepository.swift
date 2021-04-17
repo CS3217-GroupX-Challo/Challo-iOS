@@ -10,7 +10,7 @@ import Foundation
 
 class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: GuidePersistenceObject]
-    private var repository: CoreDataRepository<GuideDetails>
+    var repository: CoreDataRepository<GuideDetails>
     private var areaRepository: CoreDataRepository<AreaDetails>
     private var trailRepository: CoreDataRepository<TrailDetails>
     

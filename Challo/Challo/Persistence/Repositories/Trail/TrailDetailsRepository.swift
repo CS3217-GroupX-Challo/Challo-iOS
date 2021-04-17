@@ -10,7 +10,7 @@ import Foundation
 
 class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: TrailPersistenceObject]
-    private var repository: CoreDataRepository<TrailDetails>
+    var repository: CoreDataRepository<TrailDetails>
     private var areaRepository: CoreDataRepository<AreaDetails>
     
     init(data: [NSManagedObjectID: TrailPersistenceObject],
