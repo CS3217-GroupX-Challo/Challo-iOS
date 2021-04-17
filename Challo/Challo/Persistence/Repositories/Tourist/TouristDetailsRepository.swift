@@ -24,7 +24,7 @@ class TouristDetailsRepository: TouristDetailsRepositoryProtocol {
                                                                 CoreDataContainer.managedObjectContext)
     }
     
-    func getAllTourists() -> [TouristPersistenceObject] {
+    func getAll() -> [TouristPersistenceObject] {
         let tourists = repository.getAll()
         var touristObjects = [TouristPersistenceObject]()
         self.data = [NSManagedObjectID: TouristPersistenceObject]()
@@ -39,14 +39,14 @@ class TouristDetailsRepository: TouristDetailsRepositoryProtocol {
         return touristObjects
     }
     
-    func saveTourists(touristObjects: [TouristPersistenceObject]) {
-        let currentTouristObjects = getAllTourists()
+    func save(objects: [TouristPersistenceObject]) {
+        let currentTouristObjects = getAll()
         
-        let existingTouristObjects = touristObjects.filter { touristObject in
+        let existingTouristObjects = objects.filter { touristObject in
             currentTouristObjects.contains(touristObject)
         }
         
-        let newTouristObjects = touristObjects.filter {touristObject in
+        let newTouristObjects = objects.filter {touristObject in
             !existingTouristObjects.contains(touristObject)
         }
         

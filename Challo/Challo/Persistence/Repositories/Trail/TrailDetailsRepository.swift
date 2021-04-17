@@ -29,7 +29,7 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
                                                                 CoreDataContainer.managedObjectContext)
     }
     
-    func getAllTrails() -> [TrailPersistenceObject] {
+    func getAll() -> [TrailPersistenceObject] {
         let trails = repository.getAll()
         var trailObjects = [TrailPersistenceObject]()
         self.data = [NSManagedObjectID: TrailPersistenceObject]()
@@ -43,15 +43,15 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
         return trailObjects
     }
     
-    func saveTrails(trailObjects: [TrailPersistenceObject]) {
-        let currentTrails = getAllTrails()
+    func save(objects: [TrailPersistenceObject]) {
+        let currentTrails = getAll()
         let currentAreas = areaRepository.getAll()
         
-        let existingTrailObjects = trailObjects.filter { trailObject in
+        let existingTrailObjects = objects.filter { trailObject in
             currentTrails.contains(trailObject)
         }
         
-        let newTrailObjects = trailObjects.filter { trailObject in
+        let newTrailObjects = objects.filter { trailObject in
             !existingTrailObjects.contains(trailObject)
         }
         

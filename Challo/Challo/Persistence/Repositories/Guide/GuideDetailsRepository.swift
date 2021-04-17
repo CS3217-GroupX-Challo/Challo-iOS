@@ -24,7 +24,7 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
         self.trailRepository = trailRepository
     }
     
-    func getAllGuides() -> [GuidePersistenceObject] {
+    func getAll() -> [GuidePersistenceObject] {
         let guides = repository.getAll()
         var guideObjects = [GuidePersistenceObject]()
         self.data = [NSManagedObjectID: GuidePersistenceObject]()
@@ -39,16 +39,16 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
         return guideObjects
     }
     
-    func saveGuides(guideObjects: [GuidePersistenceObject]) {
-        let currentGuides = getAllGuides()
+    func save(objects: [GuidePersistenceObject]) {
+        let currentGuides = getAll()
         let currentTrails = trailRepository.getAll()
         let currentAreas = areaRepository.getAll()
         
-        let existingGuideObjects = guideObjects.filter { guideObject in
+        let existingGuideObjects = objects.filter { guideObject in
             currentGuides.contains(guideObject)
         }
         
-        let newGuideObjects = guideObjects.filter { guideObject in
+        let newGuideObjects = objects.filter { guideObject in
             !existingGuideObjects.contains(guideObject)
         }
         

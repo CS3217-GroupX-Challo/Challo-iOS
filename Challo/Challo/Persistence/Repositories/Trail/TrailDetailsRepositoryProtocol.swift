@@ -5,7 +5,5 @@
 //  Created by Kester Ng on 12/4/21.
 //
 
-protocol TrailDetailsRepositoryProtocol {
-    func getAllTrails() -> [TrailPersistenceObject]
-    func saveTrails(trailObjects: [TrailPersistenceObject])
+protocol TrailDetailsRepositoryProtocol: RepoProtocol where PersistenceObject == TrailPersistenceObject {
 }

@@ -5,28 +5,17 @@
 //  Created by Kester Ng on 12/4/21.
 //
 
-class TrailStore {
-    private var repository: TrailDetailsRepositoryProtocol
-    private var convertor: TrailModelConvertor
+class TrailStore: StoreProtocol {
+    typealias Model = Trail
+    typealias PersistenceObject = TrailPersistenceObject
+    typealias Convertor = TrailModelConvertor
+    typealias Repo = TrailDetailsRepository
     
-    init(repository: TrailDetailsRepositoryProtocol,
-         convertor: TrailModelConvertor) {
+    var repository: Repo
+    var convertor: Convertor
+    
+    init(repository: Repo, convertor: Convertor) {
         self.repository = repository
         self.convertor = convertor
-    }
-    
-    func getAllTrails() -> [Trail] {
-        let trailObjects = repository.getAllTrails()
-        return trailObjects.map { trailObject in
-            convertor.convertPersistenceObjectToModel(object: trailObject)
-        }
-    }
-    
-    func saveTrails(trails: [Trail]) {
-        let trailObjects = trails.map { trail in
-            convertor.convertModelToPersistenceObject(model: trail)
-        }
-        
-        repository.saveTrails(trailObjects: trailObjects)
     }
 }

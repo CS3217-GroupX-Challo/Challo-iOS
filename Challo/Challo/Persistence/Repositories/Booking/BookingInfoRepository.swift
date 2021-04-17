@@ -44,7 +44,7 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
             = CoreDataRepository<TouristDetails>(managedObjectContext: CoreDataContainer.managedObjectContext)
     }
     
-    func getAllBookings() -> [BookingPersistenceObject] {
+    func getAll() -> [BookingPersistenceObject] {
         let bookings = repository.getAll()
         var bookingObjects = [BookingPersistenceObject]()
         self.data = [NSManagedObjectID: BookingPersistenceObject]()
@@ -59,18 +59,18 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
         return bookingObjects
     }
     
-    func saveBookings(bookingObjects: [BookingPersistenceObject]) {
-        let currentBookings = getAllBookings()
+    func save(objects: [BookingPersistenceObject]) {
+        let currentBookings = getAll()
         let currentGuides = guideRepository.getAll()
         let currentTourists = touristRepository.getAll()
         let currentTrails = trailRepository.getAll()
         let currentReviews = reviewRepository.getAll()
         
-        let existingBookingObjects = bookingObjects.filter { bookingObject in
+        let existingBookingObjects = objects.filter { bookingObject in
             currentBookings.contains(bookingObject)
         }
         
-        let newBookingObjects = bookingObjects.filter { bookingObject in
+        let newBookingObjects = objects.filter { bookingObject in
             !existingBookingObjects.contains(bookingObject)
         }
         

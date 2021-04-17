@@ -5,28 +5,17 @@
 //  Created by Kester Ng on 13/4/21.
 //
 
-class ReviewStore {
-    private let reviewModelConvertor: ReviewModelConvertor
-    private let reviewRepository: ReviewDetailsRepositoryProtocol
+class ReviewStore: StoreProtocol {
+    typealias Model = Review
+    typealias PersistenceObject = ReviewPersistenceObject
+    typealias Convertor = ReviewModelConvertor
+    typealias Repo = ReviewDetailsRepository
     
-    init(reviewModelConvertor: ReviewModelConvertor,
-         reviewRepository: ReviewDetailsRepositoryProtocol) {
-        self.reviewModelConvertor = reviewModelConvertor
-        self.reviewRepository = reviewRepository
-    }
+    var repository: Repo
+    var convertor: Convertor
     
-    func getAllReviews() -> [Review] {
-        let reviewObjects = reviewRepository.getAllReviews()
-        return reviewObjects.map { reviewObject in
-            reviewModelConvertor.convertPersistenceObjectToModel(object: reviewObject)
-        }
-    }
-    
-    func saveReviews(reviews: [Review]) {
-        let reviewObjects = reviews.map { review in
-            reviewModelConvertor.convertModelToPersistenceObject(model: review)
-        }
-        
-        reviewRepository.saveReviews(reviewObjects: reviewObjects)
+    init(repository: Repo, convertor: Convertor) {
+        self.repository = repository
+        self.convertor = convertor
     }
 }

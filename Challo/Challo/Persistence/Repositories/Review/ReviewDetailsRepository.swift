@@ -39,7 +39,7 @@ class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
                                                                         CoreDataContainer.managedObjectContext)
     }
     
-    func getAllReviews() -> [ReviewPersistenceObject] {
+    func getAll() -> [ReviewPersistenceObject] {
         let reviews = repository.getAll()
         var reviewObjects = [ReviewPersistenceObject]()
         self.data = [NSManagedObjectID: ReviewPersistenceObject]()
@@ -54,17 +54,17 @@ class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
         return reviewObjects
     }
     
-    func saveReviews(reviewObjects: [ReviewPersistenceObject]) {
-        let currentReviews = getAllReviews()
+    func save(objects: [ReviewPersistenceObject]) {
+        let currentReviews = getAll()
         let currentGuides = guideRepository.getAll()
         let currentTrails = trailRepository.getAll()
         let currentTourists = touristRepository.getAll()
         
-        let existingReviewObjects = reviewObjects.filter { reviewObject in
+        let existingReviewObjects = objects.filter { reviewObject in
             currentReviews.contains(reviewObject)
         }
         
-        let newReviewObjects = reviewObjects.filter { reviewObject in
+        let newReviewObjects = objects.filter { reviewObject in
             !existingReviewObjects.contains(reviewObject)
         }
         

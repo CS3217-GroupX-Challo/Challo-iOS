@@ -24,7 +24,7 @@ class AreaDetailsRepository: AreaDetailsRepositoryProtocol {
                                                             CoreDataContainer.managedObjectContext)
     }
     
-    func getAllAreas() -> [AreaPersistenceObject] {
+    func getAll() -> [AreaPersistenceObject] {
         let areas = repository.getAll()
         var areaObjects = [AreaPersistenceObject]()
         self.data = [NSManagedObjectID: AreaPersistenceObject]() // reset
@@ -39,14 +39,14 @@ class AreaDetailsRepository: AreaDetailsRepositoryProtocol {
         return areaObjects
     }
     
-    func saveAreas(areaObjects: [AreaPersistenceObject]) {
-        let currentAreaObjects = getAllAreas()
+    func save(objects: [AreaPersistenceObject]) {
+        let currentAreaObjects = getAll()
         
-        let existingAreaObjects = areaObjects.filter { areaObject in
+        let existingAreaObjects = objects.filter { areaObject in
             currentAreaObjects.contains(areaObject)
         }
         
-        let newAreaObjects = areaObjects.filter { areaObject in
+        let newAreaObjects = objects.filter { areaObject in
             !existingAreaObjects.contains(areaObject)
         }
         

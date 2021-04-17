@@ -5,28 +5,17 @@
 //  Created by Kester Ng on 11/4/21.
 //
 
-class AreaStore {
-    private let areaRepository: AreaDetailsRepositoryProtocol
-    private let convertor: AreaModelConvertor
+class AreaStore: StoreProtocol {
+    typealias Model = Area
+    typealias PersistenceObject = AreaPersistenceObject
+    typealias Convertor = AreaModelConvertor
+    typealias Repo = AreaDetailsRepository
     
-    init(areaRepository: AreaDetailsRepositoryProtocol,
-         convertor: AreaModelConvertor) {
-        self.areaRepository = areaRepository
+    var repository: Repo
+    var convertor: Convertor
+    
+    init(repository: Repo, convertor: Convertor) {
+        self.repository = repository
         self.convertor = convertor
-    }
-    
-    func getAllAreas() -> [Area] {
-        let areaObjects = areaRepository.getAllAreas()
-        return areaObjects.map { areaObject in
-            convertor.convertPersistenceObjectToModel(object: areaObject)
-        }
-    }
-    
-    func saveAreas(areas: [Area]) {
-        let areaObjects = areas.map { area in
-            convertor.convertModelToPersistenceObject(model: area)
-        }
-        
-        areaRepository.saveAreas(areaObjects: areaObjects)
     }
 }
