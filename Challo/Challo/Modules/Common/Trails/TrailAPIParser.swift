@@ -79,10 +79,8 @@ extension TrailAPIParser {
         
         var coordinates = [CLLocationCoordinate2D]()
         for coordinateDetail in coordinateDetails {
-            if let lattitude = coordinateDetail[Key.lattitude] as? Double,
-               let longitude = coordinateDetail[Key.longitude] as? Double {
-                coordinates.append(CLLocationCoordinate2D(latitude: CLLocationDegrees(lattitude),
-                                                          longitude: CLLocationDegrees(longitude)))
+            if let coordinate = convertJSONLocationToCLLocation2D(coordinateDetail) {
+                coordinates.append(coordinate)
             }
         }
         return coordinates

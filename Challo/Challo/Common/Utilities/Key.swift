@@ -83,3 +83,22 @@ extension Key {
     static let googleGeometry = "geometry"
     static let googleLocation = "location"
 }
+
+// MARK: Homestays
+extension Key {
+    static let homestayId = "homestayId"
+    static let imagesPath = "imagesPath"
+    static let location = "location"
+    static let capacity = "capacity"
+    static let bedrooms = "bedrooms"
+    static let bed = "bed"
+    static let quantity = "quantity"
+    static let toilets = "toilets"
+    static let amenities = "amenities"
+    static let guests = "guests"
+}
+
+// MARK: Hosts
+extension Key {
+    static let hostId = "hostId"
+}
