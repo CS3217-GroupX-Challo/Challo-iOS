@@ -30,7 +30,7 @@ class HostDetailsRepository: HostDetailsRepositoryProtocol {
         
         for host in hosts {
             if let hostObject = HostPersistenceObject(entity: host) {
-                data[host.objectID] =  hostObject
+                data[host.objectID] = hostObject
                 hostObjects.append(hostObject)
             }
         }

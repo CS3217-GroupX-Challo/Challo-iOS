@@ -133,4 +133,7 @@ extension GuidePersistenceObject: CoreDataPersistenceObject {
 }
 
 extension GuidePersistenceObject: Equatable {
+    static func == (lhs: GuidePersistenceObject, rhs: GuidePersistenceObject) -> Bool {
+        lhs.userId == rhs.userId
+    }
 }
