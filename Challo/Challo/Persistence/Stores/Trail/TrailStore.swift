@@ -9,7 +9,7 @@ class TrailStore: StoreProtocol {
     typealias Model = Trail
     typealias PersistenceObject = TrailPersistenceObject
     typealias Convertor = TrailModelConvertor
-    typealias Repo = AnyRepoProtocol<TrailPersistenceObject>
+    typealias Repo = AnyPersistenceRepoProtocol<TrailPersistenceObject>
     
     var repository: Repo
     var convertor: Convertor

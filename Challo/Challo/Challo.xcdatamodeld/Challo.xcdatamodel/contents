@@ -42,6 +42,15 @@
         <relationship name="review" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ReviewDetails" inverseName="guide" inverseEntity="ReviewDetails"/>
         <relationship name="trails" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrailDetails" inverseName="guide" inverseEntity="TrailDetails"/>
     </entity>
+    <entity name="HostDetails" representedClassName="HostDetails" syncable="YES" codeGenerationType="class">
+        <attribute name="dateJoined" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="profileImg" optional="YES" attributeType="String"/>
+        <attribute name="sex" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Itinerary" representedClassName="Itinerary" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="String"/>
@@ -120,5 +129,6 @@
         <element name="Route" positionX="-54" positionY="27" width="128" height="119"/>
         <element name="TouristDetails" positionX="-54" positionY="81" width="128" height="164"/>
         <element name="TrailDetails" positionX="-54" positionY="81" width="128" height="314"/>
+        <element name="HostDetails" positionX="-54" positionY="144" width="128" height="134"/>
     </elements>
 </model>

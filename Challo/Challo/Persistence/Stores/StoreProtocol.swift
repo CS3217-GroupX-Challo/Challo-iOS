@@ -10,7 +10,7 @@ protocol StoreProtocol {
     associatedtype PersistenceObject
     associatedtype Convertor: ModelConvertor where Convertor.Model == Model,
                                                    Convertor.PersistenceObject == PersistenceObject
-    associatedtype Repo: RepoProtocol where Repo.PersistenceObject == PersistenceObject
+    associatedtype Repo: PersistenceRepoProtocol where Repo.PersistenceObject == PersistenceObject
     
     var convertor: Convertor { get set }
     var repository: Repo { get set }
