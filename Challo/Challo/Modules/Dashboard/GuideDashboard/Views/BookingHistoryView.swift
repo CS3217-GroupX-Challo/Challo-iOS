@@ -41,7 +41,8 @@ struct BookingHistoryView: View {
 
                     BookingCardListingsView(width: geometry.size.width,
                                             emptyListMessage: "You haven't been booked before!",
-                                            bookings: $presenter.completedBookings)
+                                            bookings: $presenter.completedBookings,
+                                            isRefreshing: .constant(false))
                 }
             }
             .padding()

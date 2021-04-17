@@ -30,6 +30,16 @@ class TouristDashboardInteractor: InteractorProtocol {
         }
         bookingRepository.fetchBookingForTouristAndRefresh(id: id, didRefresh: presenter.didPopulateBookings)
     }
+
+    func initialFetch() {
+        guard let id = UUID(uuidString: userState.userId) else {
+            return
+        }
+        
+        bookingRepository.initialFetch(type: .tourist,
+                                       userId: id,
+                                       didFetch: presenter.didPopulateBookings)
+    }
 }
 
 // MARK: Filter and sort bookings

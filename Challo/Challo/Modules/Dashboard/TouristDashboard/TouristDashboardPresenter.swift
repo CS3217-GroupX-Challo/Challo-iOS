@@ -17,6 +17,14 @@ class TouristDashboardPresenter: PresenterProtocol {
     let sendMessageToGuide: ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)
     
     @Published var isLoading = false
+    @Published var isRefreshing = false {
+        didSet {
+            if isRefreshing == true {
+                populateBookings()
+            }
+        }
+    }
+    
     @Published var upcomingBookings: [Booking] = []
     @Published var pastBookings: [Booking] = []
     
@@ -86,8 +94,9 @@ class TouristDashboardPresenter: PresenterProtocol {
     }
 
     func refresh() {
+        self.isLoading = true
         self.name = userState.name
-        populateBookings()
+        interactor.initialFetch()
     }
     
     func populateBookings() {
@@ -100,6 +109,7 @@ class TouristDashboardPresenter: PresenterProtocol {
         self.upcomingBookings = interactor.filterUpcomingBookings(bookings: sortedBookings)
         self.pastBookings = interactor.filterPastBookings(bookings: sortedBookings)
         isLoading = false
+        isRefreshing = false
     }
 
     func getReviewPage(for booking: Booking) -> AnyView? {

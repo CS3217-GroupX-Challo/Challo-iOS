@@ -7,12 +7,19 @@
 
 import Foundation
 
-class BookingRepository: Repository<UUID, Booking>, BookingRepositoryProtocol {
+class BookingRepository: Repository<UUID, Booking>, BookingRepositoryProtocol, LocalStorageRetriever {
 
+    typealias Model = Booking
+    typealias LocalStore = BookingStore
+    
     let bookingAPI: BookingAPIProtocol
+    let localStore: BookingStore
+    var isInitialized: Bool = false
 
-    init(bookingAPI: BookingAPIProtocol) {
+    init(bookingAPI: BookingAPIProtocol,
+         bookingStore: BookingStore) {
         self.bookingAPI = bookingAPI
+        self.localStore = bookingStore
     }
     
     private func refreshBookings(_ bookings: [Booking]) {
@@ -24,6 +31,7 @@ class BookingRepository: Repository<UUID, Booking>, BookingRepositoryProtocol {
     func fetchBookingForTouristAndRefresh(id: UUID, didRefresh: (([Booking]) -> Void)?) {
         bookingAPI.getBookingsForTourist(id: id) { [weak self] bookings in
             self?.refreshBookings(bookings)
+            self?.saveToLocalStore(models: bookings)
             didRefresh?(bookings)
         }
     }
@@ -31,7 +39,39 @@ class BookingRepository: Repository<UUID, Booking>, BookingRepositoryProtocol {
     func fetchBookingForGuideAndRefresh(id: UUID, didRefresh: (([Booking]) -> Void)?) {
         bookingAPI.getBookingsForGuide(id: id) { [weak self] bookings in
             self?.refreshBookings(bookings)
+            self?.saveToLocalStore(models: bookings)
             didRefresh?(bookings)
         }
     }
+
+    func initialFetch(type user: BookingUser,
+                      userId: UUID,
+                      didFetch: @escaping (([Booking]) -> Void)) {
+        if isInitialized {
+            didFetch(getAll())
+            return
+        }
+
+        let fetchFunction = user == .tourist
+                ? fetchBookingForTouristAndRefresh
+                : fetchBookingForGuideAndRefresh
+        
+        fetchFunction(userId) { bookings in
+            self.isInitialized = true
+
+            if bookings.isEmpty {
+                let localBookings = self.retrieveFromLocalStore()
+                self.refreshBookings(localBookings)
+                didFetch(localBookings)
+                return
+            }
+            
+            didFetch(bookings)
+        }
+    }
+}
+
+enum BookingUser {
+    case tourist
+    case guide
 }

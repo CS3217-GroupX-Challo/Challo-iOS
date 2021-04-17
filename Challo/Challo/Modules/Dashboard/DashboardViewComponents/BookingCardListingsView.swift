@@ -12,6 +12,7 @@ struct BookingCardListingsView: View {
     var width: CGFloat
     var emptyListMessage: String
     @Binding var bookings: [Booking]
+    @Binding var isRefreshing: Bool
     var createBookingCard: ((Booking, CGFloat) -> AnyView)?
     
     let columns = [
@@ -20,7 +21,7 @@ struct BookingCardListingsView: View {
    ]
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        RefreshableScrollView(refreshing: $isRefreshing) {
             if bookings.isEmpty {
                 Text(emptyListMessage)
                     .foregroundColor(.themeForeground)

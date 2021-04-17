@@ -33,6 +33,7 @@ class TrailRepository: Repository<UUID, Trail>, TrailRepositoryProtocol, LocalSt
     func fetchTrailsAndRefresh(didRefresh: (([Trail]) -> Void)? = nil) {
         trailAPI.getTrails { [weak self] trails in
             self?.refreshTrails(trails)
+            self?.saveToLocalStore(models: trails)
             didRefresh?(trails)
         }
     }

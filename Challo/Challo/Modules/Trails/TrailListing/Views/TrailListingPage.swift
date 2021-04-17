@@ -44,7 +44,6 @@ struct TrailListingPage: View {
             cardList
         }.onAppear {
             presenter.onPageAppear()
-            #warning("TODO: Don't make API requests on every page appear")
         }
     }
 }

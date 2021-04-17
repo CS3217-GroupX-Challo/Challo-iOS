@@ -45,7 +45,10 @@ class RepositoryContainer {
             guard let bookingAPI = self?.apiContainer?.container.resolve(BookingAPIProtocol.self) else {
                 fatalError("Failed to resolve BookingAPIProtocol in RepositoryContainer")
             }
-            return BookingRepository(bookingAPI: bookingAPI)
+            guard let bookingStore = self?.getBookingStore() else {
+                fatalError("Failed to construct bookingStore")
+            }
+            return BookingRepository(bookingAPI: bookingAPI, bookingStore: bookingStore)
         }
     }
 
@@ -55,14 +58,31 @@ class RepositoryContainer {
                                                       trailModelConvertor: TrailModelConvertor(convertor:
                                                                                                 areaModelConvertor))
         
-        let guideDetailsRepo = AnyRepoProtocol(GuideDetailsRepository())
+        let guideDetailsRepo = AnyPersistenceRepoProtocol(GuideDetailsRepository())
         return GuideStore(repository: guideDetailsRepo, convertor: guideModelConvertor)
     }
 
     private func getTrailStore() -> TrailStore {
         let trailModelConvertor = TrailModelConvertor(convertor: AreaModelConvertor())
         
-        let trailDetailsRepo = AnyRepoProtocol(TrailDetailsRepository())
+        let trailDetailsRepo = AnyPersistenceRepoProtocol(TrailDetailsRepository())
         return TrailStore(repository: trailDetailsRepo, convertor: trailModelConvertor)
+    }
+
+    private func getBookingStore() -> BookingStore {
+        let areaModelConvertor = AreaModelConvertor()
+        let trailModelConvertor = TrailModelConvertor(convertor: areaModelConvertor)
+        let guideModelConvertor = GuideModelConvertor(areaModelConvertor: areaModelConvertor,
+                                                      trailModelConvertor: trailModelConvertor)
+        let reviewModelConvertor = ReviewModelConvertor(guideModelConvertor: guideModelConvertor,
+                                                        touristModelConvertor: TouristModelConvertor(),
+                                                        trailModelConvertor: trailModelConvertor)
+        let bookingModelConvertor = BookingModelConvertor(trailModelConvertor: trailModelConvertor,
+                                                          guideModelConvertor: guideModelConvertor,
+                                                          touristModelConvertor: TouristModelConvertor(),
+                                                          reviewModelConvertor: reviewModelConvertor)
+        
+        let bookingDetailsRepo = AnyPersistenceRepoProtocol(BookingInfoRepository())
+        return BookingStore(repository: bookingDetailsRepo, convertor: bookingModelConvertor)
     }
 }

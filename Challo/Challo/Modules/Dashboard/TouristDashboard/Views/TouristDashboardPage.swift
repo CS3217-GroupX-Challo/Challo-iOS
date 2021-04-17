@@ -26,14 +26,16 @@ struct TouristDashboardPage: View {
                     BookingCardListingsView(
                         width: geometry.size.width,
                         emptyListMessage: "You don't have any upcoming trips",
-                        bookings: $presenter.upcomingBookings)
+                        bookings: $presenter.upcomingBookings,
+                        isRefreshing: $presenter.isRefreshing)
                 }
                 
                 if presenter.selectedTab == .pastBookings {
                     BookingCardListingsView(
                         width: geometry.size.width,
                         emptyListMessage: "You don't have any past trips",
-                        bookings: $presenter.pastBookings) { booking, width in
+                        bookings: $presenter.pastBookings,
+                        isRefreshing: $presenter.isRefreshing) { booking, width in
                         AnyView(PastBookingCard(booking: booking, width: width))
                     }
                 }
