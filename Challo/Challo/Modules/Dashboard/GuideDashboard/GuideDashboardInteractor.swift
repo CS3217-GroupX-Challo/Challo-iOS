@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+class GuideDashboardInteractor: InteractorProtocol {
+    weak var presenter: GuideDashboardPresenter!
+}
