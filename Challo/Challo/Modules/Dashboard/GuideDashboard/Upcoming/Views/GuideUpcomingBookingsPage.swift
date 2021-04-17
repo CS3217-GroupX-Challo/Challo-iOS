@@ -43,7 +43,7 @@ struct GuideUpcomingBookingsPage: View {
                         bookings: $presenter.upcomingBookings)
                 }
             }
-            
+
         }
         .padding(.bottom, 80)
         .edgesIgnoringSafeArea(.all)

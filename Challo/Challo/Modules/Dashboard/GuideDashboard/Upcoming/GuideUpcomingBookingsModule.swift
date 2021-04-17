@@ -11,17 +11,17 @@ import SwiftUI
 class GuideUpcomingBookingsModule: ViperModuleProtocol {
 
     let userState: UserStateProtocol
-    let repository: BookingRepositoryProtocol
+    let bookingRepository: BookingRepositoryProtocol
 
-    init(userState: UserStateProtocol, repository: BookingRepositoryProtocol) {
+    init(userState: UserStateProtocol, bookingRepository: BookingRepositoryProtocol) {
         self.userState = userState
-        self.repository = repository
+        self.bookingRepository = bookingRepository
     }
 
     func assemble() -> (view: AnyView, presenter: GuideUpcomingBookingsPresenter) {
         let presenter = GuideUpcomingBookingsPresenter(userState: userState)
         let router = GuideUpcomingBookingsRouter()
-        let interactor = GuideUpcomingBookingsInteractor(userState: userState, bookingRepository: repository)
+        let interactor = GuideUpcomingBookingsInteractor(userState: userState, bookingRepository: bookingRepository)
         presenter.router = router
         presenter.interactor = interactor
         interactor.presenter = presenter
