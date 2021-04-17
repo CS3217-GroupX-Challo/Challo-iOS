@@ -12,25 +12,20 @@ class GuideOnboardingInteractor: InteractorProtocol {
     weak var presenter: GuideOnboardingPresenter!
 
     let userState: UserStateProtocol
-    // let areaRepository: AreaRepositoryProtocol
     let trailRepository: TrailRepositoryProtocol
     let onboardingAPI: GuideOnboardingAPI
 
     internal init(userState: UserStateProtocol,
-                  // areaRepository: AreaRepositoryProtocol,
                   trailRepository: TrailRepositoryProtocol,
                   onboardingAPI: GuideOnboardingAPI) {
         self.userState = userState
-        // self.areaRepository = areaRepository
         self.trailRepository = trailRepository
         self.onboardingAPI = onboardingAPI
     }
 
     init(userState: UserStateProtocol,
-         // areaRepository: AreaRepositoryProtocol,
          trailRepository: TrailRepositoryProtocol) {
         self.userState = userState
-        // self.areaRepository = areaRepository
         self.trailRepository = trailRepository
         self.onboardingAPI = GuideOnboardingAPI(userState: userState)
     }
@@ -62,11 +57,6 @@ class GuideOnboardingInteractor: InteractorProtocol {
     }
 
     func fetchTrailsAndAreas() {
-        /*
-        areaRepository.fetchAreasAndRefresh { [weak self] areas in
-            self?.areas = areas
-        }
-         */
         trailRepository.fetchTrailsAndRefresh { [weak self] trails in
             self?.presenter.didFetchTrailsAndAreaData(trails: trails)
         }
