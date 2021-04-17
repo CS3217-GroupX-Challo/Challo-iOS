@@ -29,7 +29,7 @@ struct OnboardingForm: View {
             
         }
         Form {
-            Section {
+            Section(header: Text("Enter your basic details")) {
                 RoundedTextField(placeholder: "Nickname",
                                  text: $nickname)
                 dobField
@@ -38,11 +38,13 @@ struct OnboardingForm: View {
                 daysAvailableField
             }
             
-            Section {
+            Section(header: Text("Let tourists know more about you")) {
                 biographyField
+                RoundedTextField(placeholder: "Hobbies",
+                                 text: $hobbies)
             }
             
-            Section {
+            Section(header: Text("Which trails can you guide?")) {
                 trailsField
             }
             
