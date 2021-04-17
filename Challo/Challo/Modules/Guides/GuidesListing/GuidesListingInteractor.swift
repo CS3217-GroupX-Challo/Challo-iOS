@@ -20,6 +20,10 @@ class GuidesListingInteractor: EntityListingInteractor {
         guideRepository.fetchGuidesAndRefresh(didRefresh: presenter.didPopulateGuides)
     }
 
+    func initialFetch() {
+        guideRepository.initialFetch(didFetch: presenter.didPopulateGuides)
+    }
+
     func getCachedEntities() -> [Guide] {
         guideRepository.getAll()
     }

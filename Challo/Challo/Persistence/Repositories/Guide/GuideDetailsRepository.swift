@@ -23,6 +23,16 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
         self.areaRepository = areaRepository
         self.trailRepository = trailRepository
     }
+
+    init() {
+        self.data = [NSManagedObjectID: GuidePersistenceObject]()
+        self.repository = CoreDataRepository<GuideDetails>(managedObjectContext:
+                                                            CoreDataContainer.managedObjectContext)
+        self.areaRepository = CoreDataRepository<AreaDetails>(managedObjectContext:
+                                                                CoreDataContainer.managedObjectContext)
+        self.trailRepository = CoreDataRepository<TrailDetails>(managedObjectContext:
+                                                                CoreDataContainer.managedObjectContext)
+    }
     
     func getAll() -> [GuidePersistenceObject] {
         let guides = repository.getAll()

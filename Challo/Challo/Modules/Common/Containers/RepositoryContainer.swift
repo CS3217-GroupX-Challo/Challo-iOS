@@ -33,7 +33,10 @@ class RepositoryContainer {
             guard let guideAPI = self?.apiContainer?.container.resolve(GuideAPIProtocol.self) else {
                 fatalError("Failed to resolve GuideAPIProtocol in RepositoryContainer")
             }
-            return GuideRepository(guideAPI: guideAPI)
+            guard let guideStore = self?.getGuideStore() else {
+                fatalError("Failed to construct guideStore")
+            }
+            return GuideRepository(guideAPI: guideAPI, guideStore: guideStore)
         }
         container.register(BookingRepositoryProtocol.self) { [weak self] _ in
             guard let bookingAPI = self?.apiContainer?.container.resolve(BookingAPIProtocol.self) else {
@@ -41,5 +44,14 @@ class RepositoryContainer {
             }
             return BookingRepository(bookingAPI: bookingAPI)
         }
+    }
+
+    private func getGuideStore() -> GuideStore {
+        let areaModelConvertor = AreaModelConvertor()
+        let guideModelConvertor = GuideModelConvertor(areaModelConvertor: areaModelConvertor,
+                                                      trailModelConvertor: TrailModelConvertor(convertor: areaModelConvertor))
+        
+        let guideDetailsRepo = AnyRepoProtocol(GuideDetailsRepository())
+        return GuideStore(repository: guideDetailsRepo, convertor: guideModelConvertor)
     }
 }
