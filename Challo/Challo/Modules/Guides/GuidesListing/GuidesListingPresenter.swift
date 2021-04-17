@@ -71,13 +71,13 @@ class GuidesListingPresenter: SearchBarPresenter {
     }
     
     func populateGuides() {
-        interactor.populateGuides()
+        interactor.getAllEntities()
     }
 
     func onAppear() {
         isLoading = true
         self.guides = interactor.getCachedEntities()
-        interactor.populateGuides()
+        interactor.getAllEntities()
     }
     
     func getGuideProfileDetailsPage(guide: Guide) -> some View {

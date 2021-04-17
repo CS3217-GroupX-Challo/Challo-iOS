@@ -16,14 +16,16 @@ protocol EntityListingPresenter: SearchBarPresenter where Router: EntityListingR
     var router: Router? { get set }
     var interactor: Interactor! { get set }
     
+    var entities: [Entity] { get set }
+    
     var isLoading: Bool { get set }
     var isRefreshing: Bool { get set }
     var displayedCards: [ListingCard] { get }
-    
     var profilePage: AnyView? { get }
     
+    func getAllEntities()
     func getEntityByCardId(_ cardId: String) -> Entity
-    func onTapListingCard(_ cardId: String) 
+    func onTapListingCard(_ cardId: String)
 }
 
 extension EntityListingPresenter {
@@ -34,5 +36,15 @@ extension EntityListingPresenter {
     func onTapListingCard(_ cardId: String) {
         let entity = getEntityByCardId(cardId)
         router?.populateProfilePage(entity)
+    }
+    
+    func didGetAllEntities(_ entities: [Entity]) {
+        self.entities = entities
+        isLoading = false
+        isRefreshing = false
+    }
+    
+    func getAllEntities() {
+        interactor.getAllEntities()
     }
 }
