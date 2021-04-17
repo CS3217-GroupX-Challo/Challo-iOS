@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol EntityListingPresenter: SearchBarPresenter {
+protocol EntityListingPresenter: SearchBarPresenter where Interactor: EntityListingInteractor {
     var isLoading: Bool { get set }
     var isRefreshing: Bool { get set }
     var displayedCards: [ListingCard] { get }
