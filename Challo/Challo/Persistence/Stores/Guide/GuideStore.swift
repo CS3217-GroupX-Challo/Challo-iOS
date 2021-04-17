@@ -9,7 +9,7 @@ class GuideStore: StoreProtocol {
     typealias Model = Guide
     typealias PersistenceObject = GuidePersistenceObject
     typealias Convertor = GuideModelConvertor
-    typealias Repo = GuideDetailsRepository
+    typealias Repo = AnyRepoProtocol<GuidePersistenceObject>
     
     var repository: Repo
     var convertor: Convertor

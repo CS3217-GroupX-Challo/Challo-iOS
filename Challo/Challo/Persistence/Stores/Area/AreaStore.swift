@@ -9,7 +9,7 @@ class AreaStore: StoreProtocol {
     typealias Model = Area
     typealias PersistenceObject = AreaPersistenceObject
     typealias Convertor = AreaModelConvertor
-    typealias Repo = AreaDetailsRepository
+    typealias Repo = AnyRepoProtocol<AreaPersistenceObject>
     
     var repository: Repo
     var convertor: Convertor

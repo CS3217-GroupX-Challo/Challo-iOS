@@ -9,7 +9,7 @@ class BookingStore: StoreProtocol {
     typealias Model = Booking
     typealias PersistenceObject = BookingPersistenceObject
     typealias Convertor = BookingModelConvertor
-    typealias Repo = BookingInfoRepository
+    typealias Repo = AnyRepoProtocol<BookingPersistenceObject>
     
     var repository: Repo
     var convertor: Convertor
