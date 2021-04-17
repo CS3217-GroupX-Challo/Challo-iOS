@@ -10,10 +10,11 @@ import Foundation
 
 class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: GuidePersistenceObject]
-    private var repository: CoreDataRepository<GuideDetails>
+
+    var repository: CoreDataRepository<GuideDetails>
     private var areaRepository: AreaDetailsRepository
     private var trailRepository: TrailDetailsRepository
-    
+
     init(data: [NSManagedObjectID: GuidePersistenceObject],
          repository: CoreDataRepository<GuideDetails>,
          areaRepository: AreaDetailsRepository,
@@ -30,7 +31,6 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
                                                             CoreDataContainer.managedObjectContext)
         self.areaRepository = AreaDetailsRepository()
         self.trailRepository = TrailDetailsRepository()
-//        repository.clearAll()
     }
     
     func getAll() -> [GuidePersistenceObject] {
