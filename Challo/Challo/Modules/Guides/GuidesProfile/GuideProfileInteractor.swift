@@ -30,7 +30,6 @@ class GuideProfileInteractor: InteractorProtocol {
             
             self.presenter.reviews = reviews
             reviewStore.save(models: reviews)
-            let localReviews = reviewStore.getAll()
         }
     }
 }
