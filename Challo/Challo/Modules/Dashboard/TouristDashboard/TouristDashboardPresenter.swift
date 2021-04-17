@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-class TouristDashboardPresenter: PresenterProtocol {
+class TouristDashboardPresenter: PresenterProtocol, MessagingSupporter {
     
     var router: TouristDashboardRouter?
     var interactor: TouristDashboardInteractor!
     let userState: UserStateProtocol
 
-    let sendMessageToGuide: ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)
+    var sendMessageToUser: ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)!
     
     @Published var isLoading = false
     @Published var upcomingBookings: [Booking] = []
@@ -28,7 +28,7 @@ class TouristDashboardPresenter: PresenterProtocol {
          sendMessageToGuide: @escaping ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)) {
         self.userState = userState
         self.name = userState.name
-        self.sendMessageToGuide = sendMessageToGuide
+        self.sendMessageToUser = sendMessageToGuide
     }
     
     var displayedProfileImage: Image {
@@ -63,10 +63,5 @@ class TouristDashboardPresenter: PresenterProtocol {
         bookings.filter {
             $0.status == .Paid || $0.status == .Pending
         }
-    }
-    
-    func onTapSendMessage(guide: Guide) {
-        sendMessageToGuide(guide.email, guide.userId, messageText)
-        messageText = ""
     }
 }

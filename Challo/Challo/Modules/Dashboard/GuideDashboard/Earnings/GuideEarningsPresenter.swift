@@ -31,7 +31,7 @@ class GuideEarningsPresenter: PresenterProtocol {
          sendMessageToTourist: @escaping ((_ touristEmail: String, _ touristId: UUID, _ messageText: String) -> Void)) {
         self.userState = userState
         self.name = userState.name
-        bookingHistorySubPresenter.sendMessageToTourist = sendMessageToTourist
+        bookingHistorySubPresenter.sendMessageToUser = sendMessageToTourist
     }
 
 }

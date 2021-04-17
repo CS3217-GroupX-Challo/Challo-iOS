@@ -8,25 +8,24 @@
 import Foundation
 import SwiftUI
 
-class GuideUpcomingBookingsPresenter: PresenterProtocol {
+class GuideUpcomingBookingsPresenter: PresenterProtocol, MessagingSupporter {
 
     var interactor: GuideUpcomingBookingsInteractor!
     var router: GuideUpcomingBookingsRouter?
 
     let userState: UserStateProtocol
-    let sendMessageToTourist: (_ touristEmail: String, _ touristId: UUID, _ messageText: String) -> Void
+    var sendMessageToUser: ((_ touristEmail: String, _ touristId: UUID, _ messageText: String) -> Void)!
 
     @Published var loading = false
-
     @Published var upcomingBookings: [Booking] = []
-
     @Published var name: String
+    @Published var messageText = ""
 
     init(userState: UserStateProtocol,
          sendMessageToTourist: @escaping ((_ touristEmail: String, _ touristId: UUID, _ messageText: String) -> Void)) {
         self.userState = userState
         self.name = userState.name
-        self.sendMessageToTourist = sendMessageToTourist
+        self.sendMessageToUser = sendMessageToTourist
     }
 
     @Published var image: Image?

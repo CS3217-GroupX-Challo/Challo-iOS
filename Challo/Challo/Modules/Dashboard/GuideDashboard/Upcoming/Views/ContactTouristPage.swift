@@ -1,32 +1,24 @@
 //
-//  ContactGuidePage.swift
+//  ContactTouristPage.swift
 //  Challo
 //
-//  Created by Shao Yi on 4/4/21.
+//  Created by Ying Gao on 17/4/21.
 //
 
 import SwiftUI
 
-struct ContactGuidePage: View {
-    
-    @EnvironmentObject var presenter: TouristDashboardPresenter
+struct ContactTouristPage: View {
+
+    @EnvironmentObject var presenter: GuideUpcomingBookingsPresenter
     @Environment(\.presentationMode) var presentationMode
-    
-    let guide: Guide
-    
+
+    var tourist: Tourist
+
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Text("Contact \(guide.name ?? "")")
-                    .font(.title2)
-                Spacer()
-                Image("avatar-image")
-                    .resizable()
-                    .frame(width: 55, height: 55)
-                    .clipShape(Circle())
-            }
+            touristCard
             Divider().padding(.vertical)
-            Text("Most travellers ask about")
+            Text("Most customers would like to know about:")
                 .font(.headline)
                 .padding(.vertical, 30)
             Text("- Getting there")
@@ -48,7 +40,7 @@ struct ContactGuidePage: View {
                 )
             Divider().padding(.vertical)
             Button(action: {
-                presenter.sendMessageOnTap(recipient: guide)
+                presenter.sendMessageOnTap(recipient: tourist)
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Send Message").bold()
@@ -62,5 +54,17 @@ struct ContactGuidePage: View {
             )
             .padding(.bottom)
         }.padding(.horizontal, 50)
+    }
+
+    private var touristCard: some View {
+        HStack {
+            Text("Contact \(tourist.name ?? "")")
+                .font(.title2)
+            Spacer()
+            Image("avatar-image")
+                .resizable()
+                .frame(width: 55, height: 55)
+                .clipShape(Circle())
+        }
     }
 }
