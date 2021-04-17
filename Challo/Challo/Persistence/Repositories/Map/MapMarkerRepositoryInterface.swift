@@ -8,8 +8,8 @@
 import Foundation
 
 protocol MapMarkerRepositoryInterface {
-    func getAllMapMarkers() -> [MapMarker]
-    func saveMapMarkers(mapMarkers: [MapMarker])
+    func getAllMarkers() -> [MarkerPersistenceObject]
+    func saveMarkers(markerObjects: [MarkerPersistenceObject])
     
     // TODO add other functions if needed
 }

@@ -9,7 +9,18 @@
 import Foundation
 import MapKit
 
-struct MapMarker {
+class MapMarker {
+
+    init(id: UUID,
+         position: CLLocationCoordinate2D,
+         date: Date? = nil,
+         comments: String? = nil) {
+        self.id = id
+        self.position = position
+        self.date = date
+        self.comments = comments
+    }
+
     var id: UUID
     
     /// Coordinates of the position of the marker on the map

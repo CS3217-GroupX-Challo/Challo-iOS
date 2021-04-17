@@ -23,7 +23,8 @@ class MapItineraryInteractorTests: XCTestCase {
     private func setUpHelper() {
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: MockRouteRepository(),
-                             mapItineraryRepository: MapItineraryRepository())
+                             mapItineraryRepository: MapItineraryRepository(),
+                             convertor: MapModelConvertor())
         let interactor = MapItineraryInteractor(mapItinerary: Self.itinerary, mapStore: store)
         self.interactor = interactor
         self.mapStore = store
@@ -83,32 +84,5 @@ class MapItineraryInteractorTests: XCTestCase {
         let position = markerToDelete.position
         interactor.deleteMarker(at: position)
         XCTAssertNil(interactor.getMarkerPresent(at: position), "Marker should have been deleted")
-    }
-
-    func testEditMarker_noMarkerAtPosition_newMarkerAdded() {
-        let positionToEdit = CLLocationCoordinate2D(latitude: 23.5, longitude: -12.4)
-        let newMarker = MapMarker(id: UUID(),
-                                  position: positionToEdit,
-                                  date: Date(),
-                                  comments: "Hello world!")
-        interactor.editMarker(at: positionToEdit, edited: newMarker)
-        XCTAssertEqual(newMarker, interactor.getMarkerPresent(at: positionToEdit),
-                       "New marker should be added at position")
-    }
-
-    func testEditMarker_existingMarkerAtPosition_oldMarkerRemovedNewMarkerAdded() {
-        guard let oldMarker = Self.itinerary.markers.first else {
-            XCTFail("Testing on an itinerary with no existing map markers")
-            return
-        }
-        let oldPosition = oldMarker.position
-        let newMarker = MapMarker(id: UUID(),
-                                  position: oldPosition,
-                                  date: Date(),
-                                  comments: "This is a new marker!")
-        interactor.editMarker(at: oldPosition, edited: newMarker)
-        XCTAssertNotEqual(oldMarker, interactor.getMarkerPresent(at: oldPosition), "Old marker should be removed")
-        XCTAssertEqual(newMarker, interactor.getMarkerPresent(at: oldPosition),
-                       "New marker should be added to position")
     }
 }

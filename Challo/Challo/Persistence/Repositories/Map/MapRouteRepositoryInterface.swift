@@ -8,6 +8,6 @@
 import Foundation
 
 protocol MapRouteRepositoryInterface {
-    func getAllRoutes() -> [MapRoute]
-    func saveMapRoutes(mapRoutes: [MapRoute])
+    func getAllRoutes() -> [RoutePersistenceObject]
+    func saveRoutes(routeObjects: [RoutePersistenceObject])
 }

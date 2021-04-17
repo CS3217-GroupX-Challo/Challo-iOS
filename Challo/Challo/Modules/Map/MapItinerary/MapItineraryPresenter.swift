@@ -78,15 +78,12 @@ class MapItineraryPresenter: NSObject, PresenterProtocol {
 
     func endEdit(newDate: Date, newComments: String) {
         self.isEditing = false
-        guard let oldMarker = self.markerToEdit else {
+        guard let toEdit = self.markerToEdit else {
             return
         }
         self.markerToEdit = nil
-        let newMarker = MapMarker(id: oldMarker.id,
-                                  position: oldMarker.position,
-                                  date: newDate,
-                                  comments: newComments)
-        interactor.editMarker(at: oldMarker.position, edited: newMarker)
+        toEdit.date = newDate
+        toEdit.comments = newComments
     }
     
     func saveItinerary(title: String) {
@@ -165,7 +162,7 @@ extension MapItineraryPresenter: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
         guard let initialPosition = movedMarkerInitialPosition,
-              var mapMarker = interactor.getMarkerPresent(at: initialPosition) else {
+              let mapMarker = interactor.getMarkerPresent(at: initialPosition) else {
             return
         }
         
