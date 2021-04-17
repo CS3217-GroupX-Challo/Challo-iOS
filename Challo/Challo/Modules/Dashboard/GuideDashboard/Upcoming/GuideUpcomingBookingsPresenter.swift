@@ -14,6 +14,7 @@ class GuideUpcomingBookingsPresenter: PresenterProtocol {
     var router: GuideUpcomingBookingsRouter?
 
     let userState: UserStateProtocol
+    let sendMessageToTourist: (_ touristEmail: String, _ touristId: UUID, _ messageText: String) -> Void
 
     @Published var loading = false
 
@@ -21,9 +22,11 @@ class GuideUpcomingBookingsPresenter: PresenterProtocol {
 
     @Published var name: String
 
-    init(userState: UserStateProtocol) {
+    init(userState: UserStateProtocol,
+         sendMessageToTourist: @escaping ((_ touristEmail: String, _ touristId: UUID, _ messageText: String) -> Void)) {
         self.userState = userState
         self.name = userState.name
+        self.sendMessageToTourist = sendMessageToTourist
     }
 
     @Published var image: Image?

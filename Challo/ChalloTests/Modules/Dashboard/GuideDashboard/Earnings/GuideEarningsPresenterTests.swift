@@ -12,7 +12,7 @@ class GuideEarningsPresenterTests: XCTestCase {
 
     func testConstructor() {
         let userState = MockUserState.createMockLoggedInUserState()
-        let presenter = GuideEarningsPresenter(userState: userState)
+        let presenter = GuideEarningsPresenter(userState: userState) { _, _, _ in }
         XCTAssertTrue(presenter.loading)
         XCTAssertEqual(userState.name, presenter.name)
     }

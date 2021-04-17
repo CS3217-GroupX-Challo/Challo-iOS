@@ -27,9 +27,11 @@ class GuideEarningsPresenter: PresenterProtocol {
     var yearSubPresenter = YearEarningsPresenter()
     var bookingHistorySubPresenter = GuideBookingHistorySubPresenter()
 
-    init(userState: UserStateProtocol) {
+    init(userState: UserStateProtocol,
+         sendMessageToTourist: @escaping ((_ touristEmail: String, _ touristId: UUID, _ messageText: String) -> Void)) {
         self.userState = userState
         self.name = userState.name
+        bookingHistorySubPresenter.sendMessageToTourist = sendMessageToTourist
     }
 
 }

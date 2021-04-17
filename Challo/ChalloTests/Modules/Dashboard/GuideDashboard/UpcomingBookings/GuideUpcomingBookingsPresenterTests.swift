@@ -14,7 +14,7 @@ class GuideUpcomingBookingsPresenterTests: XCTestCase {
         let userState = MockUserState.createMockLoggedInUserState()
         let bookingRepo = MockBookingRepository()
         let interactor = GuideUpcomingBookingsInteractor(userState: userState, bookingRepository: bookingRepo)
-        let presenter = GuideUpcomingBookingsPresenter(userState: userState)
+        let presenter = GuideUpcomingBookingsPresenter(userState: userState) { _, _, _ in }
         presenter.interactor = interactor
         return presenter
     }

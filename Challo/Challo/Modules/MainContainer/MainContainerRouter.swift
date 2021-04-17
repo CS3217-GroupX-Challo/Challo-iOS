@@ -59,33 +59,32 @@ class MainContainerRouter: RouterProtocol {
     }
 
     private func setUpLoginAndProfile(_ bookingRepository: BookingRepositoryProtocol) {
-        #if GUIDE
-        loginPage = GuideLoginModule(userState: userState).assemble().view
-        profilePage = GuideUpcomingBookingsModule(userState: userState, bookingRepository: bookingRepository).assemble().view
-
-        #else
-        loginPage = TouristLoginModule(userState: userState).assemble().view
-        setupChatAndProfilePage(bookingRepository)
-        #endif
-    }
-    
-    private func setupChatAndProfilePage(_ bookingRepository: BookingRepositoryProtocol) {
         let chatDialogRepository = ChatDialogRepository()
         let chatService = QuickBloxChatService(chatAuthService: QuickBloxChatAuthService(),
                                                chatDialogService: QuickBloxChatDialogService(chatDialogRepository:
                                                                                                 chatDialogRepository))
         chatPage = ChatModule(chatService: chatService, userState: userState).assemble().view
-        
+
+        var sendMessage: (_ recipientEmail: String, _ recipientId: UUID, _ messageText: String) -> Void
+        sendMessage = { [weak self] recipientEmail, _, messageText in
+            self?.sendMessage(guideEmail: recipientEmail, messageText: messageText, chatService: chatService)
+        }
+
+        #if GUIDE
+        loginPage = GuideLoginModule(userState: userState).assemble().view
+        profilePage = GuideUpcomingBookingsModule(userState: userState,
+                                                  bookingRepository: bookingRepository,
+                                                  sendMessageToTourist: sendMessage).assemble().view
+
+        #else
+        loginPage = TouristLoginModule(userState: userState).assemble().view
         profilePage = TouristDashboardModule(userState: userState, bookingRepository: bookingRepository,
-                                             sendMessageToGuide: { [weak self] guideEmail, _, messageText in
-                                                self?.sendMessageToGuide(guideEmail: guideEmail,
-                                                                         messageText: messageText,
-                                                                         chatService: chatService)
-                                             }).assemble().view
+                                             sendMessageToGuide: sendMessage).assemble().view
+        #endif
     }
     
-    private func sendMessageToGuideAfterConnected(guideEmail: String, messageText: String, chatService: ChatService,
-                                                  didSendMessage: @escaping (() -> Void)) {
+    private func sendMessageAfterConnected(guideEmail: String, messageText: String, chatService: ChatService,
+                                           didSendMessage: @escaping (() -> Void)) {
         guard let dialog = chatService.getDialogWithChateeEmail(guideEmail) else {
             chatService.createPrivateDialog(with: guideEmail) { dialog in
                 chatService.sendMessage(messageBody: messageText,
@@ -110,18 +109,18 @@ class MainContainerRouter: RouterProtocol {
             guard isSuccessful else {
                 return
             }
-            self?.sendMessageToGuideAfterConnected(guideEmail: guideEmail, messageText: messageText,
-                                                   chatService: chatService, didSendMessage: didSendMessage)
+            self?.sendMessageAfterConnected(guideEmail: guideEmail, messageText: messageText,
+                                            chatService: chatService, didSendMessage: didSendMessage)
         }
     }
     
-    private func sendMessageToGuide(guideEmail: String, messageText: String, chatService: ChatService) {
+    private func sendMessage(guideEmail: String, messageText: String, chatService: ChatService) {
         let didSendMessage: (() -> Void) = { [weak self] in
             self?.presenter.goToChatPage()
         }
         guard !chatService.isConnected else {
-            sendMessageToGuideAfterConnected(guideEmail: guideEmail, messageText: messageText, chatService: chatService,
-                                             didSendMessage: didSendMessage)
+            sendMessageAfterConnected(guideEmail: guideEmail, messageText: messageText, chatService: chatService,
+                                      didSendMessage: didSendMessage)
             return
         }
         connectThenSend(guideEmail: guideEmail, messageText: messageText, chatService: chatService,

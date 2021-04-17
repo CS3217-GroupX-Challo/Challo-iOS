@@ -13,7 +13,7 @@ class GuideUpcomingBookingsModuleTests: XCTestCase {
     func testAssemble() {
         let userState = MockUserState.createMockLoggedInUserState()
         let bookingRepo = MockBookingRepository()
-        let module = GuideUpcomingBookingsModule(userState: userState, repository: bookingRepo)
+        let module = GuideUpcomingBookingsModule(userState: userState, bookingRepository: bookingRepo) { _, _, _ in }
         let (_, presenter) = module.assemble()
         let interactor = presenter.interactor
         let router = presenter.router
