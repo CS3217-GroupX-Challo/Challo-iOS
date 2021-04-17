@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import Foundation
 
 class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: GuidePersistenceObject]

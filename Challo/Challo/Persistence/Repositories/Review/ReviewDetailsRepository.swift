@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import Foundation
 
 class ReviewDetailsRepository: ReviewDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: ReviewPersistenceObject]

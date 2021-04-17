@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import Foundation
 
 class MapRouteRepository: MapRouteRepositoryInterface {
     private var data: [NSManagedObjectID: RoutePersistenceObject]

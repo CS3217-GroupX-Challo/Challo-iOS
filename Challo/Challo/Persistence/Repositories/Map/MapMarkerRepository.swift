@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import Foundation
 
 // MARK: - Extension from MapMarkerRepositoryInterface
 class MapMarkerRepository: MapMarkerRepositoryInterface {

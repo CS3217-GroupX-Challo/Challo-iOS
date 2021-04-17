@@ -5,4 +5,6 @@
 //  Created by Kester Ng on 17/4/21.
 //
 
-import Foundation
+protocol HostDetailsRepositoryProtocol: PersistenceRepoProtocol where
+    PersistenceObject == HostPersistenceObject {
+}

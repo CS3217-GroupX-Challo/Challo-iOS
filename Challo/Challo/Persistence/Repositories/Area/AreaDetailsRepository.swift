@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import Foundation
 
 class AreaDetailsRepository: AreaDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: AreaPersistenceObject]

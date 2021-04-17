@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import Foundation
 
 class BookingInfoRepository: BookingInfoRepositoryProtocol {
     private var data: [NSManagedObjectID: BookingPersistenceObject]

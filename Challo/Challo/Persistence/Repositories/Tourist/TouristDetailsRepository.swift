@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import Foundation
 
 class TouristDetailsRepository: TouristDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: TouristPersistenceObject]

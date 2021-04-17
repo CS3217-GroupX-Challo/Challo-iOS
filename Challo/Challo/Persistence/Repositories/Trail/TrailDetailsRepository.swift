@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import Foundation
 
 class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: TrailPersistenceObject]

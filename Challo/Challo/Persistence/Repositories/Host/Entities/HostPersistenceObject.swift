@@ -58,3 +58,6 @@ extension HostPersistenceObject: CoreDataPersistenceObject {
         hostDetails.phone = phone
     }
 }
+
+extension HostPersistenceObject: Equatable {
+}

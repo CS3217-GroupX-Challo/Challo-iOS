@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import Foundation
 
 class MapItineraryRepository: MapItineraryRepositoryInterface {
     private var data: [NSManagedObjectID: ItineraryPersistenceObject]
