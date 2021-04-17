@@ -18,13 +18,13 @@ class AreaStore {
     func getAllAreas() -> [Area] {
         let areaObjects = areaRepository.getAllAreas()
         return areaObjects.map { areaObject in
-            convertor.convertAreaPersistenceObjectToArea(areaObject: areaObject)
+            convertor.convertPersistenceObjectToModel(object: areaObject)
         }
     }
     
     func saveAreas(areas: [Area]) {
         let areaObjects = areas.map { area in
-            convertor.convertAreaToAreaPersistenceObject(area: area)
+            convertor.convertModelToPersistenceObject(model: area)
         }
         
         areaRepository.saveAreas(areaObjects: areaObjects)

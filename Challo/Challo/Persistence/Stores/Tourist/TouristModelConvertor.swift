@@ -5,24 +5,27 @@
 //  Created by Kester Ng on 12/4/21.
 //
 
-class TouristModelConvertor {
-    func convertTouristToTouristPersistenceObject(tourist: Tourist) -> TouristPersistenceObject {
-        TouristPersistenceObject(userId: tourist.userId,
-                                 email: tourist.email,
-                                 profileImg: tourist.profileImg,
-                                 name: tourist.name,
-                                 phone: tourist.phone,
-                                 dateJoined: tourist.dateJoined,
-                                 sex: tourist.sex)
+class TouristModelConvertor: ModelConvertor {
+    typealias Model = Tourist
+    typealias PersistenceObject = TouristPersistenceObject
+    
+    func convertModelToPersistenceObject(model: Tourist) -> TouristPersistenceObject {
+        TouristPersistenceObject(userId: model.userId,
+                                 email: model.email,
+                                 profileImg: model.profileImg,
+                                 name: model.name,
+                                 phone: model.phone,
+                                 dateJoined: model.dateJoined,
+                                 sex: model.sex)
     }
     
-    func convertTouristPersistenceObjectToTourist(touristObject: TouristPersistenceObject) -> Tourist {
-        Tourist(userId: touristObject.userId,
-                email: touristObject.email,
-                profileImg: touristObject.profileImg,
-                name: touristObject.name,
-                phone: touristObject.phone,
-                dateJoined: touristObject.dateJoined,
-                sex: touristObject.sex)
+    func convertPersistenceObjectToModel(object: TouristPersistenceObject) -> Tourist {
+        Tourist(userId: object.userId,
+                email: object.email,
+                profileImg: object.profileImg,
+                name: object.name,
+                phone: object.phone,
+                dateJoined: object.dateJoined,
+                sex: object.sex)
     }
 }

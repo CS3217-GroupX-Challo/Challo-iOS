@@ -18,13 +18,13 @@ class BookingStore {
     func getAllBookings() -> [Booking] {
         let bookingObjects = bookingRepository.getAllBookings()
         return bookingObjects.map { bookingobject in
-            bookingModelConvertor.convertBookingPersistenceObjectToBooking(bookingObject: bookingobject)
+            bookingModelConvertor.convertPersistenceObjectToModel(object: bookingobject)
         }
     }
     
     func saveBookings(bookings: [Booking]) {
         let bookingObjects = bookings.map { booking in
-            bookingModelConvertor.convertBookingToBookingPersistenceObject(booking: booking)
+            bookingModelConvertor.convertModelToPersistenceObject(model: booking)
         }
         
         bookingRepository.saveBookings(bookingObjects: bookingObjects)

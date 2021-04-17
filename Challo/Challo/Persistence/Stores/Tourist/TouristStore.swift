@@ -18,13 +18,13 @@ class TouristStore {
     func getAllTourists() -> [Tourist] {
         let touristObjects = touristRepository.getAllTourists()
         return touristObjects.map { touristObject in
-            convertor.convertTouristPersistenceObjectToTourist(touristObject: touristObject)
+            convertor.convertPersistenceObjectToModel(object: touristObject)
         }
     }
     
     func saveTourists(tourists: [Tourist]) {
         let touristObjects = tourists.map { tourist in
-            convertor.convertTouristToTouristPersistenceObject(tourist: tourist)
+            convertor.convertModelToPersistenceObject(model: tourist)
         }
         
         touristRepository.saveTourists(touristObjects: touristObjects)

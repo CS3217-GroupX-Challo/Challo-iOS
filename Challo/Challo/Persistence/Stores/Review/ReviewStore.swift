@@ -18,13 +18,13 @@ class ReviewStore {
     func getAllReviews() -> [Review] {
         let reviewObjects = reviewRepository.getAllReviews()
         return reviewObjects.map { reviewObject in
-            reviewModelConvertor.convertReviewPersistenceObjectToReview(reviewObject: reviewObject)
+            reviewModelConvertor.convertPersistenceObjectToModel(object: reviewObject)
         }
     }
     
     func saveReviews(reviews: [Review]) {
         let reviewObjects = reviews.map { review in
-            reviewModelConvertor.convertReviewToReviewPersistenceObject(review: review)
+            reviewModelConvertor.convertModelToPersistenceObject(model: review)
         }
         
         reviewRepository.saveReviews(reviewObjects: reviewObjects)

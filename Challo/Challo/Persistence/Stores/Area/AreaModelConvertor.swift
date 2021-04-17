@@ -7,20 +7,23 @@
 
 import Foundation
 
-class AreaModelConvertor {
-    func convertAreaToAreaPersistenceObject(area: Area) -> AreaPersistenceObject {
-        AreaPersistenceObject(areaId: area.areaId,
-                              village: area.village,
-                              division: area.division,
-                              state: area.state,
-                              country: area.country)
+class AreaModelConvertor: ModelConvertor {
+    typealias Model = Area
+    typealias PersistenceObject = AreaPersistenceObject
+    
+    func convertModelToPersistenceObject(model: Area) -> AreaPersistenceObject {
+        AreaPersistenceObject(areaId: model.areaId,
+                              village: model.village,
+                              division: model.division,
+                              state: model.state,
+                              country: model.country)
     }
     
-    func convertAreaPersistenceObjectToArea(areaObject: AreaPersistenceObject) -> Area {
-        Area(areaId: areaObject.areaId,
-             village: areaObject.village,
-             division: areaObject.division,
-             state: areaObject.state,
-             country: areaObject.country)
+    func convertPersistenceObjectToModel(object: AreaPersistenceObject) -> Area {
+        Area(areaId: object.areaId,
+             village: object.village,
+             division: object.division,
+             state: object.state,
+             country: object.country)
     }
 }

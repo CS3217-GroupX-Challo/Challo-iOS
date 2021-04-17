@@ -5,36 +5,39 @@
 //  Created by Kester Ng on 12/4/21.
 //
 
-class TrailModelConvertor {
+class TrailModelConvertor: ModelConvertor {
+    typealias Model = Trail
+    typealias PersistenceObject = TrailPersistenceObject
+    
     let convertor: AreaModelConvertor
     
     init(convertor: AreaModelConvertor) {
         self.convertor = convertor
     }
     
-    func convertTrailToTrailPersistenceObject(trail: Trail) -> TrailPersistenceObject {
-        let areaObject = convertor.convertAreaToAreaPersistenceObject(area: trail.area)
-        return TrailPersistenceObject(trailId: trail.trailId, title: trail.title,
-                                      description: trail.description, rating: trail.rating,
-                                      positions: trail.positions, distance: trail.distance,
-                                      duration: trail.duration, elevation: trail.elevation,
-                                      images: trail.images, area: areaObject,
-                                      guideIds: trail.guideIds, numOfReviews: trail.numOfReviews,
-                                      lowestFee: trail.lowestFee, tags: trail.tags,
-                                      landmarks: trail.landmarks,
-                                      difficulty: trail.difficulty)
+    func convertModelToPersistenceObject(model: Trail) -> TrailPersistenceObject {
+        let areaObject = convertor.convertModelToPersistenceObject(model: model.area)
+        return TrailPersistenceObject(trailId: model.trailId, title: model.title,
+                                      description: model.description, rating: model.rating,
+                                      positions: model.positions, distance: model.distance,
+                                      duration: model.duration, elevation: model.elevation,
+                                      images: model.images, area: areaObject,
+                                      guideIds: model.guideIds, numOfReviews: model.numOfReviews,
+                                      lowestFee: model.lowestFee, tags: model.tags,
+                                      landmarks: model.landmarks,
+                                      difficulty: model.difficulty)
     }
     
-    func convertTrailPersistenceObjectToTrail(trailObject: TrailPersistenceObject) -> Trail {
-        let area = convertor.convertAreaPersistenceObjectToArea(areaObject: trailObject.area)
-        return Trail(trailId: trailObject.trailId, title: trailObject.title,
-                     description: trailObject.description, rating: trailObject.rating,
-                     difficulty: trailObject.difficulty,
-                     positions: trailObject.positions, distance: trailObject.distance,
-                     duration: trailObject.duration, elevation: trailObject.elevation,
-                     images: trailObject.images, area: area,
-                     guideIds: trailObject.guideIds, numOfReviews: trailObject.numOfReviews,
-                     lowestFee: trailObject.lowestFee, tags: trailObject.tags,
-                     landmarks: trailObject.landmarks)
+    func convertPersistenceObjectToModel(object: TrailPersistenceObject) -> Trail {
+        let area = convertor.convertPersistenceObjectToModel(object: object.area)
+        return Trail(trailId: object.trailId, title: object.title,
+                     description: object.description, rating: object.rating,
+                     difficulty: object.difficulty,
+                     positions: object.positions, distance: object.distance,
+                     duration: object.duration, elevation: object.elevation,
+                     images: object.images, area: area,
+                     guideIds: object.guideIds, numOfReviews: object.numOfReviews,
+                     lowestFee: object.lowestFee, tags: object.tags,
+                     landmarks: object.landmarks)
     }
 }

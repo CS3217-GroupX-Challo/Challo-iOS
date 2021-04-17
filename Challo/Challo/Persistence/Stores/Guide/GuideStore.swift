@@ -18,13 +18,13 @@ class GuideStore {
     func getAllGuides() -> [Guide] {
         let guideObjects = guideRepository.getAllGuides()
         return guideObjects.map { guideObject in
-            guideModelConvertor.convertGuidePersistenceObject(guideObject: guideObject)
+            guideModelConvertor.convertPersistenceObjectToModel(object: guideObject)
         }
     }
     
     func saveGuides(guides: [Guide]) {
         let guideObjects = guides.map { guide in
-            guideModelConvertor.convertGuideToGuidePersistenceObject(guide: guide)
+            guideModelConvertor.convertModelToPersistenceObject(model: guide)
         }
         
         guideRepository.saveGuides(guideObjects: guideObjects)

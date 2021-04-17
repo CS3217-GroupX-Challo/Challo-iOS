@@ -18,13 +18,13 @@ class TrailStore {
     func getAllTrails() -> [Trail] {
         let trailObjects = repository.getAllTrails()
         return trailObjects.map { trailObject in
-            convertor.convertTrailPersistenceObjectToTrail(trailObject: trailObject)
+            convertor.convertPersistenceObjectToModel(object: trailObject)
         }
     }
     
     func saveTrails(trails: [Trail]) {
         let trailObjects = trails.map { trail in
-            convertor.convertTrailToTrailPersistenceObject(trail: trail)
+            convertor.convertModelToPersistenceObject(model: trail)
         }
         
         repository.saveTrails(trailObjects: trailObjects)
