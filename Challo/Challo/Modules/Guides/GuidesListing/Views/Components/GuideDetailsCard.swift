@@ -17,47 +17,8 @@ struct GuideDetailsCard: View {
         guide.name
     }
     
-    var languagesDescription: String? {
-        convertStringArrayToString(strings: guide.languages)
-    }
-    
     var imageWidth: CGFloat {
         width * 0.6
-    }
-    
-    var guideLanguages: [String] {
-        guard let guideLanguages = guide.languages else {
-            return []
-        }
-        let splitLanguages = guideLanguages.map { $0.components(separatedBy: "/") }
-        return splitLanguages.flatMap { $0 }
-    }
-    
-    func makeLanguageTag(_ language: String) -> some View {
-        Text(language)
-            .font(.caption2)
-            .padding(8)
-            .background(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.themeTertiary)
-            )
-    }
-    
-    var languages: AnyView {
-        AnyView(
-            VStack {
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 5) {
-                    ForEach(guideLanguages.dropLast(guideLanguages.count % 3), id: \.self) { language in
-                        makeLanguageTag(language)
-                    }
-                }
-                LazyHStack {
-                    ForEach(guideLanguages.suffix(guideLanguages.count % 3), id: \.self) { language in
-                        makeLanguageTag(language)
-                    }
-                }
-            }.frame(maxWidth: width * 0.9)
-        )
     }
     
     var body: some View {
@@ -83,7 +44,8 @@ struct GuideDetailsCard: View {
                 .frame(height: 80)
             GuidesCardDescriptionView(title: "Languages",
                                       width: width,
-                                      content: languages)
+                                      content: AnyView(GuideLanguagesTagsView(width: width,
+                                                                              languages: guide.languages)))
 
             Image(systemName: "ellipsis")
                 .padding()
@@ -99,20 +61,5 @@ struct GuideDetailsCard: View {
                 .background(Color.white)
                 .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 3, y: 3)
         )
-    }
-    
-    private func convertStringArrayToString(strings: [String]?) -> String? {
-        guard let stringArray = strings else {
-            return nil
-        }
-        
-        var result = ""
-        for i in 0..<stringArray.count {
-            result += stringArray[i]
-            if i != stringArray.count - 1 {
-                result += ", "
-            }
-        }
-        return result
     }
 }

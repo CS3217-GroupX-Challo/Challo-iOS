@@ -11,20 +11,16 @@ class GuidesListingRouter: RouterProtocol {
     weak var presenter: GuidesListingPresenter!
     let reviewAPI: ReviewAPIProtocol
     
+    var guideProfilePresenter: GuideProfilePresenter?
+    
     init(reviewAPI: ReviewAPIProtocol) {
         self.reviewAPI = reviewAPI
     }
     
     func getGuideProfileDetailsPage(guide: Guide) -> some View {
-//        NavigationLink(destination: GuideProfilePage(presenter: GuideProfilePresenter(guide: guide,
-//                                                                                      reviewAPI: reviewAPI))) {
-            Image(systemName: "ellipsis")
-                .padding()
-                .frame(width: 100)
-                .onTapGesture { [weak self] in
-                    self?.presenter.isSelectedGuideSheetOpen = true
-                    self?.presenter.selectedGuide = guide
-                }
-//        }
+        let presenter = GuideProfilePresenter(guide: guide, reviewAPI: reviewAPI)
+        guideProfilePresenter = presenter
+        return GuideProfilePage().environmentObject(presenter)
     }
+    
 }

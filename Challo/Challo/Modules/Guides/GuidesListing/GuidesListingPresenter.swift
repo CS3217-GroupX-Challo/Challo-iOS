@@ -4,6 +4,8 @@
 //
 //  Created by Kester Ng on 17/3/21.
 //
+
+import SwiftUI
 import Combine
 import Foundation
 
@@ -55,6 +57,12 @@ class GuidesListingPresenter: SearchBarPresenter {
     @Published var guides: [Guide] = []
     var originalGuides: [Guide] = []
     
+    var displayedGuides: [Guide] {
+        guides.sorted {
+            ($0.name ?? "").lowercased() < ($1.name ?? "").lowercased()
+        }
+    }
+    
     func didPopulateGuides(guides: [Guide]) {
         self.guides = guides
         originalGuides = guides
@@ -70,6 +78,10 @@ class GuidesListingPresenter: SearchBarPresenter {
         isLoading = true
         self.guides = interactor.getCachedEntities()
         interactor.populateGuides()
+    }
+    
+    func getGuideProfileDetailsPage(guide: Guide) -> some View {
+        router?.getGuideProfileDetailsPage(guide: guide)
     }
 }
 

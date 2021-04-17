@@ -62,6 +62,9 @@ class TrailListingPresenter: SearchBarPresenter, ObservableObject {
             return displayedCards
         }
         displayedCards = displayedCards.filter { $0.title.contains(searchBarText) }
+        displayedCards.sort {
+            $0.title < $1.title
+        }
         return displayedCards
     }
     

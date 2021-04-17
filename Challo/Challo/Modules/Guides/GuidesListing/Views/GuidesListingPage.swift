@@ -11,7 +11,7 @@ struct GuidesListingPage: View {
     @ObservedObject var presenter: GuidesListingPresenter
     
     var guides: [Guide] {
-        presenter.guides
+        presenter.displayedGuides
     }
     
     var body: some View {
@@ -30,9 +30,8 @@ struct GuidesListingPage: View {
                                            presenter: presenter)
                 }.padding(.bottom, 80)
                 .sheet(isPresented: $presenter.isSelectedGuideSheetOpen) {
-                    if let guide = presenter.selectedGuide, let reviewAPI = presenter.router?.reviewAPI {
-                        GuideProfilePage(presenter: GuideProfilePresenter(guide: guide,
-                                                                          reviewAPI: reviewAPI))
+                    if let guide = presenter.selectedGuide {
+                        presenter.getGuideProfileDetailsPage(guide: guide)
                     }
                 }
             }
