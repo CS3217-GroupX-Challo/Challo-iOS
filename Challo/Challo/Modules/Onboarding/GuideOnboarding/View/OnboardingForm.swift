@@ -67,6 +67,7 @@ struct OnboardingForm: View {
                    in: ...Date(),
                    displayedComponents: .date)
             .datePickerStyle(CompactDatePickerStyle())
+            .padding()
     }
 
     var languageField: some View {
@@ -74,6 +75,7 @@ struct OnboardingForm: View {
                             options: Languages.allCases,
                             optionToString: { $0.id },
                             selected: $languages)
+            .padding()
     }
 
     var yearsOfExperienceField: some View {
@@ -91,6 +93,7 @@ struct OnboardingForm: View {
                             options: Days.allCases,
                             optionToString: { $0.rawValue },
                             selected: $daysAvailable)
+            .padding()
     }
 
     var biographyField: some View {
@@ -104,6 +107,7 @@ struct OnboardingForm: View {
                         .stroke(Color.themeTertiary, lineWidth: 2.0)
             )
         }
+        .padding()
     }
 
     var trailsField: some View {
@@ -111,5 +115,6 @@ struct OnboardingForm: View {
                             options: trails,
                             optionToString: { $0.name },
                             selected: $chosenTrails)
+            .padding()
     }
 }
