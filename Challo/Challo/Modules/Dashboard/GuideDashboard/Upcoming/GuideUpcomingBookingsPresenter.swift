@@ -15,7 +15,7 @@ class GuideUpcomingBookingsPresenter: PresenterProtocol {
 
     let userState: UserStateProtocol
 
-    @Published var loading = true
+    @Published var loading = false
 
     @Published var upcomingBookings: [Booking] = []
 
@@ -35,12 +35,13 @@ class GuideUpcomingBookingsPresenter: PresenterProtocol {
     }
 
     func didPopulateBookings(bookings: [Booking]) {
-        upcomingBookings = bookings.filter { $0.status != .Completed }
+        upcomingBookings = bookings.filter { $0.status == .Pending || $0.status == .Paid }
         loading = false
     }
 
     func refresh() {
+        loading = true
         name = userState.name
-        interactor.populateBookings()
+        interactor.populateBookings(callback: didPopulateBookings(bookings:))
     }
 }

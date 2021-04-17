@@ -1,5 +1,5 @@
 //
-//  GuideDashboardModule.swift
+//  GuideEarningsModule.swift
 //  Challo
 //
 //  Created by Ying Gao on 1/4/21.

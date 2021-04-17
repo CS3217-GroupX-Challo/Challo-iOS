@@ -19,12 +19,11 @@ class GuideUpcomingBookingsInteractor: InteractorProtocol {
         self.bookingRepository = bookingRepository
     }
 
-    func populateBookings() {
+    func populateBookings(callback: @escaping ([Booking]) -> Void) {
         guard let id = UUID(uuidString: userState.userId) else {
             return
         }
-        bookingRepository.fetchBookingForGuideAndRefresh(id: id,
-                                                         didRefresh: presenter.didPopulateBookings(bookings:))
+        bookingRepository.fetchBookingForGuideAndRefresh(id: id, didRefresh: callback)
     }
     
 }

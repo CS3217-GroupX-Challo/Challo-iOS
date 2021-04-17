@@ -1,5 +1,5 @@
 //
-//  GuideDashboardModuleTests.swift
+//  GuideEarningsModuleTests.swift
 //  ChalloTests
 //
 //  Created by Ying Gao on 3/4/21.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import Challo
 
-class GuideDashboardModuleTests: XCTestCase {
+class GuideEarningsModuleTests: XCTestCase {
 
     func testAssemble() {
         let userState = MockUserState()
