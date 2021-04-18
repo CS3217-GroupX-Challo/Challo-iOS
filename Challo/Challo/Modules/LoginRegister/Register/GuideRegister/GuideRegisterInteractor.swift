@@ -24,6 +24,7 @@ class GuideRegisterInteractor: RegisterInteractor {
                 return
             }
             self?.registrationProcessCompleted(response: response)
+            self?.presenter.registrationComplete = true
         }
     }
 }

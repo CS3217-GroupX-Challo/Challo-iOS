@@ -38,22 +38,6 @@ class GuideOnboardingInteractor: InteractorProtocol {
                 self?.presenter.showSubmissionResult(success: false)
             }
         }
-        updateTrails(details: details)
-    }
-
-    private func updateTrails(details: GuideOnboardingDetails) {
-        guard let guideUUID = UUID(uuidString: userState.userId) else {
-            fatalError("Onboarding should only be done for a logged in guide")
-        }
-        trailRepository.fetchTrailsAndRefresh { fetchedTrails in
-            var trailsToUpdate = fetchedTrails.filter {
-                details.trails.contains($0) && !$0.guideIds.contains(guideUUID)
-            }
-            for index in 0..<trailsToUpdate.count {
-                trailsToUpdate[index].guideIds.append(guideUUID)
-            }
-        }
-
     }
 
     func fetchTrailsAndAreas() {

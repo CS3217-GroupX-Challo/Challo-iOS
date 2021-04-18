@@ -73,9 +73,9 @@ class MainContainerRouter: RouterProtocol {
         #if GUIDE
         loginPage = GuideLoginModule(userState: userState,
                                      loginAPI: resolveGuideLoginAPI(),
-                                     registerAPI: resolveGuideRegisterAPI()).assemble().view
-        // profilePage = GuideDashboardModule(userState: userState, bookingRepository: bookingRepository).assemble().view
-        profilePage = GuideOnboardingModule(userState: userState, trailRepository: resolveTrailRepository()).assemble().view
+                                     registerAPI: resolveGuideRegisterAPI(),
+                                     trailRepository: resolveTrailRepository()).assemble().view
+        profilePage = GuideDashboardModule(userState: userState, bookingRepository: bookingRepository).assemble().view
 
         #else
         loginPage = TouristLoginModule(userState: userState,

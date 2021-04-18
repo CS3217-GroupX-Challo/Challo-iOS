@@ -27,7 +27,7 @@ struct GuideRegisterPage: View {
                              phone: $registerPresenter.phone,
                              email: $registerPresenter.email,
                              password: $registerPresenter.password)
-                RegisterButton(presenter: registerPresenter)
+                GuideRegisterButton(presenter: registerPresenter)
             }
         }
         .alert(isPresented: $registerPresenter.isShowingRegisterAlert) {

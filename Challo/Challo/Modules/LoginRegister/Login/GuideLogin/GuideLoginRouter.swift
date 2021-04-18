@@ -13,14 +13,20 @@ class GuideLoginRouter: LoginRouter {
     let userState: UserStateProtocol
     let loginAPI: LoginAPI
     let registerAPI: RegisterAPI
+    let trailRepository: TrailRepositoryProtocol
     
-    init(userState: UserStateProtocol, loginAPI: LoginAPI, registerAPI: RegisterAPI) {
+    init(userState: UserStateProtocol, loginAPI: LoginAPI, registerAPI: RegisterAPI,
+         trailRepository: TrailRepositoryProtocol) {
         self.userState = userState
         self.loginAPI = loginAPI
         self.registerAPI = registerAPI
+        self.trailRepository = trailRepository
     }
 
     func getRegistrationPage() -> AnyView {
-        GuideRegisterModule(userState: userState, loginAPI: loginAPI, registerAPI: registerAPI).assemble().view
+        GuideRegisterModule(userState: userState,
+                            loginAPI: loginAPI,
+                            registerAPI: registerAPI,
+                            trailRepository: trailRepository).assemble().view
     }
 }

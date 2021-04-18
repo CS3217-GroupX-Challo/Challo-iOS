@@ -19,4 +19,18 @@ class GuideRegisterPresenter: RegisterPresenter, ObservableObject {
     @Published var isShowingRegisterAlert = false
     @Published var registerAlertTitle = ""
     @Published var registerAlertMessage = ""
+
+    @Published var registrationComplete = false
+
+    var onboardingPage: AnyView {
+        guard let router = router else {
+            fatalError("Router should have been initialised")
+        }
+        return router.onboardingForm
+    }
+
+    func showRegisterSuccessAlert() {
+        self.registerAlertTitle = "Registration successful!"
+        self.registerAlertMessage = "You may now sign in with your account"
+    }
 }

@@ -14,7 +14,8 @@ class GuideLoginModuleTests: XCTestCase {
         let userState = MockUserState()
         let (_, presenter) = GuideLoginModule(userState: userState,
                                               loginAPI: MockLoginAPI(),
-                                              registerAPI: MockRegisterAPI()).assemble()
+                                              registerAPI: MockRegisterAPI(),
+                                              trailRepository: MockTrailRepository()).assemble()
         XCTAssertNotNil(presenter.router, "Presenter properties not assigned")
         XCTAssertNotNil(presenter.interactor, "Presenter properties not assigned")
     }

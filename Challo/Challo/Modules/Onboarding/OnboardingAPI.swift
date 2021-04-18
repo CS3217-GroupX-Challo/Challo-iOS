@@ -22,9 +22,9 @@ extension OnboardingAPI {
 
     func updateParticulars(uuid: String, body: JSON, responseHandler: @escaping (Error?) -> Void) {
         let guideUrl = url + userId
-        networkManager.post(url: guideUrl,
-                            headers: NetworkManager.HEADER(),
-                            body: body) { _, error in
+        networkManager.put(url: guideUrl,
+                           headers: NetworkManager.HEADER(),
+                           body: body) { _, error in
             responseHandler(error)
         }
     }
