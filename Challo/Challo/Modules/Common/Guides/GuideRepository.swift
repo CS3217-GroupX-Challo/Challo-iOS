@@ -55,4 +55,8 @@ class GuideRepository: Repository<UUID, Guide>, GuideRepositoryProtocol, LocalSt
             didFetch(guides)
         }
     }
+    
+    func fetchAllAndRefresh(didRefresh: (() -> Void)?) {
+        fetchGuidesAndRefresh(didRefresh: { _ in didRefresh?() })
+    }
 }

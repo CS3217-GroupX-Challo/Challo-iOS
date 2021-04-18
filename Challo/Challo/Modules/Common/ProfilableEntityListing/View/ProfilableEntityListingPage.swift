@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct ProfilableEntityListingPage<Presenter: ProfilableEntityListingPresenter & SearchableEntityListingPresenter>: View {
+struct ProfilableEntityListingPage < Presenter: ProfilableEntityListingPresenter &
+                                    SearchableEntityListingPresenter>: View {
     
     @EnvironmentObject var presenter: Presenter
     

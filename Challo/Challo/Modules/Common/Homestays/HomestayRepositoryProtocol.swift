@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol HomestayRepositoryProtocol: Repository<UUID, Homestay> {
+protocol HomestayRepositoryProtocol: FetchableRepository, Repository<UUID, Homestay> {
     func fetchHomestaysAndRefresh(didRefresh: (([Homestay]) -> Void)?)
 }

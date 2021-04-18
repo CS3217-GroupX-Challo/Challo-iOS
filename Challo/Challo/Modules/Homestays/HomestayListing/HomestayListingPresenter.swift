@@ -11,6 +11,7 @@ import Combine
 class HomestayListingPresenter: ProfilableEntityListingPresenter,
                                 SearchableEntityListingPresenter,
                                 PriceFilterableEntityListingPresenter {
+    typealias Entity = Homestay
 
     var interactor: HomestayListingInteractor!
     var router: HomestayListingRouter?
@@ -52,8 +53,8 @@ class HomestayListingPresenter: ProfilableEntityListingPresenter,
 
     func transformHomestayToCard(_ homestay: Homestay) -> EntityListingCard {
         EntityListingCard(id: homestay.homestayId.uuidString,
-                    entityImage: homestay.images.isEmpty ? nil : homestay.images[0],
-                    defaultImage: "mountains-background") {
+                          entityImage: homestay.images.isEmpty ? nil : homestay.images[0],
+                          defaultImage: "mountains-background") {
             AnyView(
                 HomestayListingCardDetail(title: homestay.title,
                                           description: homestay.description ?? "",

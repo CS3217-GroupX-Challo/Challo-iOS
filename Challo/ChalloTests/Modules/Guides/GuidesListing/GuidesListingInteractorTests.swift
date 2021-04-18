@@ -15,8 +15,8 @@ class GuidesListingInteractorTests: XCTestCase {
         interactor.presenter = presenter
         interactor.getAllEntities()
         
-        XCTAssertEqual(presenter.guides.count, 2, "Not populated correctly")
-        XCTAssertTrue(presenter.guides.allSatisfy([MockGuideAPIResponses.guideTwo,
+        XCTAssertEqual(presenter.entities.count, 2, "Not populated correctly")
+        XCTAssertTrue(presenter.entities.allSatisfy([MockGuideAPIResponses.guideTwo,
                                                    MockGuideAPIResponses.guideOne].contains),
                       "Not populated correctly")
     }

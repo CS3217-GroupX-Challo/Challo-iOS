@@ -28,4 +28,8 @@ class HomestayRepository: Repository<UUID, Homestay>, HomestayRepositoryProtocol
             upsert(entity: homestay, key: homestay.homestayId)
         }
     }
+    
+    func fetchAllAndRefresh(didRefresh: (() -> Void)?) {
+        fetchHomestaysAndRefresh(didRefresh: { _ in didRefresh?() })
+    }
 }

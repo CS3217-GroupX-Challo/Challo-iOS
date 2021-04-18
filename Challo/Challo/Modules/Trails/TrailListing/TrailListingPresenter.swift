@@ -71,8 +71,8 @@ class TrailListingPresenter: ProfilableEntityListingPresenter,
     
     func transformTrailToTrailListingCard(_ trail: Trail) -> EntityListingCard {
         EntityListingCard(id: trail.trailId.uuidString,
-                    entityImage: trail.images.isEmpty ? nil : trail.images[0],
-                    defaultImage: "mountains-background") {
+                          entityImage: trail.images.isEmpty ? nil : trail.images[0],
+                          defaultImage: "mountains-background") {
            AnyView(TrailListingCardDetail(title: trail.title,
                                           tags: trail.tags,
                                           lowestFeePerPax: trail.lowestFee,
