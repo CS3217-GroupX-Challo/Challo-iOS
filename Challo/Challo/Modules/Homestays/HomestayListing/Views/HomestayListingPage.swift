@@ -13,7 +13,8 @@ struct HomestayListingPage: View {
 
     var body: some View {
         ListingPage<HomestayListingPresenter>(pageTitle: "Find Your Home in Nature",
-                                              searchBarSheetContent: nil)
+                                              searchBarSheetContent: AnyView(HomestayFilterView()
+                                                                                .environmentObject(presenter)))
         .onAppear {
             presenter.onPageAppear()
         }

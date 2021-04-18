@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
+import Combine
 
 class HomestayListingPresenter: EntityListingPresenter,
                                 SearchableEntityListingPresenter,
-                                ObservableObject {
+                                PriceFilterableEntityListingPresenter {
 
     var interactor: HomestayListingInteractor!
     var router: HomestayListingRouter?
     
     var entities: [Homestay] = [] {
         didSet {
-//            setSlider()
+            priceFilterPresenter.setSlider(entities: entities)
         }
     }
     
@@ -33,7 +34,14 @@ class HomestayListingPresenter: EntityListingPresenter,
     @Published var searchBarText: String = ""
     @Published var isSearchBarSheetOpen: Bool = false
     
+    var priceFilterPresenter = EntityListingPriceFilterPresenter<Homestay>(getPriceFromEntity: { Int($0.fee) })
     @Published var searchPresenter = EntityListingSearchPresenter<Homestay>(getSearchCriteriaFromEntity: { $0.title })
+    
+    var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        didInitSearchableEntityListingPresenter()
+    }
     
     func getEntityByCardId(_ cardId: String) -> Homestay {
         guard let homestay = entities.first(where: { $0.homestayId == UUID(uuidString: cardId) }) else {
@@ -43,7 +51,8 @@ class HomestayListingPresenter: EntityListingPresenter,
     }
 
     var displayedCards: [ListingCard] {
-        let displayedEntities = searchPresenter.applySearch(entities)
+        var displayedEntities = searchPresenter.applySearch(entities)
+        displayedEntities = priceFilterPresenter.applyFilter(displayedEntities)
         return displayedEntities.map(transformHomestayToCard)
     }
 
