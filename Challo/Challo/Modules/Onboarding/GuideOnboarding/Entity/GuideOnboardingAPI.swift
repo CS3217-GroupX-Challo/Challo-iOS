@@ -10,7 +10,7 @@ import Foundation
 class GuideOnboardingAPI: OnboardingAPI {
 
     let networkManager = APINetwork.getNetworkManager()
-    let areaParser = AreaAPIParser()
+    let guideParser = GuideAPIParser()
     let url = "/guide/"
     let userState: UserStateProtocol
 
@@ -23,10 +23,11 @@ class GuideOnboardingAPI: OnboardingAPI {
     }
 
     func updateGuideParticulars(details: GuideOnboardingDetails, responseHandler: @escaping (JSON, Error?) -> Void) {
-        guard UUID(uuidString: userId) != nil else {
-            fatalError("User should have been logged in with valid UUID already")
+        guard let guide = userState.user as? Guide else {
+            return
         }
-        let body = details.convertToGuideDetailsJSON(areaParser: areaParser)
+        let guideJSON = guideParser.convertGuideToJSON(guide: guide)
+        let body = details.convertToGuideDetailsJSON(guideJSON: guideJSON)
         updateParticulars(uuid: userId, body: body, responseHandler: responseHandler)
     }
 
