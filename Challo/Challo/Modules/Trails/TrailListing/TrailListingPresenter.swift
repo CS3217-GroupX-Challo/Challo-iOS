@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class TrailListingPresenter: EntityListingPresenter, SearchBarPresenter, ObservableObject {    
+class TrailListingPresenter: EntityListingPresenter, PriceFilterableEntityListingPresenter, ObservableObject {    
     typealias Entity = Trail
     
     var interactor: TrailListingInteractor!
@@ -25,7 +25,7 @@ class TrailListingPresenter: EntityListingPresenter, SearchBarPresenter, Observa
 
     var entities: [Trail] = [] {
         didSet {
-            setSlider()
+            priceFilterPresenter.setSlider(entities: entities)
         }
     }
     
@@ -36,6 +36,8 @@ class TrailListingPresenter: EntityListingPresenter, SearchBarPresenter, Observa
     @Published var showModerateTrails = true
     @Published var showDifficultTrails = true
     
+    var priceFilterPresenter = EntityListingPriceFilterPresenter<Trail>(getPriceFromEntity: { $0.lowestFee })
+    
     var difficultiesToDisplay: [TrailDifficulty] {
         var difficulties = [TrailDifficulty]()
         if showEasyTrails { difficulties.append(.Easy) }
@@ -44,48 +46,26 @@ class TrailListingPresenter: EntityListingPresenter, SearchBarPresenter, Observa
         return difficulties
     }
     
-    @Published var slider = CustomSlider(width: 600, start: 0, end: 0)
-    
-    var lowestTrailPrice: Int = .min
-    var highestTrailPrice: Int = .max
-    
-    var priceFilterLowerBound: Int {
-        Int(floor(slider.lowHandle.currentValue))
-    }
-    
-    var priceFilterUpperBound: Int {
-        Int(ceil(slider.highHandle.currentValue))
-    }
-    
     var displayedCards: [ListingCard] {
         var trails = self.entities
         trails = applyFilter(trails)
-        trails = applySearchAndSort(trails)
+        trails = applySearch(trails)
+        trails.sort {
+            $0.title < $1.title
+        }
         return trails.map(transformTrailToTrailListingCard)
     }
     
     private func applyFilter(_ trails: [Trail]) -> [Trail] {
-        let trails = trails.filter { $0.lowestFee >= priceFilterLowerBound &&
-            $0.lowestFee <= priceFilterUpperBound
-        }
+        let trails = priceFilterPresenter.applyFilter(trails)
         return trails.filter { difficultiesToDisplay.contains($0.difficulty) }
     }
     
-    private func applySearchAndSort(_ trails: [Trail]) -> [Trail] {
+    private func applySearch(_ trails: [Trail]) -> [Trail] {
         guard !searchBarText.isEmpty else {
             return trails
         }
-        var trails = trails.filter { $0.title.contains(searchBarText) }
-        trails.sort {
-            $0.title < $1.title
-        }
-        return trails
-    }
-    
-    private func setSlider() {
-        lowestTrailPrice = entities.map { $0.lowestFee }.min() ?? .min
-        highestTrailPrice = entities.map { $0.lowestFee }.max() ?? .max
-        slider = CustomSlider(width: 600, start: Double(lowestTrailPrice), end: Double(highestTrailPrice))
+        return trails.filter { $0.title.contains(searchBarText) }
     }
     
     func transformTrailToTrailListingCard(_ trail: Trail) -> ListingCard {
