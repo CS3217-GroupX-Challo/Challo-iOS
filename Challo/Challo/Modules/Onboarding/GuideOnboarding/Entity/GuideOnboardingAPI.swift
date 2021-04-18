@@ -46,7 +46,13 @@ class GuideOnboardingAPI: OnboardingAPI {
                              responseHandler: @escaping (JSON, Error?) -> Void) {
         let guideJSON = guideParser.convertGuideToJSON(guide: guide)
         let body = details.convertToGuideDetailsJSON(guideJSON: guideJSON)
-        updateParticulars(uuid: userId, body: body, responseHandler: responseHandler)
+        let trailJSON = details.trailJSON
+        self.networkManager.put(url: "/guide/trail/\(userId)",
+                                headers: [String: String](),
+                                body: trailJSON) { _, _ in
+            self.updateParticulars(uuid: self.userId,
+                                   body: body,
+                                   responseHandler: responseHandler)
+        }
     }
-
 }

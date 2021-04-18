@@ -43,4 +43,17 @@ extension GuideOnboardingDetails {
         return json
     }
 
+    var trailJSON: JSON {
+        var json = JSON()
+        var trailsArray = [JSON]()
+        trails.forEach {
+            var json = JSON()
+            json[Key.trailId] = $0.trailId.uuidString
+            json[Key.fee] = $0.lowestFee
+            trailsArray.append(json)
+        }
+        json["trails"] = trailsArray
+        return json
+    }
+
 }
