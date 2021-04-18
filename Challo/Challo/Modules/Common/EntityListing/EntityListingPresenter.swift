@@ -8,7 +8,8 @@
 import SwiftUI
 
 /// A generic presenter that encapsulates common presentation logic for displaying entity listings
-protocol EntityListingPresenter: PresenterProtocol where Interactor: EntityListingInteractor,
+protocol EntityListingPresenter: LoadableEntityPresenter,
+                                 PresenterProtocol where Interactor: EntityListingInteractor,
                                                          Interactor.Entity == Entity {
     associatedtype Entity
     
@@ -17,9 +18,6 @@ protocol EntityListingPresenter: PresenterProtocol where Interactor: EntityListi
     
     var entities: [Entity] { get set }
     
-    var isFirstLoad: Bool { get set }
-    var isLoading: Bool { get set }
-    var isRefreshing: Bool { get set }
     var displayedCards: [EntityListingCard] { get }
     
     func getAllEntities()
@@ -51,12 +49,6 @@ extension EntityListingPresenter {
             isLoading = true
             interactor.initialFetch()
             isFirstLoad = false
-        }
-    }
-    
-    func refresh() {
-        if isRefreshing {
-            interactor.getAllEntities()
         }
     }
 }

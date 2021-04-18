@@ -8,7 +8,8 @@
 import SwiftUI
 import Combine
 
-final class HomestayListingPresenter: ProfilableEntityListingPresenter,
+final class HomestayListingPresenter: LoadableEntityPresenter,
+                                      ProfilableEntityListingPresenter,
                                       SearchableEntityListingPresenter,
                                       PriceFilterableEntityListingPresenter {
     typealias Entity = Homestay
@@ -22,18 +23,11 @@ final class HomestayListingPresenter: ProfilableEntityListingPresenter,
         }
     }
     
-    var isFirstLoad = true
-    @Published var isLoading = false
-    @Published var isRefreshing = false {
-        didSet {
-            refresh()
-        }
-    }
-    
     var priceFilterPresenter = EntityListingPriceFilterPresenter<Homestay>(getPriceFromEntity: { Int($0.fee) })
     @Published var searchPresenter: EntityListingSearchPresenter<Homestay>!
         
-    init() {
+    override init() {
+        super.init()
         searchPresenter = EntityListingSearchPresenter<Homestay>(
             presenterWillChange: {
                 [weak self] in self?.objectWillChange.send()
@@ -71,5 +65,9 @@ final class HomestayListingPresenter: ProfilableEntityListingPresenter,
                 )
             )
         }
+    }
+    
+    override func onRefresh() {
+        getAllEntities()
     }
 }
