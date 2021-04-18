@@ -8,19 +8,16 @@
 import Foundation
 
 class HomestayListingInteractor: EntityListingInteractor {
-
-    var repository: HomestayRepositoryProtocol
+    typealias Entity = Homestay
+    
+    var repository: Repository<UUID, Homestay> & FetchableRepository
     weak var presenter: HomestayListingPresenter!
 
     init(homestayRepository: HomestayRepositoryProtocol) {
         self.repository = homestayRepository
     }
-
-    func getAllEntities() {
-        repository.fetchHomestaysAndRefresh(didRefresh: presenter.didGetAllEntities)
-    }
-
-    func getCachedEntities() -> [Homestay] {
-        repository.getAll()
+    
+    func initialFetch() {
+        getAllEntities()
     }
 }

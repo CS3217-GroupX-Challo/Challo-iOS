@@ -5,5 +5,6 @@
 //  Created by Kester Ng on 12/4/21.
 //
 
-protocol TrailDetailsRepositoryProtocol: RepoProtocol where PersistenceObject == TrailPersistenceObject {
+protocol TrailDetailsRepositoryProtocol: PersistenceRepoProtocol where
+    PersistenceObject == TrailPersistenceObject {
 }

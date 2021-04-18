@@ -9,7 +9,7 @@ class ReviewStore: StoreProtocol {
     typealias Model = Review
     typealias PersistenceObject = ReviewPersistenceObject
     typealias Convertor = ReviewModelConvertor
-    typealias Repo = AnyRepoProtocol<ReviewPersistenceObject>
+    typealias Repo = AnyPersistenceRepoProtocol<ReviewPersistenceObject>
     
     var repository: Repo
     var convertor: Convertor

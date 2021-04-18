@@ -8,10 +8,10 @@
 import SwiftUI
 import Combine
 
-class TrailListingPresenter: EntityListingPresenter,
-                             PriceFilterableEntityListingPresenter,
-                             SearchableEntityListingPresenter,
-                             ObservableObject {
+final class TrailListingPresenter: ProfilableEntityListingPresenter,
+                                   PriceFilterableEntityListingPresenter,
+                                   SearchableEntityListingPresenter,
+                                   ObservableObject {
     typealias Entity = Trail
     
     var interactor: TrailListingInteractor!
@@ -21,9 +21,7 @@ class TrailListingPresenter: EntityListingPresenter,
     @Published var isLoading = false
     @Published var isRefreshing = false {
         didSet {
-            if isRefreshing == true {
-                getAllEntities()
-            }
+            refresh()
         }
     }
 
@@ -38,12 +36,15 @@ class TrailListingPresenter: EntityListingPresenter,
     @Published var showDifficultTrails = true
     
     var priceFilterPresenter = EntityListingPriceFilterPresenter<Trail>(getPriceFromEntity: { $0.lowestFee })
-    @Published var searchPresenter = EntityListingSearchPresenter<Trail>(getSearchCriteriaFromEntity: { $0.title })
-    
-    var cancellables = Set<AnyCancellable>()
+    @Published var searchPresenter: EntityListingSearchPresenter<Trail>!
     
     init() {
-        didInitSearchableEntityListingPresenter()
+        searchPresenter = EntityListingSearchPresenter<Trail>(
+            presenterWillChange: {
+                [weak self] in self?.objectWillChange.send()
+            }) {
+                $0.title
+        }
     }
     
     var difficultiesToDisplay: [TrailDifficulty] {
@@ -54,7 +55,7 @@ class TrailListingPresenter: EntityListingPresenter,
         return difficulties
     }
     
-    var displayedCards: [ListingCard] {
+    var displayedCards: [EntityListingCard] {
         var trails = self.entities
         trails = applyFilter(trails)
         trails = searchPresenter.applySearch(trails)
@@ -69,10 +70,10 @@ class TrailListingPresenter: EntityListingPresenter,
         return trails.filter { difficultiesToDisplay.contains($0.difficulty) }
     }
     
-    func transformTrailToTrailListingCard(_ trail: Trail) -> ListingCard {
-        ListingCard(id: trail.trailId.uuidString,
-                    entityImage: trail.images.isEmpty ? nil : trail.images[0],
-                    defaultImage: "mountains-background") {
+    func transformTrailToTrailListingCard(_ trail: Trail) -> EntityListingCard {
+        EntityListingCard(id: trail.trailId.uuidString,
+                          entityImage: trail.images.isEmpty ? nil : trail.images[0],
+                          defaultImage: "mountains-background") {
            AnyView(TrailListingCardDetail(title: trail.title,
                                           tags: trail.tags,
                                           lowestFeePerPax: trail.lowestFee,
@@ -83,10 +84,7 @@ class TrailListingPresenter: EntityListingPresenter,
         }
     }
     
-    func getEntityByCardId(_ cardId: String) -> Trail {
-        guard let trail = entities.first(where: { $0.trailId == UUID(uuidString: cardId) }) else {
-            fatalError("trails is not synced with cards")
-        }
-        return trail
+    func matchEntityToCardId(entity: Trail, cardId: String) -> Bool {
+        entity.trailId == UUID(uuidString: cardId)
     }
 }

@@ -79,4 +79,7 @@ extension BookingPersistenceObject: CoreDataPersistenceObject {
 }
 
 extension BookingPersistenceObject: Equatable {
+    static func == (lhs: BookingPersistenceObject, rhs: BookingPersistenceObject) -> Bool {
+        lhs.bookingId == rhs.bookingId
+    }
 }

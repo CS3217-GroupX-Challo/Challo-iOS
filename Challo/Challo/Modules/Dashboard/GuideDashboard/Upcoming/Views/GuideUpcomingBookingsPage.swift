@@ -20,7 +20,8 @@ struct GuideUpcomingBookingsPage: View {
                 BookingCardListingsView(
                         width: geometry.size.width,
                         pov: .guide,
-                        bookings: $presenter.upcomingBookings)
+                        bookings: $presenter.upcomingBookings,
+                        isRefreshing: .constant(false))
             }
         }
     }

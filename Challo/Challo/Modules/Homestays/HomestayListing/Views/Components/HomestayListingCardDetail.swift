@@ -37,6 +37,7 @@ struct HomestayListingCardDetail: View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
                 Text(title)
+                    .bold()
                     .font(.title3)
                 Spacer()
             }

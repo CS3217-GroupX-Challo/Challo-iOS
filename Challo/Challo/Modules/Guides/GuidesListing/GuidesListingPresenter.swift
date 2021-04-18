@@ -9,7 +9,9 @@ import SwiftUI
 import Combine
 import Foundation
 
-class GuidesListingPresenter: PresenterProtocol, SearchableEntityListingPresenter {
+final class GuidesListingPresenter: EntityListingPresenter, SearchableEntityListingPresenter {
+    
+    typealias Entity = Guide
     
     var router: GuidesListingRouter?
     var interactor: GuidesListingInteractor!
@@ -18,6 +20,7 @@ class GuidesListingPresenter: PresenterProtocol, SearchableEntityListingPresente
     @Published var isSelectedGuideSheetOpen = false
     @Published var selectedGuide: Guide?
     
+    var isFirstLoad = true
     @Published var isLoading = false
     @Published var isRefreshing = false {
         didSet {
@@ -29,7 +32,7 @@ class GuidesListingPresenter: PresenterProtocol, SearchableEntityListingPresente
     
     @Published var slider = CustomSlider(width: 600, start: 1, end: 5)
     
-    @Published var searchPresenter = EntityListingSearchPresenter<Guide> { $0.name ?? "" }
+    @Published var searchPresenter: EntityListingSearchPresenter<Guide>!
     
     @Published var sexFilterType: String = "Default" {
         didSet {
@@ -49,26 +52,35 @@ class GuidesListingPresenter: PresenterProtocol, SearchableEntityListingPresente
         }
     }
     
-    var cancellables = Set<AnyCancellable>()
-    
     init() {
-        didInitSearchableEntityListingPresenter()
+        searchPresenter = EntityListingSearchPresenter<Guide>(
+            presenterWillChange: {
+                [weak self] in self?.objectWillChange.send()
+            }) {
+                $0.name ?? ""
+        }
     }
     
-    @Published var guides: [Guide] = []
+    @Published var entities: [Guide] = []
     var originalGuides: [Guide] = []
     
     var displayedGuides: [Guide] {
-        var guidesToDisplay = guides
+        var guidesToDisplay = entities
         guidesToDisplay = searchPresenter.applySearch(guidesToDisplay)
         return guidesToDisplay.sorted {
             ($0.name ?? "").lowercased() < ($1.name ?? "").lowercased()
         }
     }
     
-    func didPopulateGuides(guides: [Guide]) {
-        self.guides = guides
-        originalGuides = guides
+    var displayedCards: [EntityListingCard] = []
+    
+    func matchEntityToCardId(entity: Guide, cardId: String) -> Bool {
+        entity.userId == UUID(uuidString: cardId)
+    }
+    
+    func didGetAllEntities(entities: [Guide]) {
+        self.entities = entities
+        originalGuides = entities
         isLoading = false
         isRefreshing = false
     }
@@ -79,8 +91,7 @@ class GuidesListingPresenter: PresenterProtocol, SearchableEntityListingPresente
 
     func onAppear() {
         isLoading = true
-        self.guides = interactor.getCachedEntities()
-        interactor.getAllEntities()
+        interactor.initialFetch()
     }
     
     func getGuideProfileDetailsPage(guide: Guide) -> some View {
@@ -91,7 +102,7 @@ class GuidesListingPresenter: PresenterProtocol, SearchableEntityListingPresente
 // MARK: - Filtering logic
 extension GuidesListingPresenter {
     private func applyFiltering() {
-        guides = originalGuides
+        entities = originalGuides
         filterBySex()
         filterByLanguage()
         filterByRating()
@@ -102,7 +113,7 @@ extension GuidesListingPresenter {
             return
         }
         
-        guides = guides.filter { guide in
+        entities = entities.filter { guide in
             guide.sex == Sex(rawValue: sexFilterType)
         }
     }
@@ -112,7 +123,7 @@ extension GuidesListingPresenter {
             return
         }
         
-        guides = guides.filter { guide in
+        entities = entities.filter { guide in
             guard let languages = guide.languages else {
                 return false
             }
@@ -128,7 +139,7 @@ extension GuidesListingPresenter {
             return
         }
         
-        guides = guides.filter { guide in
+        entities = entities.filter { guide in
             guard let ratingToFilter = Double(ratingFilterType) else {
                 return false
             }

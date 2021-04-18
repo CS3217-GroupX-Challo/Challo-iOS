@@ -11,17 +11,17 @@ import Foundation
 class BookingInfoRepository: BookingInfoRepositoryProtocol {
     private var data: [NSManagedObjectID: BookingPersistenceObject]
     private var repository: CoreDataRepository<BookingInfo>
-    private var guideRepository: CoreDataRepository<GuideDetails>
-    private var trailRepository: CoreDataRepository<TrailDetails>
-    private var touristRepository: CoreDataRepository<TouristDetails>
-    private var reviewRepository: CoreDataRepository<ReviewDetails>
+    private var guideRepository: GuideDetailsRepository
+    private var trailRepository: TrailDetailsRepository
+    private var touristRepository: TouristDetailsRepository
+    private var reviewRepository: ReviewDetailsRepository
     
     init(data: [NSManagedObjectID: BookingPersistenceObject],
          repository: CoreDataRepository<BookingInfo>,
-         guideRepository: CoreDataRepository<GuideDetails>,
-         trailRepository: CoreDataRepository<TrailDetails>,
-         touristRepository: CoreDataRepository<TouristDetails>,
-         reviewRepository: CoreDataRepository<ReviewDetails>) {
+         guideRepository: GuideDetailsRepository,
+         trailRepository: TrailDetailsRepository,
+         touristRepository: TouristDetailsRepository,
+         reviewRepository: ReviewDetailsRepository) {
         self.data = data
         self.repository = repository
         self.guideRepository = guideRepository
@@ -35,13 +35,13 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
         self.repository
             = CoreDataRepository<BookingInfo>(managedObjectContext: CoreDataContainer.managedObjectContext)
         self.guideRepository
-            = CoreDataRepository<GuideDetails>(managedObjectContext: CoreDataContainer.managedObjectContext)
+            = GuideDetailsRepository()
         self.trailRepository
-            = CoreDataRepository<TrailDetails>(managedObjectContext: CoreDataContainer.managedObjectContext)
+            = TrailDetailsRepository()
         self.reviewRepository
-            = CoreDataRepository<ReviewDetails>(managedObjectContext: CoreDataContainer.managedObjectContext)
+            = ReviewDetailsRepository()
         self.touristRepository
-            = CoreDataRepository<TouristDetails>(managedObjectContext: CoreDataContainer.managedObjectContext)
+            = TouristDetailsRepository()
     }
     
     func getAll() -> [BookingPersistenceObject] {
@@ -60,17 +60,20 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
     }
     
     func save(objects: [BookingPersistenceObject]) {
-        let currentBookings = getAll()
-        let currentGuides = guideRepository.getAll()
-        let currentTourists = touristRepository.getAll()
-        let currentTrails = trailRepository.getAll()
-        let currentReviews = reviewRepository.getAll()
+        let uniqueObjects = getUniqueBookings(objects: objects)
+        updateDependencies(objects: uniqueObjects)
         
-        let existingBookingObjects = objects.filter { bookingObject in
+        let currentBookings = getAll()
+        let currentGuides = guideRepository.repository.getAll()
+        let currentTourists = touristRepository.repository.getAll()
+        let currentTrails = trailRepository.repository.getAll()
+        let currentReviews = reviewRepository.repository.getAll()
+        
+        let existingBookingObjects = uniqueObjects.filter { bookingObject in
             currentBookings.contains(bookingObject)
         }
         
-        let newBookingObjects = objects.filter { bookingObject in
+        let newBookingObjects = uniqueObjects.filter { bookingObject in
             !existingBookingObjects.contains(bookingObject)
         }
         
@@ -84,6 +87,44 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
                        currentTrails: currentTrails,
                        currentTourists: currentTourists,
                        currentReviews: currentReviews)
+    }
+    
+    private func getUniqueBookings(objects: [BookingPersistenceObject]) -> [BookingPersistenceObject] {
+        var bookings = [BookingPersistenceObject]()
+        for object in objects {
+            if !bookings.contains(object) {
+                bookings.append(object)
+            }
+        }
+        
+        return bookings
+    }
+    
+    private func updateDependencies(objects: [BookingPersistenceObject]) {
+        saveTouristsInvolved(objects: objects)
+        saveTrailsInvolved(objects: objects)
+        saveGuidesInvolved(objects: objects)
+        saveReviewsInvolved(objects: objects)
+    }
+    
+    private func saveGuidesInvolved(objects: [BookingPersistenceObject]) {
+        let guideObjects = objects.compactMap { $0.guide }
+        guideRepository.save(objects: guideObjects)
+    }
+    
+    private func saveTouristsInvolved(objects: [BookingPersistenceObject]) {
+        let touristObjects = objects.compactMap { $0.tourist }
+        touristRepository.save(objects: touristObjects)
+    }
+    
+    private func saveTrailsInvolved(objects: [BookingPersistenceObject]) {
+        let trailsObjects = objects.compactMap { $0.trail }
+        trailRepository.save(objects: trailsObjects)
+    }
+    
+    private func saveReviewsInvolved(objects: [BookingPersistenceObject]) {
+        let reviewObjects = objects.compactMap { $0.review }
+        reviewRepository.save(objects: reviewObjects)
     }
     
     private func saveNewBookings(bookingObjects: [BookingPersistenceObject],
@@ -150,11 +191,6 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
             bookingInfo.guide = guide
             break
         }
-        
-        if bookingInfo.guide == nil {
-            let guide = bookingObject.guide.convertToEntity() as? GuideDetails
-            bookingInfo.guide = guide
-        }
     }
     
     private func setTrail(bookingInfo: BookingInfo,
@@ -163,11 +199,6 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
         for trail in currentTrails where trail.id == bookingObject.trail.trailId.uuidString {
             bookingInfo.trail = trail
             break
-        }
-        
-        if bookingInfo.trail == nil {
-            let trail = bookingObject.trail.convertToEntity() as? TrailDetails
-            bookingInfo.trail = trail
         }
     }
     
@@ -178,11 +209,6 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
             bookingInfo.tourist = tourist
             break
         }
-        
-        if bookingInfo.tourist == nil {
-            let tourist = bookingObject.tourist.convertToEntity() as? TouristDetails
-            bookingInfo.tourist = tourist
-        }
     }
     
     private func setReview(bookingInfo: BookingInfo,
@@ -191,11 +217,6 @@ class BookingInfoRepository: BookingInfoRepositoryProtocol {
         for review in currentReviews where review.id == bookingObject.review?.reviewId.uuidString {
             bookingInfo.review = review
             break
-        }
-        
-        if bookingInfo.review == nil {
-            let review = bookingObject.review?.convertToEntity() as? ReviewDetails
-            bookingInfo.review = review
         }
     }
 }

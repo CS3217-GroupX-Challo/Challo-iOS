@@ -9,6 +9,7 @@
 import Foundation
 
 class MockTrailRepository: Repository<UUID, Trail>, TrailRepositoryProtocol {
+
     let trailAPI = MockTrailAPI()
     
     init() {
@@ -27,5 +28,13 @@ class MockTrailRepository: Repository<UUID, Trail>, TrailRepositoryProtocol {
             self?.refreshTrails(trails)
             didRefresh?(trails)
         }
+    }
+    
+    func fetchAllAndRefresh(didRefresh: (() -> Void)?) {
+        fetchTrailsAndRefresh(didRefresh: { _ in didRefresh?() })
+    }
+    
+    func initialFetch(didFetch: (() -> Void)?) {
+        fetchTrailsAndRefresh(didRefresh: { _ in didFetch?() })
     }
 }

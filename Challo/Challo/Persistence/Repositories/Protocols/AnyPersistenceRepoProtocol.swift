@@ -5,7 +5,7 @@
 //  Created by Kester Ng on 17/4/21.
 //
 
-private class _AnyRepoProtocolBase<ConcreteType>: RepoProtocol {
+private class _AnyPersistenceRepoProtocolBase<ConcreteType>: PersistenceRepoProtocol {
     typealias PersistenceObject = ConcreteType
     
     // swiftlint:disable unavailable_function
@@ -19,7 +19,7 @@ private class _AnyRepoProtocolBase<ConcreteType>: RepoProtocol {
     }
 }
 
-private class _AnyRepoProtocolBox<ImplementingType: RepoProtocol>: _AnyRepoProtocolBase
+private class _AnyPersistenceRepoProtocolBox<ImplementingType: PersistenceRepoProtocol>: _AnyPersistenceRepoProtocolBase
     <ImplementingType.PersistenceObject> {
     private let wrappedInstance: ImplementingType
     
@@ -37,12 +37,12 @@ private class _AnyRepoProtocolBox<ImplementingType: RepoProtocol>: _AnyRepoProto
 }
 
 // A type erasure class for RepoProtocol
-final class AnyRepoProtocol<ConcreteType>: RepoProtocol {
-    private let _box: _AnyRepoProtocolBase<ConcreteType>
+final class AnyPersistenceRepoProtocol<ConcreteType>: PersistenceRepoProtocol {
+    private let _box: _AnyPersistenceRepoProtocolBase<ConcreteType>
     
-    init<ImplementingType: RepoProtocol>(_ repo: ImplementingType) where
+    init<ImplementingType: PersistenceRepoProtocol>(_ repo: ImplementingType) where
         ImplementingType.PersistenceObject == ConcreteType {
-        self._box = _AnyRepoProtocolBox(repo)
+        self._box = _AnyPersistenceRepoProtocolBox(repo)
     }
     
     func getAll() -> [ConcreteType] {

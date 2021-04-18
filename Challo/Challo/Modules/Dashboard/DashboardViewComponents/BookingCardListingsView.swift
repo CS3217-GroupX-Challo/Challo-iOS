@@ -13,6 +13,7 @@ struct BookingCardListingsView: View {
     var width: CGFloat
     var pov: PointOfView
     @Binding var bookings: [Booking]
+    @Binding var isRefreshing: Bool
     var createBookingCard: ((Booking, CGFloat) -> AnyView)?
     
     let columns = [
@@ -30,11 +31,11 @@ struct BookingCardListingsView: View {
                 Spacer()
             }.frame(maxHeight: .infinity)
         } else {
-            ScrollView(showsIndicators: false) {
+            RefreshableScrollView(refreshing: $isRefreshing) {
                 LazyVGrid(columns: columns, spacing: 0) {
-                    ForEach(bookings.indices) { index in
+                    ForEach(bookings, id: \.bookingId) { booking in
                         GeometryReader { geometry in
-                            constructBookingCard(booking: bookings[index], width: geometry.size.width * 0.9)
+                            constructBookingCard(booking: booking, width: geometry.size.width * 0.9)
                         }.frame(minHeight: 400)
                     }
                 }.padding()

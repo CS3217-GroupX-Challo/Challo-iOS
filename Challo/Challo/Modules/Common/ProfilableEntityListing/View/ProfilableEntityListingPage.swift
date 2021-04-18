@@ -1,5 +1,5 @@
 //
-//  ListingPage.swift
+//  ProfilableEntityListingPage.swift
 //  Challo
 //
 //  Created by Shao Yi on 17/4/21.
@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct ListingPage<Presenter: EntityListingPresenter & SearchableEntityListingPresenter>: View {
+struct ProfilableEntityListingPage < Presenter: ProfilableEntityListingPresenter &
+                                    SearchableEntityListingPresenter>: View {
     
     @EnvironmentObject var presenter: Presenter
     

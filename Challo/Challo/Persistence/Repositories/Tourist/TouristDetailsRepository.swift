@@ -10,7 +10,7 @@ import Foundation
 
 class TouristDetailsRepository: TouristDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: TouristPersistenceObject]
-    private var repository: CoreDataRepository<TouristDetails>
+    var repository: CoreDataRepository<TouristDetails>
     
     init(data: [NSManagedObjectID: TouristPersistenceObject],
          repository: CoreDataRepository<TouristDetails>) {
@@ -40,13 +40,14 @@ class TouristDetailsRepository: TouristDetailsRepositoryProtocol {
     }
     
     func save(objects: [TouristPersistenceObject]) {
+        let uniqueObjects = getUniqueTourists(objects: objects)
         let currentTouristObjects = getAll()
         
-        let existingTouristObjects = objects.filter { touristObject in
+        let existingTouristObjects = uniqueObjects.filter { touristObject in
             currentTouristObjects.contains(touristObject)
         }
         
-        let newTouristObjects = objects.filter {touristObject in
+        let newTouristObjects = uniqueObjects.filter {touristObject in
             !existingTouristObjects.contains(touristObject)
         }
         
@@ -55,6 +56,15 @@ class TouristDetailsRepository: TouristDetailsRepositoryProtocol {
         repository.commit()
     }
         
+    private func getUniqueTourists(objects: [TouristPersistenceObject]) -> [TouristPersistenceObject] {
+        var touristObjects = [TouristPersistenceObject]()
+        for object in objects {
+            touristObjects.append(object)
+        }
+        
+        return touristObjects
+    }
+    
     private func createNewTourists(touristObjects: [TouristPersistenceObject]) {
         for touristObject in touristObjects {
             _ = touristObject.convertToEntity()

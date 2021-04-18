@@ -65,5 +65,7 @@ extension ReviewPersistenceObject: CoreDataPersistenceObject {
 }
 
 extension ReviewPersistenceObject: Equatable {
-    
+    static func == (lhs: ReviewPersistenceObject, rhs: ReviewPersistenceObject) -> Bool {
+        lhs.reviewId == rhs.reviewId
+    }
 }

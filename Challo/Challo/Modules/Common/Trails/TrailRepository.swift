@@ -7,13 +7,20 @@
 
 import Foundation
 
-class TrailRepository: Repository<UUID, Trail>, TrailRepositoryProtocol {
-    let trailAPI: TrailAPIProtocol
+class TrailRepository: Repository<UUID, Trail>, TrailRepositoryProtocol, LocalStorageRetriever {
     
-    init(trailAPI: TrailAPIProtocol) {
+    typealias Model = Trail
+    typealias LocalStore = TrailStore
+
+    let trailAPI: TrailAPIProtocol
+    let localStore: TrailStore
+    var isInitialized: Bool = false
+    
+    init(trailAPI: TrailAPIProtocol,
+         trailStore: TrailStore) {
         self.trailAPI = trailAPI
+        self.localStore = trailStore
         super.init()
-        fetchTrailsAndRefresh()
     }
     
     private func refreshTrails(_ trails: [Trail]) {
@@ -25,7 +32,31 @@ class TrailRepository: Repository<UUID, Trail>, TrailRepositoryProtocol {
     func fetchTrailsAndRefresh(didRefresh: (([Trail]) -> Void)? = nil) {
         trailAPI.getTrails { [weak self] trails in
             self?.refreshTrails(trails)
+            self?.saveToLocalStore(models: trails)
             didRefresh?(trails)
         }
+    }
+
+    func initialFetch(didFetch: (() -> Void)?) {
+        if isInitialized {
+            didFetch?()
+            return
+        }
+        fetchTrailsAndRefresh { trails in
+            self.isInitialized = true
+
+            if trails.isEmpty {
+                let localTrails = self.retrieveFromLocalStore()
+                self.refreshTrails(localTrails)
+                didFetch?()
+                return
+            }
+            
+            didFetch?()
+        }
+    }
+    
+    func fetchAllAndRefresh(didRefresh: (() -> Void)?) {
+        fetchTrailsAndRefresh()
     }
 }

@@ -8,9 +8,7 @@
 import SwiftUI
 
 /// A generic presenter that encapsulates common presentation logic for displaying entity listings
-protocol EntityListingPresenter: PresenterProtocol where Router: EntityListingRouter,
-                                                         Router.Entity == Entity,
-                                                         Interactor: EntityListingInteractor,
+protocol EntityListingPresenter: PresenterProtocol where Interactor: EntityListingInteractor,
                                                          Interactor.Entity == Entity {
     associatedtype Entity
     
@@ -22,23 +20,19 @@ protocol EntityListingPresenter: PresenterProtocol where Router: EntityListingRo
     var isFirstLoad: Bool { get set }
     var isLoading: Bool { get set }
     var isRefreshing: Bool { get set }
-    var displayedCards: [ListingCard] { get }
-    var profilePage: AnyView? { get }
+    var displayedCards: [EntityListingCard] { get }
     
     func getAllEntities()
-    func getEntityByCardId(_ cardId: String) -> Entity
-    func onTapListingCard(_ cardId: String)
+    func matchEntityToCardId(entity: Entity, cardId: String) -> Bool
     func onPageAppear()
 }
 
 extension EntityListingPresenter {
-    var profilePage: AnyView? {
-        router?.profilePage
-    }
-    
-    func onTapListingCard(_ cardId: String) {
-        let entity = getEntityByCardId(cardId)
-        router?.populateProfilePage(entity)
+    func getEntityByCardId(_ cardId: String) -> Entity {
+        guard let entity = entities.first(where: { matchEntityToCardId(entity: $0, cardId: cardId) }) else {
+            fatalError("entity is not synced with cards")
+        }
+        return entity
     }
     
     func didGetAllEntities(_ entities: [Entity]) {
@@ -55,8 +49,14 @@ extension EntityListingPresenter {
         self.entities = interactor.getCachedEntities()
         if isFirstLoad {
             isLoading = true
-            getAllEntities()
+            interactor.initialFetch()
             isFirstLoad = false
+        }
+    }
+    
+    func refresh() {
+        if isRefreshing {
+            interactor.getAllEntities()
         }
     }
 }

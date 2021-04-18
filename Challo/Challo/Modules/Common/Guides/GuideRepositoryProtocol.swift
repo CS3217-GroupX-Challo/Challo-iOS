@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol GuideRepositoryProtocol: Repository<UUID, Guide> {
+protocol GuideRepositoryProtocol: Repository<UUID, Guide>, FetchableRepository {
     func fetchGuidesAndRefresh(didRefresh: (([Guide]) -> Void)?)
 }
 

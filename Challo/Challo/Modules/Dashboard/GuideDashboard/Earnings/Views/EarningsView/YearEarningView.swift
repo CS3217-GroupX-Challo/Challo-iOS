@@ -20,7 +20,11 @@ struct YearEarningView: View {
     var body: some View {
         VStack {
             if presenter.loading {
-                Loading(isAnimating: .constant(true), style: .large)
+                VStack {
+                    Spacer()
+                    Loading(isAnimating: .constant(true), style: .large)
+                    Spacer()
+                }
             } else {
                 Card {
                     Text("Total earnings of the year:")

@@ -17,6 +17,14 @@ class TouristDashboardPresenter: PresenterProtocol, MessagingSupporter, ProfileI
     var sendMessageToUser: ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)!
     
     @Published var isLoading = false
+    @Published var isRefreshing = false {
+        didSet {
+            if isRefreshing == true {
+                populateBookings()
+            }
+        }
+    }
+    
     @Published var upcomingBookings: [Booking] = []
     @Published var pastBookings: [Booking] = []
     
@@ -78,20 +86,20 @@ class TouristDashboardPresenter: PresenterProtocol, MessagingSupporter, ProfileI
     }
 
     func refresh() {
+        self.isLoading = true
         self.name = userState.name
-        populateBookings()
+        interactor.initialFetch()
+        handleBookings(bookings: interactor.getCachedEntities())
     }
     
     func populateBookings() {
-        isLoading = true
-        interactor.populateBookings()
+        interactor.getAllEntities()
     }
 
     func didPopulateBookings(bookings: [Booking]) {
-        let sortedBookings = interactor.sortBookings(bookings: bookings)
-        self.upcomingBookings = interactor.filterUpcomingBookings(bookings: sortedBookings)
-        self.pastBookings = interactor.filterPastBookings(bookings: sortedBookings)
+        handleBookings(bookings: bookings)
         isLoading = false
+        isRefreshing = false
     }
 
     func getReviewPage(for booking: Booking) -> AnyView? {
@@ -106,22 +114,10 @@ extension TouristDashboardPresenter: ProfileUpdaterPresenter { }
 // MARK: Handle Bookings
 extension TouristDashboardPresenter {
 
-    private func sortBookings(bookings: [Booking]) -> [Booking] {
-        bookings.sorted { bookingOne, bookingTwo in
-            bookingOne.date < bookingTwo.date
-        }
-    }
-
-    private func filterUpcomingBookings(bookings: [Booking]) -> [Booking] {
-        bookings.filter {
-            ($0.status == .Paid || $0.status == .Pending) && $0.date > Date()
-        }
-    }
-
-    private func filterPastBookings(bookings: [Booking]) -> [Booking] {
-        bookings.filter {
-            $0.date < Date()
-        }
+    private func handleBookings(bookings: [Booking]) {
+        let sortedBookings = interactor.sortBookings(bookings: bookings)
+        self.upcomingBookings = interactor.filterUpcomingBookings(bookings: sortedBookings)
+        self.pastBookings = interactor.filterPastBookings(bookings: sortedBookings)
     }
 }
 

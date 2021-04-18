@@ -8,7 +8,9 @@
 import Foundation
 
 class TouristDashboardInteractor: InteractorProtocol {
-
+    
+    typealias Entity = Booking
+    
     weak var presenter: TouristDashboardPresenter!
 
     let bookingRepository: BookingRepositoryProtocol
@@ -24,11 +26,19 @@ class TouristDashboardInteractor: InteractorProtocol {
         self.updateUserChat = updateUserChat
     }
 
-    func populateBookings() {
+    func getAllEntities() {
         guard let id = UUID(uuidString: userState.userId) else {
             return
         }
         bookingRepository.fetchBookingForTouristAndRefresh(id: id, didRefresh: presenter.didPopulateBookings)
+    }
+    
+    func getCachedEntities() -> [Booking] {
+        bookingRepository.getAll()
+    }
+
+    func initialFetch() {
+        getAllEntities()
     }
 }
 

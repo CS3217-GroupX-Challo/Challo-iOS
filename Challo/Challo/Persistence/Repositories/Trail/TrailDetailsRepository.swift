@@ -10,12 +10,12 @@ import Foundation
 
 class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
     private var data: [NSManagedObjectID: TrailPersistenceObject]
-    private var repository: CoreDataRepository<TrailDetails>
-    private var areaRepository: CoreDataRepository<AreaDetails>
+    var repository: CoreDataRepository<TrailDetails>
+    private var areaRepository: AreaDetailsRepository
     
     init(data: [NSManagedObjectID: TrailPersistenceObject],
          repository: CoreDataRepository<TrailDetails>,
-         areaRepository: CoreDataRepository<AreaDetails>) {
+         areaRepository: AreaDetailsRepository) {
         self.data = data
         self.repository = repository
         self.areaRepository = areaRepository
@@ -25,8 +25,7 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
         self.data = [NSManagedObjectID: TrailPersistenceObject]()
         self.repository = CoreDataRepository<TrailDetails>(managedObjectContext:
                                                             CoreDataContainer.managedObjectContext)
-        self.areaRepository = CoreDataRepository<AreaDetails>(managedObjectContext:
-                                                                CoreDataContainer.managedObjectContext)
+        self.areaRepository = AreaDetailsRepository()
     }
     
     func getAll() -> [TrailPersistenceObject] {
@@ -44,20 +43,44 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
     }
     
     func save(objects: [TrailPersistenceObject]) {
+        let uniqueObjects = getUniqueTrails(objects: objects)
+    
+        saveAreasInvolved(objects: uniqueObjects)
+
         let currentTrails = getAll()
-        let currentAreas = areaRepository.getAll()
+        let currentAreas = areaRepository.repository.getAll()
         
-        let existingTrailObjects = objects.filter { trailObject in
+        let existingTrailObjects = uniqueObjects.filter { trailObject in
             currentTrails.contains(trailObject)
         }
         
-        let newTrailObjects = objects.filter { trailObject in
+        let newTrailObjects = uniqueObjects.filter { trailObject in
             !existingTrailObjects.contains(trailObject)
         }
         
         saveNewTrails(currentAreas: currentAreas, trailObjects: newTrailObjects)
         updateTrails(currentAreas: currentAreas, trailObjects: existingTrailObjects)
         repository.commit()
+    }
+
+    private func getUniqueTrails(objects: [TrailPersistenceObject]) -> [TrailPersistenceObject] {
+        var uniqueId = Set<UUID>()
+        var uniqueObjects = [TrailPersistenceObject]()
+
+        objects.forEach {
+            if uniqueId.contains($0.trailId) {
+                return
+            }
+            uniqueId.insert($0.trailId)
+            uniqueObjects.append($0)
+        }
+        
+        return uniqueObjects
+    }
+
+    private func saveAreasInvolved(objects: [TrailPersistenceObject]) {
+        let areas = objects.map { $0.area }
+        areaRepository.save(objects: areas)
     }
     
     private func saveNewTrails(currentAreas: [AreaDetails], trailObjects: [TrailPersistenceObject]) {
@@ -66,11 +89,6 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
                 for area in currentAreas where area.id == trailObject.area.areaId.uuidString {
                     trailDetails.area = area
                     break
-                }
-                
-                if trailDetails.area == nil {
-                    let area = trailObject.area.convertToEntity() as? AreaDetails
-                    trailDetails.area = area
                 }
             }
         }
@@ -85,11 +103,6 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
                 for area in currentAreas where area.id == trailObject.area.areaId.uuidString {
                     trail.area = area
                     break
-                }
-                
-                if trail.area == nil {
-                    let area = trailObject.area.convertToEntity() as? AreaDetails
-                    trail.area = area
                 }
             }
         }
