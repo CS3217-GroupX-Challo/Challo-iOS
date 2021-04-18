@@ -57,7 +57,7 @@ class MainContainerRouter: RouterProtocol {
         profilePage = TouristDashboardModule(userState: userState, bookingRepository: bookingRepository,
                                              reviewAPI: reviewAPI,
                                              sendMessageToGuide: { [weak self] guideEmail, _, messageText in
-                                                self?.sendMessageToGuide(guideEmail: guideEmail,
+                                                self?.sendMessageToUser(userEmail: guideEmail,
                                                                          messageText: messageText,
                                                                          chatService: chatService)
                                              },
@@ -168,10 +168,10 @@ extension MainContainerRouter {
         }
     }
     
-    private func sendMessageToGuide(guideEmail: String, messageText: String, chatService: ChatService,
-                                    didSendMessage: @escaping (() -> Void)) {
-        guard let dialog = chatService.getDialogWithChateeEmail(guideEmail) else {
-            chatService.createPrivateDialog(with: guideEmail) { dialog in
+    private func sendMessageToUser(userEmail: String, messageText: String, chatService: ChatService,
+                                   didSendMessage: @escaping (() -> Void)) {
+        guard let dialog = chatService.getDialogWithChateeEmail(userEmail) else {
+            chatService.createPrivateDialog(with: userEmail) { dialog in
                 chatService.sendMessage(messageBody: messageText,
                                         dialogId: dialog.dialogId,
                                         willSendMessage: nil) { _, _ in
@@ -184,18 +184,18 @@ extension MainContainerRouter {
                                 dialogId: dialog.dialogId)
     }
     
-    private func sendMessageToGuide(guideEmail: String, messageText: String, chatService: ChatService) {
+    private func sendMessageToUser(userEmail: String, messageText: String, chatService: ChatService) {
         let didSendMessage: (() -> Void) = { [weak self] in
             self?.presenter.goToChatPage()
         }
         guard !chatService.isConnected else {
-            sendMessageToGuide(guideEmail: guideEmail, messageText: messageText, chatService: chatService,
+            sendMessageToUser(userEmail: userEmail, messageText: messageText, chatService: chatService,
                                didSendMessage: didSendMessage)
             return
         }
         connectThenOp(chatService: chatService) { [weak self] in
-            self?.sendMessageToGuide(guideEmail: guideEmail, messageText: messageText, chatService: chatService,
-                                     didSendMessage: didSendMessage)
+            self?.sendMessageToUser(userEmail: userEmail, messageText: messageText, chatService: chatService,
+                                    didSendMessage: didSendMessage)
         }
     }
     
