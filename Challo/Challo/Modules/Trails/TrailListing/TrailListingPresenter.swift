@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-class TrailListingPresenter: EntityListingPresenter,
+class TrailListingPresenter: ProfilableEntityListingPresenter,
                              PriceFilterableEntityListingPresenter,
                              SearchableEntityListingPresenter,
                              ObservableObject {
@@ -54,7 +54,7 @@ class TrailListingPresenter: EntityListingPresenter,
         return difficulties
     }
     
-    var displayedCards: [ListingCard] {
+    var displayedCards: [EntityListingCard] {
         var trails = self.entities
         trails = applyFilter(trails)
         trails = searchPresenter.applySearch(trails)
@@ -69,8 +69,8 @@ class TrailListingPresenter: EntityListingPresenter,
         return trails.filter { difficultiesToDisplay.contains($0.difficulty) }
     }
     
-    func transformTrailToTrailListingCard(_ trail: Trail) -> ListingCard {
-        ListingCard(id: trail.trailId.uuidString,
+    func transformTrailToTrailListingCard(_ trail: Trail) -> EntityListingCard {
+        EntityListingCard(id: trail.trailId.uuidString,
                     entityImage: trail.images.isEmpty ? nil : trail.images[0],
                     defaultImage: "mountains-background") {
            AnyView(TrailListingCardDetail(title: trail.title,

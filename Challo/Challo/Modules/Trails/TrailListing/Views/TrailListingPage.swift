@@ -12,7 +12,7 @@ struct TrailListingPage: View {
     @EnvironmentObject var presenter: TrailListingPresenter
     
     var body: some View {
-        ListingPage<TrailListingPresenter>(pageTitle: "Find Your Very Own Trail",
+        ProfilableEntityListingPage<TrailListingPresenter>(pageTitle: "Find Your Very Own Trail",
                                            searchBarSheetContent: AnyView(TrailListingFilter()
                                                                             .environmentObject(presenter)))
         .onAppear {

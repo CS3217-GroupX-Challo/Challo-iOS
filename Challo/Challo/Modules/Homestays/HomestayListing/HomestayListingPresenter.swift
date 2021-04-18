@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-class HomestayListingPresenter: EntityListingPresenter,
+class HomestayListingPresenter: ProfilableEntityListingPresenter,
                                 SearchableEntityListingPresenter,
                                 PriceFilterableEntityListingPresenter {
 
@@ -44,14 +44,14 @@ class HomestayListingPresenter: EntityListingPresenter,
         entity.homestayId == UUID(uuidString: cardId)
     }
 
-    var displayedCards: [ListingCard] {
+    var displayedCards: [EntityListingCard] {
         var displayedEntities = searchPresenter.applySearch(entities)
         displayedEntities = priceFilterPresenter.applyFilter(displayedEntities)
         return displayedEntities.map(transformHomestayToCard)
     }
 
-    func transformHomestayToCard(_ homestay: Homestay) -> ListingCard {
-        ListingCard(id: homestay.homestayId.uuidString,
+    func transformHomestayToCard(_ homestay: Homestay) -> EntityListingCard {
+        EntityListingCard(id: homestay.homestayId.uuidString,
                     entityImage: homestay.images.isEmpty ? nil : homestay.images[0],
                     defaultImage: "mountains-background") {
             AnyView(

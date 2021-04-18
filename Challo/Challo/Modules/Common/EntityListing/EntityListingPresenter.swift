@@ -8,9 +8,7 @@
 import SwiftUI
 
 /// A generic presenter that encapsulates common presentation logic for displaying entity listings
-protocol EntityListingPresenter: PresenterProtocol where Router: EntityListingRouter,
-                                                         Router.Entity == Entity,
-                                                         Interactor: EntityListingInteractor,
+protocol EntityListingPresenter: PresenterProtocol where Interactor: EntityListingInteractor,
                                                          Interactor.Entity == Entity {
     associatedtype Entity
     
@@ -22,12 +20,10 @@ protocol EntityListingPresenter: PresenterProtocol where Router: EntityListingRo
     var isFirstLoad: Bool { get set }
     var isLoading: Bool { get set }
     var isRefreshing: Bool { get set }
-    var displayedCards: [ListingCard] { get }
-    var profilePage: AnyView? { get }
+    var displayedCards: [EntityListingCard] { get }
     
     func getAllEntities()
     func matchEntityToCardId(entity: Entity, cardId: String) -> Bool
-    func onTapListingCard(_ cardId: String)
     func onPageAppear()
 }
 
@@ -37,16 +33,6 @@ extension EntityListingPresenter {
             fatalError("entity is not synced with cards")
         }
         return entity
-    }
-    
-    
-    var profilePage: AnyView? {
-        router?.profilePage
-    }
-    
-    func onTapListingCard(_ cardId: String) {
-        let entity = getEntityByCardId(cardId)
-        router?.populateProfilePage(entity)
     }
     
     func didGetAllEntities(_ entities: [Entity]) {

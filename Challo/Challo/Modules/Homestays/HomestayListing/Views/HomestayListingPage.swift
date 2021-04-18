@@ -12,7 +12,7 @@ struct HomestayListingPage: View {
     @EnvironmentObject var presenter: HomestayListingPresenter
 
     var body: some View {
-        ListingPage<HomestayListingPresenter>(pageTitle: "Find Your Home in Nature",
+        ProfilableEntityListingPage<HomestayListingPresenter>(pageTitle: "Find Your Home in Nature",
                                               searchBarSheetContent: AnyView(HomestayFilterView()
                                                                                 .environmentObject(presenter)))
         .onAppear {

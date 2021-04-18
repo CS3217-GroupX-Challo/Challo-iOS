@@ -1,5 +1,5 @@
 //
-//  ListingCard.swift
+//  EntityListingCard.swift
 //  Challo
 //
 //  Created by Shao Yi on 17/4/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ListingCard: View {
+struct EntityListingCard: View {
     let id: String
     
     let entityImage: String?
