@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct GuideProfilePage: View {
-    @ObservedObject var presenter: GuideProfilePresenter
+    @EnvironmentObject var presenter: GuideProfilePresenter
     
     var guide: Guide {
         presenter.guide
@@ -26,65 +26,53 @@ struct GuideProfilePage: View {
     }
     
     var languages: String {
-        convertLanguageArrayToString(languages: guide.languages ?? [])
+        (guide.languages ?? []).joined(separator: ",")
     }
     
-    private func convertLanguageArrayToString(languages: [String]) -> String {
-        var result = ""
-        for i in 0..<languages.count {
-            result += languages[i]
-            if i != languages.count - 1 {
-                result += ", "
-            }
-        }
-        return result
+    var divider: some View {
+        Divider().padding(.vertical, 30)
+    }
+    
+    func makeSectionTitle(_ label: String) -> some View {
+        Text(label)
+            .font(.title2)
+            .bold()
+            .padding(.bottom, 30)
     }
     
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                ZStack {
-                    Image.profileBackground
-                        .resizable()
-                    VStack {
-                        HStack(spacing: 30) {
-                            Image(guide.profileImg ?? "avatar-image")
-                                .resizable()
-                                .frame(width: geometry.size.width / 6,
-                                       height: geometry.size.width / 6,
-                                       alignment: .center)
-                                .clipShape(Circle())
-                                .offset(x: geometry.size.width / 20)
-                            GuideProfileDetailsView(rating: guide.rating,
-                                                    name: name,
-                                                    date: date,
-                                                    languages: languages)
-                            .offset(x: geometry.size.width / 20)
+        ScrollView {
+            VStack(alignment: .leading) {
+                GuideProfileBasicDetailsView(name: name,
+                                             dateJoined: guide.dateJoined,
+                                             profileImg: guide.profileImg,
+                                             rating: guide.rating,
+                                             reviews: reviews)
+                divider
+                makeSectionTitle("About")
+                GuideProfileAboutView(biography: guide.biography,
+                                      languages: languages,
+                                      accreditations: guide.accreditations)
+                divider
+                VStack(alignment: .leading, spacing: 20) {
+                    makeSectionTitle("Trails")
+                    GuideTrailsListing(trails: guide.trails)
+                }
+                divider
+                VStack(alignment: .leading, spacing: 20) {
+                    if presenter.isLoadingReviews {
+                        HStack {
                             Spacer()
-                            // TODO add button later
+                            Loading(isAnimating: .constant(true), style: .medium)
+                            Spacer()
                         }
+                    } else {
+                        makeSectionTitle("\(reviews.count) reviews")
+                        GuideReviewsView(reviews: reviews)
                     }
                 }
-                .frame(height: geometry.size.height / 4,
-                       alignment: .center)
-                Spacer()
-                TabView {
-                    GuideAboutDetailsView(guide: guide,
-                                          width: geometry.size.width,
-                                          height: geometry.size.height)
-                        .tabItem {
-                            Image(systemName: "info.circle.fill")
-                            Text("About")
-                        }
-                    GuideReviewsDetailsView(guide: guide,
-                                            reviews: reviews,
-                                            width: geometry.size.width)
-                        .tabItem {
-                            Image(systemName: "star.fill")
-                            Text("Reviews")
-                        }
-                }
-            }
+            }.padding([.horizontal, .bottom], 80)
+            .padding(.top, 50)
         }.onAppear {
             presenter.interactor.getReviews()
         }

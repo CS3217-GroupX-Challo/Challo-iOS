@@ -33,4 +33,44 @@ enum Amenity: String {
     case firstAidKit = "First Aid Kit"
     case fireExtinguisher = "Fire Extinguisher"
     case lock = "Lock"
+    
+    // swiftlint:disable cyclomatic_complexity
+    func getIcon() -> String {
+        switch self {
+        case .essentials:
+            return "staroflife.circle.fill"
+        case .wifi:
+            return "wifi"
+        case .freeParking:
+            return "car.2"
+        case .tv:
+            return "tv"
+        case .hotWater:
+            return "drop.fill"
+        case .heating:
+            return "thermometer.sun"
+        case .airCon:
+            return "thermometer.snowflake"
+        case .washingMachine:
+            return "sparkles"
+        case .dryer:
+            return "wind"
+        case .firstAidKit:
+            return "cross.case.fill"
+        case .fireExtinguisher:
+            return "flame.fill"
+        case .lock:
+            return "lock.fill"
+        case .smokeAlarm:
+            return "smoke.fill"
+        case .breakfast:
+            return "leaf.fill"
+        case .shampoo:
+            return "aqi.medium"
+        case .iron:
+            return "sparkle"
+        default:
+            return "lasso.sparkles"
+        }
+    }
 }

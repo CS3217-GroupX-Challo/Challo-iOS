@@ -19,7 +19,7 @@ class MainContainerRouter: RouterProtocol {
     var mapsPage: AnyView!
     var settingsPage: AnyView!
     var loginPage: AnyView!
-    var homePage: AnyView!
+    var homestayPage: AnyView!
     var chatPage: AnyView!
     
     init(userState: UserStateProtocol) {
@@ -27,7 +27,6 @@ class MainContainerRouter: RouterProtocol {
         apiContainer = APIContainer(userState: userState)
         repositoryContainer = RepositoryContainer(apiContainer: apiContainer)
         
-        homePage = AnyView(Text("Homepage"))
         trailsPage = TrailListingModule(trailRepository: resolveTrailRepository(),
                                         guideRepository: resolveGuideRepository(),
                                         bookingRepository: resolveBookingRepository(),
@@ -44,21 +43,40 @@ class MainContainerRouter: RouterProtocol {
                              reviewAPI: resolveReviewAPI(),
                              userState: userState)
     }
-
-    private func setUpChatAndReturnService() -> ChatService {
+    
+    private func setupChatProfileHomestayPage(bookingRepository: BookingRepositoryProtocol,
+                                              reviewAPI: ReviewAPIProtocol,
+                                              userAPI: UserAPIProtocol) {
         let chatDialogRepository = ChatDialogRepository()
         let chatService = QuickBloxChatService(chatAuthService: QuickBloxChatAuthService(),
                                                chatDialogService: QuickBloxChatDialogService(chatDialogRepository:
                                                                                                 chatDialogRepository))
         chatPage = ChatModule(chatService: chatService, userState: userState).assemble().view
-        return chatService
+        
+        profilePage = TouristDashboardModule(userState: userState, bookingRepository: bookingRepository,
+                                             reviewAPI: reviewAPI,
+                                             sendMessageToGuide: { [weak self] guideEmail, _, messageText in
+                                                self?.sendMessageToUser(userEmail: guideEmail,
+                                                                        messageText: messageText,
+                                                                        chatService: chatService)
+                                             },
+                                             updateUserChat: { [weak self] name, email in
+                                                self?.updateUser(name: name, email: email, chatService: chatService)
+                                             },
+                                             userAPI: userAPI).assemble().view
+        
+        homestayPage = HomestayListingModule(userState: userState,
+                                             homestayRepository: resolveHomestayRepository(),
+                                             sendMessageToHost: { [weak self] hostEmail, messageText in
+                                                self?.sendMessageToUser(userEmail: hostEmail,
+                                                                        messageText: messageText,
+                                                                        chatService: chatService)
+                                             }).assemble().view
     }
     
     private func setUpLoginAndProfile(bookingRepository: BookingRepositoryProtocol,
                                       reviewAPI: ReviewAPIProtocol,
                                       userState: UserStateProtocol) {
-        let chatService = setUpChatAndReturnService()
-        let userAPI = resolveUserAPI()
 
         #if GUIDE
         loginPage = GuideLoginModule(userState: userState,
@@ -76,17 +94,9 @@ class MainContainerRouter: RouterProtocol {
         loginPage = TouristLoginModule(userState: userState,
                                        loginAPI: resolveTouristLoginAPI(),
                                        registerAPI: resolveTouristRegisterAPI()).assemble().view
-        profilePage = TouristDashboardModule(userState: userState, bookingRepository: bookingRepository,
-                                             reviewAPI: reviewAPI,
-                                             sendMessageToGuide: { [weak self] guideEmail, _, messageText in
-                                                self?.sendMessageToUser(recipientEmail: guideEmail,
-                                                                        messageText: messageText,
-                                                                        chatService: chatService)
-                                             },
-                                             updateUserChat: { [weak self] name, email in
-                                                self?.updateUser(name: name, email: email, chatService: chatService)
-                                             },
-                                             userAPI: userAPI).assemble().view
+        setupChatProfileHomestayPage(bookingRepository: bookingRepository,
+                                     reviewAPI: reviewAPI,
+                                     userAPI: resolveUserAPI())
         #endif
     }
 }
@@ -112,6 +122,13 @@ extension MainContainerRouter {
             fatalError("Failed to resolve bookingAPI in MainContainer")
         }
         return bookingRepository
+    }
+    
+    private func resolveHomestayRepository() -> HomestayRepositoryProtocol {
+        guard let homestayRepository = repositoryContainer.container.resolve(HomestayRepositoryProtocol.self) else {
+            fatalError("Failed to resolve homestayRepository in MainContainer")
+        }
+        return homestayRepository
     }
     
     private func resolveReviewAPI() -> ReviewAPIProtocol {
@@ -189,11 +206,11 @@ extension MainContainerRouter {
             didConnect()
         }
     }
-    
-    private func sendMessageToUser(recipientEmail: String, messageText: String, chatService: ChatService,
+
+    private func sendMessageToUser(userEmail: String, messageText: String, chatService: ChatService,
                                    didSendMessage: @escaping (() -> Void)) {
-        guard let dialog = chatService.getDialogWithChateeEmail(recipientEmail) else {
-            chatService.createPrivateDialog(with: recipientEmail) { dialog in
+        guard let dialog = chatService.getDialogWithChateeEmail(userEmail) else {
+            chatService.createPrivateDialog(with: userEmail) { dialog in
                 chatService.sendMessage(messageBody: messageText,
                                         dialogId: dialog.dialogId,
                                         willSendMessage: nil) { _, _ in
@@ -205,18 +222,18 @@ extension MainContainerRouter {
         chatService.sendMessage(messageBody: messageText,
                                 dialogId: dialog.dialogId)
     }
-
-    private func sendMessageToUser(recipientEmail: String, messageText: String, chatService: ChatService) {
+    
+    private func sendMessageToUser(userEmail: String, messageText: String, chatService: ChatService) {
         let didSendMessage: (() -> Void) = { [weak self] in
             self?.presenter.goToChatPage()
         }
         guard !chatService.isConnected else {
-            sendMessageToUser(recipientEmail: recipientEmail, messageText: messageText, chatService: chatService,
+            sendMessageToUser(userEmail: userEmail, messageText: messageText, chatService: chatService,
                               didSendMessage: didSendMessage)
             return
         }
         connectThenOp(chatService: chatService) { [weak self] in
-            self?.sendMessageToUser(recipientEmail: recipientEmail, messageText: messageText, chatService: chatService,
+            self?.sendMessageToUser(userEmail: userEmail, messageText: messageText, chatService: chatService,
                                     didSendMessage: didSendMessage)
         }
     }

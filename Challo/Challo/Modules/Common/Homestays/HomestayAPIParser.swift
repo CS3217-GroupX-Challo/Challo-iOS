@@ -45,7 +45,7 @@ class HomestayAPIParser: APIParser {
         let rating = convertJSONDoubleValueToDouble(json[Key.rating])
         let guests = convertJSONIntValueToInt(json[Key.guests])
         let amenities = extractAmenities(json: json)
-        
+                
         return Homestay(homestayId: homestayId,
                         title: title,
                         description: description,

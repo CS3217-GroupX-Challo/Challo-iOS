@@ -26,16 +26,18 @@ struct ChatDialogListingView: View {
                                                chateeName: dialog.chateeName ?? "",
                                                lastMessageDate: dialog.lastMessageDate,
                                                lastMessageText: dialog.lastMessageText,
-                                               unreadMessagesCount: dialog.unreadMessagesCount)
+                                               unreadMessagesCount: dialog.unreadMessagesCount,
+                                               chateeProfileImg: dialog.chateeProfileImage)
                                     .accentColor(.black)
                                 Divider()
                             }
                         }.simultaneousGesture(TapGesture().onEnded {
-                            presenter.onTapDialog(dialogId: dialog.dialogId)
+                            presenter.onTapDialog(dialog: dialog)
                         })
+                        .padding(.bottom, 50)
                     }
                 }
-            }.padding(.horizontal, 15)
+            }
         }
     }
 }

@@ -16,8 +16,7 @@ struct TrailGuideSelectionCard: View {
 
     var card: some View {
         Card {
-            Image(guide.profileImg ?? "avatar-image")
-                .resizable()
+            ImageLoader(profileImg: guide.profileImg, defaultImage: "avatar-image")
                 .scaledToFit()
                 .frame(width: width * 4 / 5)
                 .cornerRadius(10)

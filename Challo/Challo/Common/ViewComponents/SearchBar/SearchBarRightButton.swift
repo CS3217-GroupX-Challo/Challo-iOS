@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchBarRightButton<Presenter: SearchBarPresenter>: View {
+struct SearchBarRightButton<Presenter: SearchableEntityListingPresenter>: View {
     @EnvironmentObject var presenter: Presenter
     @Binding var isEditing: Bool
     
@@ -15,9 +15,9 @@ struct SearchBarRightButton<Presenter: SearchBarPresenter>: View {
 
     func buttonAction() {
         if isEditing {
-            presenter.searchBarText = ""
+            presenter.searchPresenter.searchBarText = ""
         } else if isFilterable {
-            presenter.isSearchBarSheetOpen = true
+            presenter.searchPresenter.isSearchBarSheetOpen = true
         }
     }
     

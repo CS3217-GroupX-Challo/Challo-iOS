@@ -20,8 +20,9 @@ struct PastBookingCard: View {
                     chatPartner: booking.guide,
                     chatView: ContactGuidePage(guide: booking.guide)) {
             NavigationLink(destination: presenter.getReviewPage(for: booking)) {
-                Image(systemName: "rectangle.and.pencil.and.ellipsis")
-                    .foregroundColor(Color.black.opacity(0.8))
+                Image(systemName: "doc.append.fill")
+                    .foregroundColor(Color.pink)
+                    .brightness(-0.05)
                     .padding(10)
             }
         }

@@ -18,6 +18,8 @@ struct RectangleCheckBox: View {
         set { trimValue = newValue }
     }
     
+    let animationDuration: Double = 0.5
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
@@ -34,12 +36,12 @@ struct RectangleCheckBox: View {
             }
         }.onTapGesture {
             if !isChecked {
-                withAnimation(Animation.easeIn(duration: 0.8)) {
+                withAnimation(Animation.easeIn(duration: animationDuration)) {
                     trimValue = 1
                     isChecked.toggle()
                 }
             } else {
-                withAnimation(Animation.easeIn(duration: 0.8)) {
+                withAnimation(Animation.easeIn(duration: animationDuration)) {
                     trimValue = 0
                     isChecked.toggle()
                 }

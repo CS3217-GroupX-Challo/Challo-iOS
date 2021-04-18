@@ -39,6 +39,10 @@ class QuickBloxChatDialog: ChatDialog {
         occupant.id
     }
     
+    var chateeProfileImage: String? {
+        occupant.customData
+    }
+    
     var lastMessageDate: Date? {
         chatDialog.lastMessageDate
     }

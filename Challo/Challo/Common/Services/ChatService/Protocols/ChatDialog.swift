@@ -18,6 +18,7 @@ protocol ChatDialog: AnyObject {
     var chateeEmail: String? { get }
     var chateeName: String? { get }
     var chateeId: UInt { get }
+    var chateeProfileImage: String? { get }
     var lastMessageDate: Date? { get }
     var lastMessageText: String { get }
     

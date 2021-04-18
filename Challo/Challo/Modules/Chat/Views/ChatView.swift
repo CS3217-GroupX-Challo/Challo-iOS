@@ -19,7 +19,7 @@ struct ChatView: View {
             } else if presenter.isLoadingChat {
                 Loading(isAnimating: .constant(true), style: .large)
             } else if presenter.isChatAvailable {
-                ChatDialogListingView().padding(.top, 30)
+                ChatDialogListingView()
             } else {
                 ChatUnavailableView(imageSystemName: "multiply.square",
                                     label: "An unexpected error occured while bringing up your chats :(",

@@ -12,6 +12,21 @@ struct ChatMessageList: View {
     
     let chateeName: String
     
+    let chateeProfilePicDiameter: CGFloat = 35
+    
+    var topBar: some View {
+        HStack {
+            Text(chateeName)
+            ImageLoader(profileImg: presenter.currentOpenChateeProfileImg,
+                        width: chateeProfilePicDiameter,
+                        height: chateeProfilePicDiameter,
+                        defaultImage: "avatar-image")
+                .scaledToFit()
+                .clipShape(Circle())
+                .frame(maxWidth: chateeProfilePicDiameter)
+        }.padding(.leading, 30)
+    }
+    
     var body: some View {
         VStack {
             VStack(spacing: 0) {
@@ -35,6 +50,7 @@ struct ChatMessageList: View {
             }.padding(.horizontal, 40)
             .padding(.top, 30)
         }.edgesIgnoringSafeArea(.top)
-        .navigationBarTitle(Text(chateeName), displayMode: .inline)
+        .navigationBarTitle(Text(""), displayMode: .inline)
+        .navigationBarItems(leading: topBar)
     }
 }

@@ -41,5 +41,11 @@ class RepositoryContainer {
             }
             return BookingRepository(bookingAPI: bookingAPI)
         }
+        container.register(HomestayRepositoryProtocol.self) { [weak self] _ in
+            guard let homestayAPI = self?.apiContainer?.container.resolve(HomestayAPIProtocol.self) else {
+                fatalError("Failed to resolve HomestayAPIProtocol in RepositoryContainer")
+            }
+            return HomestayRepository(homestayAPI: homestayAPI)
+        }
     }
 }

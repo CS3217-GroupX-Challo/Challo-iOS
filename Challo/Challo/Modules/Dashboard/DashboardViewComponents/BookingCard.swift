@@ -29,6 +29,10 @@ struct BookingCard<ChatView: View, ActionView: View>: View {
         self.chatView = chatView
         self.actionIcons = actionIcons()
     }
+    
+    var trailImage: String? {
+        booking.trail.images.isEmpty ? nil : booking.trail.images[0]
+    }
 
     func makeDetail(image: String, label: String? = nil, customLabel: AnyView? = nil) -> some View {
         HStack {
@@ -50,15 +54,14 @@ struct BookingCard<ChatView: View, ActionView: View>: View {
     var body: some View {
         VStack {
             ZStack(alignment: .topTrailing) {
-                Image.mountainBackground
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: width)
+                ImageLoader(profileImg: trailImage, width: width, height: 200, defaultImage: "mountain-background")
+                    .frame(width: width, height: 200)
                     .cornerRadius(10)
                 VStack {
                     NavigationLink(destination: chatView.environmentObject(presenter)) {
                         Image(systemName: "ellipsis.bubble.fill")
-                            .foregroundColor(Color.black.opacity(0.8))
+                            .foregroundColor(Color.pink)
+                            .brightness(-0.05)
                             .padding(10)
                     }
                     actionIcons
@@ -74,10 +77,7 @@ struct BookingCard<ChatView: View, ActionView: View>: View {
                 makeDetail(image: "calendar", label: CustomDateFormatter.displayFriendlyDate(booking.date))
                 makeDetail(image: "person.crop.circle", label: chatPartner.name ?? "")
                 makeDetail(image: "dollarsign.square", customLabel: AnyView(
-                    HStack(spacing: 0) {
-                        Text("\(Int(booking.fee))").bold()
-                        Text(" / pax")
-                    }
+                    Text("\(Int(booking.fee))").bold() + Text(" Rp / pax")
                 ))
             }.padding()
         }.padding()
