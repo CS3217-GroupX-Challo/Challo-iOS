@@ -39,6 +39,10 @@ class ChatInteractor: NSObject, InteractorProtocol {
         chatService.isConnected
     }
     
+    var userProfileImg: String? {
+        userState.profileImg.isEmpty ? nil : userState.profileImg
+    }
+    
     private func setupUserStateHooks() {
         guard let state = userState as? UserState else {
             return
@@ -88,7 +92,8 @@ class ChatInteractor: NSObject, InteractorProtocol {
     
     func connect() {
         guard let chatUserId = chatService.chatUserId else {
-            fatalError("Attempting to connect when no user is logged in")
+            loginAndConnect()
+            return
         }
         chatService.connectToChatServer(chatUserId: chatUserId, password: userState.userId,
                                         didConnect: { [weak self] _, isSuccessful in
@@ -138,10 +143,12 @@ extension ChatInteractor: QBChatDelegate {
     
     func chatDidAccidentallyDisconnect() {
         presenter.isChatAvailable = false
+        chatService.isLoggingIn = false
     }
     
     func chatDidDisconnectWithError(_ error: Error?) {
         presenter.isChatAvailable = false
+        chatService.isLoggingIn = false
     }
     
     func chatDidConnect() {

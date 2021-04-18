@@ -27,6 +27,8 @@ class APIContainer {
         let touristParser = TouristAPIParser()
         let bookingParser = BookingAPIParser()
         let placesParser = PlacesAPIParser()
+        let hostParser = HostAPIParser()
+        let homestayParser = HomestayAPIParser()
         let userParser = UserAPIParser(userState: userState)
         container.register(APIParser.self, name: ContainerNames.guide.rawValue) { _ in
             guideParser
@@ -46,10 +48,18 @@ class APIContainer {
         container.register(APIParser.self, name: ContainerNames.booking.rawValue) { _ in
             bookingParser
         }
+        container.register(APIParser.self, name: ContainerNames.host.rawValue) { _ in
+            hostParser
+        }
+        container.register(APIParser.self, name: ContainerNames.homestay.rawValue) { _ in
+            homestayParser
+        }
         
         guard let networkManager = container.resolve(NetworkManager.self) else {
             fatalError("Failed to resolve NetworkManager in APIContainer")
         }
+        let hostAPI = HostAPI(hostParser: hostParser, networkManager: networkManager)
+        let homestayAPI = HomestayAPI(homestayParser: homestayParser, hostAPI: hostAPI, networkManager: networkManager)
         let userAPI = UserAPI(userParser: userParser, networkManager: networkManager)
         let trailAPI = TrailAPI(parser: trailParser, networkManager: networkManager)
         let guideAPI = GuideAPI(guideParser: guideParser, trailParser: trailParser, networkManager: networkManager)
@@ -94,6 +104,12 @@ class APIContainer {
         }
         container.register(BookingAPIProtocol.self) { _ in
             bookingAPI
+        }
+        container.register(HostAPIProtocol.self) { _ in
+            hostAPI
+        }
+        container.register(HomestayAPIProtocol.self) { _ in
+            homestayAPI
         }
         container.register(LoginAPI.self, name: ContainerNames.tourist.rawValue) { _ in
             TouristLoginAPI(userAPI: userAPI)

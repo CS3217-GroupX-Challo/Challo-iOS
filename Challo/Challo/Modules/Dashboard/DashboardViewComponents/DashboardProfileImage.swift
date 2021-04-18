@@ -15,7 +15,7 @@ struct DashboardProfileImage: View {
              if presenter.profileImgPath.isEmpty {
                 Image("avatar-image").resizable()
             } else {
-                ImageService.loadImage(path: presenter.profileImgPath, width: 100, height: 100)
+                ImageService.loadImage(path: presenter.profileImgPath, width: 150, height: 150)
             }
         }.scaledToFit()
         .clipShape(Circle())

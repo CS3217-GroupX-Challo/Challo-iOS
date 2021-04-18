@@ -15,6 +15,9 @@ struct ChatDialogView: View {
     let lastMessageDate: Date?
     let lastMessageText: String
     let unreadMessagesCount: UInt
+    let chateeProfileImg: String?
+    
+    let profileImgDiameter: CGFloat = 90
     
     var lastMessageDateString: String {
         guard let lastMessageDate = lastMessageDate else {
@@ -25,29 +28,33 @@ struct ChatDialogView: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            Image("avatar-image")
-                .resizable()
-                .frame(width: 70, height: 70, alignment: .center)
+            ImageLoader(profileImg: chateeProfileImg,
+                        width: profileImgDiameter,
+                        height: profileImgDiameter,
+                        defaultImage: "avatar-image")
+                .scaledToFill()
+                .frame(width: profileImgDiameter, height: profileImgDiameter, alignment: .center)
                 .clipShape(Circle())
             VStack(alignment: .leading) {
                 Text(chateeName).bold()
-                    .font(.system(size: 24))
-                Spacer()
+                    .font(.title3)
+                    .padding(.bottom, 10)
                 Text(lastMessageText)
                     .lineLimit(2)
                     .foregroundColor(Color.gray)
-                    .font(.system(size: 18))
+                    .font(.subheadline)
+                Spacer()
             }
             Spacer()
-            VStack {
+            VStack(alignment: .trailing) {
                 Text(lastMessageDateString)
                     .foregroundColor(Color.gray)
-                    .font(.system(size: 18))
+                    .font(.subheadline)
                 if unreadMessagesCount != 0 {
                     Spacer()
                     Text(unreadMessagesCount.description)
-                        .bold()
                         .padding()
+                        .font(.subheadline)
                         .foregroundColor(.white)
                         .background(
                             Circle()
@@ -57,7 +64,7 @@ struct ChatDialogView: View {
                         .clipped()
                 }
             }
-        }.padding(.vertical, 30)
+        }.padding(.bottom, 30)
         .padding(.horizontal, 40)
         .frame(maxWidth: .infinity)
     }

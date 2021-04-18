@@ -12,26 +12,20 @@ struct GuidesCardListingsView: View {
     var width: CGFloat
     @ObservedObject var presenter: GuidesListingPresenter
     
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
     var body: some View {
         RefreshableScrollView(refreshing: $presenter.isRefreshing) {
-            VStack(spacing: 40) {
-                ForEach(0...guides.count / 2, id: \.self) { index in
-                    HStack(spacing: 30) {
-                        if index * 2 < guides.count {
-                            GuideDetailsCard(guide: guides[index * 2],
-                                             width: width / 3,
-                                             presenter: presenter)
-                                    .offset(x: index * 2 + 1 < guides.count || guides.count == 1 ?
-                                                0 : -1 * (40 + width / 6)) // manual offset
-                            if index * 2 + 1 < guides.count {
-                                GuideDetailsCard(guide: guides[index * 2 + 1],
-                                                 width: width / 3,
-                                                 presenter: presenter)
-                            }
-                        }
-                    }
+            LazyVGrid(columns: columns, spacing: 20) {
+                ForEach(guides.indices, id: \.self) { index in
+                    GuideDetailsCard(guide: guides[index],
+                                     width: width / 3,
+                                     presenter: presenter)
                 }
-            }
+            }.padding(.top, 5)
         }
     }
 }

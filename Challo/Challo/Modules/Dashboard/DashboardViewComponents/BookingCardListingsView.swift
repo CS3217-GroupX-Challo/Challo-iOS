@@ -18,24 +18,28 @@ struct BookingCardListingsView: View {
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
-   ]
+    ]
     
     var body: some View {
-        RefreshableScrollView(refreshing: $isRefreshing) {
-            if bookings.isEmpty {
+        if bookings.isEmpty {
+            VStack {
+                Spacer()
                 Text(emptyListMessage)
                     .foregroundColor(.themeForeground)
                     .padding()
-            } else {
-                LazyVGrid(columns: columns, spacing: 20) {
+                Spacer()
+            }.frame(maxHeight: .infinity)
+        } else {
+            RefreshableScrollView(refreshing: $isRefreshing) {
+                LazyVGrid(columns: columns, spacing: 0) {
                     ForEach(bookings.indices) { index in
                         GeometryReader { geometry in
                             constructBookingCard(booking: bookings[index], width: geometry.size.width * 0.9)
-                        }.frame(minHeight: 450)
+                        }.frame(minHeight: 400)
                     }
                 }.padding()
-            }
-        }.padding(.bottom, 100)
+            }.padding(.bottom, 80)
+        }
     }
 
     private func constructBookingCard(booking: Booking, width: CGFloat) -> AnyView {

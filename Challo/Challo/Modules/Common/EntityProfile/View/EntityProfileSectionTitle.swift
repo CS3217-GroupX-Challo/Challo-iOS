@@ -1,17 +1,18 @@
 //
-//  TrailProfileSectionTitle.swift
+//  EntityProfileSectionTitle.swift
 //  Challo
 //
-//  Created by Shao Yi on 20/3/21.
+//  Created by Shao Yi on 18/4/21.
 //
 
 import SwiftUI
 
-struct TrailProfileSectionTitle: View {
+struct EntityProfileSectionTitle: View {
     let title: String
     
     var body: some View {
         Text(title).font(.title2).bold()
             .padding(.bottom, 10)
     }
+
 }

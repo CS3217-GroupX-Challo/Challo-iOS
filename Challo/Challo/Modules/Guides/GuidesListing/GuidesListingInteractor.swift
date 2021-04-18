@@ -16,7 +16,7 @@ class GuidesListingInteractor: InteractorProtocol {
         self.guideRepository = guideRepository
     }
     
-    func populateGuides() {
+    func getAllEntities() {
         guideRepository.fetchGuidesAndRefresh(didRefresh: presenter.didPopulateGuides)
     }
 

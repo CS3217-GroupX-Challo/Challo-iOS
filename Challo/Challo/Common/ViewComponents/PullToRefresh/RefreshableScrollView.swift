@@ -43,7 +43,7 @@ struct RefreshableScrollView<Content: View>: View {
                                loading: self.refreshing,
                                frozen: self.frozen,
                                rotation: self.rotation)
-                }
+                }.padding(.bottom, 80)
             }
             .background(FixedView())
             .onPreferenceChange(RefreshableKeyTypes.PrefKey.self) { values in

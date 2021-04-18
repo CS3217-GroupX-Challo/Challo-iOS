@@ -17,8 +17,7 @@ struct TrailProfileReview: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Image("avatar-image")
-                    .resizable()
+                ImageLoader(profileImg: review.tourist.profileImg, width: 60, height: 60, defaultImage: "avatar-image")
                     .scaledToFit()
                     .frame(maxHeight: 60)
                     .clipShape(Circle())
@@ -34,8 +33,13 @@ struct TrailProfileReview: View {
             Spacer()
         }.padding(20)
         .frame(width: 300, height: 220)
-        .overlay(RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.gray, lineWidth: 1.5))
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.white)
+                .shadow(color: Color.gray.opacity(0.1), radius: 10, x: -5, y: -5)
+                .shadow(color: Color.gray.opacity(0.1), radius: 10, x: 5, y: 5)
+                .shadow(color: Color.gray.opacity(0.3), radius: 5)
+        )
         
     }
 }

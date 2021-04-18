@@ -15,11 +15,11 @@ protocol APIParser {
 
 extension APIParser {
     func convertJSONDoubleValueToDouble(_ value: Any?, defaultValue: Double = 0) -> Double {
-        Double(value as? String ?? "0") ?? defaultValue
+        value as? Double ?? Double(value as? String ?? "0") ?? defaultValue
     }
     
     func convertJSONIntValueToInt(_ value: Any?, defaultValue: Int = 0) -> Int {
-        value as? Int ?? defaultValue
+        value as? Int ?? Int(value as? String ?? "0") ?? defaultValue
     }
 
     func convertJSONLocationToCLLocation2D(_ json: NetworkManager.JSON) -> CLLocationCoordinate2D? {

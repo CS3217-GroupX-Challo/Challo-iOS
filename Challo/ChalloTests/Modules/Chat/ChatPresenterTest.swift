@@ -24,18 +24,11 @@ class ChatPresenterTest: XCTestCase {
     }
 
     func testOnTapDialog_validDialogId_gotAllMessages() {
-        presenter.onTapDialog(dialogId: MockDialogsMessages.dialogA.dialogId)
+        presenter.onTapDialog(dialog: MockDialogsMessages.dialogA)
         let result = presenter.messages.map { $0.messageId }
         let expected = [MockDialogsMessages.messageAA, MockDialogsMessages.messageAB].map { $0.messageId }
         XCTAssertTrue(Set(result).isSubset(of: expected))
         XCTAssertEqual(presenter.currentOpenDialogId, MockDialogsMessages.dialogA.dialogId)
-    }
-    
-    func testOnTapDialog_invalidDialogId_noMessages() {
-        let invalidDialogId = "invalidDialogId"
-        presenter.onTapDialog(dialogId: invalidDialogId)
-        XCTAssertTrue(presenter.messages.isEmpty)
-        XCTAssertEqual(presenter.currentOpenDialogId, invalidDialogId)
     }
     
     func testOnChatAppear_cannotDisplayChat_noOp() {

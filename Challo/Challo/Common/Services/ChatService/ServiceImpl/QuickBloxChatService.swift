@@ -26,7 +26,10 @@ class QuickBloxChatService: ChatService {
     }
     
     var isLoggingIn: Bool {
-        chatAuthService.isLoggingIn
+        get { chatAuthService.isLoggingIn }
+        set {
+            chatAuthService.isLoggingIn = newValue
+        }
     }
     
     init(chatAuthService: ChatAuthService,
@@ -90,8 +93,8 @@ class QuickBloxChatService: ChatService {
         chatDialogService.clearDialogsFromRepository()
     }
     
-    func updateUser(name: String, email: String, didUpdateUser: ((Bool) -> Void)?) {
-        chatAuthService.updateUser(name: name, email: email, didUpdateUser: didUpdateUser)
+    func updateUser(name: String, email: String, profileImg: String?, didUpdateUser: ((Bool) -> Void)?) {
+        chatAuthService.updateUser(name: name, email: email, profileImg: profileImg, didUpdateUser: didUpdateUser)
     }
 
 }
