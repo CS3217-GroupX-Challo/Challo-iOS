@@ -19,7 +19,7 @@ class MainContainerRouter: RouterProtocol {
     var mapsPage: AnyView!
     var settingsPage: AnyView!
     var loginPage: AnyView!
-    var homePage: AnyView!
+    var homestayPage: AnyView!
     var chatPage: AnyView!
     
     init(userState: UserStateProtocol) {
@@ -27,14 +27,8 @@ class MainContainerRouter: RouterProtocol {
         apiContainer = APIContainer(userState: userState)
         repositoryContainer = RepositoryContainer(apiContainer: apiContainer)
         
-        homePage = HomestayListingModule(userState: userState,
-                                         homestayRepository:
-                                            HomestayRepository(homestayAPI:
-                                                                HomestayAPI(homestayParser: HomestayAPIParser(),
-                                                                            hostAPI: HostAPI(hostParser: HostAPIParser(),
-                                                                                             networkManager: APINetwork.getNetworkManager()),
-                                                                            networkManager: APINetwork.getNetworkManager())))
-            .assemble().view
+        homestayPage = HomestayListingModule(userState: userState,
+                                         homestayRepository: resolveHomestayRepository()).assemble().view
         trailsPage = TrailListingModule(trailRepository: resolveTrailRepository(),
                                         guideRepository: resolveGuideRepository(),
                                         bookingRepository: resolveBookingRepository(),
@@ -113,6 +107,13 @@ extension MainContainerRouter {
             fatalError("Failed to resolve bookingAPI in MainContainer")
         }
         return bookingRepository
+    }
+    
+    private func resolveHomestayRepository() -> HomestayRepositoryProtocol {
+        guard let homestayRepository = repositoryContainer.container.resolve(HomestayRepositoryProtocol.self) else {
+            fatalError("Failed to resolve homestayRepository in MainContainer")
+        }
+        return homestayRepository
     }
     
     private func resolveReviewAPI() -> ReviewAPIProtocol {

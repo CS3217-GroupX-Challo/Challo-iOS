@@ -28,7 +28,7 @@ struct MainContainerView: View {
                     }
                     .tag(0)
                 
-                presenter.getHomePage()
+                presenter.getHomestayPage()
                     .tabItem {
                         Image(systemName: "house.fill")
                         Text("Homestay").bold()
