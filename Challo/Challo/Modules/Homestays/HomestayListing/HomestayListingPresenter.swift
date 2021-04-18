@@ -8,6 +8,7 @@
 import SwiftUI
 
 class HomestayListingPresenter: EntityListingPresenter, ObservableObject {
+    
     var interactor: HomestayListingInteractor!
     var router: HomestayListingRouter?
     
@@ -17,6 +18,7 @@ class HomestayListingPresenter: EntityListingPresenter, ObservableObject {
         }
     }
     
+    var isFirstLoad = true
     @Published var isLoading = false
     @Published var isRefreshing = false {
         didSet {
@@ -36,13 +38,6 @@ class HomestayListingPresenter: EntityListingPresenter, ObservableObject {
         return homestay
     }
     
-    #warning("abstract")
-    func onPageAppear() {
-        isLoading = true
-        self.entities = interactor.getCachedEntities()
-        getAllEntities()
-    }
-    
     var displayedCards: [ListingCard] {
         entities.map(transformHomestayToCard)
     }
@@ -51,14 +46,17 @@ class HomestayListingPresenter: EntityListingPresenter, ObservableObject {
         ListingCard(id: homestay.homestayId.uuidString,
                     entityImage: homestay.images.isEmpty ? nil : homestay.images[0],
                     defaultImage: "mountains-background") {
-            AnyView(HomestayListingCardDetail(title: homestay.title,
-                                              description: homestay.description ?? "",
-                                              numberOfBedRoom: homestay.capacity.bedrooms.count,
-                                              numberOfBeds: homestay.capacity.bedrooms.map { $0.bedQuantity }.reduce(0, +),
-                                              numberOfToilets: homestay.capacity.toilets,
-                                              numberOfGuests: homestay.guests,
-                                              hasWifi: homestay.amenities.contains(.wifi),
-                                              fee: Int(homestay.fee)))
+            AnyView(
+                HomestayListingCardDetail(title: homestay.title,
+                                          description: homestay.description ?? "",
+                                          numberOfBedRoom: homestay.capacity.bedrooms.count,
+                                          numberOfBeds: homestay.capacity.bedrooms.map { $0.bedQuantity }.reduce(0, +),
+                                          numberOfToilets: homestay.capacity.toilets,
+                                          numberOfGuests: homestay.guests,
+                                          hasWifi: homestay.amenities.contains(.wifi),
+                                          fee: Int(homestay.fee)
+                )
+            )
         }
     }
 }
