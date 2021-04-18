@@ -12,7 +12,7 @@ struct TrailProfileReviews: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            TrailProfileSectionTitle(title: "Reviews")
+            EntityProfileSectionTitle(title: "Reviews")
             if presenter.isLoadingReviews {
                 Loading(isAnimating: .constant(true), style: .large)
                     .alignmentGuide(.leading) { d in d[.trailing] }

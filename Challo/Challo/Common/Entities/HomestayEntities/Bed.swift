@@ -20,4 +20,17 @@ enum Bed: String {
     case cot = "Cot"
     case waterBed = "Water Bed"
     case hammock = "Hammock"
+    
+    func getIcon() -> String {
+        switch self {
+        case .king:
+            return "person.3.fill"
+        case .double:
+            return "person.2.fill"
+        case .single:
+            return "person"
+        default:
+            return "person"
+        }
+    }
 }

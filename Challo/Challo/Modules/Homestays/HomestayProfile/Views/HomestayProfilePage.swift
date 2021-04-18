@@ -24,7 +24,7 @@ struct HomestayProfilePage: View {
     
     var body: some View {
         EntityProfilePage<HomestayProfilePresenter>(defaultImage: "guides-background",
-                                                    detailsContent: { AnyView(EmptyView()) },
+                                                    detailsContent: { AnyView(HomestayProfileDetails()) },
                                                     ctaButtonContent: { AnyView(ctaButtonContent) },
                                                     stickyBarContent: { trail in AnyView(makeStickyBarContent(trail)) })
             .sheet(isPresented: $presenter.isChatSheetOpen, content: {

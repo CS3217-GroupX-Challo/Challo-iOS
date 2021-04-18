@@ -18,7 +18,6 @@ extension APIParser {
         value as? Double ?? Double(value as? String ?? "0") ?? defaultValue
     }
     
-    #warning("refactor")
     func convertJSONIntValueToInt(_ value: Any?, defaultValue: Int = 0) -> Int {
         value as? Int ?? Int(value as? String ?? "0") ?? defaultValue
     }

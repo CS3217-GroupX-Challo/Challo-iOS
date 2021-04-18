@@ -19,7 +19,7 @@ struct TrailProfileDetails: View {
                 EntityProfileDivider()
                 TrailProfileDescription(trail: trail)
                 EntityProfileDivider()
-                TrailProfileLocation(trail: trail)
+                EntityProfileLocation(location: trail.positions[0])
                 EntityProfileDivider()
                 TrailProfileReviews()
             }
