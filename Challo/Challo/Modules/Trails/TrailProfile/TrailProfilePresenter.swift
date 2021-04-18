@@ -22,6 +22,7 @@ class TrailProfilePresenter: EntityProfilePresenter, ObservableObject {
 
     @Published var isLoadingReviews = false
     @Published var isShowingNotLoggedInAlert = false
+    
     var userCanMakeBooking: Bool {
         userState.loggedIn
     }
