@@ -23,4 +23,8 @@ class HomestayListingInteractor: EntityListingInteractor {
     func getCachedEntities() -> [Homestay] {
         repository.getAll()
     }
+
+    func initialFetch() {
+        getAllEntities()
+    }
 }

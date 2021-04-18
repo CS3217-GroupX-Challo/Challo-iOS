@@ -6,8 +6,10 @@
 //
 import Foundation
 
-class GuidesListingInteractor: InteractorProtocol {
+class GuidesListingInteractor: EntityListingInteractor {
 
+    typealias Entity = Guide
+    
     weak var presenter: GuidesListingPresenter!
     
     let guideRepository: GuideRepositoryProtocol
@@ -18,6 +20,10 @@ class GuidesListingInteractor: InteractorProtocol {
     
     func getAllEntities() {
         guideRepository.fetchGuidesAndRefresh(didRefresh: presenter.didPopulateGuides)
+    }
+
+    func getCachedEntities() -> [Guide] {
+        guideRepository.getAll()
     }
 
     func initialFetch() {

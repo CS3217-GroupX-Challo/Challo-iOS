@@ -17,4 +17,7 @@ protocol EntityListingInteractor: InteractorProtocol {
     
     /// Returns a list of entities cached in memory
     func getCachedEntities() -> [Entity]
+
+    /// Fetches all entities for the first time
+    func initialFetch()
 }

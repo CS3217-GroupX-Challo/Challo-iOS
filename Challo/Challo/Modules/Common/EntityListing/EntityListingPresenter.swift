@@ -55,7 +55,7 @@ extension EntityListingPresenter {
         self.entities = interactor.getCachedEntities()
         if isFirstLoad {
             isLoading = true
-            getAllEntities()
+            interactor.initialFetch()
             isFirstLoad = false
         }
     }
