@@ -15,14 +15,16 @@ struct GuideEarningsPage: View {
         VStack {
             TabSelectionView(selectedIndex: $presenter.selectedIndex, options: presenter.tabTitles)
 
-            switch presenter.selectedTab {
-            case .weeklyView:
+            if presenter.selectedTab == .weeklyView {
                 WeekEarningsView(superPresenter: presenter)
                     .padding()
-            case .yearlyView:
+            }
+
+            if presenter.selectedTab == .yearlyView {
                 YearEarningView(superPresenter: presenter)
                     .padding()
-            case .bookingHistory:
+            }
+            if presenter.selectedTab == .bookingHistory {
                 BookingHistoryView(superPresenter: presenter)
                     .padding()
             }
