@@ -21,6 +21,10 @@ class MainContainerRouter: RouterProtocol {
     var loginPage: AnyView!
     var homePage: AnyView!
     var chatPage: AnyView!
+
+    #if GUIDE
+    var onboardingPage: AnyView!
+    #endif
     
     init(userState: UserStateProtocol) {
         self.userState = userState
@@ -43,6 +47,10 @@ class MainContainerRouter: RouterProtocol {
         setUpLoginAndProfile(bookingRepository: resolveBookingRepository(),
                              reviewAPI: resolveReviewAPI(),
                              userState: userState)
+        #if GUIDE
+        onboardingPage = GuideOnboardingModule(userState: userState,
+                                               trailRepository: resolveTrailRepository()).assemble().view
+        #endif
     }
     
     private func setupChatAndProfilePage(bookingRepository: BookingRepositoryProtocol,
@@ -73,8 +81,7 @@ class MainContainerRouter: RouterProtocol {
         #if GUIDE
         loginPage = GuideLoginModule(userState: userState,
                                      loginAPI: resolveGuideLoginAPI(),
-                                     registerAPI: resolveGuideRegisterAPI(),
-                                     trailRepository: resolveTrailRepository()).assemble().view
+                                     registerAPI: resolveGuideRegisterAPI()).assemble().view
         profilePage = GuideDashboardModule(userState: userState, bookingRepository: bookingRepository).assemble().view
 
         #else

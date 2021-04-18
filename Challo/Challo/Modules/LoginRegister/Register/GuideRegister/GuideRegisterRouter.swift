@@ -13,15 +13,8 @@ class GuideRegisterRouter: RegisterRouter {
 
     private let userState: UserStateProtocol
 
-    init(userState: UserStateProtocol, trailRepository: TrailRepositoryProtocol) {
+    init(userState: UserStateProtocol) {
         self.userState = userState
-        self.trailRepository = trailRepository
-    }
-
-    private let trailRepository: TrailRepositoryProtocol
-    var onboardingForm: AnyView {
-        let onboardingModule = GuideOnboardingModule(userState: userState, trailRepository: trailRepository)
-        return onboardingModule.assemble().view
     }
 
 }

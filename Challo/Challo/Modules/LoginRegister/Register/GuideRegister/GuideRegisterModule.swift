@@ -12,23 +12,20 @@ class GuideRegisterModule: ViperModuleProtocol {
     let userState: UserStateProtocol
     let loginAPI: LoginAPI
     let registerAPI: RegisterAPI
-    let trailRepository: TrailRepositoryProtocol
     
     init(userState: UserStateProtocol,
          loginAPI: LoginAPI,
-         registerAPI: RegisterAPI,
-         trailRepository: TrailRepositoryProtocol) {
+         registerAPI: RegisterAPI) {
         self.userState = userState
         self.loginAPI = loginAPI
         self.registerAPI = registerAPI
-        self.trailRepository = trailRepository
     }
     
     func assemble() -> (view: AnyView, presenter: GuideRegisterPresenter) {
         let certManager = CertificateManager(userState: userState)
         let interactor = GuideRegisterInteractor(registerAPI: registerAPI, certificateManager: certManager)
         let presenter = GuideRegisterPresenter()
-        let router = GuideRegisterRouter(userState: userState, trailRepository: trailRepository)
+        let router = GuideRegisterRouter(userState: userState)
         interactor.presenter = presenter
         presenter.interactor = interactor
         presenter.router = router

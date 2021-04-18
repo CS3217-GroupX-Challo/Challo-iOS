@@ -47,28 +47,3 @@ class UserState: UserStateProtocol, ObservableObject {
                                userId: userId)
     }
 }
-
-internal class PreviewUserState: UserStateProtocol {
-
-    var isNewUser: Bool = false
-    var loggedIn: Bool = false
-    var email: String = ""
-    var name: String = ""
-    var token: String = ""
-    var userId: String = ""
-    var profileImg = ""
-
-    var certificate: UserCertificate? {
-        guard loggedIn else {
-            return nil
-        }
-        return UserCertificate(name: name,
-                               email: email,
-                               profileImg: profileImg,
-                               token: token,
-                               userId: userId)
-    }
-
-    var user: User?
-
-}

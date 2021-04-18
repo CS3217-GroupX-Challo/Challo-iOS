@@ -13,16 +13,12 @@ final class GuideLoginModule: ViperModuleProtocol {
     let loginAPI: LoginAPI
     let registerAPI: RegisterAPI
 
-    let trailRepository: TrailRepositoryProtocol // for onboarding trail polling
-    
     init(userState: UserStateProtocol,
          loginAPI: LoginAPI,
-         registerAPI: RegisterAPI,
-         trailRepository: TrailRepositoryProtocol) {
+         registerAPI: RegisterAPI) {
         self.userState = userState
         self.loginAPI = loginAPI
         self.registerAPI = registerAPI
-        self.trailRepository = trailRepository
     }
     
     func assemble() -> (view: AnyView, presenter: GuideLoginPresenter) {
