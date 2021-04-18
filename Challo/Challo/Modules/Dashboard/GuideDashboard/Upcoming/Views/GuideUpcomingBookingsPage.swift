@@ -11,25 +11,6 @@ struct GuideUpcomingBookingsPage: View {
 
     @State var presenter: GuideUpcomingBookingsPresenter
 
-    var header: some View {
-        HStack {
-            Spacer()
-            VStack {
-                Text(presenter.name)
-                    .font(.largeTitle)
-                    .foregroundColor(.white)
-                NavigationLink(destination: UpdateProfilePage().environmentObject(presenter)) {
-                    Text("Edit Profile")
-                        .font(.headline)
-                }
-            }
-            DashboardProfileImage<GuideEarningsPresenter>()
-                .frame(height: 130)
-                .padding()
-                .shadow(color: .black, radius: 4, x: 3, y: 4)
-        }.padding(.horizontal, 30)
-    }
-
     @ViewBuilder
     func makeContent(_ geometry: GeometryProxy) -> some View {
         VStack {
@@ -45,7 +26,7 @@ struct GuideUpcomingBookingsPage: View {
     }
 
     var body: some View {
-        PageLayout(headerContent: AnyView(header)) { geometry in
+        GeometryReader { geometry in
             makeContent(geometry)
                 .frame(maxWidth: .infinity)
                 .padding(.top, 50)

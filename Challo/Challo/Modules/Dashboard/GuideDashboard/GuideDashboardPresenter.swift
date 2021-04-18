@@ -17,12 +17,9 @@ class GuideDashboardPresenter: PresenterProtocol, ProfileImageProvider {
     private(set) var name: String
 
     init(userState: UserStateProtocol,
-         sendMessageToTourist: @escaping (_ touristEmail: String, _ touristId: UUID, _ messageText: String) -> Void,
          bookingRepository: BookingRepositoryProtocol) {
         self.userState = userState
         self.name = userState.name
-        self.sendMessageToTourist = sendMessageToTourist
-        self.bookingRepository = bookingRepository
         setupUserStateSubscriber()
     }
 
@@ -59,7 +56,7 @@ class GuideDashboardPresenter: PresenterProtocol, ProfileImageProvider {
     // MARK: Tab selection
 
     private static let tabs = GuideDashboardTabs.allCases
-    let tabs = GuideDashboardTabs.allCases.map { $0.rawValue }
+    let tabTitles = tabs.map { $0.rawValue }
     @Published var selectedIndex = 0 {
         didSet {
             selectedTab = Self.tabs[selectedIndex]
@@ -67,10 +64,31 @@ class GuideDashboardPresenter: PresenterProtocol, ProfileImageProvider {
     }
     @Published var selectedTab = tabs[0]
 
-    // MARK: Properties for submodules
+    // MARK: Profile update
 
-    let sendMessageToTourist: (_ touristEmail: String, _ touristId: UUID, _ messageText: String) -> Void
-    let bookingRepository: BookingRepositoryProtocol
+    @Published var editName = ""
+    @Published var editEmail = ""
+    @Published var isSaving = false
+    @Published var errorMessage: String?
+
+    @Published var isShowingUpdateAlert = false
+    @Published var alertMessageTitle = ""
+    @Published var alertMessageDescription = ""
+
+}
+
+extension GuideDashboardPresenter: ProfileUpdaterPresenter { }
+
+// MARK: Submodules
+extension GuideDashboardPresenter {
+
+    var earningsDashboard: AnyView! {
+        router?.earningsHistoryPage
+    }
+
+    var upcomingBookingsDashboard: AnyView! {
+        router?.upcomingBookingsPage
+    }
 }
 
 enum GuideDashboardTabs: String, CaseIterable {

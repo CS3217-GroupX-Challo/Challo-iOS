@@ -9,30 +9,21 @@ import SwiftUI
 
 struct EarningViewNavigation: View {
 
-    var presenter: GuideEarningsPresenter
+    @ObservedObject var presenter: GuideEarningsPresenter
 
     var body: some View {
+        VStack {
+            TabSelectionView(selectedIndex: $presenter.selectedIndex, options: presenter.tabTitles)
 
-        NavigationView {
-            List {
-                NavigationLink(
-                    destination: WeekEarningsView(superPresenter: presenter),
-                    label: {
-                        Text("Week view")
-                    })
-                NavigationLink(
-                    destination: YearEarningView(superPresenter: presenter),
-                    label: {
-                        Text("Year view")
-                    })
-                NavigationLink(
-                    destination: BookingHistoryView(superPresenter: presenter),
-                    label: {
-                        Text("View booking history")
-                    })
+            switch presenter.selectedTab {
+            case .weeklyView:
+                WeekEarningsView(superPresenter: presenter)
+            case .yearlyView:
+                YearEarningView(superPresenter: presenter)
+            case .bookingHistory:
+                BookingHistoryView(superPresenter: presenter)
             }
-            .listStyle(SidebarListStyle())
         }
-
+        .padding()
     }
 }

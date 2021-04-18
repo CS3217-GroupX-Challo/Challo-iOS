@@ -57,10 +57,6 @@ class TouristDashboardPresenter: PresenterProtocol, MessagingSupporter, ProfileI
         setupUserStateSubscriber(userState: userState)
     }
     
-    var isUpdateSaveButtonDisabled: Bool {
-        editName == userState.name && editEmail == userState.email && inputImage == nil
-    }
-    
     private func setupUserStateSubscriber(userState: UserStateProtocol) {
         guard let userState = userState as? UserState else {
             return
@@ -101,32 +97,11 @@ class TouristDashboardPresenter: PresenterProtocol, MessagingSupporter, ProfileI
     func getReviewPage(for booking: Booking) -> AnyView? {
         router?.getReviewPage(for: booking)
     }
-    
-    func onTapSave() {
-        isSaving = true
-        errorMessage = interactor.validateUserUpdateValues()
-        guard errorMessage == nil else {
-            isSaving = false
-            return
-        }
-        interactor.updateUser { [weak self] in
-            self?.isSaving = false
-        }
-    }
-    
-    func onCloseAlert() {
-        alertMessageTitle = ""
-        alertMessageDescription = ""
-    }
-    
-    func onOpenUpdateProfilePage() {
-        inputImage = nil
-        image = nil
-        editName = userState.name
-        editEmail = userState.email
-        errorMessage = nil
-    }
+
 }
+
+// MARK: Logic for updating user state
+extension TouristDashboardPresenter: ProfileUpdaterPresenter { }
 
 // MARK: Handle Bookings
 extension TouristDashboardPresenter {

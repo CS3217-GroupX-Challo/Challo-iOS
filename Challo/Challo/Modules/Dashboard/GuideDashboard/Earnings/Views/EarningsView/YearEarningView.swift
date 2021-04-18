@@ -38,6 +38,7 @@ struct YearEarningView: View {
                 BarChart(axisLabels: presenter.dateRange
                             .map { Formatter.displayDateWithCustomFormat($0, template: "MMM") },
                          data: presenter.history)
+                    .frame(maxWidth: .infinity)
             }
 
         }

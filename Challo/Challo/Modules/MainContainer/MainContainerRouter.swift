@@ -43,6 +43,15 @@ class MainContainerRouter: RouterProtocol {
                              reviewAPI: resolveReviewAPI(),
                              userState: userState)
     }
+
+    private func setUpAndReturnChatService() -> ChatService {
+        let chatDialogRepository = ChatDialogRepository()
+        let chatService = QuickBloxChatService(chatAuthService: QuickBloxChatAuthService(),
+                                               chatDialogService: QuickBloxChatDialogService(chatDialogRepository:
+                                                                                                chatDialogRepository))
+        chatPage = ChatModule(chatService: chatService, userState: userState).assemble().view
+        return chatService
+    }
     
     private func setupChatProfileHomestayPage(bookingRepository: BookingRepositoryProtocol,
                                               reviewAPI: ReviewAPIProtocol,
@@ -78,17 +87,24 @@ class MainContainerRouter: RouterProtocol {
                                       reviewAPI: ReviewAPIProtocol,
                                       userState: UserStateProtocol) {
 
+        let chatService = setUpAndReturnChatService()
+        let userAPI = resolveUserAPI()
+
         #if GUIDE
         loginPage = GuideLoginModule(userState: userState,
                                      loginAPI: resolveGuideLoginAPI(),
                                      registerAPI: resolveGuideRegisterAPI()).assemble().view
-        profilePage = GuideEarningsModule(userState: userState,
-                                          bookingRepository: bookingRepository,
-                                          sendMessageToTourist: { [weak self] touristEmail, _, messageText in
-                                            self?.sendMessageToUser(recipientEmail: touristEmail,
+        profilePage = GuideDashboardModule(userState: userState,
+                                           bookingRepository: bookingRepository,
+                                           sendMessageToTourist: { [weak self] touristEmail, _, messageText in
+                                            self?.sendMessageToUser(userEmail: touristEmail,
                                                                     messageText: messageText,
                                                                     chatService: chatService)
-                                         }).assemble().view
+                                           },
+                                           updateUserChat: { [weak self] name, email in
+                                            self?.updateUser(name: name, email: email, chatService: chatService)
+                                           },
+                                           userAPI: userAPI).assemble().view
 
         #else
         loginPage = TouristLoginModule(userState: userState,
@@ -96,7 +112,7 @@ class MainContainerRouter: RouterProtocol {
                                        registerAPI: resolveTouristRegisterAPI()).assemble().view
         setupChatProfileHomestayPage(bookingRepository: bookingRepository,
                                      reviewAPI: reviewAPI,
-                                     userAPI: resolveUserAPI())
+                                     userAPI: userAPI)
         #endif
     }
 }

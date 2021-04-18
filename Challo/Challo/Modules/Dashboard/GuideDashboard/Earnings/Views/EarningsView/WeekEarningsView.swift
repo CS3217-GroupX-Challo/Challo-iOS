@@ -38,6 +38,7 @@ struct WeekEarningsView: View {
                 BarChart(axisLabels: presenter.dateRange
                             .map { Formatter.displayDateWithCustomFormat($0, template: "EEE") },
                          data: presenter.history)
+                    .frame(maxWidth: .infinity)
             }
 
         }

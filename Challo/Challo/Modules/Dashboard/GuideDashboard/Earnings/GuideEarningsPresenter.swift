@@ -34,4 +34,17 @@ class GuideEarningsPresenter: PresenterProtocol, ProfileImageProvider {
         bookingHistorySubPresenter.sendMessageToUser = sendMessageToTourist
     }
 
+    private static var tabs = EarningsDashboardTabs.allCases
+    @Published var tabTitles = tabs.map { $0.rawValue }
+    @Published var selectedIndex = 0 {
+        didSet { selectedTab = Self.tabs[selectedIndex] }
+    }
+    @Published var selectedTab = tabs[0]
+
+}
+
+enum EarningsDashboardTabs: String, CaseIterable {
+    case weeklyView = "Week View"
+    case yearlyView = "Year View"
+    case bookingHistory = "View Booking History"
 }
