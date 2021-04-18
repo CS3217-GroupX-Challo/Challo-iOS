@@ -11,7 +11,7 @@ struct HomestayProfilePage: View {
     @EnvironmentObject var presenter: HomestayProfilePresenter
     
     func makeStickyBarContent(_ homestay: Homestay) -> some View {
-        Text("\(homestay.fee)").bold() + Text(" Rp / night")
+        Text("\(Int(homestay.fee))").bold() + Text(" Rp / night")
     }
     
     var ctaButtonContent: some View {
@@ -20,7 +20,7 @@ struct HomestayProfilePage: View {
     
     var body: some View {
         EntityProfilePage<HomestayProfilePresenter>(defaultImage: "guides-background",
-                                                    detailsContent: { AnyView(TrailProfileDetails()) },
+                                                    detailsContent: { AnyView(EmptyView()) },
                                                     ctaButtonContent: { AnyView(ctaButtonContent) },
                                                     stickyBarContent: { trail in AnyView(makeStickyBarContent(trail)) })
     }

@@ -9,14 +9,16 @@ import SwiftUI
 
 final class HomestayListingModule: ViperModuleProtocol {
     let homestayRepository: HomestayRepositoryProtocol
+    let userState: UserStateProtocol
 
-    init(homestayRepository: HomestayRepositoryProtocol) {
+    init(userState: UserStateProtocol, homestayRepository: HomestayRepositoryProtocol) {
+        self.userState = userState
         self.homestayRepository = homestayRepository
     }
     
     func assemble() -> (view: AnyView, presenter: HomestayListingPresenter) {
         let interactor = HomestayListingInteractor(homestayRepository: homestayRepository)
-        let router = HomestayListingRouter()
+        let router = HomestayListingRouter(userState: userState, homestayRepository: homestayRepository)
         let presenter = HomestayListingPresenter()
         interactor.presenter = presenter
         presenter.interactor = interactor
