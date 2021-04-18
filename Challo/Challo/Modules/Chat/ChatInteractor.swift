@@ -92,7 +92,8 @@ class ChatInteractor: NSObject, InteractorProtocol {
     
     func connect() {
         guard let chatUserId = chatService.chatUserId else {
-            fatalError("Attempting to connect when no user is logged in")
+            loginAndConnect()
+            return
         }
         chatService.connectToChatServer(chatUserId: chatUserId, password: userState.userId,
                                         didConnect: { [weak self] _, isSuccessful in

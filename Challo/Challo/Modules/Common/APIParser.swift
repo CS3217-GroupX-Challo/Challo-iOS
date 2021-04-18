@@ -19,7 +19,7 @@ extension APIParser {
     }
     
     func convertJSONIntValueToInt(_ value: Any?, defaultValue: Int = 0) -> Int {
-        value as? Int ?? defaultValue
+        Int(value as? String ?? "0") ?? defaultValue
     }
 
     func convertJSONLocationToCLLocation2D(_ json: NetworkManager.JSON) -> CLLocationCoordinate2D? {
