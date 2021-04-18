@@ -13,6 +13,7 @@ class TrailListingPresenter: EntityListingPresenter, SearchBarPresenter, Observa
     var interactor: TrailListingInteractor!
     var router: TrailListingRouter?
     
+    var isFirstLoad = true
     @Published var isLoading = false
     @Published var isRefreshing = false {
         didSet {
@@ -99,12 +100,6 @@ class TrailListingPresenter: EntityListingPresenter, SearchBarPresenter, Observa
                                           numOfReviews: trail.numOfReviews,
                                           difficulty: trail.difficulty))
         }
-    }
-    
-    func onPageAppear() {
-        isLoading = true
-        self.entities = interactor.getCachedEntities()
-        getAllEntities()
     }
     
     func getEntityByCardId(_ cardId: String) -> Trail {

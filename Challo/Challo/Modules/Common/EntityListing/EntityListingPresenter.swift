@@ -18,6 +18,7 @@ protocol EntityListingPresenter: SearchBarPresenter where Router: EntityListingR
     
     var entities: [Entity] { get set }
     
+    var isFirstLoad: Bool { get set }
     var isLoading: Bool { get set }
     var isRefreshing: Bool { get set }
     var displayedCards: [ListingCard] { get }
@@ -26,6 +27,7 @@ protocol EntityListingPresenter: SearchBarPresenter where Router: EntityListingR
     func getAllEntities()
     func getEntityByCardId(_ cardId: String) -> Entity
     func onTapListingCard(_ cardId: String)
+    func onPageAppear()
 }
 
 extension EntityListingPresenter {
@@ -46,5 +48,14 @@ extension EntityListingPresenter {
     
     func getAllEntities() {
         interactor.getAllEntities()
+    }
+    
+    func onPageAppear() {
+        self.entities = interactor.getCachedEntities()
+        if isFirstLoad {
+            isLoading = true
+            getAllEntities()
+            isFirstLoad = false
+        }
     }
 }
