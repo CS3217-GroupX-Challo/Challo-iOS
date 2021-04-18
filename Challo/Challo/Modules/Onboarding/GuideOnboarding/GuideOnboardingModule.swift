@@ -12,17 +12,21 @@ final class GuideOnboardingModule: ViperModuleProtocol {
 
     let userState: UserStateProtocol
     let trailRepository: TrailRepositoryProtocol
+    let guideAPI: GuideAPIProtocol
 
     init(userState: UserStateProtocol,
-         trailRepository: TrailRepositoryProtocol) {
+         trailRepository: TrailRepositoryProtocol,
+         guideAPI: GuideAPIProtocol) {
         self.userState = userState
         self.trailRepository = trailRepository
+        self.guideAPI = guideAPI
     }
 
     func assemble() -> (view: AnyView, presenter: GuideOnboardingPresenter) {
         let presenter = GuideOnboardingPresenter(userState: userState)
         let interactor = GuideOnboardingInteractor(userState: userState,
-                                                   trailRepository: trailRepository)
+                                                   trailRepository: trailRepository,
+                                                   guideAPI: guideAPI)
         let router = GuideOnboardingRouter()
         presenter.interactor = interactor
         presenter.router = router

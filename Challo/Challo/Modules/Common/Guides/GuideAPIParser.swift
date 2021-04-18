@@ -72,17 +72,17 @@ class GuideAPIParser: APIParser {
 
     func convertGuideToJSON(guide: Guide) -> JSON {
         var json = JSON()
-        json[Key.guideId] = guide.userId.uuidString
-        json[Key.email] = guide.email
+        json[Key.userId] = guide.userId.uuidString
+        json[Key.nickname] = ""
+        json[Key.dateOfBirth] = Date().destruct()
         json[Key.daysAvailable] = guide.daysAvailable.map { $0.rawValue }
-        json[Key.profileImage] = guide.profileImg ?? ""
-        json[Key.name] = guide.name ?? ""
-        json[Key.phone] = guide.phone ?? ""
-        json[Key.dateJoined] = guide.dateJoined?.destruct() ?? ""
         if let area = guide.location {
             json[Key.area] = areaParser.convertAreaToJSON(area: area)
+            json[Key.areaId] = area.areaId.uuidString
+        } else {
+            json[Key.area] = JSON()
+            json[Key.areaId] = ""
         }
-        json[Key.sex] = guide.sex?.rawValue ?? ""
         json[Key.unavailableDates] = guide.unavailableDates?.compactMap { $0.destruct() }
         json[Key.yearsOfExperience] = guide.yearsOfExperience ?? 0
         json[Key.languages] = guide.languages ?? [String]()
@@ -90,7 +90,6 @@ class GuideAPIParser: APIParser {
         json[Key.biography] = guide.biography ?? ""
         json[Key.hobbies] = guide.hobbies ?? ""
         json[Key.memorableExperiences] = guide.memorableExperiences ?? ""
-        json[Key.rating] = guide.rating
         return json
     }
 }

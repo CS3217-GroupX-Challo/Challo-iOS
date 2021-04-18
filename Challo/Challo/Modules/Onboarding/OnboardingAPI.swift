@@ -21,7 +21,7 @@ protocol OnboardingAPI: AnyObject {
 extension OnboardingAPI {
 
     func updateParticulars(uuid: String, body: JSON, responseHandler: @escaping (JSON, Error?) -> Void) {
-        let guideUrl = url + userId
+        let guideUrl = url + "/" + userId
         networkManager.put(url: guideUrl,
                            headers: NetworkManager.HEADER(),
                            body: body) { response, error in

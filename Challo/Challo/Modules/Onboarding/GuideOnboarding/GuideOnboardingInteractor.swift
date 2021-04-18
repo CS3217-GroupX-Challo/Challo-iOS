@@ -30,17 +30,18 @@ class GuideOnboardingInteractor: InteractorProtocol {
     }
 
     init(userState: UserStateProtocol,
-         trailRepository: TrailRepositoryProtocol) {
+         trailRepository: TrailRepositoryProtocol,
+         guideAPI: GuideAPIProtocol) {
         self.userState = userState
         self.trailRepository = trailRepository
         self.userParser = UserAPIParser(userState: userState)
         self.certificateManager = CertificateManager(userState: userState)
-        self.onboardingAPI = GuideOnboardingAPI(userState: userState)
+        self.onboardingAPI = GuideOnboardingAPI(userState: userState, guideAPI: guideAPI)
     }
 
     func submitGuideDetails(details: GuideOnboardingDetails) {
         onboardingAPI.updateGuideParticulars(details: details) { [weak self] response, error in
-            guard error != nil else {
+            guard error == nil else {
                 self?.presenter.showSubmissionResult(success: false)
                 return
             }
@@ -51,6 +52,9 @@ class GuideOnboardingInteractor: InteractorProtocol {
             }
             self?.certificateManager.storeCertificate(certificate: certificateUnwrapped)
             self?.presenter.showSubmissionResult(success: true)
+            #if GUIDE
+            self?.userState.completedOnboarding = true
+            #endif
         }
     }
 

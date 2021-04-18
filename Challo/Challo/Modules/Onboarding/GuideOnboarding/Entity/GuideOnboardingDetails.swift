@@ -30,7 +30,7 @@ extension GuideOnboardingDetails {
         return newJSON
     }
 
-    private var onboardingDetailsJSON: JSON {
+    var onboardingDetailsJSON: JSON {
         var json = JSON()
         json[Key.nickname] = nickname
         json[Key.dateOfBirth] = dateOfBirth.destruct()

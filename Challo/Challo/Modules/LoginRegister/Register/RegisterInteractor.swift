@@ -18,7 +18,11 @@ extension RegisterInteractor {
             self.presenter.showRegisterFailureAlert()
             return
         }
+        #if GUIDE
+        certificateManager.storeCertificate(certificate: certificate, isNewUser: true, completedOnboarding: false)
+        #else
         certificateManager.storeCertificate(certificate: certificate, isNewUser: true)
+        #endif
         presenter.showRegisterSuccessAlert()
     }
 }

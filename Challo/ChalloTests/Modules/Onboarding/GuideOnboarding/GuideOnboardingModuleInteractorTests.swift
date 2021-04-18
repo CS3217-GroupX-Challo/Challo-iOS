@@ -12,11 +12,12 @@ class GuideOnboardingModuleInteractorTests: XCTestCase {
 
     var interactor: GuideOnboardingInteractor {
         let userState = MockUserState.createMockLoggedInUserState()
+        let onboardingAPI = GuideOnboardingAPI(userState: userState, guideAPI: MockGuideAPI())
         return GuideOnboardingInteractor(userState: userState,
                                          trailRepository: MockTrailRepository(),
                                          userParser: MockUserAPIParser(userState: userState),
                                          certificateManager: MockCertificateManager(state: userState),
-                                         onboardingAPI: GuideOnboardingAPI(userState: userState))
+                                         onboardingAPI: onboardingAPI)
     }
 
     func testFetchTrailsAndAreas() {

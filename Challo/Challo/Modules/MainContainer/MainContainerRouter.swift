@@ -49,7 +49,8 @@ class MainContainerRouter: RouterProtocol {
                              userState: userState)
         #if GUIDE
         onboardingPage = GuideOnboardingModule(userState: userState,
-                                               trailRepository: resolveTrailRepository()).assemble().view
+                                               trailRepository: resolveTrailRepository(),
+                                               guideAPI: resolveGuideAPI()).assemble().view
         #endif
     }
     
@@ -144,6 +145,13 @@ extension MainContainerRouter {
             fatalError("Failed to resolve userAPI in MainContainer")
         }
         return userAPI
+    }
+
+    private func resolveGuideAPI() -> GuideAPIProtocol {
+        guard let guideAPI = apiContainer.container.resolve(GuideAPIProtocol.self) else {
+            fatalError("Failed to resolve guideAPI in MainContainer")
+        }
+        return guideAPI
     }
     
     private func resolveTouristLoginAPI() -> LoginAPI {

@@ -14,10 +14,21 @@ class CertificateManager {
         self.globalState = userState
     }
 
+    #if GUIDE
+    func storeCertificate(certificate: UserCertificate, isNewUser: Bool = false, completedOnboarding: Bool = true) {
+        globalState.storeCertificate(certificate: certificate, isNewUser: isNewUser,
+                                     completedOnboarding: completedOnboarding)
+        ChalloLogger.logger.log("Logged in")
+        ChalloLogger.logger.log("Name: \(certificate.name)")
+        ChalloLogger.logger.log("User id: \(certificate.userId)")
+    }
+
+    #else
     func storeCertificate(certificate: UserCertificate, isNewUser: Bool = false) {
         globalState.storeCertificate(certificate: certificate, isNewUser: isNewUser)
         ChalloLogger.logger.log("Logged in")
         ChalloLogger.logger.log("Name: \(certificate.name)")
         ChalloLogger.logger.log("User id: \(certificate.userId)")
     }
+    #endif
 }

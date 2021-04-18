@@ -12,7 +12,8 @@ class GuideOnboardingModuleTests: XCTestCase {
 
     var module: GuideOnboardingModule {
         GuideOnboardingModule(userState: MockUserState.createMockLoggedInUserState(),
-                              trailRepository: MockTrailRepository())
+                              trailRepository: MockTrailRepository(),
+                              guideAPI: MockGuideAPI())
     }
 
     func testAssemble() {
