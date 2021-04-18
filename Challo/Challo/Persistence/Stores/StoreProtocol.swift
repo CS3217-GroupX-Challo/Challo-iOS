@@ -5,6 +5,11 @@
 //  Created by Kester Ng on 17/4/21.
 //
 
+/// Store protocol for all stores. Contains getAll and save methods.
+/// Model type is the external model to be saved
+/// PersistenceObject is the corresponding persistence model
+/// Convertor is the converter between model and persistenceObject
+/// Repo is the repository to save the persistenceObject
 protocol StoreProtocol {
     associatedtype Model
     associatedtype PersistenceObject

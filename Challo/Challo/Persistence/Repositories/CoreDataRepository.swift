@@ -8,6 +8,7 @@
 import CoreData
 import os
 
+/// Represents the underlying Core Data logic
 class CoreDataRepository<T: NSManagedObject>: RepositoryProtocol {
     typealias Entity = T
     
