@@ -79,8 +79,7 @@ class GuidesListingPresenter: PresenterProtocol, SearchableEntityListingPresente
 
     func onAppear() {
         isLoading = true
-        self.guides = interactor.getCachedEntities()
-        interactor.getAllEntities()
+        interactor.initialFetch()
     }
     
     func getGuideProfileDetailsPage(guide: Guide) -> some View {

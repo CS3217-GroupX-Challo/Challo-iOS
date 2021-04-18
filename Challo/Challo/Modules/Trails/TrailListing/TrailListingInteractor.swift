@@ -9,6 +9,8 @@ import Foundation
 
 class TrailListingInteractor: EntityListingInteractor {
 
+    typealias Entity = Trail
+    
     var repository: TrailRepositoryProtocol
     weak var presenter: TrailListingPresenter!
 
@@ -22,5 +24,9 @@ class TrailListingInteractor: EntityListingInteractor {
 
     func getCachedEntities() -> [Trail] {
         repository.getAll()
+    }
+
+    func initialFetch() {
+        repository.initialFetch(didFetch: presenter.didGetAllEntities)
     }
 }

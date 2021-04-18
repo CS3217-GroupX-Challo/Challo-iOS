@@ -21,25 +21,25 @@ struct TouristDashboardPage: View {
             
             if presenter.isLoading {
                 VStack {
-                    Spacer()
                     Loading(isAnimating: .constant(true), style: .large)
-                    Spacer()
                 }
-            } else {
-                if presenter.selectedTab == .upcomingBookings {
-                    BookingCardListingsView(
-                        width: geometry.size.width,
-                        emptyListMessage: "You don't have any upcoming trips",
-                        bookings: $presenter.upcomingBookings)
-                }
-                
-                if presenter.selectedTab == .pastBookings {
-                    BookingCardListingsView(
-                        width: geometry.size.width,
-                        emptyListMessage: "You don't have any past trips",
-                        bookings: $presenter.pastBookings) { booking, width in
-                        AnyView(PastBookingCard(booking: booking, width: width))
-                    }
+            }
+
+            if presenter.selectedTab == .upcomingBookings {
+                BookingCardListingsView(
+                    width: geometry.size.width,
+                    emptyListMessage: "You don't have any upcoming trips",
+                    bookings: $presenter.upcomingBookings,
+                    isRefreshing: $presenter.isRefreshing)
+            }
+            
+            if presenter.selectedTab == .pastBookings {
+                BookingCardListingsView(
+                    width: geometry.size.width,
+                    emptyListMessage: "You don't have any past trips",
+                    bookings: $presenter.pastBookings,
+                    isRefreshing: $presenter.isRefreshing) { booking, width in
+                    AnyView(PastBookingCard(booking: booking, width: width))
                 }
             }
         }

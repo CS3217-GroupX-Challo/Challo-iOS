@@ -8,6 +8,8 @@ import Foundation
 
 class GuidesListingInteractor: EntityListingInteractor {
 
+    typealias Entity = Guide
+    
     weak var presenter: GuidesListingPresenter!
     
     let guideRepository: GuideRepositoryProtocol
@@ -22,5 +24,9 @@ class GuidesListingInteractor: EntityListingInteractor {
 
     func getCachedEntities() -> [Guide] {
         guideRepository.getAll()
+    }
+
+    func initialFetch() {
+        guideRepository.initialFetch(didFetch: presenter.didPopulateGuides)
     }
 }

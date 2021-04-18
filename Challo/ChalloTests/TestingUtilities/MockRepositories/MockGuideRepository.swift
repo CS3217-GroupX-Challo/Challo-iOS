@@ -9,6 +9,7 @@
 import Foundation
 
 class MockGuideRepository: Repository<UUID, Guide>, GuideRepositoryProtocol {
+
     let guideAPI: GuideAPIProtocol
     
     init() {
@@ -34,5 +35,9 @@ class MockGuideRepository: Repository<UUID, Guide>, GuideRepositoryProtocol {
             self?.refreshGuides(guides)
             didRefresh?(guides)
         }
+    }
+
+    func initialFetch(didFetch: @escaping (([Guide]) -> Void)) {
+        fetchGuidesAndRefresh(didRefresh: didFetch)
     }
 }

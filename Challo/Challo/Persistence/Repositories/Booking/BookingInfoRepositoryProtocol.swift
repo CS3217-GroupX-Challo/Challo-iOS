@@ -5,5 +5,6 @@
 //  Created by Kester Ng on 13/4/21.
 //
 
-protocol BookingInfoRepositoryProtocol: RepoProtocol where PersistenceObject == BookingPersistenceObject {
+protocol BookingInfoRepositoryProtocol: PersistenceRepoProtocol where
+    PersistenceObject == BookingPersistenceObject {
 }

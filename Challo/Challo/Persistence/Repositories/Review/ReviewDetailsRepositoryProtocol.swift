@@ -5,5 +5,6 @@
 //  Created by Kester Ng on 13/4/21.
 //
 
-protocol ReviewDetailsRepositoryProtocol: RepoProtocol where PersistenceObject == ReviewPersistenceObject {
+protocol ReviewDetailsRepositoryProtocol: PersistenceRepoProtocol where
+    PersistenceObject == ReviewPersistenceObject {
 }

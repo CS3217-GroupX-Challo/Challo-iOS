@@ -8,10 +8,12 @@
 import Foundation
 @testable import Challo
 
-class MockBookingRepository: BookingRepository {
+class MockBookingRepository: Repository<UUID, Booking>, BookingRepositoryProtocol {
+
+    let bookingAPI: BookingAPIProtocol
 
     init() {
-        super.init(bookingAPI: MockBookingAPI())
+        self.bookingAPI = MockBookingAPI()
     }
 
     private func refreshBookings(_ bookings: [Booking]) {
@@ -20,14 +22,14 @@ class MockBookingRepository: BookingRepository {
         }
     }
 
-    override func fetchBookingForTouristAndRefresh(id: UUID, didRefresh: (([Booking]) -> Void)?) {
+    func fetchBookingForTouristAndRefresh(id: UUID, didRefresh: (([Booking]) -> Void)?) {
         bookingAPI.getBookingsForTourist(id: id) { [weak self] bookings in
             self?.refreshBookings(bookings)
             didRefresh?(bookings)
         }
     }
 
-    override func fetchBookingForGuideAndRefresh(id: UUID, didRefresh: (([Booking]) -> Void)?) {
+    func fetchBookingForGuideAndRefresh(id: UUID, didRefresh: (([Booking]) -> Void)?) {
         bookingAPI.getBookingsForGuide(id: id) { [weak self] bookings in
             self?.refreshBookings(bookings)
             didRefresh?(bookings)
