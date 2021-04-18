@@ -18,7 +18,7 @@ struct UpdatableProfileImage: View {
                     .scaledToFit()
                     .clipShape(Circle())
             } else {
-                DashboardProfileImage()
+                DashboardProfileImage<TouristDashboardPresenter>()
             }
         }.onTapGesture {
             presenter.isImagePickerOpen = true

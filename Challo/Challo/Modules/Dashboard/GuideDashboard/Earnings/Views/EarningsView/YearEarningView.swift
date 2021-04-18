@@ -13,14 +13,18 @@ struct YearEarningView: View {
 
     @ObservedObject private var presenter: YearEarningsPresenter
 
-    init(superPresenter: GuideDashboardPresenter) {
+    init(superPresenter: GuideEarningsPresenter) {
         presenter = superPresenter.yearSubPresenter
     }
 
     var body: some View {
         VStack {
             if presenter.loading {
-                Loading(isAnimating: .constant(true), style: .large)
+                VStack {
+                    Spacer()
+                    Loading(isAnimating: .constant(true), style: .large)
+                    Spacer()
+                }
             } else {
                 Card {
                     Text("Total earnings of the year:")
@@ -38,6 +42,7 @@ struct YearEarningView: View {
                 BarChart(axisLabels: presenter.dateRange
                             .map { Formatter.displayDateWithCustomFormat($0, template: "MMM") },
                          data: presenter.history)
+                    .frame(maxWidth: .infinity)
             }
 
         }

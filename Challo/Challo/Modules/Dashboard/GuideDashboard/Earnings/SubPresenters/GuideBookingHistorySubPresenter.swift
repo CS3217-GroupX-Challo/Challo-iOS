@@ -9,7 +9,8 @@ import Foundation
 
 class GuideBookingHistorySubPresenter: GuideDashboardSubPresenter {
 
-    var interactor: GuideDashboardInteractor!
+    var interactor: GuideEarningsInteractor!
+    var sendMessageToUser: ((_ touristEmail: String, _ touristId: UUID, _ messageText: String) -> Void)!
 
     @Published var loading = true
     @Published var totalEarnings = 0.0

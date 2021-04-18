@@ -2,43 +2,71 @@
 //  GuideDashboardPage.swift
 //  Challo
 //
-//  Created by Ying Gao on 1/4/21.
+//  Created by Ying Gao on 18/4/21.
 //
 
 import SwiftUI
 
 struct GuideDashboardPage: View {
 
-    @ObservedObject var presenter: GuideDashboardPresenter
+    @EnvironmentObject var presenter: GuideDashboardPresenter
 
-    var body: some View {
+    @ViewBuilder
+    func makeContent(_ geometry: GeometryProxy) -> some View {
         VStack {
-            GeometryReader { geometry in
-                VStack(alignment: .leading) {
-                    Header(title: presenter.name,
-                           subtitle: "Ready to meet new people?",
-                           image: Image.mountainBackground)
-                        .frame(width: geometry.size.width,
-                               height: geometry.size.height * 0.15,
-                               alignment: .center)
+            TabSelectionView(selectedIndex: $presenter.selectedIndex,
+                             options: presenter.tabTitles)
 
-                    Image("avatar-image")
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(Circle())
-                        .frame(height: geometry.size.height * 0.10)
-                        .padding()
+            Divider().padding(.top)
 
-                    Text("Earnings")
-                        .font(.title2)
-                        .bold()
-                        .padding(.leading, 40)
+            if presenter.selectedTab == .earnings {
+                presenter.earningsDashboard
+                    .frame(maxWidth: .infinity)
+                    .frame(height: geometry.size.height * 0.8)
+                    .padding(.vertical)
+            }
 
-                    EarningViewNavigation(presenter: presenter)
-                }
+            if presenter.selectedTab == .upcomingBookings {
+                presenter.upcomingBookingsDashboard
+                    .frame(maxWidth: .infinity)
+                    .frame(height: geometry.size.height * 0.8)
+                    .padding(.vertical)
             }
         }
-        .ignoresSafeArea()
     }
 
+    var header: some View {
+        HStack {
+            Spacer()
+            VStack(alignment: .trailing, spacing: 15) {
+                Text(presenter.name)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                NavigationLink(destination: UpdateProfilePageGuide().environmentObject(presenter)) {
+                    HStack(spacing: 5) {
+                        Text("Edit Profile")
+                            .font(.headline)
+                            .foregroundColor(Color(.systemGray))
+                        Image(systemName: "pencil")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 15)
+                            .foregroundColor(Color(.systemGray))
+                    }
+                }
+            }
+            DashboardProfileImage<GuideDashboardPresenter>()
+                .frame(height: 130)
+                .padding()
+                .shadow(color: .black, radius: 4, x: 3, y: 4)
+        }.padding(.horizontal, 30)
+    }
+    
+    var body: some View {
+        PageLayout(background: .mountainBackground, headerContent: AnyView(header)) { geo in
+            makeContent(geo)
+                .frame(maxWidth: .infinity)
+        }
+    }
 }

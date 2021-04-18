@@ -9,7 +9,6 @@ import SwiftUI
 import Combine
 
 /// A helper class that encapsulates the functionality of search
-
 /// `getSearchCriteriaFromEntity` is a function that given an entity,
 /// returns the search attribute for the search key to be applied on
 class EntityListingSearchPresenter<Entity>: ObservableObject {

@@ -15,7 +15,10 @@ struct PastBookingCard: View {
     var width: CGFloat
     
     var body: some View {
-        BookingCard(booking: booking, width: width) {
+        BookingCard(booking: booking,
+                    width: width,
+                    chatPartner: booking.guide,
+                    chatView: ContactGuidePage(guide: booking.guide)) {
             NavigationLink(destination: presenter.getReviewPage(for: booking)) {
                 Image(systemName: "doc.append.fill")
                     .foregroundColor(Color.pink)

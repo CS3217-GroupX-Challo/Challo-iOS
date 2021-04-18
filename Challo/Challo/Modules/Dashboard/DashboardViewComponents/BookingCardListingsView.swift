@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct BookingCardListingsView: View {
+    let emptyListMessage = "You don't have any upcoming trips"
 
     var width: CGFloat
-    var emptyListMessage: String
+    var pov: PointOfView
     @Binding var bookings: [Booking]
     @Binding var isRefreshing: Bool
     var createBookingCard: ((Booking, CGFloat) -> AnyView)?
@@ -47,6 +48,33 @@ struct BookingCardListingsView: View {
             return constructor(booking, width)
         }
         
-        return AnyView(BookingCard(booking: booking, width: width) { })
+        switch pov {
+        case .guide:
+            return AnyView(guidePOVBookingCard(booking: booking, width: width))
+        case .tourist:
+            return AnyView(touristPOVBookingCard(booking: booking, width: width))
+        }
+    }
+
+    private func guidePOVBookingCard(booking: Booking, width: CGFloat) -> some View {
+        let tourist = booking.tourist
+        let chatView = ContactTouristPage(tourist: tourist)
+        return BookingCard(booking: booking,
+                           width: width,
+                           chatPartner: tourist,
+                           chatView: chatView) { }
+    }
+
+    private func touristPOVBookingCard(booking: Booking, width: CGFloat) -> some View {
+        let guide = booking.guide
+        let chatView = ContactGuidePage(guide: guide)
+        return BookingCard(booking: booking,
+                           width: width / 2,
+                           chatPartner: guide,
+                           chatView: chatView) { }
+    }
+
+    enum PointOfView: String {
+        case guide, tourist
     }
 }

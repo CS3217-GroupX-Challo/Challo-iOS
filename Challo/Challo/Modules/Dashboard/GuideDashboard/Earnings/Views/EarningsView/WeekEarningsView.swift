@@ -13,14 +13,18 @@ struct WeekEarningsView: View {
 
     @ObservedObject private var presenter: WeekEarningsPresenter
 
-    init(superPresenter: GuideDashboardPresenter) {
+    init(superPresenter: GuideEarningsPresenter) {
         presenter = superPresenter.weekSubPresenter
     }
 
     var body: some View {
         VStack {
             if presenter.loading {
-                Loading(isAnimating: .constant(true), style: .large)
+                VStack {
+                    Spacer()
+                    Loading(isAnimating: .constant(true), style: .large)
+                    Spacer()
+                }
             } else {
                 Card {
                     Text("Total earnings of the week:")
@@ -38,6 +42,7 @@ struct WeekEarningsView: View {
                 BarChart(axisLabels: presenter.dateRange
                             .map { Formatter.displayDateWithCustomFormat($0, template: "EEE") },
                          data: presenter.history)
+                    .frame(maxWidth: .infinity)
             }
 
         }

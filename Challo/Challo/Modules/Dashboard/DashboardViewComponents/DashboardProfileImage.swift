@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct DashboardProfileImage: View {
-    @EnvironmentObject var presenter: TouristDashboardPresenter
+struct DashboardProfileImage<Provider: ProfileImageProvider>: View {
+    @EnvironmentObject var presenter: Provider
 
     var body: some View {
         Group {

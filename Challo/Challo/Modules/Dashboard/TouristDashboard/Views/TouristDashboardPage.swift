@@ -28,7 +28,7 @@ struct TouristDashboardPage: View {
             if presenter.selectedTab == .upcomingBookings {
                 BookingCardListingsView(
                     width: geometry.size.width,
-                    emptyListMessage: "You don't have any upcoming trips",
+                    pov: .tourist,
                     bookings: $presenter.upcomingBookings,
                     isRefreshing: $presenter.isRefreshing)
             }
@@ -36,7 +36,7 @@ struct TouristDashboardPage: View {
             if presenter.selectedTab == .pastBookings {
                 BookingCardListingsView(
                     width: geometry.size.width,
-                    emptyListMessage: "You don't have any past trips",
+                    pov: .tourist,
                     bookings: $presenter.pastBookings,
                     isRefreshing: $presenter.isRefreshing) { booking, width in
                     AnyView(PastBookingCard(booking: booking, width: width))
@@ -66,7 +66,7 @@ struct TouristDashboardPage: View {
                     }
                 }
             }
-            DashboardProfileImage()
+            DashboardProfileImage<TouristDashboardPresenter>()
                 .frame(height: 130)
                 .padding()
                 .shadow(color: .black, radius: 4, x: 3, y: 4)
