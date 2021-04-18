@@ -5,11 +5,13 @@
 //  Created by Shao Yi on 18/4/21.
 //
 
-protocol EntityProfilePresenter: PresenterProtocol {
+protocol EntityProfilePresenter: PresenterProtocol where Interactor: EntityProfileInteractor,
+                                                         Interactor.Entity == Entity {
     associatedtype Entity: ImageableEntity
     
-    var userState: UserStateProtocol { get }
+    var isUserLoggedIn: Bool { get }
     var isShowingNotLoggedInAlert: Bool { get set }
+    var canUserClickCTA: Bool { get }
     
     var currentEntity: Entity? { get set }
     var currentEntityImage: String? { get }
@@ -18,6 +20,14 @@ protocol EntityProfilePresenter: PresenterProtocol {
 }
 
 extension EntityProfilePresenter {
+    var isUserLoggedIn: Bool {
+        interactor.userState.loggedIn
+    }
+    
+    var canUserClickCTA: Bool {
+        isUserLoggedIn
+    }
+    
     var currentEntityImage: String? {
         guard let entity = currentEntity, !entity.images.isEmpty else {
             return nil
@@ -26,7 +36,7 @@ extension EntityProfilePresenter {
     }
     
     func onTapBookCTAButton() {
-        if userState.loggedIn {
+        if isUserLoggedIn {
             return
         }
         isShowingNotLoggedInAlert = true

@@ -8,25 +8,16 @@
 import SwiftUI
 
 class TrailProfilePresenter: EntityProfilePresenter, ObservableObject {
-
-    var userState: UserStateProtocol
+    
     var interactor: TrailProfileInteractor!
     var router: TrailProfileRouter?
     var trailBookingPage: AnyView? {
         router?.trailBookingPage
     }
 
-    init(userState: UserStateProtocol) {
-        self.userState = userState
-    }
-
     @Published var isLoadingReviews = false
     @Published var isShowingNotLoggedInAlert = false
     
-    var userCanMakeBooking: Bool {
-        userState.loggedIn
-    }
-
     var reviews: [Review] = []
     var currentEntity: Trail?
     

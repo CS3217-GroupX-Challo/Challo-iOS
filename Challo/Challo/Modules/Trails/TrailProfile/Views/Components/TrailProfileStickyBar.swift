@@ -30,7 +30,7 @@ struct TrailProfileStickyBar: View {
                 .padding([.top, .bottom], 10)
                 .font(Font.system(size: 15, weight: .semibold))
         }
-        .disabled(!presenter.userCanMakeBooking)
+        .disabled(!presenter.canUserClickCTA)
         .onTapGesture {
             presenter.onTapBookCTAButton()
         }
