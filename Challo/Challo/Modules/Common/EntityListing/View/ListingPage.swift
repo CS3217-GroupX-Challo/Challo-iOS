@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ListingPage<Presenter: EntityListingPresenter>: View {
+struct ListingPage<Presenter: EntityListingPresenter & SearchableEntityListingPresenter>: View {
     
     @EnvironmentObject var presenter: Presenter
     

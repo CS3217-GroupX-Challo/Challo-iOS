@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-protocol EntityListingPresenter: SearchBarPresenter where Router: EntityListingRouter,
-                                                          Router.Entity == Entity,
-                                                          Interactor: EntityListingInteractor,
-                                                          Interactor.Entity == Entity {
+protocol EntityListingPresenter: PresenterProtocol where Router: EntityListingRouter,
+                                                         Router.Entity == Entity,
+                                                         Interactor: EntityListingInteractor,
+                                                         Interactor.Entity == Entity {
     associatedtype Entity
     
     var router: Router? { get set }

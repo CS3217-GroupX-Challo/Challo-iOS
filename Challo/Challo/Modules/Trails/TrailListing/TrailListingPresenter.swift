@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-class TrailListingPresenter: EntityListingPresenter, PriceFilterableEntityListingPresenter, ObservableObject {    
+class TrailListingPresenter: EntityListingPresenter,
+                             PriceFilterableEntityListingPresenter,
+                             SearchableEntityListingPresenter,
+                             ObservableObject {
     typealias Entity = Trail
     
     var interactor: TrailListingInteractor!
@@ -29,14 +32,12 @@ class TrailListingPresenter: EntityListingPresenter, PriceFilterableEntityListin
         }
     }
     
-    @Published var searchBarText: String = ""
-    @Published var isSearchBarSheetOpen: Bool = false
-    
     @Published var showEasyTrails = true
     @Published var showModerateTrails = true
     @Published var showDifficultTrails = true
     
     var priceFilterPresenter = EntityListingPriceFilterPresenter<Trail>(getPriceFromEntity: { $0.lowestFee })
+    @Published var searchPresenter = EntityListingSearchPresenter<Trail>(getSearchCriteriaFromEntity: { $0.title })
     
     var difficultiesToDisplay: [TrailDifficulty] {
         var difficulties = [TrailDifficulty]()
@@ -49,7 +50,7 @@ class TrailListingPresenter: EntityListingPresenter, PriceFilterableEntityListin
     var displayedCards: [ListingCard] {
         var trails = self.entities
         trails = applyFilter(trails)
-        trails = applySearch(trails)
+        trails = searchPresenter.applySearch(trails)
         trails.sort {
             $0.title < $1.title
         }
@@ -59,13 +60,6 @@ class TrailListingPresenter: EntityListingPresenter, PriceFilterableEntityListin
     private func applyFilter(_ trails: [Trail]) -> [Trail] {
         let trails = priceFilterPresenter.applyFilter(trails)
         return trails.filter { difficultiesToDisplay.contains($0.difficulty) }
-    }
-    
-    private func applySearch(_ trails: [Trail]) -> [Trail] {
-        guard !searchBarText.isEmpty else {
-            return trails
-        }
-        return trails.filter { $0.title.contains(searchBarText) }
     }
     
     func transformTrailToTrailListingCard(_ trail: Trail) -> ListingCard {

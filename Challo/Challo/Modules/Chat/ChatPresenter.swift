@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class ChatPresenter: SearchBarPresenter, ObservableObject {
+class ChatPresenter: PresenterProtocol, SearchableEntityListingPresenter, ObservableObject {
     var router: ChatRouter?
     var interactor: ChatInteractor!
     
@@ -21,8 +21,10 @@ class ChatPresenter: SearchBarPresenter, ObservableObject {
     @Published var currentOpenDialog: ChatDialog?
     
     @Published var messageText: String = ""
-    @Published var searchBarText: String = ""
-    @Published var isSearchBarSheetOpen: Bool = false
+    
+    @Published var searchPresenter = EntityListingSearchPresenter<ChatDialog> {
+        ($0.chateeName ?? "").lowercased()
+    }
     
     var currentOpenChateeProfileImg: String? {
         currentOpenDialog?.chateeProfileImage
@@ -33,10 +35,7 @@ class ChatPresenter: SearchBarPresenter, ObservableObject {
     }
     
     var filteredDialogs: [ChatDialog] {
-        guard !searchBarText.isEmpty else {
-            return dialogs
-        }
-        return dialogs.filter({ ($0.chateeName ?? "").lowercased().contains(searchBarText.lowercased()) })
+        searchPresenter.applySearch(dialogs)
     }
     
     // Chat can only be displayed when user is logged in

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchBar<Presenter: SearchBarPresenter>: View {
+struct SearchBar<Presenter: SearchableEntityListingPresenter>: View {
     @EnvironmentObject var presenter: Presenter
     @State private var isEditing = false
     
@@ -21,7 +21,7 @@ struct SearchBar<Presenter: SearchBarPresenter>: View {
     
     var body: some View {
         HStack {
-            TextField(placeholder, text: $presenter.searchBarText)
+            TextField(placeholder, text: $presenter.searchPresenter.searchBarText)
                 .padding(7)
                 .padding(.horizontal, 25)
                 .border(Color(.systemGray6))
@@ -51,7 +51,7 @@ struct SearchBar<Presenter: SearchBarPresenter>: View {
                 SearchBarCancelButton<Presenter>(isEditing: $isEditing)
             }
         }.padding(.bottom, 40)
-        .sheet(isPresented: $presenter.isSearchBarSheetOpen) {
+        .sheet(isPresented: $presenter.searchPresenter.isSearchBarSheetOpen) {
             searchBarSheet
         }
     }

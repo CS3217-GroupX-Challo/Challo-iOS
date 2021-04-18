@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import Foundation
 
-class GuidesListingPresenter: SearchBarPresenter {
+class GuidesListingPresenter: PresenterProtocol, SearchableEntityListingPresenter {
     
     var router: GuidesListingRouter?
     var interactor: GuidesListingInteractor!
@@ -29,12 +29,7 @@ class GuidesListingPresenter: SearchBarPresenter {
     
     @Published var slider = CustomSlider(width: 600, start: 1, end: 5)
     
-    @Published var isSearchBarSheetOpen: Bool = false
-    @Published var searchBarText: String = "" {
-        didSet {
-            applyFiltering()
-        }
-    }
+    @Published var searchPresenter = EntityListingSearchPresenter<Guide> { $0.name ?? "" }
     
     @Published var sexFilterType: String = "Default" {
         didSet {
@@ -58,7 +53,9 @@ class GuidesListingPresenter: SearchBarPresenter {
     var originalGuides: [Guide] = []
     
     var displayedGuides: [Guide] {
-        guides.sorted {
+        var guidesToDisplay = guides
+        guidesToDisplay = searchPresenter.applySearch(guidesToDisplay)
+        return guidesToDisplay.sorted {
             ($0.name ?? "").lowercased() < ($1.name ?? "").lowercased()
         }
     }
@@ -89,21 +86,9 @@ class GuidesListingPresenter: SearchBarPresenter {
 extension GuidesListingPresenter {
     private func applyFiltering() {
         guides = originalGuides
-        filterBySearchKeyword()
         filterBySex()
         filterByLanguage()
         filterByRating()
-    }
-    
-    private func filterBySearchKeyword() {
-        if searchBarText.isEmpty {
-            return
-        }
-        
-        guides = guides.filter { guide in
-            guide.name?.lowercased().contains(searchBarText.lowercased())
-                ?? false
-        }
     }
     
     private func filterBySex() {
