@@ -22,6 +22,7 @@ class GuideDashboardPresenter: PresenterProtocol {
 
     @Published var name: String
     @Published var loading: Bool = true
+    @Published var hasGuideOnboarded: Bool = true
 
     var weekSubPresenter = WeekEarningsPresenter()
     var yearSubPresenter = YearEarningsPresenter()
@@ -32,4 +33,13 @@ class GuideDashboardPresenter: PresenterProtocol {
         self.name = userState.name
     }
 
+    func setHasGuideOnboarded(value: Bool) {
+        self.loading = false
+        hasGuideOnboarded = value
+    }
+
+    func onAppear() {
+        self.loading = true
+        interactor.checkOnboardingStatus()
+    }
 }

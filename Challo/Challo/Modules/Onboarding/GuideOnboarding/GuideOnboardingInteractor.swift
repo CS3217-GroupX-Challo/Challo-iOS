@@ -52,9 +52,6 @@ class GuideOnboardingInteractor: InteractorProtocol {
             }
             self?.certificateManager.storeCertificate(certificate: certificateUnwrapped)
             self?.presenter.showSubmissionResult(success: true)
-            #if GUIDE
-            self?.userState.completedOnboarding = true
-            #endif
         }
     }
 
