@@ -8,22 +8,7 @@
 import SwiftUI
 
 struct TrailListingFilter: View {
-    
-    @ObservedObject var presenter: TrailListingPresenter
-    @ObservedObject var slider: CustomSlider
-    
-    init(presenter: TrailListingPresenter) {
-        self.presenter = presenter
-        slider = presenter.slider
-    }
-    
-    var sliderLowerValue: String {
-        String(format: "%.0f", floor(slider.lowHandle.currentValue))
-    }
-    
-    var sliderUpperValue: String {
-        String(format: "%.0f", ceil(slider.highHandle.currentValue))
-    }
+    @EnvironmentObject var presenter: TrailListingPresenter
     
     private func makeDifficultyFilter(difficultyLabel: String, difficultyColor: Color,
                                       isChecked: Binding<Bool>) -> some View {
@@ -49,31 +34,14 @@ struct TrailListingFilter: View {
         }
     }
     
-    private var priceRange: some View {
-        VStack(alignment: .leading) {
-            FilterViewUtility.makeFilterSectionTitle("Price Range")
-                .padding(.vertical, 20)
-            Text("$\(sliderLowerValue) - $\(sliderUpperValue)")
-            CustomSliderView(slider: slider)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 40)
-        }.frame(maxWidth: .infinity)
-    }
-    
     var body: some View {
         FilterViewUtility.makeFilterSheet {
             VStack(alignment: .leading) {
                 difficultyFilters
                 Divider()
                     .padding(.vertical, 10)
-                priceRange
+                PriceFilterView<TrailListingPresenter>(presenter: presenter)
             }.padding(.horizontal, 50)
         }
-    }
-}
-
-struct TrailListingFilter_Previews: PreviewProvider {
-    static var previews: some View {
-        TrailListingFilter(presenter: TrailListingPresenter())
     }
 }

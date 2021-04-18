@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 class TrailListingPresenter: EntityListingPresenter,
                              PriceFilterableEntityListingPresenter,
@@ -38,6 +39,12 @@ class TrailListingPresenter: EntityListingPresenter,
     
     var priceFilterPresenter = EntityListingPriceFilterPresenter<Trail>(getPriceFromEntity: { $0.lowestFee })
     @Published var searchPresenter = EntityListingSearchPresenter<Trail>(getSearchCriteriaFromEntity: { $0.title })
+    
+    var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        didInitSearchableEntityListingPresenter()
+    }
     
     var difficultiesToDisplay: [TrailDifficulty] {
         var difficulties = [TrailDifficulty]()

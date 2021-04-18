@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 class ChatPresenter: PresenterProtocol, SearchableEntityListingPresenter, ObservableObject {
     var router: ChatRouter?
@@ -24,6 +25,12 @@ class ChatPresenter: PresenterProtocol, SearchableEntityListingPresenter, Observ
     
     @Published var searchPresenter = EntityListingSearchPresenter<ChatDialog> {
         ($0.chateeName ?? "").lowercased()
+    }
+    
+    var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        didInitSearchableEntityListingPresenter()
     }
     
     var currentOpenChateeProfileImg: String? {

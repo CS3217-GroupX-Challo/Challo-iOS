@@ -49,6 +49,12 @@ class GuidesListingPresenter: PresenterProtocol, SearchableEntityListingPresente
         }
     }
     
+    var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        didInitSearchableEntityListingPresenter()
+    }
+    
     @Published var guides: [Guide] = []
     var originalGuides: [Guide] = []
     

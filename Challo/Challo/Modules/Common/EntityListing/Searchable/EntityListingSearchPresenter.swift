@@ -8,11 +8,7 @@
 import SwiftUI
 
 class EntityListingSearchPresenter<Entity>: ObservableObject {
-    @Published var searchBarText: String = "" {
-        willSet {
-            objectWillChange.send()
-        }
-    }
+    @Published var searchBarText: String = ""
     @Published var isSearchBarSheetOpen: Bool = false
     
     let getSearchCriteriaFromEntity: (Entity) -> String
