@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-class ChatPresenter: PresenterProtocol, SearchableEntityListingPresenter, ObservableObject {
+final class ChatPresenter: PresenterProtocol, SearchableEntityListingPresenter, ObservableObject {
     var router: ChatRouter?
     var interactor: ChatInteractor!
     
@@ -23,14 +23,15 @@ class ChatPresenter: PresenterProtocol, SearchableEntityListingPresenter, Observ
     
     @Published var messageText: String = ""
     
-    @Published var searchPresenter = EntityListingSearchPresenter<ChatDialog> {
-        ($0.chateeName ?? "").lowercased()
-    }
-    
-    var cancellables = Set<AnyCancellable>()
-    
+    @Published var searchPresenter: EntityListingSearchPresenter<ChatDialog>!
+        
     init() {
-        didInitSearchableEntityListingPresenter()
+        searchPresenter = EntityListingSearchPresenter<ChatDialog>(
+            presenterWillChange: {
+                [weak self] in self?.objectWillChange.send()
+            }) {
+                ($0.chateeName ?? "").lowercased()
+        }
     }
     
     var currentOpenChateeProfileImg: String? {

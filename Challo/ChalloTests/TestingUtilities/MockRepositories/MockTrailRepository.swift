@@ -30,7 +30,11 @@ class MockTrailRepository: Repository<UUID, Trail>, TrailRepositoryProtocol {
         }
     }
     
-    func initialFetch(didFetch: @escaping (([Trail]) -> Void)) {
-        fetchTrailsAndRefresh(didRefresh: didFetch)
+    func fetchAllAndRefresh(didRefresh: (() -> Void)?) {
+        fetchTrailsAndRefresh(didRefresh: { _ in didRefresh?() })
+    }
+    
+    func initialFetch(didFetch: (() -> Void)?) {
+        fetchTrailsAndRefresh(didRefresh: { _ in didFetch?() })
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TouristDashboardInteractor: EntityListingInteractor {
+class TouristDashboardInteractor: InteractorProtocol {
     
     typealias Entity = Booking
     

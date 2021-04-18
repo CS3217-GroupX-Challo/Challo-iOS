@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class TrailListingRouter: EntityListingRouter {
+class TrailListingRouter: ProfilableEntityListingRouter {
     typealias Entity = Trail
     
     weak var presenter: TrailListingPresenter!

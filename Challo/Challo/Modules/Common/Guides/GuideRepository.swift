@@ -37,9 +37,9 @@ class GuideRepository: Repository<UUID, Guide>, GuideRepositoryProtocol, LocalSt
         }
     }
 
-    func initialFetch(didFetch: @escaping (([Guide]) -> Void)) {
+    func initialFetch(didFetch: (() -> Void)?) {
         if isInitialized {
-            didFetch(self.getAll())
+            didFetch?()
             return
         }
         fetchGuidesAndRefresh { guides in
@@ -48,11 +48,15 @@ class GuideRepository: Repository<UUID, Guide>, GuideRepositoryProtocol, LocalSt
             if guides.isEmpty {
                 let localGuides = self.retrieveFromLocalStore()
                 self.refreshGuides(localGuides)
-                didFetch(localGuides)
+                didFetch?()
                 return
             }
             
-            didFetch(guides)
+            didFetch?()
         }
+    }
+    
+    func fetchAllAndRefresh(didRefresh: (() -> Void)?) {
+        fetchGuidesAndRefresh(didRefresh: { _ in didRefresh?() })
     }
 }

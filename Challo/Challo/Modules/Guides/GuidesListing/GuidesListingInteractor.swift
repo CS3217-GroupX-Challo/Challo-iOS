@@ -7,26 +7,14 @@
 import Foundation
 
 class GuidesListingInteractor: EntityListingInteractor {
-
+    
     typealias Entity = Guide
     
     weak var presenter: GuidesListingPresenter!
     
-    let guideRepository: GuideRepositoryProtocol
+    var repository: Repository<UUID, Guide> & FetchableRepository
     
     init(guideRepository: GuideRepositoryProtocol) {
-        self.guideRepository = guideRepository
-    }
-    
-    func getAllEntities() {
-        guideRepository.fetchGuidesAndRefresh(didRefresh: presenter.didPopulateGuides)
-    }
-
-    func getCachedEntities() -> [Guide] {
-        guideRepository.getAll()
-    }
-
-    func initialFetch() {
-        guideRepository.initialFetch(didFetch: presenter.didPopulateGuides)
+        self.repository = guideRepository
     }
 }

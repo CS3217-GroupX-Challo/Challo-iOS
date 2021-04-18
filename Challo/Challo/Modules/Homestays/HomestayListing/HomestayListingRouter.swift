@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class HomestayListingRouter: EntityListingRouter {
+class HomestayListingRouter: ProfilableEntityListingRouter {
     
     typealias Entity = Homestay
     
