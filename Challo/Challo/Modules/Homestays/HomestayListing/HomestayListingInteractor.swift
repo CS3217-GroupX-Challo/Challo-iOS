@@ -16,8 +16,8 @@ class HomestayListingInteractor: EntityListingInteractor {
         self.repository = homestayRepository
     }
 
-    func getAllTrails() {
-//        repository.fetchTrailsAndRefresh(didRefresh: presenter.didGetAllTrails)
+    func getAllEntities() {
+        repository.fetchHomestaysAndRefresh(didRefresh: presenter.didGetAllEntities)
     }
 
     func getCachedEntities() -> [Homestay] {

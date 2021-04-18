@@ -27,7 +27,13 @@ class MainContainerRouter: RouterProtocol {
         apiContainer = APIContainer(userState: userState)
         repositoryContainer = RepositoryContainer(apiContainer: apiContainer)
         
-        homePage = AnyView(Text("Homepage"))
+        homePage = HomestayListingModule(homestayRepository:
+                                            HomestayRepository(homestayAPI:
+                                                                HomestayAPI(homestayParser: HomestayAPIParser(),
+                                                                            hostAPI: HostAPI(hostParser: HostAPIParser(),
+                                                                                             networkManager: APINetwork.getNetworkManager()),
+                                                                            networkManager: APINetwork.getNetworkManager())))
+            .assemble().view
         trailsPage = TrailListingModule(trailRepository: resolveTrailRepository(),
                                         guideRepository: resolveGuideRepository(),
                                         bookingRepository: resolveBookingRepository(),

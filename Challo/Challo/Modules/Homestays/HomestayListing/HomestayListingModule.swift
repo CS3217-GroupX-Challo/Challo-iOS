@@ -22,6 +22,6 @@ final class HomestayListingModule: ViperModuleProtocol {
         presenter.interactor = interactor
         presenter.router = router
         router.presenter = presenter
-        return (AnyView(EmptyView()), presenter: presenter)
+        return (AnyView(HomestayListingPage().environmentObject(presenter)), presenter: presenter)
     }
 }

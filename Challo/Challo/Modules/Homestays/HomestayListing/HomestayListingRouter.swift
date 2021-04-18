@@ -5,9 +5,17 @@
 //  Created by Shao Yi on 17/4/21.
 //
 
-import Foundation
+import SwiftUI
 
-class HomestayListingRouter: RouterProtocol {
+class HomestayListingRouter: EntityListingRouter {
+    
+    typealias Entity = Homestay
+    
     weak var presenter: HomestayListingPresenter!
+    
+    var profilePage = AnyView(EmptyView())
+    
+    func populateProfilePage(_ entity: Homestay) {
+    }
 
 }

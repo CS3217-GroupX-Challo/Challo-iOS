@@ -7,8 +7,57 @@
 
 import SwiftUI
 
-class HomestayListingPresenter: PresenterProtocol {
+class HomestayListingPresenter: EntityListingPresenter, ObservableObject {
     var interactor: HomestayListingInteractor!
     var router: HomestayListingRouter?
     
+    var entities: [Homestay] = [] {
+        didSet {
+//            setSlider()
+        }
+    }
+    
+    @Published var isLoading = false
+    @Published var isRefreshing = false {
+        didSet {
+            if isRefreshing == true {
+                interactor.getAllEntities()
+            }
+        }
+    }
+    
+    @Published var searchBarText: String = ""
+    @Published var isSearchBarSheetOpen: Bool = false
+    
+    func getEntityByCardId(_ cardId: String) -> Homestay {
+        guard let homestay = entities.first(where: { $0.homestayId == UUID(uuidString: cardId) }) else {
+            fatalError("trails is not synced with cards")
+        }
+        return homestay
+    }
+    
+    #warning("abstract")
+    func onPageAppear() {
+        isLoading = true
+        self.entities = interactor.getCachedEntities()
+        getAllEntities()
+    }
+    
+    var displayedCards: [ListingCard] {
+        entities.map(transformHomestayToCard)
+    }
+
+    func transformHomestayToCard(_ homestay: Homestay) -> ListingCard {
+        ListingCard(id: homestay.homestayId.uuidString,
+                    entityImage: homestay.images.isEmpty ? nil : homestay.images[0],
+                    defaultImage: "mountains-background") {
+            AnyView(TrailListingCardDetail(title: homestay.title,
+                                          tags: ["Hello"],
+                                          lowestFeePerPax: Int(homestay.fee),
+                                          tourDescription: homestay.description ?? "",
+                                          rating: homestay.rating,
+                                          numOfReviews: 1,
+                                          difficulty: .Easy))
+        }
+    }
 }
