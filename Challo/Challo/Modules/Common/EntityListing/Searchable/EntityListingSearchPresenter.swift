@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 /// A helper class that encapsulates the functionality of search
 
@@ -16,9 +17,18 @@ class EntityListingSearchPresenter<Entity>: ObservableObject {
     @Published var isSearchBarSheetOpen: Bool = false
     
     let getSearchCriteriaFromEntity: (Entity) -> String
-    
-    init(getSearchCriteriaFromEntity: @escaping (Entity) -> String) {
+    var cancellables = Set<AnyCancellable>()
+
+    init(presenterWillChange: @escaping (() -> Void),
+         getSearchCriteriaFromEntity: @escaping (Entity) -> String) {
         self.getSearchCriteriaFromEntity = getSearchCriteriaFromEntity
+        
+        self.$isSearchBarSheetOpen.sink(receiveValue: { _ in
+            presenterWillChange()
+        }).store(in: &cancellables)
+        self.$searchBarText.sink(receiveValue: { _ in
+            presenterWillChange()
+        }).store(in: &cancellables)
     }
     
     func applySearch(_ entities: [Entity]) -> [Entity] {

@@ -8,9 +8,9 @@
 import SwiftUI
 import Combine
 
-class HomestayListingPresenter: ProfilableEntityListingPresenter,
-                                SearchableEntityListingPresenter,
-                                PriceFilterableEntityListingPresenter {
+final class HomestayListingPresenter: ProfilableEntityListingPresenter,
+                                      SearchableEntityListingPresenter,
+                                      PriceFilterableEntityListingPresenter {
     typealias Entity = Homestay
 
     var interactor: HomestayListingInteractor!
@@ -33,12 +33,15 @@ class HomestayListingPresenter: ProfilableEntityListingPresenter,
     }
     
     var priceFilterPresenter = EntityListingPriceFilterPresenter<Homestay>(getPriceFromEntity: { Int($0.fee) })
-    @Published var searchPresenter = EntityListingSearchPresenter<Homestay>(getSearchCriteriaFromEntity: { $0.title })
-    
-    var cancellables = Set<AnyCancellable>()
-    
+    @Published var searchPresenter: EntityListingSearchPresenter<Homestay>!
+        
     init() {
-        didInitSearchableEntityListingPresenter()
+        searchPresenter = EntityListingSearchPresenter<Homestay>(
+            presenterWillChange: {
+                [weak self] in self?.objectWillChange.send()
+            }) {
+                $0.title
+        }
     }
     
     func matchEntityToCardId(entity: Homestay, cardId: String) -> Bool {

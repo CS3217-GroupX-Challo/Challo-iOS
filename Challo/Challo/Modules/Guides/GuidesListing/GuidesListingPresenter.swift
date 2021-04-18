@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import Foundation
 
-class GuidesListingPresenter: EntityListingPresenter, SearchableEntityListingPresenter {
+final class GuidesListingPresenter: EntityListingPresenter, SearchableEntityListingPresenter {
     
     typealias Entity = Guide
     
@@ -32,7 +32,7 @@ class GuidesListingPresenter: EntityListingPresenter, SearchableEntityListingPre
     
     @Published var slider = CustomSlider(width: 600, start: 1, end: 5)
     
-    @Published var searchPresenter = EntityListingSearchPresenter<Guide> { $0.name ?? "" }
+    @Published var searchPresenter: EntityListingSearchPresenter<Guide>!
     
     @Published var sexFilterType: String = "Default" {
         didSet {
@@ -52,10 +52,13 @@ class GuidesListingPresenter: EntityListingPresenter, SearchableEntityListingPre
         }
     }
     
-    var cancellables = Set<AnyCancellable>()
-    
     init() {
-        didInitSearchableEntityListingPresenter()
+        searchPresenter = EntityListingSearchPresenter<Guide>(
+            presenterWillChange: {
+                [weak self] in self?.objectWillChange.send()
+            }) {
+                $0.name ?? ""
+        }
     }
     
     @Published var entities: [Guide] = []

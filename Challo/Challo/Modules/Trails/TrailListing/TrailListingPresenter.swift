@@ -8,10 +8,10 @@
 import SwiftUI
 import Combine
 
-class TrailListingPresenter: ProfilableEntityListingPresenter,
-                             PriceFilterableEntityListingPresenter,
-                             SearchableEntityListingPresenter,
-                             ObservableObject {
+final class TrailListingPresenter: ProfilableEntityListingPresenter,
+                                   PriceFilterableEntityListingPresenter,
+                                   SearchableEntityListingPresenter,
+                                   ObservableObject {
     typealias Entity = Trail
     
     var interactor: TrailListingInteractor!
@@ -38,12 +38,15 @@ class TrailListingPresenter: ProfilableEntityListingPresenter,
     @Published var showDifficultTrails = true
     
     var priceFilterPresenter = EntityListingPriceFilterPresenter<Trail>(getPriceFromEntity: { $0.lowestFee })
-    @Published var searchPresenter = EntityListingSearchPresenter<Trail>(getSearchCriteriaFromEntity: { $0.title })
-    
-    var cancellables = Set<AnyCancellable>()
+    @Published var searchPresenter: EntityListingSearchPresenter<Trail>!
     
     init() {
-        didInitSearchableEntityListingPresenter()
+        searchPresenter = EntityListingSearchPresenter<Trail>(
+            presenterWillChange: {
+                [weak self] in self?.objectWillChange.send()
+            }) {
+                $0.title
+        }
     }
     
     var difficultiesToDisplay: [TrailDifficulty] {
