@@ -29,6 +29,9 @@ class HomestayRepository: Repository<UUID, Homestay>, HomestayRepositoryProtocol
         }
     }
     
+    func initialFetch(didFetch: (() -> Void)?) {
+    }
+    
     func fetchAllAndRefresh(didRefresh: (() -> Void)?) {
         fetchHomestaysAndRefresh(didRefresh: { _ in didRefresh?() })
     }

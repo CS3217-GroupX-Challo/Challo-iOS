@@ -37,9 +37,9 @@ class TrailRepository: Repository<UUID, Trail>, TrailRepositoryProtocol, LocalSt
         }
     }
 
-    func initialFetch(didFetch: @escaping (([Trail]) -> Void)) {
+    func initialFetch(didFetch: (() -> Void)?) {
         if isInitialized {
-            didFetch(self.getAll())
+            didFetch?()
             return
         }
         fetchTrailsAndRefresh { trails in
@@ -48,11 +48,11 @@ class TrailRepository: Repository<UUID, Trail>, TrailRepositoryProtocol, LocalSt
             if trails.isEmpty {
                 let localTrails = self.retrieveFromLocalStore()
                 self.refreshTrails(localTrails)
-                didFetch(localTrails)
+                didFetch?()
                 return
             }
             
-            didFetch(trails)
+            didFetch?()
         }
     }
     

@@ -18,8 +18,4 @@ class TrailListingInteractor: EntityListingInteractor {
         self.repository = trailRepository
     }
 
-    func initialFetch() {
-        repository.initialFetch(didFetch: presenter.didGetAllEntities)
-    }
-
 }

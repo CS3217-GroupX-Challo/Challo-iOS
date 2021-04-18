@@ -9,8 +9,6 @@ import Foundation
 class GuidesListingInteractor: EntityListingInteractor {
     
     typealias Entity = Guide
-
-    typealias Entity = Guide
     
     weak var presenter: GuidesListingPresenter!
     
@@ -18,9 +16,5 @@ class GuidesListingInteractor: EntityListingInteractor {
     
     init(guideRepository: GuideRepositoryProtocol) {
         self.repository = guideRepository
-    }
-
-    func initialFetch() {
-        guideRepository.initialFetch(didFetch: presenter.didPopulateGuides)
     }
 }

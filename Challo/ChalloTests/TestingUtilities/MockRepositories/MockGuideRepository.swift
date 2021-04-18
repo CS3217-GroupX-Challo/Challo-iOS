@@ -36,8 +36,12 @@ class MockGuideRepository: Repository<UUID, Guide>, GuideRepositoryProtocol {
             didRefresh?(guides)
         }
     }
+    
+    func fetchAllAndRefresh(didRefresh: (() -> Void)?) {
+        fetchGuidesAndRefresh(didRefresh: { _ in didRefresh?() })
+    }
 
-    func initialFetch(didFetch: @escaping (([Guide]) -> Void)) {
-        fetchGuidesAndRefresh(didRefresh: didFetch)
+    func initialFetch(didFetch: (() -> Void)?) {
+        fetchGuidesAndRefresh(didRefresh: { _ in didFetch?() })
     }
 }

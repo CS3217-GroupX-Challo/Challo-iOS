@@ -78,9 +78,9 @@ final class GuidesListingPresenter: EntityListingPresenter, SearchableEntityList
         entity.userId == UUID(uuidString: cardId)
     }
     
-    func didPopulateGuides(guides: [Guide]) {
-        self.entities = guides
-        originalGuides = guides
+    func didGetAllEntities(entities: [Guide]) {
+        self.entities = entities
+        originalGuides = entities
         isLoading = false
         isRefreshing = false
     }

@@ -9,7 +9,6 @@ import Foundation
 
 protocol TrailRepositoryProtocol: Repository<UUID, Trail>, FetchableRepository {
     func fetchTrailsAndRefresh(didRefresh: (([Trail]) -> Void)?)
-    func initialFetch(didFetch: @escaping (([Trail]) -> Void))
 }
 
 extension TrailRepositoryProtocol {
