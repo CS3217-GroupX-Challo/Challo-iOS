@@ -26,12 +26,20 @@ protocol EntityListingPresenter: PresenterProtocol where Router: EntityListingRo
     var profilePage: AnyView? { get }
     
     func getAllEntities()
-    func getEntityByCardId(_ cardId: String) -> Entity
+    func matchEntityToCardId(entity: Entity, cardId: String) -> Bool
     func onTapListingCard(_ cardId: String)
     func onPageAppear()
 }
 
 extension EntityListingPresenter {
+    func getEntityByCardId(_ cardId: String) -> Entity {
+        guard let entity = entities.first(where: { matchEntityToCardId(entity: $0, cardId: cardId) }) else {
+            fatalError("entity is not synced with cards")
+        }
+        return entity
+    }
+    
+    
     var profilePage: AnyView? {
         router?.profilePage
     }

@@ -83,10 +83,7 @@ class TrailListingPresenter: EntityListingPresenter,
         }
     }
     
-    func getEntityByCardId(_ cardId: String) -> Trail {
-        guard let trail = entities.first(where: { $0.trailId == UUID(uuidString: cardId) }) else {
-            fatalError("trails is not synced with cards")
-        }
-        return trail
+    func matchEntityToCardId(entity: Trail, cardId: String) -> Bool {
+        entity.trailId == UUID(uuidString: cardId)
     }
 }

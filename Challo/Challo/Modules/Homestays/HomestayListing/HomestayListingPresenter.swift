@@ -31,9 +31,6 @@ class HomestayListingPresenter: EntityListingPresenter,
         }
     }
     
-    @Published var searchBarText: String = ""
-    @Published var isSearchBarSheetOpen: Bool = false
-    
     var priceFilterPresenter = EntityListingPriceFilterPresenter<Homestay>(getPriceFromEntity: { Int($0.fee) })
     @Published var searchPresenter = EntityListingSearchPresenter<Homestay>(getSearchCriteriaFromEntity: { $0.title })
     
@@ -43,11 +40,8 @@ class HomestayListingPresenter: EntityListingPresenter,
         didInitSearchableEntityListingPresenter()
     }
     
-    func getEntityByCardId(_ cardId: String) -> Homestay {
-        guard let homestay = entities.first(where: { $0.homestayId == UUID(uuidString: cardId) }) else {
-            fatalError("homestays is not synced with cards")
-        }
-        return homestay
+    func matchEntityToCardId(entity: Homestay, cardId: String) -> Bool {
+        entity.homestayId == UUID(uuidString: cardId)
     }
 
     var displayedCards: [ListingCard] {
