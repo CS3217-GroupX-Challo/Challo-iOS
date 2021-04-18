@@ -24,10 +24,10 @@ class GuideDashboardRouter: RouterProtocol {
         let bookingRepository = presenter.bookingRepository
         let sendMessageToTourist = presenter.sendMessageToTourist
         earningsHistoryPage = GuideEarningsModule(userState: userState,
-                                                      bookingRepository: bookingRepository,
-                                                      sendMessageToTourist: sendMessageToTourist).assemble().view
+                                                  bookingRepository: bookingRepository,
+                                                  sendMessageToTourist: sendMessageToTourist).assemble().view
         upcomingBookingsPage = GuideUpcomingBookingsModule(userState: userState,
-                                                                bookingRepository: bookingRepository,
-                                                                sendMessageToTourist: sendMessageToTourist).assemble().view
+                                                           bookingRepository: bookingRepository,
+                                                           sendMessageToTourist: sendMessageToTourist).assemble().view
     }
 }

@@ -65,7 +65,7 @@ class GuideDashboardPresenter: PresenterProtocol, ProfileImageProvider {
             selectedTab = Self.tabs[selectedIndex]
         }
     }
-    @Published var selectedTab = Self.tabs[0]
+    @Published var selectedTab = tabs[0]
 
     // MARK: Properties for submodules
 
