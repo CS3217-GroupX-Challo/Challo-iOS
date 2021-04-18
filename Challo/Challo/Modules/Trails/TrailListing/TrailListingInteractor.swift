@@ -9,18 +9,13 @@ import Foundation
 
 class TrailListingInteractor: EntityListingInteractor {
 
-    var repository: TrailRepositoryProtocol
+    typealias Entity = Trail
+    
+    var repository: Repository<UUID, Trail> & FetchableRepository
     weak var presenter: TrailListingPresenter!
 
     init(trailRepository: TrailRepositoryProtocol) {
         self.repository = trailRepository
     }
 
-    func getAllTrails() {
-        repository.fetchTrailsAndRefresh(didRefresh: presenter.didGetAllTrails)
-    }
-
-    func getCachedEntities() -> [Trail] {
-        repository.getAll()
-    }
 }

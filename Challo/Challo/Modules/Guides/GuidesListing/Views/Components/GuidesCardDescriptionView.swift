@@ -11,6 +11,7 @@ struct GuidesCardDescriptionView: View {
     var title: String
     var description: String?
     var width: CGFloat
+    var content: AnyView?
     
     var body: some View {
         VStack(spacing: 3) {
@@ -24,6 +25,10 @@ struct GuidesCardDescriptionView: View {
                     .lineLimit(3)
                     .padding(5)
                     .frame(width: width)
+            }
+            if let unwrappedContent = content {
+                unwrappedContent
+                    .padding(.top, 10)
             }
         }
     }

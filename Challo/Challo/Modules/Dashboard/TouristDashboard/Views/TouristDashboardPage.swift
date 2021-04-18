@@ -20,22 +20,26 @@ struct TouristDashboardPage: View {
                              options: presenter.tabTitles)
             
             if presenter.isLoading {
-                Loading(isAnimating: .constant(true), style: .large)
-            } else {
-                if presenter.selectedTab == .upcomingBookings {
-                    BookingCardListingsView(
-                        width: geometry.size.width,
-                        emptyListMessage: "You don't have any upcoming trips",
-                        bookings: $presenter.upcomingBookings)
+                VStack {
+                    Loading(isAnimating: .constant(true), style: .large)
                 }
-                
-                if presenter.selectedTab == .pastBookings {
-                    BookingCardListingsView(
-                        width: geometry.size.width,
-                        emptyListMessage: "You don't have any past trips",
-                        bookings: $presenter.pastBookings) { booking, width in
-                        AnyView(PastBookingCard(booking: booking, width: width))
-                    }
+            }
+
+            if presenter.selectedTab == .upcomingBookings {
+                BookingCardListingsView(
+                    width: geometry.size.width,
+                    pov: .tourist,
+                    bookings: $presenter.upcomingBookings,
+                    isRefreshing: $presenter.isRefreshing)
+            }
+            
+            if presenter.selectedTab == .pastBookings {
+                BookingCardListingsView(
+                    width: geometry.size.width,
+                    pov: .tourist,
+                    bookings: $presenter.pastBookings,
+                    isRefreshing: $presenter.isRefreshing) { booking, width in
+                    AnyView(PastBookingCard(booking: booking, width: width))
                 }
             }
         }
@@ -44,16 +48,25 @@ struct TouristDashboardPage: View {
     var header: some View {
         HStack {
             Spacer()
-            VStack {
+            VStack(alignment: .trailing, spacing: 15) {
                 Text(presenter.name)
                     .font(.largeTitle)
-                    .foregroundColor(.white)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
                 NavigationLink(destination: UpdateProfilePage().environmentObject(presenter)) {
-                    Text("Edit Profile")
-                        .font(.headline)
+                    HStack(spacing: 5) {
+                        Text("Edit Profile")
+                            .font(.headline)
+                            .foregroundColor(Color(.systemGray))
+                        Image(systemName: "pencil")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 15)
+                            .foregroundColor(Color(.systemGray))
+                    }
                 }
             }
-            DashboardProfileImage()
+            DashboardProfileImage<TouristDashboardPresenter>()
                 .frame(height: 130)
                 .padding()
                 .shadow(color: .black, radius: 4, x: 3, y: 4)
@@ -61,10 +74,9 @@ struct TouristDashboardPage: View {
     }
     
     var body: some View {
-        PageLayout(headerContent: AnyView(header)) { geometry in
+        PageLayout(background: .mountainBackground, headerContent: AnyView(header)) { geometry in
             makeContent(geometry)
                 .frame(maxWidth: .infinity)
-                .padding(.top, 50)
         }.onAppear {
             presenter.refresh()
         }

@@ -2,32 +2,27 @@
 //  GuideDashboardInteractor.swift
 //  Challo
 //
-//  Created by Ying Gao on 1/4/21.
+//  Created by Ying Gao on 18/4/21.
 //
 
 import Foundation
 
 class GuideDashboardInteractor: InteractorProtocol {
-
     weak var presenter: GuideDashboardPresenter!
 
-    let bookingRepository: BookingRepositoryProtocol
     let userState: UserStateProtocol
     let guideAPI: GuideAPIProtocol
+    let userAPI: UserAPIProtocol
+    let updateUserChat: ((_ name: String, _ email: String) -> Void)
 
     init(userState: UserStateProtocol,
-         bookingRepository: BookingRepositoryProtocol,
-         guideAPI: GuideAPIProtocol) {
-        self.bookingRepository = bookingRepository
+         userAPI: UserAPIProtocol,
+         guideAPI: GuideAPIProtocol,
+         updateUserChat: @escaping ((_ name: String, _ email: String) -> Void)) {
         self.userState = userState
+        self.userAPI = userAPI
         self.guideAPI = guideAPI
-    }
-
-    func populateBookings(callback: @escaping ([Booking]) -> Void) {
-        guard let uuid = UUID(uuidString: userState.userId) else {
-            return
-        }
-        bookingRepository.fetchBookingForGuideAndRefresh(id: uuid, didRefresh: callback)
+        self.updateUserChat = updateUserChat
     }
 
     func checkOnboardingStatus() {
@@ -49,3 +44,5 @@ class GuideDashboardInteractor: InteractorProtocol {
         !guide.trails.isEmpty
     }
 }
+
+extension GuideDashboardInteractor: ProfileUpdaterInteractor { }

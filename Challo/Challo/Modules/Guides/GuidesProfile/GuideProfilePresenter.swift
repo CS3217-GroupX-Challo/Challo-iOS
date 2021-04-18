@@ -12,6 +12,7 @@ class GuideProfilePresenter: PresenterProtocol {
     
     var guide: Guide
     @Published var reviews: [Review] = []
+    @Published var isLoadingReviews = false
     
     init(guide: Guide, reviewAPI: ReviewAPIProtocol) {
         self.guide = guide

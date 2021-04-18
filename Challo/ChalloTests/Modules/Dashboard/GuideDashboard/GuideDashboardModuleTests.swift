@@ -2,7 +2,7 @@
 //  GuideDashboardModuleTests.swift
 //  ChalloTests
 //
-//  Created by Ying Gao on 3/4/21.
+//  Created by Ying Gao on 18/4/21.
 //
 
 import XCTest
@@ -10,24 +10,29 @@ import XCTest
 
 class GuideDashboardModuleTests: XCTestCase {
 
-    func testAssemble() {
-        let userState = MockUserState()
+    var module: GuideDashboardModule {
+        let userState = MockUserState.createMockLoggedInUserState()
         let bookingRepository = MockBookingRepository()
         let trailRepository = MockTrailRepository()
         let guideAPI = MockGuideAPI()
-        let module = GuideDashboardModule(userState: userState,
-                                          bookingRepository: bookingRepository,
-                                          trailRepository: trailRepository,
-                                          guideAPI: guideAPI)
-        let (view, presenter) = module.assemble()
-        XCTAssertNotNil(view, "View was not properly initialised")
-        XCTAssertNotNil(presenter, "Presenter was not properly initialised")
-        guard let interactor = presenter.interactor, let router = presenter.router else {
-            XCTFail("Parts were not properly assembled")
-            return
-        }
-        XCTAssertNotNil(interactor.presenter)
-        XCTAssertNotNil(router.presenter)
+        let userAPI = MockUserAPI()
+        return GuideDashboardModule(userState: userState,
+                                    bookingRepository: bookingRepository,
+                                    trailRepository: trailRepository,
+                                    sendMessageToTourist: { _, _, _ in },
+                                    updateUserChat: { _, _ in },
+                                    userAPI: userAPI,
+                                    guideAPI: guideAPI)
+    }
+
+    func testAssemble() {
+        let (_, presenter) = module.assemble()
+        let interactor = presenter.interactor
+        let router = presenter.router
+        XCTAssertNotNil(interactor)
+        XCTAssertNotNil(router)
+        XCTAssertNotNil(interactor?.presenter)
+        XCTAssertNotNil(router?.presenter)
     }
 
 }

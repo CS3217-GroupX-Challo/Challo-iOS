@@ -4,32 +4,31 @@
 //
 //  Created by Kester Ng on 17/3/21.
 //
+
+import SwiftUI
 import Combine
 import Foundation
 
-class GuidesListingPresenter: SearchBarPresenter {
+final class GuidesListingPresenter: LoadableEntityPresenter,
+                                    EntityListingPresenter,
+                                    SearchableEntityListingPresenter {
+    
+    typealias Entity = Guide
     
     var router: GuidesListingRouter?
     var interactor: GuidesListingInteractor!
     var filterTypes = FilterTypes()
     
-    @Published var isLoading = false
-    @Published var isRefreshing = false {
-        didSet {
-            if isRefreshing {
-                populateGuides()
-            }
-        }
+    @Published var isSelectedGuideSheetOpen = false
+    @Published var selectedGuide: Guide?
+    
+    override func onRefresh() {
+        populateGuides()
     }
     
     @Published var slider = CustomSlider(width: 600, start: 1, end: 5)
     
-    @Published var isSearchBarSheetOpen: Bool = false
-    @Published var searchBarText: String = "" {
-        didSet {
-            applyFiltering()
-        }
-    }
+    @Published var searchPresenter: EntityListingSearchPresenter<Guide>!
     
     @Published var sexFilterType: String = "Default" {
         didSet {
@@ -49,46 +48,61 @@ class GuidesListingPresenter: SearchBarPresenter {
         }
     }
     
-    @Published var guides: [Guide] = []
+    override init() {
+        super.init()
+        searchPresenter = EntityListingSearchPresenter<Guide>(
+            presenterWillChange: {
+                [weak self] in self?.objectWillChange.send()
+            }) {
+                $0.name ?? ""
+        }
+    }
+    
+    @Published var entities: [Guide] = []
     var originalGuides: [Guide] = []
     
-    func didPopulateGuides(guides: [Guide]) {
-        self.guides = guides
-        originalGuides = guides
+    var displayedGuides: [Guide] {
+        var guidesToDisplay = entities
+        guidesToDisplay = searchPresenter.applySearch(guidesToDisplay)
+        return guidesToDisplay.sorted {
+            ($0.name ?? "").lowercased() < ($1.name ?? "").lowercased()
+        }
+    }
+    
+    var displayedCards: [EntityListingCard] = []
+    
+    func matchEntityToCardId(entity: Guide, cardId: String) -> Bool {
+        entity.userId == UUID(uuidString: cardId)
+    }
+    
+    func didGetAllEntities(entities: [Guide]) {
+        self.entities = entities
+        originalGuides = entities
         isLoading = false
         isRefreshing = false
     }
     
     func populateGuides() {
-        interactor.populateGuides()
+        interactor.getAllEntities()
     }
 
     func onAppear() {
         isLoading = true
-        self.guides = interactor.getCachedEntities()
-        interactor.populateGuides()
+        interactor.initialFetch()
+    }
+    
+    func getGuideProfileDetailsPage(guide: Guide) -> some View {
+        router?.getGuideProfileDetailsPage(guide: guide)
     }
 }
 
 // MARK: - Filtering logic
 extension GuidesListingPresenter {
     private func applyFiltering() {
-        guides = originalGuides
-        filterBySearchKeyword()
+        entities = originalGuides
         filterBySex()
         filterByLanguage()
         filterByRating()
-    }
-    
-    private func filterBySearchKeyword() {
-        if searchBarText.isEmpty {
-            return
-        }
-        
-        guides = guides.filter { guide in
-            guide.name?.lowercased().contains(searchBarText.lowercased())
-                ?? false
-        }
     }
     
     private func filterBySex() {
@@ -96,7 +110,7 @@ extension GuidesListingPresenter {
             return
         }
         
-        guides = guides.filter { guide in
+        entities = entities.filter { guide in
             guide.sex == Sex(rawValue: sexFilterType)
         }
     }
@@ -106,7 +120,7 @@ extension GuidesListingPresenter {
             return
         }
         
-        guides = guides.filter { guide in
+        entities = entities.filter { guide in
             guard let languages = guide.languages else {
                 return false
             }
@@ -122,7 +136,7 @@ extension GuidesListingPresenter {
             return
         }
         
-        guides = guides.filter { guide in
+        entities = entities.filter { guide in
             guard let ratingToFilter = Double(ratingFilterType) else {
                 return false
             }

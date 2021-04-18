@@ -13,9 +13,10 @@ import XCTest
 
 class MapMarkerRepositoryTests: XCTestCase {
     typealias MapMarkerRepo = MockMapMarkerCoreDataRepository
+    let convertor = MapModelConvertor()
     
     var emptyRepository: MapMarkerRepository {
-        MapMarkerRepository(data: [NSManagedObjectID: MapMarker](),
+        MapMarkerRepository(data: [NSManagedObjectID: MarkerPersistenceObject](),
                             repository:
                                 MockMapMarkerCoreDataRepository(managedObjectContext:
                                                                     CoreDataContainer.managedObjectContext))
@@ -25,52 +26,63 @@ class MapMarkerRepositoryTests: XCTestCase {
         let mockRepo = MockMapMarkerCoreDataRepository(managedObjectContext:
                                                         CoreDataContainer.managedObjectContext)
         mockRepo.data[MapMarkerRepo.marker1.objectID] = MapMarkerRepo.marker1
-        return MapMarkerRepository(data: [NSManagedObjectID: MapMarker](),
+        return MapMarkerRepository(data: [NSManagedObjectID: MarkerPersistenceObject](),
                                    repository: mockRepo)
     }
     
     func testGetAllMapMarkers_mockEmpty_returnEmptyArray() {
-        let mapMarkers = emptyRepository.getAllMapMarkers()
+        let mapMarkers = emptyRepository.getAllMarkers()
         XCTAssertEqual(mapMarkers.count, 0, "Should have 0")
     }
     
     func testGetAllMapMarkers_mockContainsTwoMapMarkers_returnExactTwoMapMarkers() {
-        let mapMarkers = filledRepository.getAllMapMarkers()
+        let mapMarkers = filledRepository.getAllMarkers()
         XCTAssertEqual(mapMarkers.count, 1, "Should have 1")
-        testEqual(mapMarker: mapMarkers[0], marker: MapMarkerRepo.marker1)
     }
     
     func testSaveMapMarkers_withEmptyRepoEmptyArray_nothingSaved() {
-        emptyRepository.saveMapMarkers(mapMarkers: [])
-        XCTAssertEqual(emptyRepository.getAllMapMarkers().count, 0, "Should be empty")
+        emptyRepository.saveMarkers(markerObjects: [])
+        XCTAssertEqual(emptyRepository.getAllMarkers().count, 0, "Should be empty")
     }
     
     func testSaveMapMarkers_withEmptyRepoArrayOfOne_nothingSaved() {
-        emptyRepository.saveMapMarkers(mapMarkers: [MapMarkerRepo.mapMarker1])
-        let mapMarkers = emptyRepository.getAllMapMarkers()
+        let object = convertor.convertMapMarkerToMarkerPersistenceObject(mapMarker:
+                                                                            MapMarkerRepo.mapMarker1)
+        emptyRepository.saveMarkers(markerObjects: [object])
+        let mapMarkers = emptyRepository.getAllMarkers()
         XCTAssertEqual(mapMarkers.count, 0, "Should be empty")
     }
     
     func testSaveMapMarkers_withFilledRepoArrayOfTwo_nothingSaved() {
-        filledRepository.saveMapMarkers(mapMarkers: [MapMarkerRepo.mapMarker1, MapMarkerRepo.mapMarker2])
-        let mapMarkers = filledRepository.getAllMapMarkers()
+        let object1 = convertor.convertMapMarkerToMarkerPersistenceObject(mapMarker:
+                                                                            MapMarkerRepo.mapMarker1)
+        let object2 = convertor.convertMapMarkerToMarkerPersistenceObject(mapMarker:
+                                                                            MapMarkerRepo.mapMarker2)
+        filledRepository.saveMarkers(markerObjects: [object1, object2])
+        let mapMarkers = filledRepository.getAllMarkers()
         XCTAssertEqual(mapMarkers.count, 1, "Only one element")
     }
     
     func testSaveMapMarkers_withFilledRepoEmptyArray_nothingSaved() {
-        filledRepository.saveMapMarkers(mapMarkers: [])
-        XCTAssertEqual(filledRepository.getAllMapMarkers().count, 1, "Only one element")
+        filledRepository.saveMarkers(markerObjects: [])
+        XCTAssertEqual(filledRepository.getAllMarkers().count, 1, "Only one element")
     }
     
     func testSaveMapMarkers_withFilledRepoArrayOfOne_nothingSaved() {
-        filledRepository.saveMapMarkers(mapMarkers: [MapMarkerRepo.mapMarker1])
-        let mapMarkers = filledRepository.getAllMapMarkers()
+        let object = convertor.convertMapMarkerToMarkerPersistenceObject(mapMarker:
+                                                                            MapMarkerRepo.mapMarker1)
+        filledRepository.saveMarkers(markerObjects: [object])
+        let mapMarkers = filledRepository.getAllMarkers()
         XCTAssertEqual(mapMarkers.count, 1, "Only one element")
     }
     
     func testSaveMapMarkers_withEmptyRepoArrayOfTwo_nothingSaved() {
-        filledRepository.saveMapMarkers(mapMarkers: [MapMarkerRepo.mapMarker1, MapMarkerRepo.mapMarker2])
-        let mapMarkers = filledRepository.getAllMapMarkers()
+        let object1 = convertor.convertMapMarkerToMarkerPersistenceObject(mapMarker:
+                                                                            MapMarkerRepo.mapMarker1)
+        let object2 = convertor.convertMapMarkerToMarkerPersistenceObject(mapMarker:
+                                                                            MapMarkerRepo.mapMarker2)
+        filledRepository.saveMarkers(markerObjects: [object1, object2])
+        let mapMarkers = filledRepository.getAllMarkers()
         XCTAssertEqual(mapMarkers.count, 1, "Only one element")
     }
     

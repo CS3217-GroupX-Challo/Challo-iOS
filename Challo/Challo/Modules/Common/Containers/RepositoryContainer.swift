@@ -21,7 +21,10 @@ class RepositoryContainer {
             guard let trailAPI = self?.apiContainer?.container.resolve(TrailAPIProtocol.self) else {
                 fatalError("Failed to resolve TrailAPIProtocol in RepositoryContainer")
             }
-            return TrailRepository(trailAPI: trailAPI)
+            guard let trailStore = self?.getTrailStore() else {
+                fatalError("Fail to construct trailStore")
+            }
+            return TrailRepository(trailAPI: trailAPI, trailStore: trailStore)
         }
         container.register(AreaRepositoryProtocol.self) { [weak self] _ in
             guard let areaAPI = self?.apiContainer?.container.resolve(AreaAPIProtocol.self) else {
@@ -33,7 +36,10 @@ class RepositoryContainer {
             guard let guideAPI = self?.apiContainer?.container.resolve(GuideAPIProtocol.self) else {
                 fatalError("Failed to resolve GuideAPIProtocol in RepositoryContainer")
             }
-            return GuideRepository(guideAPI: guideAPI)
+            guard let guideStore = self?.getGuideStore() else {
+                fatalError("Failed to construct guideStore")
+            }
+            return GuideRepository(guideAPI: guideAPI, guideStore: guideStore)
         }
         container.register(BookingRepositoryProtocol.self) { [weak self] _ in
             guard let bookingAPI = self?.apiContainer?.container.resolve(BookingAPIProtocol.self) else {
@@ -41,5 +47,45 @@ class RepositoryContainer {
             }
             return BookingRepository(bookingAPI: bookingAPI)
         }
+        container.register(HomestayRepositoryProtocol.self) { [weak self] _ in
+            guard let homestayAPI = self?.apiContainer?.container.resolve(HomestayAPIProtocol.self) else {
+                fatalError("Failed to resolve HomestayAPIProtocol in RepositoryContainer")
+            }
+            return HomestayRepository(homestayAPI: homestayAPI)
+        }
+    }
+
+    private func getGuideStore() -> GuideStore {
+        let areaModelConvertor = AreaModelConvertor()
+        let guideModelConvertor = GuideModelConvertor(areaModelConvertor: areaModelConvertor,
+                                                      trailModelConvertor: TrailModelConvertor(convertor:
+                                                                                                areaModelConvertor))
+        
+        let guideDetailsRepo = AnyPersistenceRepoProtocol(GuideDetailsRepository())
+        return GuideStore(repository: guideDetailsRepo, convertor: guideModelConvertor)
+    }
+
+    private func getTrailStore() -> TrailStore {
+        let trailModelConvertor = TrailModelConvertor(convertor: AreaModelConvertor())
+        
+        let trailDetailsRepo = AnyPersistenceRepoProtocol(TrailDetailsRepository())
+        return TrailStore(repository: trailDetailsRepo, convertor: trailModelConvertor)
+    }
+
+    private func getBookingStore() -> BookingStore {
+        let areaModelConvertor = AreaModelConvertor()
+        let trailModelConvertor = TrailModelConvertor(convertor: areaModelConvertor)
+        let guideModelConvertor = GuideModelConvertor(areaModelConvertor: areaModelConvertor,
+                                                      trailModelConvertor: trailModelConvertor)
+        let reviewModelConvertor = ReviewModelConvertor(guideModelConvertor: guideModelConvertor,
+                                                        touristModelConvertor: TouristModelConvertor(),
+                                                        trailModelConvertor: trailModelConvertor)
+        let bookingModelConvertor = BookingModelConvertor(trailModelConvertor: trailModelConvertor,
+                                                          guideModelConvertor: guideModelConvertor,
+                                                          touristModelConvertor: TouristModelConvertor(),
+                                                          reviewModelConvertor: reviewModelConvertor)
+        
+        let bookingDetailsRepo = AnyPersistenceRepoProtocol(BookingInfoRepository())
+        return BookingStore(repository: bookingDetailsRepo, convertor: bookingModelConvertor)
     }
 }

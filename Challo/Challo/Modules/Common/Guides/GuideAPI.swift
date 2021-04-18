@@ -26,10 +26,12 @@ class GuideAPI: GuideAPIProtocol {
         networkManager.get(url: url,
                            headers: [String: String]()) { [weak self] response, error in
             guard let self = self else {
+                callback([])
                 return
             }
             
             if error != nil {
+                callback([])
                 return
             }
             

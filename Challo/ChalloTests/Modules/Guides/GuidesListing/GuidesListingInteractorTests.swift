@@ -13,12 +13,13 @@ class GuidesListingInteractorTests: XCTestCase {
         let interactor = GuidesListingInteractor(guideRepository: MockGuideRepository())
         let presenter = GuidesListingPresenter()
         interactor.presenter = presenter
-        interactor.populateGuides()
+        interactor.getAllEntities()
         
-        XCTAssertEqual(presenter.guides.count, 2, "Not populated correctly")
-        XCTAssertTrue(presenter.guides.allSatisfy([MockGuideAPIResponses.guideTwo,
-                                                   MockGuideAPIResponses.guideOne].contains),
-                      "Not populated correctly")
+        XCTAssertEqual(presenter.entities.count, 2, "Not populated correctly")
+        XCTAssertTrue(presenter.entities.allSatisfy([
+                                                        MockGuideAPIResponses.guideTwo,
+                                                        MockGuideAPIResponses.guideOne
+                                                    ].contains), "Not populated correctly")
     }
 
 }

@@ -11,7 +11,7 @@ struct GuidesListingPage: View {
     @ObservedObject var presenter: GuidesListingPresenter
     
     var guides: [Guide] {
-        presenter.guides
+        presenter.displayedGuides
     }
     
     var body: some View {
@@ -22,16 +22,18 @@ struct GuidesListingPage: View {
                                                         AnyView(GuidesFiltersView(width: geometry.size.width / 5,
                                                                                   presenter: presenter)))
                         .environmentObject(presenter)
-                        .padding(.top, 30)
                     if presenter.isLoading {
                         Loading(isAnimating: .constant(true), style: .large)
                     }
                     GuidesCardListingsView(guides: guides,
                                            width: geometry.size.width,
                                            presenter: presenter)
-                        .padding(.top, 20)
                 }.padding(.bottom, 80)
-                .padding(.horizontal, 30)
+                .sheet(isPresented: $presenter.isSelectedGuideSheetOpen) {
+                    if let guide = presenter.selectedGuide {
+                        presenter.getGuideProfileDetailsPage(guide: guide)
+                    }
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }.onAppear {

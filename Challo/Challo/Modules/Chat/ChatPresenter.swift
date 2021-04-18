@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import Combine
 
-class ChatPresenter: SearchBarPresenter, ObservableObject {
+final class ChatPresenter: PresenterProtocol, SearchableEntityListingPresenter, ObservableObject {
     var router: ChatRouter?
     var interactor: ChatInteractor!
     
@@ -17,18 +18,32 @@ class ChatPresenter: SearchBarPresenter, ObservableObject {
     @Published var isLoadingDialogs: Bool = false
     
     @Published var messages: [ChatMessage] = []
-    @Published var currentOpenDialogId: String?
     @Published var dialogs: [ChatDialog] = []
+    @Published var currentOpenDialog: ChatDialog?
     
     @Published var messageText: String = ""
-    @Published var searchBarText: String = ""
-    @Published var isSearchBarSheetOpen: Bool = false
+    
+    @Published var searchPresenter: EntityListingSearchPresenter<ChatDialog>!
+        
+    init() {
+        searchPresenter = EntityListingSearchPresenter<ChatDialog>(
+            presenterWillChange: {
+                [weak self] in self?.objectWillChange.send()
+            }) {
+                ($0.chateeName ?? "").lowercased()
+        }
+    }
+    
+    var currentOpenChateeProfileImg: String? {
+        currentOpenDialog?.chateeProfileImage
+    }
+    
+    var currentOpenDialogId: String? {
+        currentOpenDialog?.dialogId
+    }
     
     var filteredDialogs: [ChatDialog] {
-        guard !searchBarText.isEmpty else {
-            return dialogs
-        }
-        return dialogs.filter({ ($0.chateeName ?? "").lowercased().contains(searchBarText.lowercased()) })
+        searchPresenter.applySearch(dialogs)
     }
     
     // Chat can only be displayed when user is logged in
@@ -51,9 +66,10 @@ class ChatPresenter: SearchBarPresenter, ObservableObject {
         dialog.resetUnreadMessagesCount()
     }
     
-    func onTapDialog(dialogId: String) {
+    func onTapDialog(dialog: ChatDialog) {
+        let dialogId = dialog.dialogId
         interactor.getDialogMessages(dialogId: dialogId)
-        currentOpenDialogId = dialogId
+        currentOpenDialog = dialog
     }
     
     func onTapMessageSend() {
@@ -95,7 +111,11 @@ extension ChatPresenter {
         return ChatMessageView(message: message.message,
                                isSentByCurrentUser: message.isSentByCurrentUser,
                                isSuccessfullySent: message.isSuccessfullySent,
-                               shouldDisplayAvatar: shouldDisplayAvatar || index == messages.count - 1)
+                               shouldDisplayProfileImg: shouldDisplayAvatar || index == messages.count - 1,
+                               chateeName: currentOpenDialog?.chateeName ?? "",
+                               profileImg: message.isSentByCurrentUser
+                                ? interactor.userProfileImg
+                                : currentOpenChateeProfileImg)
     }
     
     private func transformPrevMessageViewToDisplayAvatar(messagesView: inout [AnyView], currentIndex: Int) {
@@ -103,7 +123,7 @@ extension ChatPresenter {
         messagesView.append(AnyView(makeMessageViewFromMessageIndex(currentIndex - 1, shouldDisplayAvatar: true)))
     }
     
-    // Should append time when the current message is > 10 minutes apart from the prev message
+    // Should append time when the current message is > 5 minutes apart from the prev message
     private func shouldAppendDateTime(_ currentIndex: Int) -> Bool {
         guard currentIndex != 0 else {
             return true
@@ -113,7 +133,7 @@ extension ChatPresenter {
             return false
         }
         let diffInSeconds = dateSent.timeIntervalSince(prevDateSent)
-        return diffInSeconds > (60 * 10)
+        return diffInSeconds > (60 * 5)
     }
     
     private func appendDateTimeWhenNeeded(messagesView: inout [AnyView], currentIndex: Int,
@@ -126,7 +146,7 @@ extension ChatPresenter {
             transformPrevMessageViewToDisplayAvatar(messagesView: &messagesView, currentIndex: currentIndex)
         }
         messagesView.append(AnyView(
-            Text(CustomDateFormatter.displayFriendlyDateTime(dateSent))
+            DividerWithText(label: CustomDateFormatter.displayFriendlyDateTime(dateSent))
         ))
     }
     

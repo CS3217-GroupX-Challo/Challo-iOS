@@ -8,15 +8,23 @@
 import SwiftUI
 import Combine
 
-class TouristDashboardPresenter: PresenterProtocol {
+class TouristDashboardPresenter: PresenterProtocol, MessagingSupporter, ProfileImageProvider {
     
     var router: TouristDashboardRouter?
     var interactor: TouristDashboardInteractor!
     let userState: UserStateProtocol
 
-    let sendMessageToGuide: ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)
+    var sendMessageToUser: ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)!
     
     @Published var isLoading = false
+    @Published var isRefreshing = false {
+        didSet {
+            if isRefreshing == true {
+                populateBookings()
+            }
+        }
+    }
+    
     @Published var upcomingBookings: [Booking] = []
     @Published var pastBookings: [Booking] = []
     
@@ -51,18 +59,10 @@ class TouristDashboardPresenter: PresenterProtocol {
          sendMessageToGuide: @escaping ((_ guideEmail: String, _ guideId: UUID, _ messageText: String) -> Void)) {
         self.userState = userState
         self.name = userState.name
+        self.sendMessageToUser = sendMessageToGuide
         self.editName = userState.name
         self.editEmail = userState.email
-        self.sendMessageToGuide = sendMessageToGuide
         setupUserStateSubscriber(userState: userState)
-    }
-    
-    var isUpdateSaveButtonDisabled: Bool {
-        editName == userState.name && editEmail == userState.email && inputImage == nil
-    }
-    
-    var profileImgPath: String {
-        userState.profileImg
     }
     
     private func setupUserStateSubscriber(userState: UserStateProtocol) {
@@ -86,76 +86,38 @@ class TouristDashboardPresenter: PresenterProtocol {
     }
 
     func refresh() {
+        self.isLoading = true
         self.name = userState.name
-        populateBookings()
+        interactor.initialFetch()
+        handleBookings(bookings: interactor.getCachedEntities())
     }
     
     func populateBookings() {
-        isLoading = true
-        interactor.populateBookings()
+        interactor.getAllEntities()
     }
 
     func didPopulateBookings(bookings: [Booking]) {
-        let sortedBookings = interactor.sortBookings(bookings: bookings)
-        self.upcomingBookings = interactor.filterUpcomingBookings(bookings: sortedBookings)
-        self.pastBookings = interactor.filterPastBookings(bookings: sortedBookings)
+        handleBookings(bookings: bookings)
         isLoading = false
+        isRefreshing = false
     }
 
     func getReviewPage(for booking: Booking) -> AnyView? {
         router?.getReviewPage(for: booking)
     }
-    
-    func onTapSendMessage(guide: Guide) {
-        sendMessageToGuide(guide.email, guide.userId, messageText)
-        messageText = ""
-    }
-    
-    func onTapSave() {
-        isSaving = true
-        errorMessage = interactor.validateUserUpdateValues()
-        guard errorMessage == nil else {
-            isSaving = false
-            return
-        }
-        interactor.updateUser { [weak self] in
-            self?.isSaving = false
-        }
-    }
-    
-    func onCloseAlert() {
-        alertMessageTitle = ""
-        alertMessageDescription = ""
-    }
-    
-    func onOpenUpdateProfilePage() {
-        inputImage = nil
-        image = nil
-        editName = userState.name
-        editEmail = userState.email
-        errorMessage = nil
-    }
+
 }
+
+// MARK: Logic for updating user state
+extension TouristDashboardPresenter: ProfileUpdaterPresenter { }
 
 // MARK: Handle Bookings
 extension TouristDashboardPresenter {
 
-    private func sortBookings(bookings: [Booking]) -> [Booking] {
-        bookings.sorted { bookingOne, bookingTwo in
-            bookingOne.date < bookingTwo.date
-        }
-    }
-
-    private func filterUpcomingBookings(bookings: [Booking]) -> [Booking] {
-        bookings.filter {
-            ($0.status == .Paid || $0.status == .Pending) && $0.date > Date()
-        }
-    }
-
-    private func filterPastBookings(bookings: [Booking]) -> [Booking] {
-        bookings.filter {
-            $0.date < Date()
-        }
+    private func handleBookings(bookings: [Booking]) {
+        let sortedBookings = interactor.sortBookings(bookings: bookings)
+        self.upcomingBookings = interactor.filterUpcomingBookings(bookings: sortedBookings)
+        self.pastBookings = interactor.filterPastBookings(bookings: sortedBookings)
     }
 }
 

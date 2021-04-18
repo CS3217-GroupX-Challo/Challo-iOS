@@ -7,7 +7,7 @@
 
 /// Service for user authentication in the chat servers
 protocol ChatAuthService: AnyObject {
-    var isLoggingIn: Bool { get }
+    var isLoggingIn: Bool { get set }
     
     func registerUser(email: String, password: String, fullName: String, didRegister: (() -> Void)?)
     
@@ -17,7 +17,7 @@ protocol ChatAuthService: AnyObject {
     
     func connectToChatServer(chatUserId: UInt, password: String, didConnect: ((UInt, Bool) -> Void)?)
     
-    func updateUser(name: String, email: String, didUpdateUser: ((Bool) -> Void)?)
+    func updateUser(name: String, email: String, profileImg: String?, didUpdateUser: ((Bool) -> Void)?)
 }
 
 extension ChatAuthService {
@@ -37,7 +37,7 @@ extension ChatAuthService {
         logout(didLogOut: didLogOut)
     }
     
-    func updateUser(name: String, email: String) {
-        updateUser(name: name, email: email, didUpdateUser: nil)
+    func updateUser(name: String, email: String, profileImg: String? = nil, didUpdateUser: ((Bool) -> Void)? = nil) {
+        updateUser(name: name, email: email, profileImg: profileImg, didUpdateUser: didUpdateUser)
     }
 }

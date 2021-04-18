@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-class TrailListingRouter: RouterProtocol {
+class TrailListingRouter: ProfilableEntityListingRouter {
+    typealias Entity = Trail
     
     weak var presenter: TrailListingPresenter!
-    var trailProfilePage: AnyView
+    var profilePage: AnyView
     var trailProfilePresenter: TrailProfilePresenter
     
     init(userState: UserStateProtocol,
@@ -25,12 +26,12 @@ class TrailListingRouter: RouterProtocol {
                                                    bookingRepository: bookingRepository,
                                                    bookingAPI: bookingAPI,
                                                    reviewAPI: reviewAPI).assemble()
-        trailProfilePage = view
+        profilePage = view
         trailProfilePresenter = presenter
     }
     
-    func populateTrailProfilePageFor(trail: Trail) {
-        trailProfilePresenter.populateTrailProfilePageFor(trail: trail)
+    func populateProfilePage(_ entity: Trail) {
+        trailProfilePresenter.populateProfilePage(entity)
     }
     
 }

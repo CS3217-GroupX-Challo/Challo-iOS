@@ -11,30 +11,35 @@ struct ChatMessageView: View, Hashable {
     let message: String
     let isSentByCurrentUser: Bool
     let isSuccessfullySent: Bool
-    var shouldDisplayAvatar: Bool = false
+    var shouldDisplayProfileImg: Bool = false
     let avatarWidth: CGFloat = 20
+    let chateeName: String
+    let profileImg: String?
     
     var backgroundColor: Color {
-        isSentByCurrentUser ? Color.themeTertiary : Color(.systemGray2)
+        isSentByCurrentUser ? Color.blue : Color(.systemGray6)
     }
     
-    var strokeColor: Color {
-        isSuccessfullySent ? backgroundColor : Color.red
+    var nameColor: Color {
+        isSentByCurrentUser ? Color(.systemGray4) : Color(.systemGray)
     }
     
-    var avatar: some View {
-        Image("avatar-image")
-            .resizable()
+    var messageColor: Color {
+        isSentByCurrentUser ? .white : .black
+    }
+    
+    var profileImage: some View {
+        ImageLoader(profileImg: profileImg, width: avatarWidth, height: avatarWidth, defaultImage: "avatar-image")
             .frame(width: avatarWidth, height: avatarWidth)
             .clipShape(Circle())
     }
     
     @ViewBuilder
-    func makeMessageSideView(_ condition: Bool) -> some View {
-        if condition {
+    func makeMessageSideView(_ isSentByCurrentUser: Bool) -> some View {
+        if isSentByCurrentUser {
             Spacer()
-        } else if shouldDisplayAvatar {
-            avatar
+        } else if shouldDisplayProfileImg {
+            profileImage
         } else {
             Spacer().frame(maxWidth: avatarWidth)
         }
@@ -43,15 +48,18 @@ struct ChatMessageView: View, Hashable {
     var body: some View {
         HStack(alignment: .bottom, spacing: 8) {
             makeMessageSideView(isSentByCurrentUser)
-            Text(message)
-                .padding(15 )
-                .foregroundColor(.white)
+            ChatBubble(direction: isSentByCurrentUser ? .right : .left) {
+                VStack(alignment: isSentByCurrentUser ? .trailing : .leading, spacing: 2) {
+                    Text(isSentByCurrentUser ? "You" : chateeName)
+                        .bold()
+                        .foregroundColor(nameColor)
+                        .font(.system(size: 14))
+                    Text(message)
+                        .foregroundColor(messageColor)
+                }.padding(20)
                 .background(backgroundColor)
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(strokeColor, lineWidth: 1))
-                .font(Font.system(size: 20, weight: .regular))
+                .shadow(radius: 5)
+            }
             makeMessageSideView(!isSentByCurrentUser)
         }
     }

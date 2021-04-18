@@ -10,32 +10,23 @@ import SwiftUI
 struct TrailProfilePage: View {
     @EnvironmentObject var presenter: TrailProfilePresenter
     
+    func makeStickyBarContent(_ trail: Trail) -> some View {
+        VStack(alignment: .leading) {
+            Text("\(trail.lowestFee)").bold() + Text(" Rp / pax")
+            StarRatingsView(rating: trail.rating, numOfReviews: trail.numOfReviews, maxHeight: 12)
+        }
+    }
+    
+    var ctaButtonContent: some View {
+        NavigationLink(destination: presenter.trailBookingPage) {
+            Text("Book This Trail")
+        }
+    }
+    
     var body: some View {
-        VStack(spacing: 0) {
-            GeometryReader { geometry in
-                ScrollView(.vertical) {
-                    VStack {
-                        Image.guidesBackground
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: geometry.size.width,
-                                   height: geometry.size.height / 3.0,
-                                   alignment: .center)
-                        TrailProfileDetails()
-                            .padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 50))
-                    }
-                    Spacer().frame(height: 100)
-                }
-            }
-            TrailProfileStickyBar()
-                .innerShadow(color: .gray, radius: 0.03, exclude: [.bottom, .leading, .trailing])
-                .frame(maxHeight: 100)
-        }
-        .edgesIgnoringSafeArea(.all)
-        .alert(isPresented: $presenter.isShowingNotLoggedInAlert) {
-            Alert(title: Text("You are not currently logged in"),
-                  message: Text("Please log in to continue"),
-                  dismissButton: .default(Text("Close")))
-        }
+        EntityProfilePage<TrailProfilePresenter>(defaultImage: "guides-background",
+                                                 detailsContent: { AnyView(TrailProfileDetails()) },
+                                                 ctaButtonContent: { AnyView(ctaButtonContent) },
+                                                 stickyBarContent: { trail in AnyView(makeStickyBarContent(trail)) })
     }
 }

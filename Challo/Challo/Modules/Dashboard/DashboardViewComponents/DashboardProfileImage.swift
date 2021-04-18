@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-struct DashboardProfileImage: View {
-    @EnvironmentObject var presenter: TouristDashboardPresenter
+struct DashboardProfileImage<Provider: ProfileImageProvider>: View {
+    @EnvironmentObject var presenter: Provider
 
     var body: some View {
         Group {
              if presenter.profileImgPath.isEmpty {
                 Image("avatar-image").resizable()
             } else {
-                ImageService.loadImage(path: presenter.profileImgPath, width: 100, height: 100)
+                ImageService.loadImage(path: presenter.profileImgPath, width: 150, height: 150)
             }
         }.scaledToFit()
         .clipShape(Circle())

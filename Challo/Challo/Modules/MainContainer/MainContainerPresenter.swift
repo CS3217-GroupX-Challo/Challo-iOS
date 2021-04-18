@@ -11,7 +11,11 @@ import Combine
 class MainContainerPresenter: PresenterProtocol, ObservableObject {
 
     @Published var profileTab: AnyView?
+    #if GUIDE
     @Published var tabSelection = 0
+    #elseif TOURIST
+    @Published var tabSelection = 5
+    #endif
 
     var interactor: MainContainerInteractor!
     var router: MainContainerRouter?
@@ -46,13 +50,22 @@ class MainContainerPresenter: PresenterProtocol, ObservableObject {
     func checkShouldDisplayUserDetails() -> Bool {
         interactor.checkIfUserLoggedIn()
     }
-    
-    func getHomePage() -> AnyView? {
-        router?.homePage
+
+    func getSettingsPage() -> AnyView? {
+        router?.settingsPage
     }
-    
+
     func getProfilePage() -> AnyView? {
         profileTab
+    }
+
+    func getChatPage() -> AnyView? {
+        router?.chatPage
+    }
+
+    #if TOURIST
+    func getHomestayPage() -> AnyView? {
+        router?.homestayPage
     }
     
     func getTrailPage() -> AnyView? {
@@ -66,16 +79,13 @@ class MainContainerPresenter: PresenterProtocol, ObservableObject {
     func getMapsPage() -> AnyView? {
         router?.mapsPage
     }
-    
-    func getSettingsPage() -> AnyView? {
-        router?.settingsPage
-    }
-    
-    func getChatPage() -> AnyView? {
-        router?.chatPage
-    }
+    #endif
     
     func goToChatPage() {
+        #if TOURIST
         tabSelection = 4
+        #elseif GUIDE
+        tabSelection = 1
+        #endif
     }
 }

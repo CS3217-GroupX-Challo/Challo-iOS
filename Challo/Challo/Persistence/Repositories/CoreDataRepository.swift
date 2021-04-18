@@ -8,6 +8,7 @@
 import CoreData
 import os
 
+/// Represents the underlying Core Data logic
 class CoreDataRepository<T: NSManagedObject>: RepositoryProtocol {
     typealias Entity = T
     
@@ -95,5 +96,13 @@ class CoreDataRepository<T: NSManagedObject>: RepositoryProtocol {
     }
     
     func clearAll() {
+        let fetchRequest = T.fetchRequest()
+        let deleteBatchRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try managedObjectContext.execute(deleteBatchRequest)
+        } catch {
+            logger.log("\(error.localizedDescription)")
+        }
     }
 }

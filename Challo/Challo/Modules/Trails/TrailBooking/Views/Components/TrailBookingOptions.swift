@@ -13,6 +13,10 @@ struct TrailBookingOptions: View {
     var width: CGFloat
     var height: CGFloat
 
+    var divider: some View {
+        Divider().padding(.vertical, 30)
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Price per guest: \(presenter.pricePerPaxString)")
@@ -20,11 +24,13 @@ struct TrailBookingOptions: View {
             VStack(alignment: .leading) {
                 TrailPaxSelection(selectedPax: $presenter.selectedPax,
                                   paxRange: $presenter.paxRange)
+                divider
                 TrailDateSelection(selectedDate: $presenter.selectedDate,
                                    dateRange: presenter.validDateRange,
                                    excludedDates: $presenter.excludedDates)
                     .frame(width: width,
                            height: 0.75 * height)
+                divider
                 TrailGuideSelectionList(guides: $presenter.availableGuides,
                                         selectedGuideId: $presenter.selectedGuideId,
                                         cardWidth: width / 3,

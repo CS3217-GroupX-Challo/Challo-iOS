@@ -14,12 +14,14 @@ class GuideProfileInteractor: InteractorProtocol {
     }
     
     func getReviews() {
+        presenter.isLoadingReviews = true
         reviewAPI.getReviewsForGuide(guideId: presenter.guide.userId) { [weak self] reviews in
             guard let self = self else {
                 return
             }
             
             self.presenter.reviews = reviews
+            self.presenter.isLoadingReviews = false
         }
     }
 }

@@ -13,7 +13,8 @@ class MapItineraryModuleTests: XCTestCase {
     func testAssemble_withEmptyItinerary_returnsPresenterWithCorrectPropertiesAndView() {
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: MockRouteRepository(),
-                             mapItineraryRepository: MockItineraryRepository())
+                             mapItineraryRepository: MockItineraryRepository(),
+                             convertor: MapModelConvertor())
         let (view, presenter) = MapItineraryModule(placesAPI: MockPlacesAPI(),
                                                    mapStore: store).assemble()
         XCTAssertNotNil(view, "Wrong view returned")
@@ -26,7 +27,8 @@ class MapItineraryModuleTests: XCTestCase {
         let itinerary = MapTestConstants.itineraryOne
         let store = MapStore(mapMarkerRepository: MockMarkerRepository(),
                              mapRouteRepository: MockRouteRepository(),
-                             mapItineraryRepository: MockItineraryRepository())
+                             mapItineraryRepository: MockItineraryRepository(),
+                             convertor: MapModelConvertor())
         let (view, presenter) = MapItineraryModule(placesAPI: MockPlacesAPI(),
                                                    mapStore: store,
                                                    mapItinerary: itinerary).assemble()
