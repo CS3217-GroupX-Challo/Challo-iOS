@@ -11,8 +11,8 @@ import XCTest
 class TrailProfileInteractorTests: XCTestCase {
 
     func testGetReviewForTrail_withMockAPI_correctlyReceivesResults() {
-        let interactor = TrailProfileInteractor(reviewAPI: MockReviewsAPI())
-        let presenter = TrailProfilePresenter(userState: MockUserState())
+        let interactor = TrailProfileInteractor(reviewAPI: MockReviewsAPI(), userState: MockUserState())
+        let presenter = TrailProfilePresenter()
         interactor.presenter = presenter
         interactor.getReviewsForTrail(trailId: UUID()) { reviews in
             XCTAssertTrue(reviews.isEmpty)
