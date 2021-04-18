@@ -14,19 +14,21 @@ class MainContainerRouter: RouterProtocol {
     var apiContainer: APIContainer
     var repositoryContainer: RepositoryContainer
     var profilePage: AnyView!
+    var loginPage: AnyView!
+    var settingsPage: AnyView!
+    var chatPage: AnyView!
+    #if TOURIST
     var trailsPage: AnyView!
     var guidesPage: AnyView!
     var mapsPage: AnyView!
-    var settingsPage: AnyView!
-    var loginPage: AnyView!
     var homestayPage: AnyView!
-    var chatPage: AnyView!
+    #endif
     
     init(userState: UserStateProtocol) {
         self.userState = userState
         apiContainer = APIContainer(userState: userState)
         repositoryContainer = RepositoryContainer(apiContainer: apiContainer)
-        
+        #if TOURIST
         trailsPage = TrailListingModule(trailRepository: resolveTrailRepository(),
                                         guideRepository: resolveGuideRepository(),
                                         bookingRepository: resolveBookingRepository(),
@@ -36,6 +38,7 @@ class MainContainerRouter: RouterProtocol {
         guidesPage = GuidesListingModule(guideRepository: resolveGuideRepository(),
                                          reviewAPI: resolveReviewAPI()).assemble().view
         mapsPage = MapModule(placesAPI: resolvePlacesAPI()).assemble().view
+        #endif
         settingsPage = SettingsModule(userState: userState,
                                       loginAPI: resolveTouristLoginAPI(),
                                       registerAPI: resolveTouristRegisterAPI()).assemble().view
@@ -52,7 +55,8 @@ class MainContainerRouter: RouterProtocol {
         chatPage = ChatModule(chatService: chatService, userState: userState).assemble().view
         return chatService
     }
-    
+
+    #if TOURIST
     private func setupChatProfileHomestayPage(bookingRepository: BookingRepositoryProtocol,
                                               reviewAPI: ReviewAPIProtocol,
                                               userAPI: UserAPIProtocol) {
@@ -82,6 +86,7 @@ class MainContainerRouter: RouterProtocol {
                                                                         chatService: chatService)
                                              }).assemble().view
     }
+    #endif
     
     private func setUpLoginAndProfile(bookingRepository: BookingRepositoryProtocol,
                                       reviewAPI: ReviewAPIProtocol,
@@ -106,7 +111,7 @@ class MainContainerRouter: RouterProtocol {
                                            },
                                            userAPI: userAPI).assemble().view
 
-        #else
+        #elseif TOURIST
         loginPage = TouristLoginModule(userState: userState,
                                        loginAPI: resolveTouristLoginAPI(),
                                        registerAPI: resolveTouristRegisterAPI()).assemble().view
