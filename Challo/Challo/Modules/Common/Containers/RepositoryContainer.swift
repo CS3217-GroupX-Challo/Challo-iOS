@@ -45,10 +45,7 @@ class RepositoryContainer {
             guard let bookingAPI = self?.apiContainer?.container.resolve(BookingAPIProtocol.self) else {
                 fatalError("Failed to resolve BookingAPIProtocol in RepositoryContainer")
             }
-            guard let bookingStore = self?.getBookingStore() else {
-                fatalError("Failed to construct bookingStore")
-            }
-            return BookingRepository(bookingAPI: bookingAPI, bookingStore: bookingStore)
+            return BookingRepository(bookingAPI: bookingAPI)
         }
         container.register(HomestayRepositoryProtocol.self) { [weak self] _ in
             guard let homestayAPI = self?.apiContainer?.container.resolve(HomestayAPIProtocol.self) else {

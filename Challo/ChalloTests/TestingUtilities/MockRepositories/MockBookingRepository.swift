@@ -35,12 +35,4 @@ class MockBookingRepository: Repository<UUID, Booking>, BookingRepositoryProtoco
             didRefresh?(bookings)
         }
     }
-
-    func initialFetch(type user: BookingUser, userId: UUID, didFetch: @escaping (([Booking]) -> Void)) {
-        if user == .guide {
-            fetchBookingForGuideAndRefresh(id: userId, didRefresh: didFetch)
-        } else {
-            fetchBookingForTouristAndRefresh(id: userId, didRefresh: didFetch)
-        }
-    }
 }

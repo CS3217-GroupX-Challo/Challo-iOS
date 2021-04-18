@@ -32,13 +32,12 @@ class TouristDashboardInteractor: InteractorProtocol {
     }
 
     func initialFetch() {
-        guard let id = UUID(uuidString: userState.userId) else {
+        guard UUID(uuidString: userState.userId) != nil else {
             return
         }
         
-        bookingRepository.initialFetch(type: .tourist,
-                                       userId: id,
-                                       didFetch: presenter.didPopulateBookings)
+        presenter.didPopulateBookings(bookings: bookingRepository.getAll())
+        populateBookings()
     }
 }
 
