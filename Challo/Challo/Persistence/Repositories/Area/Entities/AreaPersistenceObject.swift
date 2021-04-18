@@ -60,4 +60,7 @@ extension AreaPersistenceObject: CoreDataPersistenceObject {
 
 // MARK: - Equtable
 extension AreaPersistenceObject: Equatable {
+    static func == (lhs: AreaPersistenceObject, rhs: AreaPersistenceObject) -> Bool {
+        lhs.areaId == rhs.areaId
+    }
 }

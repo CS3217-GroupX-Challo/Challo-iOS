@@ -61,4 +61,7 @@ extension TouristPersistenceObject: CoreDataPersistenceObject {
 }
 
 extension TouristPersistenceObject: Equatable {
+    static func == (lhs: TouristPersistenceObject, rhs: TouristPersistenceObject) -> Bool {
+        lhs.userId == rhs.userId
+    }
 }
