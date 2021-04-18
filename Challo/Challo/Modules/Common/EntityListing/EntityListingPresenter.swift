@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A generic presenter that encapsulates common presentation logic for displaying entity listings
 protocol EntityListingPresenter: PresenterProtocol where Router: EntityListingRouter,
                                                          Router.Entity == Entity,
                                                          Interactor: EntityListingInteractor,

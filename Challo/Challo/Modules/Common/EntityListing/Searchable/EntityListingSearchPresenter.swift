@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+/// A helper class that encapsulates the functionality of search
+/// `getSearchCriteriaFromEntity` is a function that given an entity, returns the search attribute for the search key to be applied on
 class EntityListingSearchPresenter<Entity>: ObservableObject {
     @Published var searchBarText: String = ""
     @Published var isSearchBarSheetOpen: Bool = false

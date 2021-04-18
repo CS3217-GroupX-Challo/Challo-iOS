@@ -8,6 +8,8 @@
 import SwiftUI
 import Combine
 
+/// A presenter which allows for searching of entities
+/// Clients must call `didInitSearchableEntityListingPresenter` upon initialisation
 protocol SearchableEntityListingPresenter: ObservableObject {
     associatedtype Entity
     var cancellables: Set<AnyCancellable> { get set }

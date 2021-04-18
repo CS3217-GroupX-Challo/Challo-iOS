@@ -7,7 +7,8 @@
 
 import Combine
 
-protocol PriceFilterableEntityListingPresenter: ObservableObject {
+/// A presenter which allows for filtering of entities by price
+protocol PriceFilterableEntityListingPresenter: SearchableEntityListingPresenter {
     associatedtype Entity
     var priceFilterPresenter: EntityListingPriceFilterPresenter<Entity> { get }
 }

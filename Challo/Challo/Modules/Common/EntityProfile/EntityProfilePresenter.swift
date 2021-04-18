@@ -5,6 +5,7 @@
 //  Created by Shao Yi on 18/4/21.
 //
 
+/// A generic presenter that encapsulates common presentation logic for displaying the profile of an entity
 protocol EntityProfilePresenter: PresenterProtocol where Interactor: EntityProfileInteractor,
                                                          Interactor.Entity == Entity {
     associatedtype Entity: ImageableEntity
