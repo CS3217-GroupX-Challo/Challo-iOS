@@ -80,8 +80,8 @@ class GuideAPIParser: APIParser {
             json[Key.area] = areaParser.convertAreaToJSON(area: area)
             json[Key.areaId] = area.areaId.uuidString
         } else {
-            json[Key.area] = JSON()
-            json[Key.areaId] = ""
+            json[Key.area] = areaParser.convertAreaToJSON(area: Area.sampleArea)
+            json[Key.areaId] = Area.sampleAreaID.uuidString
         }
         json[Key.unavailableDates] = guide.unavailableDates?.compactMap { $0.destruct() }
         json[Key.yearsOfExperience] = guide.yearsOfExperience ?? 0

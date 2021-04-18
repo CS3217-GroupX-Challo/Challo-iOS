@@ -19,3 +19,16 @@ struct Area: Equatable {
     
     let country: String
 }
+
+extension Area {
+
+    static var sampleAreaID: UUID! {
+        UUID(uuidString: "892D85DD-DFEC-4A96-A5F8-14D28B59CD8A")
+    }
+
+    static var sampleArea: Area {
+        Area(areaId: sampleAreaID, village: "Mukteshwar", division: "Kumaon",
+             state: "Uttarakhand", country: "India")
+    }
+
+}

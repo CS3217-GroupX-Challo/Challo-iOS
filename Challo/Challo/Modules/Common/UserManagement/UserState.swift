@@ -23,7 +23,7 @@ class UserState: UserStateProtocol, ObservableObject {
         willSet { objectWillChange.send() }
         didSet { storedCompletedOnboarding = completedOnboarding }
     }
-    @AppStorage("onboard") private var storedCompletedOnboarding = false
+    @AppStorage("onboard") private var storedCompletedOnboarding = true
     #endif
 
     @AppStorage("logged_in") private var storedLoggedIn = false

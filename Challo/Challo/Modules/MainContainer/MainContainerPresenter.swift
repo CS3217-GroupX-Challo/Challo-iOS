@@ -43,7 +43,7 @@ class MainContainerPresenter: PresenterProtocol, ObservableObject {
     private func toggleLoggedIn(loggedInState loggedIn: Bool) {
         if !loggedIn {
             profileTab = router?.loginPage
-        } else if interactor.guideCompletedOnboarding {
+        } else if userState.completedOnboarding {
             profileTab = router?.profilePage
         } else {
             profileTab = router?.onboardingPage

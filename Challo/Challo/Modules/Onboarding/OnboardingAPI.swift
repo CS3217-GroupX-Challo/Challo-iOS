@@ -22,6 +22,7 @@ extension OnboardingAPI {
 
     func updateParticulars(uuid: String, body: JSON, responseHandler: @escaping (JSON, Error?) -> Void) {
         let guideUrl = url + "/" + userId
+        ChalloLogger.logger.log("\(body)")
         networkManager.put(url: guideUrl,
                            headers: NetworkManager.HEADER(),
                            body: body) { response, error in

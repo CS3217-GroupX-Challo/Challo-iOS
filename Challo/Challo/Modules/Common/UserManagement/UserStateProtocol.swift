@@ -84,5 +84,8 @@ extension UserStateProtocol {
         userId = ""
         user = nil
         isNewUser = false
+        #if GUIDE
+        completedOnboarding = false
+        #endif
     }
 }
