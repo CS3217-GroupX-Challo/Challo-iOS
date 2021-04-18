@@ -100,7 +100,6 @@ class TouristDashboardPresenter: PresenterProtocol {
     }
     
     func populateBookings() {
-        isLoading = true
         interactor.populateBookings()
     }
 
