@@ -12,7 +12,8 @@ struct EntityProfilePage<Presenter: EntityProfilePresenter>: View {
     
     let defaultImage: String
     let detailsContent: () -> AnyView
-    let stickyBarContent: () -> AnyView
+    let ctaButtonContent: () -> AnyView
+    let stickyBarContent: (Presenter.Entity) -> AnyView
     
     var body: some View {
         VStack(spacing: 0) {
@@ -33,9 +34,8 @@ struct EntityProfilePage<Presenter: EntityProfilePresenter>: View {
                     Spacer().frame(height: 100)
                 }
             }
-            EntityProfileStickyBar {
-                stickyBarContent()
-            }.frame(maxHeight: 100)
+            EntityProfileStickyBar<Presenter>(ctaButtonContent: ctaButtonContent, stickyBarContent: stickyBarContent)
+                .frame(maxHeight: 100)
         }
         .edgesIgnoringSafeArea(.all)
         .alert(isPresented: $presenter.isShowingNotLoggedInAlert) {
