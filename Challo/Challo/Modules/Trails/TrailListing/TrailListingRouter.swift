@@ -31,7 +31,7 @@ class TrailListingRouter: EntityListingRouter {
     }
     
     func populateProfilePage(_ entity: Trail) {
-        trailProfilePresenter.populateTrailProfilePageFor(trail: entity)
+        trailProfilePresenter.populateProfilePage(entity)
     }
     
 }

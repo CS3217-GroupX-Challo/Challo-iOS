@@ -21,7 +21,7 @@ struct TrailProfileDetails: View {
     }
     
     var body: some View {
-        UnwrapView(presenter.currentTrail) { trail in
+        UnwrapView(presenter.currentEntity) { trail in
             VStack(alignment: .leading) {
                 TrailProfileBasicInfo(trail: trail)
                 divider

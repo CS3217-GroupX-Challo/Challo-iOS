@@ -42,7 +42,7 @@ struct TrailBookingPage: View {
                       ))
             }
             .onAppear {
-                guard let trail = trailProfilePresenter.currentTrail else {
+                guard let trail = trailProfilePresenter.currentEntity else {
                     return
                 }
                 presenter.populateTrailBookingPage(for: trail)

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class TrailProfilePresenter: PresenterProtocol, ObservableObject {
+class TrailProfilePresenter: EntityProfilePresenter, ObservableObject {
 
     var userState: UserStateProtocol
     var interactor: TrailProfileInteractor!
@@ -27,30 +27,16 @@ class TrailProfilePresenter: PresenterProtocol, ObservableObject {
     }
 
     var reviews: [Review] = []
-    var currentTrail: Trail?
-    
-    var currentTrailImage: String? {
-        guard let trail = currentTrail, !trail.images.isEmpty else {
-            return nil
-        }
-        return trail.images[0]
-    }
+    var currentEntity: Trail?
     
     func didGetReviewsForTrail(reviews: [Review]) {
         self.reviews = reviews
         isLoadingReviews = false
     }
     
-    func populateTrailProfilePageFor(trail: Trail) {
-        currentTrail = trail
+    func populateProfilePage(_ entity: Trail) {
+        currentEntity = entity
         isLoadingReviews = true
-        interactor.getReviewsForTrail(trailId: trail.trailId, callback: didGetReviewsForTrail)
-    }
-    
-    func onTapBookTrailButton() {
-        if userState.loggedIn {
-            return
-        }
-        isShowingNotLoggedInAlert = true
+        interactor.getReviewsForTrail(trailId: entity.trailId, callback: didGetReviewsForTrail)
     }
 }
