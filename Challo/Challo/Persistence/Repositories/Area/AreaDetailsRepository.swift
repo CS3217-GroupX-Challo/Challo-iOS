@@ -40,16 +40,7 @@ class AreaDetailsRepository: AreaDetailsRepositoryProtocol {
     }
     
     func save(objects: [AreaPersistenceObject]) {
-        var uniqueId = Set<UUID>()
-        var uniqueObjects = [AreaPersistenceObject]()
-
-        objects.forEach {
-            if uniqueId.contains($0.areaId) {
-                return
-            }
-            uniqueId.insert($0.areaId)
-            uniqueObjects.append($0)
-        }
+        let uniqueObjects = getUniqueAreas(objects: objects)
 
         let currentAreaObjects = getAll()
         
@@ -64,6 +55,21 @@ class AreaDetailsRepository: AreaDetailsRepositoryProtocol {
         createNewAreas(areaObjects: newAreaObjects)
         updateAreas(areaObjects: existingAreaObjects)
         repository.commit() // units of work pattern
+    }
+
+    private func getUniqueAreas(objects: [AreaPersistenceObject]) -> [AreaPersistenceObject] {
+        var uniqueId = Set<UUID>()
+        var uniqueObjects = [AreaPersistenceObject]()
+
+        objects.forEach {
+            if uniqueId.contains($0.areaId) {
+                return
+            }
+            uniqueId.insert($0.areaId)
+            uniqueObjects.append($0)
+        }
+        
+        return uniqueObjects
     }
     
     private func createNewAreas(areaObjects: [AreaPersistenceObject]) {

@@ -43,20 +43,10 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
     }
     
     func save(objects: [TrailPersistenceObject]) {
-        var uniqueId = Set<UUID>()
-        var uniqueObjects = [TrailPersistenceObject]()
-
-        objects.forEach {
-            if uniqueId.contains($0.trailId) {
-                return
-            }
-            uniqueId.insert($0.trailId)
-            uniqueObjects.append($0)
-        }
-
-        let allAreas = objects.map { $0.area }
-        areaRepository.save(objects: allAreas)
+        let uniqueObjects = getUniqueTrails(objects: objects)
     
+        saveAreasInvolved(objects: uniqueObjects)
+
         let currentTrails = getAll()
         let currentAreas = areaRepository.repository.getAll()
         
@@ -71,6 +61,26 @@ class TrailDetailsRepository: TrailDetailsRepositoryProtocol {
         saveNewTrails(currentAreas: currentAreas, trailObjects: newTrailObjects)
         updateTrails(currentAreas: currentAreas, trailObjects: existingTrailObjects)
         repository.commit()
+    }
+
+    private func getUniqueTrails(objects: [TrailPersistenceObject]) -> [TrailPersistenceObject] {
+        var uniqueId = Set<UUID>()
+        var uniqueObjects = [TrailPersistenceObject]()
+
+        objects.forEach {
+            if uniqueId.contains($0.trailId) {
+                return
+            }
+            uniqueId.insert($0.trailId)
+            uniqueObjects.append($0)
+        }
+        
+        return uniqueObjects
+    }
+
+    private func saveAreasInvolved(objects: [TrailPersistenceObject]) {
+        let areas = objects.map { $0.area }
+        areaRepository.save(objects: areas)
     }
     
     private func saveNewTrails(currentAreas: [AreaDetails], trailObjects: [TrailPersistenceObject]) {

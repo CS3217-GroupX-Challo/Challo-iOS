@@ -49,24 +49,11 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
     }
     
     func save(objects: [GuidePersistenceObject]) {
-        var uniqueId = Set<UUID>()
-        var uniqueObjects = [GuidePersistenceObject]()
+        let uniqueObjects = getUniqueGuides(objects: objects)
 
-        objects.forEach {
-            if uniqueId.contains($0.userId) {
-                return
-            }
-            uniqueId.insert($0.userId)
-            uniqueObjects.append($0)
-        }
-
-        let allTrails = objects
-            .flatMap { $0.trails }
+        saveTrailsInvolved(objects: uniqueObjects)
+        saveAreasInvolved(objects: uniqueObjects)
         
-        let allAreas = objects.compactMap { $0.location }
-        trailRepository.save(objects: allTrails)
-        areaRepository.save(objects: allAreas)
-
         let currentGuides = getAll()
         let currentTrails = trailRepository.repository.getAll()
         let currentAreas = areaRepository.repository.getAll()
@@ -86,6 +73,31 @@ class GuideDetailsRepository: GuideDetailsRepositoryProtocol {
                      currentAreas: currentAreas,
                      currentTrails: currentTrails)
         repository.commit()
+    }
+
+    private func getUniqueGuides(objects: [GuidePersistenceObject]) -> [GuidePersistenceObject] {
+        var uniqueId = Set<UUID>()
+        var uniqueObjects = [GuidePersistenceObject]()
+
+        objects.forEach {
+            if uniqueId.contains($0.userId) {
+                return
+            }
+            uniqueId.insert($0.userId)
+            uniqueObjects.append($0)
+        }
+        
+        return uniqueObjects
+    }
+
+    private func saveTrailsInvolved(objects: [GuidePersistenceObject]) {
+        let allTrails = objects.flatMap { $0.trails }
+        trailRepository.save(objects: allTrails)
+    }
+
+    private func saveAreasInvolved(objects: [GuidePersistenceObject]) {
+        let allAreas = objects.compactMap { $0.location }
+        areaRepository.save(objects: allAreas)
     }
     
     private func saveNewGuides(guideObjects: [GuidePersistenceObject],
