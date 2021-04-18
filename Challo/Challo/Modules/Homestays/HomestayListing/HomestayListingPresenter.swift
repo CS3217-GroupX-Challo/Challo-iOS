@@ -8,7 +8,7 @@
 import SwiftUI
 
 class HomestayListingPresenter: EntityListingPresenter, ObservableObject {
-    
+
     var interactor: HomestayListingInteractor!
     var router: HomestayListingRouter?
     
@@ -37,7 +37,7 @@ class HomestayListingPresenter: EntityListingPresenter, ObservableObject {
         }
         return homestay
     }
-    
+
     var displayedCards: [ListingCard] {
         entities.map(transformHomestayToCard)
     }

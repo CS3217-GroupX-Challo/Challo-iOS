@@ -19,8 +19,8 @@ class HomestayProfileModule: ViperModuleProtocol {
     }
     
     func assemble() -> (view: AnyView, presenter: HomestayProfilePresenter) {
-        let interactor = HomestayProfileInteractor()
-        let presenter = HomestayProfilePresenter(userState: userState)
+        let interactor = HomestayProfileInteractor(userState: userState)
+        let presenter = HomestayProfilePresenter()
         let router = HomestayProfileRouter()
         
         interactor.presenter = presenter

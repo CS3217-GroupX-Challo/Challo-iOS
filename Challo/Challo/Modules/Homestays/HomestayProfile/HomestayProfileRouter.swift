@@ -11,6 +11,4 @@ class HomestayProfileRouter: RouterProtocol {
     
     weak var presenter: HomestayProfilePresenter!
 
-    init() {
-    }
 }

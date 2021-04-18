@@ -5,11 +5,15 @@
 //  Created by Shao Yi on 18/4/21.
 //
 
-class HomestayProfileInteractor: InteractorProtocol {
+class HomestayProfileInteractor: EntityProfileInteractor {
 
+    typealias Entity = Homestay
+    
+    var userState: UserStateProtocol
     weak var presenter: HomestayProfilePresenter!
 
-    init() {
+    init(userState: UserStateProtocol) {
+        self.userState = userState
     }
 
 }
