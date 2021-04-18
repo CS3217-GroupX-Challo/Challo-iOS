@@ -13,7 +13,7 @@ class CertificateManager {
     init(userState: UserStateProtocol) {
         self.globalState = userState
     }
-
+    
     func storeCertificate(certificate: UserCertificate, isNewUser: Bool = false) {
         globalState.storeCertificate(certificate: certificate, isNewUser: isNewUser)
         ChalloLogger.logger.log("Logged in")

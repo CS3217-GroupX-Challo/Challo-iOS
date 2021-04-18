@@ -19,4 +19,7 @@ class GuideRegisterPresenter: RegisterPresenter, ObservableObject {
     @Published var isShowingRegisterAlert = false
     @Published var registerAlertTitle = ""
     @Published var registerAlertMessage = ""
+
+    @Published var registrationComplete = false
+
 }

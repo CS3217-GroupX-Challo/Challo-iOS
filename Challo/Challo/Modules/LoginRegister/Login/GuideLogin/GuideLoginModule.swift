@@ -12,8 +12,10 @@ final class GuideLoginModule: ViperModuleProtocol {
     let userState: UserStateProtocol
     let loginAPI: LoginAPI
     let registerAPI: RegisterAPI
-    
-    init(userState: UserStateProtocol, loginAPI: LoginAPI, registerAPI: RegisterAPI) {
+
+    init(userState: UserStateProtocol,
+         loginAPI: LoginAPI,
+         registerAPI: RegisterAPI) {
         self.userState = userState
         self.loginAPI = loginAPI
         self.registerAPI = registerAPI
@@ -23,7 +25,9 @@ final class GuideLoginModule: ViperModuleProtocol {
         let certManager = CertificateManager(userState: userState)
         let interactor = GuideLoginInteractor(loginAPI: loginAPI, certificateManager: certManager)
         let presenter = GuideLoginPresenter()
-        let router = GuideLoginRouter(userState: userState, loginAPI: loginAPI, registerAPI: registerAPI)
+        let router = GuideLoginRouter(userState: userState,
+                                      loginAPI: loginAPI,
+                                      registerAPI: registerAPI)
         interactor.presenter = presenter
         presenter.interactor = interactor
         presenter.router = router

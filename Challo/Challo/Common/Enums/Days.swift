@@ -8,3 +8,9 @@
 enum Days: String, CaseIterable {
     case Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
 }
+
+extension Days: Identifiable {
+    var id: String {
+        rawValue
+    }
+}

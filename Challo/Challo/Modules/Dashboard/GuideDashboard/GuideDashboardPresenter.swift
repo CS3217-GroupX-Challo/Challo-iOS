@@ -14,7 +14,10 @@ class GuideDashboardPresenter: PresenterProtocol, ProfileImageProvider {
     var router: GuideDashboardRouter?
 
     let userState: UserStateProtocol
-    private(set) var name: String
+    @Published var name: String
+
+    @Published var loading: Bool = true
+    @Published var hasGuideOnboarded: Bool = true
 
     init(userState: UserStateProtocol,
          bookingRepository: BookingRepositoryProtocol) {
@@ -88,6 +91,16 @@ extension GuideDashboardPresenter {
 
     var upcomingBookingsDashboard: AnyView! {
         router?.upcomingBookingsPage
+    }
+
+    func setHasGuideOnboarded(value: Bool) {
+        self.loading = false
+        hasGuideOnboarded = value
+    }
+
+    func onAppear() {
+        self.loading = true
+        interactor.checkOnboardingStatus()
     }
 }
 

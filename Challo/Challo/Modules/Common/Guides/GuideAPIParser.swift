@@ -69,6 +69,29 @@ class GuideAPIParser: APIParser {
         guide.dateJoined = Date.construct(with: activeSince ?? "")
         return guide
     }
+
+    func convertGuideToJSON(guide: Guide) -> JSON {
+        var json = JSON()
+        json[Key.userId] = guide.userId.uuidString
+        json[Key.nickname] = ""
+        json[Key.dateOfBirth] = Date().destruct()
+        json[Key.daysAvailable] = guide.daysAvailable.map { $0.rawValue }
+        if let area = guide.location {
+            json[Key.area] = areaParser.convertAreaToJSON(area: area)
+            json[Key.areaId] = area.areaId.uuidString
+        } else {
+            json[Key.area] = areaParser.convertAreaToJSON(area: Area.sampleArea)
+            json[Key.areaId] = Area.sampleAreaID.uuidString
+        }
+        json[Key.unavailableDates] = guide.unavailableDates?.compactMap { $0.destruct() }
+        json[Key.yearsOfExperience] = guide.yearsOfExperience ?? 0
+        json[Key.languages] = guide.languages ?? [String]()
+        json[Key.accreditations] = guide.accreditations ?? ""
+        json[Key.biography] = guide.biography ?? ""
+        json[Key.hobbies] = guide.hobbies ?? ""
+        json[Key.memorableExperiences] = guide.memorableExperiences ?? ""
+        return json
+    }
 }
 
 extension GuideAPIParser {

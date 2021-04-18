@@ -46,7 +46,7 @@ class MainContainerPresenter: PresenterProtocol, ObservableObject {
     private func toggleLoggedIn(loggedInState loggedIn: Bool) {
         self.profileTab = loggedIn ? router?.profilePage : router?.loginPage
     }
-
+    
     func checkShouldDisplayUserDetails() -> Bool {
         interactor.checkIfUserLoggedIn()
     }

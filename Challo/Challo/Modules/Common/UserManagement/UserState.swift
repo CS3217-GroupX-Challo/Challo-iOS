@@ -17,6 +17,7 @@ class UserState: UserStateProtocol, ObservableObject {
         willSet { objectWillChange.send() }
         didSet { storedLoggedIn = loggedIn }
     }
+
     @AppStorage("logged_in") private var storedLoggedIn = false
     @AppStorage("email") var email = ""
     @AppStorage("name") var name = ""
@@ -46,29 +47,4 @@ class UserState: UserStateProtocol, ObservableObject {
                                token: token,
                                userId: userId)
     }
-}
-
-internal class PreviewUserState: UserStateProtocol {
-
-    var isNewUser: Bool = false
-    var loggedIn: Bool = false
-    var email: String = ""
-    var name: String = ""
-    var token: String = ""
-    var userId: String = ""
-    var profileImg = ""
-
-    var certificate: UserCertificate? {
-        guard loggedIn else {
-            return nil
-        }
-        return UserCertificate(name: name,
-                               email: email,
-                               profileImg: profileImg,
-                               token: token,
-                               userId: userId)
-    }
-
-    var user: User?
-
 }

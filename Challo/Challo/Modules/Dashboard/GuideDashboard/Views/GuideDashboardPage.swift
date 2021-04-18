@@ -64,9 +64,15 @@ struct GuideDashboardPage: View {
     }
     
     var body: some View {
-        PageLayout(background: .mountainBackground, headerContent: AnyView(header)) { geo in
-            makeContent(geo)
-                .frame(maxWidth: .infinity)
+        if !presenter.hasGuideOnboarded {
+            presenter.router?.getOnboardingPage()
+                .environmentObject(presenter)
+        } else {
+            PageLayout(background: .mountainBackground, headerContent: AnyView(header)) { geo in
+                makeContent(geo)
+                    .frame(maxWidth: .infinity)
+            }
+            .onAppear { presenter.onAppear() }
         }
     }
 }

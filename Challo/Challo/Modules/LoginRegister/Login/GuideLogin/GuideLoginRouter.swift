@@ -21,6 +21,8 @@ class GuideLoginRouter: LoginRouter {
     }
 
     func getRegistrationPage() -> AnyView {
-        GuideRegisterModule(userState: userState, loginAPI: loginAPI, registerAPI: registerAPI).assemble().view
+        GuideRegisterModule(userState: userState,
+                            loginAPI: loginAPI,
+                            registerAPI: registerAPI).assemble().view
     }
 }

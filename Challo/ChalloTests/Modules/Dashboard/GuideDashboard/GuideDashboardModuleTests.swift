@@ -13,12 +13,16 @@ class GuideDashboardModuleTests: XCTestCase {
     var module: GuideDashboardModule {
         let userState = MockUserState.createMockLoggedInUserState()
         let bookingRepository = MockBookingRepository()
+        let trailRepository = MockTrailRepository()
+        let guideAPI = MockGuideAPI()
         let userAPI = MockUserAPI()
         return GuideDashboardModule(userState: userState,
                                     bookingRepository: bookingRepository,
+                                    trailRepository: trailRepository,
                                     sendMessageToTourist: { _, _, _ in },
                                     updateUserChat: { _, _ in },
-                                    userAPI: userAPI)
+                                    userAPI: userAPI,
+                                    guideAPI: guideAPI)
     }
 
     func testAssemble() {

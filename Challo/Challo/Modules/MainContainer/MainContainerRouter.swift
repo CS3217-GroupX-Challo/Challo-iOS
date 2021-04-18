@@ -92,15 +92,16 @@ class MainContainerRouter: RouterProtocol {
                                       reviewAPI: ReviewAPIProtocol,
                                       userState: UserStateProtocol) {
 
-        let chatService = setUpAndReturnChatService()
         let userAPI = resolveUserAPI()
 
         #if GUIDE
+        let chatService = setUpAndReturnChatService()
         loginPage = GuideLoginModule(userState: userState,
                                      loginAPI: resolveGuideLoginAPI(),
                                      registerAPI: resolveGuideRegisterAPI()).assemble().view
         profilePage = GuideDashboardModule(userState: userState,
                                            bookingRepository: bookingRepository,
+                                           trailRepository: resolveTrailRepository(),
                                            sendMessageToTourist: { [weak self] touristEmail, _, messageText in
                                             self?.sendMessageToUser(userEmail: touristEmail,
                                                                     messageText: messageText,
@@ -109,7 +110,8 @@ class MainContainerRouter: RouterProtocol {
                                            updateUserChat: { [weak self] name, email in
                                             self?.updateUser(name: name, email: email, chatService: chatService)
                                            },
-                                           userAPI: userAPI).assemble().view
+                                           userAPI: userAPI,
+                                           guideAPI: resolveGuideAPI()).assemble().view
 
         #elseif TOURIST
         loginPage = TouristLoginModule(userState: userState,
@@ -179,6 +181,13 @@ extension MainContainerRouter {
         }
         return userAPI
     }
+
+    private func resolveGuideAPI() -> GuideAPIProtocol {
+        guard let guideAPI = apiContainer.container.resolve(GuideAPIProtocol.self) else {
+            fatalError("Failed to resolve guideAPI in MainContainer")
+        }
+        return guideAPI
+    }
     
     private func resolveTouristLoginAPI() -> LoginAPI {
         guard let touristLoginAPI = apiContainer.container.resolve(LoginAPI.self,
@@ -187,14 +196,6 @@ extension MainContainerRouter {
         }
         return touristLoginAPI
     }
-    
-    private func resolveGuideLoginAPI() -> LoginAPI {
-        guard let guideLoginAPI = apiContainer.container.resolve(LoginAPI.self,
-                                                                 name: ContainerNames.guide.rawValue) else {
-            fatalError("Failed to resolve touristLoginAPI in MainContainer")
-        }
-        return guideLoginAPI
-    }
 
     private func resolveTouristRegisterAPI() -> RegisterAPI {
         guard let touristRegisterAPI = apiContainer.container.resolve(RegisterAPI.self,
@@ -202,6 +203,14 @@ extension MainContainerRouter {
             fatalError("Failed to resolve touristRegisterAPI in MainContainer")
         }
         return touristRegisterAPI
+    }
+
+    private func resolveGuideLoginAPI() -> LoginAPI {
+        guard let guideLoginAPI = apiContainer.container.resolve(LoginAPI.self,
+                                                                 name: ContainerNames.guide.rawValue) else {
+            fatalError("Failed to resolve guideLoginAPI in MainContainer")
+        }
+        return guideLoginAPI
     }
 
     private func resolveGuideRegisterAPI() -> RegisterAPI {

@@ -17,4 +17,5 @@ class MainContainerInteractor: InteractorProtocol {
     func checkIfUserLoggedIn() -> Bool {
         userState.loggedIn
     }
+
 }
