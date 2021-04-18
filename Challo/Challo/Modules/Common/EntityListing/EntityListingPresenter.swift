@@ -53,4 +53,10 @@ extension EntityListingPresenter {
             isFirstLoad = false
         }
     }
+    
+    func refresh() {
+        if isRefreshing {
+            interactor.getAllEntities()
+        }
+    }
 }

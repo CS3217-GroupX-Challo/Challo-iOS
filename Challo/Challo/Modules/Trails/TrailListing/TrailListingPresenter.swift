@@ -21,9 +21,7 @@ final class TrailListingPresenter: ProfilableEntityListingPresenter,
     @Published var isLoading = false
     @Published var isRefreshing = false {
         didSet {
-            if isRefreshing == true {
-                getAllEntities()
-            }
+            refresh()
         }
     }
 

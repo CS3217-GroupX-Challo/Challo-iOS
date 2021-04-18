@@ -26,9 +26,7 @@ final class HomestayListingPresenter: ProfilableEntityListingPresenter,
     @Published var isLoading = false
     @Published var isRefreshing = false {
         didSet {
-            if isRefreshing == true {
-                interactor.getAllEntities()
-            }
+            refresh()
         }
     }
     
@@ -51,6 +49,9 @@ final class HomestayListingPresenter: ProfilableEntityListingPresenter,
     var displayedCards: [EntityListingCard] {
         var displayedEntities = searchPresenter.applySearch(entities)
         displayedEntities = priceFilterPresenter.applyFilter(displayedEntities)
+        displayedEntities.sort {
+            $0.title < $1.title
+        }
         return displayedEntities.map(transformHomestayToCard)
     }
 
