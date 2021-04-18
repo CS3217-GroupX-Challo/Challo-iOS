@@ -7,5 +7,6 @@
 
 import CoreData
 
+/// Protocol for conversion between Persistence to NSManagedObject
 protocol CoreDataPersistenceObject: PersistenceObjectProtocol where Entity: NSManagedObject {
 }

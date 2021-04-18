@@ -8,22 +8,14 @@
 import SwiftUI
 import Combine
 
-final class TrailListingPresenter: ProfilableEntityListingPresenter,
+final class TrailListingPresenter: LoadableEntityPresenter,
+                                   ProfilableEntityListingPresenter,
                                    PriceFilterableEntityListingPresenter,
-                                   SearchableEntityListingPresenter,
-                                   ObservableObject {
+                                   SearchableEntityListingPresenter {
     typealias Entity = Trail
     
     var interactor: TrailListingInteractor!
     var router: TrailListingRouter?
-    
-    var isFirstLoad = true
-    @Published var isLoading = false
-    @Published var isRefreshing = false {
-        didSet {
-            refresh()
-        }
-    }
 
     var entities: [Trail] = [] {
         didSet {
@@ -38,7 +30,8 @@ final class TrailListingPresenter: ProfilableEntityListingPresenter,
     var priceFilterPresenter = EntityListingPriceFilterPresenter<Trail>(getPriceFromEntity: { $0.lowestFee })
     @Published var searchPresenter: EntityListingSearchPresenter<Trail>!
     
-    init() {
+    override init() {
+        super.init()
         searchPresenter = EntityListingSearchPresenter<Trail>(
             presenterWillChange: {
                 [weak self] in self?.objectWillChange.send()
@@ -86,5 +79,9 @@ final class TrailListingPresenter: ProfilableEntityListingPresenter,
     
     func matchEntityToCardId(entity: Trail, cardId: String) -> Bool {
         entity.trailId == UUID(uuidString: cardId)
+    }
+    
+    override func onRefresh() {
+        getAllEntities()
     }
 }

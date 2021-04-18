@@ -9,7 +9,9 @@ import SwiftUI
 import Combine
 import Foundation
 
-final class GuidesListingPresenter: EntityListingPresenter, SearchableEntityListingPresenter {
+final class GuidesListingPresenter: LoadableEntityPresenter,
+                                    EntityListingPresenter,
+                                    SearchableEntityListingPresenter {
     
     typealias Entity = Guide
     
@@ -20,14 +22,8 @@ final class GuidesListingPresenter: EntityListingPresenter, SearchableEntityList
     @Published var isSelectedGuideSheetOpen = false
     @Published var selectedGuide: Guide?
     
-    var isFirstLoad = true
-    @Published var isLoading = false
-    @Published var isRefreshing = false {
-        didSet {
-            if isRefreshing {
-                populateGuides()
-            }
-        }
+    override func onRefresh() {
+        populateGuides()
     }
     
     @Published var slider = CustomSlider(width: 600, start: 1, end: 5)
@@ -52,7 +48,8 @@ final class GuidesListingPresenter: EntityListingPresenter, SearchableEntityList
         }
     }
     
-    init() {
+    override init() {
+        super.init()
         searchPresenter = EntityListingSearchPresenter<Guide>(
             presenterWillChange: {
                 [weak self] in self?.objectWillChange.send()

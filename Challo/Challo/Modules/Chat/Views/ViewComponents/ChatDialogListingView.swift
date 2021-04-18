@@ -35,7 +35,7 @@ struct ChatDialogListingView: View {
                             presenter.onTapDialog(dialog: dialog)
                         })
                         .padding(.bottom, 50)
-                    }
+                    }.padding(.bottom, 50)
                 }
             }
         }

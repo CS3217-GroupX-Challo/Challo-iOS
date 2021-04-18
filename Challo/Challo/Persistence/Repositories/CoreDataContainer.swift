@@ -7,6 +7,7 @@
 
 import CoreData
 
+/// Contains the managedContext for Core Data
 class CoreDataContainer {
     static var persistentContainer: NSPersistentContainer = {
       let container = NSPersistentContainer(name: "Challo")
