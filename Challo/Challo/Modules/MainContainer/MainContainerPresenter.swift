@@ -47,8 +47,8 @@ class MainContainerPresenter: PresenterProtocol, ObservableObject {
         interactor.checkIfUserLoggedIn()
     }
     
-    func getHomePage() -> AnyView? {
-        router?.homePage
+    func getHomestayPage() -> AnyView? {
+        router?.homestayPage
     }
     
     func getProfilePage() -> AnyView? {

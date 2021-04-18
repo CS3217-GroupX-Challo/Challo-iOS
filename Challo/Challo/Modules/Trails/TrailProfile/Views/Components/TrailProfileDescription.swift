@@ -14,11 +14,11 @@ struct TrailProfileDescription: View {
     var body: some View {
         HStack(alignment: .top, spacing: 40) {
             VStack(alignment: .leading) {
-                TrailProfileSectionTitle(title: "Landmarks")
+                EntityProfileSectionTitle(title: "Landmarks")
                 TrailProfileLandmarks(trail: trail)
             }.frame(maxWidth: 200)
             VStack(alignment: .leading) {
-                TrailProfileSectionTitle(title: "About")
+                EntityProfileSectionTitle(title: "About")
                 Text(trail.description)
                     .fixedSize(horizontal: false, vertical: true)
             }

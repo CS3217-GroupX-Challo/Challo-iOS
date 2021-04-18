@@ -21,18 +21,17 @@ struct MainContainerView: View {
         NavigationView {
             presenter.getSettingsPage()
             TabView(selection: $presenter.tabSelection) {
-                #warning("to edit")
-//                presenter.getHomePage()
-//                    .tabItem {
-//                        Image(systemName: "house.fill")
-//                        Text("Home").bold()
-//                    }
-//                    .tag(0)
-
                 presenter.getGuidePage()
                     .tabItem {
                         Image(systemName: "figure.wave.circle.fill")
                         Text("Guides").bold()
+                    }
+                    .tag(0)
+                
+                presenter.getHomestayPage()
+                    .tabItem {
+                        Image(systemName: "house.fill")
+                        Text("Homestay").bold()
                     }
                     .tag(1)
 

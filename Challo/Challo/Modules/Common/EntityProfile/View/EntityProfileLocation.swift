@@ -1,28 +1,25 @@
 //
-//  TrailProfileLocation.swift
+//  EntityProfileLocation.swift
 //  Challo
 //
-//  Created by Shao Yi on 20/3/21.
+//  Created by Shao Yi on 18/4/21.
 //
 
 import SwiftUI
 import MapKit
 
-struct TrailProfileLocation: View {
-    
-    let startingPoint: CLLocationCoordinate2D
+struct EntityProfileLocation: View {
     @State var mapRegion: MKCoordinateRegion
 
-    init(trail: Trail) {
-        startingPoint = trail.positions[0]
-        _mapRegion = State(initialValue: MKCoordinateRegion(center: startingPoint,
+    init(location: CLLocationCoordinate2D) {
+        _mapRegion = State(initialValue: MKCoordinateRegion(center: location,
                                                             span: MKCoordinateSpan(latitudeDelta: 0.005,
                                                                                    longitudeDelta: 0.005)))
     }
     
     var body: some View {
         VStack(alignment: .leading) {
-            TrailProfileSectionTitle(title: "Location")
+            EntityProfileSectionTitle(title: "Location")
             Map(coordinateRegion: $mapRegion, interactionModes: MapInteractionModes.all)
                 .cornerRadius(10)
         }.frame(minHeight: 350)
