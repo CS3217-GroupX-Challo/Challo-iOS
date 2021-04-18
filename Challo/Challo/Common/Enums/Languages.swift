@@ -8,7 +8,6 @@
 enum Languages: String, CaseIterable {
     case English
     case Hindi
-    case Kumaoni = "Kumaoni/Garhwali"
 }
 
 extension Languages: Identifiable {
