@@ -13,8 +13,11 @@ struct GuideDashboardPage: View {
 
     var body: some View {
         VStack {
-            if !presenter.hasGuideOnboarded {
+            if presenter.loading {
+                Loading(isAnimating: .constant(true), style: .large)
+            } else if !presenter.hasGuideOnboarded {
                 presenter.router?.getOnboardingPage()
+                    .environmentObject(presenter)
             } else {
                 GeometryReader { geometry in
                     VStack(alignment: .leading) {

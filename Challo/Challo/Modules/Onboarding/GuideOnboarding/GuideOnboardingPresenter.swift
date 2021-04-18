@@ -44,6 +44,7 @@ class GuideOnboardingPresenter: PresenterProtocol {
     @Published var isShowingAlert = false
     @Published var alertTitle = ""
     @Published var alertMessage = ""
+    var isOnboardSuccess = false
 
     var allNecessaryFieldsFilled: Bool {
         !nickname.isEmpty
@@ -95,6 +96,7 @@ class GuideOnboardingPresenter: PresenterProtocol {
 
     func showSubmissionResult(success: Bool) {
         isShowingAlert = true
+        isOnboardSuccess = success
         if success {
             alertTitle = "Success!"
             alertMessage = "Details successfully saved, welcome aboard!"

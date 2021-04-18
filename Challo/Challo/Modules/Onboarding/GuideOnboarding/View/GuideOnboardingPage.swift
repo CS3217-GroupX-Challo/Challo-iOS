@@ -10,6 +10,7 @@ import SwiftUI
 struct GuideOnboardingPage: View {
 
     @ObservedObject var presenter: GuideOnboardingPresenter
+    @EnvironmentObject var dashboardPresenter: GuideDashboardPresenter
 
     var onboardingView: some View {
         VStack(alignment: .center) {
@@ -37,7 +38,13 @@ struct GuideOnboardingPage: View {
         .alert(isPresented: $presenter.isShowingAlert) {
             Alert(title: Text(presenter.alertTitle),
                   message: Text(presenter.alertMessage),
-                  dismissButton: .default(Text("Close")))
+                  dismissButton: Alert.Button.default(
+                    Text("Okay"), action: {
+                        if presenter.isOnboardSuccess {
+                            dashboardPresenter.hasGuideOnboarded = true
+                        }
+                    }
+                ))
         }
         .onAppear { presenter.loadTrailAndAreaData() }
         .ignoresSafeArea()
