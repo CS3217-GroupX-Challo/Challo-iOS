@@ -58,8 +58,8 @@ class MainContainerRouter: RouterProtocol {
                                              reviewAPI: reviewAPI,
                                              sendMessageToGuide: { [weak self] guideEmail, _, messageText in
                                                 self?.sendMessageToUser(userEmail: guideEmail,
-                                                                         messageText: messageText,
-                                                                         chatService: chatService)
+                                                                        messageText: messageText,
+                                                                        chatService: chatService)
                                              },
                                              updateUserChat: { [weak self] name, email in
                                                 self?.updateUser(name: name, email: email, chatService: chatService)
@@ -190,7 +190,7 @@ extension MainContainerRouter {
         }
         guard !chatService.isConnected else {
             sendMessageToUser(userEmail: userEmail, messageText: messageText, chatService: chatService,
-                               didSendMessage: didSendMessage)
+                              didSendMessage: didSendMessage)
             return
         }
         connectThenOp(chatService: chatService) { [weak self] in

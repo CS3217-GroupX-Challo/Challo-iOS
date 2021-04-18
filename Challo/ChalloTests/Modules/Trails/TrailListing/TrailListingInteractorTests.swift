@@ -17,7 +17,7 @@ class TrailListingInteractorTests: XCTestCase {
         interactor.getAllEntities()
         XCTAssertEqual(2, presenter.entities.count, "Not retrived correctly")
         XCTAssertTrue(presenter.entities.allSatisfy([MockTrailAPIResponse.trailOne,
-                                                   MockTrailAPIResponse.trailTwo].contains),
+                                                     MockTrailAPIResponse.trailTwo].contains),
                       "Not populated correctly")
     }
 }
