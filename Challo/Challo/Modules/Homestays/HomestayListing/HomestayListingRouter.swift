@@ -16,9 +16,11 @@ class HomestayListingRouter: EntityListingRouter {
     var profilePage: AnyView
     var homestayProfilePresenter: HomestayProfilePresenter
     
-    init(userState: UserStateProtocol, homestayRepository: HomestayRepositoryProtocol) {
+    init(userState: UserStateProtocol, homestayRepository: HomestayRepositoryProtocol,
+         sendMessageToHost: @escaping ((_ hostEmail: String, _ messageText: String) -> Void)) {
         let (view, presenter) = HomestayProfileModule(userState: userState,
-                                                      homestayRepository: homestayRepository).assemble()
+                                                      homestayRepository: homestayRepository,
+                                                      sendMessageToHost: sendMessageToHost).assemble()
         profilePage = view
         homestayProfilePresenter = presenter
     }

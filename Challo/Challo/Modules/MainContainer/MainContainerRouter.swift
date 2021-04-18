@@ -27,8 +27,6 @@ class MainContainerRouter: RouterProtocol {
         apiContainer = APIContainer(userState: userState)
         repositoryContainer = RepositoryContainer(apiContainer: apiContainer)
         
-        homestayPage = HomestayListingModule(userState: userState,
-                                         homestayRepository: resolveHomestayRepository()).assemble().view
         trailsPage = TrailListingModule(trailRepository: resolveTrailRepository(),
                                         guideRepository: resolveGuideRepository(),
                                         bookingRepository: resolveBookingRepository(),
@@ -46,9 +44,9 @@ class MainContainerRouter: RouterProtocol {
                              userState: userState)
     }
     
-    private func setupChatAndProfilePage(bookingRepository: BookingRepositoryProtocol,
-                                         reviewAPI: ReviewAPIProtocol,
-                                         userAPI: UserAPIProtocol) {
+    private func setupChatProfileHomestayPage(bookingRepository: BookingRepositoryProtocol,
+                                              reviewAPI: ReviewAPIProtocol,
+                                              userAPI: UserAPIProtocol) {
         let chatDialogRepository = ChatDialogRepository()
         let chatService = QuickBloxChatService(chatAuthService: QuickBloxChatAuthService(),
                                                chatDialogService: QuickBloxChatDialogService(chatDialogRepository:
@@ -66,6 +64,14 @@ class MainContainerRouter: RouterProtocol {
                                                 self?.updateUser(name: name, email: email, chatService: chatService)
                                              },
                                              userAPI: userAPI).assemble().view
+        
+        homestayPage = HomestayListingModule(userState: userState,
+                                             homestayRepository: resolveHomestayRepository(),
+                                             sendMessageToHost: { [weak self] hostEmail, messageText in
+                                                self?.sendMessageToUser(userEmail: hostEmail,
+                                                                        messageText: messageText,
+                                                                        chatService: chatService)
+                                             }).assemble().view
     }
     
     private func setUpLoginAndProfile(bookingRepository: BookingRepositoryProtocol,
@@ -79,9 +85,9 @@ class MainContainerRouter: RouterProtocol {
         loginPage = TouristLoginModule(userState: userState,
                                        loginAPI: resolveTouristLoginAPI(),
                                        registerAPI: resolveTouristRegisterAPI()).assemble().view
-        setupChatAndProfilePage(bookingRepository: bookingRepository,
-                                reviewAPI: reviewAPI,
-                                userAPI: resolveUserAPI())
+        setupChatProfileHomestayPage(bookingRepository: bookingRepository,
+                                     reviewAPI: reviewAPI,
+                                     userAPI: resolveUserAPI())
         #endif
     }
 }

@@ -11,15 +11,18 @@ class HomestayProfileModule: ViperModuleProtocol {
 
     var userState: UserStateProtocol
     var homestayRepository: HomestayRepositoryProtocol
+    let sendMessageToHost: ((_ hostEmail: String, _ messageText: String) -> Void)
     
     init(userState: UserStateProtocol,
-         homestayRepository: HomestayRepositoryProtocol) {
+         homestayRepository: HomestayRepositoryProtocol,
+         sendMessageToHost: @escaping ((_ hostEmail: String, _ messageText: String) -> Void)) {
         self.userState = userState
         self.homestayRepository = homestayRepository
+        self.sendMessageToHost = sendMessageToHost
     }
     
     func assemble() -> (view: AnyView, presenter: HomestayProfilePresenter) {
-        let interactor = HomestayProfileInteractor(userState: userState)
+        let interactor = HomestayProfileInteractor(userState: userState, sendMessageToHost: sendMessageToHost)
         let presenter = HomestayProfilePresenter()
         let router = HomestayProfileRouter()
         

@@ -11,9 +11,11 @@ class HomestayProfileInteractor: EntityProfileInteractor {
     
     var userState: UserStateProtocol
     weak var presenter: HomestayProfilePresenter!
+    let sendMessageToHost: ((_ hostEmail: String, _ messageText: String) -> Void)
 
-    init(userState: UserStateProtocol) {
+    init(userState: UserStateProtocol, sendMessageToHost: @escaping ((_ hostEmail: String, _ messageText: String) -> Void)) {
         self.userState = userState
+        self.sendMessageToHost = sendMessageToHost
     }
 
 }
