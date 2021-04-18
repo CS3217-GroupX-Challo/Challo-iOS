@@ -33,7 +33,7 @@ class HomestayListingPresenter: EntityListingPresenter, ObservableObject {
     
     func getEntityByCardId(_ cardId: String) -> Homestay {
         guard let homestay = entities.first(where: { $0.homestayId == UUID(uuidString: cardId) }) else {
-            fatalError("trails is not synced with cards")
+            fatalError("homestays is not synced with cards")
         }
         return homestay
     }
