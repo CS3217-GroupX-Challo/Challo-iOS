@@ -13,30 +13,44 @@ class GuideOnboardingInteractor: InteractorProtocol {
 
     let userState: UserStateProtocol
     let trailRepository: TrailRepositoryProtocol
+    let userParser: UserAPIParser
+    let certificateManager: CertificateManager
     let onboardingAPI: GuideOnboardingAPI
 
     internal init(userState: UserStateProtocol,
                   trailRepository: TrailRepositoryProtocol,
+                  userParser: UserAPIParser,
+                  certificateManager: CertificateManager,
                   onboardingAPI: GuideOnboardingAPI) {
         self.userState = userState
         self.trailRepository = trailRepository
+        self.userParser = userParser
         self.onboardingAPI = onboardingAPI
+        self.certificateManager = certificateManager
     }
 
     init(userState: UserStateProtocol,
          trailRepository: TrailRepositoryProtocol) {
         self.userState = userState
         self.trailRepository = trailRepository
+        self.userParser = UserAPIParser(userState: userState)
+        self.certificateManager = CertificateManager(userState: userState)
         self.onboardingAPI = GuideOnboardingAPI(userState: userState)
     }
 
     func submitGuideDetails(details: GuideOnboardingDetails) {
-        onboardingAPI.updateGuideParticulars(details: details) { [weak self] error in
-            if error == nil {
-                self?.presenter.showSubmissionResult(success: true)
-            } else {
+        onboardingAPI.updateGuideParticulars(details: details) { [weak self] response, error in
+            guard error != nil else {
                 self?.presenter.showSubmissionResult(success: false)
+                return
             }
+            let certificate = self?.userParser.parseUser(apiResponse: response)
+            guard let certificateUnwrapped = certificate else {
+                self?.presenter.showSubmissionResult(success: false)
+                return
+            }
+            self?.certificateManager.storeCertificate(certificate: certificateUnwrapped)
+            self?.presenter.showSubmissionResult(success: true)
         }
     }
 

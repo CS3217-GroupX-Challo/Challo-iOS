@@ -27,8 +27,7 @@ final class GuideLoginModule: ViperModuleProtocol {
         let presenter = GuideLoginPresenter()
         let router = GuideLoginRouter(userState: userState,
                                       loginAPI: loginAPI,
-                                      registerAPI: registerAPI,
-                                      trailRepository: trailRepository)
+                                      registerAPI: registerAPI)
         interactor.presenter = presenter
         presenter.interactor = interactor
         presenter.router = router

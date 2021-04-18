@@ -41,11 +41,8 @@ extension UserStateProtocol {
         token = certificate.token
         userId = certificate.userId
         self.isNewUser = isNewUser
-        guard let uuid = UUID(uuidString: userId) else {
-            ChalloLogger.logger.fault("userId is not a uuid")
-            return
-        }
-        user = Tourist(userId: uuid, email: email, profileImg: profileImg, name: name)
+
+        user = certificate.user
     }
 
     func logIn() {

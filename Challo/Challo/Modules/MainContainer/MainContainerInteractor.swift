@@ -17,4 +17,19 @@ class MainContainerInteractor: InteractorProtocol {
     func checkIfUserLoggedIn() -> Bool {
         userState.loggedIn
     }
+
+    var guideCompletedOnboarding: Bool {
+        guard let user = userState.user as? Guide else {
+            return false
+        }
+        guard let languages = user.languages,
+              user.yearsOfExperience != nil,
+              let hobbies = user.hobbies,
+              let biography = user.biography,
+              !user.daysAvailable.isEmpty,
+              !user.trails.isEmpty else {
+            return false
+        }
+        return !languages.isEmpty && !hobbies.isEmpty && !biography.isEmpty
+    }
 }

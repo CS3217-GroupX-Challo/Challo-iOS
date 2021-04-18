@@ -12,13 +12,17 @@ class GuideOnboardingAPI: OnboardingAPI {
     let networkManager = APINetwork.getNetworkManager()
     let areaParser = AreaAPIParser()
     let url = "/guide/"
-    let userId: String
+    let userState: UserStateProtocol
 
     init(userState: UserStateProtocol) {
-        self.userId = userState.userId
+        self.userState = userState
     }
 
-    func updateGuideParticulars(details: GuideOnboardingDetails, responseHandler: @escaping (Error?) -> Void) {
+    var userId: String {
+        userState.userId
+    }
+
+    func updateGuideParticulars(details: GuideOnboardingDetails, responseHandler: @escaping (JSON, Error?) -> Void) {
         guard UUID(uuidString: userId) != nil else {
             fatalError("User should have been logged in with valid UUID already")
         }

@@ -22,10 +22,4 @@ class GuideRegisterPresenter: RegisterPresenter, ObservableObject {
 
     @Published var registrationComplete = false
 
-    var onboardingPage: AnyView {
-        guard let router = router else {
-            fatalError("Router should have been initialised")
-        }
-        return router.onboardingForm
-    }
 }
