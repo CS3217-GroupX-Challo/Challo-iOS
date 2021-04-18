@@ -13,7 +13,12 @@ class GuideDashboardModuleTests: XCTestCase {
     func testAssemble() {
         let userState = MockUserState()
         let bookingRepository = MockBookingRepository()
-        let module = GuideDashboardModule(userState: userState, bookingRepository: bookingRepository)
+        let trailRepository = MockTrailRepository()
+        let guideAPI = MockGuideAPI()
+        let module = GuideDashboardModule(userState: userState,
+                                          bookingRepository: bookingRepository,
+                                          trailRepository: trailRepository,
+                                          guideAPI: guideAPI)
         let (view, presenter) = module.assemble()
         XCTAssertNotNil(view, "View was not properly initialised")
         XCTAssertNotNil(presenter, "Presenter was not properly initialised")
