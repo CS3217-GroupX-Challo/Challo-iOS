@@ -109,7 +109,7 @@ struct RefreshableScrollView<Content: View>: View {
                 if self.loading { // If loading, show the activity control
                     VStack {
                         Spacer()
-                        ActivityRep()
+                        Loading(isAnimating: .constant(true), style: .large)
                         Spacer()
                     }.frame(height: height).fixedSize()
                         .offset(y: -height + (self.loading && self.frozen ? height : 0.0))
