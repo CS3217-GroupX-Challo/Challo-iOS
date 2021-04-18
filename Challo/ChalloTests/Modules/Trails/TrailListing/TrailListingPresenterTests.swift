@@ -16,11 +16,11 @@ class TrailListingPresenterTests: XCTestCase {
         let presenter = TrailListingPresenter()
         presenter.interactor = interactor
         interactor.presenter = presenter
-        presenter.getAllTrails()
+        presenter.getAllEntities()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-            XCTAssertEqual(2, presenter.trails.count, "Not retrived correctly")
-            XCTAssertEqual(MockTrailAPIResponse.trailOne, presenter.trails[0], "Not retrived correctly")
-            XCTAssertEqual(MockTrailAPIResponse.trailTwo, presenter.trails[1], "Not retrived correctly")
+            XCTAssertEqual(2, presenter.entities.count, "Not retrived correctly")
+            XCTAssertEqual(MockTrailAPIResponse.trailOne, presenter.entities[0], "Not retrived correctly")
+            XCTAssertEqual(MockTrailAPIResponse.trailTwo, presenter.entities[1], "Not retrived correctly")
         }
     }
 }

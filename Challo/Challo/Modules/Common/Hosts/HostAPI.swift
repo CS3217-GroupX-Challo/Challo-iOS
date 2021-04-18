@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HostAPI {
+class HostAPI: HostAPIProtocol {
 
     typealias JSON = NetworkManager.JSON
     private let hostParser: HostAPIParser

@@ -11,7 +11,10 @@ import Foundation
 protocol EntityListingInteractor: InteractorProtocol {
 
     associatedtype Entity
-
+    
+    /// Fetches all entities from remote server
+    func getAllEntities()
+    
     /// Returns a list of entities cached in memory
     func getCachedEntities() -> [Entity]
 }

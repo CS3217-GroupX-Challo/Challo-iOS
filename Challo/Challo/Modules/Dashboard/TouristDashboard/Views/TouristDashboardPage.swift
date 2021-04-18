@@ -20,7 +20,11 @@ struct TouristDashboardPage: View {
                              options: presenter.tabTitles)
             
             if presenter.isLoading {
-                Loading(isAnimating: .constant(true), style: .large)
+                VStack {
+                    Spacer()
+                    Loading(isAnimating: .constant(true), style: .large)
+                    Spacer()
+                }
             } else {
                 if presenter.selectedTab == .upcomingBookings {
                     BookingCardListingsView(
@@ -44,13 +48,22 @@ struct TouristDashboardPage: View {
     var header: some View {
         HStack {
             Spacer()
-            VStack {
+            VStack(alignment: .trailing, spacing: 15) {
                 Text(presenter.name)
                     .font(.largeTitle)
-                    .foregroundColor(.white)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
                 NavigationLink(destination: UpdateProfilePage().environmentObject(presenter)) {
-                    Text("Edit Profile")
-                        .font(.headline)
+                    HStack(spacing: 5) {
+                        Text("Edit Profile")
+                            .font(.headline)
+                            .foregroundColor(Color(.systemGray))
+                        Image(systemName: "pencil")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 15)
+                            .foregroundColor(Color(.systemGray))
+                    }
                 }
             }
             DashboardProfileImage()
@@ -61,10 +74,9 @@ struct TouristDashboardPage: View {
     }
     
     var body: some View {
-        PageLayout(headerContent: AnyView(header)) { geometry in
+        PageLayout(background: .mountainBackground, headerContent: AnyView(header)) { geometry in
             makeContent(geometry)
                 .frame(maxWidth: .infinity)
-                .padding(.top, 50)
         }.onAppear {
             presenter.refresh()
         }

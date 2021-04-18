@@ -21,12 +21,13 @@ struct MainContainerView: View {
         NavigationView {
             presenter.getSettingsPage()
             TabView(selection: $presenter.tabSelection) {
-                presenter.getHomePage()
-                    .tabItem {
-                        Image(systemName: "house.fill")
-                        Text("Home").bold()
-                    }
-                    .tag(0)
+                #warning("to edit")
+//                presenter.getHomePage()
+//                    .tabItem {
+//                        Image(systemName: "house.fill")
+//                        Text("Home").bold()
+//                    }
+//                    .tag(0)
 
                 presenter.getGuidePage()
                     .tabItem {

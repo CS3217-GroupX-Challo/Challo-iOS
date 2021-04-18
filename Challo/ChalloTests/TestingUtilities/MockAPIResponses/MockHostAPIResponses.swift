@@ -41,6 +41,6 @@ struct MockHostAPIResponses {
     
     static var host: Host {
         Host(userId: userId, email: email, profileImg: profileImg,
-            name: name, phone: phone, dateJoined: dateJoined, sex: sex)
+             name: name, phone: phone, dateJoined: dateJoined, sex: sex)
     }
 }

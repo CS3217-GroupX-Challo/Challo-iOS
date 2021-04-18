@@ -6,30 +6,45 @@
 //
 
 import SwiftUI
+import Combine
 
-class TrailListingPresenter: SearchBarPresenter, ObservableObject {
-
+class TrailListingPresenter: EntityListingPresenter,
+                             PriceFilterableEntityListingPresenter,
+                             SearchableEntityListingPresenter,
+                             ObservableObject {
+    typealias Entity = Trail
+    
     var interactor: TrailListingInteractor!
     var router: TrailListingRouter?
     
+    var isFirstLoad = true
     @Published var isLoading = false
     @Published var isRefreshing = false {
         didSet {
             if isRefreshing == true {
-                getAllTrails()
+                getAllEntities()
             }
         }
     }
 
-    var trails: [Trail] = []
-    private var trailListingCards: [TrailListingCard] = []
-    
-    @Published var searchBarText: String = ""
-    @Published var isSearchBarSheetOpen: Bool = false
+    var entities: [Trail] = [] {
+        didSet {
+            priceFilterPresenter.setSlider(entities: entities)
+        }
+    }
     
     @Published var showEasyTrails = true
     @Published var showModerateTrails = true
     @Published var showDifficultTrails = true
+    
+    var priceFilterPresenter = EntityListingPriceFilterPresenter<Trail>(getPriceFromEntity: { $0.lowestFee })
+    @Published var searchPresenter = EntityListingSearchPresenter<Trail>(getSearchCriteriaFromEntity: { $0.title })
+    
+    var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        didInitSearchableEntityListingPresenter()
+    }
     
     var difficultiesToDisplay: [TrailDifficulty] {
         var difficulties = [TrailDifficulty]()
@@ -39,70 +54,39 @@ class TrailListingPresenter: SearchBarPresenter, ObservableObject {
         return difficulties
     }
     
-    @Published var slider = CustomSlider(width: 600, start: 0, end: 0)
-    
-    var lowestTrailPrice: Int = .min
-    var highestTrailPrice: Int = .max
-    
-    var priceFilterLowerBound: Int {
-        Int(floor(slider.lowHandle.currentValue))
-    }
-    
-    var priceFilterUpperBound: Int {
-        Int(ceil(slider.highHandle.currentValue))
-    }
-    
-    var displayedTrailListingCards: [TrailListingCard] {
-        var displayedCards = trailListingCards
-        displayedCards = displayedCards.filter { $0.lowestFeePerPax >= priceFilterLowerBound &&
-                                                    $0.lowestFeePerPax <= priceFilterUpperBound  
+    var displayedCards: [ListingCard] {
+        var trails = self.entities
+        trails = applyFilter(trails)
+        trails = searchPresenter.applySearch(trails)
+        trails.sort {
+            $0.title < $1.title
         }
-        displayedCards = displayedCards.filter { difficultiesToDisplay.contains($0.difficulty) }
-        guard !searchBarText.isEmpty else {
-            return displayedCards
+        return trails.map(transformTrailToTrailListingCard)
+    }
+    
+    private func applyFilter(_ trails: [Trail]) -> [Trail] {
+        let trails = priceFilterPresenter.applyFilter(trails)
+        return trails.filter { difficultiesToDisplay.contains($0.difficulty) }
+    }
+    
+    func transformTrailToTrailListingCard(_ trail: Trail) -> ListingCard {
+        ListingCard(id: trail.trailId.uuidString,
+                    entityImage: trail.images.isEmpty ? nil : trail.images[0],
+                    defaultImage: "mountains-background") {
+           AnyView(TrailListingCardDetail(title: trail.title,
+                                          tags: trail.tags,
+                                          lowestFeePerPax: trail.lowestFee,
+                                          tourDescription: trail.description,
+                                          rating: trail.rating,
+                                          numOfReviews: trail.numOfReviews,
+                                          difficulty: trail.difficulty))
         }
-        displayedCards = displayedCards.filter { $0.title.contains(searchBarText) }
-        return displayedCards
     }
     
-    var trailProfilePage: AnyView? {
-        router?.trailProfilePage
-    }
-    
-    private func setSlider() {
-        lowestTrailPrice = trails.map { $0.lowestFee }.min() ?? .min
-        highestTrailPrice = trails.map { $0.lowestFee }.max() ?? .max
-        slider = CustomSlider(width: 600, start: Double(lowestTrailPrice), end: Double(highestTrailPrice))
-    }
-    
-    func didGetAllTrails(_ trails: [Trail]) {
-        self.trails = trails
-        trailListingCards = trails.map(transformTrailToTrailListingCard)
-        setSlider()
-        isLoading = false
-        isRefreshing = false
-    }
-    
-    func getAllTrails() {
-        interactor.getAllTrails()
-    }
-    
-    func transformTrailToTrailListingCard(_ trail: Trail) -> TrailListingCard {
-        TrailListingCard(title: trail.title, tags: trail.tags, lowestFeePerPax: trail.lowestFee,
-                         tourDescription: trail.description, rating: trail.rating, numOfReviews: trail.numOfReviews,
-                         difficulty: trail.difficulty)
-    }
-    
-    func populateTrailProfilePage(trailTitle: String) {
-        guard let trail = trails.first(where: { $0.title == trailTitle }) else {
-            fatalError("Unsync between trails in view and in presenter")
+    func getEntityByCardId(_ cardId: String) -> Trail {
+        guard let trail = entities.first(where: { $0.trailId == UUID(uuidString: cardId) }) else {
+            fatalError("trails is not synced with cards")
         }
-        router?.populateTrailProfilePageFor(trail: trail)
-    }
-    
-    func onPageAppear() {
-        isLoading = true
-        self.trails = interactor.getCachedEntities()
-        getAllTrails()
+        return trail
     }
 }

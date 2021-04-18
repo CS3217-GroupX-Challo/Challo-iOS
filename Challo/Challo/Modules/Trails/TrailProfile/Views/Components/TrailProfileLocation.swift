@@ -24,6 +24,7 @@ struct TrailProfileLocation: View {
         VStack(alignment: .leading) {
             TrailProfileSectionTitle(title: "Location")
             Map(coordinateRegion: $mapRegion, interactionModes: MapInteractionModes.all)
-        }.frame(minHeight: 400)
+                .cornerRadius(10)
+        }.frame(minHeight: 350)
     }
 }

@@ -16,8 +16,8 @@ class TrailListingInteractor: EntityListingInteractor {
         self.repository = trailRepository
     }
 
-    func getAllTrails() {
-        repository.fetchTrailsAndRefresh(didRefresh: presenter.didGetAllTrails)
+    func getAllEntities() {
+        repository.fetchTrailsAndRefresh(didRefresh: presenter.didGetAllEntities)
     }
 
     func getCachedEntities() -> [Trail] {

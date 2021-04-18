@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct SearchBarCancelButton<Presenter: SearchBarPresenter>: View {
+struct SearchBarCancelButton<Presenter: SearchableEntityListingPresenter>: View {
     @EnvironmentObject var presenter: Presenter
     @Binding var isEditing: Bool
     
     var body: some View {
         Button(action: {
             self.isEditing = false
-            presenter.searchBarText = ""
+            presenter.searchPresenter.searchBarText = ""
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
                                             to: nil, from: nil, for: nil)
         }) {
