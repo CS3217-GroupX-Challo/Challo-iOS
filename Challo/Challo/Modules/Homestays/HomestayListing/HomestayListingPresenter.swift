@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-class HomestayListingPresenter: EntityListingPresenter, ObservableObject {
+class HomestayListingPresenter: EntityListingPresenter,
+                                SearchableEntityListingPresenter,
+                                ObservableObject {
 
     var interactor: HomestayListingInteractor!
     var router: HomestayListingRouter?
@@ -31,6 +33,8 @@ class HomestayListingPresenter: EntityListingPresenter, ObservableObject {
     @Published var searchBarText: String = ""
     @Published var isSearchBarSheetOpen: Bool = false
     
+    @Published var searchPresenter = EntityListingSearchPresenter<Homestay>(getSearchCriteriaFromEntity: { $0.title })
+    
     func getEntityByCardId(_ cardId: String) -> Homestay {
         guard let homestay = entities.first(where: { $0.homestayId == UUID(uuidString: cardId) }) else {
             fatalError("homestays is not synced with cards")
@@ -39,7 +43,8 @@ class HomestayListingPresenter: EntityListingPresenter, ObservableObject {
     }
 
     var displayedCards: [ListingCard] {
-        entities.map(transformHomestayToCard)
+        let displayedEntities = searchPresenter.applySearch(entities)
+        return displayedEntities.map(transformHomestayToCard)
     }
 
     func transformHomestayToCard(_ homestay: Homestay) -> ListingCard {
