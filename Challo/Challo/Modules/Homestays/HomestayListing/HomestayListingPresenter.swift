@@ -51,13 +51,14 @@ class HomestayListingPresenter: EntityListingPresenter, ObservableObject {
         ListingCard(id: homestay.homestayId.uuidString,
                     entityImage: homestay.images.isEmpty ? nil : homestay.images[0],
                     defaultImage: "mountains-background") {
-            AnyView(TrailListingCardDetail(title: homestay.title,
-                                          tags: ["Hello"],
-                                          lowestFeePerPax: Int(homestay.fee),
-                                          tourDescription: homestay.description ?? "",
-                                          rating: homestay.rating,
-                                          numOfReviews: 1,
-                                          difficulty: .Easy))
+            AnyView(HomestayListingCardDetail(title: homestay.title,
+                                              description: homestay.description ?? "",
+                                              numberOfBedRoom: homestay.capacity.bedrooms.count,
+                                              numberOfBeds: homestay.capacity.bedrooms.map { $0.bedQuantity }.reduce(0, +),
+                                              numberOfToilets: homestay.capacity.toilets,
+                                              numberOfGuests: homestay.guests,
+                                              hasWifi: homestay.amenities.contains(.wifi),
+                                              fee: Int(homestay.fee)))
         }
     }
 }
