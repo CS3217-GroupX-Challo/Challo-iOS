@@ -28,9 +28,4 @@ class GuideRegisterPresenter: RegisterPresenter, ObservableObject {
         }
         return router.onboardingForm
     }
-
-    func showRegisterSuccessAlert() {
-        self.registerAlertTitle = "Registration successful!"
-        self.registerAlertMessage = "You may now sign in with your account"
-    }
 }
