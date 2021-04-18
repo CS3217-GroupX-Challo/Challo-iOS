@@ -57,6 +57,6 @@ class TrailRepository: Repository<UUID, Trail>, TrailRepositoryProtocol, LocalSt
     }
     
     func fetchAllAndRefresh(didRefresh: (() -> Void)?) {
-        fetchTrailsAndRefresh()
+        fetchTrailsAndRefresh(didRefresh: { _ in didRefresh?() })
     }
 }
