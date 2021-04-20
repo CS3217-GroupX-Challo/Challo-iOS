@@ -64,14 +64,26 @@ class GuideAPI: GuideAPIProtocol {
 
     func getGuide(guideId: UUID, callback: @escaping (Guide) -> Void, url: String = "/guide") {
         networkManager.get(url: url + "/" + guideId.uuidString,
-                           headers: [String: String]()) { response, error in
+                           headers: [String: String]()) { [weak self] response, error in
+            guard let self = self else {
+                return
+            }
+
             if error != nil {
                 return
             }
             
             guard let guideInfo = response["data"] as? JSON,
-                  let guide = self.guideParser.convertJSONToGuide(json: guideInfo) else {
+                  var guide = self.guideParser.convertJSONToGuide(json: guideInfo) else {
                 return
+            }
+
+            self.networkManager.get(url: "/guide/trail/" + guide.userId.uuidString,
+                                    headers: [String: String]()) { [weak self] response, _ in
+                guard let self = self else {
+                    return
+                }
+                guide.trails = self.trailParser.parseTrail(response: response)
             }
             
             callback(guide)

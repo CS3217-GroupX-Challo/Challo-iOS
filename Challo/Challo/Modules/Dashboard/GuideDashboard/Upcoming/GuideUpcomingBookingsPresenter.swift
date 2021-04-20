@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class GuideUpcomingBookingsPresenter: PresenterProtocol, MessagingSupporter, ProfileImageProvider {
+class GuideUpcomingBookingsPresenter: PresenterProtocol, MessagingSupporter {
 
     var interactor: GuideUpcomingBookingsInteractor!
     var router: GuideUpcomingBookingsRouter?

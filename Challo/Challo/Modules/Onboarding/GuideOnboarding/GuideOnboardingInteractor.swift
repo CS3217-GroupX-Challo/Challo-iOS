@@ -16,17 +16,20 @@ class GuideOnboardingInteractor: InteractorProtocol {
     let userParser: UserAPIParser
     let certificateManager: CertificateManager
     let onboardingAPI: GuideOnboardingAPI
+    let guideAPI: GuideAPIProtocol
 
     internal init(userState: UserStateProtocol,
                   trailRepository: TrailRepositoryProtocol,
                   userParser: UserAPIParser,
                   certificateManager: CertificateManager,
-                  onboardingAPI: GuideOnboardingAPI) {
+                  onboardingAPI: GuideOnboardingAPI,
+                  guideAPI: GuideAPIProtocol) {
         self.userState = userState
         self.trailRepository = trailRepository
         self.userParser = userParser
         self.onboardingAPI = onboardingAPI
         self.certificateManager = certificateManager
+        self.guideAPI = guideAPI
     }
 
     init(userState: UserStateProtocol,
@@ -37,21 +40,26 @@ class GuideOnboardingInteractor: InteractorProtocol {
         self.userParser = UserAPIParser(userState: userState)
         self.certificateManager = CertificateManager(userState: userState)
         self.onboardingAPI = GuideOnboardingAPI(userState: userState, guideAPI: guideAPI)
+        self.guideAPI = guideAPI
     }
 
     func submitGuideDetails(details: GuideOnboardingDetails) {
-        onboardingAPI.updateGuideParticulars(details: details) { [weak self] response, error in
+        onboardingAPI.updateGuideParticulars(details: details) { [weak self] _, error in
             guard error == nil else {
                 self?.presenter.showSubmissionResult(success: false)
                 return
             }
-            let certificate = self?.userParser.parseUser(apiResponse: response)
-            guard let certificateUnwrapped = certificate else {
-                self?.presenter.showSubmissionResult(success: false)
-                return
-            }
-            self?.certificateManager.storeCertificate(certificate: certificateUnwrapped)
+            self?.updateUserStateGuide()
             self?.presenter.showSubmissionResult(success: true)
+        }
+    }
+
+    private func updateUserStateGuide() {
+        guard let guideId = UUID(uuidString: userState.userId) else {
+            fatalError("User should be logged in to see this page")
+        }
+        guideAPI.getGuide(guideId: guideId) { [weak self] guide in
+            self?.userState.user = guide
         }
     }
 

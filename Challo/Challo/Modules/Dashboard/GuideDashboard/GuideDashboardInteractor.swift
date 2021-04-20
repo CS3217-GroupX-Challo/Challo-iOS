@@ -35,8 +35,9 @@ class GuideDashboardInteractor: InteractorProtocol {
             fatalError("User should be logged in with a valid UUID")
         }
         
-        guideAPI.getGuide(guideId: id) { guide in
-            self.presenter.setHasGuideOnboarded(value: self.hasGuideOnboarded(guide: guide))
+        guideAPI.getGuide(guideId: id) { [weak self] guide in
+            let hasOnboarded = self?.hasGuideOnboarded(guide: guide) ?? false
+            self?.presenter.setHasGuideOnboarded(value: hasOnboarded)
         }
     }
 

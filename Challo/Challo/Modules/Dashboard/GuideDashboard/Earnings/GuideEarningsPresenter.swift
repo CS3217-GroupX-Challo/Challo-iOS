@@ -7,7 +7,7 @@
 
 import Foundation
 
-class GuideEarningsPresenter: PresenterProtocol, ProfileImageProvider {
+class GuideEarningsPresenter: PresenterProtocol {
 
     var router: GuideEarningsRouter?
     var interactor: GuideEarningsInteractor! {
