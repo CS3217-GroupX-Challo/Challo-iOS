@@ -56,7 +56,7 @@ struct GuideDashboardPage: View {
                     }
                 }
             }
-            DashboardProfileImage<GuideDashboardPresenter>()
+            DashboardProfileImage(presenter: presenter)
                 .frame(height: 130)
                 .padding()
                 .shadow(color: .black, radius: 4, x: 3, y: 4)
