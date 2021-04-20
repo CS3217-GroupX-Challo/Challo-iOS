@@ -45,17 +45,7 @@ class GuideOnboardingInteractor: InteractorProtocol {
                 self?.presenter.showSubmissionResult(success: false)
                 return
             }
-            self?.updateUserStateGuide()
             self?.presenter.showSubmissionResult(success: true)
-        }
-    }
-
-    private func updateUserStateGuide() {
-        guard let guideId = UUID(uuidString: userState.userId) else {
-            fatalError("User should be logged in to see this page")
-        }
-        guideAPI.getGuide(guideId: guideId) { [weak self] guide in
-            self?.userState.user = guide
         }
     }
 
