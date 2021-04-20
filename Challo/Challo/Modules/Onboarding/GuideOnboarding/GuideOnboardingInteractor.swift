@@ -14,21 +14,18 @@ class GuideOnboardingInteractor: InteractorProtocol {
     let userState: UserStateProtocol
     let trailRepository: TrailRepositoryProtocol
     let userParser: UserAPIParser
-    let certificateManager: CertificateManager
     let onboardingAPI: GuideOnboardingAPI
     let guideAPI: GuideAPIProtocol
 
     internal init(userState: UserStateProtocol,
                   trailRepository: TrailRepositoryProtocol,
                   userParser: UserAPIParser,
-                  certificateManager: CertificateManager,
                   onboardingAPI: GuideOnboardingAPI,
                   guideAPI: GuideAPIProtocol) {
         self.userState = userState
         self.trailRepository = trailRepository
         self.userParser = userParser
         self.onboardingAPI = onboardingAPI
-        self.certificateManager = certificateManager
         self.guideAPI = guideAPI
     }
 
@@ -38,7 +35,6 @@ class GuideOnboardingInteractor: InteractorProtocol {
         self.userState = userState
         self.trailRepository = trailRepository
         self.userParser = UserAPIParser(userState: userState)
-        self.certificateManager = CertificateManager(userState: userState)
         self.onboardingAPI = GuideOnboardingAPI(userState: userState, guideAPI: guideAPI)
         self.guideAPI = guideAPI
     }

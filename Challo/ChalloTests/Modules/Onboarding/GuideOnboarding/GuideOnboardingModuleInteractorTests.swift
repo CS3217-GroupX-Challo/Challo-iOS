@@ -16,8 +16,8 @@ class GuideOnboardingModuleInteractorTests: XCTestCase {
         return GuideOnboardingInteractor(userState: userState,
                                          trailRepository: MockTrailRepository(),
                                          userParser: MockUserAPIParser(userState: userState),
-                                         certificateManager: MockCertificateManager(state: userState),
-                                         onboardingAPI: onboardingAPI)
+                                         onboardingAPI: onboardingAPI,
+                                         guideAPI: MockGuideAPI())
     }
 
     func testFetchTrailsAndAreas() {
