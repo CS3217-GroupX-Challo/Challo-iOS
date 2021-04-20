@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-struct BookingCardListingsView: View {
+struct BookingCardListingsView<Presenter: MessagingSupporter>: View {
     let emptyListMessage = "You don't have any upcoming trips"
+
+    let presenter: Presenter
 
     var width: CGFloat
     var pov: PointOfView
@@ -58,7 +60,7 @@ struct BookingCardListingsView: View {
 
     private func guidePOVBookingCard(booking: Booking, width: CGFloat) -> some View {
         let tourist = booking.tourist
-        let chatView = ContactTouristPage(tourist: tourist)
+        let chatView = ContactTouristPage(tourist: tourist).environmentObject(presenter)
         return BookingCard(booking: booking,
                            width: width,
                            chatPartner: tourist,
@@ -67,7 +69,7 @@ struct BookingCardListingsView: View {
 
     private func touristPOVBookingCard(booking: Booking, width: CGFloat) -> some View {
         let guide = booking.guide
-        let chatView = ContactGuidePage(guide: guide)
+        let chatView = ContactGuidePage(guide: guide).environmentObject(presenter)
         return BookingCard(booking: booking,
                            width: width / 2,
                            chatPartner: guide,

@@ -18,10 +18,11 @@ struct GuideUpcomingBookingsPage: View {
                 Loading(isAnimating: .constant(true), style: .large)
             } else {
                 BookingCardListingsView(
-                        width: geometry.size.width,
-                        pov: .guide,
-                        bookings: $presenter.upcomingBookings,
-                        isRefreshing: .constant(false))
+                    presenter: presenter,
+                    width: geometry.size.width,
+                    pov: .guide,
+                    bookings: $presenter.upcomingBookings,
+                    isRefreshing: .constant(false))
             }
         }
     }

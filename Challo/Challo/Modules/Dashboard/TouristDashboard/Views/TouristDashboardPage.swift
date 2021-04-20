@@ -27,6 +27,7 @@ struct TouristDashboardPage: View {
 
             if presenter.selectedTab == .upcomingBookings {
                 BookingCardListingsView(
+                    presenter: presenter,
                     width: geometry.size.width,
                     pov: .tourist,
                     bookings: $presenter.upcomingBookings,
@@ -35,6 +36,7 @@ struct TouristDashboardPage: View {
             
             if presenter.selectedTab == .pastBookings {
                 BookingCardListingsView(
+                    presenter: presenter,
                     width: geometry.size.width,
                     pov: .tourist,
                     bookings: $presenter.pastBookings,
@@ -66,7 +68,7 @@ struct TouristDashboardPage: View {
                     }
                 }
             }
-            DashboardProfileImage<TouristDashboardPresenter>()
+            DashboardProfileImage(presenter: presenter)
                 .frame(height: 130)
                 .padding()
                 .shadow(color: .black, radius: 4, x: 3, y: 4)

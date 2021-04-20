@@ -9,8 +9,6 @@ import SwiftUI
 
 struct BookingCard<ChatView: View, ActionView: View>: View {
 
-    @EnvironmentObject var presenter: TouristDashboardPresenter
-
     var booking: Booking
     var width: CGFloat
     var chatPartner: User
@@ -58,7 +56,7 @@ struct BookingCard<ChatView: View, ActionView: View>: View {
                     .frame(width: width, height: 200)
                     .cornerRadius(10)
                 VStack {
-                    NavigationLink(destination: chatView.environmentObject(presenter)) {
+                    NavigationLink(destination: chatView) {
                         Image(systemName: "ellipsis.bubble.fill")
                             .foregroundColor(Color.pink)
                             .brightness(-0.05)

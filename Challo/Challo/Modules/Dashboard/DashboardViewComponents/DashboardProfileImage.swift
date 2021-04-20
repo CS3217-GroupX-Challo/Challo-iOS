@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct DashboardProfileImage<Provider: ProfileImageProvider>: View {
-    @EnvironmentObject var presenter: Provider
+
+    var presenter: Provider
 
     var body: some View {
         Group {
