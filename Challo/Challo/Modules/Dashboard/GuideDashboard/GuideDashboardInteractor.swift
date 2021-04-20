@@ -26,11 +26,6 @@ class GuideDashboardInteractor: InteractorProtocol {
     }
 
     func checkOnboardingStatus() {
-        if let guide = userState.user as? Guide {
-            presenter.setHasGuideOnboarded(value: hasGuideOnboarded(guide: guide))
-            return
-        }
-        
         guard let id = UUID(uuidString: userState.userId) else {
             fatalError("User should be logged in with a valid UUID")
         }

@@ -22,8 +22,6 @@ protocol UserStateProtocol: AnyObject {
     
     func storeCertificate(certificate: UserCertificate, isNewUser: Bool)
 
-    func logIn()
-
     func logOut()
 }
 
@@ -43,9 +41,6 @@ extension UserStateProtocol {
         self.isNewUser = isNewUser
 
         user = certificate.user
-    }
-    func logIn() {
-        loggedIn = true
     }
 
     func logOut() {

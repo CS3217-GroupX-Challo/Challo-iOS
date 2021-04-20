@@ -78,15 +78,23 @@ class GuideAPI: GuideAPIProtocol {
                 return
             }
 
+            let group = DispatchGroup()
+            group.enter()
+
             self.networkManager.get(url: "/guide/trail/" + guide.userId.uuidString,
                                     headers: [String: String]()) { [weak self] response, _ in
                 guard let self = self else {
+                    group.leave()
                     return
                 }
-                guide.trails = self.trailParser.parseTrail(response: response)
+                let trails = self.trailParser.parseTrail(response: response)
+                guide.trails = trails
+                group.leave()
             }
-            
-            callback(guide)
+
+            group.notify(queue: .main) {
+                callback(guide)
+            }
         }
     }
 }
