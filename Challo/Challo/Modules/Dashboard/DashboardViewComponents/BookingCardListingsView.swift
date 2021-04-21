@@ -71,7 +71,7 @@ struct BookingCardListingsView<Presenter: MessagingSupporter>: View {
         let guide = booking.guide
         let chatView = ContactGuidePage(guide: guide).environmentObject(presenter)
         return BookingCard(booking: booking,
-                           width: width / 2,
+                           width: width,
                            chatPartner: guide,
                            chatView: chatView) { }
     }
