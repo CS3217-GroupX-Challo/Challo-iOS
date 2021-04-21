@@ -39,14 +39,17 @@ struct GuideOnboardingPage: View {
             Alert(title: Text(presenter.alertTitle),
                   message: Text(presenter.alertMessage),
                   dismissButton: Alert.Button.default(
-                    Text("Okay"), action: {
-                        if presenter.isOnboardSuccess {
-                            dashboardPresenter.hasGuideOnboarded = true
-                        }
-                    }
+                    Text("Okay"),
+                    action: presentDashboardIfOnboardSuccess
                 ))
         }
         .onAppear { presenter.loadTrailAndAreaData() }
         .ignoresSafeArea()
+    }
+
+    private func presentDashboardIfOnboardSuccess() {
+        if presenter.isOnboardSuccess {
+            dashboardPresenter.setHasGuideOnboarded(value: true)
+        }
     }
 }

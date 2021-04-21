@@ -55,73 +55,91 @@ class MainContainerRouter: RouterProtocol {
         chatPage = ChatModule(chatService: chatService, userState: userState).assemble().view
         return chatService
     }
-
-    #if TOURIST
-    private func setupChatProfileHomestayPage(bookingRepository: BookingRepositoryProtocol,
-                                              reviewAPI: ReviewAPIProtocol,
-                                              userAPI: UserAPIProtocol) {
-        let chatDialogRepository = ChatDialogRepository()
-        let chatService = QuickBloxChatService(chatAuthService: QuickBloxChatAuthService(),
-                                               chatDialogService: QuickBloxChatDialogService(chatDialogRepository:
-                                                                                                chatDialogRepository))
-        chatPage = ChatModule(chatService: chatService, userState: userState).assemble().view
-        
-        profilePage = TouristDashboardModule(userState: userState, bookingRepository: bookingRepository,
-                                             reviewAPI: reviewAPI,
-                                             sendMessageToGuide: { [weak self] guideEmail, _, messageText in
-                                                self?.sendMessageToUser(userEmail: guideEmail,
-                                                                        messageText: messageText,
-                                                                        chatService: chatService)
-                                             },
-                                             updateUserChat: { [weak self] name, email in
-                                                self?.updateUser(name: name, email: email, chatService: chatService)
-                                             },
-                                             userAPI: userAPI).assemble().view
-        
-        homestayPage = HomestayListingModule(userState: userState,
-                                             homestayRepository: resolveHomestayRepository(),
-                                             sendMessageToHost: { [weak self] hostEmail, messageText in
-                                                self?.sendMessageToUser(userEmail: hostEmail,
-                                                                        messageText: messageText,
-                                                                        chatService: chatService)
-                                             }).assemble().view
-    }
-    #endif
     
     private func setUpLoginAndProfile(bookingRepository: BookingRepositoryProtocol,
                                       reviewAPI: ReviewAPIProtocol,
                                       userState: UserStateProtocol) {
 
         let userAPI = resolveUserAPI()
+        let chatService = setUpAndReturnChatService()
+        let sendMessage = { [weak self] (_ recipientEmail: String, _: UUID, messageText: String) -> Void in
+
+            self?.sendMessageToUser(userEmail: recipientEmail,
+                                    messageText: messageText,
+                                    chatService: chatService)
+
+        }
+        let updateUserChat = { [weak self] (_ name: String, _ email: String) -> Void in
+
+            self?.updateUser(name: name, email: email, chatService: chatService)
+        }
 
         #if GUIDE
-        let chatService = setUpAndReturnChatService()
+        setUpGuidePages(userState: userState,
+                        userAPI: userAPI,
+                        bookingRepository: bookingRepository,
+                        sendMessageToTourist: sendMessage,
+                        updateUserChat: updateUserChat)
+
+        #elseif TOURIST
+        let sendMessageToHost = { [weak self] (hostEmail: String, messageText: String) -> Void in
+            self?.sendMessageToUser(userEmail: hostEmail,
+                                    messageText: messageText,
+                                    chatService: chatService)
+        }
+        setUpTouristPages(userState: userState,
+                          userAPI: userAPI,
+                          bookingRepository: bookingRepository,
+                          sendMessageToGuide: sendMessage,
+                          sendMessageToHost: sendMessageToHost,
+                          updateUserChat: updateUserChat)
+        #endif
+    }
+
+    #if GUIDE
+    private func setUpGuidePages(userState: UserStateProtocol,
+                                 userAPI: UserAPIProtocol,
+                                 bookingRepository: BookingRepositoryProtocol,
+                                 sendMessageToTourist: @escaping
+                                    (_ touristEmail: String, _ id: UUID, _ messageText: String) -> Void,
+                                 updateUserChat: @escaping (_ name: String, _ email: String) -> Void) {
+
         loginPage = GuideLoginModule(userState: userState,
                                      loginAPI: resolveGuideLoginAPI(),
                                      registerAPI: resolveGuideRegisterAPI()).assemble().view
         profilePage = GuideDashboardModule(userState: userState,
                                            bookingRepository: bookingRepository,
                                            trailRepository: resolveTrailRepository(),
-                                           sendMessageToTourist: { [weak self] touristEmail, _, messageText in
-                                            self?.sendMessageToUser(userEmail: touristEmail,
-                                                                    messageText: messageText,
-                                                                    chatService: chatService)
-                                           },
-                                           updateUserChat: { [weak self] name, email in
-                                            self?.updateUser(name: name, email: email, chatService: chatService)
-                                           },
+                                           sendMessageToTourist: sendMessageToTourist,
+                                           updateUserChat: updateUserChat,
                                            userAPI: userAPI,
                                            guideAPI: resolveGuideAPI()).assemble().view
+    }
 
-        #elseif TOURIST
+    #elseif TOURIST
+    // swiftlint:disable function_parameter_count
+    private func setUpTouristPages(userState: UserStateProtocol,
+                                   userAPI: UserAPIProtocol,
+                                   bookingRepository: BookingRepositoryProtocol,
+                                   sendMessageToGuide: @escaping
+                                      (_ guideEmail: String, _ id: UUID, _ messageText: String) -> Void,
+                                   sendMessageToHost: @escaping (_ hostEmail: String, _ messageText: String) -> Void,
+                                   updateUserChat: @escaping (_ name: String, _ email: String) -> Void) {
+
         loginPage = TouristLoginModule(userState: userState,
                                        loginAPI: resolveTouristLoginAPI(),
                                        registerAPI: resolveTouristRegisterAPI()).assemble().view
-        setupChatProfileHomestayPage(bookingRepository: bookingRepository,
-                                     reviewAPI: reviewAPI,
-                                     userAPI: userAPI)
-        #endif
+        profilePage = TouristDashboardModule(userState: userState,
+                                             bookingRepository: bookingRepository,
+                                             reviewAPI: resolveReviewAPI(),
+                                             sendMessageToGuide: sendMessageToGuide,
+                                             updateUserChat: updateUserChat,
+                                             userAPI: userAPI).assemble().view
+        homestayPage = HomestayListingModule(userState: userState,
+                                             homestayRepository: resolveHomestayRepository(),
+                                             sendMessageToHost: sendMessageToHost).assemble().view
     }
+    #endif
 }
 
 // MARK: Dependency Resolve

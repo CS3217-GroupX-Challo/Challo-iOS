@@ -64,15 +64,17 @@ struct GuideDashboardPage: View {
     }
     
     var body: some View {
-        if !presenter.hasGuideOnboarded {
-            presenter.router?.getOnboardingPage()
-                .environmentObject(presenter)
-        } else {
-            PageLayout(background: .mountainBackground, headerContent: AnyView(header)) { geo in
-                makeContent(geo)
-                    .frame(maxWidth: .infinity)
+        GeometryReader { _ in
+            if !presenter.hasGuideOnboarded {
+                presenter.router?.getOnboardingPage()
+                    .environmentObject(presenter)
+            } else {
+                PageLayout(background: .mountainBackground, headerContent: AnyView(header)) { geo in
+                    makeContent(geo)
+                        .frame(maxWidth: .infinity)
+                }
             }
-            .onAppear { presenter.onAppear() }
         }
+        .onAppear { presenter.onAppear() }
     }
 }
